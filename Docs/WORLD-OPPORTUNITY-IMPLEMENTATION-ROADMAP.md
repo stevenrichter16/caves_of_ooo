@@ -391,6 +391,15 @@ Ordinary bare hauling and the two-board dismantle remain available.
     and generator updates never reroll an existing site. Promise multiple
     approaches only after validating at least two there.
 
+A retained seed 64 cave trial compared two ordinary rubble landings
+from the same stance. One had recoverable felt. The same natural Pale
+Stalker acquired the player on bare rubble and kept wandering on felt.
+Continue now preserves a completed wander child, which had made the
+older matched comparison inconclusive. The felt was taken up in a paid
+action and conserved through another Continue. This covers one route
+tool and one hunter response inside an existing cave.
+[Evidence](Verification/MachineSystems/CaveFeltAndSteamTopUp20261126/README.md)
+
 Fresh v27 Peat Works can use the realized north gaps for optional mire work.
 The ordinary southern approach stays dry. The generation check compares the
 dry detour with the cleared route after spending one action and treating
@@ -596,6 +605,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     a bought flask. The player used both tools to catch one water from an
     existing Sodden vent. The route measured actual local injury and saved
     finite remaining stock. [Evidence](Verification/MachineSystems/OrdinaryCondenser20261125/README.md)
+    The same flask now accepts a second measure from the same steam catch
+    budget. Actual play spent one of the two measures on a dry sumpsieve
+    and saved the actual crop moisture and flask remainder. Ordinary
+    empty-flask catch, scrape and tray options still use their existing
+    rules. [Evidence](Verification/MachineSystems/CaveFeltAndSteamTopUp20261126/README.md)
     A version 29 Causeway surface vent and its local cave stain made an
     optional cue visible on a crossing that kept its six-step stair
     approach. The two existing portable tools compete for the same

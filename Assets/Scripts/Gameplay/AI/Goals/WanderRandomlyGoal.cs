@@ -7,11 +7,13 @@ namespace CavesOfOoo.Core
     /// </summary>
     public class WanderRandomlyGoal : GoalHandler
     {
-        private bool _acted;
+        // The brain removes completed children at its next turn. Save this
+        // flag so Continue cannot spend another turn repeating the step.
+        public bool Acted;
 
         public override bool IsBusy() => false;
 
-        public override bool Finished() => _acted;
+        public override bool Finished() => Acted;
 
         public override void TakeAction()
         {
@@ -19,7 +21,7 @@ namespace CavesOfOoo.Core
             // nearby hunter. Keep the parent duration/effect lifecycle intact.
             if (ParentEntity.GetPart<SpreadGrazerPart>()?.TryWanderFlight(ParentBrain, CurrentZone, this) == true)
             {
-                _acted = true;
+                Acted = true;
                 return;
             }
             var (dx, dy) = AIHelpers.RandomPassableDirection(ParentEntity, CurrentZone, Rng);
@@ -27,7 +29,7 @@ namespace CavesOfOoo.Core
                 MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy);
 
             ParentBrain.CurrentState = AIState.Wander;
-            _acted = true;
+            Acted = true;
         }
     }
 }

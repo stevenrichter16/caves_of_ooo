@@ -1,3 +1,25 @@
+**A second steam catch supplies a dry crop — November 26 UTC, 2026.**
+A native Sodden vent quoted the existing flask's fill change from
+1/12 to 2/12. Free reader and cancellation kept the three remaining
+catches. Actual use spent one catch and kept the same flask. The branch
+then carried it to the shelter and used one water on a dry sumpsieve.
+Fresh Continue kept 39 moisture ticks and one water. A direct route
+attempt died and the successful detour ended at 4 HP after watering.
+
+**A fresh cave fork distinguishes felt from bare rubble — November 26 UTC, 2026.**
+Initial play found that saving an already-finished wander child made it
+unfinished on load. The stored completion now survives Continue. The
+new matched fork let the same native Pale Stalker hear a bare step and
+stay untargeted after the felt step. The strip was recovered and the
+exact outcome persisted at fresh tick 1500. Final connected native run
+passed 359 cases. [Evidence](Verification/MachineSystems/CaveFeltAndSteamTopUp20261126/README.md)
+
+Next, qualify the existing optional Posy composition from the exact
+earned two-resin branch at tick 390. A one-resin branch at 330 can show
+the insufficient-payment countercase. Follow actual handover, exact
+remaining seed, persisted condition and one report. Keep the existing
+alternative and do not infer new bench access from four Bower regard.
+
 **A paid porter order waits during ordinary travel — November 26 UTC, 2026.**
 The existing loading guide explains the pause before payment. The
 actual loaded Gleaners' order stayed put through map travel and a
@@ -5,12 +27,6 @@ fresh Continue while away. It resumed on return and transferred the
 exact clay box once. A subsequent wait and fresh Continue kept the
 same terminal receipt. The final targeted run passed 76 cases.
 [Evidence](Verification/MachineSystems/PorterAwayLifecycle20261126/README.md)
-
-Next, compare a bare cave landing with a reusable hush strip where
-ordinary footsteps can carry. Surface trials already proved placement,
-pickup and reuse. A separate template proved that loud sounding could
-alert a natural cave hunter. Keep those claims separate until a matched
-cave trial proves the effect of the strip itself.
 
 **Measured oil lights Quillhold's copy desks — November 26 UTC, 2026.**
 The expedition branch brought ordinary settled oil to Esset. The

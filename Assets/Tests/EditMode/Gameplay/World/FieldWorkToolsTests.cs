@@ -83,6 +83,83 @@ namespace CavesOfOoo.Tests
             var tool=Carry("SteamCondenser");var flask=Flask(0);Assert.True(Act(tool,Choice(tool,"CondenseSteam|")));
             Assert.AreEqual(1,Units(flask));Assert.AreEqual("water",flask.GetPart<LiquidVesselPart>().LiquidId);Assert.AreEqual(before-1,stock.Available);
         }
+        [TestCase(1)]
+        [TestCase(11)]
+        public void CondenserAddsOneWaterToTheExactExistingFlask(int initial)
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            int before = stock.Available;
+            var tool = Carry("SteamCondenser");
+            var flask = Flask(initial);
+            var row = Actions(tool).Single(a => a.Command.StartsWith("CondenseSteam|"));
+            Assert.That(row.Display, Does.Contain($"{initial}/12 to {initial + 1}/12"));
+            Assert.IsTrue(Act(tool, row.Command));
+            Assert.That(Pack.Objects, Does.Contain(flask));
+            Assert.AreEqual(initial + 1, Units(flask));
+            Assert.AreEqual("water", flask.GetPart<LiquidVesselPart>().LiquidId);
+            Assert.AreEqual(before - 1, stock.Available);
+            Assert.AreEqual(initial < 11, Actions(tool).Any(a => a.Command.StartsWith("CondenseSteam|")));
+        }
+
+        [Test]
+        public void VentMenuDistinguishesDifferentFillLevelsAndPaysTheChosenFlask()
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            int before = stock.Available;
+            var tool = Carry("SteamCondenser");
+            var shallow = Flask(1);
+            var deep = Flask(7);
+            var rows = CellMenu(11, 10).Where(a => a.Via == tool && a.Command.StartsWith("CondenseSteam|")).ToArray();
+            Assert.AreEqual(2, rows.Length);
+            var row = rows.Single(a => a.Display.Contains("7/12 to 8/12"));
+            Assert.IsTrue(ChooseRow(row, 11, 10));
+            Assert.AreEqual(1, Units(shallow));
+            Assert.AreEqual(8, Units(deep));
+            Assert.AreEqual(before - 1, stock.Available);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void InterruptedCondenserTopUpPreservesPreviouslyHeldWater(bool stale)
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            int before = stock.Available;
+            var tool = Carry("SteamCondenser");
+            var flask = Flask(1);
+            string command = Choice(tool, "CondenseSteam|");
+            if (stale) flask.GetPart<LiquidVesselPart>().Volume = 2;
+            else FailAfter();
+            Assert.IsFalse(Act(tool, command));
+            Assert.AreEqual(stale ? 2 : 1, Units(flask));
+            Assert.AreEqual("water", flask.GetPart<LiquidVesselPart>().LiquidId);
+            Assert.AreEqual(before, stock.Available);
+        }
+
+        [TestCase(-1, 0)]
+        [TestCase(1, 2)]
+        public void FailedCondenserTopUpLeavesAnIndependentWaterChange(int unrelatedChange, int expected)
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            int before = stock.Available;
+            var tool = Carry("SteamCondenser");
+            var flask = Flask(1);
+            var receiver = flask.GetPart<LiquidVesselPart>();
+            string command = Choice(tool, "CondenseSteam|");
+            Actor.AddPart(new Probe { Run = e =>
+            {
+                if (e.ID == "AfterInventoryAction") receiver.Volume += unrelatedChange;
+            }});
+
+            Assert.IsFalse(Act(tool, command));
+            Assert.AreEqual(expected, receiver.Volume);
+            Assert.AreEqual(expected == 0 ? "" : "water", receiver.LiquidId);
+            Assert.AreEqual(before, stock.Available);
+        }
+
         [Test] public void LookingAtUntouchedVentCreatesNoResourceStock()
         {
             var vent=Place("SteamVent");var tool=Carry("SteamCondenser");Flask(0);

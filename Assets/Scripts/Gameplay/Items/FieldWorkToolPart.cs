@@ -131,7 +131,7 @@ namespace CavesOfOoo.Core
                         {ZoneTileStateSystem.AddCharge(zone,target.X,target.Y,1,actor,"DischargeRod");ZoneTileStateSystem.ResolveAfterAbility(zone,actor);MessageLog.Add("The rod discharges. Its root is spent.");},0);
                 }
             }
-            if(kind=="water")
+            if(kind=="water" && LiquidRegistry.IsInitialized && LiquidRegistry.Get("water")!=null)
             {
                 foreach(var vent in zone.GetReadOnlyEntities().Where(e=>Steam(actor,e,zone)).OrderBy(e=>e.ID,StringComparer.Ordinal))
                 {
@@ -148,23 +148,32 @@ namespace CavesOfOoo.Core
                         && (TurnManager.Active?.TickCount??0)==now;
                     foreach(var flask in pack.Objects.ToArray())
                     {
-                        if(!EmptyFlask(actor,flask))continue;var receiver=flask.GetPart<LiquidVesselPart>();int max=receiver.Capacity;var flaskIdentity=Identity(flask);
-                        bool Receiver(int volume)=>flaskIdentity() && WorldResourceActions.Carried(actor,flask) && !flask.HasEffect<FrozenEffect>() && flask.GetPart<LiquidVesselPart>()==receiver
-                            && receiver.Capacity==max && receiver.Volume==volume && receiver.LiquidId==(volume==0?"":"water");
+                        if (!WorldResourceActions.Carried(actor, flask) || flask.HasEffect<FrozenEffect>()) continue;
+                        var receiver = flask.GetPart<LiquidVesselPart>();
+                        if (receiver?.ParentEntity != flask) continue;
+                        int max = receiver.Capacity;
+                        int initial = receiver.Volume;
+                        if (initial < 0 || initial >= max || receiver.LiquidId != (initial == 0 ? "" : "water")) continue;
+                        var flaskIdentity = Identity(flask);
+                        bool Receiver(int volume) => flaskIdentity() && pack.Objects.Contains(flask)
+                            && WorldResourceActions.Carried(actor, flask) && !flask.HasEffect<FrozenEffect>()
+                            && flask.GetPart<LiquidVesselPart>() == receiver && receiver.Capacity == max
+                            && receiver.Volume == volume && receiver.LiquidId == (volume == 0 ? "" : "water");
                         bool SourceAfter()=>paidStock!=null && ventAfter() && holderAfter() && paidStock.ParentEntity==holder && holder.GetPart<SourceStockPart>()==paidStock
                             && paidStock.Capacity==capacity && paidStock.Available==available-1 && zone.GetEntityCell(holder)==holderCell
                             && paidStock.LastTick==paidLast && Steam(actor,vent,zone) && zone.GetEntityCell(vent)==ventCell
                             && ProofingSources.StockHolder(zone,vent,element)==holder && (TurnManager.Active?.TickCount??0)==now;
-                        yield return Make(Water,"condense 1 water into "+InventoryPart.GetUnitDisplayName(flask)+" (1 source catch, 1 action)",
-                            "Shares this vent's finite catch supply with scrapers and trays. Three to five catches, restoring one per game day. Split an empty flask stack first.",ventCell,new[]{vent,holder,flask},
-                            ()=>SourceBefore() && Receiver(0),()=>SourceAfter() && Receiver(1),tx=>
+                        string fill = $"{initial}/{max} to {initial + 1}/{max}";
+                        yield return Make(Water,"condense 1 water into "+InventoryPart.GetUnitDisplayName(flask)+" ("+fill+")",
+                            "One action spends one catch from the same supply used by scrapers and trays. Three to five catches, restoring one per game day. Split a flask stack first.",ventCell,new[]{vent,holder,flask},
+                            ()=>SourceBefore() && Receiver(initial),()=>SourceAfter() && Receiver(initial+1),tx=>
                             {
                                 paidStock=stock??SourceStockPart.For(zone,holder,now);paidStock.Reconcile(now);paidLast=paidStock.LastTick;paidStock.Available--;
                                 ventAfter=Identity(vent);holderAfter=Identity(holder);
-                                receiver.Volume=1;receiver.LiquidId="water";
+                                receiver.Volume=initial+1;receiver.LiquidId="water";
                                 tx.Do(null,()=>
                                 {
-                                    if(flask.GetPart<LiquidVesselPart>()==receiver && receiver.ParentEntity==flask && receiver.Capacity==max && receiver.LiquidId=="water" && receiver.Volume>=1)
+                                    if(flask.GetPart<LiquidVesselPart>()==receiver && receiver.ParentEntity==flask && receiver.Capacity==max && receiver.LiquidId=="water" && receiver.Volume>0)
                                     {receiver.Volume--;if(receiver.Volume==0)receiver.LiquidId="";}
                                     if(holder.GetPart<SourceStockPart>()==paidStock && paidStock.ParentEntity==holder && paidStock.Capacity==capacity && paidStock.Available>=0 && paidStock.Available<capacity)
                                     {paidStock.Available++;if(stock==null && paidStock.Available==capacity && paidStock.LastTick==now)holder.RemovePart(paidStock);}
@@ -182,9 +191,6 @@ namespace CavesOfOoo.Core
             && Visible(zone.GetEntityCell(source)) && LiquidSourcePhase.CanDrawWater(zone,source) && source.GetPart<TileStateSourcePart>() is TileStateSourcePart tile
             && tile.ParentEntity==source && tile.Heat>0 && tile.Coating=="water"
             && source.GetPart<MaterialPart>()?.MaterialID=="Steam" && ProofingSources.ElementOf(source)!=null;
-        static bool EmptyFlask(Entity actor,Entity flask)=>WorldResourceActions.Carried(actor,flask) && flask.GetPart<LiquidVesselPart>() is LiquidVesselPart vessel
-            && vessel.ParentEntity==flask && vessel.Capacity>0 && vessel.Volume==0 && string.IsNullOrEmpty(vessel.LiquidId)
-            && !flask.HasEffect<FrozenEffect>() && LiquidRegistry.IsInitialized && LiquidRegistry.Get("water")!=null;
         void Rows(Entity actor,Zone zone,InventoryActionList rows,bool publish)
         {
             if(rows==null)return;Menu menu=null;Quote[] previous=Array.Empty<Quote>();
@@ -233,7 +239,7 @@ namespace CavesOfOoo.Core
             if(Kind=="shock")
             {guide.How.Add("Load one spark-root in your pack; discharge into conductive ground or metal one or two straight cells away.");guide.Needs.Add("one root per discharge; visible clear line");guide.Limits.Add("Loading and discharge each take one action. Holds one charge. Connected water and metal can carry the shock to you or bystanders.");}
             if(Kind=="water")
-            {guide.How.Add("Carry it beside a natural steam vent with an empty single flask. Choose condense from the tool or vent's C menu.");guide.Needs.Add("empty carried flask; split a flask stack first");guide.Limits.Add("One action catches one water and spends one shared source catch, also used by scrapers and trays. Supply restores one catch per game day. Ash beds and ordinary heat give no water; frozen vents refuse.");}
+            {guide.How.Add("Carry it beside a natural steam vent. Choose condense from the tool or vent's C menu.");guide.Needs.Add("one carried flask, empty or holding only water with room for more; split a flask stack first");guide.Limits.Add("One action catches one water and spends one shared source catch, also used by scrapers and trays. Supply restores one catch per game day. Ash beds and ordinary heat give no water; frozen vents refuse.");}
             guide.WhyNot="carry a sound tool and bring its stated supplies within reach";
         }
     }

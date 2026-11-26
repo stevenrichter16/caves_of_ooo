@@ -210,6 +210,47 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(-1, step.DY);
         }
 
+        [TestCase(true)]
+        [TestCase(false)]
+        public void WanderStepKeepsItsCompletionStateThroughSave(bool hasActed)
+        {
+            var actor = new Entity { ID = "a", BlueprintName = "Test" };
+            var zone = new Zone("WanderRoundTrip");
+            var brain = new BrainPart { CurrentZone = zone, Rng = new System.Random(3) };
+            actor.AddPart(brain);
+            Assert.IsTrue(zone.AddEntity(actor, 10, 10));
+            var parent = new WaitGoal(5);
+            brain.PushGoal(parent);
+            var step = new WanderRandomlyGoal();
+            parent.PushChildGoal(step);
+            if (hasActed) step.TakeAction();
+            Assert.AreEqual(0, step.Age);
+            Assert.AreEqual(hasActed, step.Finished());
+
+            var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(actor);
+            var loadedBrain = loaded.GetPart<BrainPart>();
+            var loadedStep = loadedBrain.PeekGoal() as WanderRandomlyGoal;
+            Assert.IsNotNull(loadedStep);
+            Assert.AreSame(loadedBrain.PeekGoalAt(0), loadedStep.ParentHandler);
+            Assert.AreEqual(hasActed, loadedStep.Finished());
+
+            var loadedZone = new Zone("WanderRoundTrip");
+            Assert.IsTrue(loadedZone.AddEntity(loaded, 10, 10));
+            loadedBrain.CurrentZone = loadedZone;
+            var turn = GameEvent.New("TakeTurn");
+            loaded.FireEventAndRelease(turn);
+            if (hasActed)
+            {
+                Assert.IsInstanceOf<WaitGoal>(loadedBrain.PeekGoal());
+                Assert.AreEqual((10, 10), loadedZone.GetEntityPosition(loaded));
+            }
+            else
+            {
+                Assert.AreSame(loadedStep, loadedBrain.PeekGoal());
+                Assert.IsTrue(loadedStep.Finished());
+            }
+        }
+
         [Test]
         public void BrainPart_GoalStack_ParentChainReconstructed()
         {

@@ -1,0 +1,2740 @@
+{
+  "CaveMatched": {
+    "b": {
+      "tick": 1350,
+      "zone": "Overworld.10.11.5",
+      "ID": "2126",
+      "x": 17,
+      "y": 11,
+      "noise": 1320,
+      "hp": 400,
+      "state": "Normal",
+      "stairs": [
+        {
+          "X": 4,
+          "Y": 14,
+          "down": false
+        },
+        {
+          "X": 35,
+          "Y": 6,
+          "down": false
+        },
+        {
+          "X": 40,
+          "Y": 12,
+          "down": true
+        },
+        {
+          "X": 59,
+          "Y": 16,
+          "down": false
+        }
+      ],
+      "hunters": [
+        {
+          "ID": "21359",
+          "BlueprintName": "PaleStalker",
+          "X": 6,
+          "Y": 10,
+          "hp": 50,
+          "speed": 115,
+          "goal": "WanderRandomlyGoal",
+          "goals": [
+            {
+              "name": "BoredGoal",
+              "Age": 37
+            },
+            {
+              "name": "WanderRandomlyGoal",
+              "Age": 0
+            }
+          ],
+          "state": "Wander",
+          "target": null,
+          "distance": 11,
+          "energy": 950
+        }
+      ],
+      "log": [
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Autosaved.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved."
+      ]
+    },
+    "v": {
+      "carry": [
+        {
+          "ID": "2136",
+          "count": 3
+        }
+      ],
+      "cells": [
+        {
+          "X": 16,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": false,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "18524",
+              "BlueprintName": "ShaleWall"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20343",
+              "BlueprintName": "ShaleFloor"
+            },
+            {
+              "ID": "21392",
+              "BlueprintName": "HushStripLaid"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20344",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 17,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20352",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 17,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "20353",
+              "BlueprintName": "ShaleFloor"
+            },
+            {
+              "ID": "2126",
+              "BlueprintName": "Player"
+            }
+          ]
+        },
+        {
+          "X": 17,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": []
+        },
+        {
+          "X": 18,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20366",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 18,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20367",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 18,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20368",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "CaveMatchedPlainBefore": {
+    "tick": 1350,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 17,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 6,
+        "Y": 10,
+        "hp": 50,
+        "speed": 115,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 37
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 11,
+        "energy": 950
+      }
+    ],
+    "log": [
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveMatchedPlainAfter": {
+    "tick": 1360,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 12,
+    "noise": 1350,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 8,
+        "Y": 11,
+        "hp": 50,
+        "speed": 115,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 39
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 8,
+        "energy": 100
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveMatchedFeltBefore": {
+    "tick": 1350,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 17,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 6,
+        "Y": 10,
+        "hp": 50,
+        "speed": 115,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 37
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 11,
+        "energy": 950
+      }
+    ],
+    "log": [
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveMatchedFeltAfter": {
+    "tick": 1360,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 6,
+        "Y": 11,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1360,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 39
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 10,
+        "energy": 100
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveLiveWanderBeforeReload": {
+    "tick": 1360,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 6,
+        "Y": 11,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1360,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 39,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": true
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 10,
+        "energy": 100
+      }
+    ],
+    "log": [
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Game saved."
+    ]
+  },
+  "CaveLiveWanderAfterReload": {
+    "tick": 1360,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 6,
+        "Y": 11,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1360,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 39,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": false
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 10,
+        "energy": 100
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveFixedLegacyStart": {
+    "tick": 1360,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 6,
+        "Y": 11,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1360,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 39,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": false
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 10,
+        "energy": 100
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveFixedMatched": {
+    "o": {
+      "tick": 1480,
+      "zone": "Overworld.10.11.5",
+      "ID": "2126",
+      "x": 16,
+      "y": 11,
+      "noise": 1320,
+      "hp": 400,
+      "state": "Normal",
+      "stairs": [
+        {
+          "X": 4,
+          "Y": 14,
+          "down": false
+        },
+        {
+          "X": 35,
+          "Y": 6,
+          "down": false
+        },
+        {
+          "X": 40,
+          "Y": 12,
+          "down": true
+        },
+        {
+          "X": 59,
+          "Y": 16,
+          "down": false
+        }
+      ],
+      "hunters": [
+        {
+          "ID": "21359",
+          "BlueprintName": "PaleStalker",
+          "X": 7,
+          "Y": 6,
+          "hp": 50,
+          "speed": 115,
+          "radius": 10,
+          "window": 1,
+          "hostile": true,
+          "playerCreature": true,
+          "worldTick": 1480,
+          "goal": "WanderRandomlyGoal",
+          "goals": [
+            {
+              "name": "BoredGoal",
+              "Age": 52,
+              "wanderFinished": null
+            },
+            {
+              "name": "WanderRandomlyGoal",
+              "Age": 0,
+              "wanderFinished": true
+            }
+          ],
+          "state": "Wander",
+          "target": null,
+          "distance": 9,
+          "energy": 900
+        }
+      ],
+      "log": [
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved."
+      ]
+    },
+    "v": {
+      "carry": [
+        {
+          "ID": "2136",
+          "count": 2
+        }
+      ],
+      "cells": [
+        {
+          "X": 15,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20334",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20335",
+              "BlueprintName": "Rubble"
+            },
+            {
+              "ID": "21393",
+              "BlueprintName": "HushStripLaid"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20336",
+              "BlueprintName": "Rubble"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": false,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "18524",
+              "BlueprintName": "ShaleWall"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "20343",
+              "BlueprintName": "ShaleFloor"
+            },
+            {
+              "ID": "21392",
+              "BlueprintName": "HushStripLaid"
+            },
+            {
+              "ID": "2126",
+              "BlueprintName": "Player"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20344",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 17,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20352",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 17,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20353",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 17,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": []
+        }
+      ]
+    }
+  },
+  "CaveFixedPlainBefore": {
+    "tick": 1480,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 7,
+        "Y": 6,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1480,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 52,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": true
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 9,
+        "energy": 900
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveFixedPlainAfter": {
+    "tick": 1490,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 15,
+    "y": 12,
+    "noise": 1480,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 9,
+        "Y": 8,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1490,
+        "goal": "KillGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 54,
+            "wanderFinished": null
+          },
+          {
+            "name": "KillGoal",
+            "Age": 1,
+            "wanderFinished": null
+          }
+        ],
+        "state": "Chase",
+        "target": "2126",
+        "distance": 6,
+        "energy": 50
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "pale stalker loses sight of you and searches its last position.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveFixedQuietBefore": {
+    "tick": 1480,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 16,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 7,
+        "Y": 6,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1480,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 52,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": true
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 9,
+        "energy": 900
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveFixedQuietAfter": {
+    "tick": 1490,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 15,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "Normal",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 5,
+        "Y": 6,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1490,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 54,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": true
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 10,
+        "energy": 50
+      }
+    ],
+    "log": [
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CaveRecoveryReader": {
+    "tick": 1490,
+    "zone": "Overworld.10.11.5",
+    "ID": "2126",
+    "x": 15,
+    "y": 11,
+    "noise": 1320,
+    "hp": 400,
+    "state": "AnnouncementOpen",
+    "stairs": [
+      {
+        "X": 4,
+        "Y": 14,
+        "down": false
+      },
+      {
+        "X": 35,
+        "Y": 6,
+        "down": false
+      },
+      {
+        "X": 40,
+        "Y": 12,
+        "down": true
+      },
+      {
+        "X": 59,
+        "Y": 16,
+        "down": false
+      }
+    ],
+    "hunters": [
+      {
+        "ID": "21359",
+        "BlueprintName": "PaleStalker",
+        "X": 5,
+        "Y": 6,
+        "hp": 50,
+        "speed": 115,
+        "radius": 10,
+        "window": 1,
+        "hostile": true,
+        "playerCreature": true,
+        "worldTick": 1490,
+        "goal": "WanderRandomlyGoal",
+        "goals": [
+          {
+            "name": "BoredGoal",
+            "Age": 54,
+            "wanderFinished": null
+          },
+          {
+            "name": "WanderRandomlyGoal",
+            "Age": 0,
+            "wanderFinished": true
+          }
+        ],
+        "state": "Wander",
+        "target": null,
+        "distance": 10,
+        "energy": 50
+      }
+    ],
+    "log": [
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You lay a hush strip on the ground.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Game saved.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "Selected action (reading only):\ntake up the hush strip\n\nYou see a hush strip.\nFelt over cord, laid flat. Footfalls on it are not heard. Blows, spells and the sounding rod still are, and the next step off it is heard again.\nLaid on the ground. You can take it up from beside it.\nHow to use: Stand beside it, press C on it and choose take up the hush strip; it comes back to your pack to lay elsewhere.\nNeeds: you beside it, with room in your pack.\nRight now you can: take up the hush strip.\n\nA strip of felt laid flat on the ground."
+    ]
+  },
+  "CaveRecovered": {
+    "a": {
+      "tick": 1500,
+      "zone": "Overworld.10.11.5",
+      "ID": "2126",
+      "x": 15,
+      "y": 11,
+      "noise": 1320,
+      "hp": 400,
+      "state": "Normal",
+      "stairs": [
+        {
+          "X": 4,
+          "Y": 14,
+          "down": false
+        },
+        {
+          "X": 35,
+          "Y": 6,
+          "down": false
+        },
+        {
+          "X": 40,
+          "Y": 12,
+          "down": true
+        },
+        {
+          "X": 59,
+          "Y": 16,
+          "down": false
+        }
+      ],
+      "hunters": [
+        {
+          "ID": "21359",
+          "BlueprintName": "PaleStalker",
+          "X": 5,
+          "Y": 7,
+          "hp": 50,
+          "speed": 115,
+          "radius": 10,
+          "window": 1,
+          "hostile": true,
+          "playerCreature": true,
+          "worldTick": 1500,
+          "goal": "WanderRandomlyGoal",
+          "goals": [
+            {
+              "name": "BoredGoal",
+              "Age": 55,
+              "wanderFinished": null
+            },
+            {
+              "name": "WanderRandomlyGoal",
+              "Age": 0,
+              "wanderFinished": true
+            }
+          ],
+          "state": "Wander",
+          "target": null,
+          "distance": 10,
+          "energy": 200
+        }
+      ],
+      "log": [
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved.",
+        "Interact \u2014 choose a direction, or . for underfoot.",
+        "Selected action (reading only):\ntake up the hush strip\n\nYou see a hush strip.\nFelt over cord, laid flat. Footfalls on it are not heard. Blows, spells and the sounding rod still are, and the next step off it is heard again.\nLaid on the ground. You can take it up from beside it.\nHow to use: Stand beside it, press C on it and choose take up the hush strip; it comes back to your pack to lay elsewhere.\nNeeds: you beside it, with room in your pack.\nRight now you can: take up the hush strip.\n\nA strip of felt laid flat on the ground.",
+        "You take up the hush strip.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+      ]
+    },
+    "v": {
+      "carry": [
+        {
+          "ID": "2136",
+          "count": 3
+        }
+      ],
+      "cells": [
+        {
+          "X": 14,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20323",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 14,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20324",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 14,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20325",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20334",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "20335",
+              "BlueprintName": "Rubble"
+            },
+            {
+              "ID": "2126",
+              "BlueprintName": "Player"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20336",
+              "BlueprintName": "Rubble"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": false,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "18524",
+              "BlueprintName": "ShaleWall"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20343",
+              "BlueprintName": "ShaleFloor"
+            },
+            {
+              "ID": "21392",
+              "BlueprintName": "HushStripLaid"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20344",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        }
+      ]
+    },
+    "devices": [
+      {
+        "ID": "21391",
+        "X": 18,
+        "Y": 7
+      },
+      {
+        "ID": "21392",
+        "X": 16,
+        "Y": 11
+      }
+    ]
+  },
+  "CaveRecoveredFresh": {
+    "a": {
+      "tick": 1500,
+      "zone": "Overworld.10.11.5",
+      "ID": "2126",
+      "x": 15,
+      "y": 11,
+      "noise": 1320,
+      "hp": 400,
+      "state": "Normal",
+      "stairs": [
+        {
+          "X": 4,
+          "Y": 14,
+          "down": false
+        },
+        {
+          "X": 35,
+          "Y": 6,
+          "down": false
+        },
+        {
+          "X": 40,
+          "Y": 12,
+          "down": true
+        },
+        {
+          "X": 59,
+          "Y": 16,
+          "down": false
+        }
+      ],
+      "hunters": [
+        {
+          "ID": "21359",
+          "BlueprintName": "PaleStalker",
+          "X": 5,
+          "Y": 7,
+          "hp": 50,
+          "speed": 115,
+          "radius": 10,
+          "window": 1,
+          "hostile": true,
+          "playerCreature": true,
+          "worldTick": 1500,
+          "goal": "WanderRandomlyGoal",
+          "goals": [
+            {
+              "name": "BoredGoal",
+              "Age": 55,
+              "wanderFinished": null
+            },
+            {
+              "name": "WanderRandomlyGoal",
+              "Age": 0,
+              "wanderFinished": true
+            }
+          ],
+          "state": "Wander",
+          "target": null,
+          "distance": 10,
+          "energy": 200
+        }
+      ],
+      "log": [
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You lay a hush strip on the ground.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved.",
+        "Interact \u2014 choose a direction, or . for underfoot.",
+        "Selected action (reading only):\ntake up the hush strip\n\nYou see a hush strip.\nFelt over cord, laid flat. Footfalls on it are not heard. Blows, spells and the sounding rod still are, and the next step off it is heard again.\nLaid on the ground. You can take it up from beside it.\nHow to use: Stand beside it, press C on it and choose take up the hush strip; it comes back to your pack to lay elsewhere.\nNeeds: you beside it, with room in your pack.\nRight now you can: take up the hush strip.\n\nA strip of felt laid flat on the ground.",
+        "You take up the hush strip.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+      ]
+    },
+    "v": {
+      "carry": [
+        {
+          "ID": "2136",
+          "count": 3
+        }
+      ],
+      "cells": [
+        {
+          "X": 14,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20323",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 14,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20324",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 14,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20325",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20334",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "20335",
+              "BlueprintName": "Rubble"
+            },
+            {
+              "ID": "2126",
+              "BlueprintName": "Player"
+            }
+          ]
+        },
+        {
+          "X": 15,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20336",
+              "BlueprintName": "Rubble"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 10,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": false,
+          "blocked": true,
+          "occupants": [
+            {
+              "ID": "18524",
+              "BlueprintName": "ShaleWall"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 11,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20343",
+              "BlueprintName": "ShaleFloor"
+            },
+            {
+              "ID": "21392",
+              "BlueprintName": "HushStripLaid"
+            }
+          ]
+        },
+        {
+          "X": 16,
+          "Y": 12,
+          "IsVisible": true,
+          "Explored": true,
+          "pass": true,
+          "blocked": false,
+          "occupants": [
+            {
+              "ID": "20344",
+              "BlueprintName": "ShaleFloor"
+            }
+          ]
+        }
+      ]
+    },
+    "devices": [
+      {
+        "ID": "21391",
+        "X": 18,
+        "Y": 7
+      },
+      {
+        "ID": "21392",
+        "X": 16,
+        "Y": 11
+      }
+    ]
+  },
+  "CondenserBefore": {
+    "tick": 2080,
+    "zone": "Overworld.15.5.0",
+    "x": 63,
+    "y": 5,
+    "hp": 19,
+    "stock": [
+      {
+        "ID": "17301",
+        "X": 64,
+        "Y": 3,
+        "cap": 4,
+        "available": 3,
+        "at": 2070
+      },
+      {
+        "ID": "17302",
+        "X": 64,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17300",
+        "X": 65,
+        "Y": 3,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17303",
+        "X": 65,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17304",
+        "X": 66,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9208",
+        "BlueprintName": "SteamCondenser",
+        "volume": null,
+        "max": null,
+        "liquid": null
+      },
+      {
+        "ID": "11821",
+        "BlueprintName": "LiquidFlask",
+        "volume": 1,
+        "max": 12,
+        "liquid": "water"
+      }
+    ],
+    "log": [
+      "sari-snake loses sight of you and searches its last position.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog loses sight of you and searches its last position.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You catch one water in the flask. The vent's catch supply is reduced.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog sees you again.",
+      "bandfrog [left hand: bite] hits you in the right hand for 6 damage! (19 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenserFirstMenu": {
+    "open": true,
+    "target": "17302",
+    "cell": {
+      "X": 64,
+      "Y": 4
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 1,
+        "Display": "condense 1 water into liquid flask (1/12 to 2/12) [steam condenser]",
+        "Command": "CondenseSteam|64|4|1a2975243a6c4737ad7caecd2b042969",
+        "tool": "9208",
+        "cost": "OneAction"
+      },
+      {
+        "i": 2,
+        "Display": "pour water northeast (1) [liquid flask]",
+        "Command": "PourLiquidVessel|water|1|Overworld.15.5.0|64|4",
+        "tool": "11821",
+        "cost": "OneAction"
+      },
+      {
+        "i": 3,
+        "Display": "pour one water northeast [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|1|Overworld.15.5.0|64|4",
+        "tool": "11821",
+        "cost": "OneAction"
+      },
+      {
+        "i": 4,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "CondenserReader": {
+    "tick": 2080,
+    "zone": "Overworld.15.5.0",
+    "ID": "2704",
+    "x": 63,
+    "y": 5,
+    "noise": 2060,
+    "hp": 19,
+    "state": "AnnouncementOpen",
+    "stairs": [],
+    "hunters": [],
+    "log": [
+      "bandfrog loses sight of you and searches its last position.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You catch one water in the flask. The vent's catch supply is reduced.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog sees you again.",
+      "bandfrog [left hand: bite] hits you in the right hand for 6 damage! (19 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "Selected action (reading only):\ncondense 1 water into liquid flask (1/12 to 2/12) [steam condenser]\n\nYou see a steam vent.\nOn the ground: steam cloud (1 turn)\n\nWet and hot at once. Carries charge like the water it came from."
+    ]
+  },
+  "CondenserCancel": {
+    "tick": 2080,
+    "zone": "Overworld.15.5.0",
+    "x": 63,
+    "y": 5,
+    "hp": 19,
+    "stock": [
+      {
+        "ID": "17301",
+        "X": 64,
+        "Y": 3,
+        "cap": 4,
+        "available": 3,
+        "at": 2070
+      },
+      {
+        "ID": "17302",
+        "X": 64,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17300",
+        "X": 65,
+        "Y": 3,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17303",
+        "X": 65,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17304",
+        "X": 66,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9208",
+        "BlueprintName": "SteamCondenser",
+        "volume": null,
+        "max": null,
+        "liquid": null
+      },
+      {
+        "ID": "11821",
+        "BlueprintName": "LiquidFlask",
+        "volume": 1,
+        "max": 12,
+        "liquid": "water"
+      }
+    ],
+    "log": [
+      "bandfrog loses sight of you and searches its last position.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You catch one water in the flask. The vent's catch supply is reduced.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog sees you again.",
+      "bandfrog [left hand: bite] hits you in the right hand for 6 damage! (19 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "Selected action (reading only):\ncondense 1 water into liquid flask (1/12 to 2/12) [steam condenser]\n\nYou see a steam vent.\nOn the ground: steam cloud (1 turn)\n\nWet and hot at once. Carries charge like the water it came from."
+    ]
+  },
+  "CondenserAfter": {
+    "tick": 2090,
+    "zone": "Overworld.15.5.0",
+    "x": 63,
+    "y": 5,
+    "hp": 17,
+    "stock": [
+      {
+        "ID": "17301",
+        "X": 64,
+        "Y": 3,
+        "cap": 4,
+        "available": 2,
+        "at": 2070
+      },
+      {
+        "ID": "17302",
+        "X": 64,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17300",
+        "X": 65,
+        "Y": 3,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17303",
+        "X": 65,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17304",
+        "X": 66,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9208",
+        "BlueprintName": "SteamCondenser",
+        "volume": null,
+        "max": null,
+        "liquid": null
+      },
+      {
+        "ID": "11821",
+        "BlueprintName": "LiquidFlask",
+        "volume": 2,
+        "max": 12,
+        "liquid": "water"
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "Selected action (reading only):\ncondense 1 water into liquid flask (1/12 to 2/12) [steam condenser]\n\nYou see a steam vent.\nOn the ground: steam cloud (1 turn)\n\nWet and hot at once. Carries charge like the water it came from.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch one water in the flask. The vent's catch supply is reduced.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog [left hand: bite] hits you in the left hand for 2 damage! (17 HP remaining)",
+      "bandfrog [right hand: bite] misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenserCaughtFresh": {
+    "tick": 2090,
+    "zone": "Overworld.15.5.0",
+    "x": 63,
+    "y": 5,
+    "hp": 17,
+    "stock": [
+      {
+        "ID": "17301",
+        "X": 64,
+        "Y": 3,
+        "cap": 4,
+        "available": 2,
+        "at": 2070
+      },
+      {
+        "ID": "17302",
+        "X": 64,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17300",
+        "X": 65,
+        "Y": 3,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17303",
+        "X": 65,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      },
+      {
+        "ID": "17304",
+        "X": 66,
+        "Y": 4,
+        "cap": null,
+        "available": null,
+        "at": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9208",
+        "BlueprintName": "SteamCondenser",
+        "volume": null,
+        "max": null,
+        "liquid": null
+      },
+      {
+        "ID": "11821",
+        "BlueprintName": "LiquidFlask",
+        "volume": 2,
+        "max": 12,
+        "liquid": "water"
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "Selected action (reading only):\ncondense 1 water into liquid flask (1/12 to 2/12) [steam condenser]\n\nYou see a steam vent.\nOn the ground: steam cloud (1 turn)\n\nWet and hot at once. Carries charge like the water it came from.",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You catch one water in the flask. The vent's catch supply is reduced.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog [left hand: bite] hits you in the left hand for 2 damage! (17 HP remaining)",
+      "bandfrog [right hand: bite] misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenserShelterArrival": {
+    "tick": 2150,
+    "zone": "Overworld.15.7.0",
+    "ID": "2704",
+    "x": 40,
+    "y": 12,
+    "noise": 2120,
+    "hp": 17,
+    "state": "Normal",
+    "stairs": [],
+    "hunters": [],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog [left hand: bite] hits you in the left hand for 2 damage! (17 HP remaining)",
+      "bandfrog [right hand: bite] misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "The air here says sari, sari, and does not finish the word.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenseFailedShelter": {
+    "tick": 2210,
+    "z": "Overworld.15.7.0",
+    "X": null,
+    "Y": null,
+    "hp": 0,
+    "stored": [],
+    "walk": "Object reference not set to an instance of an object",
+    "logs": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "The air here says sari, sari, and does not finish the word.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the body for 2 damage! (15 HP remaining)",
+      "You are bleeding!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You take 3 bleed damage.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the left hand for 1 damage! (11 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You take 3 bleed damage.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the feet for 6 damage! (2 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You are killed by sari-snake!",
+      "You stop bleeding.",
+      "You have dried off.",
+      "You take 3 bleed damage.",
+      "You are dead. Press [L] to load last save, [R] to restart.",
+      "Controller: [A] load, [X] restart."
+    ]
+  },
+  "CondenserShelterSecond": {
+    "tick": 2150,
+    "zone": "Overworld.15.7.0",
+    "ID": "2704",
+    "x": 40,
+    "y": 12,
+    "noise": 2120,
+    "hp": 17,
+    "state": "Normal",
+    "stairs": [],
+    "hunters": [],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "bandfrog [left hand: bite] hits you in the left hand for 2 damage! (17 HP remaining)",
+      "bandfrog [right hand: bite] misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "The air here says sari, sari, and does not finish the word.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenserCalm": {
+    "tick": 2200,
+    "zone": "Overworld.15.7.0",
+    "ID": "2704",
+    "x": 44,
+    "y": 15,
+    "noise": 2180,
+    "hp": 17,
+    "state": "Normal",
+    "stairs": [],
+    "hunters": [],
+    "log": [
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "The air here says sari, sari, and does not finish the word.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Autosaved.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Calm - choose a direction.",
+      "sari-snake becomes peaceful.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenserCropBefore": {
+    "zone": "Overworld.15.7.0",
+    "tick": 2260,
+    "X": 50,
+    "Y": 10,
+    "hp": 17,
+    "flask": {
+      "ID": "11821",
+      "Volume": 2,
+      "LiquidId": "water",
+      "Capacity": 12
+    },
+    "crops": [
+      {
+        "ID": "18287",
+        "X": 47,
+        "Y": 9,
+        "moisture": 0,
+        "stage": 2,
+        "rooted": false
+      },
+      {
+        "ID": "18291",
+        "X": 50,
+        "Y": 9,
+        "moisture": 0,
+        "stage": 0,
+        "rooted": false
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You have dried off.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "CondenserCropMenu": {
+    "open": true,
+    "target": "18291",
+    "cell": {
+      "X": 50,
+      "Y": 9
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "water with liquid flask (1 of 2)",
+        "Command": "WaterCrop|11821",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 1,
+        "Display": "clear young crop (no yield)",
+        "Command": "ClearCrop",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 2,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 3,
+        "Display": "pour water north (2) [liquid flask]",
+        "Command": "PourLiquidVessel|water|2|Overworld.15.7.0|50|9",
+        "tool": "11821",
+        "cost": "OneAction"
+      },
+      {
+        "i": 4,
+        "Display": "pour one water north [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|2|Overworld.15.7.0|50|9",
+        "tool": "11821",
+        "cost": "OneAction"
+      },
+      {
+        "i": 5,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "CondenserCropAfter": {
+    "zone": "Overworld.15.7.0",
+    "tick": 2270,
+    "X": 50,
+    "Y": 10,
+    "hp": 4,
+    "flask": {
+      "ID": "11821",
+      "Volume": 1,
+      "LiquidId": "water",
+      "Capacity": 12
+    },
+    "crops": [
+      {
+        "ID": "18287",
+        "X": 47,
+        "Y": 9,
+        "moisture": 0,
+        "stage": 2,
+        "rooted": false
+      },
+      {
+        "ID": "18291",
+        "X": 50,
+        "Y": 9,
+        "moisture": 39,
+        "stage": 0,
+        "rooted": false
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the feet for 3 damage! (14 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the right hand for 8 damage! (6 HP remaining)",
+      "You are bleeding!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You take 2 bleed damage."
+    ]
+  },
+  "CondenserWateredFresh": {
+    "zone": "Overworld.15.7.0",
+    "tick": 2270,
+    "X": 50,
+    "Y": 10,
+    "hp": 4,
+    "flask": {
+      "ID": "11821",
+      "Volume": 1,
+      "LiquidId": "water",
+      "Capacity": 12
+    },
+    "crops": [
+      {
+        "ID": "18287",
+        "X": 47,
+        "Y": 9,
+        "moisture": 0,
+        "stage": 2,
+        "rooted": false
+      },
+      {
+        "ID": "18291",
+        "X": 50,
+        "Y": 9,
+        "moisture": 39,
+        "stage": 0,
+        "rooted": false
+      }
+    ],
+    "log": [
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Calm - choose a direction.",
+      "sari-snake becomes peaceful.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake misses you!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You have dried off.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Interact \u2014 choose a direction, or . for underfoot.",
+      "You water the sumpsieve with the liquid flask. (1 water remain)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the feet for 3 damage! (14 HP remaining)",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "sari-snake hits you in the right hand for 8 damage! (6 HP remaining)",
+      "You are bleeding!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "You take 2 bleed damage."
+    ]
+  },
+  "archives": {
+    "initialCave": {
+      "path": "/private/tmp/coo-hush-lane-reused-earned-20261124/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 540,
+      "zone": "Overworld.10.11.0",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 412,
+          "sha256": "da1133dfafe036378c652ee12b73234e8a5e4683ddce9f85a20feb37f8c70d73"
+        },
+        "Quick.sav.gz": {
+          "bytes": 66369,
+          "sha256": "688fab521cea6d8cad3419679fa106279eaf97eff9d54d94e00a56810d651407"
+        },
+        "Quick.json.bak": {
+          "bytes": 412,
+          "sha256": "b67874368347b682bf4d1156da74b16445ead29d55c1d2b0b43b4e14296b4a23"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 66331,
+          "sha256": "2be70cd680fd5b0fb427ce2deb5d238164f052c36fd86946fe28a5ff2a51f26f"
+        }
+      }
+    },
+    "oldCaveCommon": {
+      "path": "/private/tmp/coo-cave-felt-matched-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1350,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "82a6b5e860c23f0f95ee91624ceff10f31a25baa7d84967b27201e9cc4861bc5"
+        },
+        "Quick.sav.gz": {
+          "bytes": 257655,
+          "sha256": "5fda9b98aec083306ade4e6fc43adb5576738bf4d7a07a3a1e8a4c2d70680048"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "23ebc9f3858cb265a58c9168504403e7fa98e10a6f511fa3a4988a86a4949aa7"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 256990,
+          "sha256": "a08fc2b10908cfe3706a5a250543817d3f4f3895e88727ff915c7b61ecb199b0"
+        }
+      }
+    },
+    "oldPlain": {
+      "path": "/private/tmp/coo-cave-felt-plain-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1360,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "5963d8dfe5199880908a55783701dc7e5baca3c8a8a4c2e849b2250a7160cabc"
+        },
+        "Quick.sav.gz": {
+          "bytes": 257748,
+          "sha256": "e425270fde8a6aa3bb51d88eff79d7828ebcb02bf9caf14c61ed144b0f5e4645"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "82a6b5e860c23f0f95ee91624ceff10f31a25baa7d84967b27201e9cc4861bc5"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 257655,
+          "sha256": "5fda9b98aec083306ade4e6fc43adb5576738bf4d7a07a3a1e8a4c2d70680048"
+        }
+      }
+    },
+    "oldQuiet": {
+      "path": "/private/tmp/coo-cave-felt-quiet-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1360,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "dcadef8d84988a684d089f15306ec89eef0ed30b32a64bb74987d836c329b22b"
+        },
+        "Quick.sav.gz": {
+          "bytes": 257653,
+          "sha256": "6cf2c16dd46d96935b6611e9e6cbbf7d98994062d092a70d3fbc852863a98d9c"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "82a6b5e860c23f0f95ee91624ceff10f31a25baa7d84967b27201e9cc4861bc5"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 257655,
+          "sha256": "5fda9b98aec083306ade4e6fc43adb5576738bf4d7a07a3a1e8a4c2d70680048"
+        }
+      }
+    },
+    "newCaveCommon": {
+      "path": "/private/tmp/coo-cave-felt-fixed-matched-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1480,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "a1ea1b209b3f64a3b55efa9b63d74273a01b969db25d00165e5ad89d0aabe61e"
+        },
+        "Quick.sav.gz": {
+          "bytes": 257868,
+          "sha256": "dbf58b8358bc0db5f380bc953a83a99423566b76f7f15b74b199ff3ee052594f"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "dcadef8d84988a684d089f15306ec89eef0ed30b32a64bb74987d836c329b22b"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 257653,
+          "sha256": "6cf2c16dd46d96935b6611e9e6cbbf7d98994062d092a70d3fbc852863a98d9c"
+        }
+      }
+    },
+    "newPlain": {
+      "path": "/private/tmp/coo-cave-felt-fixed-plain-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1490,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "c76f9058d19ca20986032d3e302f8cca3747f66ddd2a161a529d3791a41db6c7"
+        },
+        "Quick.sav.gz": {
+          "bytes": 258039,
+          "sha256": "5e4fb00069145ed5ffc542486ab9b38158cadca97944f2cc91c8aab2bb49564a"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "a1ea1b209b3f64a3b55efa9b63d74273a01b969db25d00165e5ad89d0aabe61e"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 257868,
+          "sha256": "dbf58b8358bc0db5f380bc953a83a99423566b76f7f15b74b199ff3ee052594f"
+        }
+      }
+    },
+    "newQuiet": {
+      "path": "/private/tmp/coo-cave-felt-fixed-quiet-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1490,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "29c3aec90eb0ebc2caf4d151f0cb4363998971c3a2a5c2a3b97f22780d8f727f"
+        },
+        "Quick.sav.gz": {
+          "bytes": 257860,
+          "sha256": "89b6592496225714e344800f7fe549e1c3c353b9517ba31bd9ea7403157cc957"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "a1ea1b209b3f64a3b55efa9b63d74273a01b969db25d00165e5ad89d0aabe61e"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 257868,
+          "sha256": "dbf58b8358bc0db5f380bc953a83a99423566b76f7f15b74b199ff3ee052594f"
+        }
+      }
+    },
+    "newRecovered": {
+      "path": "/private/tmp/coo-cave-felt-fixed-recovered-20261126/d3c56928ecec4cd0a4532b3402867974",
+      "turn": 1500,
+      "zone": "Overworld.10.11.5",
+      "hp": "400/400",
+      "files": {
+        "Quick.json": {
+          "bytes": 413,
+          "sha256": "5f8141dc616f7f4301289926689811135a70a98c39f4be0bcb042790b986910c"
+        },
+        "Quick.sav.gz": {
+          "bytes": 257895,
+          "sha256": "d078dae98f5e8dae645b852ab4afc6af8280ea127ce197c11a459c7b28ba5c23"
+        },
+        "Quick.json.bak": {
+          "bytes": 413,
+          "sha256": "29c3aec90eb0ebc2caf4d151f0cb4363998971c3a2a5c2a3b97f22780d8f727f"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 257860,
+          "sha256": "89b6592496225714e344800f7fe549e1c3c353b9517ba31bd9ea7403157cc957"
+        }
+      }
+    },
+    "initialCondenser": {
+      "path": "/private/tmp/coo-sodden-natural-condenser-catch-20261125/fc22573a719145d89d9d38768b7d0ebd",
+      "turn": 2080,
+      "zone": "Overworld.15.5.0",
+      "hp": "19/40",
+      "files": {
+        "Quick.json": {
+          "bytes": 409,
+          "sha256": "83e3cdd2ddaba3f2ff9c7ba1ac46ee5ec4b020e0c0299244c89cdb973736d392"
+        },
+        "Quick.sav.gz": {
+          "bytes": 444049,
+          "sha256": "0c213025c20ac7d530bf72100e57cee38dbd9b1b580a8d5d3b3dce05e0f53025"
+        },
+        "Quick.json.bak": {
+          "bytes": 409,
+          "sha256": "bc292c92ee3342582f1daeb87ce0debf7e0ab9ba1fc3fc561b2beac6cb307268"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 442775,
+          "sha256": "f63bc588e36ec09a6f6848cc5f18db1d14c5051e4bd6f24ca909eeeb4956afd9"
+        }
+      }
+    },
+    "secondCatch": {
+      "path": "/private/tmp/coo-steam-top-up-caught-20261126/fc22573a719145d89d9d38768b7d0ebd",
+      "turn": 2090,
+      "zone": "Overworld.15.5.0",
+      "hp": "17/40",
+      "files": {
+        "Quick.json": {
+          "bytes": 409,
+          "sha256": "a0b33660007fcc9b0e432033bbde2ed3f98444920f2cd155472fe601733d7d9c"
+        },
+        "Quick.sav.gz": {
+          "bytes": 445825,
+          "sha256": "114286defde3c338cb40d18d21a837e8a496c3bd54f327e77f83cd612f300558"
+        },
+        "Quick.json.bak": {
+          "bytes": 409,
+          "sha256": "83e3cdd2ddaba3f2ff9c7ba1ac46ee5ec4b020e0c0299244c89cdb973736d392"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 444049,
+          "sha256": "0c213025c20ac7d530bf72100e57cee38dbd9b1b580a8d5d3b3dce05e0f53025"
+        }
+      }
+    },
+    "wateredCrop": {
+      "path": "/private/tmp/coo-steam-top-up-watered-20261126/fc22573a719145d89d9d38768b7d0ebd",
+      "turn": 2270,
+      "zone": "Overworld.15.7.0",
+      "hp": "4/40",
+      "files": {
+        "Quick.json": {
+          "bytes": 408,
+          "sha256": "0fb398a3d6f165b98fc37a4413a46f679174a07d360239dabfe2bf5af41b2b54"
+        },
+        "Quick.sav.gz": {
+          "bytes": 502417,
+          "sha256": "c9efb6e6ec8f6c84238ee2e3eeb1a6f8f286381413f0b5a951ab7f160297604b"
+        },
+        "Quick.json.bak": {
+          "bytes": 409,
+          "sha256": "6091e352556d2fa1a2bbd06e97cda94ade5cad74195aff44b0ebdcbe73df0dd2"
+        },
+        "Quick.sav.gz.bak": {
+          "bytes": 500506,
+          "sha256": "aa301036709a2293eb0c0303cccd5d5540b9a83df38c0c79a535af82bc2ad3d8"
+        }
+      }
+    }
+  },
+  "nativeTests": {
+    "cave_felt_condenser_red_20261126c": {
+      "xml": "/Users/steven/coo-verification/results/cave_felt_condenser_red_20261126c.xml",
+      "xmlSha256": "0be19ab4058df431472193f2837e0371a2ab4995e8b2b0411d00f3c38841b872",
+      "log": "/Users/steven/coo-verification/results/cave_felt_condenser_red_20261126c.log",
+      "logSha256": "de522fb41ffff57234af60c184f883c83819d973448388e45eda5f85e5623d33",
+      "total": "100",
+      "passed": "95",
+      "failed": "5",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "3.5231139",
+      "failureNames": [
+        "CondenserAddsOneWaterToTheExactExistingFlask(1)",
+        "CondenserAddsOneWaterToTheExactExistingFlask(11)",
+        "InterruptedCondenserTopUpPreservesPreviouslyHeldWater(False)",
+        "InterruptedCondenserTopUpPreservesPreviouslyHeldWater(True)",
+        "WanderStepKeepsItsCompletionStateThroughSave(True)"
+      ]
+    },
+    "cave_felt_condenser_final_20261126": {
+      "xml": "/Users/steven/coo-verification/results/cave_felt_condenser_final_20261126.xml",
+      "xmlSha256": "c17790cbb4163552d68a35c6a804e67d6eec1bf3f9eab374efbcc0c3c76a5378",
+      "log": "/Users/steven/coo-verification/results/cave_felt_condenser_final_20261126.log",
+      "logSha256": "283eed4db6a32856c7be4160e90eaadbfb7fb2d3c745d05ff49efef859f49a4e",
+      "total": "359",
+      "passed": "359",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "14.4928692",
+      "failureNames": []
+    }
+  },
+  "screenshots": {
+    "01-steam-fill.png": "2c4aded8e643fe77f45def65622d4bb8cd4b3aad6a7b5a4b99f032c5e4ef4a24",
+    "02-cave-bare.png": "325a35a5a40e538f156141a31d74b4c21a5a3db4d343c4216a4ed916f149849b",
+    "03-crop-water.png": "4fa27d9d4d5202af10e5e9bcf53e2b12a533fb2649b2416053991348cbd2b3be",
+    "04-felt-reader.png": "16ad52e7f7e6462a7ca0d2d8ef9bc2af6c4399dcbe6e5743720f9831b026822e"
+  }
+}
