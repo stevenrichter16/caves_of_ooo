@@ -670,6 +670,16 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     The paired play remains guided.
     [Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
 
+    A fresh seed 2 Tine comparison split one 50-dram start after reading
+    the weir and talking to its elder. One branch paid the Concord.
+    The hand branch bought local stock and earned timber and an oak
+    haft at Peat Works. Both restored the working weir, unlocked the
+    paid perch shelf and bought and retained one fish on Continue.
+    The hand route took longer, kept useful gear and paid one dram
+    less for fish. This covers a second guided ordinary comparison
+    for #20, #37 and #40.
+    [Evidence](Verification/MachineSystems/TineOrdinaryWeir20261126/README.md)
+
     An actual fresh v26 seed 2 route earned the sieve and screened nearby clay.
     A retained v18 seed 64 route bought the actual delivered clay. Both paths
     repaired the same service and then paid, collected and ate the same kind

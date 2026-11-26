@@ -584,6 +584,17 @@ goods. This advances the comparative play gate at one site. Wider
 unguided discovery and complete-machine acceptance remain open.
 [Evidence](Verification/MachineSystems/GantrySupplyComparison20261126/README.md)
 
+**Tine’s weir rewards two ordinary investments — November 26 UTC, 2026.**
+The seed 2 player used the same local signs and elder conversation to
+discover a hand repair and a paid contract. Both branches started with
+50 drams and an ordinary kit. The narrow hand bill was feasible through
+paid local stock and Peat Works salvage. It took longer and left a
+hatchet and two timbers, along with the better observed fish price.
+The contract used coin directly and restored the same working weir and
+ordinary shelf availability. Both paid and retained an exact fish through
+fresh Continue. This adds one guided discovery and acquisition comparison.
+[Evidence](Verification/MachineSystems/TineOrdinaryWeir20261126/README.md)
+
 **A cooked catch can support a companion — November 26 UTC, 2026.**
 One ordinary roasted lake perch supports self Eat or Share with an
 adjacent injured party member. Both cost one portion. Sharing uses the

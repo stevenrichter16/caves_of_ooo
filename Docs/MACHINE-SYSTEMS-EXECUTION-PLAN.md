@@ -1,3 +1,14 @@
+**Ordinary hand and Concord routes restore Tine’s weir — November 26 UTC, 2026.**
+Fresh seed 2, one ordinary 50-dram start and a common tick 360 checkpoint.
+The contract paid 45 and earned the 15-dram report. Hand work bought
+one oak haft and a hatchet, sold one recovered Glade sword, gathered
+four Peat Works timber and took one locker oak haft. The one-action
+repair spent the two oak hafts and two timbers and kept the hatchet.
+Both reported and returned to the same merchant. Four perch stocked on
+each selected shelf. The actual single purchases cost 15 and 14 drams.
+Fresh Continues held both results at 40 HP. Guided current seed only.
+[Evidence](Verification/MachineSystems/TineOrdinaryWeir20261126/README.md)
+
 **A cooked catch can support a companion — November 26 UTC, 2026.**
 The original earned perch reached an injured Gleaners' warden after
 ordinary salvage, purchase of the 58-dram recruitment bell and recruitment.
