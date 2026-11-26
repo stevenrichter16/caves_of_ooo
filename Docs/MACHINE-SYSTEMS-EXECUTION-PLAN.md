@@ -1,3 +1,10 @@
+**The Mac package with Wayside testimony completed startup — November 26 UTC, 2026.**
+Runtime `69ae7ee85` includes the changed search and reserved forge guidance.
+The new and previous apps each match all 186 files. The new app started on
+Apple M5 with six universal binaries and the four existing startup saves
+stayed byte-exact. Packaged play and physical Intel verification remain open.
+[Build and startup receipt](Verification/MachineSystems/MacCandidate69AE7EE85/README.md)
+
 **The player can tell a cook where they saw the living porter — November 26 UTC, 2026.**
 In the retained Wayside delay fixture the player noted the exact living
 porter, then told Orven in person. Orven turned to check the reported

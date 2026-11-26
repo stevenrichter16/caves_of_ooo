@@ -42,7 +42,8 @@ approach and the visible cook cell.
 The three private save pairs matched all 12 pins. The selected 861 normal
 and 86 existing workspace file hashes matched. Independent review checked
 the source, both Continue comparisons, parcel custody and three screenshots.
-The current Mac package predates this change.
+The [current Mac package](../MacCandidate69AE7EE85/README.md) includes this change
+and has startup verification.
 
 [Note the porter](01-note.png) · [Tell Orven](02-tell-cook.png) ·
 [Check the place](03-check.png) · [Observed states](observations.json) ·
