@@ -155,12 +155,24 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void InterruptedMarkLeavesSandAndNoGroundMarker()
         {Bed(10,10,false);var sand=Carry("SilverSand");var choice=Choice(sand,"MakeTrailMark|",a=>a.Display.Contains("exit"));FailAfter();Assert.False(Act(sand,choice));Assert.True(Pack.Objects.Contains(sand));Assert.False(Zone.GetReadOnlyEntities().Any(e=>e.BlueprintName=="TrailMark"));}
-        [Test] public void SameIronSpikeBracesSharedDoorAndCanBeRecovered()
+        [TestCase("IronSpikeComponent")]
+        [TestCase("FieldHaftComponent")]
+        public void SamePhysicalBraceHoldsSharedDoorAndCanBeRecovered(string blueprint)
         {
-            var door=Door();var spike=Carry("IronSpikeComponent");string id=spike.ID;
-            Assert.True(Act(spike,Choice(spike,"BraceDoor|")));Assert.False(door.GetPart<DoorPart>().CanOperate(Actor,Zone));Assert.False(door.GetPart<DoorPart>().TrySetOpen(Actor,Zone,true));
-            Assert.AreSame(Zone.GetCell(11,10),Zone.GetEntityCell(spike));Assert.False(spike.GetPart<PhysicsPart>().Takeable);
-            Assert.True(Act(spike,Choice(spike,"RemoveDoorBrace|")));Assert.AreEqual(id,spike.ID);Assert.True(Pack.Objects.Contains(spike));Assert.True(door.GetPart<DoorPart>().TrySetOpen(Actor,Zone,true));
+            var door = Door();
+            var brace = Carry(blueprint);
+            string id = brace.ID;
+            Assert.True(Act(brace, Choice(brace, "BraceDoor|")));
+            Assert.False(door.GetPart<DoorPart>().CanOperate(Actor, Zone));
+            Assert.False(door.GetPart<DoorPart>().TrySetOpen(Actor, Zone, true));
+            string name = blueprint == "IronSpikeComponent" ? "iron spike" : "rough field haft";
+            StringAssert.Contains(name, Actions(door).Single(row => row.DisabledCode == "braced").DisabledReason);
+            Assert.AreSame(Zone.GetCell(11, 10), Zone.GetEntityCell(brace));
+            Assert.False(brace.GetPart<PhysicsPart>().Takeable);
+            Assert.True(Act(brace, Choice(brace, "RemoveDoorBrace|")));
+            Assert.AreEqual(id, brace.ID);
+            Assert.True(Pack.Objects.Contains(brace));
+            Assert.True(door.GetPart<DoorPart>().TrySetOpen(Actor, Zone, true));
         }
         [TestCase("open")] [TestCase("locked")] [TestCase("owned")] [TestCase("stack")]
         public void DoorBracingRefusesUnsupportedDoorOrAmbiguousSpike(string mode)
@@ -172,9 +184,11 @@ namespace CavesOfOoo.Tests
             if(mode=="stack")spike.GetPart<StackerPart>().StackCount=2;
             Assert.False(Actions(spike).Any(a=>a.Command.StartsWith("BraceDoor|")));
         }
-        [Test] public void OrdinaryDoorOpeningAiAlsoRespectsAndRecoversFromBrace()
+        [TestCase("IronSpikeComponent")]
+        [TestCase("FieldHaftComponent")]
+        public void OrdinaryDoorOpeningAiAlsoRespectsAndRecoversFromBrace(string blueprint)
         {
-            var door=Door();var spike=Carry("IronSpikeComponent");var npc=Place("Villager",12,10);npc.SetTag("CanOpenDoors");
+            var door=Door();var spike=Carry(blueprint);var npc=Place("Villager",12,10);npc.SetTag("CanOpenDoors");
             Assert.True(door.GetPart<DoorPart>().CanOperate(npc,Zone));Assert.True(Act(spike,Choice(spike,"BraceDoor|")));
             Assert.False(door.GetPart<DoorPart>().CanOperate(npc,Zone));Assert.False(door.GetPart<DoorPart>().TrySetOpen(npc,Zone,true));
             Assert.True(Act(spike,Choice(spike,"RemoveDoorBrace|")));Assert.True(door.GetPart<DoorPart>().TrySetOpen(npc,Zone,true));
@@ -198,9 +212,11 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(sand,Choice(sand,"MakeTrailMark|",a=>a.Display.Contains("water"))));
             Assert.IsNull(Zone.GetEntityCell(mark));Assert.True(Pack.Objects.Contains(mark));Assert.AreEqual(0,Count("SilverSand"),"a retained paid output does not also refund material");
         }
-        [Test] public void LateDoorRemovalRefusesBraceWithoutRestoringDoorOrLosingSpike()
+        [TestCase("IronSpikeComponent")]
+        [TestCase("FieldHaftComponent")]
+        public void LateDoorRemovalRefusesBraceWithoutRestoringDoorOrLosingStock(string blueprint)
         {
-            var door=Door();var spike=Carry("IronSpikeComponent");var choice=Choice(spike,"BraceDoor|");
+            var door=Door();var spike=Carry(blueprint);var choice=Choice(spike,"BraceDoor|");
             Actor.AddPart(new RouteWorkAfterProbe{Run=()=>Zone.RemoveEntity(door)});Assert.False(Act(spike,choice));
             Assert.IsNull(Zone.GetEntityCell(door));Assert.True(Pack.Objects.Contains(spike));Assert.True(spike.GetPart<PhysicsPart>().Takeable);
         }
@@ -210,11 +226,24 @@ namespace CavesOfOoo.Tests
             var spare=Carry("IronSpikeComponent");spare.GetPart<StackerPart>().StackCount=2;
             Assert.True(Act(spike,Choice(spike,"RemoveDoorBrace|")));Assert.True(Pack.Objects.Contains(spike));Assert.AreEqual(1,spike.GetPart<StackerPart>().StackCount);Assert.AreEqual(2,spare.GetPart<StackerPart>().StackCount);
         }
-        [Test] public void BracedDoorReferenceRoundTripsWithTheOriginalSpikeIdentity()
+        [TestCase("IronSpikeComponent")]
+        [TestCase("FieldHaftComponent")]
+        public void BracedDoorReferenceRoundTripsWithTheOriginalStockIdentity(string blueprint)
         {
-            var door=Door();var spike=Carry("IronSpikeComponent");Assert.True(Act(spike,Choice(spike,"BraceDoor|")));
+            var door=Door();var spike=Carry(blueprint);Assert.True(Act(spike,Choice(spike,"BraceDoor|")));
             var fresh=PartRoundTripHelper.RoundTripEntityViaTokenGraph(spike);Assert.AreEqual(spike.ID,fresh.ID);
+            Assert.AreEqual(blueprint,fresh.BlueprintName);
             Assert.AreEqual(door.ID,fresh.GetPart<LodgedSpikePart>().Door.ID);Assert.True(fresh.GetPart<LodgedSpikePart>().Door.GetPart<DoorPart>().IsClosed);Assert.False(fresh.GetPart<PhysicsPart>().Takeable);
+        }
+
+        [TestCase("SalvagedTimber", false)]
+        [TestCase("FieldHaftComponent", true)]
+        public void RawTimberAndStackedHaftsDoNotOfferABrace(string blueprint, bool stacked)
+        {
+            Door();
+            var stock = Carry(blueprint);
+            if (stacked) stock.GetPart<StackerPart>().StackCount = 2;
+            Assert.IsFalse(Actions(stock).Any(action => action.Command.StartsWith("BraceDoor|")));
         }
         [Test] public void FullPackRefusesSpikeRecoveryWithoutLosingTheBrace()
         {

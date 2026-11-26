@@ -557,6 +557,15 @@ expiration restores the ordinary rate. This is a bounded market service,
 with all twelve machine acceptance gates still open.
 [Evidence](Verification/MachineSystems/WellmeetWorkingScales20261126/README.md)
 
+**An earned rough haft has a second field use — November 26 UTC, 2026.**
+A loose rough field haft and an iron spike can hold the same ordinary
+closed door. Fitting and removing each take one action. The obstruction
+uses the shared opening rule and returns the exact part on removal.
+The guided Gleaners' trip bought timber, repaired the wicket, blocked
+opening and recovered the haft before crossing. No complete-machine
+dependency changes status.
+[Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
+
 **Replayable practical work — November24local/25UTC,2026:** The source-grounded
 [implementation roadmap](WORLD-OPPORTUNITY-IMPLEMENTATION-ROADMAP.md) records45
 concrete requirements for compatible material demand, method-independent

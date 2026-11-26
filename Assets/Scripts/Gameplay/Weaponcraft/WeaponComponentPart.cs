@@ -71,7 +71,12 @@ namespace CavesOfOoo.Core
         }
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
-            if(ParentEntity?.BlueprintName=="IronSpikeComponent"){guide.How.Add("Use a single plain carried spike beside an ordinary closed unlocked door to brace it.");guide.Limits.Add("One action; blocks opening from both sides. Remove the same spike to reopen. No added door strength or protected-door bypass.");}
+            if(DoorBraceActions.IsBraceStock(ParentEntity))
+            {
+                string material = DoorBraceActions.BraceName(ParentEntity);
+                guide.How.Add("Use one plain carried " + material + " beside an ordinary closed unlocked door to brace it.");
+                guide.Limits.Add("One action blocks opening from both sides. Remove the same piece to reopen. The door keeps its ordinary strength.");
+            }
             var processes=MaterialProcessRegistry.ForSource(ParentEntity).Where(d=>d.Mode=="Process" && d.WorkKind=="ForgeCold" && d.SourceRecipeId.Length==0).ToArray();
             if(processes.Length==0 || ParentEntity.HasPart<MaterialProcessInputPart>())return;
             guide.How.Add("At a forge, select this component in your pack to make: "+string.Join(", ",processes.Select(d=>d.ActionText))+".");

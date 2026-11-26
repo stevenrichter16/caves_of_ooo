@@ -217,36 +217,47 @@ namespace CavesOfOoo.Core
     {
         public override string Name=>"LodgedSpike";public Entity Door;
         public ReaderScope Scope=>ReaderScope.Both;public int Order=>40;
-        public string DescribeState(DescribeContext context)=>"Lodged as a door brace. The same iron spike can be taken back, even if the door is gone.";
-        public void DescribeUse(DescribeContext context,UseGuide guide){guide.How.Add("Stand beside this spike and remove the brace.");guide.Limits.Add("One action returns this same spike; the doorway can open again. No extra door strength.");}
+        public string DescribeState(DescribeContext context)=>"Lodged as a door brace. The same " + DoorBraceActions.BraceName(ParentEntity) + " can be taken back, even if the door is gone.";
+        public void DescribeUse(DescribeContext context,UseGuide guide)
+        {
+            guide.How.Add("Stand beside the brace and remove it.");
+            guide.Limits.Add("One action returns the same " + DoorBraceActions.BraceName(ParentEntity) + " and frees the door to open. No extra door strength.");
+        }
         public bool OwnsInventoryReceipt(string command)=>DoorBraceActions.IsCommand(command);
         public override bool HandleEvent(GameEvent e)=>DoorBraceActions.Handle(ParentEntity,e);
     }
     internal static class DoorBraceActions
     {
         internal static bool IsCommand(string command)=>command!=null && (command.StartsWith("BraceDoor|",StringComparison.Ordinal) || command.StartsWith("RemoveDoorBrace|",StringComparison.Ordinal));
-        internal static bool Blocked(Entity door,Zone zone)=>zone?.GetEntityCell(door) is Cell cell && cell.Objects.Any(e=>e.GetPart<LodgedSpikePart>() is LodgedSpikePart b
-            && b.ParentEntity==e && b.Door==door && e.BlueprintName=="IronSpikeComponent" && WorldResourceActions.Ground(e,zone)
-            && e.GetPart<PhysicsPart>()?.Takeable==false && (e.GetPart<StackerPart>()?.StackCount??1)==1);
+        internal static bool IsBraceStock(Entity item) => item?.BlueprintName is "IronSpikeComponent" or "FieldHaftComponent";
+        internal static string BraceName(Entity item) => item?.BlueprintName == "FieldHaftComponent" ? "rough field haft" : "iron spike";
+
+        internal static bool Blocked(Entity door, Zone zone) => InstalledBrace(door, zone) != null;
+
+        internal static Entity InstalledBrace(Entity door, Zone zone) => zone?.GetEntityCell(door) is Cell cell ? cell.Objects.FirstOrDefault(e=>e.GetPart<LodgedSpikePart>() is LodgedSpikePart b
+            && b.ParentEntity==e && b.Door==door && IsBraceStock(e) && WorldResourceActions.Ground(e,zone)
+            && e.GetPart<PhysicsPart>()?.Takeable==false && (e.GetPart<StackerPart>()?.StackCount??1)==1) : null;
         static bool DoorReady(Entity actor,Entity door,Zone zone)=>WorldResourceActions.Nearby(actor,door,zone) && RouteWorkMenu.Visible(zone.GetEntityCell(door))
             && door.GetPart<DoorPart>() is DoorPart p && p.IsClosed && p.CanOperate(actor,zone) && !door.HasPart<LockPart>()
             && !door.HasPart<MorrowfastDoorPart>() && !door.HasPart<SealedLibraryBarrierPart>() && !Blocked(door,zone)
             && door.GetPart<DestructiblePart>()?.Gone!=true;
         internal static IEnumerable<RouteWorkMenu.Entry> Choices(Entity spike,Entity actor,Zone zone)
         {
-            if(!RouteWorkMenu.ActorReady(actor,zone) || spike?.BlueprintName!="IronSpikeComponent")yield break;
+            if(!RouteWorkMenu.ActorReady(actor,zone) || !IsBraceStock(spike))yield break;
             var origin=zone.GetEntityCell(actor);var pack=actor.GetPart<InventoryPart>();var physics=spike.GetPart<PhysicsPart>();
+            string blueprint=spike.BlueprintName, braceName=BraceName(spike);
+            string shortName=blueprint=="IronSpikeComponent"?"spike":braceName;
             var brace=spike.GetPart<LodgedSpikePart>();
             if(brace!=null)
             {
                 if(!WorldResourceActions.Nearby(actor,spike,zone) || physics?.Takeable!=false || pack.MaxWeight>=0 && (long)pack.GetCarriedWeight()+HandlingService.GetWeight(spike)>pack.MaxWeight)yield break;
                 var at=zone.GetEntityCell(spike);var door=brace.Door;string id=spike.ID;var oldParts=spike.Parts.ToArray();
                 bool Before()=>RouteWorkMenu.ActorReady(actor,zone) && zone.GetEntityCell(actor)==origin && actor.GetPart<InventoryPart>()==pack
-                    && WorldResourceActions.Ground(spike,zone) && zone.GetEntityCell(spike)==at && spike.ID==id && spike.GetPart<LodgedSpikePart>()==brace
+                    && WorldResourceActions.Ground(spike,zone) && zone.GetEntityCell(spike)==at && spike.ID==id && spike.BlueprintName==blueprint && spike.GetPart<LodgedSpikePart>()==brace
                     && brace.Door==door && spike.Parts.SequenceEqual(oldParts) && spike.GetPart<PhysicsPart>()==physics && !physics.Takeable && (spike.GetPart<StackerPart>()?.StackCount??1)==1;
                 bool After()=>RouteWorkMenu.ActorReady(actor,zone) && zone.GetEntityCell(actor)==origin && actor.GetPart<InventoryPart>()==pack && spike.ID==id
-                    && WorldResourceActions.Carried(actor,spike) && spike.GetPart<PhysicsPart>()==physics && physics.Takeable && spike.GetPart<LodgedSpikePart>()==null;
-                yield return new RouteWorkMenu.Entry{Actor=actor,Zone=zone,Cell=at,Key="RemoveDoorBrace|"+id,Label="remove door brace (take this spike)",Hint="One action. Returns this same spike and allows the door to open.",Before=Before,After=After,Apply=tx=>
+                    && WorldResourceActions.Carried(actor,spike) && spike.BlueprintName==blueprint && spike.GetPart<PhysicsPart>()==physics && physics.Takeable && spike.GetPart<LodgedSpikePart>()==null;
+                yield return new RouteWorkMenu.Entry{Actor=actor,Zone=zone,Cell=at,Key="RemoveDoorBrace|"+id,Label="remove door brace (take this "+shortName+")",Hint="One action. Returns this same "+shortName+" and allows the door to open.",Before=Before,After=After,Apply=tx=>
                 {
                     tx.Do(null,()=>{if(spike.ID!=id || spike.GetPart<PhysicsPart>()!=physics || spike.GetPart<LodgedSpikePart>()!=null)return;
                         if(physics.InInventory==actor && pack.Objects.Count(e=>e==spike)==1 && physics.Equipped==null && spike.SpatialZone==null)pack.RemoveObject(spike);
@@ -254,7 +265,7 @@ namespace CavesOfOoo.Core
                         physics.Takeable=false;spike.AddPart(brace);zone.AddEntity(spike,at.X,at.Y);});
                     if(!zone.RemoveEntity(spike))return false;spike.RemovePart(brace);physics.Takeable=true;
                     return pack.AddRetrievedObject(spike);
-                },Publish=()=>{ZoneRenderHooks.MarkCellDirty(at,"DoorBrace.Removed");MessageLog.Add("You pull out the iron spike. The door is no longer braced.");}};yield break;
+                },Publish=()=>{ZoneRenderHooks.MarkCellDirty(at,"DoorBrace.Removed");MessageLog.Add("You pull out the "+braceName+". The door is no longer braced.");}};yield break;
             }
             if(!actor.HasTag("Player") || !WorldResourceActions.Carried(actor,spike) || (spike.GetPart<StackerPart>()?.StackCount??1)!=1)yield break;
             var template=MaterialProcessTemplate.Capture(ForgePart.Factory??HarvestablePart.Factory,spike.BlueprintName);
@@ -266,17 +277,17 @@ namespace CavesOfOoo.Core
                 if(original.Any(p=>p.policy==null))continue;var values=original.Select(p=>p.policy.Capture(p.part)).ToArray();
                 string id=spike.ID,owner=part.OwnerId;int weight=physics.Weight;float throwBase=physics.ThrowBase,throwHeight=physics.ThrowHeight;int intercept=physics.ThrowIntercept;string category=physics.Category;bool solid=physics.Solid;
                 LodgedSpikePart installed=null;int oldIndex=pack.Objects.IndexOf(spike);
-                bool Payload(bool fitted)=>spike.ID==id && spike.BlueprintName=="IronSpikeComponent" && spike.GetPart<PhysicsPart>()==physics && physics.Weight==weight && physics.Solid==solid
+                bool Payload()=>spike.ID==id && spike.BlueprintName==blueprint && spike.GetPart<PhysicsPart>()==physics && physics.Weight==weight && physics.Solid==solid
                     && physics.ThrowBase==throwBase && physics.ThrowHeight==throwHeight && physics.ThrowIntercept==intercept && physics.Category==category
                     && (spike.GetPart<StackerPart>()?.StackCount??1)==1 && spike.Parts.Where(p=>p!=installed).SequenceEqual(oldParts)
                     && original.Select((p,i)=>p.part.ParentEntity==spike && p.policy.Matches(p.part,values[i])).All(v=>v);
                 bool Context()=>RouteWorkMenu.ActorReady(actor,zone) && actor.HasTag("Player") && zone.GetEntityCell(actor)==origin && actor.GetPart<InventoryPart>()==pack
                     && doorIdentity() && zone.GetEntityCell(door)==doorCell && part.IsClosed && part.OwnerId==owner && !door.HasPart<LockPart>() && door.GetPart<DestructiblePart>()?.Gone!=true;
-                bool Before()=>Context() && Payload(false) && WorldResourceActions.Carried(actor,spike) && DoorReady(actor,door,zone);
-                bool After()=>Context() && Payload(true) && WorldResourceActions.Ground(spike,zone) && zone.GetEntityCell(spike)==doorCell && !physics.Takeable
+                bool Before()=>Context() && Payload() && WorldResourceActions.Carried(actor,spike) && DoorReady(actor,door,zone);
+                bool After()=>Context() && Payload() && WorldResourceActions.Ground(spike,zone) && zone.GetEntityCell(spike)==doorCell && !physics.Takeable
                     && spike.GetPart<LodgedSpikePart>()==installed && installed?.Door==door && !pack.Objects.Any(e=>e==spike || e?.ID==id) && !pack.EquippedItems.Values.Any(e=>e==spike || e?.ID==id);
                 yield return new RouteWorkMenu.Entry{Actor=actor,Zone=zone,Cell=doorCell,Claims=new[]{door},Key="BraceDoor|"+door.ID,
-                    Label="brace closed door with this spike",Hint="One action. Blocks ordinary opening from both sides; remove this same spike to reopen. Adds no door strength.",Before=Before,After=After,Apply=tx=>
+                    Label="brace closed door with this "+shortName,Hint="One action. Blocks ordinary opening from both sides. Remove this same "+shortName+" to reopen. Adds no door strength.",Before=Before,After=After,Apply=tx=>
                     {
                         installed=new LodgedSpikePart{Door=door};
                         tx.Do(null,()=>{if(spike.ID!=id || spike.GetPart<PhysicsPart>()!=physics || spike.GetPart<LodgedSpikePart>()!=installed)return;
@@ -286,7 +297,7 @@ namespace CavesOfOoo.Core
                             if(actor.GetPart<InventoryPart>()==pack && !pack.Objects.Any(e=>e==spike || e?.ID==id)){pack.Objects.Insert(Math.Min(oldIndex,pack.Objects.Count),spike);physics.InInventory=actor;pack.RefreshHandlingCarryPenalty();}
                             else zone.AddEntity(spike,doorCell.X,doorCell.Y);});
                         if(!pack.RemoveObject(spike))return false;physics.Takeable=false;spike.AddPart(installed);return zone.AddEntity(spike,doorCell.X,doorCell.Y);
-                    },Publish=()=>{ZoneRenderHooks.MarkCellDirty(doorCell,"DoorBrace.Fitted");MessageLog.Add("You wedge the iron spike into the door. Remove it to open the door again.");}};
+                    },Publish=()=>{ZoneRenderHooks.MarkCellDirty(doorCell,"DoorBrace.Fitted");MessageLog.Add("You wedge the "+braceName+" into the door. Remove it to open the door again.");}};
             }
         }
         internal static void AddUseRows(Entity spike,Entity actor,Zone zone,InventoryActionList rows)=>RouteWorkMenu.Rows(spike,actor,zone,rows,Choices(spike,actor,zone),false);

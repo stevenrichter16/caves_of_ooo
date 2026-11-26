@@ -20,8 +20,9 @@ namespace CavesOfOoo.Core
         {
             if(e.ID=="GetInventoryActions")
             {
-                if(DoorBraceActions.Blocked(ParentEntity,ParentEntity?.SpatialZone))
-                    e.GetParameter<InventoryActionList>("Actions")?.AddDisabled("Door","open door (braced)","braced","Remove the iron spike from the doorway first.",'o',30);
+                if(DoorBraceActions.InstalledBrace(ParentEntity,ParentEntity?.SpatialZone) is Entity brace)
+                    e.GetParameter<InventoryActionList>("Actions")?.AddDisabled("Door","open door (braced)","braced",
+                        "Remove the "+DoorBraceActions.BraceName(brace)+" from the doorway first.",'o',30);
                 else if(!RepairablePart.BlocksFunction(ParentEntity))
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("Door",IsClosed?"open door":"close door",IsClosed?OpenCommand:CloseCommand,'o',30);
             }

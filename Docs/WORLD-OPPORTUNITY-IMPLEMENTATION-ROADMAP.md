@@ -210,6 +210,13 @@ their existing paths.
     work admission.
     [Evidence](Verification/MachineSystems/ShortSwordCutting20261125/README.md)
 
+    A loose rough field haft also fits the ordinary iron-spike door brace.
+    The same door rule blocks opening for either material. Fitting and
+    recovery each cost one action and preserve the exact piece. The actual
+    Gleaners' wicket reopened after the haft came out, while native checks
+    cover both materials and refusal of unshaped or stacked stock.
+    [Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
+
 14. **Make source-side processing physical.** Consume an eligible finite batch,
     produce declared fractions and account for any loss. Leave unwanted material
     in an actual accessible store or ground location. Portable processing cannot

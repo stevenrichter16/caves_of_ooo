@@ -57,6 +57,14 @@ transfer, source inventory copy or reconstructed refund. Existing locks and deto
 spike where an existing owner supports it; the ordinary VillageDoor currently has
 no DestructiblePart, and this batch does not add one or claim it can be broken.
 
+On November 26 the loose rough field haft gained the same operation and
+recovery. The action and blocked door identify the installed material. The
+saved Part and door reference retain their existing format. Stacked hafts,
+raw timber and assembled weapons remain ineligible. The spike remains an
+ordinary alternative. The Gleaners' wicket retains its existing repair bill
+and longer walking route.
+[Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
+
 Every selection binds actor origin, tool/input identity, state and exact targets.
 Readers are pure; repeated current gathers retain a still-offered native choice.
 Claims and commit revalidation protect callbacks and independent changes. Gas

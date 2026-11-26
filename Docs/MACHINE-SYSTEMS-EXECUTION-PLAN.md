@@ -106,13 +106,15 @@ Apple Silicon. Package and ordinary startup save hashes matched.
 Packaged gameplay and Intel execution remain open.
 [Delivery receipt](Verification/MachineSystems/MacCandidate31A2513FF/README.md)
 
-**Next route design, use a rough haft as a removable door brace.**
-Consider the existing physical latch gate and recovery behavior for one
-sound loose rough field haft. Ordinary iron spikes remain available.
-An earned trip has the exact shaped haft, spare timber and a known
-Gleaners' wicket. Compare ordinary opening after its repair, holding
-it with the haft and recovery of that exact piece. The wooden brace
-and its readers remain proposed.
+**An earned rough haft can brace an ordinary door — November 26 UTC, 2026.**
+One loose rough field haft uses the same latch and recovery as an iron
+spike. The actual trip bought the second timber, repaired the Gleaners'
+wicket, and opened it normally before testing the brace. Fresh Continue
+kept the exact haft in the doorway and opening was refused without time
+spent. Removal returned the haft. The player opened and crossed the
+wicket, and a second fresh Continue kept the result. The final 56 native
+cases passed. The current Mac package predates this change.
+[Evidence](Verification/MachineSystems/FieldHaftDoorBrace20261126/README.md)
 
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe

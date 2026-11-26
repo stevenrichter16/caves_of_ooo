@@ -1,0 +1,527 @@
+{
+  "game": "169d0f9f53754fc796803da764bd7100",
+  "player": "2703",
+  "startingSave": "/private/tmp/coo-field-haft-before-forge-20261126/169d0f9f53754fc796803da764bd7100",
+  "tradeBefore": {
+    "merchant": "11950",
+    "playerDrams": 21,
+    "offered": {
+      "i": 13,
+      "ID": "12094",
+      "n": "salvaged timber",
+      "b": "SalvagedTimber",
+      "count": 1,
+      "price": 7
+    }
+  },
+  "tradeAfter": {
+    "tick": 2035,
+    "drams": 14,
+    "timber": [
+      {
+        "ID": "7472",
+        "n": 2
+      }
+    ]
+  },
+  "nativeUI": {
+    "GladeEntry": {
+      "ZoneID": "Overworld.11.10.0",
+      "X": 40,
+      "Y": 12,
+      "ID": "2703",
+      "tick": 2155,
+      "hp": 40,
+      "wicket": [
+        {
+          "ID": "2127",
+          "closed": true,
+          "repaired": false,
+          "tx": 46,
+          "ty": 6
+        }
+      ]
+    },
+    "WicketApproach": {
+      "tick": 2205,
+      "x": 45,
+      "y": 7,
+      "hp": 40,
+      "tx": 46,
+      "ty": 6,
+      "key": 9
+    },
+    "Repaired": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2215,
+      "X": 45,
+      "Y": 7,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": true,
+      "repaired": true,
+      "looseHaft": "7473",
+      "installedHaft": null,
+      "haX": null,
+      "haY": null,
+      "lodged": null,
+      "takeable": null,
+      "timber": 0
+    },
+    "ControlOpen": {
+      "row": {
+        "i": 0,
+        "Display": "open door",
+        "Command": "OpenDoor",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      "state": {
+        "zone": "Overworld.11.10.0",
+        "tick": 2225,
+        "X": 45,
+        "Y": 7,
+        "hp": 40,
+        "drams": 14,
+        "door": "2127",
+        "closed": false,
+        "repaired": true,
+        "looseHaft": "7473",
+        "installedHaft": null,
+        "haX": null,
+        "haY": null,
+        "lodged": null,
+        "takeable": null,
+        "timber": 0
+      }
+    },
+    "ControlClosed": {
+      "row": {
+        "i": 0,
+        "Display": "close door",
+        "Command": "CloseDoor",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      "state": {
+        "zone": "Overworld.11.10.0",
+        "tick": 2235,
+        "X": 45,
+        "Y": 7,
+        "hp": 40,
+        "drams": 14,
+        "door": "2127",
+        "closed": true,
+        "repaired": true,
+        "looseHaft": "7473",
+        "installedHaft": null,
+        "haX": null,
+        "haY": null,
+        "lodged": null,
+        "takeable": null,
+        "timber": 0
+      }
+    },
+    "Braced": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2245,
+      "X": 45,
+      "Y": 7,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": true,
+      "repaired": true,
+      "looseHaft": null,
+      "installedHaft": "7473",
+      "haX": 46,
+      "haY": 6,
+      "lodged": "2127",
+      "takeable": false,
+      "timber": 0
+    },
+    "BracedFresh": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2245,
+      "X": 45,
+      "Y": 7,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": true,
+      "repaired": true,
+      "looseHaft": null,
+      "installedHaft": "7473",
+      "haX": 46,
+      "haY": 6,
+      "lodged": "2127",
+      "takeable": false,
+      "timber": 0
+    },
+    "DisabledMenu": {
+      "open": true,
+      "target": "2127",
+      "cell": {
+        "X": 46,
+        "Y": 6
+      },
+      "i": 0,
+      "rows": [
+        {
+          "i": 0,
+          "Display": "open door (braced)",
+          "Command": "Disabled:braced",
+          "tool": null,
+          "cost": "Unspecified"
+        },
+        {
+          "i": 1,
+          "Display": "break",
+          "Command": "Break",
+          "tool": null,
+          "cost": "Unspecified"
+        },
+        {
+          "i": 2,
+          "Display": "examine",
+          "Command": "Examine",
+          "tool": null,
+          "cost": "Unspecified"
+        },
+        {
+          "i": 3,
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "tool": null,
+          "cost": "Unspecified"
+        }
+      ]
+    },
+    "DisabledReader": {
+      "at": "AnnouncementOpen",
+      "open": true,
+      "lines": [
+        "Selected action (reading only):",
+        "open door (braced)",
+        "",
+        "You see a garden wicket.",
+        "New timber braces hold the hinges true. The wicket",
+        "can be opened and closed.",
+        "",
+        "Timber rails span a hinged gap. Sound hinges let",
+        "the wicket open and close; damaged ones can be",
+        "braced with two salvaged timber. The longer path",
+        "around remains open. Breaking the rails leaves a",
+        "permanent opening. A drawgourd bed lies north of",
+        "this shelter wall. Its ripe shell carries water;",
+        "keep its seed for the prepared bed. A loose pallet",
+        "in the supply cellar can provide timber if",
+        "dismantled. The path around the west end stays open."
+      ],
+      "page": 1,
+      "tick": 2245
+    },
+    "Refused": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2245,
+      "X": 45,
+      "Y": 7,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": true,
+      "repaired": true,
+      "looseHaft": null,
+      "installedHaft": "7473",
+      "haX": 46,
+      "haY": 6,
+      "lodged": "2127",
+      "takeable": false,
+      "timber": 0
+    },
+    "RemoveMenu": {
+      "open": true,
+      "target": "7473",
+      "cell": {
+        "X": 46,
+        "Y": 6
+      },
+      "i": 0,
+      "rows": [
+        {
+          "i": 0,
+          "Display": "remove door brace (take this rough field haft)",
+          "Command": "RemoveDoorBrace|7473|<quote>",
+          "tool": null,
+          "cost": "OneAction"
+        },
+        {
+          "i": 1,
+          "Display": "examine",
+          "Command": "Examine",
+          "tool": null,
+          "cost": "Unspecified"
+        },
+        {
+          "i": 2,
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "tool": null,
+          "cost": "Unspecified"
+        }
+      ]
+    },
+    "Removed": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2255,
+      "X": 45,
+      "Y": 7,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": true,
+      "repaired": true,
+      "looseHaft": "7473",
+      "installedHaft": null,
+      "haX": null,
+      "haY": null,
+      "lodged": null,
+      "takeable": null,
+      "timber": 0
+    },
+    "Reopened": {
+      "row": {
+        "i": 0,
+        "Display": "open door",
+        "Command": "OpenDoor",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      "state": {
+        "zone": "Overworld.11.10.0",
+        "tick": 2265,
+        "X": 45,
+        "Y": 7,
+        "hp": 40,
+        "drams": 14,
+        "door": "2127",
+        "closed": false,
+        "repaired": true,
+        "looseHaft": "7473",
+        "installedHaft": null,
+        "haX": null,
+        "haY": null,
+        "lodged": null,
+        "takeable": null,
+        "timber": 0
+      }
+    },
+    "Entered": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2275,
+      "X": 46,
+      "Y": 6,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": false,
+      "repaired": true,
+      "looseHaft": "7473",
+      "installedHaft": null,
+      "haX": null,
+      "haY": null,
+      "lodged": null,
+      "takeable": null,
+      "timber": 0
+    },
+    "Crossed": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2285,
+      "X": 46,
+      "Y": 5,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": false,
+      "repaired": true,
+      "looseHaft": "7473",
+      "installedHaft": null,
+      "haX": null,
+      "haY": null,
+      "lodged": null,
+      "takeable": null,
+      "timber": 0
+    },
+    "CrossedFresh": {
+      "zone": "Overworld.11.10.0",
+      "tick": 2285,
+      "X": 46,
+      "Y": 5,
+      "hp": 40,
+      "drams": 14,
+      "door": "2127",
+      "closed": false,
+      "repaired": true,
+      "looseHaft": "7473",
+      "installedHaft": null,
+      "haX": null,
+      "haY": null,
+      "lodged": null,
+      "takeable": null,
+      "timber": 0
+    },
+    "End": {
+      "0": null,
+      "1": "False",
+      "2": "False",
+      "3": "False"
+    },
+    "InventoryBraceRow": {
+      "i": 0,
+      "label": "brace closed door with this rough field haft",
+      "command": "BraceDoor|2127|<quote>",
+      "dest": null
+    },
+    "RemovalAndRefusal": [
+      "Remove the rough field haft from the doorway first.",
+      "You pull out the rough field haft. The door is no longer braced."
+    ]
+  },
+  "nativeTests": [
+    {
+      "path": "/Users/steven/coo-verification/results/field_haft_door_brace_red_20261126.xml",
+      "sha256": "11dd36c1b2eda9d01e151d8cc3699dfddf85546d1b2c3c6471eafda902564307",
+      "bytes": 6273,
+      "id": "2",
+      "testcasecount": "2",
+      "result": "Failed(Child)",
+      "total": "2",
+      "passed": "1",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-26 11:27:21Z",
+      "end-time": "2026-11-26 11:27:22Z",
+      "duration": "1.1139788"
+    },
+    {
+      "path": "/Users/steven/coo-verification/results/field_haft_door_brace_red_20261126.log",
+      "sha256": "e4b954025bf50794dde75a67535c8e61fb2fa6af469ba825225e970ee22ad874",
+      "bytes": 83802
+    },
+    {
+      "path": "/Users/steven/coo-verification/results/field_haft_door_brace_receipt_20261126.xml",
+      "sha256": "b0a42cdbc606efbb177f230294a4698969d2f96914d1f646caa52102dabeb36e",
+      "bytes": 55571,
+      "id": "2",
+      "testcasecount": "56",
+      "result": "Passed",
+      "total": "56",
+      "passed": "56",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-26 11:33:48Z",
+      "end-time": "2026-11-26 11:33:53Z",
+      "duration": "4.4554672"
+    },
+    {
+      "path": "/Users/steven/coo-verification/results/field_haft_door_brace_receipt_20261126.log",
+      "sha256": "dcc43dbedfe4cb3e1112b0ce69cea241c8bd952ff84a533d443a3185b688daf4",
+      "bytes": 286441
+    }
+  ],
+  "saveArchives": {
+    "timber-bought": {
+      "directory": "/private/tmp/coo-haft-door-timber-bought-20261126/169d0f9f53754fc796803da764bd7100",
+      "turn": 2035,
+      "files": {
+        "Quick.json": {
+          "sha256": "1fcd050e7d8acce67a98475161d8c0732661b60afe57b498123c29146afd8a44",
+          "bytes": 407
+        },
+        "Quick.sav.gz": {
+          "sha256": "c36cfc0933a7bf3002e014864579c9b637619b89d14c779f126b485d105d3f55",
+          "bytes": 312465
+        },
+        "Quick.json.bak": {
+          "sha256": "229fc52d39ffa3f4aaffa3eaa3694f13f27f8b251c3a0da84060e717caf1999f",
+          "bytes": 407
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "913537bcd9cb103b328d31a9c3cbbef86a7d813c6faf8f95f2f167cfbe3fc5e0",
+          "bytes": 311273
+        }
+      }
+    },
+    "braced": {
+      "directory": "/private/tmp/coo-haft-door-braced-20261126/169d0f9f53754fc796803da764bd7100",
+      "turn": 2245,
+      "files": {
+        "Quick.json": {
+          "sha256": "d0223cf999986218f0a37294d7480f8623f677b5cd02ea516d0f49c8a2d451ab",
+          "bytes": 411
+        },
+        "Quick.sav.gz": {
+          "sha256": "1708b15ef7723f06505e1a77078ac756a22ef0fa72000dc3cb9fff0609ac8725",
+          "bytes": 311467
+        },
+        "Quick.json.bak": {
+          "sha256": "36f38a3e13e682f8ab888a8c70cf8bce6293b4b95b310ad817677bd88fe57b4c",
+          "bytes": 411
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "2ff33fdbe4bdaf68ed28a0cc18027b0db6489a0ac80578d42027140eeeeaccda",
+          "bytes": 312473
+        }
+      }
+    },
+    "crossed": {
+      "directory": "/private/tmp/coo-haft-door-crossed-20261126/169d0f9f53754fc796803da764bd7100",
+      "turn": 2285,
+      "files": {
+        "Quick.json": {
+          "sha256": "b4874eb0437c286e0295be83c5fd432e373141d0d869e26b40d1b8864c2e914d",
+          "bytes": 411
+        },
+        "Quick.sav.gz": {
+          "sha256": "7f136abc61ccfd38742bea505a240df3e11063706f06f1101c9db218380d88d8",
+          "bytes": 310605
+        },
+        "Quick.json.bak": {
+          "sha256": "d0223cf999986218f0a37294d7480f8623f677b5cd02ea516d0f49c8a2d451ab",
+          "bytes": 411
+        },
+        "Quick.sav.gz.bak": {
+          "sha256": "1708b15ef7723f06505e1a77078ac756a22ef0fa72000dc3cb9fff0609ac8725",
+          "bytes": 311467
+        }
+      }
+    }
+  },
+  "nativeExit": {
+    "saveOverride": null,
+    "playing": false,
+    "sceneDirty": false,
+    "reloadLock": false,
+    "preservation": [
+      {
+        "scope": "selected ordinary state files",
+        "matched": 861,
+        "mismatched": 0
+      },
+      {
+        "scope": "selected foreign workspace files",
+        "matched": 86,
+        "mismatched": 0
+      }
+    ]
+  }
+}
