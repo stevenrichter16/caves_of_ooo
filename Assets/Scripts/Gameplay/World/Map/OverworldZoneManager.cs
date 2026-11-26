@@ -1246,6 +1246,7 @@ namespace CavesOfOoo.Core
                     WaysideShipmentSite.TryInstall(zone, this);
                 ConnectedSpreadSatellite.AddSideParkingGuide(this, zone);
                 if (soddenAccepted) SoddenWorksDrainage.TryInstall(zone, this);
+                CausewaySteamSeam.Install(this, zone);
             }
             return accepted;
         }
@@ -1256,7 +1257,7 @@ namespace CavesOfOoo.Core
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
             && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
-            && !InstallationMarkerPart.Retain(this,zoneID);
+            && !InstallationMarkerPart.Retain(this,zoneID) && !CausewaySteamSeam.Retain(this,zoneID);
 
         private bool RetainMorrowfast(string zoneID) => zoneID == MorrowfastSceneRuntime.ZoneID
             && WorldMap.GetPOI(MorrowfastSceneRuntime.WorldX, MorrowfastSceneRuntime.WorldY)?.Profile == "Morrowfast"
@@ -1449,6 +1450,7 @@ namespace CavesOfOoo.Core
         protected override void PrepareZoneForAccess(string zoneID)
         {
             Exploration?.ValidateAccess(this,zoneID);
+            CausewaySteamSeam.PrepareForAccess(this, zoneID);
             // Lateral first entry still establishes the real surface endpoint.
             // A cached old cellar is returned verbatim without creating a parent.
             if (zoneID == GleanersCellarBuilder.ZoneID && !CachedZones.ContainsKey(zoneID)

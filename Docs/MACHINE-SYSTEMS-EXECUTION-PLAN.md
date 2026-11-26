@@ -1,3 +1,12 @@
+**A visible Causeway vent has a physical cave counterpart — November 26 UTC, 2026.**
+Fresh version 29 can place an ordinary steam vent off the Sodden Causeway
+approach. The same original stair leads to an existing return with a local
+mineral stain. Ordinary seed 64 play located and read both clues, then
+returned to the shoulder. A separate supplied-tool continuation verified
+that condensation and scraping spend the same finite supply. Continue with
+a contrasting underground phenomenon and a downstream use for its material.
+[Evidence](Verification/MachineSystems/CausewaySteamSeam20261125/README.md)
+
 **An ordinary condenser catches water at a natural vent — November 25 UTC, 2026.**
 An earned tray measure and a bought spike became a condenser at Cinderhold.
 A bought flask took one water from a finite Sodden vent group in ordinary

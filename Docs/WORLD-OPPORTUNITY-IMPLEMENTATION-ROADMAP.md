@@ -528,6 +528,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     a bought flask. The player used both tools to catch one water from an
     existing Sodden vent. The route measured actual local injury and saved
     finite remaining stock. [Evidence](Verification/MachineSystems/OrdinaryCondenser20261125/README.md)
+    A version 29 Causeway surface vent and its local cave stain made an
+    optional cue visible on a crossing that kept its six-step stair
+    approach. The two existing portable tools compete for the same
+    surface stock. The contrast across additional ordinary layouts and
+    any distinct cave processing reward remain open.
+    [Evidence](Verification/MachineSystems/CausewaySteamSeam20261125/README.md)
     A guided version 26 underground route found a packet, carried it,
     screened it and used both fractions in separate saved branches.
     The player used one sand for a cave exit mark and one salt to

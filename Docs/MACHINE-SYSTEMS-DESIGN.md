@@ -1,3 +1,13 @@
+**A surface vent can point to a seam below — November 26 UTC, 2026.**
+The eligible Causeway shoulder uses one ordinary vent and the existing
+physical return stair. The vent shows a crust around the local fissure.
+The return stair carries a corresponding stain. These observations leave
+the dry crossing usable and require no tool. A portable condenser catches
+water and a scraper takes scale from the same finite supply. Each reader
+uses its own local evidence. Consider a warm brine shelf or an abandoned
+drying room for a contrasting variation with another distinct use.
+[Evidence](Verification/MachineSystems/CausewaySteamSeam20261125/README.md)
+
 **A portable condenser has an ordinary field route — November 25 UTC, 2026.**
 The Cinderhold and Sill route supplies a useful tool and receiver for
 44 drams and one earned clay. Actual Sodden play spent one shared vent
