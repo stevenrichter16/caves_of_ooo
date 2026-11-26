@@ -1,3 +1,11 @@
+**Routine playtest walking uses guarded native input batches — November 26 UTC, 2026.**
+The same 24 keys from the same Cinderhold checkpoint reached cell 39,11
+at turn 3080 in both runs. Fixed delays took 7.38 seconds and the guarded
+batch took 2.94. The batch checks every step and stopped without issuing
+a move into an occupied cell or while the inventory was open. Keep
+separate observation points for new interactions and persistence.
+[Walk procedure and evidence](../Tools/NativePlaytest/README.md)
+
 **Choir-iron jobs now cover a useful tool purchase — November 26 UTC, 2026.**
 Cinderhold and Morrowfast each pay 24 drams and one fire clay for one iron.
 At Cinderhold, the player earned the ore, paid one to Perret and bought
