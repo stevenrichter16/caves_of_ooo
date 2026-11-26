@@ -11,15 +11,20 @@ namespace CavesOfOoo.Core
  {
   /// <summary>Presentation/debug identity on new site owners; never authority to acquire a source.</summary>
   public const string RoleKey="SpreadWorksite.Role";
+  const string SeasonalColdForage="seasonal-cold-forage";
   static readonly (int x,int y) Arrival=(40,12);
   const int MaxTrials=256;
   public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,
    out Entity[] owners,out Func<bool> final,bool opening=false)
-   =>TryPlaceCore(zone,factory,terrain,population,containers,family,authority,true,out owners,out final,opening);
+   =>TryPlaceWithSeasonalForage(zone,factory,terrain,population,containers,family,authority,out owners,out final,opening,null);
+  internal static bool TryPlaceWithSeasonalForage(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
+   PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,
+   out Entity[] owners,out Func<bool> final,bool opening,string seasonalWorld)
+   =>TryPlaceCore(zone,factory,terrain,population,containers,family,authority,true,out owners,out final,opening,seasonalWorld);
   static bool TryPlaceCore(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,bool allowDrying,
-   out Entity[] owners,out Func<bool> final,bool opening)
+   out Entity[] owners,out Func<bool> final,bool opening,string seasonalWorld)
   {
    owners=null;final=null;
    bool alembic=family==SpreadExplorationFamily.FieldAlembic,forge=family==SpreadExplorationFamily.TemperingShelter,store=family==SpreadExplorationFamily.TrappersStore;
@@ -90,7 +95,7 @@ namespace CavesOfOoo.Core
    if(!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
    // No enriched shape fits. Only this pre-staging branch can retry the old packet;
    // failed factory/ownership transactions below never consume another attempt.
-   if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final,opening);
+   if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final,opening,seasonalWorld);
    // Optional ground follows the accepted service layout; never move a service,
    // forage source or defender to make room for decoration. Keep the original grass.
    int yardStart=specs.Count;
@@ -106,12 +111,21 @@ namespace CavesOfOoo.Core
     }
     positions=padded.ToArray();
    }
-   var substrates=positions.Skip(yardStart).Take(specs.Count-yardStart).Select(p=>zone.GetCell(p.x,p.y).Objects.Single()).ToArray();
+   int yardCount=specs.Count-yardStart;
+   var substrates=positions.Skip(yardStart).Take(yardCount).Select(p=>zone.GetCell(p.x,p.y).Objects.Single()).ToArray();
    var substrateProof=SpreadGenerationReceipt.CaptureFinalState(zone,substrates);
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
-   bool GroundPayloadShape()=>staged.Count==specs.Count&&staged.Skip(yardStart).All(WorkGroundOwner);
-   bool GroundShape()=>GroundPayloadShape()&&substrateProof()&&Enumerable.Range(yardStart,specs.Count-yardStart)
+   bool GroundPayloadShape()=>staged.Count==specs.Count&&staged.Skip(yardStart).Take(yardCount).All(WorkGroundOwner);
+   bool GroundShape()=>GroundPayloadShape()&&substrateProof()&&Enumerable.Range(yardStart,yardCount)
     .All(i=>YardSubstrate(zone,positions[i],staged[i]));
+   var seasonalCell=drying&&!string.IsNullOrEmpty(seasonalWorld)&&CanonicalColdYield(factory)
+    ? ColdForageCell(zone,before,positions,specs,retainedThreats,plan) : null;
+   var seasonalGrass=seasonalCell?.Objects.Single();
+   Entity seasonalSource=null;
+   bool SeasonalShape()=>seasonalSource==null||
+    ColdForageOwner(seasonalSource,seasonalGrass,seasonalWorld)
+    &&CanonicalColdYield(factory)&&YardSubstrate(zone,(seasonalCell.X,seasonalCell.Y),seasonalSource)
+    &&RainCatchmentPart.FixedOn(seasonalSource,seasonalGrass,zone);
    var goods=new List<Entity>();var goodsProofs=new List<Func<bool>>();
    var container=cache?.GetPart<ContainerPart>();Func<bool> supplied=null;bool stockAdded=false;
    var otherStock=opening?SpreadGenerationReceipt.CaptureFinalState(zone,stock.Owners.Where(e=>e!=cache)):null;
@@ -192,6 +206,39 @@ namespace CavesOfOoo.Core
      if(cue!=null){var examine=e.GetPart<ExaminablePart>();if(examine==null){examine=new ExaminablePart();e.AddPart(examine);}examine.Text=cue;}
      staged.Add(e);
     }
+    if(seasonalCell!=null)
+    {
+     Entity source;
+     try { source=factory.CreateEntity("FrostLichenPatch"); }
+     catch(Exception) { source=null; }
+     if(!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
+     if(Fresh(source,"FrostLichenPatch")&&CanonicalColdYield(factory)
+      &&source.GetPart<PhysicsPart>() is { Solid:false, Takeable:false }
+      &&source.HasTag("Vegetation")&&source.Parts.Count==4
+      &&source.GetPart<HarvestablePart>() is { Harvested:false, YieldBlueprint:"FrostLichen", YieldChance:100 } ordinary
+      &&source.Parts.Count(part=>part is HarvestablePart)==1
+      &&source.GetPart<ExaminablePart>() is ExaminablePart reader)
+     {
+      source.RemovePart(ordinary);
+      source.AddPart(new SeasonalHarvestPart
+      {
+       Ground=seasonalGrass, WorldKey=seasonalWorld, Season=3,
+       YieldBlueprint="FrostLichen", ActionText="gather one frost lichen",
+       ReadyDescription="One pinch of frost lichen is ready to gather. It can freeze wet ground or supply cold for a brewed coating.",
+       DormantDescription="The shallow crust yields frost lichen late in the seasonal cycle. The deeper yard's ordinary lichen grows year-round."
+      });
+      source.Properties[RoleKey]=SeasonalColdForage;
+      source.GetPart<RenderPart>().DisplayName="shallow frost lichen crust";
+      reader.Text="Rime gathers on a shallow seam beside the old works. The usable fronds form late in the seasonal cycle.";
+      if(ColdForageOwner(source,seasonalGrass,seasonalWorld))
+      {
+       seasonalSource=source;
+       specs.Add(("FrostLichenPatch",SeasonalColdForage,0,0));
+       positions=positions.Append((seasonalCell.X,seasonalCell.Y)).ToArray();
+       staged.Add(source);
+      }
+     }
+    }
    }
    catch(Exception){return false;}
    if(!StockCapacity()||!goodsProofs.All(p=>p())||goods.Any(e=>container.Contents.Any(old=>old.ID==e.ID))||!RoleShape()||!StoreShape()||!DryingShape()||!GroundPayloadShape()||!UniqueGraph(zone,staged.Concat(goods))||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
@@ -221,7 +268,7 @@ namespace CavesOfOoo.Core
      stockAdded=true;supplied=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{cache});placedProof[cache]=supplied;
     }
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
-    bool Final()=>authority()&&Provenance()&&RoleShape()&&StoreShape()&&DryingShape()&&SupplyShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
+    bool Final()=>authority()&&Provenance()&&RoleShape()&&StoreShape()&&DryingShape()&&SupplyShape()&&SeasonalShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
      &&(!store||(opening?supplied?.Invoke()==true&&otherStock():stock.MatchesOwnedState()))&&finalPacket()&&detached.Values.All(p=>p())
      &&GroundShape()&&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;
@@ -382,14 +429,58 @@ namespace CavesOfOoo.Core
    var grass=original[0];return grass.BlueprintName=="Grass"&&!grass.HasTag("Owned")&&grass.HasTag("Terrain")&&grass.HasTag("Plantable")
     &&!grass.HasPart<CultivatedSoilPart>()&&DoorPart.IsBareGround(grass)&&LocalGatheringClaims.Ground(grass,zone);
   }
+  static bool CanonicalColdYield(EntityFactory factory)
+   =>HarvestablePart.CanCreateYield(factory,"FrostLichen")
+    &&factory.Blueprints["FrostLichen"].Parts.TryGetValue("Reagent",out var reagent)
+    &&reagent.TryGetValue("PropertiesRaw",out var properties)&&properties=="cold:2";
+
+  static bool ColdForageOwner(Entity source,Entity grass,string key)
+   =>source.GetPart<PhysicsPart>() is { Solid:false, Takeable:false, InInventory:null, Equipped:null }
+    &&source.Tags.Count==1&&source.HasTag("Vegetation")&&source.Parts.Count==4
+    &&source.GetPart<SeasonalHarvestPart>() is { Harvested:false, Season:3, YieldBlueprint:"FrostLichen",
+      YieldMin:1, YieldMax:1, YieldChance:100, PolicyVersion:RegionalWeather.PolicyVersion } harvest
+    &&harvest.Ground==grass&&harvest.WorldKey==key&&source.Parts.Count(part=>part is HarvestablePart)==1;
+
+  static Cell ColdForageCell(Zone zone,SpreadWildernessSituationBuilder.Geometry geometry,(int x,int y)[] positions,
+   List<(string bp,string role,int x,int y)> specs,Entity[] retainedThreats,SpreadCompositionPlan plan)
+  {
+   var natural=positions[specs.FindIndex(s=>s.role=="cold-forage")];
+   var defender=positions[specs.FindIndex(s=>s.role=="patchbearer")];
+   int approachBudget=Math.Min(12,Distance(Arrival,natural)-4);
+   if(approachBudget<3)return null;
+   var reserved=positions.ToHashSet();
+   bool Avoid(int x,int y)=>Distance((x,y),defender)<=10||retainedThreats.Any(actor=>
+    Distance((x,y),zone.GetEntityPosition(actor))<=Math.Max(actor.GetPart<BrainPart>().SightRadius,
+     actor.GetPart<CombatTacticsPart>()?.AssistRadius??0));
+   var near=geometry.Flood(reserved,Arrival,approachBudget,Avoid);
+   var outwards=geometry.Flood(reserved,Arrival,int.MaxValue,Avoid);
+   if(!new[]{(0,plan.WestY),(Zone.Width-1,plan.EastY),(plan.NorthX,0),(plan.SouthX,Zone.Height-1)}
+    .Any(exit=>outwards[exit.Item1,exit.Item2]))return null;
+   return zone.Cells.Cast<Cell>()
+    .Where(cell=>Distance(Arrival,(cell.X,cell.Y))>=3&&!reserved.Contains((cell.X,cell.Y))
+     &&geometry.Place(cell.X,cell.Y)&&!Avoid(cell.X,cell.Y)&&YardSubstrate(zone,(cell.X,cell.Y))
+     &&Cardinal((cell.X,cell.Y)).Count(p=>near[p.x,p.y])>=2)
+    .OrderBy(cell=>Distance(Arrival,(cell.X,cell.Y)))
+    .ThenBy(cell=>Distance((cell.X,cell.Y),natural)).ThenBy(cell=>cell.Y).ThenBy(cell=>cell.X).FirstOrDefault();
+  }
+
+  static IEnumerable<(int x,int y)> Cardinal((int x,int y) at)
+  {
+   yield return (at.x-1,at.y);
+   yield return (at.x+1,at.y);
+   yield return (at.x,at.y-1);
+   yield return (at.x,at.y+1);
+  }
   static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
   static (int x,int y) At((int x,int y)at,(int x,int y)p,int turn)=>turn==0?(at.x+p.x,at.y+p.y)
    :turn==1?(at.x-p.y,at.y+p.x):turn==2?(at.x-p.x,at.y-p.y):(at.x+p.y,at.y-p.x);
   static bool Fits(Zone z,SpreadWildernessSituationBuilder.Geometry g,SpreadWildernessSituationBuilder.Geometry before,(int x,int y)[] positions,
    List<(string bp,string role,int x,int y)> specs,bool pair,bool store,bool drying,Entity[] retainedThreats,(int x,int y)origin,int rotation,SpreadCompositionPlan plan)
   {
-   var obstacles=positions.Where((p,i)=>i>=specs.Count||specs[i].role!="yard-ground").ToArray();
-   if(positions.Any(p=>Distance(p,Arrival)<=6||!g.Place(p.x,p.y))||positions.Distinct().Count()!=positions.Length||!g.PreservesAgainst(before,obstacles))return false;
+   var obstacles=positions.Where((p,i)=>i>=specs.Count||specs[i].role!="yard-ground"&&specs[i].role!=SeasonalColdForage).ToArray();
+   if(positions.Select((p,i)=>(p,i)).Any(at=>!g.Place(at.p.x,at.p.y)
+    ||(at.i>=specs.Count||specs[at.i].role!=SeasonalColdForage)&&Distance(at.p,Arrival)<=6)
+    ||positions.Distinct().Count()!=positions.Length||!g.PreservesAgainst(before,obstacles))return false;
    var blocked=new HashSet<(int x,int y)>(obstacles);
    var threat=specs.Select((s,i)=>(s.role,at:positions[i])).Where(s=>s.role=="ranged"||s.role=="melee"||s.role=="patchbearer").ToArray();
    bool Avoid(int x,int y)=>threat.Any(t=>Distance((x,y),t.at)<=(t.role=="ranged"?6:10))

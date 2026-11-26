@@ -1,3 +1,11 @@
+**North Works has a late-cycle field material — November 26 UTC, 2026.**
+A shorter dry approach can reach one seasonal pinch of frost lichen
+before the deep work yard. The original patch and still keep their
+ordinary role. The new harvest works through the same portable cold and
+brew rules as other frost lichen. The calendar changes the available
+source alone.
+[Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
+
 **Item artwork and player labels serve separate roles — November 26 UTC, 2026.**
 The pack and storage lists show default-on item art for every current
 portable item type. The row art follows the item type. Swatches and custom

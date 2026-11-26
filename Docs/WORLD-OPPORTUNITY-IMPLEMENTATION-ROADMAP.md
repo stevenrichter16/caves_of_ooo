@@ -391,6 +391,15 @@ and other approved furnishings keep their existing services.
 
 ## Priority 7: add seasonal bonus work without making travel a chore
 
+Fresh v31 North Works can offer one late-cycle lichen crust before the
+deeper yard. The ordinary patch continues to yield year-round. The new
+source uses the existing four-phase clock and yields one lichen once.
+Actual seed 64 play reached it in two dry steps, read the dormant source,
+then earned and spent its exact harvest on temporary ice after advancing
+the test calendar. The freeze kept the finite puddle and remaining flask
+volume. The field comparison supplied the flask.
+[Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
+
 Requirements 31–33 have one local candidate. An admitted fresh Morrowfast
 allotment has one late knotflax bundle, a shared frame process and an ordinary
 prepared-bed consumer. Editor play used the same frame for rain collection

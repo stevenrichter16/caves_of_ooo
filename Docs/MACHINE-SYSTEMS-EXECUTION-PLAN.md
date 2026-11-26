@@ -1,3 +1,13 @@
+**Late-cycle lichen at North Works — November 26 UTC, 2026.**
+Fresh v31 can offer a finite shallow crust reached without entering the
+working yard. Native seed 64 gathered its exact one lichen and used it
+to freeze a local puddle. The test calendar was advanced and the flask
+was supplied. Fresh Continue kept the ice, water and depleted source.
+The deeper patch and services were retained. The next source check is
+the ordinary sounding rod's refusal on bare carved cave floors. Reuse
+the native floor authority already checked by trail marking.
+[Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
+
 **Item icons default on in the pack and storage — November 26 UTC, 2026.**
 The shared artwork covers all 354 current portable item types.
 Graphics settings can hide it. The player can still organize items

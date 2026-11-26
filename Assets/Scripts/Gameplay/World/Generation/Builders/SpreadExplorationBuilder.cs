@@ -83,7 +83,9 @@ namespace CavesOfOoo.Core
    if(Priority!=4300)return Refuse(z,entry,"worksite-source-boundary");
    var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
    var original=SpreadGenerationReceipt.CaptureFinalState(z,owners);
-   if(SpreadExplorationWorksites.TryPlace(z,f,terrain,population,containers,entry.Family,()=>Current(z,f,entry),out var packet,out var final,plan.Version>=17))
+   string seasonalWorld = plan.Version >= 31 && z.ZoneID == "Overworld.11.9.0" ? plan.WorldKey : null;
+   if(SpreadExplorationWorksites.TryPlaceWithSeasonalForage(z,f,terrain,population,containers,entry.Family,()=>Current(z,f,entry),
+    out var packet,out var final,plan.Version>=17,seasonalWorld))
     return Commit(z,f,entry,packet,final);
    if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
    return Refuse(z,entry,"no-safe-worksite-or-exact-source");
