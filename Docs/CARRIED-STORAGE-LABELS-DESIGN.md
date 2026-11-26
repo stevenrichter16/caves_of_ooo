@@ -95,14 +95,15 @@ The row still shows the ordinary name, quantity, weight and indentation
 where applicable. A swatch or text label has its own color.
 
 The same inventory-only atlas serves the pack, equipped items, carried
-storage contents and the lists for opening or choosing world containers.
-It also serves the physical item rows in Stow, Forge and Brew. Command
-rows and ingredient requirements keep their ordinary text. The atlas
-covers each portable item type and storage owner in the blueprint catalog.
+storage contents, world storage, trade and the physical item rows in
+Stow, Forge and Brew. The `Put in` row shows the icon of its destination.
+Other command rows and ingredient requirements keep their ordinary text.
+The atlas covers each portable type and storage owner in the blueprint
+catalog, plus directly constructed physical items such as the witness-book.
 It reuses existing art where possible and uses shared shapes for fixtures
 with the same practical role. A closed chest uses the same icon regardless
-of what opening it might reveal. New or dynamically generated types without
-an atlas entry use a neutral icon. The menu only paints disclosed rows.
+of what opening it might reveal. Unrecognized future types use a neutral
+icon. The menu only paints disclosed rows.
 
 **Pause → Graphics → Item icons** turns the silhouettes on or off. This
 is a player preference, enabled by default. An icon label made in an

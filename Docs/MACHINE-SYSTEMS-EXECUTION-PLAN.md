@@ -117,12 +117,13 @@ The deeper patch and services were retained.
 [Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
 
 **Item icons default on in the pack and storage — November 26 UTC, 2026.**
-The shared artwork covers all 354 current portable item types.
-Graphics settings can hide it. The player can still organize items
-with swatches and custom text. The old icon labels kept their colors
-on native Continue and retained exact item custody. The expanded pack
-and setting were verified in Editor. Current packaged play remains open.
-[Evidence](Verification/MachineSystems/InventoryRowIcons20261126/README.md)
+The atlas covers 357 current portable item types and 35 additional
+storage owners. Graphics settings can hide the art, including both
+trade panels and storage destination choices. Color marks and text
+labels remain available. A native Sill Continue kept the labeled seed
+stack in the exact camp box, and lifting the box exposed the indented
+stack in the pack. The final 378 connected native tests passed.
+[Evidence](Verification/MachineSystems/ItemIconFinal20261126/README.md)
 
 **Sumphold's finite cargo can be moved, stocked or taken in place — November 26 UTC, 2026.**
 Fresh v30 admits one exact crate after the final approach and berth check.

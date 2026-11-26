@@ -29,12 +29,14 @@ namespace CavesOfOoo.Tests
                 {
                     "Item", "ArmorItem", "FoodItem", "ReagentItem", "TonicItem", "TrinketItem", "WeaponComponentItem"
                 };
+                // Normal village quests and dismemberment create these items directly.
+                var runtimeItems = new[] { "DetectiveNotebook", "CrunchyLocket", "SeveredLimb" };
                 var names = factory.Blueprints.Values.Where(blueprint => !templates.Contains(blueprint.Name)
                     && (blueprint.Parts.ContainsKey("Container") || !blueprint.Tags.ContainsKey("Creature")
                         && blueprint.Parts.TryGetValue("Physics", out var physics)
                         && physics.TryGetValue("Takeable", out var takeable)
                         && bool.TryParse(takeable, out bool canTake) && canTake))
-                    .Select(blueprint => blueprint.Name).OrderBy(name => name).ToArray();
+                    .Select(blueprint => blueprint.Name).Concat(runtimeItems).OrderBy(name => name).ToArray();
                 Assert.That(names.Length, Is.GreaterThan(380));
                 var fallback = InventoryItemIcons.For(new Entity { BlueprintName = "unknown" });
                 Assert.NotNull(fallback);
@@ -48,6 +50,54 @@ namespace CavesOfOoo.Tests
             finally
             {
                 InventoryIconSettings.Enabled = oldChoice;
+            }
+        }
+
+        [TestCase("Sporeblade", "VenomGland", false)]
+        [TestCase("CurationInspectionKey", "SealbarkSlat", false)]
+        [TestCase("AbsentmintLeaf", "LiquidFlask", false)]
+        [TestCase("Chest", "LockedChest", true)]
+        [TestCase("Chest", "MimicChest", true)]
+        public void InventoryArtDistinguishesDifferentBodiesAndPreservesSharedVariants(
+            string firstType, string secondType, bool identicalArt)
+        {
+            // Separate frame indices do not prove a blade, key or leaf has its own body shape.
+            // Chest variants deliberately share pixels so the icon does not reveal a mimic.
+            bool oldChoice = InventoryIconSettings.Enabled;
+            var image = new Texture2D(2, 2);
+            InventoryIconSettings.Enabled = true;
+            try
+            {
+                Assert.True(image.LoadImage(File.ReadAllBytes(Path.Combine(Application.dataPath,
+                    "Resources", InventoryItemAtlas + ".png"))));
+                var pixels = image.GetPixels32();
+                Color32[] first = ReadIcon(firstType), second = ReadIcon(secondType);
+                Assert.True(first.Any(pixel => pixel.a != 0), firstType);
+                Assert.True(second.Any(pixel => pixel.a != 0), secondType);
+                if (identicalArt)
+                    CollectionAssert.AreEqual(first, second, "Disclosure-equivalent chest bodies must keep shared art.");
+                else
+                    Assert.False(first.Select(pixel => pixel.a != 0).SequenceEqual(
+                        second.Select(pixel => pixel.a != 0)),
+                        firstType + " must not borrow " + secondType + "'s silhouette.");
+
+                Color32[] ReadIcon(string blueprint)
+                {
+                    var sprite = InventoryItemIcons.For(new Entity { BlueprintName = blueprint });
+                    Assert.NotNull(sprite, blueprint);
+                    Assert.AreEqual(new Vector2(16, 16), sprite.rect.size, blueprint);
+                    var result = new Color32[16 * 16];
+                    for (int y = 0; y < 16; y++)
+                        for (int x = 0; x < 16; x++)
+                            result[y * 16 + x] = pixels[((int)sprite.rect.y + y) * image.width
+                                + (int)sprite.rect.x + x];
+                    return result;
+                }
+            }
+            finally
+            {
+                InventoryIconSettings.Enabled = oldChoice;
+                Object.DestroyImmediate(image);
             }
         }
 
@@ -90,6 +140,49 @@ namespace CavesOfOoo.Tests
                         return x >= row.xMin + 8 && x <= row.xMin + 12 && y >= row.yMin && y < row.yMax;
                     });
                 }
+            }
+            finally
+            {
+                InventoryIconSettings.Enabled = oldChoice;
+            }
+        }
+
+        [Test]
+        public void DepositChoiceShowsTheStorageOwnerIconWithoutRevealingItsContents()
+        {
+            bool oldChoice = InventoryIconSettings.Enabled;
+            InventoryIconSettings.Enabled = true;
+            try
+            {
+                using var r = new Rig();
+                var item = r.Carry("HealingTonic");
+                var basket = r.Factory.CreateEntity("WovenBasket");
+                var concealed = r.Factory.CreateEntity("HandPump");
+                Assert.True(basket.GetPart<ContainerPart>().AddItem(concealed));
+                Assert.True(r.UI.CurrentZone.AddEntity(basket, 10, 10));
+                var storageIcon = InventoryItemIcons.For(basket);
+                var concealedIcon = InventoryItemIcons.For(concealed);
+                Assert.NotNull(storageIcon);
+                Assert.NotNull(concealedIcon);
+                r.Open();
+                Assert.True(r.UI.ReopenItemActionPopupFor(item));
+                int index = ActionIndex(r, "put_container");
+                var popup = Get(r.UI, "_itemActionPopup");
+                popup.GetType().GetField("CursorIndex", Members).SetValue(popup, index);
+                Call(r.UI, "Render");
+                Assert.True(r.Labels().Any(label => label.Content.Contains("Put in " + basket.GetDisplayName())));
+                Assert.True(HasIcon(storageIcon));
+                Assert.False(HasIcon(concealedIcon));
+
+                InventoryIconSettings.Enabled = false;
+                Call(r.UI, "Render");
+                Assert.False(HasIcon(storageIcon));
+                r.ActivatePainted(r.FindHit("PopupRow", index));
+                Assert.AreSame(basket, item.GetPart<PhysicsPart>().InInventory);
+                Assert.AreSame(basket, concealed.GetPart<PhysicsPart>().InInventory);
+
+                bool HasIcon(Sprite sprite) => r.UI.GetComponentsInChildren<Image>(true)
+                    .Any(image => image.isActiveAndEnabled && image.sprite == sprite);
             }
             finally
             {

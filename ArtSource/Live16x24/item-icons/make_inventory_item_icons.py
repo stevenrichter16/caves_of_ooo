@@ -96,6 +96,22 @@ ITEM_TEMPLATES = {
     "Item", "ArmorItem", "FoodItem", "ReagentItem", "TonicItem", "TrinketItem", "WeaponComponentItem"
 }
 
+# These takeable items are constructed directly by village quests or anatomy.
+# Append them after the blueprint frames to keep existing icon indices fixed.
+RUNTIME_ITEM_FAMILIES = {
+    "DetectiveNotebook": "witness_book",
+    "CrunchyLocket": "name_token",
+    "SeveredLimb": "severed_limb",
+}
+
+# These bodies need inventory-specific art instead of the older world glyph
+# family's sac, sprig or flask. Keep their existing atlas indices unchanged.
+ITEM_ART_OVERRIDES = {
+    "Sporeblade": "sporeblade",
+    "CurationInspectionKey": "inspection_key",
+    "AbsentmintLeaf": "absentmint_leaf",
+}
+
 
 def pixels(*rows):
     assert len(rows) <= SIZE and all(len(row) <= SIZE for row in rows), rows
@@ -180,6 +196,22 @@ TEMPLATES = {
                     ".osSTAaaaAAaSso", "..osssTTTTssso", "...oooooooooo"),
     "strip": pixels("....ooooooooo", "...oHAHAAAAAao", "..oAAAooooAAo", "..oAAoAAAoAo",
                      "..oAAoAAoAo", "..oAAAAAAaao", "...oooooooo"),
+    "witness_book": pixels("...ooooooooooo", "..okHAAAAAAAao", "..okAooooAAaao",
+                           "..okAoYooAAaao", "..okAooooAAaao", "..okAAAAAAAaao",
+                           "..oppppppppooo", "...oPPPPPPPPo", "...oooooooooo"),
+    "name_token": pixels("....ooo", "...ok.ko", "...ok.ko", "..oootooo", ".oTHAAAAto",
+                         ".oTHAAeAto", ".oTHeeeato", ".oTAAeaaao", "..oTaaaao", "...ooooo"),
+    "severed_limb": pixels("......oooo", ".....oHHAAo", "....oHHAAAAo", "...oHAAAAao",
+                           "...oAAAaoo", "..oAAAao", ".oHAAao", "oPprrao", "opprro", ".oooo"),
+    "sporeblade": pixels("............oo", "...........oSo", "..........oSSo", ".........oHSo",
+                        "........oASo", ".......oSAo", "......oASo", ".....oSSo", "..ooosSo",
+                        "..oSSSSoo", "...ooTo", "..otTo", ".otTo", ".oooo"),
+    "inspection_key": pixels("......oooo", ".....oSSSSo", "..rrroS..So", ".r...oS..So",
+                             ".r....osso", "..r...oSo", ".oppo.oSo", ".opPo.oSooo",
+                             ".oppo.oSSSo", "..oo..oSooo", "......oSSSo", "......ooooo"),
+    "absentmint_leaf": pixels("..........oo", ".......oooHo", ".....ooHAAAo", "....oHAAaAAo",
+                              "...oHAAaAAao", "..oHAAaAAao", "..oAAaAAao", "..oAaAAao",
+                              "...oAAoo", "...ooo", "..oko", ".oko", ".oo"),
     "unknown": pixels("......ooo", "....ooHHHoo", "...oHAAAHAAo", "..oHAAAAAAaao", "..oAAHHAAAaao",
                        "..oAAAAAAaao", "..oAAAAAaaao", "...oaaaaaao", "....oooooo"),
 }
@@ -202,7 +234,8 @@ FAMILIES = {
 ACCENTS = {
     "CampAwning": "G", "CampFishTrap": "y", "CampStill": "c", "CampTrough": "C",
     "FieldSatchel": "g", "FieldMeal": "O", "PreparedLiningClay": "o", "CoarseGrit": "W",
-    "KnotflaxSeedHeads": "G", "unknown": "C",
+    "KnotflaxSeedHeads": "G", "DetectiveNotebook": "w", "CrunchyLocket": "O",
+    "SeveredLimb": "w", "AbsentmintLeaf": "g", "unknown": "C",
 }
 
 
@@ -234,8 +267,8 @@ def render():
         raise ValueError("Choose icon art for these storage owners: " + ", ".join(sorted(missing_storage)))
     existing = json.loads(Path(world.INDEX).read_text())
     world_frames = {row["Blueprint"]: row["Frame"] for row in existing["Icons"]}
-    named = sorted(item_names | storage_names)
-    names = [UNKNOWN, *named]
+    named = sorted((item_names | storage_names) - RUNTIME_ITEM_FAMILIES.keys())
+    names = [UNKNOWN, *named, *RUNTIME_ITEM_FAMILIES]
     images = {}
 
     def asset(path):
@@ -257,12 +290,13 @@ def render():
             sheet, index, height = source
             path = SPRITES / f"{sheet}.png"
             return borrowed(path, index, height, asset(path).width // SIZE)
-        if name in world_frames:
+        if name in world_frames and name not in ITEM_ART_OVERRIDES:
             return borrowed(Path(world.ATLAS), world_frames[name], existing["FrameHeight"], existing["Columns"])
         render_fields = world.render_of(blueprints, name)
         glyph = (render_fields.get("RenderString") or "?")[0]
         code = ACCENTS.get(name, (render_fields.get("ColorString") or "&y")[-1])
-        family = STORAGE_FAMILIES.get(name) or FAMILIES.get(name)
+        family = (ITEM_ART_OVERRIDES.get(name) or STORAGE_FAMILIES.get(name)
+                  or FAMILIES.get(name) or RUNTIME_ITEM_FAMILIES.get(name))
         if family is None:
             family = UNKNOWN if name == UNKNOWN else world.family(name, glyph)
         rows = TEMPLATES[family] if family in TEMPLATES else world.T[family]
@@ -280,7 +314,8 @@ def render():
     png = io.BytesIO()
     atlas.save(png, format="PNG")
     data = {"Columns": COLUMNS, "FrameHeight": SIZE, "Icons": icons}
-    return png.getvalue(), (json.dumps(data, indent=1) + "\n").encode(), len(item_names), len(icons)
+    return (png.getvalue(), (json.dumps(data, indent=1) + "\n").encode(),
+            len(item_names | RUNTIME_ITEM_FAMILIES.keys()), len(icons))
 
 
 def main():
@@ -294,7 +329,7 @@ def main():
                 raise SystemExit(f"{path.name} differs from the generated result")
         else:
             path.write_bytes(contents)
-    print(f"{items} portable item blueprints, {icons - items - 1} storage owners, and one fallback")
+    print(f"{items} portable item types, {icons - items - 1} storage owners, and one fallback")
 
 
 if __name__ == "__main__":

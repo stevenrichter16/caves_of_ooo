@@ -87,10 +87,11 @@ source alone.
 [Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
 
 **Item artwork and player labels serve separate roles — November 26 UTC, 2026.**
-The pack and storage lists show default-on item art for every current
-portable item type. The row art follows the item type. Swatches and custom
-text organize individual items or stacks. An old icon label keeps its
-color as a swatch, with the same items and quantities on load.
+The pack, storage and both sides of a trade share default-on artwork for
+each current portable item type. Storage destination choices show the
+destination's icon. Swatches and custom text organize individual items
+or stacks. An old icon label keeps its color as a swatch, with the same
+items and quantities on load.
 [Design](CARRIED-STORAGE-LABELS-DESIGN.md)
 
 **A public cargo crate can serve a chosen Sumphold berth — November 26 UTC, 2026.**

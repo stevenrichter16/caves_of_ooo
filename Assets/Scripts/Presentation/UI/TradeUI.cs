@@ -678,6 +678,8 @@ namespace CavesOfOoo.Rendering
                 if (selected)
                     DrawChar(x0 - 1, y, '>', QudColorParser.White);
 
+                InventoryItemIcons.Paint(Tilemap, new Vector3Int(x0, H - 1 - y, 0), rows[i].Item);
+
                 // Build row text: "  name            4lb   29$"
                 string name = rows[i].Name;
                 int maxNameLen = panelW - 14; // room for weight + price

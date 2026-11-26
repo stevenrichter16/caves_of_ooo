@@ -152,7 +152,13 @@ namespace CavesOfOoo.Rendering
                     title = "EQUIP TO BODY PART"; count = _itemActionPopup.BodyParts?.Count ?? 0; cursor = _itemActionPopup.BodyPartCursor;
                     label = i => _itemActionPopup.BodyParts[i].GetDisplayName();
                 }
-                else { count = _itemActionPopup.Actions.Count; cursor = _itemActionPopup.CursorIndex; label = i => _itemActionPopup.Actions[i].Label; }
+                else
+                {
+                    count = _itemActionPopup.Actions.Count;
+                    cursor = _itemActionPopup.CursorIndex;
+                    label = i => _itemActionPopup.Actions[i].Label;
+                    item = i => _itemActionPopup.Actions[i].Container;
+                }
             }
             else if (_modTargetPopup != null)
             {

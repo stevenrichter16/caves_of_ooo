@@ -210,5 +210,53 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [Test]
+        public void TradeUsesTheSharedItemIconsForBothInventories()
+        {
+            bool previous = InventoryIconSettings.Enabled;
+            var trade = input.TradeUI;
+            var trader = factory.CreateEntity("Player");
+            var offered = factory.CreateEntity("Dagger");
+            var carried = factory.CreateEntity("HealingTonic");
+            var merchantPack = trader.GetPart<InventoryPart>();
+            var playerPack = actor.GetPart<InventoryPart>();
+            Assert.True(merchantPack.AddObject(offered));
+            Assert.True(playerPack.AddObject(carried));
+            trade.Tilemap = Make<UnityEngine.Tilemaps.Tilemap>();
+            var merchantIconAt = new Vector3Int(1, 41, 0);
+            var playerIconAt = new Vector3Int(40, 41, 0);
+            int tick = turns.TickCount;
+
+            try
+            {
+                InventoryIconSettings.Enabled = true;
+                var offeredIcon = InventoryItemIcons.For(offered);
+                var carriedIcon = InventoryItemIcons.For(carried);
+                Assert.NotNull(offeredIcon);
+                Assert.NotNull(carriedIcon);
+                trade.Open(trader);
+                Assert.AreSame(offeredIcon, trade.Tilemap.GetSprite(merchantIconAt));
+                Assert.AreSame(carriedIcon, trade.Tilemap.GetSprite(playerIconAt));
+                var priceCell = new Vector3Int(38, 41, 0);
+                var currencyGlyph = CP437TilesetGenerator.GetUiTile('$');
+                Assert.NotNull(currencyGlyph);
+                Assert.AreSame(currencyGlyph, trade.Tilemap.GetTile(priceCell));
+
+                InventoryIconSettings.Enabled = false;
+                trade.RestoreAfterDecisionReader();
+                Assert.False(trade.Tilemap.HasTile(merchantIconAt));
+                Assert.False(trade.Tilemap.HasTile(playerIconAt));
+                Assert.AreSame(currencyGlyph, trade.Tilemap.GetTile(priceCell));
+                Assert.True(merchantPack.Contains(offered));
+                Assert.True(playerPack.Contains(carried));
+                Assert.AreEqual(tick, turns.TickCount);
+            }
+            finally
+            {
+                trade.Close();
+                InventoryIconSettings.Enabled = previous;
+            }
+        }
+
     }
 }
