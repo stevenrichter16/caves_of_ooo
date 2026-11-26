@@ -170,21 +170,46 @@ namespace CavesOfOoo.Tests
         {
             var textures=new[]{Resources.Load<Texture2D>("Sprites/Live16x24/opening-base"),Resources.Load<Texture2D>("Sprites/Live16x24/opening-cast"),
                 Resources.Load<Texture2D>("Sprites/Live16x24/opening-anchors"),Resources.Load<Texture2D>("Sprites/Live16x24/opening-states")};
+            // These later freight owners, including the public loose-clay tray,
+            // intentionally use the existing world glyphs.
+            // Keep every other opening owner under the original authored-art census.
+            var freightGlyphs = new System.Collections.Generic.Dictionary<string, char>
+            {
+                { "GleanersPorter", '@' }, { "GleanersLoadingMarker", 'I' },
+                { "LiningClayParcel", '=' }, { "LiningClayReceivingShelf", '=' },
+                { "LiningClaySupplyTray", 'u' }
+            };
             foreach(var texture in textures)Assert.NotNull(texture,"All accepted source groups must be imported before coverage can pass.");
             var manager=OverworldZoneManager.CreateDetached(factory,64,enableExploration:true);zone=manager.GetZone(ReferenceGladePlan.ZoneID);
             catalog=new FlatPixelGreyboxCatalog();int foreground=0;
+            void AssertGlyphFallback(Entity owner, int cellX, int cellY, char expectedGlyph)
+            {
+                Assert.AreEqual(expectedGlyph.ToString(), owner.GetPart<RenderPart>().RenderString);
+                Assert.True(catalog.TryResolvePresentation(zone, cellX, cellY, out var visible));
+                Assert.AreSame(owner, visible.Owner); Assert.False(visible.NativeForeground);
+                Assert.True(catalog.TryResolveFallback(zone, cellX, cellY, out var glyphFallback));
+                Assert.AreSame(owner, glyphFallback.Owner);
+                Assert.AreSame(glyphFallback.ForegroundTile, visible.ForegroundTile);
+                Assert.NotNull(visible.ForegroundTile);
+                Assert.AreEqual(new Rect(expectedGlyph % 16 * 16, expectedGlyph / 16 * 24, 16, 24), visible.ForegroundTile.sprite.rect);
+                CollectionAssert.DoesNotContain(textures, visible.ForegroundTile.sprite.texture);
+            }
             for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
             {
                 var cell=zone.GetCell(x,y);cell.IsVisible=cell.Explored=true;
                 Assert.True(catalog.TryResolve(zone,x,y,out var value));Assert.AreSame(cell.GetTopVisibleObject(),value.Owner);
                 if(value.ForegroundTile==null){Assert.That(value.Owner?.BlueprintName,Is.EqualTo("Grass").Or.EqualTo("RoadStone"));continue;}
-                foreground++;CollectionAssert.Contains(textures,value.ForegroundTile.sprite.texture,value.Owner?.BlueprintName+" at "+x+","+y);
+                foreground++;
+                if (value.Owner != null && freightGlyphs.TryGetValue(value.Owner.BlueprintName, out char glyph))
+                    AssertGlyphFallback(value.Owner, x, y, glyph);
+                else CollectionAssert.Contains(textures,value.ForegroundTile.sprite.texture,value.Owner?.BlueprintName+" at "+x+","+y);
             }
             Assert.Greater(foreground,100,"The positive control must inspect the actual populated opening.");
             var unknown=new Entity{ID="uncatalogued-runtime",BlueprintName="UncataloguedRuntimeObject"};
             unknown.AddPart(new RenderPart{RenderLayer=100,RenderString="?"});unknown.AddPart(new PhysicsPart());
             Assert.True(zone.AddEntity(unknown,X,Y));var fallback=Resolve();Assert.AreSame(unknown,fallback.Owner);
             Assert.NotNull(fallback.ForegroundTile);CollectionAssert.DoesNotContain(textures,fallback.ForegroundTile.sprite.texture);
+            AssertGlyphFallback(unknown, X, Y, '?');
         }
         Entity AddFrame(int frame)
         {

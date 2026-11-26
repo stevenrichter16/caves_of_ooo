@@ -90,6 +90,64 @@ namespace CavesOfOoo.Tests
 
     public sealed class FiftySecondPreparationTests : FiftySecondPreparationFixture
     {
+        [TestCase("absent", "forge-required")]
+        [TestCase("faulted", "forge-needs-repair")]
+        [TestCase("unseen fault", "forge-required")]
+        [TestCase("hidden owner", "forge-required")]
+        public void UnavailableForgeRecoveryExplainsWhatToDoAndKeepsFieldCutting(string nearby, string code)
+        {
+            var weapon = Weapon();
+            var cutter = Stock("Dagger");
+            if (nearby != "absent")
+            {
+                var rig = Place("AbandonedFieldWorkRig");
+                Zone.GetEntityCell(rig).IsVisible = nearby != "unseen fault";
+                rig.GetPart<RenderPart>().Visible = nearby != "hidden owner";
+            }
+            int now = Clock.TickCount;
+            var rows = Actions(weapon);
+            var recovery = rows.Single(row => row.Name == "SalvageForgedWeapon");
+            Assert.IsTrue(recovery.IsDisabled);
+            Assert.AreEqual(code, recovery.DisabledCode);
+            StringAssert.Contains(nearby == "faulted" ? "needs repair" : "working forge", recovery.DisabledReason);
+            Assert.That(rows.Single(row => IsFieldRecovery(row.Command)).IsDisabled, Is.False);
+            Assert.False(Act(weapon, recovery.Command));
+            Assert.AreEqual(now, Clock.TickCount);
+            CollectionAssert.AreEquivalent(new[] { weapon, cutter }, Pack.Objects);
+        }
+
+        [Test]
+        public void ForgeRecoveryTracksAReadyRigAndRefusesWhenItMovesOutOfReach()
+        {
+            var weapon = Weapon();
+            var rig = Place("AbandonedFieldWorkRig");
+            var recovery = Actions(weapon).Single(row => row.Name == "SalvageForgedWeapon");
+            Assert.That(recovery.IsDisabled, Is.True);
+
+            Stock("PreparedLiningClay", 2);
+            Assert.That(rig.GetPart<RepairablePart>().TryRepair(Actor, Zone), Is.True);
+            recovery = Actions(weapon).Single(row => row.Name == "SalvageForgedWeapon");
+            Assert.That(recovery.IsDisabled, Is.False);
+            Assert.That(Zone.MoveEntity(Actor, 13, 10), Is.True);
+            Assert.That(Act(weapon, recovery.Command), Is.False);
+            Assert.That(Actions(weapon).Single(row => row.Name == "SalvageForgedWeapon").DisabledCode, Is.EqualTo("forge-required"));
+            Assert.That(Pack.Objects.Single(), Is.SameAs(weapon));
+
+            Assert.That(Zone.MoveEntity(Actor, 10, 10), Is.True);
+            Assert.That(Act(weapon, Actions(weapon).Single(row => row.Name == "SalvageForgedWeapon").Command), Is.True);
+            Assert.AreEqual(1, PackCount("SteelBladeComponent"));
+            Assert.AreEqual(1, PackCount("OakHaftComponent"));
+        }
+
+        [Test]
+        public void AWorkingForgeKeepsRecoveryAvailableBesideAFaultyRig()
+        {
+            var weapon = Weapon();
+            Place("AbandonedFieldWorkRig", 9, 10);
+            Place("TinkersForge", 11, 10);
+            Assert.That(Actions(weapon).Single(row => row.Name == "SalvageForgedWeapon").IsDisabled, Is.False);
+        }
+
         [Test] public void SalvageReturnsRecordedHeadAndHaftButNotBindingOrWeapon()
         {
             Forge(); var weapon = Weapon(); Assert.True(Act(weapon, "SalvageForgedWeapon"));

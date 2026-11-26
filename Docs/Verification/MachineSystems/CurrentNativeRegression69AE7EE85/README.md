@@ -40,8 +40,18 @@ corrected sources passed all 243 selected cases, including all six
 reproduced failures. The repair-bill test has a new case name because
 its expected text is part of its parameter list.
 
+The F–H filter matched all 12,889 expected names. It produced 12,863
+passes, 11 failures, 9 inconclusive results and 6 skips. Nine failures
+match historical names. Both additional failures reproduced in isolation.
+The opening census now checks the actual glyphs of the five public freight
+owners instead of requiring an opening atlas tile for them. The restock
+fixture explicitly uses the legacy one-entry table, and the opening dealer
+fixture checks the two separately supplied offcuts in the weaponsmith's
+shelf. Both original failure cases and the adjacent controls passed in a
+398-case follow-up. These test corrections did not change production art
+or merchant behavior.
+
 Keep later filters on the same pinned clone and compare actual names
-to the discovery list. F–H is running next on the pinned discovery
-snapshot. Seven groups remain. The partitioned suite and the whole
-process have separate gates.
+to the discovery list. Six groups remain. The partitioned suite and the
+whole process have separate gates.
 [Case counts and receipts](coverage.json)

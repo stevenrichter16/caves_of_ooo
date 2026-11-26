@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
@@ -6,6 +7,7 @@ namespace CavesOfOoo.Core
 {
     public sealed class WeaponSalvagePart : Part, IInventoryActionReceiptOwner
     {
+        const string SalvageCommand = "SalvageForgedWeapon";
         const string CutPrefix = "CutBindingForHead|";
         FieldQuote fieldQuote;
 
@@ -19,8 +21,7 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                if (PreparationActions.Carried(actor, item) && item.HasPart<WeaponAssemblyPart>())
-                    actions?.AddAction("SalvageForgedWeapon", "forge: head+haft; lose binding/mods", "SalvageForgedWeapon", '\0', 17);
+                AddForgeRecoveryRow(actor, zone, actions);
                 fieldQuote = actions == null ? null : FieldQuote.Create(actor, item, zone);
                 if (fieldQuote != null)
                     actions.AddActionWithHint("FieldHeadRecovery", "cut for head (lose haft, binding, mods)", fieldQuote.Command,
@@ -30,10 +31,10 @@ namespace CavesOfOoo.Core
             }
             if (e.ID != "InventoryAction") return true;
             string command = e.GetStringParameter("Command");
-            if (command != "SalvageForgedWeapon" && !OwnsInventoryReceipt(command)) return true;
+            if (command != SalvageCommand && !OwnsInventoryReceipt(command)) return true;
             if (e.GetParameter<bool>("PreparationAttempted")) return true; e.SetParameter("PreparationAttempted", true);
             var transaction = e.GetParameter<InventoryTransaction>("InventoryTransaction");
-            if (command == "SalvageForgedWeapon")
+            if (command == SalvageCommand)
             {
                 if (!Salvage(actor, zone, transaction)) return true;
             }
@@ -50,9 +51,37 @@ namespace CavesOfOoo.Core
             }
             e.Handled = true; return false;
         }
+
+        void AddForgeRecoveryRow(Entity actor, Zone zone, InventoryActionList actions)
+        {
+            if (actions == null || !PreparationActions.CurrentActor(actor, zone)
+                || !PreparationActions.Carried(actor, ParentEntity) || !ParentEntity.HasPart<WeaponAssemblyPart>()) return;
+
+            const string label = "forge: head+haft; lose binding/mods";
+            var station = ForgeWorkReceipt.Resolve(actor, zone);
+            if (ForgeWorkReceipt.Near(actor, station, zone))
+            {
+                if (StationAccess.Allowed(actor, station, zone, ForgeWorkReceipt.Kind, SalvageCommand, out string code, out string reason))
+                    actions.AddAction(SalvageCommand, label, SalvageCommand, '\0', 17);
+                else
+                    actions.AddDisabled(SalvageCommand, label, code ?? "forge-access",
+                        string.IsNullOrWhiteSpace(reason) ? "This forge is unavailable for recovery." : reason, '\0', 5);
+                return;
+            }
+
+            var nearby = new List<StationCandidate>();
+            StationQuery.Collect(actor, zone, ForgeWorkReceipt.Kind, nearby);
+            bool visibleFault = nearby.Any(candidate => candidate.BlockCode == StationReadiness.Faulted
+                && zone.GetEntityCell(candidate.Station) is { IsVisible: true, Explored: true }
+                && candidate.Station.GetPart<RenderPart>() is { Visible: true } render && render.ParentEntity == candidate.Station);
+            actions.AddDisabled(SalvageCommand, label, visibleFault ? "forge-needs-repair" : "forge-required",
+                visibleFault ? "The nearby forge or work rig needs repair. Repair it or use another working forge."
+                    : "Stand beside a working forge or work rig to recover the head and haft.", '\0', 5);
+        }
+
         bool Salvage(Entity actor, Zone zone, InventoryTransaction tx)
         {
-            const string command = "SalvageForgedWeapon";
+            const string command = SalvageCommand;
             var weapon = ParentEntity; var assembly = weapon.GetPart<WeaponAssemblyPart>(); var factory = ForgePart.Factory;
             if (weapon.BlueprintName != WeaponForgingService.ForgedWeaponBlueprintName || assembly == null || factory == null
                 || !weapon.HasPart<MeleeWeaponPart>() || !ForgePart.IsNearForge(actor, zone)) return PreparationActions.Reject(actor, weapon, command, "weapon_or_station");

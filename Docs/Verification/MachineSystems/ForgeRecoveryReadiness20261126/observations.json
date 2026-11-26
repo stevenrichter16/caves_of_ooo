@@ -1,0 +1,173 @@
+{
+  "start": "/private/tmp/coo-rig-clay-prechoice-20261125/49ecff5253fb4bb3bda4fad9ebc0cb87",
+  "archive": "/private/tmp/coo-forge-readiness-repaired-20261126/49ecff5253fb4bb3bda4fad9ebc0cb87",
+  "quickSaveSHA256": "f80c939bee5a6df7d6915ed7224acc29d7b6dfe57e073bd49b30c6a7fb9dfdc8",
+  "before": {
+    "tick": 620,
+    "zone": "Overworld.17.7.0",
+    "x": 56,
+    "y": 6,
+    "hp": 40,
+    "drams": 39,
+    "rig": {
+      "ID": "7420",
+      "atX": 56,
+      "atY": 5,
+      "IsVisible": true,
+      "Explored": true,
+      "repaired": false
+    },
+    "pack": [
+      ["2698", "Dagger", 1],
+      ["2699", "HealingTonic", 2],
+      ["2700", "DriedMeat", 2],
+      ["2701", "WateringGrimoire", 1],
+      ["2702", "CandyCarrotSeed", 4],
+      ["2703", "EmberwheatSeed", 2],
+      ["6854", "PreparedLiningClay", 2],
+      ["9354", "ForgedWeapon", 1]
+    ]
+  },
+  "afterSelectingUnavailable": {
+    "tick": 620,
+    "zone": "Overworld.17.7.0",
+    "x": 56,
+    "y": 6,
+    "hp": 40,
+    "drams": 39,
+    "rig": {
+      "ID": "7420",
+      "atX": 56,
+      "atY": 5,
+      "IsVisible": true,
+      "Explored": true,
+      "repaired": false
+    },
+    "pack": [
+      ["2698", "Dagger", 1],
+      ["2699", "HealingTonic", 2],
+      ["2700", "DriedMeat", 2],
+      ["2701", "WateringGrimoire", 1],
+      ["2702", "CandyCarrotSeed", 4],
+      ["2703", "EmberwheatSeed", 2],
+      ["6854", "PreparedLiningClay", 2],
+      ["9354", "ForgedWeapon", 1]
+    ]
+  },
+  "afterRepair": {
+    "tick": 630,
+    "zone": "Overworld.17.7.0",
+    "x": 56,
+    "y": 6,
+    "hp": 40,
+    "drams": 39,
+    "rig": {
+      "ID": "7420",
+      "atX": 56,
+      "atY": 5,
+      "IsVisible": true,
+      "Explored": true,
+      "repaired": true
+    },
+    "pack": [
+      ["2698", "Dagger", 1],
+      ["2699", "HealingTonic", 2],
+      ["2700", "DriedMeat", 2],
+      ["2701", "WateringGrimoire", 1],
+      ["2702", "CandyCarrotSeed", 4],
+      ["2703", "EmberwheatSeed", 2],
+      ["9354", "ForgedWeapon", 1]
+    ]
+  },
+  "freshContinue": {
+    "tick": 630,
+    "zone": "Overworld.17.7.0",
+    "x": 56,
+    "y": 6,
+    "hp": 40,
+    "drams": 39,
+    "rig": {
+      "ID": "7420",
+      "atX": 56,
+      "atY": 5,
+      "IsVisible": true,
+      "Explored": true,
+      "repaired": true
+    },
+    "pack": [
+      ["2698", "Dagger", 1],
+      ["2699", "HealingTonic", 2],
+      ["2700", "DriedMeat", 2],
+      ["2701", "WateringGrimoire", 1],
+      ["2702", "CandyCarrotSeed", 4],
+      ["2703", "EmberwheatSeed", 2],
+      ["9354", "ForgedWeapon", 1]
+    ]
+  },
+  "actionRows": {
+    "before": [
+      {
+        "label": "cut for head (lose haft, binding, mods)",
+        "command": "CutBindingForHead",
+        "reason": ""
+      },
+      {
+        "label": "forge: head+haft; lose binding/mods (unavailable)",
+        "command": "Disabled:forge-needs-repair",
+        "reason": "The nearby forge or work rig needs repair. Repair it or use another working forge."
+      }
+    ],
+    "after": [
+      {
+        "label": "forge: head+haft; lose binding/mods",
+        "command": "SalvageForgedWeapon",
+        "reason": ""
+      },
+      {
+        "label": "cut for head (lose haft, binding, mods)",
+        "command": "CutBindingForHead",
+        "reason": ""
+      }
+    ],
+    "fresh": [
+      {
+        "label": "forge: head+haft; lose binding/mods",
+        "command": "SalvageForgedWeapon",
+        "reason": ""
+      },
+      {
+        "label": "cut for head (lose haft, binding, mods)",
+        "command": "CutBindingForHead",
+        "reason": ""
+      }
+    ]
+  },
+  "red": {
+    "file": "/Users/steven/coo-verification/results/forge_readiness_red_20261126.xml",
+    "sha256": "7833f378ee5204bbcbf934e8b6b5892ccf88108e4c8334e48802827e22fae330",
+    "total": 5,
+    "passed": 1,
+    "failed": 4
+  },
+  "green": {
+    "file": "/Users/steven/coo-verification/results/forge_readiness_green_20261126.xml",
+    "sha256": "97ea114c7e6e55740d603370066e66cbefd8ea1349d1e3c2a9e4b02bc73df18d",
+    "total": 120,
+    "passed": 120,
+    "failed": 0
+  },
+  "hiddenOwnerRed": {
+    "file": "/Users/steven/coo-verification/results/forge_visibility_red_20261126.xml",
+    "sha256": "babe866184546b93ee65ca9fdedb1cc6d389a318ac5ebba9282687f58842424d",
+    "total": 4,
+    "passed": 3,
+    "failed": 1
+  },
+  "finalCombined": {
+    "file": "/Users/steven/coo-verification/results/forge_and_current_f_to_h_20261126.xml",
+    "sha256": "793589d565418dd7068acbdf68353b13f1907b43f7f83fa55bb41b959637df20",
+    "total": 398,
+    "passed": 398,
+    "failed": 0
+  }
+}

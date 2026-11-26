@@ -1,3 +1,11 @@
+**Forge recovery explains its worksite — November 26 UTC, 2026.**
+In the earned Peat Works save, selecting the unavailable forge choice
+pointed to the visible fault and spent nothing. Visiting the rig's
+normal repair action spent the two prepared clay measures. The same
+mallet offered both recovery paths after repair and after Continue.
+The current Mac predates the change. This is a #36 cue.
+[Readiness playtest](Verification/MachineSystems/ForgeRecoveryReadiness20261126/README.md)
+
 **Spent vents and recovered plain cord assemblies — November 26 UTC, 2026.**
 Sodden's exhausted vent now tells the player who shares its catches and
 when they refill. Selecting the unavailable option kept the stock, both
@@ -5,11 +13,10 @@ vessels and the clock, including on fresh Continue. At Peat Works the
 player cut the exact knotflax-bound mallet they had rebuilt. One action
 returned its head with the cutter and repair clay intact. Both routes
 used already earned saves. All 136 connected native cases passed. The
-pack's forge choice still needs a readiness cue when the station is
-unusable. The current Mac package predates these two changes.
+current Mac package predates these two changes.
 [Playtests, captures and receipts](Verification/MachineSystems/VentAndCord20261126/README.md)
 
-**Current regression discovery and first two filters — November 26 UTC, 2026.**
+**Current regression discovery and first three filters — November 26 UTC, 2026.**
 Unity found 42,389 case names. The first filter matched all 527
 expected cases and isolated two clay fixture failures. The tests now
 exercise ordinary clay in their merge cases, with the original
@@ -17,8 +24,10 @@ creation-callback cases retained. The same 527 then passed. B–E ran
 all 9,373 expected names. Three additional failures pass with their
 original files present. Four test corrections and level/experience
 data for newly created shipping workers passed all 243 selected cases.
-F–H is running on the pinned snapshot. Seven filters and the
-whole-process verdict remain open.
+F–H matched all 12,889 names. Both additional failures reproduced and
+now pass with fixture updates for freight glyphs and shop stock. The
+398-case follow-up includes the adjacent controls. Six filters and
+the whole-process verdict remain open.
 [Discovery and native receipts](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
 
 **The Mac package with Wayside testimony completed startup — November 26 UTC, 2026.**

@@ -596,6 +596,11 @@ forge remains a separate dependency and acceptance gate.
 [Initial route](Verification/MachineSystems/PeatFieldHead20261126/README.md)
 [Rebuilt mallet playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
 
+The pack now explains the missing working forge. An adjacent visible
+faulted rig points to a repair. Paying for the Peat Works patch restored
+the forge option on the same mallet through fresh Continue.
+[Readiness playtest](Verification/MachineSystems/ForgeRecoveryReadiness20261126/README.md)
+
 **An earned Stump catch supplies an ordinary meal — November 26 UTC, 2026.**
 Lake perch still serves as a raw meal. The existing Cook action can trade one
 step of preparation beside usable heat for the cooked healing modifier.

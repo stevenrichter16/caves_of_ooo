@@ -102,7 +102,18 @@ namespace CavesOfOoo.Tests
                 var trader = actor.GetPart<TraderPart>();
                 var expected = LootTableRegistry.Roll(trader.StockTable, new EquipmentContentRng { MaximumCount = true });
                 Assert.Greater(expected.Count, 0);
+                if (name == "Weaponsmith")
+                {
+                    // The one-time offcut packet is authored separately from the random shelf.
+                    Assert.AreEqual("CuredLeatherOffcut", trader.OpeningStockBlueprint);
+                    Assert.AreEqual(2, trader.OpeningStockUnits);
+                    Assert.IsTrue(trader.OpeningStockSupplied);
+                    expected.AddRange(new[] { "CuredLeatherOffcut", "CuredLeatherOffcut" });
+                }
                 CollectionAssert.AreEqual(expected.OrderBy(x => x).ToArray(), Units(inv.Objects));
+                foreach (var item in inv.Objects) LoadoutLifecycleFixture.Carried(actor, item);
+                var allItems = Items(actor);
+                Assert.AreEqual(allItems.Count, allItems.Select(item => item.ID).Distinct().Count());
                 Assert.Greater(inv.GetAllEquipped().Count, 0);
                 foreach (var item in inv.GetAllEquipped())
                 { Assert.IsFalse(expected.Contains(item.BlueprintName)); LoadoutLifecycleFixture.Equipped(actor, item); }
@@ -263,19 +274,21 @@ namespace CavesOfOoo.Tests
                     var actor = f.Create("Weaponsmith"); var inv = actor.GetPart<InventoryPart>();
                     foreach (var item in inv.Objects.ToArray()) Assert.IsTrue(inv.RemoveObject(item));
                     var worn = inv.GetAllEquipped().Single(x => x.BlueprintName == "LeatherBoots");
-                    var table = LootTableRegistry.Get(actor.GetPart<TraderPart>().StockTable);
-                    var savedEntries = table.Entries;
-                    table.Entries = new List<LootEntryData> { new LootEntryData { Blueprint = "LeatherBoots" } };
-                    try
-                    {
-                        var zone = new Zone("GA03i-restock"); Assert.IsTrue(zone.AddEntity(actor, 5, 5));
-                        Assert.Greater(TraderRestockSystem.RestockZone(zone, 400), 0);
-                        var shelf = inv.Objects.Single(); Assert.AreEqual("LeatherBoots", shelf.BlueprintName);
-                        Assert.AreNotSame(worn, shelf); Assert.AreEqual(1, worn.GetPart<StackerPart>().StackCount); Assert.AreEqual(1, shelf.GetPart<StackerPart>().StackCount);
-                        LoadoutLifecycleFixture.Equipped(actor, worn); LoadoutLifecycleFixture.Carried(actor, shelf);
-                        Assert.AreEqual(0, TraderRestockSystem.RestockZone(zone, 400)); Assert.AreEqual(1, inv.Objects.Count);
-                    }
-                    finally { table.Entries = savedEntries; }
+                    // Exercise the legacy table-driven shelf, independently of the real
+                    // weaponsmith's newer staple/consignment profile. Fixture.Dispose
+                    // restores the complete previous registry after this private table.
+                    const string tableName = "EquipmentAuditBootShelf";
+                    LootTableRegistry.Initialize(@"{""Tables"":[{""Name"":""EquipmentAuditBootShelf"",""Entries"":[
+                        {""Blueprint"":""LeatherBoots"",""Chance"":100,""MinCount"":1,""MaxCount"":1}]}]}");
+                    actor.GetPart<TraderPart>().StockTable = tableName;
+                    actor.Properties[TraderRestockSystem.ShopStockTableProp] = tableName;
+                    var zone = new Zone("GA03i-restock"); Assert.IsTrue(zone.AddEntity(actor, 5, 5));
+                    Assert.Greater(TraderRestockSystem.RestockZone(zone, 400), 0);
+                    Assert.IsNull(actor.GetPart<MerchantStockPart>(), "The explicit legacy table must not enroll in a merchant profile.");
+                    var shelf = inv.Objects.Single(); Assert.AreEqual("LeatherBoots", shelf.BlueprintName);
+                    Assert.AreNotSame(worn, shelf); Assert.AreEqual(1, worn.GetPart<StackerPart>().StackCount); Assert.AreEqual(1, shelf.GetPart<StackerPart>().StackCount);
+                    LoadoutLifecycleFixture.Equipped(actor, worn); LoadoutLifecycleFixture.Carried(actor, shelf);
+                    Assert.AreEqual(0, TraderRestockSystem.RestockZone(zone, 400)); Assert.AreEqual(1, inv.Objects.Count);
                 }
                 finally { TraderRestockSystem.Factory = old; }
             }

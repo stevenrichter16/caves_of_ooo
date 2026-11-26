@@ -140,3 +140,13 @@ the haft. Advanced lashings keep their existing forge route. The actual
 Peat Works trial cut the exact earned cord-bound mallet and kept the cutter
 and both measures of repair clay through a fresh Continue.
 [Peat Works playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
+
+### Forge recovery readiness
+
+The pack uses the shared recovery-station check before it offers to
+return a head and haft. If a visible adjacent rig is faulty, the pack
+points to repair. Field cutting stays available on its own terms.
+Reading or choosing the unavailable row spends nothing. At Peat Works
+the player patched the exact rig, then found both methods on their
+original mallet. Continue kept that choice.
+[Peat Works readiness playtest](Verification/MachineSystems/ForgeRecoveryReadiness20261126/README.md)

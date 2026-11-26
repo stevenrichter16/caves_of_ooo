@@ -78,6 +78,11 @@ forge gates remain open.
 [Initial field recovery](Verification/MachineSystems/PeatFieldHead20261126/README.md)
 [Rebuilt mallet playtest](Verification/MachineSystems/VentAndCord20261126/README.md)
 
+For #36, the original mallet's forge choice now explains the adjacent
+rig fault before payment. The ordinary patch changed that choice while
+field cutting remained available. Continue kept both choices.
+[Readiness playtest](Verification/MachineSystems/ForgeRecoveryReadiness20261126/README.md)
+
 For #11/#13/#14, the loose rough field haft now has another use at a
 visible mechanism that accepts a wooden wedge. The existing plain
 timber bill has priority. At one dispatch yard, the direct branch spent
