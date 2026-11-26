@@ -57,6 +57,7 @@ namespace CavesOfOoo.Core
             guide.Limits.Add("A shorter clear walk can lower the next fare. The hire quote includes the current route and the weight of the packed box.");
             guide.Limits.Add("Hard pack room is the remaining space under your pack limit. The weight on the HUD shows your strength allowance.");
             guide.Limits.Add("The porter earns one dram at pickup and the rest on receipt. If the parcel returns, you get the remaining fare back.");
+            guide.Limits.Add("The porter pauses while you are away from this area. The order stays booked.");
         }
 
         public override bool HandleEvent(GameEvent e)

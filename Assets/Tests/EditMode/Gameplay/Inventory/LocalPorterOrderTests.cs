@@ -20,7 +20,8 @@ namespace CavesOfOoo.Tests
 
             Assert.True(UseGuides.Collect(ledger.ParentEntity, Zone, Zone.GetEntityCell(ledger.ParentEntity), Actor, lines));
             Assert.That(string.Join(" ", lines), Does.Contain("one measure at a time or both loose")
-                .And.Contain("shorter clear walk").And.Contain("hire porter (5 drams)"));
+                .And.Contain("shorter clear walk").And.Contain("hire porter (5 drams)")
+                .And.Contain("The porter pauses while you are away from this area."));
             Assert.That(Hire(ledger), Is.EqualTo(quote));
             Assert.That(TradeSystem.GetDrams(Actor), Is.EqualTo(50));
             Assert.That(Clock.TickCount, Is.EqualTo(tick));

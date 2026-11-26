@@ -294,6 +294,12 @@ cross-seed comparisons remain open.
     unearned fees under stated terms. Initially pause with an unloaded zone;
     reload never manufactures completion or replacement cargo.
 
+    A paid order survived ordinary map departure, movement and fresh
+    Continue while away. The same porter resumed the same packed
+    clay delivery after return. Its receiving shelf accepted it once.
+    The prehire guide explains the existing pause.
+    [Evidence](Verification/MachineSystems/PorterAwayLifecycle20261126/README.md)
+
 25. **Reuse that service for selected ordinary NPC work.** One opted-in supplier
     reserves finite actual stock and budget for a compatible receiver. Physical
     imports use real separate storage and cannot also trigger abstract restock.

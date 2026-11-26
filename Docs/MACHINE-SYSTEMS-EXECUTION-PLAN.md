@@ -1,3 +1,17 @@
+**A paid porter order waits during ordinary travel — November 26 UTC, 2026.**
+The existing loading guide explains the pause before payment. The
+actual loaded Gleaners' order stayed put through map travel and a
+fresh Continue while away. It resumed on return and transferred the
+exact clay box once. A subsequent wait and fresh Continue kept the
+same terminal receipt. The final targeted run passed 76 cases.
+[Evidence](Verification/MachineSystems/PorterAwayLifecycle20261126/README.md)
+
+Next, compare a bare cave landing with a reusable hush strip where
+ordinary footsteps can carry. Surface trials already proved placement,
+pickup and reuse. A separate template proved that loud sounding could
+alert a natural cave hunter. Keep those claims separate until a matched
+cave trial proves the effect of the strip itself.
+
 **Measured oil lights Quillhold's copy desks — November 26 UTC, 2026.**
 The expedition branch brought ordinary settled oil to Esset. The
 direct handover used three units, retained the flask, and progressed
@@ -6,11 +20,6 @@ Fresh Continue matched the completed project and the exact current
 shop lot, with drying books named for a future consignment.
 The final targeted run passed 303 cases.
 [Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
-
-Next, check an existing paid porter order through a normal departure,
-unloaded time, Continue and return. The guide should state the pause
-before payment. Use the saved loaded parcel and avoid repeating the
-already qualified route repair, hiring or cancellation.
 
 **An installed camp box can supply the hearth — November 26 UTC, 2026.**
 The same loaded box let the player feed one stored timber in one

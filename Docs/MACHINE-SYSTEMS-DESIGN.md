@@ -1,3 +1,10 @@
+**Leaving the area pauses a current paid porter order — November 26 UTC, 2026.**
+The loading marker explains the existing pause before the player pays.
+The exact carried box, worker and held fare persisted during ordinary
+world-map movement and a fresh Continue. Return resumed the same
+work and the receiving shelf accepted the same goods for one payment.
+[Evidence](Verification/MachineSystems/PorterAwayLifecycle20261126/README.md)
+
 **Settled oil can supply Quillhold's copy-room lamps — November 26 UTC, 2026.**
 The same supply agreement accepts three measures of ordinary oil
 from one carried flask. The player keeps it and any remaining liquid.
