@@ -1,0 +1,94 @@
+{
+  "historicalReceipt": "/Users/steven/coo-verification/results/fullrun_h.xml",
+  "historicalSHA256": "5a4df3f02efc485324708f3db6fae2b8676a31a0fdb8dea8662da1ba1ee05172",
+  "totalCasesCovered": 40376,
+  "wholeFixtures": 2074,
+  "note": "Native split invocation is still unverified. Future discoveries must match exactly one regex; match all planned current cases and reject duplicates before claiming coverage. These partitions do not test global state carried across process boundaries.",
+  "groups": {
+    "f-to-h": {
+      "regex": "^CavesOfOoo\\.Tests\\.[F-H]",
+      "previousCases": 12618,
+      "previousCaseMinutes": 29.39,
+      "currentExpected": 12889
+    },
+    "i-to-r": {
+      "regex": "^CavesOfOoo\\.Tests\\.[I-R]",
+      "previousCases": 6805,
+      "previousCaseMinutes": 25.27,
+      "currentExpected": 7625
+    },
+    "s-except-spread": {
+      "regex": "^CavesOfOoo\\.Tests\\.S(?!pread)",
+      "previousCases": 3744,
+      "previousCaseMinutes": 28.46,
+      "currentExpected": 3850
+    },
+    "spread-a-to-g": {
+      "regex": "^CavesOfOoo\\.Tests\\.Spread[A-G]",
+      "previousCases": 1384,
+      "previousCaseMinutes": 46.79,
+      "currentExpected": 1385
+    },
+    "spread-remaining": {
+      "regex": "^CavesOfOoo\\.Tests\\.Spread(?![A-G])",
+      "previousCases": 2269,
+      "previousCaseMinutes": 40.92,
+      "currentExpected": 2269
+    },
+    "t": {
+      "regex": "^CavesOfOoo\\.Tests\\.T",
+      "previousCases": 1140,
+      "previousCaseMinutes": 33.02,
+      "currentExpected": 1150
+    },
+    "u-to-z-and-other": {
+      "regex": "^CavesOfOoo\\.Tests\\.(?:[U-Z]|[^A-Z])",
+      "previousCases": 2959,
+      "previousCaseMinutes": 13.89,
+      "currentExpected": 3321
+    },
+    "a": {
+      "regex": "^CavesOfOoo\\.Tests\\.A",
+      "currentExpected": 527
+    },
+    "b-to-e": {
+      "regex": "^CavesOfOoo\\.Tests\\.[B-E]",
+      "currentExpected": 9373
+    }
+  },
+  "commit": "69ae7ee85fc0ddca9b6681b0b501ba5c2049c77f",
+  "currentDiscoverySHA256": "9bdfcc8f28ed198577b4fa090d9d8cce7b3424fdfafe3bd4d50fb12fcffec3a9",
+  "currentCount": 42389,
+  "addedComparedToPrior": 2041,
+  "absentComparedToPrior": 28,
+  "firstNativeBand": {
+    "scope": "a",
+    "cases": 527,
+    "result": {
+      "passed": "525",
+      "failed": "2",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "9.7594991"
+    },
+    "xml": "/Users/steven/coo-verification/results/current_partition_a_69ae7ee85_20261126.xml",
+    "sha256": "b8b655d2b3dfb8585be50f57b0dcdbcbd10349ba7173c86a656abde92b951359",
+    "exactExpectedMembership": true
+  },
+  "matchedBandAfterFixtureCorrection": {
+    "scope": "a",
+    "result": {
+      "total": "527",
+      "passed": "527",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "9.1777137"
+    },
+    "xml": "/Users/steven/coo-verification/results/current_partition_a_canonical_clay_20261126.xml",
+    "sha256": "edfb3ab06796cdf1a71b748605b05b960586ee5fa2b85eec40fd27c15d117be0",
+    "exactExpectedMembership": true,
+    "singleFixtureSourceChange": "Assets/Tests/EditMode/Gameplay/World/AtomicClayBakingTests.cs",
+    "correctedFixtureSHA256": "a98d9e9fad6bfb26993bb168194ee232a1132fb710a3cd800dd6a0794c35a02b"
+  }
+}

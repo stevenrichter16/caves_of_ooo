@@ -1,3 +1,11 @@
+**Current regression discovery and first filter — November 26 UTC, 2026.**
+Unity found 42,389 case names. The first filter matched all 527
+expected cases and isolated two clay fixture failures. The tests now
+exercise ordinary clay in their merge cases, with the original
+creation-callback cases retained. The same 527 then passed. Eight
+filters and the whole-process regression remain open.
+[Discovery and native receipts](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
+
 **The Mac package with Wayside testimony completed startup — November 26 UTC, 2026.**
 Runtime `69ae7ee85` includes the changed search and reserved forge guidance.
 The new and previous apps each match all 186 files. The new app started on

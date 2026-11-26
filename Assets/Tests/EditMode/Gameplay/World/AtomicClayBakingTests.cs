@@ -23,6 +23,11 @@ namespace CavesOfOoo.Tests
         Entity Fire() {var e=Place("SpreadCookingCoals",9,10);e.GetPart<FuelPart>().FuelMass=25f;e.GetPart<ThermalPart>().Temperature=500f;return e;}
         string Bake(Entity s,Entity f)=>Actions(s).Single(a=>a.Name=="BakeClay"&&!a.IsDisabled&&a.Command.Contains("|"+f.ID+"|")).Command;
         int Clay()=>Pack.Objects.Where(e=>e.BlueprintName=="FireClay").Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+        private void UseCanonicalClay()
+        {
+            // The creation probe is deliberately unsupported by the ordinary stack policy.
+            Assert.IsTrue(Factory.Blueprints["FireClay"].Parts.Remove(nameof(BakingCreationProbe)));
+        }
         [Test] public void NativeOneBatchKeepsTheRemainderAndPaysItsOwnFuel_Control()
         {
             var s=Still();var fire=Fire();var f=Flask(12,"bog-mire");
@@ -73,6 +78,7 @@ namespace CavesOfOoo.Tests
         }
         [TestCase(false)][TestCase(true)] public void OutputRollbackRemovesOnlyItsOneUnit(bool existing)
         {
+            UseCanonicalClay();
             var s=Still();var fire=Fire();var f=Flask(12,"bog-mire");
             if(existing) {var old=Carry("FireClay");old.GetPart<StackerPart>().StackCount=5;}
             Actor.AddPart(new BakingAfterProbe {After=()=>{Pack.Objects.Single(e=>e.BlueprintName=="FireClay").GetPart<StackerPart>().StackCount+=2;throw new InvalidOperationException("preserve later clay");}});
@@ -137,6 +143,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void ValidCompatibleOutputMergesAndBothInputsPay_Control()
         {
+            UseCanonicalClay();
             var s=Still();var fire=Fire();var a=Flask(12,"bog-mire");var b=Flask(12,"bog-mire");
             Assert.True(Act(s,Bake(s,a)));Assert.True(Act(s,Bake(s,b)));Assert.AreEqual(2,Clay());Assert.AreEqual(4,Units(a));Assert.AreEqual(4,Units(b));Assert.AreEqual(5f,fire.GetPart<FuelPart>().FuelMass);Assert.AreEqual(1,Pack.Objects.Count(e=>e.BlueprintName=="FireClay"));Assert.AreEqual(2,Pack.Objects.Single(e=>e.BlueprintName=="FireClay").GetPart<StackerPart>().StackCount);
         }

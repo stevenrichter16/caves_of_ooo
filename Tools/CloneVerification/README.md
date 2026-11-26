@@ -35,3 +35,16 @@ Rules that cost time to learn:
 - I did not record how `clone` itself was first made. To rebuild one: copy the project without `Builds/`, `obj/`, `Temp/` and the large `ArtSource` folders, then run a tiny batch test run to import it (the first import is slow); then `new_clone.sh` makes the rest.
 
 There is also a standalone, Unity-free runner in `Tools/EditModeRunner` (a pre-check on plain .NET; not a replacement for the Unity run).
+
+## When a long run ends without a result
+
+Keep a single pinned source snapshot and its native EditMode discovery
+manifest. Run disjoint filters sequentially and compare each completed
+XML’s full case names with the manifest. Accept each receipt only when
+its cases match exactly and no compiler errors occurred. Keep retries
+separate. A case absent from the current XML or reported as skipped or
+inconclusive does not clear a historical failure.
+
+Completed partitions can establish coverage of the discovered cases.
+Use a whole-process run to check failures caused by state accumulating
+across fixtures. The two kinds of result are recorded separately.
