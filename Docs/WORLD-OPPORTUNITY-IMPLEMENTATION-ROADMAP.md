@@ -722,6 +722,15 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     of meal with identical timing and recipe. Broader regions, current-version
     comparisons and player-led discovery remain to be verified.
     [Evidence](Verification/MachineSystems/KitchenOrdinaryContrast20261125/README.md)
+    A newer ordinary v31 pair realized both opposite Wayside allocations.
+    Seed 64 bought the exact delivered clay while keeping the opening lot
+    intact. Seed 2 used Peat Works timber and cord plus a purchased spike
+    for its own sieve, then sorted the same saved local packet on return.
+    Both restored Orven's pan and took the same paid meal after a
+    120-tick commission. The sieve outlasted the job and left one grit.
+    Both meals survived Continue and were eaten once. This adds a current
+    two-seed guided comparison. Wider region and discovery coverage remain.
+    [Evidence](Verification/MachineSystems/WaysideCurrentMealComparison20261126/README.md)
     A same-save Sodden pair compared two free portable applications with
     one prepared application, using the same earned pad and cord and
     comparable temporary effects. Both results survived fresh Continue.

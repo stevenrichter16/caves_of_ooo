@@ -614,6 +614,14 @@ remaining water into the second shell and kept the seed in both branches.
 The spell kept one extra drink. This qualifies an existing ordinary loop.
 [Evidence](Verification/MachineSystems/DrawgourdWateringComparison20261126/README.md)
 
+**Wayside offers delivery or local sorting on current layouts — November 26 UTC, 2026.**
+The seed 64 shipment placed two delivered clay measures in Orven's stock
+while keeping his opening lot intact. In seed 2, the player made a sieve
+from ordinary Peat Works materials and one purchased spike. The retained
+local packet gave two fire clay and one grit. Both pans accepted the
+result through the same repair bill and ran the same 120-tick meal service.
+[Evidence](Verification/MachineSystems/WaysideCurrentMealComparison20261126/README.md)
+
 **A rough field haft supports Sella’s bench — November 26 UTC, 2026.**
 The existing covered timber bench uses two salvaged timber or one timber
 and one sound loose rough field haft. The recipe prefers two timber.

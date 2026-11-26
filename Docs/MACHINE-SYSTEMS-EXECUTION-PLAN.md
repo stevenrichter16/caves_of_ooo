@@ -1,3 +1,12 @@
+**Both current Wayside routes supply the same meal — November 26 UTC, 2026.**
+Guided ordinary v31 seed 64 used the exact porter's delivered clay and
+preserved Orven's opening stock. Seed 2 earned two cord at Peat Works,
+bought one spike and forged a reusable sieve. Both repaired the original
+pan, commissioned the same recipe and took one meal from the board.
+Both meals survived Continue and were eaten once at full health.
+The full regression on `ee0287659` is separate and still running.
+[Evidence](Verification/MachineSystems/WaysideCurrentMealComparison20261126/README.md)
+
 **Trap wedge, hearth oil and equipment sign Mac delivery — November 26 UTC, 2026.**
 Universal runtime `aa016396d` completed GameBootstrap on Apple M5.
 All 186 app files matched their pins and all six Mach-O binaries are
