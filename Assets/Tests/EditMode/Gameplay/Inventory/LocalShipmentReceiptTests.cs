@@ -1017,6 +1017,124 @@ namespace CavesOfOoo.Tests
             Assert.That(ExecuteWitnessRow(CellMenu(17, 12).Single(IsWitnessReport)), Is.True);
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ReportingALivingSightingUsesTheSavedLocationWithoutVerifyingAliveNow(bool porterDies)
+        {
+            Assert.That(Zone.RemoveEntity(Actor), Is.True);
+            Zone = new Zone("Overworld.12.11.0");
+            Assert.That(Zone.AddEntity(Actor, 10, 10), Is.True);
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            manager.SetActiveZone(Zone);
+            var (receipt, order, search) = PrepareLivingWitness();
+            var cook = receipt.Merchant;
+            var worker = order.Worker;
+            var historical = Zone.GetEntityCell(worker);
+            var note = WorldInteractionSystem.GatherCellActions(worker, historical, Actor).Single(IsWitnessNote);
+            Assert.That(note.Time, Is.EqualTo(ActionTime.Free));
+            Assert.That(ExecuteWitnessRow(note), Is.True);
+            Assert.That(ExecuteWitnessRow(note), Is.False);
+            Assert.That(search.SeenLivingPorterID, Is.Null);
+            Assert.That(receipt.WitnessReportedAtTick, Is.EqualTo(-1));
+            Assert.That(Zone.MoveEntity(worker, 39, 23), Is.True);
+            if (porterDies)
+            {
+                KillAndFindBody(worker);
+                LocalPorterLedgerPart.Reconcile(Actor, Zone);
+            }
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+
+            receipt = ReloadReceipt(manager, receipt.ParentEntity.ID, out _, withClock: true);
+            cook = receipt.Merchant;
+            search = cook.GetPart<LocalShipmentSearchPart>();
+            order = receipt.Ledger.GetPart<LocalPorterLedgerPart>();
+            var cookCell = Zone.GetEntityCell(cook);
+            cookCell.IsVisible = cookCell.Explored = true;
+            var report = CellMenu(cookCell.X, cookCell.Y).Single(IsWitnessReport);
+            Assert.That(report.Time, Is.EqualTo(ActionTime.OneAction));
+            var stock = order.Box.GetPart<ContainerPart>().Contents.Single();
+            Assert.That(ExecuteWitnessRow(report), Is.True);
+            Assert.That(ExecuteWitnessRow(report), Is.False);
+            Assert.That((receipt.WitnessX, receipt.WitnessY), Is.EqualTo((historical.X, historical.Y)));
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Contain("witness reported seeing the missing porter alive").IgnoreCase);
+            Assert.That(search.SeenLivingPorterID, Is.Null);
+            Assert.That(search.SeenPorterBodyID, Is.Null);
+            Assert.That(receipt.ArrivedAtTick, Is.EqualTo(-1));
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+            Assert.That(order.Phase, Is.EqualTo(porterDies ? LocalPorterPhase.Failed : LocalPorterPhase.Carrying));
+            Assert.That(order.Box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(stock));
+
+            int attempts = search.LegAttempts;
+            Assert.That(AIBoredEvent.Check(cook), Is.False);
+            int DistanceToLead(Cell at) => System.Math.Abs(at.X - historical.X) + System.Math.Abs(at.Y - historical.Y);
+            Assert.That(DistanceToLead(Zone.GetEntityCell(cook)), Is.LessThan(DistanceToLead(cookCell)));
+            Assert.That(search.LegAttempts, Is.EqualTo(attempts + 1));
+            Assert.That(search.SeenLivingPorterID, Is.Null);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AChangedOrHiddenLivingPorterCannotSatisfyAnOldObservation(bool hides)
+        {
+            var (receipt, order, _) = PrepareLivingWitness();
+            var worker = order.Worker;
+            var seen = Zone.GetEntityCell(worker);
+            var wrong = Place("GleanersPorter", 23, 12);
+            var wrongCell = Zone.GetEntityCell(wrong);
+            wrongCell.IsVisible = wrongCell.Explored = true;
+            Assert.That(WorldInteractionSystem.GatherCellActions(wrong, wrongCell, Actor).Where(IsWitnessNote), Is.Empty);
+
+            var note = WorldInteractionSystem.GatherCellActions(worker, seen, Actor).Single(IsWitnessNote);
+            if (hides) worker.GetPart<RenderPart>().Visible = false;
+            else Assert.That(Zone.MoveEntity(worker, 33, 10), Is.True);
+            Assert.That(ExecuteWitnessRow(note), Is.False);
+            Assert.That(receipt.WitnessNotedAtTick, Is.EqualTo(-1));
+        }
+
+        [Test]
+        public void AFirsthandBodyCanReplaceAnUnreportedLivingSighting()
+        {
+            var (receipt, order, search) = PrepareLivingWitness();
+            var worker = order.Worker;
+            var notedCell = Zone.GetEntityCell(worker);
+            var note = WorldInteractionSystem.GatherCellActions(worker, notedCell, Actor).Single(IsWitnessNote);
+            Assert.That(ExecuteWitnessRow(note), Is.True);
+            Assert.That(Zone.MoveEntity(worker, 23, 10), Is.True);
+            var body = KillAndFindBody(worker);
+            LocalPorterLedgerPart.Reconcile(Actor, Zone);
+            var bodyCell = Zone.GetEntityCell(body);
+            bodyCell.IsVisible = bodyCell.Explored = true;
+            var newNote = WorldInteractionSystem.BuildPileSummaryActions(bodyCell, Actor).Single(IsWitnessNote);
+            Assert.That(ExecuteWitnessRow(newNote), Is.True);
+            Assert.That(receipt.WitnessBodyID, Is.EqualTo(body.ID));
+            Assert.That((receipt.WitnessX, receipt.WitnessY), Is.EqualTo((bodyCell.X, bodyCell.Y)));
+            Assert.That(search.SeenPorterBodyID, Is.Null);
+
+            Assert.That(Zone.MoveEntity(Actor, 17, 13), Is.True);
+            var report = CellMenu(17, 12).Single(IsWitnessReport);
+            Assert.That(ExecuteWitnessRow(report), Is.True);
+            Assert.That(ReadCurrentState(receipt.ParentEntity), Does.Contain("reported seeing the missing porter's body").IgnoreCase);
+            Assert.That(receipt.ArrivedAtTick, Is.EqualTo(-1));
+            Assert.That(receipt.ConcernClosedAtTick, Is.EqualTo(-1));
+        }
+
+        private (LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order, LocalShipmentSearchPart search) PrepareLivingWitness()
+        {
+            var (receipt, order, search) = PrepareSearch();
+            Assert.That(order.Phase, Is.EqualTo(LocalPorterPhase.Carrying));
+            Clock.AdvanceClock(40);
+            Assert.That(AIBoredEvent.Check(receipt.Merchant), Is.False);
+            Assert.That(search.Phase, Is.EqualTo(LocalShipmentSearchPhase.CheckingLoadingPoint));
+            Assert.That(Zone.MoveEntity(receipt.Merchant, 17, 12), Is.True);
+            Assert.That(Zone.MoveEntity(order.Worker, 25, 10), Is.True);
+            Assert.That(Zone.MoveEntity(Actor, 24, 11), Is.True);
+            var workerCell = Zone.GetEntityCell(order.Worker);
+            workerCell.IsVisible = workerCell.Explored = true;
+            var cookCell = Zone.GetEntityCell(receipt.Merchant);
+            cookCell.IsVisible = cookCell.Explored = true;
+            return (receipt, order, search);
+        }
+
         private (LocalShipmentReceiverPart receipt, LocalPorterLedgerPart order,
             LocalShipmentSearchPart search, Entity body) PrepareWitnessLead()
         {

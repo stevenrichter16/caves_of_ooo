@@ -2251,6 +2251,13 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The November 26 shipment follow-up adds a physical player report of
+where an overdue porter was seen alive. The existing personal search
+can check that location using its saved budget. The verified Wayside
+detour preserved the parcel and the open inquiry. This supports local
+logistics for future workshop services.
+[Wayside witness playtest](Verification/MachineSystems/WaysideLivingPlayerWitness20261126/README.md)
+
 In the November 26 processing update, a valid forge recipe remains
 visible when its carried component is reserved for crafting. The player
 can inspect the reason, take back the same component and see the exact

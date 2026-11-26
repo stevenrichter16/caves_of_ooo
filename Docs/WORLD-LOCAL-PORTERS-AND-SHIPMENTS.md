@@ -491,6 +491,23 @@ meet the recipient, one reserved case and a real returned report. Preserve
 the personal search when the offer cannot be funded or staffed. Plan that
 small trial before extending search routes across settlements.
 
+### Firsthand news of an overdue porter
+
+The player can see the missing person before the searcher does. The
+existing testimony action records the exact visible worker's location
+once the shipment is overdue. Note it for free, then give the available
+cook the location in person while he is still on his outbound search.
+The account is historical. It can outlast the worker's movement or death.
+A firsthand body sighting can replace an unreported living sighting.
+Each personal search accepts one submitted lead from the player.
+
+Use the same saved witness, search budget and historical route lead as
+the body report. Keep the worker's identity separate from the body
+identity so older saved reports still work. The cook checks the place
+and learns from his own observations. Only the existing physical receipt
+or recovery can settle the cargo. This trial uses the retained personal
+search fixture with its earlier controlled porter delay.
+
 ### Delegated search trial
 
 The first delegated trial is one kitchen hand in eligible fresh delivery

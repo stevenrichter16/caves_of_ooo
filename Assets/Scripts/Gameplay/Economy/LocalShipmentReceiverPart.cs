@@ -62,7 +62,9 @@ namespace CavesOfOoo.Core
                 if (DelegatedSearcherID != null && !DelegateOverdue)
                     return $"The cook sent the kitchen hand to check the route. The hand is due back on {Moment(DelegateDueAtTick)}.";
                 if (HasPlayerReport)
-                    return "A witness reported seeing the missing porter's body. The cook's own findings are recorded separately. Keep the original box packed if you return it.";
+                    return HasLivingWitness
+                        ? "A witness reported seeing the missing porter alive. The cook's own findings are recorded separately. Keep the original box packed if you return it."
+                        : "A witness reported seeing the missing porter's body. The cook's own findings are recorded separately. Keep the original box packed if you return it.";
                 return "The kitchen has posted an overdue clay shipment notice. Keep the original box packed if you return it.";
             }
             return $"Clay shipment due on {Moment(ExpectedByTick)}. Allow {GraceTicks} ticks for delays. The porter works while this area is active.";

@@ -42,7 +42,8 @@ namespace CavesOfOoo.Core
             LocalShipmentSearchPhase.CheckingLoadingPoint when !CheckedPlayerLead
                 && Shelf?.GetPart<LocalShipmentReceiverPart>() is { } receipt
                 && receipt.Merchant == ParentEntity && receipt.PlayerReportCell(ParentEntity.SpatialZone) != null
-                => "Checking the place a witness reported seeing the missing porter's body.",
+                => receipt.HasLivingWitness ? "Checking where a witness saw the missing porter alive."
+                    : "Checking the place a witness reported seeing the missing porter's body.",
             LocalShipmentSearchPhase.CheckingLoadingPoint => "Checking the loading point for news of the overdue clay shipment.",
             LocalShipmentSearchPhase.Returning => "Heading back to the kitchen.",
             LocalShipmentSearchPhase.Finished when SeenPorterBodyID != null => "Found the missing porter dead and returned to the kitchen.",
@@ -132,7 +133,7 @@ namespace CavesOfOoo.Core
                     CheckedPlayerLead = true;
                     Announce(zone, leadPath == null
                         ? "cannot reach the place the witness described and goes to check the loading point."
-                        : "finds no sign of the porter there and goes to check the loading point.");
+                        : "checks the place the witness described and goes to check the loading point.");
                 }
             }
             if (SpatialQuery.Distance(zone, actor, target) <= 1 && endpoint?.Invoke(zone.GetEntityCell(actor)) != false)
@@ -200,16 +201,20 @@ namespace CavesOfOoo.Core
         private void ObserveLivingPorter(Entity actor, Zone zone, LocalPorterLedgerPart order)
         {
             var porter = order.Worker;
-            if (HasLivingSighting || porter == actor || !LocalGatheringClaims.Alive(porter)
-                || !WorldResourceActions.Ground(porter, zone) || !porter.HasTag("Creature")
-                || porter.GetPart<LocalPorterPart>() is not { } worker || worker.ParentEntity != porter || worker.Ledger != order.ParentEntity
-                || porter.GetPart<RenderPart>() is not { Visible: true } render || render.ParentEntity != porter
-                || !CanSee(actor, zone, porter, RecognitionRange)
-                || zone.GetReadOnlyEntities().Count(e => e.ID == porter.ID) != 1) return;
+            if (HasLivingSighting || porter == actor || !IsExactLivingPorter(order, porter, zone)
+                || !CanSee(actor, zone, porter, RecognitionRange)) return;
 
             SeenLivingPorterID = porter.ID;
             SeenLivingPorterAtTick = WorldClock.CurrentTick;
         }
+
+        internal static bool IsExactLivingPorter(LocalPorterLedgerPart order, Entity porter, Zone zone) =>
+            porter != null && porter == order.Worker && !string.IsNullOrEmpty(porter.ID)
+            && LocalGatheringClaims.Alive(porter) && porter.HasTag("Creature") && !porter.HasTag("Corpse")
+            && WorldResourceActions.Ground(porter, zone)
+            && porter.GetPart<LocalPorterPart>() is { } worker && worker.ParentEntity == porter && worker.Ledger == order.ParentEntity
+            && porter.GetPart<RenderPart>() is { Visible: true } render && render.ParentEntity == porter
+            && zone.GetReadOnlyEntities().Count(e => e.ID == porter.ID) == 1;
 
         private bool LivingReportPublished()
         {

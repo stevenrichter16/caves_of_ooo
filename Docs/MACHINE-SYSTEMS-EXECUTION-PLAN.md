@@ -1,3 +1,12 @@
+**The player can tell a cook where they saw the living porter — November 26 UTC, 2026.**
+In the retained Wayside delay fixture the player noted the exact living
+porter, then told Orven in person. Orven turned to check the reported
+place before resuming his route. Continue kept the note, report and search
+effort. The parcel stayed with the porter and the case stayed open.
+All 115 selected native cases passed, with one opt-in generator skipped.
+This extends #44 and #45.
+[Native testimony and detour](Verification/MachineSystems/WaysideLivingPlayerWitness20261126/README.md)
+
 **The craft recovery checks now expect visible completion — November 26 UTC, 2026.**
 Both previously failing cases recovered the right mix and units. They
 still expected the old blank success line. They now verify one real brew

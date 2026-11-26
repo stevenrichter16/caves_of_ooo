@@ -887,6 +887,14 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     box remains recoverable. Paused pacing progress survives Continue.
     [Evidence](Verification/MachineSystems/WaysidePlayerWitness20261126/README.md)
 
+    The same testimony actions now accept the exact living porter.
+    In the retained delay fixture, the player noted the place and went
+    to Orven with the report. He actually turned back to check it and
+    resumed the route inside his original search budget. Two Continues
+    preserved the note and the report separately. The carrier still
+    held the parcel.
+    [Evidence](Verification/MachineSystems/WaysideLivingPlayerWitness20261126/README.md)
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the
