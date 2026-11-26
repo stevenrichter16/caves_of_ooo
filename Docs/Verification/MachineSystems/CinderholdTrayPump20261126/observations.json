@@ -1,0 +1,1063 @@
+{
+  "archive": {
+    "baseline": "/private/tmp/coo-pump-oil-tray-baseline-20261126/fc22573a719145d89d9d38768b7d0ebd",
+    "clean": "/private/tmp/coo-pump-oil-tray-clean-20261126/fc22573a719145d89d9d38768b7d0ebd",
+    "oily": "/private/tmp/coo-pump-oil-tray-oily-20261126/fc22573a719145d89d9d38768b7d0ebd"
+  },
+  "native": {
+    "red": "cinderhold_tray_pump_red_20261126b",
+    "redPass": 40,
+    "expectedFailure": 3,
+    "green": "cinderhold_tray_pump_final_20261126",
+    "passed": 247,
+    "failed": 0,
+    "inconclusive": 0,
+    "skipped": 0,
+    "compilerErrors": 0
+  },
+  "baseline": {
+    "oil": null,
+    "oilAmount": null,
+    "pool": [],
+    "sourceCoating": false,
+    "outletCoating": false,
+    "log": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\nrecover cinderhook axe head through oil (exposure 12)\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply."
+    ],
+    "tick": 1560,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 58,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 12,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": false,
+      "contents": [
+        {
+          "ID": "9065",
+          "BlueprintName": "CinderhookAxeHeadComponent"
+        }
+      ]
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      }
+    ],
+    "near": [
+      {
+        "X": 57,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "Player"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  },
+  "menu": {
+    "open": true,
+    "target": "9064",
+    "cell": {
+      "X": 58,
+      "Y": 5
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "recover cinderhook axe head through oil (exposure 12)",
+        "Command": "RecoverThroughLiquid|9065|9064|oil|12",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 1,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 2,
+        "Display": "pump 12 oil from tray at 58,5 to 57,6 [hand pump]",
+        "Command": "PumpLiquid|9064|57|6|fcb9e7a0802d49b2b290e9a09e4d74ac",
+        "tool": "9209",
+        "cost": "OneAction"
+      },
+      {
+        "i": 3,
+        "Display": "pump 12 oil from tray at 58,5 to 58,7 [hand pump]",
+        "Command": "PumpLiquid|9064|58|7|1616893cf06f45a9a863d457d769e1c3",
+        "tool": "9209",
+        "cost": "OneAction"
+      },
+      {
+        "i": 4,
+        "Display": "pump 12 oil from tray at 58,5 to 59,6 [hand pump]",
+        "Command": "PumpLiquid|9064|59|6|ca1cccd892f84fcd94be8dc6d594fc27",
+        "tool": "9209",
+        "cost": "OneAction"
+      },
+      {
+        "i": 5,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "quote": {
+    "oil": null,
+    "oilAmount": null,
+    "pool": [],
+    "sourceCoating": false,
+    "outletCoating": false,
+    "log": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\nrecover cinderhook axe head through oil (exposure 12)\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply.",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\npump 12 oil from tray at 58,5 to 59,6 [hand pump]\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. A hand pump can move the oil to clear floor within hose reach. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply."
+    ],
+    "tick": 1560,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 58,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 12,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": false,
+      "contents": [
+        {
+          "ID": "9065",
+          "BlueprintName": "CinderhookAxeHeadComponent"
+        }
+      ]
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      }
+    ],
+    "near": [
+      {
+        "X": 57,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "Player"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  },
+  "dismissed": {
+    "oil": null,
+    "oilAmount": null,
+    "pool": [],
+    "sourceCoating": false,
+    "outletCoating": false,
+    "log": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\nrecover cinderhook axe head through oil (exposure 12)\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply.",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\npump 12 oil from tray at 58,5 to 59,6 [hand pump]\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. A hand pump can move the oil to clear floor within hose reach. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply."
+    ],
+    "tick": 1560,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 58,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 12,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": false,
+      "contents": [
+        {
+          "ID": "9065",
+          "BlueprintName": "CinderhookAxeHeadComponent"
+        }
+      ]
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      }
+    ],
+    "near": [
+      {
+        "X": 57,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "Player"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  },
+  "pumped": {
+    "oil": null,
+    "oilAmount": null,
+    "pool": [
+      {
+        "ID": "9210",
+        "Volume": 12,
+        "LiquidId": "oil"
+      }
+    ],
+    "sourceCoating": false,
+    "outletCoating": true,
+    "log": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\nrecover cinderhook axe head through oil (exposure 12)\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply.",
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\npump 12 oil from tray at 58,5 to 59,6 [hand pump]\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. A hand pump can move the oil to clear floor within hose reach. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply.",
+      "You move 12 oil to 59,6. The liquid remains there.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "tick": 1570,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 58,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 0,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": true,
+      "contents": [
+        {
+          "ID": "9065",
+          "BlueprintName": "CinderhookAxeHeadComponent"
+        }
+      ]
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      }
+    ],
+    "near": [
+      {
+        "X": 57,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "Player"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "PouredLiquidPool"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  },
+  "emptiedMenu": {
+    "open": true,
+    "target": "9064",
+    "cell": {
+      "X": 58,
+      "Y": 5
+    },
+    "i": 0,
+    "rows": [
+      {
+        "i": 0,
+        "Display": "open",
+        "Command": "OpenContainer",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 1,
+        "Display": "examine",
+        "Command": "Examine",
+        "tool": null,
+        "cost": "Unspecified"
+      },
+      {
+        "i": 2,
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "tool": null,
+        "cost": "Unspecified"
+      }
+    ]
+  },
+  "pickup": {
+    "tick": 1570,
+    "IsOpen": true,
+    "i": [
+      {
+        "ID": "9065",
+        "BlueprintName": "CinderhookAxeHeadComponent"
+      }
+    ]
+  },
+  "clean": {
+    "oil": null,
+    "oilAmount": null,
+    "pool": [
+      {
+        "ID": "9210",
+        "Volume": 12,
+        "LiquidId": "oil"
+      }
+    ],
+    "sourceCoating": false,
+    "outletCoating": true,
+    "log": [
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\npump 12 oil from tray at 58,5 to 59,6 [hand pump]\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. A hand pump can move the oil to clear floor within hose reach. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply.",
+      "You move 12 oil to 59,6. The liquid remains there.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You open the released maintenance-oil tray. It contains 1 item(s).",
+      "You take cinderhook axe head from the released maintenance-oil tray.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "tick": 1580,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 58,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 0,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": true,
+      "contents": []
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      },
+      {
+        "ID": "9065",
+        "BlueprintName": "CinderhookAxeHeadComponent"
+      }
+    ],
+    "near": [
+      {
+        "X": 57,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "Player"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "PouredLiquidPool"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  },
+  "reloadedClean": {
+    "oil": null,
+    "oilAmount": null,
+    "pool": [
+      {
+        "ID": "9210",
+        "Volume": 12,
+        "LiquidId": "oil"
+      }
+    ],
+    "sourceCoating": false,
+    "outletCoating": true,
+    "log": [
+      "Interact — choose a direction, or . for underfoot.",
+      "Selected action (reading only):\npump 12 oil from tray at 58,5 to 59,6 [hand pump]\n\nYou see a released maintenance-oil tray.\nContained oil: 12/12 units. Draw with a compatible carried flask; no refilling or deposits. A hand pump can move the oil to clear floor within hose reach. Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.\n\nA shallow clay pan, its old seam sealed, once caught maintenance oil beneath the extraction crew's tools. A tied label reads: Released for salvage. The oil and any remaining equipment are free to take. This pan is separate from the mine pump and communal water supply.",
+      "You move 12 oil to 59,6. The liquid remains there.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You open the released maintenance-oil tray. It contains 1 item(s).",
+      "You take cinderhook axe head from the released maintenance-oil tray.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "tick": 1580,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 58,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 0,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": true,
+      "contents": []
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      },
+      {
+        "ID": "9065",
+        "BlueprintName": "CinderhookAxeHeadComponent"
+      }
+    ],
+    "near": [
+      {
+        "X": 57,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 57,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "Player"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "PouredLiquidPool"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  },
+  "oilContact": {
+    "oil": "oil",
+    "oilAmount": 12,
+    "pool": [
+      {
+        "ID": "9210",
+        "Volume": 12,
+        "LiquidId": "oil"
+      }
+    ],
+    "sourceCoating": false,
+    "outletCoating": true,
+    "log": [
+      "You move 12 oil to 59,6. The liquid remains there.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You open the released maintenance-oil tray. It contains 1 item(s).",
+      "You take cinderhook axe head from the released maintenance-oil tray.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You are covered in oily.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "tick": 1590,
+    "zone": "Overworld.6.6.0",
+    "player": {
+      "ID": "2704",
+      "X": 59,
+      "Y": 6,
+      "hp": 27,
+      "drams": 6
+    },
+    "tray": {
+      "ID": "9064",
+      "X": 58,
+      "Y": 5,
+      "Volume": 0,
+      "Capacity": 12,
+      "LiquidId": "oil",
+      "AllowsCleanAccess": true,
+      "contents": []
+    },
+    "pack": [
+      {
+        "ID": "9209",
+        "BlueprintName": "HandPump"
+      },
+      {
+        "ID": "9065",
+        "BlueprintName": "CinderhookAxeHeadComponent"
+      }
+    ],
+    "near": [
+      {
+        "X": 58,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "CinderholdOilRecoveryTray"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 58,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "PouredLiquidPool",
+          "Player"
+        ]
+      },
+      {
+        "X": 59,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 60,
+        "Y": 5,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor",
+          "SmithAnvil"
+        ]
+      },
+      {
+        "X": 60,
+        "Y": 6,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      },
+      {
+        "X": 60,
+        "Y": 7,
+        "IsVisible": true,
+        "pass": true,
+        "objs": [
+          "StoneFloor"
+        ]
+      }
+    ]
+  }
+}

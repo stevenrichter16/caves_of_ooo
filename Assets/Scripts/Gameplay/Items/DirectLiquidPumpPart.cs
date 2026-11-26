@@ -5,8 +5,7 @@ using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
 {
-    /// <summary>One paid stroke relocates finite ground stock. No stored liquid,
-    /// elapsed job, irrigation or purification is represented by this tool.</summary>
+    /// <summary>One paid stroke relocates explicitly admitted finite stock into a ground pool.</summary>
     public sealed class DirectLiquidPumpPart : Part, IDescribeUse, IDescribeUseRows, IInventoryActionReceiptOwner
     {
         public override string Name=>"DirectLiquidPump";
@@ -24,17 +23,18 @@ namespace CavesOfOoo.Core
         public void AddUseRows(Entity actor,Zone zone,InventoryActionList rows)=>RouteWorkMenu.Rows(ParentEntity,actor,zone,rows,Choices(actor,zone),false);
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
-            guide.How.Add("Stand between a finite pool and clear floor, each one cardinal step away. Carry this sound pump and choose the source and outlet shown in its action.");
-            guide.Needs.Add("visible clear short hoses; one simple unmixed pool; bare outlet or one matching pool");
-            guide.Limits.Add("One action moves up to 20 units and keeps the pump. Liquid remains hazardous at its outlet. Emptying the last units removes the source pool. No wells, films, owned fixtures, occupied outlets, irrigation, purification or container filling. No heat history is transferred.");
+            guide.How.Add("Stand one cardinal step from both a finite pool or released oil tray and a clear outlet. Carry the sound pump and choose the source and outlet shown.");
+            guide.Needs.Add("visible short hose ends, an admitted inlet and bare floor or one matching pool at the outlet");
+            guide.Limits.Add("One action moves up to 20 units. Liquid remains hazardous at its outlet. Empty pools disappear, while an emptied tray stays in place for clean recovery.");
+            guide.Limits.Add("The outlet follows its own temperature and terrain rules.");
             guide.WhyNot="carry the pump between an admitted liquid source and a clear visible outlet";
         }
         static readonly (int x,int y)[] Directions={(0,-1),(1,0),(0,1),(-1,0)};
-        static bool Clear(Zone zone,Cell cell,Entity pool,Entity actor)
-            =>RouteWorkMenu.Visible(cell) && !cell.BlocksMovement(actor)
-            && cell.Objects.Any(e=>e!=pool && e.HasTag("Terrain"))
-            && cell.Occupants.All(e=>e==pool || e.HasTag("Terrain") && !e.HasTag("Creature")
-                && !e.HasPart<LiquidPoolPart>() && !e.HasPart<GasPoolPart>() && !e.HasPart<CropPart>()
+        static bool Clear(Cell cell,Entity stock,Entity ignoring,bool needsTerrain=true)
+            =>RouteWorkMenu.Visible(cell) && !cell.BlocksMovement(ignoring)
+            && (!needsTerrain || cell.Objects.Any(e=>e!=stock && e.HasTag("Terrain")))
+            && cell.Occupants.All(e=>e==stock || e.HasTag("Terrain") && !e.HasTag("Creature")
+                && !e.HasPart<LiquidPoolPart>() && !e.HasPart<ContainedLiquidSourcePart>() && !e.HasPart<GasPoolPart>() && !e.HasPart<CropPart>()
                 && !e.HasPart<TileStateSourcePart>() && !e.HasPart<WellPart>() && !SecondExplorationActions.Special(e));
         IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor,Zone zone)
         {
@@ -55,9 +55,17 @@ namespace CavesOfOoo.Core
             {
                 var from=zone.GetCell(origin.X+d.x,origin.Y+d.y);
                 if(!RouteWorkMenu.Visible(from))continue;
-                var sources=from.Occupants.Where(e=>e.HasPart<LiquidPoolPart>()).ToArray();if(sources.Length!=1)continue;
+                var sources=from.Occupants.Where(e=>e.HasPart<LiquidPoolPart>()
+                    || e.HasPart<ContainedLiquidSourcePart>()).ToArray();
+                if(sources.Length!=1)continue;
                 var source=sources[0];
-                var stock=PoolReceipt.Capture(source,zone);if(stock==null || stock.Volume<=0 || !Clear(zone,from,source,actor))continue;
+                StockReceipt stock=source.HasPart<ContainedLiquidSourcePart>()
+                    ? TrayReceipt.Capture(source,actor,zone) : PoolReceipt.Capture(source,zone);
+                if(stock==null || stock.Volume<=0)continue;
+                bool tray=stock is TrayReceipt;
+                bool SourceCurrent(int expected)=>stock.Current(expected) && zone.GetEntityCell(source)==from
+                    && Clear(from,source,tray?source:actor,needsTerrain:!tray);
+                if(!SourceCurrent(stock.Volume))continue;
                 int amount=Math.Min(StrokeVolume,stock.Volume);
                 foreach(var direction in Directions)
                 {
@@ -66,21 +74,25 @@ namespace CavesOfOoo.Core
                     var pools=to.Occupants.Where(e=>e.HasPart<LiquidPoolPart>()).ToArray();if(pools.Length>1)continue;
                     var destination=pools.SingleOrDefault();var recipient=destination==null?null:PoolReceipt.Capture(destination,zone);
                     if(destination!=null && (recipient==null || recipient.Liquid!=stock.Liquid || (long)recipient.Volume+amount>int.MaxValue))continue;
-                    if(!Clear(zone,to,destination,actor) || !LiquidSourceSafety.IsUnmixedCell(zone,to.X,to.Y,stock.Liquid)
+                    bool BareOutlet()=>!tray || recipient!=null
+                        || zone.TileState.Get(to.X,to.Y)?.Coatings.Any(coating=>coating.Turns>0)!=true;
+                    if(!Clear(to,destination,actor) || !BareOutlet() || !LiquidSourceSafety.IsUnmixedCell(zone,to.X,to.Y,stock.Liquid)
                         || new[]{actor.ID,tool.ID,source.ID}.Distinct().Count()!=3
                         || destination!=null && new[]{actor.ID,tool.ID,source.ID,destination.ID}.Distinct().Count()!=4)continue;
                     Entity output=destination;LiquidPoolPart outputPool=recipient?.Pool;PoolReceipt createdReceipt=null;
                     int initial=recipient?.Volume??0;bool credited=false,debited=false;
-                    bool Before()=>Context() && stock.Current(stock.Volume) && zone.GetEntityCell(source)==from && Clear(zone,from,source,actor)
-                        && Clear(zone,to,destination,actor) && (recipient==null?!to.Occupants.Any(e=>e.HasPart<LiquidPoolPart>()):recipient.Current(initial))
+                    bool Before()=>Context() && SourceCurrent(stock.Volume)
+                        && Clear(to,destination,actor) && BareOutlet()
+                        && (recipient==null?!to.Occupants.Any(e=>e.HasPart<LiquidPoolPart>()):recipient.Current(initial))
                         && LiquidSourceSafety.IsUnmixedCell(zone,to.X,to.Y,stock.Liquid);
-                    bool After()=>Context() && stock.Current(stock.Volume-amount) && zone.GetEntityCell(source)==from && Clear(zone,from,source,actor)
+                    bool After()=>Context() && SourceCurrent(stock.Volume-amount)
                         && output!=null && (recipient??createdReceipt)?.Current(initial+amount)==true && zone.GetEntityCell(output)==to
-                        && Clear(zone,to,output,actor) && LiquidSourceSafety.IsUnmixedCell(zone,to.X,to.Y,stock.Liquid);
+                        && Clear(to,output,actor) && LiquidSourceSafety.IsUnmixedCell(zone,to.X,to.Y,stock.Liquid);
                     yield return new RouteWorkMenu.Entry{Actor=actor,Zone=zone,Cell=from,
                         Key="PumpLiquid|"+source.ID+"|"+to.X+"|"+to.Y,
-                        Label="pump "+amount+" "+stock.Liquid+" from "+from.X+","+from.Y+" to "+to.X+","+to.Y,
-                        Hint="One action; same pump kept. Relocates real stock. Dangerous liquid stays dangerous at the outlet.",
+                        Label="pump "+amount+" "+stock.Liquid+(tray?" from tray at ":" from ")+from.X+","+from.Y+" to "+to.X+","+to.Y,
+                        Hint=tray?"One action. The tray and any contents stay in place. Oil remains hazardous at the outlet."
+                            :"One action. Keep the pump. Dangerous liquid stays dangerous at the outlet.",
                         Claims=destination==null?new[]{source}:new[]{source,destination},Before=Before,After=After,Apply=tx=>
                         {
                             if(!Before())return false;
@@ -99,17 +111,15 @@ namespace CavesOfOoo.Core
                                 // Only undo actual recoverable credit. A raw callback
                                 // consuming it cannot also receive a source refund.
                                 int recovered=0;
-                                bool refundable=debited && stock.Owner.GetPart<LiquidPoolPart>()==stock.Pool
-                                    && stock.Pool.ParentEntity==stock.Owner && stock.Pool.LiquidId==stock.Liquid && stock.Pool.Volume>=0;
-                                int room=refundable?int.MaxValue-stock.Pool.Volume:0;
+                                int room=debited?stock.RefundRoom():0;
                                 if(credited && output.GetPart<LiquidPoolPart>()==outputPool && outputPool.ParentEntity==output && outputPool.LiquidId==stock.Liquid)
-                                {recovered=Math.Min(Math.Min(amount,room),Math.Max(0,outputPool.Volume));outputPool.Volume-=recovered;}
-                                if(recovered>0)stock.Pool.Volume=WaterQuantityUndo.Restore(stock.Pool.Volume,-recovered);
+                                {recovered=Math.Min(Math.Min(amount,room),Math.Max(initial,outputPool.Volume)-initial);outputPool.Volume-=recovered;}
+                                if(recovered>0)stock.Restore(recovered);
                                 if(credited && recovered<amount)Diag.Record("liquid","PumpUndoCreditRetainedOrConsumed",actor,tool,new{amount,recovered,source=source.ID,outlet=output.ID});
                                 if(destination==null && createdReceipt?.Current(0)==true && zone.GetEntityCell(output)==to)zone.RemoveEntity(output);
                             });
                             if(!Before())return false;
-                            stock.Pool.Volume-=amount;debited=true;outputPool.Volume+=amount;credited=true;
+                            stock.Debit(amount);debited=true;outputPool.Volume+=amount;credited=true;
                             if(destination==null)
                             {
                                 outputPool.LiquidId=stock.Liquid;outputPool.Initialize();
@@ -122,7 +132,7 @@ namespace CavesOfOoo.Core
                             // Zero volume alone does not remove legacy tile coating.
                             // Current rechecks exact owner, Part, cell and stock before
                             // normal removal publishes its projection lifecycle.
-                            if(stock.Volume==amount && stock.Current(0) && zone.GetEntityCell(source)==from)zone.RemoveEntity(source);
+                            if(!tray && stock.Volume==amount && stock.Current(0) && zone.GetEntityCell(source)==from)zone.RemoveEntity(source);
                             ZoneRenderHooks.MarkCellDirty(from,"HandPump.Source");ZoneRenderHooks.MarkCellDirty(to,"HandPump.Outlet");
                             Diag.Record("liquid","GroundLiquidPumped",actor,tool,new{source=source.ID,outlet=output.ID,liquid=stock.Liquid,amount});
                             MessageLog.Add("You move "+amount+" "+stock.Liquid+" to "+to.X+","+to.Y+". The liquid remains there.");
@@ -130,15 +140,70 @@ namespace CavesOfOoo.Core
                 }
             }
         }
-        sealed class PoolReceipt
+        abstract class StockReceipt
         {
-            internal readonly Entity Owner;internal readonly LiquidPoolPart Pool;internal readonly int Volume;internal readonly string Liquid;
+            internal readonly Entity Owner;
+            internal readonly int Volume;
+            internal readonly string Liquid;
+            protected StockReceipt(Entity owner, int volume, string liquid)
+            { Owner = owner; Volume = volume; Liquid = liquid; }
+            internal abstract bool Current(int expected);
+            internal abstract int RefundRoom();
+            internal abstract void Debit(int amount);
+            internal abstract void Restore(int amount);
+        }
+
+        sealed class TrayReceipt : StockReceipt
+        {
+            readonly ContainedLiquidSourcePart stock;
+            readonly ContainerPart container;
+            readonly Entity[] contents;
+            readonly Entity actor;
+            readonly Zone zone;
+            readonly Cell cell;
+            readonly Func<bool> identity;
+
+            TrayReceipt(Entity owner, ContainedLiquidSourcePart stock, Entity actor, Zone zone)
+                : base(owner, stock.Volume, stock.LiquidId)
+            {
+                this.stock = stock; this.actor = actor; this.zone = zone;
+                cell = zone.GetEntityCell(owner);
+                identity = RouteWorkMenu.Identity(owner);
+                container = owner.GetPart<ContainerPart>();
+                contents = container.Contents.ToArray();
+            }
+
+            static bool Released(Entity owner) => CinderholdOilRecovery.Payload(owner)
+                && !SecondExplorationActions.Special(owner);
+
+            internal static TrayReceipt Capture(Entity owner, Entity actor, Zone zone)
+            {
+                var stock = owner.GetPart<ContainedLiquidSourcePart>();
+                return Released(owner) && stock?.Context(actor,zone)==true
+                    ? new TrayReceipt(owner,stock,actor,zone) : null;
+            }
+
+            internal override bool Current(int expected) => identity() && Released(Owner) && stock.Context(actor,zone)
+                && Owner.GetPart<ContainedLiquidSourcePart>()==stock && zone.GetEntityCell(Owner)==cell
+                && stock.Volume==expected && stock.LiquidId==Liquid && container.Contents.SequenceEqual(contents);
+
+            internal override int RefundRoom() => identity() && Released(Owner) && zone.GetEntityCell(Owner)==cell
+                && Owner.GetPart<ContainedLiquidSourcePart>()==stock && stock.LiquidId==Liquid
+                ? stock.Capacity-stock.Volume : 0;
+
+            internal override void Debit(int amount) => stock.Volume-=amount;
+            internal override void Restore(int amount) => stock.Volume=WaterQuantityUndo.Restore(stock.Volume,-amount,stock.Capacity);
+        }
+
+        sealed class PoolReceipt : StockReceipt
+        {
+            internal readonly LiquidPoolPart Pool;
             readonly Zone zone;readonly Cell cell;readonly Func<bool> identity;readonly Part[] passive;
             readonly IMaterialProcessPartPolicy[] policies;readonly object[] values;
             static readonly HashSet<Type> Types=new(){typeof(RenderPart),typeof(PhysicsPart),typeof(ExaminablePart),typeof(LiquidPoolPart),typeof(MaterialPart),typeof(ThermalPart),typeof(StatusEffectsPart)};
-            PoolReceipt(Entity owner,Zone zone)
+            PoolReceipt(Entity owner,Zone zone) : base(owner,owner.GetPart<LiquidPoolPart>().Volume,owner.GetPart<LiquidPoolPart>().LiquidId)
             {
-                Owner=owner;Pool=owner.GetPart<LiquidPoolPart>();Volume=Pool.Volume;Liquid=Pool.LiquidId;this.zone=zone;cell=zone.GetEntityCell(owner);identity=RouteWorkMenu.Identity(owner);
+                Pool=owner.GetPart<LiquidPoolPart>();this.zone=zone;cell=zone.GetEntityCell(owner);identity=RouteWorkMenu.Identity(owner);
                 passive=owner.Parts.Where(p=>p!=Pool).ToArray();policies=passive.Select(p=>MaterialProcessPayloadPolicies.Get(p.GetType())).ToArray();
                 values=passive.Select((p,i)=>policies[i].Capture(p)).ToArray();
             }
@@ -156,9 +221,13 @@ namespace CavesOfOoo.Core
                 return !(pool.LiquidId=="water" || LiquidRegistry.Get(pool.LiquidId).GroundReactionFamily=="water") || LiquidSourcePhase.CanDrawWater(zone,owner);
             }
             internal static PoolReceipt Capture(Entity owner,Zone zone)=>Plain(owner,zone)?new PoolReceipt(owner,zone):null;
-            internal bool Current(int expected)=>identity() && Plain(Owner,zone) && zone.GetEntityCell(Owner)==cell
+            internal override bool Current(int expected)=>identity() && Plain(Owner,zone) && zone.GetEntityCell(Owner)==cell
                 && Owner.GetPart<LiquidPoolPart>()==Pool && Pool.Volume==expected && Pool.LiquidId==Liquid
                 && passive.Select((p,i)=>MaterialProcessPayloadPolicies.Get(p.GetType())==policies[i] && policies[i].Matches(p,values[i])).All(v=>v);
+            internal override int RefundRoom() => Owner.GetPart<LiquidPoolPart>()==Pool && Pool.ParentEntity==Owner
+                && Pool.LiquidId==Liquid && Pool.Volume>=0 ? int.MaxValue-Pool.Volume : 0;
+            internal override void Debit(int amount) => Pool.Volume-=amount;
+            internal override void Restore(int amount) => Pool.Volume=WaterQuantityUndo.Restore(Pool.Volume,-amount);
         }
     }
 }

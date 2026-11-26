@@ -1,5 +1,14 @@
 # Direct local liquid relocation
 
+November 26 extension. An existing released Cinderhold oil tray is a
+second admitted inlet. The exact tray and contents remain in place while
+the shared stroke moves its finite stock. Emptying the tray opens the
+ordinary clean pickup list. New outlets must be clear and dry. Existing
+same-liquid pools remain eligible. The refund can retract only the
+credit remaining above the outlet's initial stock and only as much as
+the source can still hold. No other contained-source type is admitted.
+[Actual earned pump use](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
+
 November24,2026. Third bounded capability in this batch, with native and
 recorded Editor qualification. Independent source/recorded-play review found0 remaining P1/P2.
 Exact publication follows. Ordinary flasks already fill from adjacent pools and

@@ -57,6 +57,8 @@ namespace CavesOfOoo.Core
         {
             string liquid = LiquidRegistry.Get(LiquidId)?.DisplayName ?? LiquidId;
             string state = "Contained " + liquid + ": " + Volume + "/" + Capacity + " units. Draw with a compatible carried flask; no refilling or deposits.";
+            if (Volume > 0 && CinderholdOilRecovery.Payload(ParentEntity) && !SecondExplorationActions.Special(ParentEntity))
+                state += " A hand pump can move the oil to clear floor within hose reach.";
             return state + (Volume == 0 ? " The tray is drained; its remaining equipment can be taken cleanly."
                 : " Drain it for clean recovery, or explicitly reach through the liquid in one action. Oil exposure is brief and can worsen heat injury while present; it does not ignite you by itself. Recovery leaves the liquid here.");
         }

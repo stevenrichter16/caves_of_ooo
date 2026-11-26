@@ -148,6 +148,9 @@ cross-seed comparisons remain open.
     origins and later supplied the same well repair. The native capacity
     comparison admitted one carried pound where the whole stack refused.
     [Evidence](Verification/MachineSystems/TrayOneMeasure20261125/README.md)
+    At Cinderhold an earned hand pump gives a no-flask clean recovery route
+    beside the existing compatible flask and wet reach options.
+    [Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
 
 12. **Compare complete costs.** Show actions, total carried mass, capacity,
     consumed material, discarded fractions, fuel/water and fees where relevant.
@@ -191,6 +194,10 @@ cross-seed comparisons remain open.
     crust works in portable garment proofing. Ordinary distillation and
     scraping remain separate choices.
     [Evidence](Verification/MachineSystems/RetainedBrineCrust20261126/README.md)
+
+    A quoted pump stroke drained a real 12-unit oil tray into a selected
+    ground outlet. The destination kept the exact volume through Continue.
+    [Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
 
 15. **Keep installed advantages earned and bounded.** A workshop can offer a
     supported process, storage convenience or larger admitted batch. Portable
@@ -237,6 +244,9 @@ cross-seed comparisons remain open.
     fixed when a later obstruction changes the live path. The marker also
     explains ordinary loose carries for 11–12.
     [Evidence](Verification/MachineSystems/PorterCrossing20261125/README.md)
+    The emptied Cinderhold tray opened for an ordinary clean pickup. The
+    oil still coated the player on contact at its new destination.
+    [Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
 
 19. **Preserve baseline convenience.** Ordinary porter service, shops and useful
     exploration work without completing a new project first. Investments become

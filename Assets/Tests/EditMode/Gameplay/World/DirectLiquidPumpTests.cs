@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory.Commands;
 using NUnit.Framework;
 namespace CavesOfOoo.Tests
 {
@@ -23,6 +24,103 @@ namespace CavesOfOoo.Tests
         }
         string Stroke(Entity tool)=>Choice(tool,"PumpLiquid|",a=>a.Display.Contains("to 9,10"));
         Entity Outlet()=>Zone.GetCell(9,10).Objects.Single(e=>e.HasPart<LiquidPoolPart>());
+
+        Entity ReleasedTray()
+        {
+            var tray = Place("CinderholdOilRecoveryTray");
+            Assert.True(tray.GetPart<ContainerPart>().AddItem(Factory.CreateEntity("CinderhookAxeHeadComponent")));
+            return tray;
+        }
+
+        [Test]
+        public void ReleasedTrayPumpsFromTheWorldMenuAndLetsOrdinaryTakeRecoverTheExactHead()
+        {
+            var tool = Tool();
+            var tray = ReleasedTray();
+            var stock = tray.GetPart<ContainedLiquidSourcePart>();
+            var container = tray.GetPart<ContainerPart>();
+            var head = container.Contents.Single();
+            Assert.False(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(tray, head), Actor, Zone).Success);
+            var row = CellMenu(11, 10).Single(a => a.Via == tool && a.Command.StartsWith("PumpLiquid|")
+                && a.Display.Contains("to 9,10"));
+            Assert.That(row.Display, Does.Contain("12 oil"));
+            Assert.AreEqual(row.Command, Stroke(tool));
+            Assert.True(ChooseRow(row, 11, 10));
+
+            Assert.Zero(stock.Volume);
+            Assert.True(stock.AllowsCleanAccess);
+            Assert.AreSame(tray, Zone.GetCell(11, 10).Objects.Single(e => e == tray));
+            Assert.AreSame(head, container.Contents.Single());
+            Assert.False(Zone.TileState.HasCoating(11, 10, "oil"));
+            Assert.AreEqual(12, PoolUnits(9, 10));
+            Assert.True(Zone.TileState.HasCoating(9, 10, "oil"));
+            Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(tray, head), Actor, Zone).Success);
+            Assert.That(Pack.Objects, Does.Contain(head));
+            Assert.That(Pack.Objects, Does.Contain(tool));
+            Assert.False(Actor.HasEffect<LiquidCoveredEffect>());
+        }
+
+        [Test]
+        public void FlaskWithdrawalInvalidatesTheTrayStrokeWithoutSpendingEitherStock()
+        {
+            var tool = Tool();
+            var tray = ReleasedTray();
+            string stroke = Stroke(tool);
+            var flask = Flask(0, capacity: 3);
+            Assert.True(Act(flask, Choice(flask, "FillLiquidVessel|")));
+            Assert.False(Act(tool, stroke));
+            Assert.AreEqual(9, tray.GetPart<ContainedLiquidSourcePart>().Volume);
+            Assert.AreEqual(3, Units(flask));
+            Assert.Zero(PoolUnits(9, 10));
+        }
+
+        [Test]
+        public void InterruptedTrayStrokeReturnsOnlyCreditThatCanFit()
+        {
+            var tool = Tool();
+            var tray = ReleasedTray();
+            var stock = tray.GetPart<ContainedLiquidSourcePart>();
+            string stroke = Stroke(tool);
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () => stock.Volume += 5 });
+            FailAfter();
+
+            Assert.False(Act(tool, stroke));
+            Assert.AreEqual(12, stock.Volume);
+            Assert.AreEqual(5, PoolUnits(9, 10));
+            Assert.That(tray.GetPart<ContainerPart>().Contents, Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void InterruptedTrayStrokeCannotRefundFromStockAlreadyAtTheOutlet()
+        {
+            var tool = Tool();
+            var tray = ReleasedTray();
+            var outlet = Stock(5, "oil", 9, 10);
+            string stroke = Stroke(tool);
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () => outlet.GetPart<LiquidPoolPart>().Volume -= 11 });
+            FailAfter();
+
+            Assert.False(Act(tool, stroke));
+            Assert.AreSame(outlet, Outlet());
+            Assert.AreEqual(5, PoolUnits(9, 10));
+            Assert.AreEqual(1, tray.GetPart<ContainedLiquidSourcePart>().Volume);
+        }
+
+        [TestCase("locked")]
+        [TestCase("owned")]
+        [TestCase("mixed outlet")]
+        [TestCase("existing oil coating")]
+        public void UnreleasedTrayOrUnsafeOutletHasNoStroke(string condition)
+        {
+            var tool = Tool();
+            var tray = ReleasedTray();
+            if (condition == "locked") tray.GetPart<ContainerPart>().Locked = true;
+            if (condition == "owned") tray.Properties["OwnerID"] = "resident";
+            if (condition == "mixed outlet") Stock(1, "water", 9, 10);
+            if (condition == "existing oil coating") Zone.TileState.WriteCoating(9, 10, "oil", 5);
+            Assert.False(Actions(tool).Any(a => a.Command.StartsWith("PumpLiquid|") && a.Display.Contains("to 9,10")));
+            Assert.AreEqual(12, tray.GetPart<ContainedLiquidSourcePart>().Volume);
+        }
         [Test] public void OrdinaryFlaskRemainsAnAlternativeForTheSameFiniteStock()
         {var source=Stock();var flask=Flask(0);Assert.True(Act(flask,Choice(flask,"FillLiquidVessel|")));Assert.AreEqual(48,source.GetPart<LiquidPoolPart>().Volume);Assert.AreEqual(12,Units(flask));}
         [Test] public void OneStrokeMovesTwentyRealUnitsAndKeepsTheSamePump()

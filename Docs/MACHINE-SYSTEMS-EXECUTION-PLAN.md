@@ -7,12 +7,15 @@ the crop, sieve, remaining water and spent stand. The final connected
 run passed 271 cases.
 [Evidence](Verification/MachineSystems/PortableKnotflaxSieve20261126/README.md)
 
-Next, source-qualify use of a hand pump against the existing finite
-Cinderhold oil tray. Keep a moved volume in an inspected outlet and
-the tray itself intact, with the exact submerged fitting and ordinary
-flask or wet reach options preserved. Check the archived actual tray
-and near-forge earned pump before choosing a small scope. No new tray,
-fitting or general submerged-source policies are selected yet.
+**The earned hand pump opens clean Cinderhold salvage — November 26 UTC, 2026.**
+The original tray, pump and fitting were present at tick 1560. Reading
+the east outlet quote cost no time. One stroke moved 12 oil to clear
+floor. The player took the same axe head cleanly using the ordinary
+pickup list. Fresh Continue preserved tray, fitting and outlet. One
+step into the moved oil coated the player through the ordinary liquid
+rules. The final native run passed 247 cases. The feature keeps the
+flask and wet reach alternatives and the finite shared transfer.
+[Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
 
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
