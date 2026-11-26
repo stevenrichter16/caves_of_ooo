@@ -34,6 +34,9 @@ route difference and a clear outlet. This evidence verifies ordinary
 acquisition and reload. The earlier supplied field trial covers the
 actual pump strokes, finite stock and outlet hazard.
 [Existing field trial](../DirectLiquidPump20261124/README.md)
+The later Peat Works route earned its own pump in a generation 27 world
+and used it at the measured north shortcut.
+[Earned shortcut](../PeatWorksEarnedPump20261126/README.md)
 
 Independent review checked the archived exact items and rendered shop
 and forge actions. This evidence pass uses existing runtime behavior.

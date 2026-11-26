@@ -36,6 +36,8 @@ The native rig reader still showed its actual cracked surface and
 compatible repair bill. Wildlife can change the cost of either route, as
 the detour encounter shows.
 [Ordinary pump acquisition](../OrdinaryHandPumpAcquisition20261125/README.md)
+The same generation 27 world later supplied a fully earned pump branch.
+[Earned continuation](../PeatWorksEarnedPump20261126/README.md)
 
 Fresh Continue preserved both cleared branches. On the flask reload a
 snake stood on the cleared cell while the terrain itself remained dry.

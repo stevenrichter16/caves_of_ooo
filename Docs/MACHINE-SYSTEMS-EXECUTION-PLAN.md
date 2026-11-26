@@ -1,3 +1,13 @@
+**An earned hand pump clears the Peat Works shortcut — November 26 UTC, 2026.**
+The ordinary seed 64 generation 27 branch took the exact cellar clay,
+bartered and forged its own pump, returned across the north edge and
+moved all 12 mire units into the chosen outlet. Sixteen steps and one
+stroke reached the original faulted rig. Fresh Continue retained the
+same pump, empty flask, stock and five HP. The acquisition and approach
+cost two tonics and two pieces of dried meat. This extends #40 with a
+single earned tool-to-field-use route using existing runtime.
+[Evidence](Verification/MachineSystems/PeatWorksEarnedPump20261126/README.md)
+
 **Quarry pale-salt reaches an ordinary field fight — November 26 UTC, 2026.**
 The original dagger from the ordinary quarry packet and forge route
 landed four extra damage on a natural Charred Husk below Spivenor.

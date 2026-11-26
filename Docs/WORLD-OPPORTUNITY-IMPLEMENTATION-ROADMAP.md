@@ -749,14 +749,19 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     [Evidence](Verification/MachineSystems/MorrowfastMendedTrap20261125/README.md)
     A guided ordinary hand-pump acquisition connected exact public tray
     stock, the Cinderhold merchant, the starting dagger and the real forge.
-    Fresh Continue kept the pump and remaining purse. A natural useful
-    crossing and a complete field-use comparison remain open.
+    Fresh Continue kept the pump and remaining purse.
     [Evidence](Verification/MachineSystems/OrdinaryHandPumpAcquisition20261125/README.md)
     The v27 Peat Works north entry gave a 23-step dry detour and two
     17-action clearing paths to the same work rig. One used a bought
     flask and one a supplied pump. Both kept the exact liquid in a
     carried vessel or the chosen outlet through fresh Continue.
     [Evidence](Verification/MachineSystems/PeatWorksMireShortcuts20261125/README.md)
+    A continuation from that same world earned its own pump with cellar
+    clay, a real barter and two hand-cut bindings. It used 17 local actions
+    to reach the original rig. Fresh Continue kept 12 units at the pump
+    outlet, 12 in the other pool and the earned pump and empty flask.
+    The longer acquisition and return used real healing supplies.
+    [Evidence](Verification/MachineSystems/PeatWorksEarnedPump20261126/README.md)
     An ordinary condenser cost one gathered clay, one purchased spike and
     a bought flask. The player used both tools to catch one water from an
     existing Sodden vent. The route measured actual local injury and saved
