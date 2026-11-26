@@ -1,0 +1,604 @@
+{
+  "scope": "Private seed 64 v29 Editor saves. World Examine and inventory selection used normal GameBootstrap input. Exact supplied comparison kit precedes the normal loaded pickup and separate ordinary shop purchase.",
+  "repair": {
+    "world": {
+      "p": {
+        "ID": "2705",
+        "X": 41,
+        "Y": 9,
+        "hp": 40,
+        "drams": 50
+      },
+      "zone": "Overworld.11.10.0",
+      "tick": 40,
+      "state": "AnnouncementOpen",
+      "inv": [
+        {
+          "ID": "2706",
+          "BlueprintName": "WateringGrimoire",
+          "n": 1
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "CandyCarrotSeed",
+          "n": 4
+        },
+        {
+          "ID": "2708",
+          "BlueprintName": "EmberwheatSeed",
+          "n": 2
+        },
+        {
+          "ID": "2712",
+          "BlueprintName": "HealingTonic",
+          "n": 2
+        },
+        {
+          "ID": "2713",
+          "BlueprintName": "DriedMeat",
+          "n": 2
+        }
+      ],
+      "owners": [
+        {
+          "ID": "2129",
+          "BlueprintName": "GleanersBuckledWicket",
+          "at": {
+            "Item1": 46,
+            "Item2": 6
+          },
+          "repaired": false
+        },
+        {
+          "ID": "2695",
+          "BlueprintName": "RepairLinedWell",
+          "at": {
+            "Item1": 41,
+            "Item2": 8
+          },
+          "repaired": false
+        }
+      ],
+      "reader": "You see a gleaners' lined well.\n\nNEEDS REPAIR\nA split in the fired lining lets the drawn water drain through the rim.\n\nMaterials needed\n- 2 measures of fire clay or prepared lining clay, in any mix\n\nTools and machines\nNone required.\n\n\nA sound fired lining holds water for drinking and filling vessels. Repair clay was stored beneath the western ruin. The nearby reed basin holds a separate supply of only a few drinks.",
+      "highlight": null,
+      "hint": null,
+      "rows": 0
+    },
+    "inventory": {
+      "open": true,
+      "title": "dagger",
+      "rows": [
+        {
+          "Heading": "Needs repair",
+          "Text": "The working metal is damaged. A steel blade can replace or brace the failing edge.\n\nMaterials needed\n- 1 steel blade\n\nTools and machines\nNone required.\n\nRepair one item from your pack. Unequip it first if worn or wielded.",
+          "tone": "Warning"
+        },
+        {
+          "Heading": "Combat",
+          "Text": "Damage: 1d4 per penetration.\nHit bonus: -2.\nPenetration bonus: +1.\nPenetration uses Strength modifier (cap 3).\nAttributes: Piercing.",
+          "tone": "Normal"
+        },
+        {
+          "Heading": "Equip slots",
+          "Text": "Equip slots: Hand.",
+          "tone": "Normal"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "suppliedKit": {
+      "ID": "2705",
+      "weight": 37,
+      "limit": 240,
+      "ids": [
+        "FieldSatchel:2714",
+        "CampBox:2715",
+        "Dagger:2716"
+      ]
+    },
+    "amber": {
+      "t": 40,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "ColorMark",
+      "focus": "Save",
+      "color": 1,
+      "icon": 0,
+      "text": "",
+      "edit": false,
+      "menu": false,
+      "title": "COMMANDS",
+      "storage": [
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 1,
+          "label": {
+            "Mode": 1,
+            "ColorIndex": 1,
+            "IconIndex": 0,
+            "Text": ""
+          },
+          "contents": []
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": null,
+          "contents": []
+        }
+      ]
+    },
+    "icon": {
+      "t": 40,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "Icon",
+      "focus": "Save",
+      "color": 4,
+      "icon": 2,
+      "text": "",
+      "edit": false,
+      "menu": false,
+      "title": "COMMANDS",
+      "storage": [
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 1,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": []
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": null,
+          "contents": []
+        }
+      ]
+    },
+    "text": {
+      "t": 40,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "Text",
+      "focus": "Save",
+      "color": 3,
+      "icon": 0,
+      "text": "seed kit",
+      "edit": false,
+      "menu": false,
+      "title": "COMMANDS",
+      "storage": [
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 1,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": []
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": []
+        }
+      ]
+    },
+    "stowed": {
+      "t": 40,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "Text",
+      "focus": "Save",
+      "color": 3,
+      "icon": 0,
+      "text": "seed kit",
+      "edit": false,
+      "menu": true,
+      "title": "STOW INTO camp box",
+      "storage": [
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 1,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": []
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": [
+            {
+              "ID": "2707",
+              "BlueprintName": "CandyCarrotSeed",
+              "n": 4
+            }
+          ]
+        }
+      ]
+    },
+    "readContents": {
+      "rows": [
+        "Take gladroot seed (x4)",
+        "Stow from pack",
+        "Back to pack"
+      ],
+      "index": 0
+    },
+    "took": {
+      "t": 40,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "Text",
+      "focus": "Save",
+      "color": 3,
+      "icon": 0,
+      "text": "seed kit",
+      "edit": false,
+      "menu": true,
+      "title": "camp box CONTENTS",
+      "storage": [
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 1,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": []
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": []
+        }
+      ]
+    },
+    "loaded": {
+      "t": 40,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "Text",
+      "focus": "Save",
+      "color": 3,
+      "icon": 0,
+      "text": "seed kit",
+      "edit": false,
+      "menu": true,
+      "title": "STOW INTO field satchel",
+      "storage": [
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 5,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": [
+            {
+              "ID": "2713",
+              "BlueprintName": "DriedMeat",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": []
+        }
+      ]
+    },
+    "dropped": {
+      "ID": "2714",
+      "x": 41,
+      "y": 9,
+      "mass": 5,
+      "color": 4,
+      "owner": "2713"
+    },
+    "recovered": {
+      "t": 50,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "Text",
+      "focus": "Save",
+      "color": 3,
+      "icon": 0,
+      "text": "seed kit",
+      "edit": false,
+      "menu": false,
+      "title": "STOW INTO field satchel",
+      "storage": [
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": []
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 5,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": [
+            {
+              "ID": "2713",
+              "BlueprintName": "DriedMeat",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    },
+    "freshContinue": {
+      "t": 50,
+      "zone": "Overworld.11.10.0",
+      "weight": 37,
+      "limit": 240,
+      "mode": "None",
+      "focus": "Mode",
+      "color": 0,
+      "icon": 0,
+      "text": null,
+      "edit": false,
+      "menu": false,
+      "title": "COMMANDS",
+      "storage": [
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": []
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 5,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": [
+            {
+              "ID": "2713",
+              "BlueprintName": "DriedMeat",
+              "n": 2
+            }
+          ]
+        }
+      ]
+    },
+    "actualIcon": [
+      {
+        "name": "Storage label icon - Materials",
+        "r": 0.41,
+        "g": 0.88,
+        "b": 0.87
+      }
+    ],
+    "ordinaryPurchase": {
+      "vendor": {
+        "ID": "7328",
+        "BlueprintName": "Provisioner",
+        "name": "Dovrin Lowbank, provisioner",
+        "pos": {
+          "Item1": 46,
+          "Item2": 5
+        },
+        "satchel": "7341"
+      },
+      "bought": [
+        {
+          "row": {
+            "i": 9,
+            "ID": "7341",
+            "BlueprintName": "FieldSatchel",
+            "name": "field satchel",
+            "price": 19,
+            "n": 1,
+            "taking": 0
+          },
+          "purse": 31,
+          "tick": 160,
+          "held": [
+            {
+              "ID": "2714",
+              "BlueprintName": "FieldSatchel",
+              "n": 1
+            },
+            {
+              "ID": "7341",
+              "BlueprintName": "FieldSatchel",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "threeMarks": {
+      "t": 160,
+      "zone": "Overworld.10.10.0",
+      "weight": 38,
+      "limit": 240,
+      "mode": "ColorMark",
+      "focus": "Save",
+      "color": 1,
+      "icon": 0,
+      "text": "",
+      "edit": false,
+      "menu": false,
+      "title": "COMMANDS",
+      "storage": [
+        {
+          "ID": "2715",
+          "BlueprintName": "CampBox",
+          "mass": 12,
+          "label": {
+            "Mode": 3,
+            "ColorIndex": 3,
+            "IconIndex": 0,
+            "Text": "seed kit"
+          },
+          "contents": []
+        },
+        {
+          "ID": "2714",
+          "BlueprintName": "FieldSatchel",
+          "mass": 5,
+          "label": {
+            "Mode": 2,
+            "ColorIndex": 4,
+            "IconIndex": 2,
+            "Text": ""
+          },
+          "contents": [
+            {
+              "ID": "2713",
+              "BlueprintName": "DriedMeat",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "ID": "7341",
+          "BlueprintName": "FieldSatchel",
+          "mass": 1,
+          "label": {
+            "Mode": 1,
+            "ColorIndex": 1,
+            "IconIndex": 0,
+            "Text": ""
+          },
+          "contents": []
+        }
+      ]
+    }
+  },
+  "checkpoints": {
+    "afterLoadedPickup": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "a150199855004a7cb295b81d72807ee3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.11.10.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.10.0",
+        "Turn": 50,
+        "SaveTimestampUtc": "2026-11-26T00:30:05.3209650Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "2efa43749f24a88dc28c3e0f6ea0b4abbce84e86f94c22a5f14f0f978a7583ee",
+        "Quick.sav.gz.bak": "a79744c7f291b7e94b9e76263b7c972553f85638907556dcc5bd24a7acb69912",
+        "Quick.json.bak": "e445700c1ff71353d92dbcb916c36b09a55f256cde336d04d884c3aa7fde39d6",
+        "Quick.json": "67dc4b57e65744417ec84e0adf1e15860a82761517acac3a3678172240dd4cb0"
+      }
+    },
+    "afterOrdinaryPurchase": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "a150199855004a7cb295b81d72807ee3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.10.10.0",
+        "ActiveZoneDisplayLabel": "Overworld.10.10.0",
+        "Turn": 160,
+        "SaveTimestampUtc": "2026-11-26T00:37:11.1370240Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "6d054cdc79111e5b95da932484e2f232c24224cab9656ade59007ea08d13e71b",
+        "Quick.sav.gz.bak": "41a3a1d433d8b4d446a45446879600c337b27e388feb5bf5f553dc3301d97a42",
+        "Quick.json.bak": "04d9ca1fc87a0d472b6a010a923138013939c3149310b3622cd2921b125da070",
+        "Quick.json": "8a7e5445aa25646d00db40ce14922d45e6829bc86ceb00b1760ced4616413f58"
+      }
+    }
+  }
+}

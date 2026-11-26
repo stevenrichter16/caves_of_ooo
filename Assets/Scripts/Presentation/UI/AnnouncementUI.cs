@@ -135,7 +135,8 @@ namespace CavesOfOoo.Rendering
                         int remaining = PAGE_LINES - _ledgerLines.Count % PAGE_LINES;
                         if (keep <= PAGE_LINES && remaining < keep)
                             for (int i = 0; i < remaining; i++) AddLines("", Ivory);
-                        AddLines(section.Heading.ToUpperInvariant(), SeaGreen); AddLines("", Ivory);
+                        AddLines(section.Heading.ToUpperInvariant(), section.Tone == AnnouncementTone.Warning ? Amber : SeaGreen);
+                        AddLines("", Ivory);
                     }
                     AddLines(section.Text, section.Tone == AnnouncementTone.Warning ? Amber : Ivory);
                 }

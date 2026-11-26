@@ -87,13 +87,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     $"{_item.GetDisplayName()} cannot be carried.");
             }
 
-            int requiredStrength = HandlingService.GetLiftStrengthRequirement(_item);
-            int strength = context.Actor.GetStatValue("Strength", 0);
-            if (strength < requiredStrength)
+            if (CarriedStorage.UsesCarriedContents(_item))
             {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.InsufficientStrength,
-                    $"You can't carry {_item.GetDisplayName()}: it requires Strength {requiredStrength}.");
+                if (!CarriedStorage.CanAcceptNewLoad(context.Inventory, _item))
+                    return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                        "The storage and its contents would put you over your carry limit.");
+            }
+            else
+            {
+                int requiredStrength = HandlingService.GetLiftStrengthRequirement(_item);
+                int strength = context.Actor.GetStatValue("Strength", 0);
+                if (strength < requiredStrength)
+                    return InventoryValidationResult.Invalid(InventoryValidationErrorCode.InsufficientStrength,
+                        $"You can't carry {_item.GetDisplayName()}: it requires Strength {requiredStrength}.");
             }
 
             return InventoryValidationResult.Valid();
@@ -112,7 +118,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if ((_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
                 return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
 
-            if (!HandlingService.CanLift(actor, _item, out string liftFailure))
+            bool storageVessel = CarriedStorage.UsesCarriedContents(_item);
+            var actorCell = storageVessel ? zone.GetEntityCell(actor) : null;
+            if (storageVessel && (!HandlingService.IsCarryable(_item) || !CarriedStorage.CanAcceptNewLoad(inventory, _item)))
+                return Refuse(context, "weight_limit", "The storage and its contents no longer fit in your pack.");
+            if (!storageVessel && !HandlingService.CanLift(actor, _item, out string liftFailure))
             {
                 MessageLog.Add(liftFailure);
                 return InventoryCommandResult.Fail(
@@ -141,6 +151,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // Veto hooks can move/remove the source or change its quantity.
             if (LocalPorterReservationPart.Blocks(_item) || !IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
                 return Refuse(context, "source_changed", "That item is no longer on this ground.");
+            if ((storageVessel || CarriedStorage.UsesCarriedContents(_item))
+                && (!WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<InventoryPart>() != inventory
+                    || storageVessel && zone.GetEntityCell(actor) != actorCell
+                    || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
+                    || !WorldResourceActions.Ground(_item, zone)
+                    || _item.GetPart<PhysicsPart>()?.Takeable != true || !HandlingService.IsCarryable(_item)
+                    || !CarriedStorage.CanAcceptNewLoad(inventory, _item)))
+                return Refuse(context, "weight_limit", "The storage and its contents no longer fit in your pack.");
             var stacker = _item.GetPart<StackerPart>();
             int quantity = stacker?.StackCount ?? 1;
             if (quantity <= 0) return Refuse(context, "empty_stack", "There is no positive unit to pick up.");

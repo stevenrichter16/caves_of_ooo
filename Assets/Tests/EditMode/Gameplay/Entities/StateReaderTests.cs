@@ -110,10 +110,16 @@ namespace CavesOfOoo.Tests
         [Test] public void ARealRepairLineStillAppearsInBothReaders()
         {
             var rig = scope.Factory.CreateEntity("AbandonedFieldWorkRig"); Assert.True(zone.AddEntity(rig, 11, 10)); Seen(rig);
-            string repair = rig.GetPart<RepairablePart>().Describe(); Assert.IsNotEmpty(repair);
-            Assert.That(rig.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, zone.GetEntityCell(rig), viewer), Does.Contain(repair));
+            var fault = rig.GetPart<RepairablePart>();
+            var recipe = RepairRecipeRegistry.Get(fault.RecipeId);
+            const string bill = "2 measures of fire clay or prepared lining clay, in any mix";
+            string plain = rig.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, zone.GetEntityCell(rig), viewer);
+            Assert.That(plain, Does.Contain("NEEDS REPAIR").And.Contain(recipe.Diagnosis).And.Contain(bill));
             var doc = ExamineDocumentBuilder.BuildWorld(rig, zone, zone.GetEntityCell(rig), viewer);
-            Assert.That(string.Join("\n", doc.Sections.Select(s => s.Text)), Does.Contain(repair));
+            var warning = doc.Sections.First();
+            Assert.AreEqual("Needs repair", warning.Heading);
+            Assert.That(warning.Text, Does.Contain(recipe.Diagnosis).And.Contain(bill));
+            Assert.That(doc.Facts.Single(fact => fact.Label == "Composition").Value, Does.Contain(recipe.Composition));
         }
 
         [Test] public void NeitherReaderNamesTheShippedProviderPartsAnyMore()

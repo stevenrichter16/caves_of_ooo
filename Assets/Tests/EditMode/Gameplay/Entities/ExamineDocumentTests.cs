@@ -154,6 +154,42 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("cannot be repaired with a known method",Text(document));
             StringAssert.DoesNotContain("restores HP",Text(document));Assert.AreEqual(7,item.GetPart<DestructiblePart>().HP);
         }
+        [Test] public void ALeakingWellPutsItsExactCompatibleMaterialsInTheFirstWarning()
+        {
+            var well = factory.CreateEntity("RepairLinedWell");
+            var zone = Place(well);
+            var cell = zone.GetCell(10, 10);
+            var warning = ExamineDocumentBuilder.BuildWorld(well, zone, cell).Sections.First();
+            Assert.AreEqual("Needs repair", warning.Heading);
+            Assert.AreEqual(AnnouncementTone.Warning, warning.Tone);
+            StringAssert.Contains("2 measures of fire clay or prepared lining clay, in any mix", warning.Text);
+            StringAssert.Contains("NEEDS REPAIR", well.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, cell));
+            well.GetPart<RepairablePart>().Repaired = true;
+            Assert.IsFalse(ExamineDocumentBuilder.BuildWorld(well, zone, cell).Sections.Any(s => s.Heading == "Needs repair"));
+        }
+
+        [Test] public void PortableDamageShowsTheActualBillAndClearsAfterTheEffectEnds()
+        {
+            var dagger = factory.CreateEntity("Dagger");
+            var player = Carry(dagger);
+            dagger.ApplyEffect(new BrokenEffect());
+            var warning = ExamineDocumentBuilder.BuildInventory(dagger, player).Sections.First();
+            Assert.AreEqual("Needs repair", warning.Heading);
+            Assert.AreEqual(AnnouncementTone.Warning, warning.Tone);
+            StringAssert.Contains("1 steel blade", warning.Text);
+            dagger.RemoveEffect<BrokenEffect>();
+            Assert.IsFalse(ExamineDocumentBuilder.BuildInventory(dagger, player).Sections.Any(s => s.Heading == "Needs repair"));
+        }
+
+        [Test] public void BrokenObjectWithNoApplicableRecipeShowsNoInventedBill()
+        {
+            var item = Plain();
+            item.AddPart(new StatusEffectsPart());
+            item.ApplyEffect(new BrokenEffect());
+            var warning = ExamineDocumentBuilder.BuildInventory(item, Carry(item)).Sections.First();
+            Assert.AreEqual("Needs repair", warning.Heading);
+            StringAssert.Contains("No known repair method", warning.Text);
+        }
         [Test] public void EmptySubjectsAreRefused()
         {
             Assert.IsNull(Build("BuildInventory",null,null));

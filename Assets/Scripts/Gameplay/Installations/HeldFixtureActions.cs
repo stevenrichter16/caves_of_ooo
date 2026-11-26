@@ -90,7 +90,11 @@ namespace CavesOfOoo.Core
             var cell = zone.GetEntityCell(fixture); var origin = zone.GetEntityCell(actor);
             if (origin == null || Math.Abs(cell.X - origin.X) > 1 || Math.Abs(cell.Y - origin.Y) > 1) return;
             string tail = Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + fixture.ID;
-            actions.AddAction("TakeUpFixture", "take up", TakeUpPrefix + tail, '\0', 22, false, ActionTime.OneAction);
+            if (CarriedStorage.UsesCarriedContents(fixture) && !CanLift(actor, fixture))
+                actions.AddDisabled("TakeUpFixture", "take up", "overweight-load",
+                    "The storage and its contents would put you over your carry limit.", '\0', 22);
+            else
+                actions.AddAction("TakeUpFixture", "take up", TakeUpPrefix + tail, '\0', 22, false, ActionTime.OneAction);
             // The label states the consequence plainly, since there is no confirmation step: the hold ends, the object stays, and it can no longer be taken up.
             actions.AddAction("HandOverFixture", "hand over (you can no longer take it up)", HandOverPrefix + tail, '\0', 3, false, ActionTime.OneAction);
             int near = HeldWithin(zone, origin, PackUpReach).Count;
@@ -147,6 +151,7 @@ namespace CavesOfOoo.Core
         static bool CanLift(Entity actor, Entity fixture)
         {
             var pack = actor?.GetPart<InventoryPart>(); if (pack == null || fixture == null) return false;
+            if (CarriedStorage.UsesCarriedContents(fixture)) return CarriedStorage.CanAcceptNewLoad(pack, fixture);
             return pack.MaxWeight < 0 || (long)pack.GetCarriedWeight() + InventoryPart.GetItemWeight(fixture) <= pack.MaxWeight;
         }
 
@@ -323,6 +328,12 @@ namespace CavesOfOoo.Core
             if (def == null || def.Class != PackableFixtureDefinition.Carried) return Reject(actor, fixture, command, "unknown-kind");
             if (!InstallEvents.Allow(InstallEvents.BeforeUninstall, actor, fixture, zone, cell.X, cell.Y, PlayerOrigin)) return Reject(actor, fixture, command, "vetoed");
             if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(fixture, actor, command)) return Reject(actor, fixture, command, "in-progress");
+            if (CarriedStorage.UsesCarriedContents(fixture)
+                && (!WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<InventoryPart>() != pack
+                    || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
+                    || zone.GetEntityCell(actor) != origin || zone.GetEntityCell(fixture) != cell
+                    || !IsPlayerHeld(fixture) || !CanLift(actor, fixture)))
+                return Reject(actor, fixture, command, "overweight-load");
 
             var physics = fixture.GetPart<PhysicsPart>(); var installable = fixture.GetPart<InstallablePart>(); var marker = fixture.GetPart<InstallationMarkerPart>();
             if (physics == null || installable == null || marker == null) return Reject(actor, fixture, command, PlacementCheck.State);
@@ -444,8 +455,14 @@ namespace CavesOfOoo.Core
             if (f.Length != 3 || Uri.UnescapeDataString(f[1]) != zone.ZoneID || f[2] != trigger.ID || origin == null || cell == null || !IsPlayerHeld(trigger)
                 || Math.Abs(cell.X - origin.X) > 1 || Math.Abs(cell.Y - origin.Y) > 1) return Reject(actor, trigger, command, "stale-selection");
             var camp = HeldWithin(zone, origin, PackUpReach); if (camp.Count < 2) return Reject(actor, trigger, command, "stale-selection");
+            var pack = actor.GetPart<InventoryPart>();
+            bool carriesStorage = camp.Any(CarriedStorage.UsesCarriedContents);
+            if (carriesStorage && !CarriedStorage.FitsCombinedLoad(pack, camp.Sum(fixture => (long)InventoryPart.GetItemWeight(fixture))))
+                return Reject(actor, trigger, command, "overweight-load");
             foreach (var fixture in camp)
                 if (!TakeUp(actor, fixture, fixture.GetPart<PackableFixturePart>(), zone, TakeUpPrefix + Uri.EscapeDataString(zone.ZoneID ?? "") + "|" + fixture.ID, tx, PackUpReach)) return false;
+            if (carriesStorage && (actor.GetPart<InventoryPart>() != pack || !CarriedStorage.FitsCombinedLoad(pack, 0)))
+                return Reject(actor, trigger, command, "overweight-load");
             int n = camp.Count; tx.AfterCommit(() => MessageLog.Add("You pack up camp (" + n + " things)."));
             return true;
         }

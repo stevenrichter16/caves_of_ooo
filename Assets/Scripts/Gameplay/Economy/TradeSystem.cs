@@ -399,6 +399,10 @@ namespace CavesOfOoo.Core
 
             // 1. Tag-based fast-path veto.
             if (item.HasTag("NoTrade")) return false;
+            // A vessel's quote is for its shell. Its contents require their
+            // own trade eligibility and prices, so empty the vessel first.
+            if (CarriedStorage.UsesCarriedContents(item) && item.GetPart<ContainerPart>()?.Contents?.Count != 0)
+                return false;
             // EC3: nothing is bought from or sold to the Choir (Docs/ECONOMY-SYSTEM.md §9).
             if (ChoirOffering.KeepsNoShop(trader)) return false;
 

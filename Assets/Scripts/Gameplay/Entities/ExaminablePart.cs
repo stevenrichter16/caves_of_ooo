@@ -134,11 +134,14 @@ namespace CavesOfOoo.Core
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
+            var repair = RepairExamine.Section(ParentEntity);
+            if (repair != null) baseLine += "\n\n" + repair.Heading.ToUpperInvariant() + "\n" + repair.Text + "\n";
             if (!string.IsNullOrEmpty(intent)) baseLine += "\n" + intent;
             if (!string.IsNullOrEmpty(threat)) baseLine += "\n" + threat;
             // The state lines come from one collector (film, kitchen, dressing, oil, contained liquid, repair, trap, and any Part added later).
             var stateLines = new System.Collections.Generic.List<string>();
-            StateReader.Collect(ParentEntity, false, ParentEntity?.SpatialZone, null, null, stateLines);
+            StateReader.Collect(ParentEntity, false, ParentEntity?.SpatialZone, null, null, stateLines,
+                part => repair == null || !(part is RepairablePart || part is PlaceSiteObjectPart));
             for (int i = 0; i < stateLines.Count; i++) baseLine += "\n" + stateLines[i];
             if (ParentEntity?.HasPart<CultivatedSoilPart>() == true)
                 baseLine += "\nTilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; watered crops keep growing while you travel and rest, but dry soil stops growth.";

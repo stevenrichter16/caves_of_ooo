@@ -59,6 +59,23 @@ namespace CavesOfOoo.Tests
             string joined = string.Join(" ", lines); StringAssert.Contains("Mend for good:", joined); StringAssert.Contains("iron spike 1/2", joined); StringAssert.Contains("oak haft 0/1", joined); StringAssert.Contains("leather binding 0/1", joined); StringAssert.Contains("Patch (600 turns):", joined); StringAssert.Contains("fire clay 0/2", joined);
         }
 
+        [Test] public void ExaminingTheTineWeirShowsOneKeptToolAndTheDistinctTemporaryPatch()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            var zone = manager.GetZone(ZoneOf("Tine"));
+            var weir = zone.GetAllEntities().Single(e => e.BlueprintName == "FishingWeir");
+            var cell = zone.GetEntityCell(weir);
+            cell.IsVisible = cell.Explored = true;
+            var site = manager.SettlementManager.GetSite(zone.ZoneID, "Weir");
+            var warning = ExamineDocumentBuilder.BuildWorld(weir, zone, cell).Sections.First();
+            Assert.AreEqual("Needs repair", warning.Heading);
+            StringAssert.Contains("hatchet", warning.Text);
+            StringAssert.Contains("kept", warning.Text);
+            StringAssert.Contains("150 turns", warning.Text);
+            site.Stage = RepairStage.StableRepair;
+            Assert.IsFalse(ExamineDocumentBuilder.BuildWorld(weir, zone, cell).Sections.Any(s => s.Heading == "Needs repair"));
+        }
+
         [Test] public void ThePumpIsOnlyTheSiteItWasPlacedFor_AUnlinkedOneSaysNothing_Counter()
         {
             var pump = Pump(); Assert.IsEmpty(Menu(pump)); Assert.AreEqual("", Examine(pump)); Assert.IsEmpty(Actions(pump).Where(a => a.Name.StartsWith("PlaceSite")));

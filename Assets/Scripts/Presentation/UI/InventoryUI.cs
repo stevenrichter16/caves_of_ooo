@@ -317,12 +317,14 @@ namespace CavesOfOoo.Rendering
             _modTargetPopup = null;
             _grimoirePicker = null;
             _pendingThrowRequest = null;
+            _storageLabelEdit = null;
             Rebuild();
             Render();
         }
 
         public void Close()
         {
+            _storageLabelEdit = null;
             _loadoutNameEditing = false;
             _loadoutKeeper = null;
             ClearActionStatus();
@@ -392,6 +394,11 @@ namespace CavesOfOoo.Rendering
             }
 
 
+            if (StorageLabelEditorOpen)
+            {
+                if (!HandleLedgerPointer()) HandleStorageLabelInput();
+                return true;
+            }
             if (_loadoutNameEditing)
             {
                 if (!HandleLedgerPointer()) HandleLoadoutNameInput();
@@ -1233,6 +1240,7 @@ namespace CavesOfOoo.Rendering
                 {
                     var a = itemDisplay.Actions[i];
                     if (a.Command == "Throw") continue; // handled below via lowercase "throw"
+                    if (a.Command == "OpenContainer" && CarriedStorage.IsCarried(PlayerEntity, item)) continue;
                     if ((materialGuidance || tonicGuidance || equipmentGuidance)
                         && a.Command == "Examine") continue;
                     actions.Add(new ItemAction
@@ -1243,6 +1251,11 @@ namespace CavesOfOoo.Rendering
                         DisabledCode = a.DisabledCode, DisabledReason = a.DisabledReason, Hint = a.Hint
                     });
                 }
+            }
+            if (CarriedStorage.IsCarried(PlayerEntity, item))
+            {
+                actions.Add(new ItemAction { Label = "Open contents", Command = "open_carried_storage" });
+                actions.Add(new ItemAction { Label = "Stow from pack", Command = "stow_in_carried_storage" });
             }
 
             // Tinkering seam: disassemble carried tinkering items via inventory command pipeline.
@@ -1287,6 +1300,9 @@ namespace CavesOfOoo.Rendering
                     });
                 }
             }
+
+            if (StorageLabels.CanEdit(PlayerEntity, item))
+                actions.Add(new ItemAction { Label = "Label storage", Command = "edit_storage_label" });
 
             if (new SeparateOneCommand(item).Validate(new InventoryContext(PlayerEntity, CurrentZone)).IsValid)
                 actions.Add(new ItemAction { Label = "Separate one", Command = "separate_one" });
@@ -1443,6 +1459,11 @@ namespace CavesOfOoo.Rendering
                 case "disassemble": completed = TryDisassembleViaCommand(item); break;
                 case "toggle_craftmark": completed = TryToggleCraftMarkViaCommand(item); break;
                 case "put_container": completed = TryPutInContainerViaCommand(item, action.Container); break;
+                case "open_carried_storage": OpenCarriedStorage(item, false); return;
+                case "stow_in_carried_storage": OpenCarriedStorage(item, true); return;
+                case "edit_storage_label":
+                    OpenStorageLabelEditor(item);
+                    return;
                 case "compare_equipment":
                     if (!EquipmentComparisonService.TryDescribe(PlayerEntity, item,
                         out string comparisonText, out string comparisonReason))

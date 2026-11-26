@@ -13,7 +13,8 @@ namespace CavesOfOoo.Rendering
         {
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
-            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping, PackCategory, PackSort, PackBrowse
+            Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping, PackCategory, PackSort, PackBrowse,
+            StorageLabelField, StorageLabelDecrease, StorageLabelIncrease
         }
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);
@@ -114,7 +115,7 @@ namespace CavesOfOoo.Rendering
             transform.localRotation = Quaternion.identity;
             transform.localScale = Vector3.one;
         }
-        Image LBox(Rect bounds, Color color)
+        Image LBox(Rect bounds, Color color, Sprite sprite = null)
         {
             bounds = LedgerPaintRect(bounds);
             if (_ledgerImageUsed == _ledgerImages.Count)
@@ -124,6 +125,7 @@ namespace CavesOfOoo.Rendering
             }
             var result = _ledgerImages[_ledgerImageUsed++]; result.gameObject.SetActive(true);
             result.transform.SetAsLastSibling(); LedgerPlace(result.rectTransform, bounds); result.color = color;
+            if (!ReferenceEquals(result.sprite, sprite)) result.sprite = sprite;
             return result;
         }
         void LFrame(Rect bounds, Color border, Color fill)
@@ -268,7 +270,9 @@ namespace CavesOfOoo.Rendering
                 bool selected = _panel == PANEL_INVENTORY && _cursorIndex == index;
                 var rect = new Rect(360, y - 1, 888, 22);
                 if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
-                LLabel(new Rect(370, y, 404, 21), SkillScreenText.Fit(row.Item.Name, 40, 1), selected ? LGold : LInk, 20);
+                float labelWidth = DrawStorageLabel(new Rect(370, y, 404, 21), row.Item.Item);
+                LLabel(new Rect(370 + labelWidth, y, 404 - labelWidth, 21),
+                    SkillScreenText.Fit(row.Item.Name, (int)((404 - labelWidth) / 10), 1), selected ? LGold : LInk, 20);
                 LLabel(new Rect(788, y, 96, 21), (row.Group?.TotalUnits ?? row.Item.StackCount).ToString(), LInk, 18);
                 LLabel(new Rect(896, y, 120, 21), (row.Group?.TotalWeight ?? row.Item.Weight) + " lb", LInk, 18);
                 LLabel(new Rect(1026, y, 176, 21), SkillScreenText.Fit(LedgerCombatValue(row.Item.Item), 19, 1), LInk, 18);

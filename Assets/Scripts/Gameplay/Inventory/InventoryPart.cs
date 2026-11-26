@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
 
@@ -82,13 +83,20 @@ namespace CavesOfOoo.Core
             return AddObjectCore(item, false, out _, merge: false);
         }
 
+        // The carried-storage transaction already owns this weight. It checks
+        // the exact final load after the normal pack merge.
+        internal bool AddStorageWithdrawal(Entity item) => AddObjectCore(item, true, out _);
+
         private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient, bool merge = true)
         {
             recipient = null;
+            if (item == null) return false;
+            if (!deferCapacity && CarriedStorage.UsesCarriedContents(item)
+                && !CarriedStorage.CanAcceptNewLoad(this, item)) return false;
             if (!deferCapacity && MaxWeight >= 0)
             {
                 int itemWeight = GetItemWeight(item);
-                if (GetCarriedWeight() + itemWeight > MaxWeight)
+                if ((long)GetCarriedWeight() + itemWeight > MaxWeight)
                     return false;
             }
 
@@ -449,11 +457,11 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Total weight of all carried + equipped items.
-        /// Stack-aware: uses StackerPart.GetTotalWeight() when present.
+        /// Includes the contents of physical cargo owners as well as stack counts.
         /// </summary>
         public int GetCarriedWeight()
         {
-            int total = 0;
+            long total = 0;
             for (int i = 0; i < Objects.Count; i++)
                 total += GetItemWeight(Objects[i]);
 
@@ -464,7 +472,7 @@ namespace CavesOfOoo.Core
                 if (seen.Add(kvp.Value))
                     total += GetItemWeight(kvp.Value);
             }
-            return total;
+            return (int)Math.Min(int.MaxValue, total);
         }
 
         /// <summary>
@@ -475,11 +483,9 @@ namespace CavesOfOoo.Core
             if (item == null)
                 return 0;
 
-            var stacker = item.GetPart<StackerPart>();
-            if (stacker != null)
-                return stacker.GetTotalWeight();
-
-            return HandlingService.GetWeight(item);
+            int units = Math.Max(0, item.GetPart<StackerPart>()?.StackCount ?? 1);
+            long total = (long)Math.Max(0, HandlingService.GetWeight(item)) * units;
+            return (int)Math.Min(int.MaxValue, total);
         }
 
         /// <summary>Synchronize the derived tracker after inventory and saved stats
@@ -564,7 +570,7 @@ namespace CavesOfOoo.Core
             if (ParentEntity == null) return -1;
             var str = ParentEntity.GetStat("Strength");
             if (str == null) return -1;
-            return str.Value * WEIGHT_PER_STRENGTH;
+            return (int)Math.Min(int.MaxValue, Math.Max(int.MinValue, (long)str.Value * WEIGHT_PER_STRENGTH));
         }
 
         /// <summary>
@@ -583,21 +589,20 @@ namespace CavesOfOoo.Core
 
         private int ComputeCarriedHandlingPenalty()
         {
-            int total = 0;
-            for (int i = 0; i < Objects.Count; i++)
+            long total = 0;
+            foreach (var item in Objects)
             {
-                var handling = Objects[i].GetPart<HandlingPart>();
-                int penalty = handling?.CarryMovePenalty ?? 0;
-                if (penalty == 0)
-                    continue;
-
-                var stacker = Objects[i].GetPart<StackerPart>();
-                int multiplier = stacker?.StackCount ?? 1;
-                total += penalty * multiplier;
+                total += HandlingPenalty(item);
+                if (!CarriedStorage.UsesCarriedContents(item) || item.GetPart<ContainerPart>()?.Contents == null) continue;
+                foreach (var child in item.GetPart<ContainerPart>().Contents)
+                    if (child?.GetPart<PhysicsPart>()?.InInventory == item) total += HandlingPenalty(child);
             }
-
-            return total;
+            return (int)Math.Min(int.MaxValue, Math.Max(int.MinValue, total));
         }
+
+        static long HandlingPenalty(Entity item)
+            => (long)(item?.GetPart<HandlingPart>()?.CarryMovePenalty ?? 0)
+                * (item?.GetPart<StackerPart>()?.StackCount ?? 1);
 
         /// <summary>
         /// Block movement when overburdened.

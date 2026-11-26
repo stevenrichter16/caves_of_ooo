@@ -83,13 +83,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     $"{_item.GetDisplayName()} cannot be carried.");
             }
 
-            int requiredStrength = HandlingService.GetLiftStrengthRequirement(_item);
-            int strength = context.Actor.GetStatValue("Strength", 0);
-            if (strength < requiredStrength)
+            if (CarriedStorage.UsesCarriedContents(_item))
             {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.InsufficientStrength,
-                    $"You can't carry {_item.GetDisplayName()}: it requires Strength {requiredStrength}.");
+                var container = _container.GetPart<ContainerPart>();
+                if (!StorageSourceCurrent(context, container, physics))
+                    return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                        "That storage is no longer available in the nearby container.");
+                if (!CarriedStorage.CanAcceptNewLoad(context.Inventory, _item))
+                    return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule,
+                        "The storage and its contents would put you over your carry limit.");
+            }
+            else
+            {
+                int requiredStrength = HandlingService.GetLiftStrengthRequirement(_item);
+                int strength = context.Actor.GetStatValue("Strength", 0);
+                if (strength < requiredStrength)
+                    return InventoryValidationResult.Invalid(InventoryValidationErrorCode.InsufficientStrength,
+                        $"You can't carry {_item.GetDisplayName()}: it requires Strength {requiredStrength}.");
             }
 
             return InventoryValidationResult.Valid();
@@ -99,12 +109,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
+            bool storageVessel = CarriedStorage.UsesCarriedContents(_item);
             System.Action containedCleanup = null, containedGuard = null;
             var contained = _container.GetPart<ContainedLiquidSourcePart>();
             if (contained != null && !contained.PrepareTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, _wetRecovery, out containedCleanup, out containedGuard))
                 return Refuse(context, "contained_recovery_refused", "Drain the tray first, or explicitly recover through the liquid.");
             var delivery = _container.GetPart<DeliveryStoragePart>();
-            if (delivery != null && !transaction.TryClaim(_container, context.Actor, Name))
+            if ((delivery != null || storageVessel) && !transaction.TryClaim(_container, context.Actor, Name))
                 return Refuse(context, "delivery_storage_busy", "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
@@ -123,7 +134,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container is locked.");
             }
 
-            if (!HandlingService.CanLift(context.Actor, _item, out string liftFailure))
+            var physics = _item.GetPart<PhysicsPart>();
+            if (storageVessel && (!StorageSourceCurrent(context, containerPart, physics)
+                || physics?.Takeable != true || !HandlingService.IsCarryable(_item)))
+                return Refuse(context, "invalid_container_source", "That storage is no longer available in the nearby container.");
+            if (storageVessel && !CarriedStorage.CanAcceptNewLoad(inventory, _item))
+                return Refuse(context, "weight_limit", "The storage and its contents would put you over your carry limit.");
+
+            if (!storageVessel && !HandlingService.CanLift(context.Actor, _item, out string liftFailure))
             {
                 MessageLog.Add(liftFailure);
                 return InventoryCommandResult.Fail(
@@ -139,8 +157,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (delivery?.WatchLooseTransfer(context.Actor, context.Zone ?? context.Actor.SpatialZone, transaction, -quantity) == false)
                 return Refuse(context, "delivery_storage_changed", "The tray's stock or access has changed.");
             bool gold = _item.BlueprintName == "GoldCoin";
-            var physics = _item.GetPart<PhysicsPart>();
-            if (gold && !CoinSourceCurrent(containerPart, inventory, physics))
+            if (gold && !ExactContainedSource(containerPart, inventory, physics))
                 return Refuse(context, "invalid_coin_source", "The coin's container ownership is no longer valid.");
             long credit = gold ? (long)quantity * 5 : 0;
             if (gold && (long)TradeSystem.GetDrams(context.Actor) + credit > int.MaxValue)
@@ -181,6 +198,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 }
                 if (!destination.ClaimChanges(transaction, context.Actor, Name))
                     return Refuse(context, "destination_in_progress", "A destination stack is already being transferred.");
+                if (storageVessel)
+                    transaction.BeforeCommit(() => StorageContainerCurrent(context, containerPart)
+                        && _item.GetPart<PhysicsPart>() == physics && !containerPart.Contents.Contains(_item)
+                        && WorldResourceActions.Carried(context.Actor, _item) && CarriedStorage.FitsCombinedLoad(inventory, 0));
             }
 
             // Fire item-side Taken AFTER successful acquisition — same contract as
@@ -191,10 +212,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 transaction.Do(null, containedCleanup);
             containedGuard?.Invoke();
             if (delivery != null)
-            {
                 delivery.RecordWithdrawal(transaction);
+            if (delivery != null || storageVessel)
                 transaction.AfterCommit(Announce);
-            }
             else Announce();
             LocalGatheringClaims.RecordTake(gathering, transaction);
             ConnectedSpreadProgress.RecordTransfer(progress, transaction);
@@ -211,7 +231,24 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 AcquisitionDiagnostics.Record(context, _item, Name, _container.ID, quantity);
             }
         }
-        private bool CoinSourceCurrent(ContainerPart source, InventoryPart destination, PhysicsPart physics)
+        private bool StorageContainerCurrent(InventoryContext context, ContainerPart source)
+        {
+            var actor = context.Actor;
+            var zone = context.Zone ?? actor.SpatialZone;
+            var manager = WorldLocationContext.For(zone);
+            return source?.ParentEntity == _container && _container.GetPart<ContainerPart>() == source
+                && source.Contents != null && !source.IsLocked && !LocalPorterReservationPart.Blocks(_container)
+                && actor.GetPart<InventoryPart>() == context.Inventory
+                && PreparationActions.CurrentActor(actor, zone) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
+                && (manager == null || manager.ActiveZone == zone)
+                && WorldResourceActions.Nearby(actor, _container, zone);
+        }
+
+        private bool StorageSourceCurrent(InventoryContext context, ContainerPart source, PhysicsPart physics)
+            => StorageContainerCurrent(context, source) && source.Contents.Contains(_item)
+                && !LocalPorterReservationPart.Blocks(_item) && ExactContainedSource(source, context.Inventory, physics);
+
+        private bool ExactContainedSource(ContainerPart source, InventoryPart destination, PhysicsPart physics)
         {
             if (source.ParentEntity != _container || physics?.ParentEntity != _item
                 || physics.InInventory != _container || physics.Equipped != null || _item.SpatialZone != null

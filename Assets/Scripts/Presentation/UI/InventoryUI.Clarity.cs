@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
         private string _inventoryQuery = "";
         private bool _inventorySearchActive;
         private Entity _searchReturnItem;
-        public bool IsSearching => _inventorySearchActive || _loadoutNameEditing;
+        public bool IsSearching => _inventorySearchActive || _loadoutNameEditing || StorageLabelEditorOpen;
         public string SearchQuery => _inventoryQuery;
         public void HideForDecisionReader() { SetLedgerVisible(false); }
         public void RestoreAfterDecisionReader() { if (_isOpen) { SetLedgerVisible(true); Rebuild(); ClampCursor(); Render(); } }
@@ -34,8 +34,14 @@ namespace CavesOfOoo.Rendering
                 text = null;
                 return null;
             }
+            var visibleSections = sections != null ? identity.Sections : identity.Sections
+                .Where(section => section.Heading == RepairExamine.Heading)
+                .Append(new AnnouncementSection("Decision details", text)).ToArray();
+            var repair = visibleSections.FirstOrDefault(section => section.Heading == RepairExamine.Heading);
+            if (repair != null && text.IndexOf(repair.Heading.ToUpperInvariant() + "\n", StringComparison.Ordinal) < 0)
+                text = repair.Heading.ToUpperInvariant() + "\n" + repair.Text + "\n\n" + text;
             return new AnnouncementDocument(identity.Title, identity.Kind,
-                sections ?? new[] { new AnnouncementSection("Decision details", text) }, identity.Facts,
+                visibleSections, identity.Facts,
                 identity.BlueprintName, identity.Glyph, identity.GlyphColor,
                 identity.Subject, identity.SubjectZone, identity.SubjectCell, identity.SubjectViewer);
         }
@@ -180,7 +186,8 @@ namespace CavesOfOoo.Rendering
                 // The torch section owns its validated flame/fuel reading. Keep
                 // other attached state providers without publishing fuel twice.
                 bool torch = item.HasPart<TorchLightPart>();
-                StateReader.Collect(item, true, null, null, PlayerEntity, state, part => !torch || !(part is FuelPart));
+                StateReader.Collect(item, true, null, null, PlayerEntity, state,
+                    part => (!torch || !(part is FuelPart)) && !(part is RepairablePart && RepairExamine.Section(item) != null));
                 if (state.Count > 0)
                     context.Add(new AnnouncementSection("Current condition", string.Join("\n", state),
                         AnnouncementTone.Normal, "Condition: see full details."));

@@ -534,6 +534,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     surface stock. The contrast across additional ordinary layouts and
     any distinct cave processing reward remain open.
     [Evidence](Verification/MachineSystems/CausewaySteamSeam20261125/README.md)
+    Examine and carried storage now expose exact repair inputs and let
+    the player sort materials into labeled portable vessels with the same
+    combined weight. These support maintenance and freight opportunities
+    through their ordinary shared actions.
+    [Evidence](Verification/MachineSystems/RepairAndCarriedStorage20261126/README.md)
     A guided version 26 underground route found a packet, carried it,
     screened it and used both fractions in separate saved branches.
     The player used one sand for a cave exit mark and one salt to

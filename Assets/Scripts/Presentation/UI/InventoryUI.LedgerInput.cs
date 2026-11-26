@@ -8,7 +8,8 @@ namespace CavesOfOoo.Rendering
     {
         private Vector2 _ledgerLastPointer = new Vector2(float.NaN, float.NaN);
         private bool LedgerHasPopup => _displaceConfirm != null || _equipPopup != null || _itemActionPopup != null
-            || _modTargetPopup != null || _grimoirePicker != null || _ledgerCommandsOpen || _loadoutNameEditing;
+            || _modTargetPopup != null || _grimoirePicker != null || _ledgerCommandsOpen || _loadoutNameEditing
+            || StorageLabelEditorOpen;
 
         // All pointer input is resolved against the same rectangles that paint.
         // Returning true consumes every click, including blank/modal-backdrop clicks.
@@ -52,6 +53,10 @@ namespace CavesOfOoo.Rendering
         {
             switch (hit.Kind)
             {
+                case LedgerHitKind.StorageLabelField:
+                case LedgerHitKind.StorageLabelDecrease:
+                case LedgerHitKind.StorageLabelIncrease:
+                    return SelectStorageLabelField((StorageLabelField)hit.Index);
                 case LedgerHitKind.Equipment:
                     if (_panel == PANEL_EQUIPMENT && _equipCursorIndex == hit.Index) return false;
                     _panel = PANEL_EQUIPMENT; _equipCursorIndex = hit.Index; return true;
@@ -91,6 +96,9 @@ namespace CavesOfOoo.Rendering
             SelectLedgerHit(hit);
             switch (hit.Kind)
             {
+                case LedgerHitKind.StorageLabelField: ActivateStorageLabelField(); return;
+                case LedgerHitKind.StorageLabelDecrease: ChangeStorageLabelField(-1); return;
+                case LedgerHitKind.StorageLabelIncrease: ChangeStorageLabelField(1); return;
                 case LedgerHitKind.Tab: _panel = hit.Index; Render(); return;
                 case LedgerHitKind.PackTextScale: ChangeDenseTextScale(hit.Index); return;
                 case LedgerHitKind.PackGrouping: if (!_inventorySearchActive) ToggleInventoryGrouping(); return;
@@ -143,7 +151,8 @@ namespace CavesOfOoo.Rendering
 
         private void CancelLedgerPopup()
         {
-            if (_loadoutNameEditing) _loadoutNameEditing = false;
+            if (StorageLabelEditorOpen) _storageLabelEdit = null;
+            else if (_loadoutNameEditing) _loadoutNameEditing = false;
             else if (_ledgerCommandsOpen) _ledgerCommandsOpen = false;
             else if (_displaceConfirm != null) _displaceConfirm = null;
             else if (_itemActionPopup != null && _itemActionPopup.InBodyPartPicker) _itemActionPopup.InBodyPartPicker = false;
@@ -156,6 +165,7 @@ namespace CavesOfOoo.Rendering
 
         private void MoveLedgerSelection(int delta)
         {
+            if (StorageLabelEditorOpen) { MoveStorageLabelFocus(delta); return; }
             if (_loadoutNameEditing) return;
             if (_ledgerCommandsOpen) _ledgerCommandIndex = Mathf.Clamp(_ledgerCommandIndex + delta, 0, _ledgerCommands.Count - 1);
             else if (_displaceConfirm != null) _displaceConfirm.CursorOnYes = !_displaceConfirm.CursorOnYes;

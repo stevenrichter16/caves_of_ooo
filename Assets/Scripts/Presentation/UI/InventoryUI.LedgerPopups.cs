@@ -15,10 +15,10 @@ namespace CavesOfOoo.Rendering
         bool _ledgerStatusRequested;
         /// <summary>Transfers a pointer request to InputHandler's existing free reader path once.</summary>
         public bool ConsumeDetailsRequest()
-        { bool requested = _ledgerDetailsRequested; _ledgerDetailsRequested = false; return requested && _isOpen && !_inventorySearchActive; }
+        { bool requested = _ledgerDetailsRequested; _ledgerDetailsRequested = false; return requested && _isOpen && !_inventorySearchActive && !StorageLabelEditorOpen; }
         /// <summary>Transfers the controller command to the same free character reader as F2, once.</summary>
         public bool ConsumeStatusRequest()
-        { bool requested = _ledgerStatusRequested; _ledgerStatusRequested = false; return requested && _isOpen && !_inventorySearchActive; }
+        { bool requested = _ledgerStatusRequested; _ledgerStatusRequested = false; return requested && _isOpen && !_inventorySearchActive && !StorageLabelEditorOpen; }
 
         void OpenLedgerCommands()
         {
@@ -104,6 +104,11 @@ namespace CavesOfOoo.Rendering
             _ledgerModalBounds = LedgerPaintRect(new Rect(250, 142, 780, 556));
             const float x = 250, y = 142, width = 780, height = 556;
             LFrame(new Rect(x, y, width, height), LGold, LPanel);
+            if (StorageLabelEditorOpen)
+            {
+                RenderStorageLabelEditor();
+                return;
+            }
             string title = "ITEM ACTIONS", owner = "", groupScope = "";
             int count = 0, cursor = 0;
             Func<int, string> label = null;

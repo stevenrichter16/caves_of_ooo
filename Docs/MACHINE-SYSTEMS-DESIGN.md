@@ -1,3 +1,12 @@
+**Show the repair bill on the object and count its real cargo — November 26 UTC, 2026.**
+Examine promotes known repair requirements into an amber warning for
+fixtures and broken gear. Town methods list a temporary patch separately,
+with each consumed material and each retained tool spelled out. Hand-held
+storage uses shared physical custody and leaves total carried mass the same
+when goods move inside the pack. The label persists on its exact vessel.
+[Design](CARRIED-STORAGE-LABELS-DESIGN.md) ·
+[Evidence](Verification/MachineSystems/RepairAndCarriedStorage20261126/README.md)
+
 **A surface vent can point to a seam below — November 26 UTC, 2026.**
 The eligible Causeway shoulder uses one ordinary vent and the existing
 physical return stair. The vent shows a crust around the local fissure.

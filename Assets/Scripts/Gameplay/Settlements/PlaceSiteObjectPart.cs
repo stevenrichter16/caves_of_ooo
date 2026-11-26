@@ -69,6 +69,41 @@ namespace CavesOfOoo.Core
             return data.Broken + (context.Full ? " " + Advice(data, site, context.Viewer) : "");
         }
 
+        internal string ExamineRepairRequirements()
+        {
+            var data = Data;
+            var zone = ParentEntity?.SpatialZone;
+            var world = WorldLocationContext.For(zone);
+            if (data == null || zone?.ZoneID != _zoneId || world == null
+                || !world.CachedZones.TryGetValue(_zoneId, out var current) || current != zone
+                || !world.SettlementManager.TryGetExistingSite(_zoneId, SiteId, out var site)
+                || site.Stage >= RepairStage.StableRepair) return null;
+
+            string left = Remaining(site);
+            var lines = new List<string>
+            {
+                site.Stage == RepairStage.Fouled ? data.Broken
+                    : "Patched for now" + (left == "" ? "." : " for " + left + "."),
+                "", "Lasting repair"
+            };
+            AddRepairRequirements(lines, data.Lasting);
+            if (data.HasPatch && site.Stage == RepairStage.Fouled)
+            {
+                lines.Add("");
+                lines.Add("Temporary patch (about " + data.Patch.RelapseTurns + " turns)");
+                AddRepairRequirements(lines, data.Patch);
+            }
+            return string.Join("\n", lines);
+        }
+
+        private static void AddRepairRequirements(List<string> lines, PlaceSiteFixData fix)
+        {
+            foreach (var material in fix.Materials)
+                lines.Add("- " + material.Count + " " + PlaceSiteRepairs.NameOf(material.Blueprint) + " (used)");
+            lines.Add("Tools and machines");
+            lines.Add(string.IsNullOrEmpty(fix.Tool) ? "None required." : "- " + PlaceSiteRepairs.NameOf(fix.Tool) + " (kept)");
+        }
+
         /// <summary>How to mend it and what that takes, from the site's own repair data (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows, and a refused repair names what is missing.</summary>
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {

@@ -38,7 +38,10 @@ namespace CavesOfOoo.Core
             var facts = new List<AnnouncementFact>();
             AddFacts(target, facts);
             var render = target.GetPart<RenderPart>();
-            var document = new AnnouncementDocument(target.GetDisplayName(), "EXAMINE", sections, facts,
+            var display = sections == null ? new List<AnnouncementSection>() : new List<AnnouncementSection>(sections);
+            if (!display.Exists(section => section?.Heading == RepairExamine.Heading)
+                && RepairExamine.Section(target) is AnnouncementSection repair) display.Insert(0, repair);
+            var document = new AnnouncementDocument(target.GetDisplayName(), "EXAMINE", display, facts,
                 target.BlueprintName, string.IsNullOrEmpty(render.RenderString) ? (char?)null : render.RenderString[0],
                 render.ColorString, target, null, null, viewer);
             return Owned(target, viewer) && ReferenceEquals(examinable, target.GetPart<ExaminablePart>()) ? document : null;
@@ -97,6 +100,8 @@ namespace CavesOfOoo.Core
             bool inWorld=zone!=null&&cell!=null;
             string warning=inWorld?LocalGatheringClaims.WarningFor(viewer,owner,zone):null;
             Add(sections,"Attention",warning,AnnouncementTone.Warning);
+            var repair = RepairExamine.Section(owner);
+            if (repair != null) sections.Add(repair);
 
             // Public commitments, current effects and visible ground must precede long flavor.
             var state=new List<string>();
@@ -106,7 +111,8 @@ namespace CavesOfOoo.Core
             if(effects!=null)for(int i=0;i<effects.Count;i++)
                 if(effects[i]!=null&&effects[i].Owner==owner&&effects[i].Duration!=0)Add(state,EffectDescriber.Describe(effects[i]));
             if(inWorld)Add(state,CellStatusReadout.GroundLine(zone,cell));
-            StateReader.Collect(owner,true,zone,cell,viewer,state);   // kitchen, dressing, oil, repair, trap, and any Part added later
+            StateReader.Collect(owner,true,zone,cell,viewer,state,
+                part => repair == null || !(part is RepairablePart || part is PlaceSiteObjectPart));
             if(inWorld)
             {
                 Add(state,owner.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone,cell));
@@ -187,15 +193,9 @@ namespace CavesOfOoo.Core
 
         static void AddRepairFact(Entity owner,List<AnnouncementFact> facts)
         {
-            var repair=owner.GetPart<RepairablePart>();var composition=owner.GetPart<CompositionPart>();
-            if(repair?.ParentEntity!=owner||composition?.ParentEntity!=owner)return;
-            if(repair.PortableEquipment?!owner.HasEffect<BrokenEffect>():repair.Repaired)return;
-            int repairs=0,compositions=0;
-            foreach(var part in owner.Parts)
-            { if(part is RepairablePart)repairs++;if(part is CompositionPart)compositions++; }
-            if(repairs!=1||compositions!=1)return;
-            var recipe=RepairRecipeRegistry.Get(repair.RecipeId);
-            if(recipe==null||!composition.Contains(recipe.Composition))return;
+            var repair = owner.GetPart<RepairablePart>();
+            var recipe = RepairExamine.ApplicableRecipe(owner, repair, owner.HasEffect<BrokenEffect>());
+            if (recipe == null) return;
             // A requirement, not a claim that the viewer has supplies, is in reach, or can act.
             facts.Add(new AnnouncementFact("Repair", repair.Bill(recipe)));
         }

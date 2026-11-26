@@ -1,3 +1,13 @@
+**Repair bills and carried storage read clearly in play — November 26 UTC, 2026.**
+Examine puts an amber repair warning above the usual details and names the
+actual inputs and tools for the live fault. Field satchels and portable camp
+boxes use their combined weight and can organize goods from the pack. Their
+saved labels support swatches, colored icons, and colored text. Continue the
+45 with the verified shared-capability work and an exact downstream purpose
+for the Causeway materials.
+[Design](CARRIED-STORAGE-LABELS-DESIGN.md) ·
+[Evidence](Verification/MachineSystems/RepairAndCarriedStorage20261126/README.md)
+
 **A visible Causeway vent has a physical cave counterpart — November 26 UTC, 2026.**
 Fresh version 29 can place an ordinary steam vent off the Sodden Causeway
 approach. The same original stair leads to an existing return with a local

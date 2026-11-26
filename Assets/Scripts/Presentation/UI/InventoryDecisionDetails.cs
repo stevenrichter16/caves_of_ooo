@@ -77,18 +77,30 @@ namespace CavesOfOoo.Rendering
         static string HandlingFacts(Entity actor, Entity item)
         {
             var lines = new List<string>();
-            bool lift = HandlingService.CanLift(actor, item, out var liftReason);
-            lines.Add("Lift Strength: " + HandlingService.GetLiftStrengthRequirement(item) + "; yours: " + actor.GetStatValue("Strength") + ".");
-            lines.Add(lift ? "You can carry this item." : "This item cannot be carried now. " + liftReason);
+            var pack = actor.GetPart<InventoryPart>();
+            bool owned = Owned(actor, item);
+            bool storage = CarriedStorage.UsesCarriedContents(item);
+            if (storage)
+            {
+                lines.Add("The vessel and its contents count toward your pack weight.");
+                if (!owned) lines.Add(CarriedStorage.CanAcceptNewLoad(pack, item)
+                    ? "The loaded vessel fits your carry limit." : "The loaded vessel exceeds your carry limit or cannot be weighed.");
+            }
+            else
+            {
+                bool lift = HandlingService.CanLift(actor, item, out var liftReason);
+                lines.Add("Lift Strength: " + HandlingService.GetLiftStrengthRequirement(item) + "; yours: " + actor.GetStatValue("Strength") + ".");
+                lines.Add(lift ? "You can carry this item." : "This item cannot be carried now. " + liftReason);
+            }
             lines.Add("Grip: " + (HandlingService.GetGripType(item) == GripType.TwoHand ? "two hands." : "one hand."));
-            if (HandlingService.CanThrow(actor, item, out var throwReason))
+            if (storage && !HandlingService.IsThrowable(item)) lines.Add("This vessel cannot be thrown.");
+            else if (HandlingService.CanThrow(actor, item, out var throwReason))
                 lines.Add("Throw range: " + HandlingService.GetThrowRange(actor, item) + " cells. Throw Strength: " + HandlingService.GetThrowStrengthRequirement(item) + ".");
             else lines.Add(throwReason);
             if (DragRules.CanDrag(actor, item) == DragVerdict.Ok) lines.Add("You can haul this load from beside it; use its interaction menu.");
-            var pack = actor.GetPart<InventoryPart>();
             if (pack != null)
             {
-                long after = (long)pack.GetCarriedWeight() + (Owned(actor, item) ? 0 : InventoryPart.GetItemWeight(item));
+                long after = (long)pack.GetCarriedWeight() + (owned ? 0 : InventoryPart.GetItemWeight(item));
                 int burden = pack.GetMaxCarryWeight();
                 lines.Add("Pack weight: " + pack.GetCarriedWeight() + "; with this item: " + after + ". Burden threshold: " + (burden < 0 ? "unlimited" : burden.ToString()) + ".");
                 if (burden >= 0 && after > burden) lines.Add("This weight would leave you overburdened.");

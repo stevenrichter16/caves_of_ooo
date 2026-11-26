@@ -156,7 +156,10 @@ namespace CavesOfOoo.Rendering
                 int index = _denseRows[ordinal]; var item = _rows[index].Item; var row = g.RowBounds(ordinal);
                 bool selected = index == _cursorIndex;
                 if (selected) { LBox(row, LSelected); LBox(new Rect(row.x, row.y, 3, row.height), LGold); }
-                LLabel(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), DenseRowName(item, (int)(g.NameWidth / 10)), selected ? LGold : LInk, 20);
+                float labelWidth = DrawStorageLabel(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), item.Item);
+                float nameWidth = g.NameWidth - labelWidth;
+                LLabel(new Rect(row.x + 10 + labelWidth, row.y + 1, nameWidth, 22),
+                    DenseRowName(item, (int)(nameWidth / 10)), selected ? LGold : LInk, 20);
                 var group = _rows[index].Group;
                 LLabel(new Rect(row.x + row.width - 126, row.y + 3, 40, 20), DenseNumber(group?.TotalUnits ?? item.StackCount), LInk, 16);
                 LLabel(new Rect(row.x + row.width - 78, row.y + 3, 54, 20), DenseNumber(group?.TotalWeight ?? item.Weight), LInk, 16);

@@ -42,8 +42,8 @@ namespace CavesOfOoo.Core
                 "Copy-room lamps supplied: drying joins the next consignment.",
                 "Copy-room supply included: an extra drying book in each new consignment.", condition: "Quillhold.DesksLit"));
         static readonly Profile Provisioner = new Profile("ProvisionerStock",
-            new[] { "LiquidFlask", "Waterskin", "DriedMeat", "Starapple", "Torch", "CandyCarrotSeed", "LampOil" },
-            new[] { 1, 1, 2, 1, 1, 1, 3 },
+            new[] { "LiquidFlask", "Waterskin", "DriedMeat", "Starapple", "Torch", "CandyCarrotSeed", "LampOil", "FieldSatchel" },
+            new[] { 1, 1, 2, 1, 1, 1, 3, 1 },
             new[] { "Mushroom", "RawMeat", "EmberwheatSeed", "WaterTonic", "CampHearth", "PoisonGasGrenade" });
         static readonly string[] WeaponChoices = { "SplitHaftTokenTrinket", "Mace", "Hatchet", "LongSword", "Battleaxe", "Warhammer",
             "SteelBladeComponent", "SerratedEdgeComponent", "StunGasGrenade" };
