@@ -606,6 +606,14 @@ one timber both made the same second brine batch possible. Timber kept
 the oil and left more heat available for later work.
 [Evidence](Verification/MachineSystems/LiquidHearthFuel20261126/README.md)
 
+**A planted drawgourd makes another working vessel — November 26 UTC, 2026.**
+The earlier Gleaners' sign, first shell and finite basin led to a planted
+and once-watered gourd. In the same saved garden, a second hand watering
+or Conjure Rain reached the same ripe harvest. The player moved their
+remaining water into the second shell and kept the seed in both branches.
+The spell kept one extra drink. This qualifies an existing ordinary loop.
+[Evidence](Verification/MachineSystems/DrawgourdWateringComparison20261126/README.md)
+
 **A rough field haft supports Sella’s bench — November 26 UTC, 2026.**
 The existing covered timber bench uses two salvaged timber or one timber
 and one sound loose rough field haft. The recipe prefers two timber.

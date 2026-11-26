@@ -1,3 +1,13 @@
+**Hand water and Conjure Rain grow a second drawgourd — November 26 UTC, 2026.**
+The ordinary seed `1498104061` branch extended the earlier Gleaners'
+sign, harvest, three-drink basin and planting route. Both methods
+started from the same dried plant and ripened it at tick 1160. The
+harvest gave a second shell and a seed. Ordinary transfers kept one
+drink in the new shell after manual work and two after the spell. Both
+settled results survived fresh Continue at 40 HP. Guided play on existing
+source advances #40. The wider initial acceptance gates remain open.
+[Evidence](Verification/MachineSystems/DrawgourdWateringComparison20261126/README.md)
+
 **Broken equipment shows its signed penalty — November 26 UTC, 2026.**
 Fresh Continues from Sill tick 160 used the same carried broken dagger.
 The native F1 view changed `?2 melee accuracy` to `-2 melee accuracy`

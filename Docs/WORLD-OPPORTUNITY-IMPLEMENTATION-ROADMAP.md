@@ -709,6 +709,13 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     for #20, #37 and #40.
     [Evidence](Verification/MachineSystems/TineOrdinaryWeir20261126/README.md)
 
+    The earlier ordinary Gleaners' sign route now continues to a mature
+    drawgourd and a second usable water vessel. From the same dry crop,
+    one carried water or Conjure Rain reached the same harvest. The
+    learned spell kept one extra drink. Actual transfers into each new
+    shell survived Continue and the player kept the returned seed.
+    [Evidence](Verification/MachineSystems/DrawgourdWateringComparison20261126/README.md)
+
     An actual fresh v26 seed 2 route earned the sieve and screened nearby clay.
     A retained v18 seed 64 route bought the actual delivered clay. Both paths
     repaired the same service and then paid, collected and ate the same kind
