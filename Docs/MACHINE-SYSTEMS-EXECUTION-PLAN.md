@@ -74,6 +74,23 @@ healing rolls were independent. The recipe uses existing heat rules and has
 a dedicated inventory icon.
 [Evidence](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
 
+**Field head recovery and lake perch Mac delivery — November 26 UTC, 2026.**
+The universal Mac package from `8308de3a4` reached GameBootstrap on
+Apple Silicon. Package and ordinary startup save hashes matched. Full
+packaged play and Intel execution remain open.
+[Delivery receipt](Verification/MachineSystems/MacCandidate8308DE3A4/README.md)
+
+**Next exchange design, a whole satchel as one sealed parcel.**
+Consider admitting one directly carried, intact loaded field satchel to
+the existing Concord carriage. Check both the shell and every enclosed
+item against existing transfer and Clause Five refusals, with a complete
+quote and exact saved custody through send and collection. Use the full
+load for the existing fee and collection capacity. Ordinary sale still
+requires an empty vessel. The earned Sill purchase has the exact satchel
+and enough drams to exercise the existing route. This is a proposal for
+inter-post exchange, with visible porter travel handled by its separate
+existing rules.
+
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe
 measures to actual elders. One showed the missing second measure and
