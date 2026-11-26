@@ -44,7 +44,9 @@ namespace CavesOfOoo.Core
             {
                 var actor = e.GetParameter<Entity>("Actor");
                 var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? ParentEntity?.SpatialZone;
-                if (!Harvested && SeasonalAccess(zone) && (this is not SeasonalHarvestPart || SeasonalHarvestPart.ActorCanGather(actor, zone)))
+                bool canGather = this is RainSeamHarvestPart seam ? seam.CanGather(actor, zone)
+                    : SeasonalAccess(zone) && (this is not SeasonalHarvestPart || SeasonalHarvestPart.ActorCanGather(actor, zone));
+                if (!Harvested && canGather)
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", ActionText, "Harvest", 'h', 20);
                 return true;
             }
@@ -66,6 +68,7 @@ namespace CavesOfOoo.Core
                 if (!seasonal.Ready(zone, selectedSeason)) return "seasonal-source-unavailable";
                 if (!SeasonalHarvestPart.ActorCanGather(actor, zone)) return "seasonal-actor-unavailable";
             }
+            if (this is RainSeamHarvestPart seam && !seam.CanGather(actor, zone)) return "rain-seam-unavailable";
             if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)) return "actor-dead";
             var inventory = actor.GetPart<InventoryPart>();
             carried = inventory?.CanConsumeOne(ParentEntity) == true;
@@ -95,6 +98,8 @@ namespace CavesOfOoo.Core
             string reason = Validate(actor, zone, seasonalYield?.Season, out bool carried, out var sourceCell, out var dropCell);
             if (reason != null) return Reject(actor, reason);
             var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell, seasonalYield?.Season);
+            var rainSeam = this as RainSeamHarvestPart;
+            var rainProof = rainSeam?.CaptureGathering(actor, zone, sourceCell);
             string declaredProduct = YieldBlueprint;
             int declaredMin = YieldMin, declaredMax = YieldMax, declaredChance = YieldChance;
             string product = seasonalYield?.Product ?? declaredProduct;
@@ -160,6 +165,7 @@ namespace CavesOfOoo.Core
                 int count = rollPassed ? (max > min ? rng.Next(min, max + 1) : min) : 0;
                 string sourceName = source.GetDisplayName();
                 var products = new Entity[count];
+                Func<bool> moistYield = null;
                 for (int i = 0; i < count; i++)
                 {
                     products[i] = factory.CreateEntity(product);
@@ -175,6 +181,11 @@ namespace CavesOfOoo.Core
                         || zone.GetReadOnlyEntities().Any(owner => owner.ID == item.ID)
                         || !transaction.TryClaim(item, actor, "Harvest")))
                         return Fail("invalid-selected-product");
+                    if (rainSeam != null)
+                    {
+                        moistYield = rainSeam.PrepareYield(item, actor, sourceCell, transaction, factory);
+                        if (moistYield == null) return Fail("invalid-rain-seam-product");
+                    }
                 }
                 reason = Validate(actor, zone, seasonalYield?.Season, out bool stillCarried, out var stillSource, out var stillDrop);
                 if (reason != null || stillCarried != carried || !ReferenceEquals(sourceCell, stillSource) || !ReferenceEquals(dropCell, stillDrop)
@@ -188,7 +199,7 @@ namespace CavesOfOoo.Core
                 {
                     if (carried)
                     { if (!inventory.RemoveObject(source)) return false; }
-                    else
+                    else if (rainSeam == null)
                     {
                         var currentHeld = source.GetPart<DraggedPart>();
                         var currentHauler = currentHeld?.Dragger;
@@ -220,6 +231,8 @@ namespace CavesOfOoo.Core
                 bool applied = receipt == null ? Transfer() : receipt.Apply(Transfer);
                 if (!applied || (receipt != null && !receipt.ClaimChanges(transaction, actor, "Harvest"))) return Fail("transfer-refused");
                 if (seasonalProof != null) transaction.BeforeCommit(seasonalProof);
+                if (rainProof != null)
+                    transaction.BeforeCommit(() => rainProof() && moistYield?.Invoke() == true);
                 int dropped = droppedItems.Count;
                 transaction.AfterCommit(()=>audio?.Publish());
                 transaction.AfterCommit(() =>

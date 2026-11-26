@@ -1,3 +1,11 @@
+**The Morrowfast seam visibly loosens in rain — November 26 UTC, 2026.**
+The player saw the seam from the path, collected one damp packet just
+after a shower, let it dry and sorted it with their earned sieve. The two
+fire clay repaired the local well and the separated grit laid temporary
+footing. Fresh Continue kept the spent seam, repair and grit. Native 154
+passed with one opt-in skip. Other opportunity cues remain open.
+[Map comparisons and playtest](Verification/MachineSystems/RainClaySeam20261126/README.md)
+
 **Provisioner stock can carry the ordinary empty satchel — November 26 UTC, 2026.**
 The planned new satchel had blocked the entire shop profile. The fix
 admits that exact empty shell for supplies. Sill's native trade opening

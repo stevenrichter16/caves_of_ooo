@@ -79,8 +79,9 @@ Relevant source: [WorldClock](../Assets/Scripts/Gameplay/Turns/WorldClock.cs),
 
 ## Concrete weather opportunities
 
-The first row is now bounded W1a Editor behavior at the fresh public Morrowfast
-allotment. The other rows remain proposed extensions. The reward is useful because it feeds
+The first and third rows are now bounded Editor behavior at the fresh
+western Morrowfast allotment. The remaining rows describe extensions unless
+called out below. The reward is useful because it feeds
 existing or explicitly planned consumers; quantity, effort and opportunity are
 different benefits and should not become universal item-stat multipliers.
 
@@ -94,7 +95,7 @@ remains proposed. [Native shelf evidence](Verification/MachineSystems/NorthFairW
 | --- | --- | --- |
 | A mild shower passes an installed, clean catch-cloth with a collecting edge. Its reader offers collection and names a receiver. | Gather a few units of clean water for crop tending or other supported water uses while travelling. | Shared finite local rain allowance, exact compatible receiver and paid action. Carry water, use a well/source or buy supplies instead. Shade alone grants no collection. |
 | Showers reach an exposed planted bed; the crop's reader identifies the rainfall contribution. | Save some tending water while doing another activity nearby. | A bounded moisture top-up, no extra produce or seed grant. Existing vessel watering and Conjure Rain remain available. A roofed bed does not receive open-sky rain. |
-| During rain and shortly afterward, a visible slump leaves loose sediment below an eligible clay bank. | Collect a finite mixed deposit and screen it for fire clay and coarse grit. | The shower exposes an authored reserve. The existing clay bank stays available on its ordinary terms. [Collection window proposal](#weather-exposes-a-workable-seam) |
+| During rain and shortly afterward, a visible slump leaves loose sediment below an eligible clay bank. | Collect a finite mixed deposit, dry it, then screen it for fire clay and coarse grit. | At the western allotment the shower exposes one authored reserve. The ordinary bank and dry sorting heap are separate. [Native playtest](Verification/MachineSystems/RainClaySeam20261126/README.md) |
 | Clear dry air reaches a loaded drying rack. Its preview shows reduced work for the selected batch. | Prepare carried flexible fibres or selected harvested material with fewer work steps. | Same finite input and output; a proposed 3-step baseline may become 2 steps, never zero. A rack/process contract must exist first. Hand preparation or a town service remains. No damp-weather penalty is added to the baseline. |
 | A steady breeze moves chaff in a prepared grain or seed bundle. | A mesh screen or suitable tray can winnow it, making planting or cooking supplies from an alternative material fraction. | Consume the exact mixed bundle once; allocate its declared grain/seed/chaff budget. Do not grant an extra full harvest on top. Hand separation or milling is the alternative. |
 | A wet-growth period leaves optional fresh flexible stems on an eligible plant. | A cutting tool can take a fibre preparation instead of that source's alternative harvest, supplying cord or binding work. | Plant-specific finite material manifest and gathering rights. No universal tree cutting and no duplicated seed/fibre allocation. Ordinary cord and workshop supplies remain. |
@@ -103,10 +104,9 @@ remains proposed. [Native shelf evidence](Verification/MachineSystems/NorthFairW
 | During a cool clear period, a supported condenser has favorable ambient conditions. | A selected future still recipe can recover an additional declared fraction normally lost to the process, or reduce its paid work. | Pick one benefit per recipe and account for the retained fraction. Do not change existing4:1 mire settling or oil quality silently. No sunshine-to-clay conversion; new process qualification is required. |
 | A local harvest period supports a particular prepared food or material. The cook or merchant explains its origin. | An optional recipe or later special shipment gives another way to prepare for an expedition. | Real ingredients for local preparation; existing abstract consignments retain their separate supply authority. No automatic NPC production or exclusive seasonal progression item. |
 
-For the initial weather release, select only the first two opportunities.
-The other rows are a dependency-backed catalogue, not a promise to implement
-all of them at once. In particular, timed drying, sediment recovery, new seasonal
-fractions and condenser benefits need complete process contracts.
+The original shower work covers catchment and the proposed crop moisture
+benefit. Other opportunities qualify as separate material or work loops.
+Each needs a complete process contract before it changes the world.
 
 ### Weather exposes a workable seam
 
@@ -139,9 +139,9 @@ showers, crossing the zone boundary and reloading keep it spent. Queries
 read the existing source and weather without creating stock. Verify the
 same bank in dry weather, while raining, shortly afterward and after the
 grace period. Then verify a late collection, processing after the window,
-both useful fractions and the option to walk past comfortably. This is a
-proposal. Window length, source placement and wet screening still need
-qualification.
+both useful fractions and the option to walk past comfortably. One actual
+western allotment is qualified below. Other placements and wet screening
+remain proposals.
 
 Source check, November 26. The existing weather observation ends at the
 next 600-tick interval. Consecutive wet intervals must count as one
@@ -153,6 +153,23 @@ The existing screened spoil is explicitly dry. Directly yielding that
 packet from newly wetted ground would remove a material condition. The
 first complete seam trial needs an explicitly qualified wet screening
 or drying step and a visible source cue.
+
+The implemented trial uses the outdoor clay working at the western Morrowfast
+allotment, when that field generates with room for an extra deposit. The
+shower loosens one separate three-pound packet. After the rain it stays
+workable for 150 world ticks. In fair weather before the next shower the
+uncollected bank settles again. Taking the packet leaves a visible scraped
+seam. Both the ordinary bank and the dry sorting heap keep their own stock.
+
+The packet carries ordinary moisture when gathered. Spread it out to dry,
+or use an existing drying service, then screen two measures of fire clay
+and one of coarse grit. The sieve keeps the solids and refuses wet stock
+through its existing rules. Moisture uses the same scale as wet gear and
+does not supply a collectible liquid. The bank's appearance follows the
+same local conditions as gathering. The source keeps its spent state through
+travel and reload. Its geology participates in the world's local weather as
+soon as the fresh field is visited. Already cached fields receive no added
+deposit. [Native playtest and limits](Verification/MachineSystems/RainClaySeam20261126/README.md)
 
 ## Different seasonal uses for familiar tools
 

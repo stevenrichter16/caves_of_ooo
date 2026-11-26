@@ -1,0 +1,188 @@
+{
+  "seed": 2,
+  "generationVersion": 31,
+  "zone": "Overworld.2.6.0",
+  "cameraActorCell": [
+    58,
+    11
+  ],
+  "normalMapSeamCell": [
+    59,
+    12
+  ],
+  "captures": [
+    {
+      "name": "01-firm.png",
+      "tick": 2340,
+      "branch": "initial",
+      "sha256": "50425af843446168c4a409c6550b8be4785524cd73eaac4a15e13c2d4a6e6eb5"
+    },
+    {
+      "name": "02-loose.png",
+      "tick": 2400,
+      "branch": "initial",
+      "sha256": "cc841ad513cb2893dcb49c53c729d7be5cf89255674991ff172d999727dc4868"
+    },
+    {
+      "name": "03-settling.png",
+      "tick": 3000,
+      "branch": "retry",
+      "sha256": "e4d49569332cf9cfddebbfea5da990654f09b5cbe30d519e5f984072a0b640de"
+    },
+    {
+      "name": "04-spent.png",
+      "tick": 3010,
+      "branch": "retry",
+      "sha256": "f328207251061a7832f8333c1f30fdee9925b07c8233d94272820d49007c5796"
+    }
+  ],
+  "seededStart": {
+    "root": "/private/tmp/coo-wayside-v31-2-crafted-20261126/a8eb42433d614f9c9e60755cae08096c",
+    "files": {
+      "Quick.json": "1136998e835f0d36b93249b4921ccfb12bd2bb1b586df54ada577b73415ce2af",
+      "Quick.json.bak": "eac41f78a951aff659f83060d5ea0cd8b4fad8cb4a515afcb7d03a1fbc8e5fa2",
+      "Quick.sav.gz": "33c9600bf79802bed0cd07abb604c477b870578fa0621e00176fe1022563f7d8",
+      "Quick.sav.gz.bak": "0181ac8ad7799fe934cec4979b809644bcc28bef585b002c8339ee3af585b62e"
+    }
+  },
+  "finalSave": {
+    "root": "/private/tmp/coo-rain-clay-seam-20261126/a8eb42433d614f9c9e60755cae08096c",
+    "files": {
+      "Quick.json": "8556e4aabbcb596cf004386ea21dada1313c7af1879b1e2dec622d8cc06f078f",
+      "Quick.json.bak": "357bb04d5d2237135baeb971291ef0daad851cdc0ef7829f18c8309362f2c2b1",
+      "Quick.sav.gz": "719e42f7a4b5cc2bc37a43c722ef5b1cfb79c7a76d9eba990f7f0723a2cc3a09",
+      "Quick.sav.gz.bak": "8de37fb063554ea5ab2386fbb29df0a1e9dcc6138a9e3e125cffe4ce01bf069c"
+    }
+  },
+  "finalGenerationCheck": {
+    "seam": "17138",
+    "sameCell": [
+      59,
+      12
+    ],
+    "gatheredDuringRainTick": 2410,
+    "hp": 40,
+    "wetPacket": "17139",
+    "wetMoisture": 0.25,
+    "preservedFrames": [
+      [
+        60,
+        8
+      ],
+      [
+        64,
+        8
+      ]
+    ],
+    "preservedSeedStand": [
+      60,
+      7
+    ],
+    "saved": {
+      "root": "/private/tmp/coo-rain-clay-seam-20261126/final-generation/a8eb42433d614f9c9e60755cae08096c",
+      "files": {
+        "Quick.json": "73fc119b2c4cacab3584dd880d8c7fd58e84b7d74c5aa67f9eb1d3fcb9b41cc1",
+        "Quick.json.bak": "065f41a3bab4295ea9192a8345af4e0eeaeb56299fe75bcb07ad83548d931be0",
+        "Quick.sav.gz": "4ccea893a9df4c93834d0816493d06a27ce3406dc4b5acb9ed422e3183d57e04",
+        "Quick.sav.gz.bak": "79fdda83d15393d521ee1f5192146a715bcf0da7f6d58b72f49a950a3f571b0d"
+      }
+    }
+  },
+  "nativePlay": {
+    "entryTick": 2050,
+    "ordinaryArrivalAutosaveTick": 2140,
+    "initialFatalTick": 2990,
+    "retryCombat": {
+      "defeatedShambler": "17080",
+      "hp": 39
+    },
+    "seam": "17135",
+    "ordinaryBank": "17124",
+    "dryHeap": "17134",
+    "readerTick": 3000,
+    "collectedTick": 3010,
+    "wetPacket": "17143",
+    "wetMoisture": 0.25,
+    "actualWetScreeningActionOffered": false,
+    "groundDryAtTick": 3270,
+    "samePacketPickedAtTick": 3280,
+    "screenedAtTick": 3290,
+    "sieveKept": "14682",
+    "fireClay": {
+      "id": "17144",
+      "count": 2
+    },
+    "coarseGrit": {
+      "id": "17146",
+      "count": 1,
+      "destination": [
+        58,
+        11
+      ],
+      "pickedAtTick": 3300
+    },
+    "well": {
+      "id": "17121",
+      "repairTick": 3330,
+      "drawMessage": "You drink. The well water is cool."
+    },
+    "gritFooting": {
+      "cell": [
+        58,
+        9
+      ],
+      "tick": 3340,
+      "turnsRemaining": 11
+    }
+  },
+  "freshContinue": {
+    "tick": 3340,
+    "hp": 39,
+    "cell": [
+      58,
+      9
+    ],
+    "spentSeam": "17135",
+    "repairedWell": "17121",
+    "sieve": "14682",
+    "gritAtCellTurns": 11,
+    "fourLoadedFilesMatch": true
+  },
+  "checkedPreservation": {
+    "normalPaths": 861,
+    "foreignTrackedPaths": 86,
+    "mismatches": 0
+  },
+  "independentReview": "No remaining scoped P1 or P2. Four original in-world captures and exact saved owners independently checked.",
+  "nativeRuns": {
+    "baselineRed": {
+      "xml": "/Users/steven/coo-verification/results/rain_clay_seam_red_20261126.xml",
+      "sha256": "178db4009c3d233f638c2a544072b75852a78deeb7ebae75bb67d9b0358809bb",
+      "logSHA256": "ba1ebcf6659c0d4ab0f601f268b23246abe91b2814ae812824d9f31b43d0ab5f",
+      "failed": 4
+    },
+    "initialFocused": {
+      "xml": "/Users/steven/coo-verification/results/rain_clay_seam_final_20261126.xml",
+      "sha256": "0cfdc3268007dd717a7b201492e850ec47707256a25b7bf3253461ef8efdd855",
+      "logSHA256": "3e8a8a2b98a08afce3c11e29a6e2f65b0b31c43ab3c8012a6140bea461dcd825",
+      "passed": 152,
+      "failed": 0,
+      "skipped": 1
+    },
+    "acceptance": {
+      "xml": "/Users/steven/coo-verification/results/rain_clay_seam_acceptance_20261126.xml",
+      "sha256": "462c48d8d2ecdca2ae66dd7dbcae0429480e7c4383914e3043a734c4a262aac4",
+      "logSHA256": "80d8916294690a4ec74dc319bf23915272668a330c9edf1eef3e903b86d96691",
+      "passed": 154,
+      "failed": 0,
+      "skipped": 1
+    }
+  },
+  "limits": [
+    "One layout with one earned sieve",
+    "Player direction was guided",
+    "Flat native play with separate ASCII view tests",
+    "No comparison of actual slips",
+    "Published Mac build predates this runtime"
+  ]
+}

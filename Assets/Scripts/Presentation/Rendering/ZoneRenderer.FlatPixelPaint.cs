@@ -59,8 +59,11 @@ namespace CavesOfOoo.Rendering
 
         private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y, out Color nativeColorCue, bool preserveAuthoredNativeColor = false)
         {
-            string colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string issue);
-            LogRenderIssueOnce(owner, issue);
+            if (!RainSeamWorldAppearance.TryGet(CurrentZone, owner, out _, out string colorString))
+            {
+                colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string issue);
+                LogRenderIssueOnce(owner, issue);
+            }
             Color authoredColor = QudColorParser.Parse(colorString);
             bool explicitNativeCue = false;
             var renderEvent = GameEvent.New("Render");

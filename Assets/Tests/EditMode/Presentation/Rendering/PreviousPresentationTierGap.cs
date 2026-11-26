@@ -36,6 +36,9 @@ namespace CavesOfOoo.Tests
             // The Gleaners' paid delivery uses four individually selectable glyph owners.
             // Their current flat fallback is checked in FlatPixelFallbackCatalogTests.
             "GleanersPorter", "GleanersLoadingMarker", "LiningClayParcel", "LiningClayReceivingShelf",
+            // The fixed rain-workable clay bank expresses its saved phase with
+            // world glyphs. FlatPixelRainSeamTests pins the real flat and ASCII views.
+            "RainClaySeam",
         };
 
         public static bool Excuses(string blueprint) => blueprint != null && Blueprints.Contains(blueprint);

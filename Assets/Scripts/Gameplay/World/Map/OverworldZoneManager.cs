@@ -1346,8 +1346,9 @@ namespace CavesOfOoo.Core
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)
             {
                 MorrowfastExpedition.TryInstall(zone, Factory);
-                RepairCultivationSite.TryInstall(zone, Factory);
+                bool allotmentPlaced = RepairCultivationSite.TryInstall(zone, Factory);
                 if (ShowerCollectionSite.TryInstall(zone, this)) SeasonalSeedSite.TryInstall(zone, this);
+                if (allotmentPlaced) RainClaySeamSite.TryInstall(zone, this);
             }
 
             // Stillleaf Archive SA.2: the Recension Searcher works in

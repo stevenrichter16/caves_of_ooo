@@ -630,6 +630,7 @@ namespace CavesOfOoo.Rendering
             ZoneTileStateSystem.BindRenderHook(zone);
             ClearWorldAffordance();
             CurrentZone = zone;
+            _rainSeamPaintTick = int.MinValue;
             _envSpriteRenderer?.ClearFlatPaintReceipts();
             SyncFlatPixelMode();
             _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
@@ -829,6 +830,22 @@ namespace CavesOfOoo.Rendering
 
         internal bool OwnsEnvironmentRenderer(EnvironmentSpriteRenderer renderer) => _envSpriteRenderer == renderer;
 
+        private int _rainSeamPaintTick = int.MinValue;
+
+        // Game-time state can change while the player waits on the same tile.
+        // Repaint just the registered, visible bank cell on a new saved tick.
+        private void InvalidateRainSeamPaint()
+        {
+            var zone = CurrentZone;
+            if (zone?.ZoneID != RepairCultivationSite.ZoneID) return;
+            int tick = WorldClock.CurrentTick;
+            if (tick == _rainSeamPaintTick) return;
+            _rainSeamPaintTick = tick;
+            foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>())
+                if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
+                    MarkCellDirty(cell, "Rain seam appearance");
+        }
+
         private void LateUpdate()
         {
             long frameStart = Stopwatch.GetTimestamp();
@@ -925,6 +942,7 @@ namespace CavesOfOoo.Rendering
                 }
 
                 // FX ticks only while the world is actually on screen.
+                InvalidateRainSeamPaint();
                 SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
                 _entityVisualRenderer?.SetPresentationVisible(
@@ -1517,7 +1535,11 @@ namespace CavesOfOoo.Rendering
             if (render == null) return;
 
             char glyph;
-            if (!string.IsNullOrEmpty(render.GlyphVariants))
+            if (RainSeamWorldAppearance.TryGet(CurrentZone, topEntity, out char seamGlyph, out _))
+            {
+                glyph = seamGlyph;
+            }
+            else if (!string.IsNullOrEmpty(render.GlyphVariants))
             {
                 glyph = render.ResolveGlyph(x, y);
             }

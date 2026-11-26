@@ -1,4 +1,4 @@
-# parts=421
+# parts=422
 Part CavesOfOoo.Core.AIAmbushPart | reflected
   #hooks:OnBeforeSave
   AmbushSaveStateVersion:System.Int32
@@ -748,6 +748,18 @@ Part CavesOfOoo.Core.RainCollectorPart | reflected
   Anchor:CavesOfOoo.Core.Entity
   Clean:System.Boolean
   Ground:CavesOfOoo.Core.Entity
+Part CavesOfOoo.Core.RainSeamHarvestPart | reflected
+  ActionText:System.String
+  Ground:CavesOfOoo.Core.Entity
+  Harvested:System.Boolean
+  PolicyVersion:System.Int32
+  SiteX:System.Int32
+  SiteY:System.Int32
+  WorldKey:System.String
+  YieldBlueprint:System.String
+  YieldChance:System.Int32
+  YieldMax:System.Int32
+  YieldMin:System.Int32
 Part CavesOfOoo.Core.ReadableDocumentPart | reflected
   DocumentId:System.String
 Part CavesOfOoo.Core.ReagentPart | reflected

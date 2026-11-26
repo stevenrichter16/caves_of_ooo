@@ -6,6 +6,26 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
+    internal static class RainSeamWorldAppearance
+    {
+        internal static bool TryGet(Zone zone, Entity owner, out char glyph, out string color)
+        {
+            glyph = default;
+            color = null;
+            if (owner?.BlueprintName != "RainClaySeam" || owner.SpatialZone != zone
+                || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true }
+                || owner.GetPart<RainSeamHarvestPart>() is not { } seam || seam.ParentEntity != owner)
+                return false;
+
+            var appearance = seam.Appearance(zone);
+            if (appearance.Glyph?.Length != 1 || !AsciiWorldRenderPolicy.IsPrintableGlyph(appearance.Glyph[0])
+                || !AsciiWorldRenderPolicy.IsValidColorString(appearance.Color)) return false;
+            glyph = appearance.Glyph[0];
+            color = appearance.Color;
+            return true;
+        }
+    }
+
     /// <summary>
     /// Identity-preserving world glyphs in native 16x24 cells. This catalog owns
     /// copies of the borrowed world bank, never changes native-art admission,
@@ -82,8 +102,15 @@ namespace CavesOfOoo.Rendering
                 backgroundLayer = render.RenderLayer;
             }
 
-            Tile foreground = selectedRender == null ? null : _tiles[Glyph(selectedRender, x, y)];
-            Color foregroundColor = selectedRender == null ? Color.white : ForegroundColor(selectedRender);
+            char? seamGlyph = null;
+            Color? seamColor = null;
+            if (!remembered && RainSeamWorldAppearance.TryGet(zone, owner, out char glyph, out string color))
+            {
+                seamGlyph = glyph;
+                seamColor = QudColorParser.Parse(color);
+            }
+            Tile foreground = selectedRender == null ? null : _tiles[Glyph(selectedRender, x, y, seamGlyph)];
+            Color foregroundColor = seamColor ?? (selectedRender == null ? Color.white : ForegroundColor(selectedRender));
             if (remembered)
             {
                 background *= MemoryDim; background.a = 1;
@@ -152,10 +179,11 @@ namespace CavesOfOoo.Rendering
                 && !owner.HasPart<SealedLibraryBarrierPart>();
         }
 
-        private int Glyph(RenderPart render, int x, int y)
+        private int Glyph(RenderPart render, int x, int y, char? appearance = null)
         {
             char glyph = AsciiWorldRenderPolicy.FallbackGlyph;
-            if (!string.IsNullOrEmpty(render.GlyphVariants)) glyph = render.ResolveGlyph(x, y);
+            if (appearance.HasValue) glyph = appearance.Value;
+            else if (!string.IsNullOrEmpty(render.GlyphVariants)) glyph = render.ResolveGlyph(x, y);
             // Avoid the validator's allocated diagnostic strings on malformed
             // input while retaining its actual printable/single-glyph contract.
             else if (render.RenderString != null && render.RenderString.Length == 1

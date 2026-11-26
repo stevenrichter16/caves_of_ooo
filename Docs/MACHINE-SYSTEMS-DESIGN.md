@@ -1,3 +1,11 @@
+**Rain can expose a visible extra deposit at the western allotment.**
+An eligible clay working has one separate finite reserve. Through rain and
+a brief grace period the changed ground shows it can be gathered. The
+player dried the packet, screened it with an ordinary hand sieve, patched
+the local catch well and used the coarse fraction for temporary footing.
+The same saved material state controls collection and the local cue.
+[Native playtest](Verification/MachineSystems/RainClaySeam20261126/README.md)
+
 **Delivered lining clay has a second settlement use at Morrowfast.**
 The watch bell’s quiet sleeve accepts one fire clay or verified lining
 clay. This uses the same graded material check as existing repair work.

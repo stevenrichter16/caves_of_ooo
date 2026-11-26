@@ -261,7 +261,14 @@ namespace CavesOfOoo.Core
                 && Matches(owner, true, false, mark);
         }
 
-        private bool Matches(Entity owner, bool allowInstances, bool allowClayStamp, CraftingMarkPart ignoredMark)
+        // The harvest owns a newly applied wet effect independently. Validate
+        // every other authored field and Part against its original template.
+        internal bool MatchesPreparedWetStock(Entity owner, StatusEffectsPart prepared)
+            => prepared?.ParentEntity == owner && owner?.GetPart<StatusEffectsPart>() == prepared
+                && Matches(owner, false, false, null, prepared);
+
+        private bool Matches(Entity owner, bool allowInstances, bool allowClayStamp, CraftingMarkPart ignoredMark,
+            StatusEffectsPart preparedWet = null)
         {
             if(!Current() || owner?.BlueprintName!=name || owner.Parts.Count<parameters.Count
                 || owner.Parts.Any(p=>p==null||p.ParentEntity!=owner) || owner.GetPart<PhysicsPart>()?.Weight<0
@@ -277,7 +284,7 @@ namespace CavesOfOoo.Core
             if(!Same(owner.Tags,expectedTags))return false;
             foreach(var extra in owner.Parts.Where(p=>!parameters.ContainsKey(p.Name) && !MaterialProcessPayloadPolicies.IsInertTracking(p)))
             {
-                if (ReferenceEquals(extra, ignoredMark)) continue;
+                if (ReferenceEquals(extra, ignoredMark) || ReferenceEquals(extra, preparedWet)) continue;
                 if(allowClayStamp && ConnectedClayProvenance.CompatibleStamp(owner,extra))continue;
                 if(!allowInstances || MaterialProcessPayloadPolicies.Get(extra.GetType()) is not IMaterialProcessInstancePartPolicy policy || !policy.AllowsInstance(extra))return false;
             }

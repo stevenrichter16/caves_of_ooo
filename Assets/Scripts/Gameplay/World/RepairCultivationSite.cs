@@ -135,7 +135,7 @@ namespace CavesOfOoo.Core
         }
         private static bool Fresh(Entity e,string bp)=>e!=null&&e.BlueprintName==bp&&e.SpatialZone==null&&e.GetPart<PhysicsPart>() is PhysicsPart p
             &&p.ParentEntity==e&&p.InInventory==null&&p.Equipped==null&&!p.Takeable&&e.GetPart<RenderPart>()?.Visible==true&&e.Parts.All(part=>part.ParentEntity==e);
-        private static bool Bare(Cell c)=>c!=null&&!c.IsInterior&&!c.BlocksMovement()&&!BarrenGroundRules.IsBarren(c)
+        internal static bool Bare(Cell c)=>c!=null&&!c.IsInterior&&!c.BlocksMovement()&&!BarrenGroundRules.IsBarren(c)
             &&c.Objects.Count==1&&c.Objects[0].BlueprintName=="Grass"&&c.Objects[0].HasTag("Terrain")&&!c.Objects[0].HasPart<CultivatedSoilPart>();
         private static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
         internal static HashSet<(int,int)> Reach(Zone zone,HashSet<(int,int)> excluded)
