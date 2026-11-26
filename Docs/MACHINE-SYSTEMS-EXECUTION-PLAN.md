@@ -1,3 +1,12 @@
+**Sumphold's exact silver sand restores Sill's filtration ring — November 26 UTC, 2026.**
+The ordinary generation 31 player brought the one earned sand to Sill,
+took the elder's manual and paid Perret for the existing stable repair.
+Fresh Continue kept the same repaired well, retained manual and spent
+reward. The keeper's maintenance conversation became available.
+Ordinary water draws worked both before and after. This connects
+one recovery reward to a lasting result for #39 and #40.
+[Evidence](Verification/MachineSystems/SillEarnedSandFiltration20261126/README.md)
+
 **A recovered consignment stocks Sumphold's merchant — November 26 UTC, 2026.**
 In the ordinary version 31 seed 2 world, Vellin's reader led to the marked
 six-pound sack. Both banks remained intact. Native take and fresh Continue
@@ -46,7 +55,7 @@ preserved Orven's opening stock. Seed 2 earned two cord at Peat Works,
 bought one spike and forged a reusable sieve. Both repaired the original
 pan, commissioned the same recipe and took one meal from the board.
 Both meals survived Continue and were eaten once at full health.
-The full regression on `ee0287659` is separate and still running.
+The full regression on `ee0287659` is tracked separately below.
 [Evidence](Verification/MachineSystems/WaysideCurrentMealComparison20261126/README.md)
 
 **Trap wedge, hearth oil and equipment sign Mac delivery — November 26 UTC, 2026.**
@@ -59,9 +68,17 @@ restored logically. Packaged actions and physical Intel remain open.
 The new full native regression started from published `ee0287659` in
 the separate `clone-full-ee0287659`. The prior result remains historical
 until the new run completes. The first run stopped before producing XML
-when the Unity session ended. The pinned retry is recorded with
-`machine_full_ee0287659_retry_20261126` under
-`/Users/steven/coo-verification/results`.
+when the Unity session ended. The pinned retry stopped after about 90
+minutes with signal 9 and no result XML. Its 134 MB log remains under
+`/Users/steven/coo-verification/results/machine_full_ee0287659_retry_20261126.log`.
+The termination cause remains unconfirmed. A focused run on that same
+snapshot completed with 6 passes and 4 failures, including all 3
+settlement tests passing. The 4 failures reported missing rendering
+registrations for the Gleaners' porter, parcel, loading marker and
+receiving shelf. Two cases had passed in the older `full_s9.xml` result.
+The other two had timed out in that run. The focused log and XML share
+the prefix `machine_regression_seam_ee0287659_20261126` in the results
+directory. Whole-suite acceptance remains open.
 
 **Hand water and Conjure Rain grow a second drawgourd — November 26 UTC, 2026.**
 The ordinary seed `1498104061` branch extended the earlier Gleaners'

@@ -1,0 +1,358 @@
+{
+  "world": {
+    "seed": 2,
+    "generation": 31,
+    "sourceStage": "Sumphold intact recovery",
+    "sand": "15454",
+    "manual": "18497",
+    "well": "18278",
+    "keeper": "18337",
+    "elder": "18301"
+  },
+  "start": {
+    "zone": "Overworld.15.6.0",
+    "t": 2160,
+    "x": 18,
+    "y": 7,
+    "hp": 40,
+    "drams": 43,
+    "sand": [
+      {
+        "ID": "15454",
+        "BlueprintName": "SilverSand"
+      }
+    ]
+  },
+  "arrival": {
+    "ZoneID": "Overworld.10.10.0",
+    "X": 39,
+    "Y": 11,
+    "TickCount": 2280,
+    "hp": 40,
+    "well": {
+      "SiteId": "MainWell",
+      "Stage": "Fouled",
+      "Outcome": "None",
+      "Method": "None",
+      "ResolvedAtTurn": -1,
+      "RelapseAtTurn": null
+    },
+    "entities": [
+      {
+        "ID": "18278",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "X": 40,
+        "Y": 12,
+        "dialogue": null,
+        "site": "MainWell",
+        "hp": 0
+      },
+      {
+        "ID": "18301",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "X": 53,
+        "Y": 12,
+        "dialogue": "Elder_Well_1",
+        "site": null,
+        "hp": 30
+      },
+      {
+        "ID": "18337",
+        "BlueprintName": "WellKeeper",
+        "name": "Perret Sedgefold, well-keeper",
+        "X": 23,
+        "Y": 12,
+        "dialogue": "WellKeeper_1",
+        "site": null,
+        "hp": 20
+      }
+    ]
+  },
+  "beforeDraw": {
+    "menu": {
+      "cursor": 0,
+      "rows": [
+        {
+          "Display": "draw water",
+          "Command": "DrawWaterAtWell"
+        },
+        {
+          "Display": "examine",
+          "Command": "Examine"
+        },
+        {
+          "Display": "<< everything here",
+          "Command": "PickCell"
+        }
+      ]
+    },
+    "message": "You drink. The well water is cool."
+  },
+  "elderChoices": {
+    "cursor": 0,
+    "rows": [
+      "Tell me about the bitter well.",
+      "Do you have any records about repairing the well?",
+      "Is there any way to purify the water?",
+      "Is there anything else the village needs?",
+      "The watch lantern is out. Do you know how to relight it?",
+      "Tell me about this place.",
+      "Farewell.",
+      "[What troubles this place?]",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "manual": {
+    "zone": "Overworld.10.10.0",
+    "t": 2530,
+    "x": 54,
+    "y": 5,
+    "hp": 40,
+    "drams": 43,
+    "sand": [
+      {
+        "ID": "15454",
+        "BlueprintName": "SilverSand"
+      },
+      {
+        "ID": "18497",
+        "BlueprintName": "WellMaintenanceManual"
+      }
+    ]
+  },
+  "repairOffer": {
+    "cursor": 0,
+    "rows": [
+      "I have the manual and silver sand. Let's rebuild the ring properly.",
+      "What do you need for a proper repair?",
+      "Back.",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "repair": [
+    {
+      "ZoneID": "Overworld.10.10.0",
+      "X": 54,
+      "Y": 12,
+      "TickCount": 2810,
+      "hp": 40,
+      "well": {
+        "SiteId": "MainWell",
+        "Stage": "StableRepair",
+        "Outcome": "Stable",
+        "Method": "ManualRepair",
+        "ResolvedAtTurn": 2810,
+        "RelapseAtTurn": null
+      },
+      "entities": [
+        {
+          "ID": "18278",
+          "BlueprintName": "Well",
+          "name": "repaired well",
+          "X": 40,
+          "Y": 12,
+          "dialogue": null,
+          "site": "MainWell",
+          "hp": 0
+        },
+        {
+          "ID": "18301",
+          "BlueprintName": "Elder",
+          "name": "elder",
+          "X": 53,
+          "Y": 4,
+          "dialogue": "Elder_Well_1",
+          "site": null,
+          "hp": 30
+        },
+        {
+          "ID": "18337",
+          "BlueprintName": "WellKeeper",
+          "name": "Perret Sedgefold, well-keeper",
+          "X": 53,
+          "Y": 11,
+          "dialogue": "WellKeeper_1",
+          "site": null,
+          "hp": 20
+        }
+      ]
+    },
+    {
+      "zone": "Overworld.10.10.0",
+      "t": 2810,
+      "x": 54,
+      "y": 12,
+      "hp": 40,
+      "drams": 43,
+      "sand": [
+        {
+          "ID": "18497",
+          "BlueprintName": "WellMaintenanceManual"
+        }
+      ]
+    }
+  ],
+  "repairMessages": [
+    "You hand over silver sand.",
+    "You rebuild the well's filtration ring with silver sand and set the water running clear again."
+  ],
+  "followUp": {
+    "cursor": 0,
+    "rows": [
+      "The ring is repaired. Want me to show you how to keep it that way?",
+      "Farewell.",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "atRepairedWell": [
+    {
+      "ZoneID": "Overworld.10.10.0",
+      "X": 41,
+      "Y": 11,
+      "TickCount": 3070,
+      "hp": 40,
+      "well": {
+        "SiteId": "MainWell",
+        "Stage": "StableRepair",
+        "Outcome": "Stable",
+        "Method": "ManualRepair",
+        "ResolvedAtTurn": 2810,
+        "RelapseAtTurn": null
+      },
+      "entities": [
+        {
+          "ID": "18278",
+          "BlueprintName": "Well",
+          "name": "repaired well",
+          "X": 40,
+          "Y": 12,
+          "dialogue": null,
+          "site": "MainWell",
+          "hp": 0
+        },
+        {
+          "ID": "18301",
+          "BlueprintName": "Elder",
+          "name": "elder",
+          "X": 53,
+          "Y": 4,
+          "dialogue": "Elder_Well_1",
+          "site": null,
+          "hp": 30
+        },
+        {
+          "ID": "18337",
+          "BlueprintName": "WellKeeper",
+          "name": "Perret Sedgefold, well-keeper",
+          "X": 28,
+          "Y": 9,
+          "dialogue": "WellKeeper_1",
+          "site": null,
+          "hp": 20
+        }
+      ]
+    },
+    {
+      "zone": "Overworld.10.10.0",
+      "t": 3070,
+      "x": 41,
+      "y": 11,
+      "hp": 40,
+      "drams": 43,
+      "sand": [
+        {
+          "ID": "18497",
+          "BlueprintName": "WellMaintenanceManual"
+        }
+      ]
+    }
+  ],
+  "afterDraw": {
+    "menu": {
+      "cursor": 0,
+      "rows": [
+        {
+          "Display": "draw water",
+          "Command": "DrawWaterAtWell"
+        },
+        {
+          "Display": "examine",
+          "Command": "Examine"
+        },
+        {
+          "Display": "<< everything here",
+          "Command": "PickCell"
+        }
+      ]
+    },
+    "message": "You drink. The well water is cool."
+  },
+  "fresh": [
+    {
+      "ZoneID": "Overworld.10.10.0",
+      "X": 41,
+      "Y": 11,
+      "TickCount": 3070,
+      "hp": 40,
+      "well": {
+        "SiteId": "MainWell",
+        "Stage": "StableRepair",
+        "Outcome": "Stable",
+        "Method": "ManualRepair",
+        "ResolvedAtTurn": 2810,
+        "RelapseAtTurn": null
+      },
+      "entities": [
+        {
+          "ID": "18337",
+          "BlueprintName": "WellKeeper",
+          "name": "Perret Sedgefold, well-keeper",
+          "X": 28,
+          "Y": 9,
+          "dialogue": "WellKeeper_1",
+          "site": null,
+          "hp": 20
+        },
+        {
+          "ID": "18278",
+          "BlueprintName": "Well",
+          "name": "repaired well",
+          "X": 40,
+          "Y": 12,
+          "dialogue": null,
+          "site": "MainWell",
+          "hp": 0
+        },
+        {
+          "ID": "18301",
+          "BlueprintName": "Elder",
+          "name": "elder",
+          "X": 53,
+          "Y": 4,
+          "dialogue": "Elder_Well_1",
+          "site": null,
+          "hp": 30
+        }
+      ]
+    },
+    {
+      "zone": "Overworld.10.10.0",
+      "t": 3070,
+      "x": 41,
+      "y": 11,
+      "hp": 40,
+      "drams": 43,
+      "sand": [
+        {
+          "ID": "18497",
+          "BlueprintName": "WellMaintenanceManual"
+        }
+      ]
+    }
+  ]
+}

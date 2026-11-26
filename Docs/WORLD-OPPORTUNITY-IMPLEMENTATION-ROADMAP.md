@@ -690,6 +690,11 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     base and preservation rewards, and the same merchant displayed all
     three ward oil portions after a separate fresh Continue.
     [Evidence](Verification/MachineSystems/SumpholdOilRecovery20261126/README.md)
+    The same player then used the exact silver sand reward at Sill.
+    The elder's manual stayed carried, the sand was used once and the
+    original MainWell kept its stable filtration repair after reload.
+    Native before and after water draws both worked.
+    [Evidence](Verification/MachineSystems/SillEarnedSandFiltration20261126/README.md)
 
 40. **Compare complete runs in actual play.** Use ordinary acquisition and normal
     carrying limits, not only supplied fixtures. Measure whether choices differ,

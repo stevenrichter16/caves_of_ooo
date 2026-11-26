@@ -1,3 +1,11 @@
+**Silver sand from the Sumphold recovery has a lasting use at Sill.**
+The player brought the exact reward to the existing MainWell project.
+One portion and the elder's reusable manual qualified the keeper's
+permanent ring rebuild. The repair changed the physical well's reader
+and opened the maintenance conversation. The same stable state survived
+Continue, with ordinary well drinking still available.
+[Evidence](Verification/MachineSystems/SillEarnedSandFiltration20261126/README.md)
+
 **An intact Sumphold recovery feeds the merchant's visible stock.**
 A sealed sack carries two lamp-oil measures through ordinary travel.
 Protecting the two marked banks adds three drams to the agreed payment.
