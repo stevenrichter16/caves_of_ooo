@@ -267,11 +267,142 @@ namespace CavesOfOoo.Tests
         {
             var town = Place(CinderZone, "Elder"); var elder = Who(town, "Elder");
             Assert.IsNull(ConcernConversation.Accept(elder, player, "cinderhold.pump"));
-            Give("FireClay", 4); Take(elder, Status(elder, "cinderhold.pump"), "Hand over 4");
+            Give("FireClay", 4);
+            Assert.True(town.MoveEntity(player, 11, 10));
+            Assert.True(ConversationManager.StartConversation(elder, player));
+            Assert.IsNull(ConcernConversation.Open(elder, player, "status|cinderhold.pump"));
+            ConversationManager.RefreshVisibleChoices();
+            int choice = ConversationManager.VisibleChoices.ToList().FindIndex(row => row.Text.Contains("Give 4 fire clay"));
+            Assert.That(choice, Is.GreaterThanOrEqualTo(0));
+            Assert.True(ConversationManager.SelectChoice(choice));
             Tick(); Assert.AreEqual(3, Approach("cinderhold.pump"));
             Assert.True(Holds(CinderZone, "Cinderhold.Sealed"));
             Assert.AreEqual(-3, PlayerReputation.Get("RotChoir"));
             StringAssert.Contains("trickle", PlaceConsequences.LineFor(MorrowfastZone), "Morrowfast has heard");
+        }
+
+        [Test]
+        public void MixedLiningClaySealsTheSameSeepWithoutReplacingTheSmithsCurrentLot()
+        {
+            var previousTraderFactory = TraderPart.Factory;
+            var previousRestockFactory = TraderRestockSystem.Factory;
+            try
+            {
+                TraderPart.Factory = null;
+                TraderRestockSystem.Factory = factory;
+                var town = Place(CinderZone, "Elder", "Weaponsmith");
+                var elder = Who(town, "Elder");
+                var smith = Who(town, "Weaponsmith");
+                TradeSystem.SetDrams(smith, 100);
+                Assert.True(MerchantStockService.Reconcile(smith, town, turn));
+                var lot = smith.GetPart<MerchantStockPart>();
+                var openingSpecials = lot.Specials.ToArray();
+                int openingTick = lot.LastSpecialTick;
+                Assert.That(openingSpecials, Has.Length.EqualTo(2));
+                Assert.False(lot.BonusApplied);
+
+                Assert.True(town.MoveEntity(player, 11, 10));
+                foreach (var owner in new[] { player, elder })
+                {
+                    var cell = town.GetEntityCell(owner);
+                    cell.IsVisible = cell.Explored = true;
+                }
+                Assert.IsNull(ConcernConversation.Accept(elder, player, "cinderhold.pump"));
+                var pack = player.GetPart<InventoryPart>();
+                var fireClay = factory.CreateEntity("FireClay");
+                var preparedClay = factory.CreateEntity("PreparedLiningClay");
+                fireClay.GetPart<StackerPart>().StackCount = 2;
+                preparedClay.GetPart<StackerPart>().StackCount = 2;
+                Assert.True(pack.AddObject(fireClay));
+                Assert.True(pack.AddObject(preparedClay));
+                Assert.True(ConversationManager.StartConversation(elder, player));
+                Assert.IsNull(ConcernConversation.Open(elder, player, "status|cinderhold.pump"));
+                ConversationManager.RefreshVisibleChoices();
+
+                var choices = ConversationManager.VisibleChoices.ToList();
+                int handover = choices.FindIndex(choice => choice.Text.Contains("Give 2 fire clay + 2 prepared lining clay"));
+                Assert.That(handover, Is.GreaterThanOrEqualTo(0), "The two grades together meet the hand-seal bill.");
+                Assert.True(ConversationManager.SelectChoice(handover));
+                Assert.False(pack.Contains(fireClay));
+                Assert.False(pack.Contains(preparedClay));
+                Assert.IsNull(fireClay.GetPart<PhysicsPart>().InInventory);
+                Assert.IsNull(preparedClay.GetPart<PhysicsPart>().InInventory);
+                Assert.False(Holds(CinderZone, "Cinderhold.Sealed"));
+
+                Tick();
+                Assert.AreEqual(3, Approach("cinderhold.pump"));
+                Assert.True(Holds(CinderZone, "Cinderhold.Sealed"));
+                Assert.AreEqual(-3, PlayerReputation.Get("RotChoir"));
+                Assert.AreSame(lot, smith.GetPart<MerchantStockPart>());
+                Assert.AreEqual(openingTick, lot.LastSpecialTick);
+                CollectionAssert.AreEqual(openingSpecials, lot.Specials);
+                Assert.False(lot.BonusApplied);
+            }
+            finally
+            {
+                TraderPart.Factory = previousTraderFactory;
+                TraderRestockSystem.Factory = previousRestockFactory;
+            }
+        }
+
+        [Test]
+        public void ASeepQuoteRejectsAReplacementOfOneExactStackAndCanBeQuotedAgain()
+        {
+            var town = Place(CinderZone, "Elder");
+            var elder = Who(town, "Elder");
+            Assert.True(town.MoveEntity(player, 11, 10));
+            foreach (var owner in new[] { player, elder })
+            {
+                var cell = town.GetEntityCell(owner);
+                cell.IsVisible = cell.Explored = true;
+            }
+            Assert.IsNull(ConcernConversation.Accept(elder, player, "cinderhold.pump"));
+            var pack = player.GetPart<InventoryPart>();
+            var fireClay = factory.CreateEntity("FireClay");
+            var preparedClay = factory.CreateEntity("PreparedLiningClay");
+            var replacement = factory.CreateEntity("PreparedLiningClay");
+            foreach (var stack in new[] { fireClay, preparedClay, replacement })
+                stack.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(pack.AddObject(fireClay));
+            Assert.True(pack.AddObject(preparedClay));
+            Assert.True(ConversationManager.StartConversation(elder, player));
+            OpenStatus();
+            var oldQuote = ConversationManager.VisibleChoices.Single(IsMaterialQuote);
+            string oldToken = oldQuote.Actions.Single(action => action.Key == ConcernConversation.MaterialSupplyAction).Value;
+
+            Assert.True(pack.RemoveObject(preparedClay));
+            replacement.ID = preparedClay.ID;
+            Assert.True(pack.AddObject(replacement));
+            Assert.False(ConversationActions.TryExecuteAll(oldQuote.Actions, elder, player));
+            CollectionAssert.IsSubsetOf(new[] { fireClay, replacement }, pack.Objects);
+            Assert.AreEqual(2, fireClay.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(2, replacement.GetPart<StackerPart>().StackCount);
+            Assert.IsNull(preparedClay.GetPart<PhysicsPart>().InInventory);
+            Tick();
+            Assert.AreEqual(0, Approach("cinderhold.pump"));
+            Assert.False(Holds(CinderZone, "Cinderhold.Sealed"));
+
+            OpenStatus();
+            var visible = ConversationManager.VisibleChoices.ToList();
+            int freshIndex = visible.FindIndex(IsMaterialQuote);
+            Assert.That(freshIndex, Is.GreaterThanOrEqualTo(0));
+            string freshToken = visible[freshIndex].Actions.Single(action => action.Key == ConcernConversation.MaterialSupplyAction).Value;
+            Assert.AreNotEqual(oldToken, freshToken);
+            Assert.True(ConversationManager.SelectChoice(freshIndex));
+            Assert.False(pack.Contains(fireClay));
+            Assert.False(pack.Contains(replacement));
+            Tick();
+            Assert.AreEqual(3, Approach("cinderhold.pump"));
+            Assert.True(Holds(CinderZone, "Cinderhold.Sealed"));
+
+            void OpenStatus()
+            {
+                Assert.IsNull(ConcernConversation.Open(elder, player, "status|cinderhold.pump"));
+                ConversationManager.RefreshVisibleChoices();
+            }
+
+            static bool IsMaterialQuote(ChoiceData choice)
+                => choice.Actions?.Any(action => action.Key == ConcernConversation.MaterialSupplyAction) == true;
         }
     }
 }

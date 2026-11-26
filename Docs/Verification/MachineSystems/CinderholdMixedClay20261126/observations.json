@@ -1,0 +1,830 @@
+{
+  "scope": "GameBootstrap native keyboard input from pre-existing earned clay archive; runtime probes read current scene and do not move or supply objects.",
+  "tests": {
+    "red": "cinderhold_mixed_clay_red_20261126a",
+    "green": "cinderhold_mixed_clay_green_20261126c",
+    "passed": 115
+  },
+  "arrival": {
+    "t": 1230,
+    "zone": "Overworld.6.6.0",
+    "X": 39,
+    "Y": 11,
+    "hp": 29,
+    "state": "Normal",
+    "elder": {
+      "ID": "11261",
+      "name": "Tavvit Settern, elder",
+      "at": {
+        "Item1": 28,
+        "Item2": 7
+      },
+      "hp": 30,
+      "stock": null,
+      "clock": null,
+      "bonus": null
+    },
+    "smith": {
+      "ID": "11226",
+      "name": "Ostrel Rillpost, weaponsmith",
+      "at": {
+        "Item1": 55,
+        "Item2": 7
+      },
+      "hp": 20,
+      "stock": [
+        {
+          "ID": "11378",
+          "BlueprintName": "StunGasGrenade"
+        },
+        {
+          "ID": "11379",
+          "BlueprintName": "SplitHaftTokenTrinket"
+        }
+      ],
+      "clock": 1220,
+      "bonus": false
+    },
+    "cash": 39,
+    "grade": [
+      {
+        "ID": "6861",
+        "BlueprintName": "PreparedLiningClay",
+        "qty": 2,
+        "origin": null
+      },
+      {
+        "ID": "8912",
+        "BlueprintName": "FireClay",
+        "qty": 2,
+        "origin": 3
+      }
+    ],
+    "sealedFact": 0,
+    "approach": 0,
+    "reported": 0,
+    "shop": false,
+    "dialogue": false,
+    "choices": []
+  },
+  "quote": {
+    "t": 1390,
+    "zone": "Overworld.6.6.0",
+    "X": 27,
+    "Y": 6,
+    "hp": 29,
+    "state": "DialogueOpen",
+    "elder": {
+      "ID": "11261",
+      "name": "Tavvit Settern, elder",
+      "at": {
+        "Item1": 28,
+        "Item2": 7
+      },
+      "hp": 30,
+      "stock": null,
+      "clock": null,
+      "bonus": null
+    },
+    "smith": {
+      "ID": "11226",
+      "name": "Ostrel Rillpost, weaponsmith",
+      "at": {
+        "Item1": 55,
+        "Item2": 7
+      },
+      "hp": 20,
+      "stock": [
+        {
+          "ID": "11378",
+          "BlueprintName": "StunGasGrenade"
+        },
+        {
+          "ID": "11379",
+          "BlueprintName": "SplitHaftTokenTrinket"
+        }
+      ],
+      "clock": 1220,
+      "bonus": false
+    },
+    "cash": 39,
+    "grade": [
+      {
+        "ID": "6861",
+        "BlueprintName": "PreparedLiningClay",
+        "qty": 2,
+        "origin": null
+      },
+      {
+        "ID": "8912",
+        "BlueprintName": "FireClay",
+        "qty": 2,
+        "origin": 3
+      }
+    ],
+    "sealedFact": 0,
+    "approach": 0,
+    "reported": 0,
+    "shop": false,
+    "dialogue": true,
+    "choices": [
+      {
+        "i": 0,
+        "Text": "[Patch the mine pump for now.]"
+      },
+      {
+        "i": 1,
+        "Text": "[Hand over 4 measures of lining clay (2 fire clay + 2 prepared lining clay).]"
+      },
+      {
+        "i": 2,
+        "Text": "[I'm giving this up. I'm telling you so.]"
+      },
+      {
+        "i": 3,
+        "Text": "[Back]"
+      },
+      {
+        "i": 4,
+        "Text": "[Let's trade.]"
+      },
+      {
+        "i": 5,
+        "Text": "[Attack]"
+      }
+    ]
+  },
+  "paid": {
+    "t": 1390,
+    "zone": "Overworld.6.6.0",
+    "X": 27,
+    "Y": 6,
+    "hp": 29,
+    "state": "DialogueOpen",
+    "elder": {
+      "ID": "11261",
+      "name": "Tavvit Settern, elder",
+      "at": {
+        "Item1": 28,
+        "Item2": 7
+      },
+      "hp": 30,
+      "stock": null,
+      "clock": null,
+      "bonus": null
+    },
+    "smith": {
+      "ID": "11226",
+      "name": "Ostrel Rillpost, weaponsmith",
+      "at": {
+        "Item1": 55,
+        "Item2": 7
+      },
+      "hp": 20,
+      "stock": [
+        {
+          "ID": "11378",
+          "BlueprintName": "StunGasGrenade"
+        },
+        {
+          "ID": "11379",
+          "BlueprintName": "SplitHaftTokenTrinket"
+        }
+      ],
+      "clock": 1220,
+      "bonus": false
+    },
+    "cash": 39,
+    "grade": [],
+    "sealedFact": 1,
+    "approach": 0,
+    "reported": 0,
+    "shop": false,
+    "dialogue": true,
+    "choices": [
+      {
+        "i": 0,
+        "Text": "[I'm giving this up. I'm telling you so.]"
+      },
+      {
+        "i": 1,
+        "Text": "[Back]"
+      },
+      {
+        "i": 2,
+        "Text": "[Let's trade.]"
+      },
+      {
+        "i": 3,
+        "Text": "[Attack]"
+      }
+    ]
+  },
+  "sealed": {
+    "t": 1400,
+    "zone": "Overworld.6.6.0",
+    "X": 27,
+    "Y": 6,
+    "hp": 29,
+    "state": "Normal",
+    "elder": {
+      "ID": "11261",
+      "name": "Tavvit Settern, elder",
+      "at": {
+        "Item1": 28,
+        "Item2": 7
+      },
+      "hp": 30,
+      "stock": null,
+      "clock": null,
+      "bonus": null
+    },
+    "smith": {
+      "ID": "11226",
+      "name": "Ostrel Rillpost, weaponsmith",
+      "at": {
+        "Item1": 55,
+        "Item2": 7
+      },
+      "hp": 20,
+      "stock": [
+        {
+          "ID": "11378",
+          "BlueprintName": "StunGasGrenade"
+        },
+        {
+          "ID": "11379",
+          "BlueprintName": "SplitHaftTokenTrinket"
+        }
+      ],
+      "clock": 1220,
+      "bonus": false
+    },
+    "cash": 39,
+    "grade": [],
+    "sealedFact": 1,
+    "approach": 3,
+    "reported": 0,
+    "shop": false,
+    "dialogue": false,
+    "choices": []
+  },
+  "report": {
+    "t": 1400,
+    "zone": "Overworld.6.6.0",
+    "X": 27,
+    "Y": 6,
+    "hp": 52,
+    "state": "DialogueOpen",
+    "elder": {
+      "ID": "11261",
+      "name": "Tavvit Settern, elder",
+      "at": {
+        "Item1": 28,
+        "Item2": 7
+      },
+      "hp": 30,
+      "stock": null,
+      "clock": null,
+      "bonus": null
+    },
+    "smith": {
+      "ID": "11226",
+      "name": "Ostrel Rillpost, weaponsmith",
+      "at": {
+        "Item1": 55,
+        "Item2": 7
+      },
+      "hp": 20,
+      "stock": [
+        {
+          "ID": "11378",
+          "BlueprintName": "StunGasGrenade"
+        },
+        {
+          "ID": "11379",
+          "BlueprintName": "SplitHaftTokenTrinket"
+        }
+      ],
+      "clock": 1220,
+      "bonus": false
+    },
+    "cash": 89,
+    "grade": [],
+    "sealedFact": 1,
+    "approach": 3,
+    "reported": 1,
+    "shop": false,
+    "dialogue": true,
+    "choices": [
+      {
+        "i": 0,
+        "Text": "Tell me about this place."
+      },
+      {
+        "i": 1,
+        "Text": "I could use some supplies."
+      },
+      {
+        "i": 2,
+        "Text": "Farewell."
+      },
+      {
+        "i": 3,
+        "Text": "[Let's trade.]"
+      },
+      {
+        "i": 4,
+        "Text": "[Attack]"
+      }
+    ]
+  },
+  "freshSeal": {
+    "t": 1400,
+    "zone": "Overworld.6.6.0",
+    "X": 27,
+    "Y": 6,
+    "hp": 52,
+    "state": "Normal",
+    "elder": {
+      "ID": "11261",
+      "name": "Tavvit Settern, elder",
+      "at": {
+        "Item1": 28,
+        "Item2": 7
+      },
+      "hp": 30,
+      "stock": null,
+      "clock": null,
+      "bonus": null
+    },
+    "smith": {
+      "ID": "11226",
+      "name": "Ostrel Rillpost, weaponsmith",
+      "at": {
+        "Item1": 55,
+        "Item2": 7
+      },
+      "hp": 20,
+      "stock": [
+        {
+          "ID": "11378",
+          "BlueprintName": "StunGasGrenade"
+        },
+        {
+          "ID": "11379",
+          "BlueprintName": "SplitHaftTokenTrinket"
+        }
+      ],
+      "clock": 1220,
+      "bonus": false
+    },
+    "cash": 89,
+    "grade": [],
+    "sealedFact": 1,
+    "approach": 3,
+    "reported": 1,
+    "shop": false,
+    "dialogue": false,
+    "choices": []
+  },
+  "noDuplicateReport": [
+    {
+      "i": 0,
+      "Text": "Tell me about this place."
+    },
+    {
+      "i": 1,
+      "Text": "I could use some supplies."
+    },
+    {
+      "i": 2,
+      "Text": "Farewell."
+    },
+    {
+      "i": 3,
+      "Text": "[Let's trade.]"
+    },
+    {
+      "i": 4,
+      "Text": "[Attack]"
+    }
+  ],
+  "oldNativeTrade": {
+    "t": 1720,
+    "IsOpen": true,
+    "trader": "11226",
+    "rows": [
+      {
+        "i": 0,
+        "name": "split-haft token",
+        "price": 68,
+        "ID": "11227",
+        "BlueprintName": "SplitHaftTokenTrinket"
+      },
+      {
+        "i": 1,
+        "name": "dagger",
+        "price": 28,
+        "ID": "11228",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "i": 2,
+        "name": "short sword",
+        "price": 41,
+        "ID": "11229",
+        "BlueprintName": "ShortSword"
+      },
+      {
+        "i": 3,
+        "name": "mace",
+        "price": 55,
+        "ID": "11230",
+        "BlueprintName": "Mace"
+      },
+      {
+        "i": 4,
+        "name": "spear",
+        "price": 49,
+        "ID": "11231",
+        "BlueprintName": "Spear"
+      },
+      {
+        "i": 5,
+        "name": "long sword",
+        "price": 68,
+        "ID": "11232",
+        "BlueprintName": "LongSword"
+      },
+      {
+        "i": 6,
+        "name": "oak haft (x2)",
+        "price": 44,
+        "ID": "11233",
+        "BlueprintName": "OakHaftComponent"
+      },
+      {
+        "i": 7,
+        "name": "cured harness-leather offcut (x2)",
+        "price": 22,
+        "ID": "11234",
+        "BlueprintName": "CuredLeatherOffcut"
+      },
+      {
+        "i": 8,
+        "name": "cinderhook axe head",
+        "price": 115,
+        "ID": "11238",
+        "BlueprintName": "CinderhookAxeHeadComponent"
+      },
+      {
+        "i": 9,
+        "name": "kilnfelt apron",
+        "price": 123,
+        "ID": "11239",
+        "BlueprintName": "KilnfeltApron"
+      },
+      {
+        "i": 10,
+        "name": "leather binding (x2)",
+        "price": 44,
+        "ID": "11241",
+        "BlueprintName": "LeatherBindingComponent"
+      },
+      {
+        "i": 11,
+        "name": "braced haft",
+        "price": 68,
+        "ID": "11242",
+        "BlueprintName": "BracedHaftComponent"
+      },
+      {
+        "i": 12,
+        "name": "steel blade",
+        "price": 22,
+        "ID": "11369",
+        "BlueprintName": "SteelBladeComponent"
+      },
+      {
+        "i": 13,
+        "name": "salvaged timber",
+        "price": 9,
+        "ID": "11370",
+        "BlueprintName": "SalvagedTimber"
+      },
+      {
+        "i": 14,
+        "name": "iron spike (x2)",
+        "price": 44,
+        "ID": "11375",
+        "BlueprintName": "IronSpikeComponent"
+      },
+      {
+        "i": 15,
+        "name": "* stun gas grenade",
+        "price": 49,
+        "ID": "11378",
+        "BlueprintName": "StunGasGrenade"
+      },
+      {
+        "i": 16,
+        "name": "* split-haft token",
+        "price": 68,
+        "ID": "11379",
+        "BlueprintName": "SplitHaftTokenTrinket"
+      }
+    ],
+    "benefit": "Mine work restored: a sounding rod joins the next consignment."
+  },
+  "waiting": [
+    {
+      "t": 1960,
+      "state": "Normal",
+      "hp": 52,
+      "clock": 1220,
+      "bonus": false
+    },
+    {
+      "t": 2200,
+      "state": "Normal",
+      "hp": 52,
+      "clock": 1220,
+      "bonus": false
+    },
+    {
+      "t": 2440,
+      "state": "Normal",
+      "hp": 52,
+      "clock": 1220,
+      "bonus": false
+    }
+  ],
+  "freshLot": {
+    "t": 2440,
+    "IsOpen": true,
+    "trader": "11226",
+    "rows": [
+      {
+        "i": 15,
+        "name": "* split-haft token",
+        "price": 68,
+        "ID": "11392",
+        "BlueprintName": "SplitHaftTokenTrinket"
+      },
+      {
+        "i": 16,
+        "name": "* mace",
+        "price": 55,
+        "ID": "11393",
+        "BlueprintName": "Mace"
+      },
+      {
+        "i": 17,
+        "name": "* sounding rod",
+        "price": 60,
+        "ID": "11394",
+        "BlueprintName": "SoundingRod"
+      }
+    ],
+    "benefit": "Mine work supply included: an extra sounding rod in each new consignment."
+  },
+  "purchase": {
+    "p": {
+      "t": 2440,
+      "zone": "Overworld.6.6.0",
+      "X": 55,
+      "Y": 8,
+      "hp": 52,
+      "state": "TradeOpen",
+      "elder": {
+        "ID": "11261",
+        "name": "Tavvit Settern, elder",
+        "at": {
+          "Item1": 28,
+          "Item2": 7
+        },
+        "hp": 30,
+        "stock": null,
+        "clock": null,
+        "bonus": null
+      },
+      "smith": {
+        "ID": "11226",
+        "name": "Ostrel Rillpost, weaponsmith",
+        "at": {
+          "Item1": 55,
+          "Item2": 7
+        },
+        "hp": 20,
+        "stock": [
+          {
+            "ID": "11392",
+            "BlueprintName": "SplitHaftTokenTrinket"
+          },
+          {
+            "ID": "11393",
+            "BlueprintName": "Mace"
+          }
+        ],
+        "clock": 2440,
+        "bonus": true
+      },
+      "cash": 29,
+      "grade": [],
+      "sealedFact": 1,
+      "approach": 3,
+      "reported": 1,
+      "shop": true,
+      "dialogue": false,
+      "choices": []
+    },
+    "held": [
+      {
+        "ID": "11394",
+        "BlueprintName": "SoundingRod",
+        "owned": true
+      }
+    ],
+    "exact": {
+      "i": 17,
+      "name": "* sounding rod",
+      "price": 60,
+      "ID": "11394",
+      "BlueprintName": "SoundingRod"
+    }
+  },
+  "freshPurchase": {
+    "p": {
+      "t": 2440,
+      "zone": "Overworld.6.6.0",
+      "X": 55,
+      "Y": 8,
+      "hp": 52,
+      "state": "Normal",
+      "elder": {
+        "ID": "11343",
+        "name": "elder",
+        "at": {
+          "Item1": 23,
+          "Item2": 19
+        },
+        "hp": 30,
+        "stock": null,
+        "clock": null,
+        "bonus": null
+      },
+      "smith": {
+        "ID": "11226",
+        "name": "Ostrel Rillpost, weaponsmith",
+        "at": {
+          "Item1": 55,
+          "Item2": 7
+        },
+        "hp": 20,
+        "stock": [
+          {
+            "ID": "11392",
+            "BlueprintName": "SplitHaftTokenTrinket"
+          },
+          {
+            "ID": "11393",
+            "BlueprintName": "Mace"
+          }
+        ],
+        "clock": 2440,
+        "bonus": true
+      },
+      "cash": 29,
+      "grade": [],
+      "sealedFact": 1,
+      "approach": 3,
+      "reported": 1,
+      "shop": false,
+      "dialogue": false,
+      "choices": []
+    },
+    "held": [
+      {
+        "ID": "11394",
+        "BlueprintName": "SoundingRod",
+        "owned": true
+      }
+    ]
+  },
+  "archives": [
+    {
+      "directory": "/private/tmp/coo-cinder-clay-sealed-20261126/f312a9030c2f493baa646ef2d79eb9fd",
+      "turn": 1400,
+      "sha256": {
+        "Quick.json": "815a728fb040dd0567ca6de52850216f2cd1e425268651017512f1127fa7fc51",
+        "Quick.sav.gz": "65cd0b33c798a3212a80b90ffed5416aa223857af4506c573eee9939bea3fb22",
+        "Quick.json.bak": "9b4aad66a3c66098f77d27a8d81dda93ef505b9e559a66b37ce9354cf4f82e60",
+        "Quick.sav.gz.bak": "e506046736b421ea4155a10ba9759b9eb9d6ed8642550f7aad22cf71999503a3"
+      }
+    },
+    {
+      "directory": "/private/tmp/coo-cinder-clay-bought-rod-20261126/f312a9030c2f493baa646ef2d79eb9fd",
+      "turn": 2440,
+      "sha256": {
+        "Quick.json": "e4d467dd8cfea4bed20193d304edc912e45901f6db761996f037de028b8e3e68",
+        "Quick.sav.gz": "fe4d184e1d81c9b8835420a7b2cdea62fee0354391ce59ea0fbf43d6cb39e2c9",
+        "Quick.json.bak": "815a728fb040dd0567ca6de52850216f2cd1e425268651017512f1127fa7fc51",
+        "Quick.sav.gz.bak": "65cd0b33c798a3212a80b90ffed5416aa223857af4506c573eee9939bea3fb22"
+      }
+    },
+    {
+      "directory": "/private/tmp/coo-cinder-clay-visible-quote-20261126/f312a9030c2f493baa646ef2d79eb9fd",
+      "turn": 1550,
+      "sha256": {
+        "Quick.json": "a672016d25c3c101f04482c27e991864a687a0fcd224f9cdb2acaff326533763",
+        "Quick.sav.gz": "1ae5e434e363c96e1ad608d8a626afcb04cb3402b2bcb7f32abc94113115e315",
+        "Quick.json.bak": "9b4aad66a3c66098f77d27a8d81dda93ef505b9e559a66b37ce9354cf4f82e60",
+        "Quick.sav.gz.bak": "e506046736b421ea4155a10ba9759b9eb9d6ed8642550f7aad22cf71999503a3"
+      }
+    }
+  ],
+  "preserved": {
+    "coo-grit-normal-before-play": [
+      861,
+      0
+    ],
+    "coo-sieve-content-foreign-at-entry": [
+      86,
+      0
+    ]
+  },
+  "editor": {
+    "playing": false,
+    "root": null,
+    "dirty": false,
+    "locked": false
+  },
+  "visualPolish": {
+    "backedUpArrivalTick": 1220,
+    "speaker": "11343",
+    "tick": 1550,
+    "line": {
+      "i": 1,
+      "Text": "[Give 2 fire clay + 2 prepared lining clay.]"
+    },
+    "proof": {
+      "width": 2319,
+      "height": 1283,
+      "file": "/private/tmp/coo-cinder-clay-short-handover.png"
+    },
+    "afterCancel": {
+      "t": 1550,
+      "zone": "Overworld.6.6.0",
+      "X": 22,
+      "Y": 18,
+      "hp": 29,
+      "state": "Normal",
+      "elder": {
+        "ID": "11343",
+        "name": "elder",
+        "at": {
+          "Item1": 23,
+          "Item2": 19
+        },
+        "hp": 30,
+        "stock": null,
+        "clock": null,
+        "bonus": null
+      },
+      "smith": {
+        "ID": "11226",
+        "name": "Ostrel Rillpost, weaponsmith",
+        "at": {
+          "Item1": 55,
+          "Item2": 7
+        },
+        "hp": 20,
+        "stock": null,
+        "clock": null,
+        "bonus": null
+      },
+      "cash": 39,
+      "grade": [
+        {
+          "ID": "6861",
+          "BlueprintName": "PreparedLiningClay",
+          "qty": 2,
+          "origin": null
+        },
+        {
+          "ID": "8912",
+          "BlueprintName": "FireClay",
+          "qty": 2,
+          "origin": 3
+        }
+      ],
+      "sealedFact": 0,
+      "approach": 0,
+      "reported": 0,
+      "shop": false,
+      "dialogue": false,
+      "choices": []
+    }
+  }
+}

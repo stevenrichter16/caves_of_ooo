@@ -180,6 +180,10 @@ namespace CavesOfOoo.Concerns
                     || string.IsNullOrWhiteSpace(a.Supply.MeasuredLiquid)
                     || LiquidRegistry.IsInitialized && LiquidRegistry.Get(a.Supply.MeasuredLiquid) == null))
                 problems.Add(aw + ": invalid measured supply liquid '" + a.Supply.MeasuredLiquid + "'");
+            if (!string.IsNullOrEmpty(a.Supply?.MaterialGrade)
+                && (a.Kind != "Supply" || a.Supply.Blueprint != "FireClay" || a.Supply.Count < 1
+                    || a.Supply.MaterialGrade != RepairMaterialPart.LiningClay || !string.IsNullOrEmpty(a.Supply.MeasuredLiquid)))
+                problems.Add(aw + ": invalid compatible supply grade '" + a.Supply.MaterialGrade + "'");
             if (a.HasCarry)
             {
                 if (!Known(a.Carry.Item)) problems.Add(aw + ": unknown carry item '" + a.Carry.Item + "'");

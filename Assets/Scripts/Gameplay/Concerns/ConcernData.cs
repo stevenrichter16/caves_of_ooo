@@ -98,6 +98,8 @@ namespace CavesOfOoo.Concerns
         public int Count = 1;
         /// <summary>Optional compatible liquid, measured from one carried flask with the same count.</summary>
         public string MeasuredLiquid;
+        /// <summary>Optional repair grade accepted alongside the ordinary supply blueprint.</summary>
+        public string MaterialGrade;
     }
 
     [Serializable]

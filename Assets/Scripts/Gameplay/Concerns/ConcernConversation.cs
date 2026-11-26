@@ -24,7 +24,7 @@ namespace CavesOfOoo.Concerns
     /// Diag: concern/Offered, Accepted, Refused, Reported, OfferTaken, SupplyHanded,
     /// CargoIssued, CargoDelivered.
     /// </summary>
-    public static class ConcernConversation
+    public static partial class ConcernConversation
     {
         public const string OpenAction = "OpenConcernNode";
         public const string AcceptAction = "AcceptConcern";
@@ -207,7 +207,7 @@ namespace CavesOfOoo.Concerns
                     text.Append(" (needs ").Append(Needs(site.Lasting)).Append(")");
                 if (a.HasSupply && !IsDone(c, a))
                 {
-                    text.Append(" (you carry ").Append(ConcernItems.CountCarried(listener, a.Supply.Blueprint)).Append(" of ").Append(a.Supply.Count);
+                    text.Append(" (you carry ").Append(CountSupply(listener, a.Supply)).Append(" of ").Append(a.Supply.Count);
                     if (!string.IsNullOrEmpty(a.Supply.MeasuredLiquid))
                         text.Append(" as ").Append(UnitName(listener, a.Supply.Blueprint)).Append(" items");
                     text.Append(")");
@@ -227,10 +227,12 @@ namespace CavesOfOoo.Concerns
                         n.Choices.Add(new ChoiceData { Text = "[Patch the " + restore.Name + " for now.]", Target = "",
                             Actions = new List<ConversationParam> { new ConversationParam { Key = RepairAction, Value = c.Place + ":" + restore.Id + ":Patch" } } });
                 }
-                if (a.HasSupply && ConcernItems.CountCarried(listener, a.Supply.Blueprint) >= a.Supply.Count)
+                if (a.HasSupply && string.IsNullOrEmpty(a.Supply.MaterialGrade)
+                    && ConcernItems.CountCarried(listener, a.Supply.Blueprint) >= a.Supply.Count)
                     n.Choices.Add(new ChoiceData { Text = "[Hand over " + a.Supply.Count + " " + UnitName(listener, a.Supply.Blueprint) + ".]", Target = "",
                         Actions = new List<ConversationParam> { new ConversationParam { Key = SupplyAction, Value = c.Id + "|" + a.Id } } });
                 AddLiquidSupplyChoices(n, c, a, speaker, listener);
+                AddMaterialSupplyChoice(n, c, a, speaker, listener);
                 if (a.HasCarry && ConcernItems.FindCargo(listener, a.Carry.Item, ConcernItems.CargoKey(c.Id, a.Id)) == null)
                     n.Choices.Add(new ChoiceData { Text = "[I'll carry " + a.Carry.ItemName + " to the " + SplitWords(a.Carry.Recipient).ToLowerInvariant() + " at " + a.Carry.Place + ".]", Target = "",
                         Actions = new List<ConversationParam> { new ConversationParam { Key = IssueCargoAction, Value = c.Id + "|" + a.Id } } });
@@ -390,6 +392,7 @@ namespace CavesOfOoo.Concerns
             if (a == null || !a.HasSupply) return "no_supply";
             if (StateOf(c, speaker, listener) != State.Working) return "not_working";
             if (IsDone(c, a)) return "already_done";
+            if (!string.IsNullOrEmpty(a.Supply.MaterialGrade)) return "material_supply_requires_quote";
             if (!ConcernItems.TakeCarried(listener, a.Supply.Blueprint, a.Supply.Count)) return "short";
             NarrativeStatePart.Current?.SetFact(ConcernRegistry.DoneFact(c.Id, a.Id), 1);
             MessageLog.Add("You hand over " + a.Supply.Count + " " + SplitWords(a.Supply.Blueprint).ToLowerInvariant() + ".");
@@ -401,16 +404,19 @@ namespace CavesOfOoo.Concerns
         static readonly ConditionalWeakTable<NodeData, Dictionary<string, LiquidSupplyQuote>> LiquidSupplyQuotes =
             new ConditionalWeakTable<NodeData, Dictionary<string, LiquidSupplyQuote>>();
 
-        static bool CanMeasureSupply(ConcernData concern, ConcernApproachData approach, Entity speaker, Entity listener)
-            => approach.Kind == "Supply" && approach.HasSupply && approach.Supply.Count > 0 && LiquidRegistry.IsInitialized
-                && !string.IsNullOrEmpty(approach.Supply.MeasuredLiquid)
-                && LiquidRegistry.Get(approach.Supply.MeasuredLiquid) != null
+        static bool CanHandSupplyInPerson(ConcernData concern, ConcernApproachData approach, Entity speaker, Entity listener)
+            => approach.Kind == "Supply" && approach.HasSupply && approach.Supply.Count > 0
                 && speaker != null && listener?.HasTag("Player") == true && speaker != listener
                 && listener.GetPart<InventoryPart>()?.ParentEntity == listener
                 && OwnedBy(concern, speaker, PlaceOf(speaker)) && WorldResourceActions.Nearby(listener, speaker, speaker.SpatialZone)
                 && speaker.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(speaker)
                 && listener.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
                 && StateOf(concern, speaker, listener) == State.Working && NarrativeStatePart.Current != null;
+
+        static bool CanMeasureSupply(ConcernData concern, ConcernApproachData approach, Entity speaker, Entity listener)
+            => LiquidRegistry.IsInitialized && !string.IsNullOrEmpty(approach.Supply?.MeasuredLiquid)
+                && LiquidRegistry.Get(approach.Supply.MeasuredLiquid) != null
+                && CanHandSupplyInPerson(concern, approach, speaker, listener);
 
         sealed class LiquidSupplyQuote
         {

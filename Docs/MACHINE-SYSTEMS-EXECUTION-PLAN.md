@@ -45,14 +45,14 @@ pacing goal. Native F5 and fresh Continue kept three of twenty steps.
 The final connected run passed 194 cases.
 [Evidence](Verification/MachineSystems/WaysidePlayerWitness20261126/README.md)
 
-**Next Cinderhold design, compatible clay for the hand seal.** The
-original-clay archive at tick 820 has two ordinary fire clay and two
-prepared lining clay measures. The existing Drowned Level sealing
-approach counts four exact FireClay. A proposed grade-based handover can
-take the exact mixed lot with one shared bill and retain the same seal
-condition and later consignment rule. The current lot keeps its ordinary
-window. Use the already earned archive and retain the existing clearing
-and installed-pump approaches.
+**A mixed clay bill can seal the Cinderhold seep — November 26 UTC, 2026.**
+The original two fire clay and two prepared lining clay reached the elder
+after an ordinary return from the cellar. The handover spent the exact
+four units and the elder paid the existing report once. The smith's
+current lot remained. The next due lot offered a sounding rod for 60
+drams, and the exact purchase survived fresh Continue. The final connected
+run passed 115 cases.
+[Evidence](Verification/MachineSystems/CinderholdMixedClay20261126/README.md)
 
 **An earned resin lot seals Posy's east composition — November 26 UTC, 2026.**
 Separate ordinary seed 64 starts brought one early resin or two ripe

@@ -118,6 +118,13 @@ route clearance, budget and independent sighting still govern the outcome.
 The same original cargo remains available for physical recovery.
 [Evidence](Verification/MachineSystems/WaysidePlayerWitness20261126/README.md)
 
+**More than one suitable clay can seal the Cinderhold seep — November 26 UTC, 2026.**
+The elder's fixed four-measure bill accepts mixtures using the shared
+repair grade. Field-recovered fire clay and prepared stock can travel
+together and serve the same existing seal condition. That condition
+brings one payable sounding rod to the smith's next due consignment.
+[Evidence](Verification/MachineSystems/CinderholdMixedClay20261126/README.md)
+
 **Causeway vent scale can become useful field protection — November 26 UTC, 2026.**
 The Causeway vent reader ties its pale crust to clothing proofing. One
 scale already in the pack makes one temporary coat in a flask. Proofing

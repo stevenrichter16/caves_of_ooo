@@ -288,6 +288,13 @@ cross-seed comparisons remain open.
     active stock and lot date. Bottled oil and collation still work.
     [Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
 
+    Cinderhold's hand seal accepted the original fire clay mixed with
+    purchased prepared lining clay. The same lasting seal condition gives
+    the smith a payable sounding rod at the next due consignment. Actual
+    trade preserved the old lot through its ordinary window, then the
+    player bought the exact rod and retained it on fresh Continue.
+    [Evidence](Verification/MachineSystems/CinderholdMixedClay20261126/README.md)
+
 ## Priority 5: add actual local carrying, then selected NPC shipments
 
 21. **Implement the first paid local delivery.** Start with one real packed
