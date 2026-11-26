@@ -21,13 +21,15 @@ ordinary ignition, direct root use, wells, pools, carried water and distillation
    cells away on a straight, visible, unobstructed line. Shared electrical rules
    can affect connected water, metal, the player and bystanders. Direct root
    discharge and loaded traps already ship; storage and reach are the additions.
-3. A reusable condenser catches one water into an exact empty carried singleton
-   flask beside an explicitly admitted natural SteamVent. Split a stacked empty
-   flask using the normal inventory action first. The catch spends one unit of
-   the same elected SourceStockPart used by scrapers and settling trays: capacity
-   three to five, one catch restored per game day, saved and bounded. Merely
-   reading a vent or menu creates/reconciles no stock. Ash beds, hot objects and
-   tile steam are not water sources. Frozen sources refuse.
+3. A reusable condenser catches one water beside an admitted natural SteamVent.
+   Choose the carried waterskin, drawgourd shell or single clean-water flask
+   that has room. Split a stacked empty flask using the ordinary inventory
+   action first. Each catch spends one unit from the same SourceStockPart
+   used by scrapers and settling trays. Capacity is three to five, saved and
+   bounded, with one catch restored per game day. Examining the menu leaves
+   the catch balance alone. A steam vent's wet coating serves exposure and
+   material reactions. The direct fill action draws from actual liquid sources.
+   Frozen sources refuse.
    Admission follows the vent's declared steady heat/water source, not the
    incidental ambient cooling of its ThermalPart. It does not need reheating.
 

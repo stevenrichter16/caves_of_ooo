@@ -136,6 +136,9 @@ namespace CavesOfOoo.Core
             var pool = source.GetPart<LiquidPoolPart>();
             if (pool != null) return pool.ParentEntity == source && pool.LiquidId == "water" && (!requireWater || pool.Volume > 0) && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water");
             if (well != null) return true;
+            // Vapor can wet the tile. Direct filling needs liquid to draw.
+            var material = source.GetPart<MaterialPart>();
+            if (material?.MaterialID == "Steam" || material?.HasMaterialTag("Vapor") == true) return false;
             var spring = source.GetPart<TileStateSourcePart>();
             return spring?.ParentEntity == source && spring.Coating == "water" && spring.CoatingTurns > 0
                 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water");

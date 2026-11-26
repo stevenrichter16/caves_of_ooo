@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Data;
 using NUnit.Framework;
 using UnityEngine;
 namespace CavesOfOoo.Tests
@@ -91,5 +92,74 @@ namespace CavesOfOoo.Tests
         {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;var tx=new InventoryTransaction();try{Assert.True(Fill(skin,tx));Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));dirty.Clear();if(skin){Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();Assert.AreEqual(3,pool.Volume);Assert.Zero(Carried(true));}else tx.Commit();Assert.AreSame(zone.GetCell(12,10),zone.GetEntityCell(source));Assert.AreEqual((12,10),zone.GetEntityPosition(source));Assert.IsEmpty(dirty);}finally{tx.Rollback();}}
         [Test] public void InfiniteWellWithoutFinitePoolDoesNotEmitFiniteVolumeInvalidation()
         {Vessel(true);source.RemovePart(pool);source.AddPart(new WellPart());Assert.True(Fill(true));Assert.AreEqual(3,Carried(true));Assert.IsEmpty(dirty);}
+
+        void NaturalSteamSource(bool exhausted)
+        {
+            Assert.True(zone.RemoveEntity(source));
+            var factory=new EntityFactory();
+            factory.LoadBlueprints(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Blueprints/Objects.json")));
+            source=factory.CreateEntity("SteamVent");
+            Assert.NotNull(source);
+            Assert.IsNull(source.GetPart<LiquidPoolPart>(),"The authored vent has no separate liquid reservoir.");
+            Assert.IsNull(source.GetPart<WellPart>());
+            Assert.AreEqual("Steam",source.GetPart<MaterialPart>().MaterialID);
+            Assert.True(source.GetPart<MaterialPart>().HasMaterialTag("Vapor"));
+            Assert.True(zone.AddEntity(source,11,10));
+            if(exhausted)source.AddPart(new SourceStockPart{Capacity=3,Available=0,LastTick=123});
+            zone.GetCell(10,10).IsVisible=true;
+            zone.GetCell(11,10).IsVisible=true;
+            Vessel(true);
+        }
+        InventoryAction[] DirectSourceRows()
+        {
+            var cell=zone.GetCell(11,10);
+            return WorldInteractionSystem.GatherCellActions(WorldInteractionSystem.ResolveTarget(cell,actor),cell,actor)
+                .Where(a=>a.Command!=null&&a.Command.StartsWith("FillWaterskin|",StringComparison.Ordinal)).ToArray();
+        }
+        void SteamStockUnchanged(bool exhausted)
+        {
+            var stock=source.GetPart<SourceStockPart>();
+            if(!exhausted)Assert.IsNull(stock,"A rejected direct fill must not initialize condensation stock.");
+            else
+            {
+                Assert.NotNull(stock);Assert.AreSame(source,stock.ParentEntity);
+                Assert.AreEqual(3,stock.Capacity);Assert.Zero(stock.Available);Assert.AreEqual(123,stock.LastTick);
+            }
+        }
+        [TestCase(false)][TestCase(true)]
+        public void AuthoredSteamVentOffersNoDirectWaterskinFill(bool exhausted)
+        {
+            NaturalSteamSource(exhausted);
+            Assert.IsEmpty(DirectSourceRows(),"A renewing vapor coating is not an unlimited liquid spring.");
+            Assert.Zero(Carried(true));SteamStockUnchanged(exhausted);
+        }
+        [TestCase(false,false)][TestCase(false,true)][TestCase(true,false)][TestCase(true,true)]
+        public void AuthoredSteamVentCannotBypassMissingOrExhaustedCondensationStock(bool exhausted,bool named)
+        {
+            NaturalSteamSource(exhausted);
+            string command=named?"FillWaterskin|"+Uri.EscapeDataString(source.ID):"FillWaterskin";
+            Assert.False(WaterVesselService.TryAct(actor,vessel,zone,command));
+            Assert.Zero(Carried(true));SteamStockUnchanged(exhausted);Assert.IsEmpty(dirty);
+        }
+        [Test] public void GenericVaporIdentityCannotBecomeDirectWaterByChangingTheBlueprintName()
+        {
+            NaturalSteamSource(false);
+            source.BlueprintName="OtherWaterVaporSource";
+            source.GetPart<MaterialPart>().MaterialID="WaterMist";
+            Assert.True(source.GetPart<MaterialPart>().HasMaterialTag("Vapor"));
+            Assert.False(WaterVesselService.TryAct(actor,vessel,zone,"FillWaterskin|"+Uri.EscapeDataString(source.ID)));
+            Assert.Zero(Carried(true));SteamStockUnchanged(false);
+        }
+        [Test] public void OrdinaryNonVaporSpringRetainsItsDirectFillRowAndUnlimitedSupply()
+        {
+            source.RemovePart(pool);
+            source.AddPart(new TileStateSourcePart{Coating="water",CoatingTurns=8});
+            zone.GetCell(10,10).IsVisible=true;zone.GetCell(11,10).IsVisible=true;
+            Vessel(true);
+            var rows=DirectSourceRows();Assert.AreEqual(1,rows.Length);
+            Assert.AreEqual("FillWaterskin|"+Uri.EscapeDataString(source.ID),rows[0].Command);
+            Assert.True(WaterVesselService.TryAct(actor,vessel,zone,rows[0].Command));
+            Assert.AreEqual(3,Carried(true));Assert.IsNull(source.GetPart<SourceStockPart>());Assert.IsEmpty(dirty);
+        }
     }
 }

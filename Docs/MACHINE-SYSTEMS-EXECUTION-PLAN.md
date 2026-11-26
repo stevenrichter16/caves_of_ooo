@@ -1,3 +1,16 @@
+**Caught steam serves a Gleaners crop — November 26 UTC, 2026.**
+Ordinary seed 64 travel took an earned condenser, a found waterskin and
+a harvested drawgourd shell to a natural Sodden vent. Each vessel took
+one measure from the same supply. The waterskin's drink started growth
+in the replanted garden. Fresh Continue kept the wet bed and the other
+vessel's drink. The playtest also caught a second direct-fill path that
+gave two drinks without spending vent stock. The corrected menu uses
+one catch per measure and closes that path. Fresh Continue preserved
+exhaustion with room in both vessels. The connected native run passed
+571 of 571. This advances the guided ordinary route for #40. Wider
+first-pass acceptance remains open.
+[Evidence](Verification/MachineSystems/CondenserWaterVessels20261126/README.md)
+
 **Both current Wayside routes supply the same meal — November 26 UTC, 2026.**
 Guided ordinary v31 seed 64 used the exact porter's delivered clay and
 preserved Orven's opening stock. Seed 2 earned two cord at Peat Works,
@@ -16,8 +29,10 @@ restored logically. Packaged actions and physical Intel remain open.
 
 The new full native regression started from published `ee0287659` in
 the separate `clone-full-ee0287659`. The prior result remains historical
-until the new run completes. The warm clone and scope are recorded with
-`machine_full_ee0287659_20261126` under `/Users/steven/coo-verification/results`.
+until the new run completes. The first run stopped before producing XML
+when the Unity session ended. The pinned retry is recorded with
+`machine_full_ee0287659_retry_20261126` under
+`/Users/steven/coo-verification/results`.
 
 **Hand water and Conjure Rain grow a second drawgourd — November 26 UTC, 2026.**
 The ordinary seed `1498104061` branch extended the earlier Gleaners'

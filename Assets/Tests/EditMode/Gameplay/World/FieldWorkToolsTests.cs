@@ -120,6 +120,89 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(before - 1, stock.Available);
         }
 
+        [TestCase("Waterskin", 0)]
+        [TestCase("DrawgourdShell", 2)]
+        public void VentMenuFillsTheChosenWaterOnlyVesselFromTheExistingSharedCatch(string blueprint, int initial)
+        {
+            var holder = Place("SteamVent", 11, 9);
+            var stock = SourceStockPart.For(Zone, holder, Clock.TickCount);
+            stock.Available = 1;
+            var vent = Place("SteamVent");
+            var tool = Carry("SteamCondenser");
+            var flask = Flask(1);
+            var vessel = Carry(blueprint);
+            var receiver = vessel.GetPart<WaterskinPart>();
+            receiver.Charges = initial;
+            int capacity = receiver.Capacity;
+
+            var rows = CellMenu(11, 10)
+                .Where(a => a.Via == tool && a.Command.StartsWith("CondenseSteam|", StringComparison.Ordinal))
+                .ToArray();
+            Assert.AreEqual(2, rows.Length);
+            var row = rows.Single(a => a.Display.Contains(vessel.GetPart<RenderPart>().DisplayName)
+                && a.Display.Contains($"{initial}/{capacity} to {initial + 1}/{capacity}"));
+            Assert.AreEqual(ActionTime.OneAction, row.Time);
+            Assert.AreEqual(initial, receiver.Charges);
+            Assert.AreEqual(1, stock.Available);
+
+            Assert.IsTrue(ChooseRow(row, 11, 10));
+            Assert.That(Pack.Objects, Does.Contain(vessel));
+            Assert.AreSame(receiver, vessel.GetPart<WaterskinPart>());
+            Assert.AreEqual(initial + 1, receiver.Charges);
+            Assert.AreEqual(1, Units(flask));
+            Assert.AreEqual(0, stock.Available);
+            Assert.IsFalse(vent.HasPart<SourceStockPart>());
+            Assert.IsFalse(Actions(tool).Any(a => a.Command.StartsWith("CondenseSteam|", StringComparison.Ordinal)));
+        }
+
+        [TestCase(-1, 0)]
+        [TestCase(1, 2)]
+        public void LateCondenserVetoPreservesIndependentWaterOnlyVesselChanges(int independent, int remaining)
+        {
+            var vent = Place("SteamVent");
+            var stock = SourceStockPart.For(Zone, vent, Clock.TickCount);
+            int before = stock.Available;
+            var tool = Carry("SteamCondenser");
+            var vessel = Carry("DrawgourdShell");
+            var receiver = vessel.GetPart<WaterskinPart>();
+            receiver.Charges = 1;
+            string command = Choice(tool, "CondenseSteam|");
+            int quotedWaterAtVeto = -1;
+            int catchesAtVeto = -1;
+            Actor.AddPart(new Probe { Run = e =>
+            {
+                if (e.ID != "AfterInventoryAction") return;
+                quotedWaterAtVeto = receiver.Charges;
+                catchesAtVeto = stock.Available;
+                receiver.Charges += independent;
+                throw new InvalidOperationException("late water-only receiver veto");
+            }});
+
+            Assert.IsFalse(Act(tool, command));
+            Assert.AreEqual(2, quotedWaterAtVeto);
+            Assert.AreEqual(before - 1, catchesAtVeto);
+            Assert.AreSame(receiver, vessel.GetPart<WaterskinPart>());
+            Assert.AreEqual(remaining, receiver.Charges);
+            Assert.AreEqual(before, stock.Available);
+        }
+
+        [Test]
+        public void FullAndFrozenWaterOnlyVesselsDoNotOfferACondensationChoice()
+        {
+            var vent = Place("SteamVent");
+            var tool = Carry("SteamCondenser");
+            var full = Skin(units: 3);
+            var frozen = Carry("DrawgourdShell");
+            if (!frozen.HasPart<StatusEffectsPart>()) frozen.AddPart(new StatusEffectsPart());
+            if (!frozen.HasPart<MaterialPart>()) frozen.AddPart(new MaterialPart { MaterialTagsRaw = "Metal" });
+            Assert.IsTrue(frozen.ApplyEffect(new FrozenEffect(1)));
+
+            Assert.IsFalse(Actions(tool).Any(a => a.Command.StartsWith("CondenseSteam|", StringComparison.Ordinal)));
+            Assert.AreEqual(3, Units(full));
+            Assert.AreEqual(0, Units(frozen));
+            Assert.IsFalse(vent.HasPart<SourceStockPart>());
+        }
+
         [TestCase(false)]
         [TestCase(true)]
         public void InterruptedCondenserTopUpPreservesPreviouslyHeldWater(bool stale)

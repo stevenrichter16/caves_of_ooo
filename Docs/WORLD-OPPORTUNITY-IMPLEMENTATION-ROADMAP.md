@@ -766,6 +766,12 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     and saved the actual crop moisture and flask remainder. Ordinary
     empty-flask catch, scrape and tray options still use their existing
     rules. [Evidence](Verification/MachineSystems/CaveFeltAndSteamTopUp20261126/README.md)
+    The player can now bring a found waterskin or harvested drawgourd
+    shell to the same vent. Each condenser catch spends one shared
+    measure. The vapor's wet coating no longer offers an uncapped fill.
+    The ordinary route used one catch on a planted drawgourd and
+    kept the second vessel's drink through fresh Continue.
+    [Evidence](Verification/MachineSystems/CondenserWaterVessels20261126/README.md)
     A version 29 Causeway surface vent and its local cave stain made an
     optional cue visible on a crossing that kept its six-step stair
     approach. The two existing portable tools compete for the same
