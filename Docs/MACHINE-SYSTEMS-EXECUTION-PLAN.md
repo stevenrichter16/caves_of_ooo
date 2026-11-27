@@ -1,3 +1,13 @@
+**The field-grown sumpsieve pad clears Brine Camp marsh gas — November 27, 2026, America/Chicago.**
+The traveler touched the carried torch to an existing mire pool,
+entered the resulting gas cloud, and retreated to the world map.
+At 11 HP, applying the exact spare pad spent one dose and held at
+11 HP. Waiting from the same saved injury cost two HP and left
+eight poison turns. Fresh Continue kept the cure, spent pad, lit
+torch and separate charred status. Untreated Continue kept damage
+and duration but lost the mire's source attribution. Record this
+as a separate save bug. [Gas and Continue playtest](Verification/MachineSystems/SumpsieveGasPad20261127/README.md)
+
 **Sella’s field dressing treats a real Sodden wound — November 27, 2026, America/Chicago.**
 The shared self and companion rule admits only active ordinary poison
 or bleeding. The traveler used Sella’s exact dressing in a native

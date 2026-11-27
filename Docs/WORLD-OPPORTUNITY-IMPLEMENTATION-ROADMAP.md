@@ -1185,6 +1185,21 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
     held the parcel.
     [Evidence](Verification/MachineSystems/WaysideLivingPlayerWitness20261126/README.md)
 
+## Raised banks and shelves
+
+The mire above a dark peat bank can read as a shallow raised pool in
+the flat view. Preserve the clear top rim and visible bank face in a
+small terrain trial. A wetland shelf could hold a shallow rain basin,
+with a clearly visible approach around one end. Limestone shelves and
+salt pans could use the same composition with local materials.
+
+Start with a single ordinary wetland bank. Align the visible face
+with its actual collision edge and give the accessible opening a
+consistent shape. Look and Examine should identify the same bank and
+pool that the player sees. Compare both approaches in motion and
+check the edge in rain and fair weather. Add runoff or a real change
+in height only where a supported interaction needs it.
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the

@@ -2518,6 +2518,15 @@ first wound and a fresh bite started another. Self and companion Apply
 share one active-effect rule so an expired wound cannot spend a dose.
 [The matched treatment and wait](Verification/MachineSystems/SoddenDressingActive20261127/README.md)
 
+The remaining field-grown pad cleared active marsh-gas poison in
+ordinary Brine Camp play. The same torch used for light ignited
+existing mire, which exposed the player to gas through normal
+terrain contact. The pad removed the gas effect after retreat.
+Both the treatment and wait branches still ended charred. Fresh
+Continue kept the spent pad and the cured state. An untreated
+Continue kept the effect and its damage but lost its source ID.
+[Gas and Continue playtest](Verification/MachineSystems/SumpsieveGasPad20261127/README.md)
+
 The Brine Camp recovery comparison confirmed that an empty bed's
 saved reservation can block ordinary rest after an NPC's arrival
 callback is lost. Reservations now restore from the actual sleeper.

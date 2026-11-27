@@ -1,0 +1,793 @@
+{
+  "sourceCommit": "4d90fb4af76b73db619274aea0ce9aec353285dd",
+  "stages": {
+    "continue-7050": {
+      "zone": "WorldMap",
+      "tick": 7050,
+      "hp": 33,
+      "x": 46,
+      "y": 11,
+      "drams": 3,
+      "mode": "Normal",
+      "status": [],
+      "dressing": [
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "n": 1
+        }
+      ],
+      "log": [
+        "sari-snake hits you in the body for 5 damage! (37 HP remaining)",
+        "You are bleeding!",
+        "You take 2 bleed damage.",
+        "Game loaded.",
+        "You take 2 bleed damage.",
+        "Autosaved.",
+        "Game loaded.",
+        "You stop bleeding.",
+        "You bind the field dressing over your wounds."
+      ]
+    },
+    "brine-controlled": {
+      "zone": "Overworld.15.8.0",
+      "x": 40,
+      "y": 12,
+      "tick": 7070,
+      "hp": 33,
+      "items": [
+        {
+          "id": "11384",
+          "bp": "MirePool",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": null,
+          "creator": null,
+          "hp": 200,
+          "burn": 0,
+          "temperature": 22.2515869
+        }
+      ],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 41.70001,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You take 2 bleed damage.",
+        "Game loaded.",
+        "You take 2 bleed damage.",
+        "Autosaved.",
+        "Game loaded.",
+        "You stop bleeding.",
+        "You bind the field dressing over your wounds.",
+        "You unequip buckler.",
+        "You equip torch."
+      ]
+    },
+    "dry-step-43": {
+      "zone": "Overworld.15.8.0",
+      "x": 43,
+      "y": 12,
+      "tick": 7100,
+      "hp": 33,
+      "items": [
+        {
+          "id": "11384",
+          "bp": "MirePool",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": null,
+          "creator": null,
+          "hp": 200,
+          "burn": 0,
+          "temperature": 22.4132156
+        }
+      ],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 40.80001,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You take 2 bleed damage.",
+        "Game loaded.",
+        "You take 2 bleed damage.",
+        "Autosaved.",
+        "Game loaded.",
+        "You stop bleeding.",
+        "You bind the field dressing over your wounds.",
+        "You unequip buckler.",
+        "You equip torch."
+      ]
+    },
+    "mire-selected": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "touch lit torch — mire [44,12]",
+      "rows": [
+        {
+          "Display": "break",
+          "key": "k",
+          "Command": "Break"
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine"
+        },
+        {
+          "Display": "scatter grit east (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.15.8.0|43|12|44|12|1"
+        },
+        {
+          "Display": "touch lit torch — mire [44,12]",
+          "key": "\u0000",
+          "Command": "TouchTorch|Overworld.15.8.0|43|12|44|12|11384|40.80001"
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell"
+        }
+      ]
+    },
+    "mire-ignited": {
+      "zone": "Overworld.15.8.0",
+      "x": 43,
+      "y": 12,
+      "tick": 7110,
+      "hp": 33,
+      "items": [
+        {
+          "id": "11384",
+          "bp": "MirePool",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": null,
+          "creator": null,
+          "hp": 199,
+          "burn": 2,
+          "temperature": 641.774231
+        }
+      ],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 39.50001,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You bind the field dressing over your wounds.",
+        "You unequip buckler.",
+        "You equip torch.",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "mire catches fire!",
+        "You spend torch fuel to kindle the existing material. Fire can spread.",
+        "You strike mire.",
+        "mire takes 1 fire damage."
+      ]
+    },
+    "ignited-wait-2": {
+      "zone": "Overworld.15.8.0",
+      "x": 43,
+      "y": 12,
+      "tick": 7130,
+      "hp": 33,
+      "items": [
+        {
+          "id": "11384",
+          "bp": "MirePool",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": null,
+          "creator": null,
+          "hp": 197,
+          "burn": 0,
+          "temperature": 1396.117
+        },
+        {
+          "id": "gas_marsh-gas_44_12_713d62",
+          "bp": "marsh-gasCloud",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": 60,
+          "creator": "11384",
+          "hp": null,
+          "burn": null,
+          "temperature": null
+        }
+      ],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 38.900013,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "mire is no longer burning.",
+        "mire is charred.",
+        "peat bank takes 1 fire damage.",
+        "You catches fire!",
+        "mire takes 1 fire damage.",
+        "peat bank takes 3 fire damage.",
+        "mire catches fire!",
+        "peat bank catches fire!",
+        "peat bank catches fire!"
+      ]
+    },
+    "marsh-cloud": {
+      "zone": "Overworld.15.8.0",
+      "x": 43,
+      "y": 12,
+      "tick": 7140,
+      "hp": 32,
+      "items": [
+        {
+          "id": "11384",
+          "bp": "MirePool",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": null,
+          "creator": null,
+          "hp": 197,
+          "burn": 0,
+          "temperature": 2478.54468
+        },
+        {
+          "id": "gas_marsh-gas_44_12_713d62",
+          "bp": "marsh-gasCloud",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": 58,
+          "creator": "11384",
+          "hp": null,
+          "burn": null,
+          "temperature": null
+        }
+      ],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 38.6000137,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "mire is charred.",
+        "peat bank takes 2 fire damage.",
+        "peat bank is no longer burning.",
+        "peat bank is charred.",
+        "peat bank takes 3 fire damage.",
+        "mire takes 1 fire damage.",
+        "peat bank takes 2 fire damage.",
+        "mire catches fire!",
+        "peat bank catches fire!"
+      ]
+    },
+    "natural-exposure": {
+      "zone": "Overworld.15.8.0",
+      "x": 44,
+      "y": 12,
+      "tick": 7150,
+      "hp": 19,
+      "items": [
+        {
+          "id": "11384",
+          "bp": "MirePool",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": null,
+          "creator": null,
+          "hp": 197,
+          "burn": 0,
+          "temperature": 2429.47388
+        },
+        {
+          "id": "gas_marsh-gas_44_12_713d62",
+          "bp": "marsh-gasCloud",
+          "x": 44,
+          "y": 12,
+          "visible": true,
+          "gasId": "marsh-gas",
+          "density": 57,
+          "creator": "11384",
+          "hp": null,
+          "burn": null,
+          "temperature": null
+        }
+      ],
+      "gas": {
+        "type": "PoisonedByGasEffect",
+        "Duration": 10,
+        "GasTypeKey": "MarshGas",
+        "DamagePerTurn": 2,
+        "source": "11384"
+      },
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 38.3000145,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "mire is charred.",
+        "peat bank takes 4 fire damage.",
+        "peat bank is no longer burning.",
+        "peat bank is charred.",
+        "peat bank takes 1 fire damage.",
+        "mire takes 1 fire damage.",
+        "peat bank takes 3 fire damage.",
+        "mire catches fire!",
+        "peat bank catches fire!"
+      ]
+    },
+    "outside-cloud": {
+      "zone": "WorldMap",
+      "x": 45,
+      "y": 11,
+      "tick": 7160,
+      "hp": 11,
+      "items": [],
+      "gas": {
+        "type": "PoisonedByGasEffect",
+        "Duration": 9,
+        "GasTypeKey": "MarshGas",
+        "DamagePerTurn": 2,
+        "source": "11384"
+      },
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 38.0000153,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "peat bank is charred.",
+        "peat bank takes 1 fire damage.",
+        "mire takes 1 fire damage.",
+        "peat bank takes 3 fire damage.",
+        "mire catches fire!",
+        "peat bank catches fire!",
+        "The mire-soaked coating wears off you.",
+        "You take 6 fire damage.",
+        "Autosaved."
+      ]
+    },
+    "poisoned-continue": {
+      "zone": "WorldMap",
+      "x": 45,
+      "y": 11,
+      "tick": 7160,
+      "hp": 11,
+      "items": [],
+      "gas": {
+        "type": "PoisonedByGasEffect",
+        "Duration": 9,
+        "GasTypeKey": "MarshGas",
+        "DamagePerTurn": 2,
+        "source": null
+      },
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 38.0000153,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "peat bank is charred.",
+        "peat bank takes 1 fire damage.",
+        "mire takes 1 fire damage.",
+        "peat bank takes 3 fire damage.",
+        "mire catches fire!",
+        "peat bank catches fire!",
+        "The mire-soaked coating wears off you.",
+        "You take 6 fire damage.",
+        "Autosaved."
+      ]
+    },
+    "pad-actions": {
+      "mode": "InventoryOpen",
+      "panel": 1,
+      "equip": false,
+      "query": "pad",
+      "search": false,
+      "visible": [
+        "sumpsieve pad",
+        "sumpsieve pad",
+        "You see a sumpsieve pad. Apply the\npad to treat ordinary or lingering\ngas poison. It does not treat fungal\ninfection or prevent new exposure.\nPeat-cutters keep these bitter,\nperforated leaves drying on shelves\nabove the damp.\nOn whoever it takes hold of:\n - Cures ordinary poison and\nlingering gas poisoning; does not\nprevent new exposure.\n\nApplied when used. Can be thrown.\n\nBroad shatters over the target and\nadjacent open cells. Focused Splash\nrequires its skill and keeps the\nsplash in one cell; the total liquid\nbudget stays the same.\nDirect targets only; no ground\nresidue.\nTactical use: Treat an adjacent\ncompanion's ordinary or lingering\ngas poison. Fresh exposure can\npoison them again. Spend one item\nand your own action; only a living\nwilling party member within reach\ncan receive it. Self-use remains\navailable.\n1 unit. Weight per unit: 1. Total\nweight: 1.\nLift Strength: 2; yours: 16.\nYou can carry this item....",
+        "sumpsieve pad"
+      ],
+      "actions": [
+        "Label=Examine | Command=examine_tonic | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint=",
+        "Label=apply | Command=ApplyTonic | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Unspecified | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Throw | Command=throw | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Label item | Command=edit_storage_label | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Drop | Command=drop | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint="
+      ]
+    },
+    "cured": {
+      "zone": "WorldMap",
+      "x": 45,
+      "y": 11,
+      "tick": 7170,
+      "hp": 11,
+      "items": [],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 37.700016,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [],
+      "mode": "Normal",
+      "log": [
+        "The mire-soaked coating wears off you.",
+        "You take 6 fire damage.",
+        "Autosaved.",
+        "Game saved.",
+        "You recover from the gas-poisoning.",
+        "You are no longer poisoned!",
+        "You applies sumpsieve pad.",
+        "You are no longer burning.",
+        "You are charred."
+      ]
+    },
+    "untreated-wait": {
+      "zone": "WorldMap",
+      "x": 45,
+      "y": 11,
+      "tick": 7170,
+      "hp": 9,
+      "items": [],
+      "gas": {
+        "type": "PoisonedByGasEffect",
+        "Duration": 8,
+        "GasTypeKey": "MarshGas",
+        "DamagePerTurn": 2,
+        "source": null
+      },
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 37.700016,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [
+        {
+          "ID": "23316",
+          "count": 1
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "mire takes 1 fire damage.",
+        "peat bank takes 3 fire damage.",
+        "mire catches fire!",
+        "peat bank catches fire!",
+        "The mire-soaked coating wears off you.",
+        "You take 6 fire damage.",
+        "Autosaved.",
+        "You are no longer burning.",
+        "You are charred."
+      ]
+    },
+    "cured-continue": {
+      "zone": "WorldMap",
+      "x": 45,
+      "y": 11,
+      "tick": 7170,
+      "hp": 11,
+      "items": [],
+      "gas": null,
+      "torch": {
+        "id": "5af19e50c1904d1bae18f0978a67e61a",
+        "lit": true,
+        "fuel": 37.700016,
+        "temperature": 450.0,
+        "equipped": true
+      },
+      "pad": [],
+      "mode": "Normal",
+      "log": [
+        "The mire-soaked coating wears off you.",
+        "You take 6 fire damage.",
+        "Autosaved.",
+        "Game saved.",
+        "You recover from the gas-poisoning.",
+        "You are no longer poisoned!",
+        "You applies sumpsieve pad.",
+        "You are no longer burning.",
+        "You are charred."
+      ]
+    }
+  },
+  "effects": {
+    "natural-exposure": [
+      {
+        "kind": "BurningEffect",
+        "Duration": 2
+      },
+      {
+        "kind": "LiquidCoveredEffect",
+        "Duration": -1
+      },
+      {
+        "kind": "PoisonedByGasEffect",
+        "Duration": 10
+      }
+    ],
+    "outside-cloud": [
+      {
+        "kind": "BurningEffect",
+        "Duration": 1
+      },
+      {
+        "kind": "PoisonedByGasEffect",
+        "Duration": 9
+      }
+    ],
+    "poisoned-continue": [
+      {
+        "kind": "BurningEffect",
+        "Duration": 1
+      },
+      {
+        "kind": "PoisonedByGasEffect",
+        "Duration": 9
+      }
+    ],
+    "cured": [
+      {
+        "kind": "CharredEffect",
+        "Duration": -1
+      }
+    ],
+    "untreated": [
+      {
+        "kind": "PoisonedByGasEffect",
+        "Duration": 8
+      },
+      {
+        "kind": "CharredEffect",
+        "Duration": -1
+      }
+    ],
+    "cured-continue": [
+      {
+        "kind": "CharredEffect",
+        "Duration": -1
+      }
+    ]
+  },
+  "packAfterTreatmentAndContinue": {
+    "items": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "n": 1
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "n": 4
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "n": 2
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "n": 2
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "n": 1
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "n": 1
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "n": 1
+      },
+      {
+        "ID": "15129",
+        "BlueprintName": "PeatMalletHeadComponent",
+        "n": 1
+      },
+      {
+        "ID": "15138",
+        "BlueprintName": "CampStill",
+        "n": 1
+      },
+      {
+        "ID": "23318",
+        "BlueprintName": "SumpsieveSeed",
+        "n": 1
+      },
+      {
+        "ID": "23319",
+        "BlueprintName": "SalvagedTimber",
+        "n": 2
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "n": 1
+      }
+    ],
+    "equipped": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger"
+      },
+      {
+        "ID": "5af19e50c1904d1bae18f0978a67e61a",
+        "BlueprintName": "Torch"
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak"
+      }
+    ],
+    "parts": [
+      "StatusEffectsPart",
+      "RenderPart",
+      "PhysicsPart",
+      "ExaminablePart",
+      "Body",
+      "ArmorPart",
+      "InventoryPart",
+      "BrainPart",
+      "GivesRepPart",
+      "DamageFlashPart",
+      "CorpsePart",
+      "MaterialPart",
+      "ThermalPart",
+      "ActivatedAbilitiesPart",
+      "SkillsPart",
+      "LightSourcePart",
+      "ShortBladesSkill",
+      "ShortBlades_Puncture",
+      "ShortBlades_Bloodletter",
+      "ShortBlades_Rejoinder",
+      "ShortBlades_Shank",
+      "ShortBlades_Flurry",
+      "WorldMapPart",
+      "WorldMapTravelCostPart"
+    ]
+  },
+  "saveArchiveSha256": {
+    "BrineArrival7070": {
+      "Quick.json": "71de9e13da00d6d857ddcf3a49859703d8d484d6e98c3e9ba64af4dc9c2cd400",
+      "Quick.json.bak": "9da58c935a9601da74cdff176acfc80c105c7f19e5ac976a8875dbd63452cfe8",
+      "Quick.sav.gz": "5e16c1c43c331cfe048b1e470bcdc2683a3dec48f32b9e0e27c49e7c59365c53",
+      "Quick.sav.gz.bak": "21f800056cd73243822e26467368eaaed4c1b64ee13a424f7da4619e99e7914a"
+    },
+    "Poisoned7160": {
+      "Quick.json": "4ee74217e51a8c589040c1531cf4eb1c83b63426c8e50ecf6e7f9e1bee588cbf",
+      "Quick.json.bak": "da8adf3e5da1f6e20d091f0cc7b9952e5242c60998c62635a7ceecd2a890c2a4",
+      "Quick.sav.gz": "59346cbee5ee918e0492f94c4d7360273d7fa29ae6d568fdf603ceb3c117b63f",
+      "Quick.sav.gz.bak": "a1f924b0bab64b5242b019c5aa2634afa69e121a2a01d6dd4cef31ce86d47664"
+    },
+    "Cured7170": {
+      "Quick.json": "a8e4146277e95d8715d36a488fa5cdf1ebe071abf7d01f9dea9607abdd88bf83",
+      "Quick.json.bak": "4ee74217e51a8c589040c1531cf4eb1c83b63426c8e50ecf6e7f9e1bee588cbf",
+      "Quick.sav.gz": "9d6db7025e5c8fe54ee509b3cd780137bdee1d3cc833ab0bba2861ff42618e3c",
+      "Quick.sav.gz.bak": "59346cbee5ee918e0492f94c4d7360273d7fa29ae6d568fdf603ceb3c117b63f"
+    }
+  },
+  "screenshotSha256": {
+    "01-marsh-gas-exposure.png": "ccc9b697670d39b458a8727b6be7a171445689c9226d11f24d6ff9b90522f931",
+    "02-apply-sumpsieve-pad.png": "a6848c04f1c858fc46974b1a6dfbd7c108a49289151c41fe2788294c370798df",
+    "03-poison-cleared.png": "e85098c47de5d589f6992d1b17c178d21d338e4ff45309a23915bdb612af8777"
+  },
+  "editorAfterExit": {
+    "playing": false,
+    "changing": false,
+    "saveRoot": null,
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices"
+  },
+  "protectedHashesMatched": {
+    "priorTrackedFiles": 87,
+    "normalQuickSaveFiles": 876
+  }
+}
