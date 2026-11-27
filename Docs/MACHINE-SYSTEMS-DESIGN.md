@@ -1,3 +1,11 @@
+**The Drowned Ledger can use its spare willow for a temporary line.**
+The original retained line holds a finite pair of spare stakes. The
+ordinary harvest keeps the exact structure and accounts for overflow.
+Two willow stakes buy a timed patch, while oak and binding provide the
+lasting repair. The active structure check uses the saved clock and lets
+the player observe expiry without leaving town.
+[Playtest and receipts](Verification/MachineSystems/DrownedLedgerSpareStakes20261127/README.md)
+
 **Orrit sells one reusable sieve at a fresh Morrowfast shop.**
 The shop uses the ordinary four-pound sieve and trade rules. Its opening
 unit stays out of restocking and leaves the forge route useful. The clay

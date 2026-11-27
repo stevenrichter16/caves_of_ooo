@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CavesOfOoo.Concerns;
@@ -157,6 +159,176 @@ namespace CavesOfOoo.Tests
         // ── placed in a fresh Cinderhold ──
 
         static string ZoneOf(string place) { var p = WorldMapAuthoring.Places.Single(q => q.Name == place); return "Overworld." + p.X + "." + p.Y + ".0"; }
+
+        const string Ledger = "the Drowned Ledger", SurveySite = "SurveyLine", WillowStake = "WillowHaftComponent";
+
+        void WithSurveyLine(Action<OverworldZoneManager, Entity, RepairableSiteState> check)
+        {
+            using var scope = new HaulingContentScope();
+            scope.Seed(64);
+            var oldHarvest = HarvestablePart.Factory;
+            try
+            {
+                HarvestablePart.Factory = scope.Factory;
+                Clock = new TurnManager();
+                var manager = new OverworldZoneManager(scope.Factory, 64);
+                manager.SetTurnProvider(() => Clock.TickCount);
+                Assert.True(Zone.RemoveEntity(Actor));
+                manager.SetActiveZone(ZoneOf(Ledger));
+                Zone = manager.ActiveZone;
+                SettlementRuntime.ActiveZone = Zone;
+                var line = Zone.GetReadOnlyEntities().Single(owner => owner.BlueprintName == SurveySite);
+                var cell = Zone.GetEntityCell(line);
+                var approach = new[] { (cell.X - 1, cell.Y), (cell.X + 1, cell.Y), (cell.X, cell.Y - 1), (cell.X, cell.Y + 1) }
+                    .Select(at => Zone.GetCell(at.Item1, at.Item2)).First(at => at != null && !at.BlocksMovement(Actor));
+                Assert.True(Zone.AddEntity(Actor, approach.X, approach.Y));
+                cell.IsVisible = cell.Explored = approach.IsVisible = approach.Explored = true;
+                check(manager, line, manager.SettlementManager.GetSite(Zone.ZoneID, SurveySite));
+            }
+            finally { HarvestablePart.Factory = oldHarvest; }
+        }
+
+        InventoryAction SurveyAction(Entity line, string command)
+        {
+            var cell = Zone.GetEntityCell(line);
+            return CellMenu(cell.X, cell.Y).Single(row => !row.IsDisabled && row.Command == command);
+        }
+
+        bool ChooseSurveyAction(Entity line, InventoryAction row)
+        {
+            var cell = Zone.GetEntityCell(line);
+            return ChooseRow(row, cell.X, cell.Y);
+        }
+
+        void SchedulePlayerAt(int tick) => Clock.RestoreSavedState(tick, false, Actor,
+            new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = Actor, Energy = TurnManager.ActionThreshold } });
+
+        [TestCase(true)] [TestCase(false)]
+        public void TheSurveyLineSuppliesExactlyOneTemporaryPatchAndRetainsTheSameSpentLine(bool stay)
+        {
+            WithSurveyLine((manager, line, site) =>
+            {
+                var anchor = Zone.GetEntityCell(line);
+                var marker = line.GetPart<InstallationMarkerPart>();
+                var stakes = line.GetPart<HarvestablePart>();
+                Assert.AreEqual("ledger-survey-line", marker.InstallationId);
+                Assert.True(marker.RetainZone);
+                Assert.AreEqual("SurveyLineSpareStakes", stakes?.Name);
+                Assert.AreEqual(RepairStage.Fouled, site.Stage);
+                Assert.AreEqual(0, Count(WillowStake));
+                var salvage = SurveyAction(line, "Harvest");
+                Assert.That(salvage.Display, Does.Contain("salvage two willow stakes").IgnoreCase);
+                Assert.True(ChooseSurveyAction(line, salvage));
+                Assert.AreEqual(2, Count(WillowStake));
+                Assert.True(stakes.Harvested);
+                Assert.AreSame(anchor, Zone.GetEntityCell(line));
+                Assert.AreSame(marker, line.GetPart<InstallationMarkerPart>());
+                Assert.False(Act(line, salvage.Command));
+                Assert.False(Actions(line).Any(row => row.Command == "Harvest"));
+
+                var patch = SurveyAction(line, "PlaceSiteRepair|Patch");
+                Assert.AreEqual(ActionTime.OneAction, patch.Time);
+                int deadline = Clock.TickCount + 700;
+                Assert.True(ChooseSurveyAction(line, patch));
+                Assert.AreEqual(RepairStage.TemporarilyPurified, site.Stage);
+                Assert.AreEqual(RepairMethodId.PatchedRepair, site.ResolvedByMethod);
+                Assert.AreEqual(deadline, site.RelapseAtTurn);
+                Assert.AreEqual(0, Count(WillowStake));
+                Assert.False(PlaceSites.StageAtLeast(Ledger + ":" + SurveySite + ":StableRepair"));
+
+                if (stay)
+                {
+                    SchedulePlayerAt(deadline - 1);
+                    Assert.AreSame(Actor, Clock.ProcessUntilPlayerTurn());
+                    Assert.AreEqual(RepairStage.TemporarilyPurified, site.Stage);
+                    Clock.Tick();
+                    Assert.AreEqual(deadline, Clock.TickCount);
+                    Assert.AreSame(Actor, Clock.ProcessUntilPlayerTurn());
+                }
+                else
+                {
+                    var approach = Zone.GetEntityCell(Actor);
+                    var away = new Zone("survey-line-away");
+                    Assert.True(Zone.RemoveEntity(Actor));
+                    Assert.True(away.AddEntity(Actor, 10, 10));
+                    manager.SetActiveZone(away);
+                    SettlementRuntime.ActiveZone = away;
+                    Clock.AdvanceClock(700);
+                    Assert.AreEqual(RepairStage.TemporarilyPurified, site.Stage);
+                    manager.SetActiveZone(Zone.ZoneID);
+                    Assert.AreSame(Zone, manager.ActiveZone);
+                    SettlementRuntime.ActiveZone = Zone;
+                    Assert.True(away.RemoveEntity(Actor));
+                    Assert.True(Zone.AddEntity(Actor, approach.X, approach.Y));
+                }
+
+                Assert.AreEqual(RepairStage.Fouled, site.Stage);
+                Assert.IsNull(site.RelapseAtTurn);
+                Assert.AreSame(anchor, Zone.GetEntityCell(line));
+                Assert.AreSame(marker, line.GetPart<InstallationMarkerPart>());
+                Assert.True(stakes.Harvested);
+                Assert.False(Actions(line).Any(row => row.Command == "Harvest"));
+                Assert.False(Act(line, patch.Command));
+                Assert.AreEqual(0, Count(WillowStake));
+                var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(line);
+                Assert.AreEqual(line.ID, loaded.ID);
+                Assert.True(loaded.GetPart<HarvestablePart>().Harvested);
+                Assert.AreEqual(marker.InstallationId, loaded.GetPart<InstallationMarkerPart>().InstallationId);
+            });
+        }
+
+        [Test]
+        public void TheSurveyLineKeepsOverflowStakesAtItsFeetWithoutRegrowingThem()
+        {
+            WithSurveyLine((_, line, _) =>
+            {
+                Pack.MaxWeight = Pack.GetCarriedWeight();
+                var anchor = Zone.GetEntityCell(line);
+                var row = SurveyAction(line, "Harvest");
+                Assert.True(ChooseSurveyAction(line, row));
+                Assert.AreEqual(0, Count(WillowStake));
+                Assert.AreEqual(2, anchor.Objects.Where(item => item.BlueprintName == WillowStake)
+                    .Sum(item => item.GetPart<StackerPart>()?.StackCount ?? 1));
+                Assert.AreSame(anchor, Zone.GetEntityCell(line));
+                Assert.False(Act(line, row.Command));
+            });
+        }
+
+        [Test]
+        public void AnOlderSurveyLinePatchExpiresBeforeLocalPlayerInput()
+        {
+            WithSurveyLine((_, line, site) =>
+            {
+                if (line.GetPart<HarvestablePart>() is { } spares) Assert.True(line.RemovePart(spares));
+                Give(WillowStake, 2);
+                Assert.True(ChooseSurveyAction(line, SurveyAction(line, "PlaceSiteRepair|Patch")));
+                int deadline = site.RelapseAtTurn.Value;
+                SchedulePlayerAt(deadline);
+                Assert.AreSame(Actor, Clock.ProcessUntilPlayerTurn());
+                Assert.AreEqual(RepairStage.Fouled, site.Stage);
+                Assert.IsNull(site.RelapseAtTurn);
+            });
+        }
+
+        [Test]
+        public void AProperOakRepairRemainsStableAcrossTheTemporaryDeadline()
+        {
+            WithSurveyLine((_, line, site) =>
+            {
+                Give("OakHaftComponent", 3);
+                Give("LeatherBindingComponent", 1);
+                Assert.True(ChooseSurveyAction(line, SurveyAction(line, "PlaceSiteRepair|Lasting")));
+                Assert.True(PlaceSites.StageAtLeast(Ledger + ":" + SurveySite + ":StableRepair"));
+                SchedulePlayerAt(699);
+                Clock.AdvanceClock(1);
+                Assert.AreSame(Actor, Clock.ProcessUntilPlayerTurn());
+                Assert.AreEqual(RepairStage.StableRepair, site.Stage);
+                Assert.AreEqual(RepairMethodId.ManualRepair, site.ResolvedByMethod);
+                Assert.IsNull(site.RelapseAtTurn);
+                Assert.AreEqual(0, Count("OakHaftComponent"));
+                Assert.AreEqual(0, Count("LeatherBindingComponent"));
+            });
+        }
 
         [Test] public void AFreshCinderholdHasExactlyOnePumpBesideTheWell_AndNoOtherTownHasOne([Values(64, 704860946, 1729)] int seed)
         {

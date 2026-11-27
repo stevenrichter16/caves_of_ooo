@@ -177,7 +177,7 @@ namespace CavesOfOoo.Tests
             {
                 var result = ZoneTransitionSystem.TransitionPlayer(Player, Source, TransitionDirection.North, 30, 0, Manager, null);
                 Assert.True(result.Success, result.ErrorReason); Assert.AreSame(Destination, result.NewZone);
-                typeof(InputHandler).GetMethod("HandleZoneTransition", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(isolation.Input, new object[] { result });
+                typeof(InputHandler).GetMethod("HandleZoneTransition", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(isolation.Input, new object[] { result, true });
                 Assert.AreSame(Destination, isolation.Input.CurrentZone); Assert.AreSame(Destination, Manager.ActiveZone);
                 Assert.IsNull(Source.GetEntityCell(Player)); Assert.NotNull(Destination.GetEntityCell(Player)); Ready();
             }

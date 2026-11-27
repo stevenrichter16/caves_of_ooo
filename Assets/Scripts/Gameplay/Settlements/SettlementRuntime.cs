@@ -12,6 +12,14 @@ namespace CavesOfOoo.Core
             ZoneDirtyCallback?.Invoke();
         }
 
+        internal static void ReconcileActiveStructurePatches(Zone zone, TurnManager clock)
+        {
+            if (zone == null || clock == null || clock != TurnManager.Active) return;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.ActiveZone == zone && manager.SettlementManager.AdvanceActiveStructurePatches(zone.ZoneID, clock.TickCount))
+                MarkZoneDirty();
+        }
+
         public static void Reset()
         {
             ActiveZone = null;

@@ -1,0 +1,406 @@
+{
+  "scope": "Actual GameBootstrap play from ordinary seed-65 Quillhold Reported2100. No supplied items, changed weather, clock changes or boosted capacity.",
+  "start": {
+    "zone": "Overworld.14.9.0",
+    "position": [
+      14,
+      5
+    ],
+    "tick": 2100,
+    "hp": 31,
+    "drams": 3
+  },
+  "arrival": {
+    "state": {
+      "exists": true,
+      "zone": "Overworld.17.5.0",
+      "xy": [
+        39,
+        11
+      ],
+      "tick": 2260,
+      "hp": 31,
+      "drams": 3,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 3,
+        "UntilTick": 2400
+      },
+      "mode": "Normal",
+      "job": false,
+      "keys": 9,
+      "pole": null,
+      "pack": [
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "wet": null,
+          "units": 4
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "wet": null,
+          "units": 2
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "wet": null,
+          "units": 2
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "wet": null,
+          "units": 2
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "wet": null,
+          "units": null
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "wet": null,
+          "units": 1
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "site": {
+      "here": true,
+      "tick": 2260,
+      "at": [
+        40,
+        15
+      ],
+      "id": "15317",
+      "spares": false,
+      "part": "SurveyLineSpareStakes",
+      "marker": "ledger-survey-line",
+      "townOutcome": false,
+      "stage": "Fouled",
+      "deadline": null,
+      "method": "None",
+      "name": "survey line (out of line)",
+      "color": "&y",
+      "carriedWeight": 20,
+      "limit": 150,
+      "stakes": [],
+      "ground": []
+    }
+  },
+  "initialChoices": [
+    {
+      "i": 0,
+      "key": "h",
+      "Display": "salvage two willow stakes",
+      "Command": "Harvest",
+      "Hint": "",
+      "IsDisabled": false,
+      "DisabledReason": "",
+      "via": null
+    },
+    {
+      "i": 1,
+      "key": "m",
+      "Display": "mend the survey line for good",
+      "Command": "Disabled:missing_materials",
+      "Hint": "",
+      "IsDisabled": true,
+      "DisabledReason": "You still need 3 oak haft and 1 leather binding.",
+      "via": null
+    },
+    {
+      "i": 2,
+      "key": "p",
+      "Display": "patch the survey line for now",
+      "Command": "Disabled:missing_materials",
+      "Hint": "",
+      "IsDisabled": true,
+      "DisabledReason": "You still need 2 willow haft.",
+      "via": null
+    },
+    {
+      "i": 3,
+      "key": "x",
+      "Display": "examine",
+      "Command": "Examine",
+      "Hint": "",
+      "IsDisabled": false,
+      "DisabledReason": "",
+      "via": null
+    }
+  ],
+  "firstGather": {
+    "here": true,
+    "tick": 2310,
+    "at": [
+      40,
+      15
+    ],
+    "id": "15317",
+    "spares": true,
+    "part": "SurveyLineSpareStakes",
+    "marker": "ledger-survey-line",
+    "townOutcome": false,
+    "stage": "Fouled",
+    "deadline": null,
+    "method": "None",
+    "name": "survey line (out of line)",
+    "color": "&y",
+    "carriedWeight": 26,
+    "limit": 150,
+    "stakes": [
+      {
+        "ID": "15329",
+        "units": 2
+      }
+    ],
+    "ground": []
+  },
+  "patch": {
+    "here": true,
+    "tick": 2310,
+    "at": [
+      40,
+      15
+    ],
+    "id": "15317",
+    "spares": true,
+    "part": "SurveyLineSpareStakes",
+    "marker": "ledger-survey-line",
+    "townOutcome": false,
+    "stage": "TemporarilyPurified",
+    "deadline": 3000,
+    "method": "PatchedRepair",
+    "name": "survey line (patched)",
+    "color": "&W",
+    "carriedWeight": 20,
+    "limit": 150,
+    "stakes": [],
+    "ground": []
+  },
+  "patchedContinue": {
+    "here": true,
+    "tick": 2310,
+    "at": [
+      40,
+      15
+    ],
+    "id": "15317",
+    "spares": true,
+    "part": "SurveyLineSpareStakes",
+    "marker": "ledger-survey-line",
+    "townOutcome": false,
+    "stage": "TemporarilyPurified",
+    "deadline": 3000,
+    "method": "PatchedRepair",
+    "name": "survey line (patched)",
+    "color": "&W",
+    "carriedWeight": 20,
+    "limit": 150,
+    "stakes": [],
+    "ground": []
+  },
+  "beforeExpiry": {
+    "here": true,
+    "tick": 2990,
+    "at": [
+      40,
+      15
+    ],
+    "id": "15317",
+    "spares": true,
+    "part": "SurveyLineSpareStakes",
+    "marker": "ledger-survey-line",
+    "townOutcome": false,
+    "stage": "TemporarilyPurified",
+    "deadline": 3000,
+    "method": "PatchedRepair",
+    "name": "survey line (patched)",
+    "color": "&W",
+    "carriedWeight": 20,
+    "limit": 150,
+    "stakes": [],
+    "ground": []
+  },
+  "expired": {
+    "state": {
+      "zone": "Overworld.17.5.0",
+      "position": [
+        40,
+        14
+      ],
+      "tick": 3000,
+      "hp": 29,
+      "drams": 3
+    },
+    "site": {
+      "here": true,
+      "tick": 3000,
+      "at": [
+        40,
+        15
+      ],
+      "id": "15317",
+      "spares": true,
+      "part": "SurveyLineSpareStakes",
+      "marker": "ledger-survey-line",
+      "townOutcome": false,
+      "stage": "Fouled",
+      "deadline": null,
+      "method": "None",
+      "name": "survey line (out of line)",
+      "color": "&y",
+      "carriedWeight": 20,
+      "limit": 150,
+      "stakes": [],
+      "ground": []
+    }
+  },
+  "expiredChoices": [
+    {
+      "i": 0,
+      "key": "m",
+      "Display": "mend the survey line for good",
+      "Command": "Disabled:missing_materials",
+      "Hint": "",
+      "IsDisabled": true,
+      "DisabledReason": "You still need 3 oak haft and 1 leather binding.",
+      "via": null
+    },
+    {
+      "i": 1,
+      "key": "p",
+      "Display": "patch the survey line for now",
+      "Command": "Disabled:missing_materials",
+      "Hint": "",
+      "IsDisabled": true,
+      "DisabledReason": "You still need 2 willow haft.",
+      "via": null
+    },
+    {
+      "i": 2,
+      "key": "x",
+      "Display": "examine",
+      "Command": "Examine",
+      "Hint": "",
+      "IsDisabled": false,
+      "DisabledReason": "",
+      "via": null
+    },
+    {
+      "i": 3,
+      "key": "a",
+      "Display": "pour water south (12) [liquid flask]",
+      "Command": "PourLiquidVessel|water|12|Overworld.17.5.0|40|15",
+      "Hint": "",
+      "IsDisabled": false,
+      "DisabledReason": "",
+      "via": "9873"
+    }
+  ],
+  "expiredContinue": {
+    "state": {
+      "zone": "Overworld.17.5.0",
+      "position": [
+        40,
+        14
+      ],
+      "tick": 3000,
+      "hp": 29,
+      "drams": 3
+    },
+    "site": {
+      "here": true,
+      "tick": 3000,
+      "at": [
+        40,
+        15
+      ],
+      "id": "15317",
+      "spares": true,
+      "part": "SurveyLineSpareStakes",
+      "marker": "ledger-survey-line",
+      "townOutcome": false,
+      "stage": "Fouled",
+      "deadline": null,
+      "method": "None",
+      "name": "survey line (out of line)",
+      "color": "&y",
+      "carriedWeight": 20,
+      "limit": 150,
+      "stakes": [],
+      "ground": []
+    }
+  },
+  "archives": {
+    "patched": {
+      "dst": "/Users/steven/coo-verification/checkpoints/DrownedLedgerSpareStakes20261127/Patched2310/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "6ac4e5c366c2dd1e05f266fc370f86683eaa40b65e7134b8612e4a2607656e2c",
+        "Quick.json.bak": "968abdf71eaa628096eea685aaa92fd724d4620251bbc7c125a65078626e1271",
+        "Quick.sav.gz": "707510885faa8d9f8d7d451ab9cbfc81b8b43ae1a8b3d8c845d5eb2ec1e8d128",
+        "Quick.sav.gz.bak": "b28c304172e4090fa78de2977243b388c4b12b658675eb96028bdd051b8d0990"
+      }
+    },
+    "expired": {
+      "dst": "/Users/steven/coo-verification/checkpoints/DrownedLedgerSpareStakes20261127/Expired3000/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "5ffd63882c1a0efccb21e47a287cfda86bf68bc84eb4659b17927a17c31f136c",
+        "Quick.json.bak": "6ac4e5c366c2dd1e05f266fc370f86683eaa40b65e7134b8612e4a2607656e2c",
+        "Quick.sav.gz": "217d598b8ff476dda214281e31effa9d3e1f9ca935fcd3383ddd66b731c57c0e",
+        "Quick.sav.gz.bak": "707510885faa8d9f8d7d451ab9cbfc81b8b43ae1a8b3d8c845d5eb2ec1e8d128"
+      }
+    }
+  },
+  "excluded": "The first named Patched2320 archive contained the arrival autosave at 2250. The repaired branch was repeated from it and the two correct metadata files were verified.",
+  "nativeTests": {
+    "noStockBaseline": {
+      "passed": 1,
+      "missingFeatureFailures": 3
+    },
+    "oldLineLocalExpiryBaseline": {
+      "failed": 1,
+      "expected": "Fouled",
+      "actual": "TemporarilyPurified"
+    },
+    "firstConnected": {
+      "passed": 171,
+      "failed": 5,
+      "skip": 1,
+      "issue": "The existing PlayerTurnZoneContext fixture invoked HandleZoneTransition with the obsolete one-argument signature."
+    },
+    "final": {
+      "passed": 176,
+      "failed": 0,
+      "skipped": 1,
+      "skip": "Opt-in saved-Part baseline regeneration"
+    }
+  },
+  "protected": {
+    "normalQuickFiles": 876,
+    "foreignTrackedFiles": 87,
+    "allMatched": true,
+    "editor": {
+      "play": false,
+      "changing": false,
+      "overrideCleared": true,
+      "keys": [
+        "Keyboard"
+      ]
+    }
+  }
+}

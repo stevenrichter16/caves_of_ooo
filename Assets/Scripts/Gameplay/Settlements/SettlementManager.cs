@@ -98,14 +98,22 @@ namespace CavesOfOoo.Core
         {
             PointOfInterest poi = ResolvePoi(settlementId);
             SettlementState state = GetOrCreateSettlement(settlementId, poi);
-            if (state == null)
-                return false;
+            return state != null && AdvancePatches(state, currentTurn, whilePresent: false);
+        }
 
+        internal bool AdvanceActiveStructurePatches(string settlementId, int currentTurn)
+            => _settlements.TryGetValue(settlementId, out var state) && state?.SettlementId == settlementId
+                && AdvancePatches(state, currentTurn, whilePresent: true);
+
+        bool AdvancePatches(SettlementState state, int currentTurn, bool whilePresent)
+        {
+            string settlementId = state.SettlementId;
             bool changed = false;
             foreach (var kvp in state.Sites)
             {
                 RepairableSiteState site = kvp.Value;
-                if (site.Stage == RepairStage.TemporarilyPurified
+                if ((!whilePresent || site.SiteType == RepairableSiteType.Structure)
+                    && site.Stage == RepairStage.TemporarilyPurified
                     && site.RelapseAtTurn.HasValue
                     && currentTurn >= site.RelapseAtTurn.Value)
                 {
@@ -127,20 +135,21 @@ namespace CavesOfOoo.Core
                     site.ResolvedAtTurn = -1;
                     string relapseMsg;
                     if (site.SiteType == RepairableSiteType.Structure)
-                        relapseMsg = PlaceSiteCatalog.Get(PlaceSiteCatalog.PlaceAt(settlementId), site.SiteId)?.Relapse ?? "Something you patched here has failed again while you were away.";
+                        relapseMsg = PlaceSiteCatalog.Get(PlaceSiteCatalog.PlaceAt(settlementId), site.SiteId)?.Relapse ?? "Something you patched here has failed again.";
                     else if (site.SiteType == RepairableSiteType.HeatStone)
                         relapseMsg = "The oven's firebox has cracked open again while you were away.";
                     else if (site.SiteType == RepairableSiteType.LightBeacon)
                         relapseMsg = "The watch lantern has guttered out again while you were away.";
                     else
                         relapseMsg = "The village well has gone bitter again while you were away.";
-                    state.AddPendingMessage(relapseMsg);
+                    if (whilePresent) MessageLog.Add(relapseMsg);
+                    else state.AddPendingMessage(relapseMsg);
                     changed = true;
                     RaiseSiteChanged(settlementId, site);
                 }
             }
 
-            state.LastAdvancedTurn = currentTurn;
+            if (!whilePresent) state.LastAdvancedTurn = currentTurn;
             if (changed)
                 SyncConditions(state);
 

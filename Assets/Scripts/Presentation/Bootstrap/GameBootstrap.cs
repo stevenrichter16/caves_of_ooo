@@ -1030,6 +1030,7 @@ namespace CavesOfOoo
             WirePresentationForLoadedGame();
             GetComponent<InputHandler>()?.RestoreHotbarSelection(state.SelectedHotbarSlot);
 
+            SettlementRuntime.ReconcileActiveStructurePatches(_zone, _turnManager);
             if (_turnManager != null && !_turnManager.WaitingForInput)
                 _turnManager.ProcessUntilPlayerTurn();
 

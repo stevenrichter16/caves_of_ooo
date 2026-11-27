@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Concerns;
 using CavesOfOoo.Core.Inventory;
 
@@ -251,6 +252,56 @@ namespace CavesOfOoo.Core
             MessageLog.Add(message);
             CavesOfOoo.Diagnostics.Diag.Record("furniture", "SiteRepairRefused", actor: actor, target: ParentEntity, payload: new { place = Place, site = SiteId, code });
             return false;
+        }
+    }
+
+    /// <summary>Two salvageable spares beside the original line. The working structure stays in place.</summary>
+    public sealed class SurveyLineSpareStakesPart : HarvestablePart, IDescribeState, IPostCommitInventoryActionNotification
+    {
+        public override string Name => "SurveyLineSpareStakes";
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 32;
+        internal override bool RetainsFixedSource => true;
+
+        bool CurrentSource(Zone zone)
+        {
+            var owner = ParentEntity;
+            var world = WorldLocationContext.For(zone);
+            return zone?.ZoneID == DrownedLedgerCompositionPlan.ZoneID && world?.ActiveZone == zone
+                && world.Factory == Factory && CanCreateYield(Factory, YieldBlueprint)
+                && world.CachedZones.TryGetValue(zone.ZoneID, out var current) && current == zone
+                && owner?.BlueprintName == "SurveyLine" && owner.GetProperty("SettlementId") == zone.ZoneID
+                && owner.GetPart<InstallationMarkerPart>() is { ParentEntity: var marked, InstallationId: "ledger-survey-line", Origin: "Generated", RetainZone: true, Revision: 1 }
+                && marked == owner && owner.GetPart<PlaceSiteObjectPart>() is { Place: "the Drowned Ledger", SiteId: "SurveyLine" }
+                && WorldResourceActions.Ground(owner, zone) && owner.GetPart<PhysicsPart>() is { Takeable: false, Solid: false }
+                && owner.GetPart<RenderPart>() is { Visible: true }
+                && owner.GetPart<HarvestablePart>() == this && owner.Parts.Count(part => part is HarvestablePart) == 1
+                && zone.GetReadOnlyEntitiesWithPart<SurveyLineSpareStakesPart>().Count == 1
+                && YieldBlueprint == "WillowHaftComponent" && YieldMin == 2 && YieldMax == 2 && YieldChance == 100;
+        }
+
+        public string DescribeState(DescribeContext context)
+            => !CurrentSource(context.Zone ?? ParentEntity?.SpatialZone) ? null : Harvested
+                ? "The spare stakes beside the line have been taken."
+                : "Two spare willow stakes lie beside the cord. Take them to patch the line for a while.";
+
+        public bool OwnsInventoryReceipt(string command)
+            => command == "Harvest" && ParentEntity?.GetPart<HarvestablePart>() == this;
+
+        public bool NotifyAfterCommit(string command) => OwnsInventoryReceipt(command);
+
+        internal override bool CanGatherFixedSource(Entity actor, Zone zone)
+            => CurrentSource(zone) && RouteWorkMenu.ActorReady(actor, zone)
+                && WorldResourceActions.Nearby(actor, ParentEntity, zone) && RouteWorkMenu.Visible(zone.GetEntityCell(ParentEntity));
+
+        internal override Func<bool> CaptureFixedGathering(Entity actor, Zone zone, Cell cell)
+        {
+            var owner = ParentEntity;
+            var stillSame = RouteWorkMenu.Identity(owner);
+            var origin = zone.GetEntityCell(actor);
+            return () => Harvested && ParentEntity == owner && stillSame()
+                && zone.GetEntityCell(actor) == origin && zone.GetEntityCell(owner) == cell
+                && CanGatherFixedSource(actor, zone);
         }
     }
 }

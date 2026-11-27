@@ -1,3 +1,12 @@
+**Spare willow can patch the Drowned Ledger's survey line — November 27, 2026, America/Chicago.**
+The original line supplied two physical stakes and kept its spent state.
+An ordinary traveler used both in the existing timed patch. The repaired
+line survived Continue, then went out of alignment while the traveler
+waited in the commons. The same marker and spent stock survived expiry
+and another Continue. Lasting repair and its concern credit stay distinct.
+The final filter passed 176 cases with one opt-in skip.
+[Playtest and receipts](Verification/MachineSystems/DrownedLedgerSpareStakes20261127/README.md)
+
 **Orrit's one-time sieve gives rain clay an ordinary path to the watch bell — November 27, 2026, America/Chicago.**
 The player followed the retained dry packet's new Examine clue to Orrit,
 paid 29 of 31 drams for one native sieve, and screened the original packet.

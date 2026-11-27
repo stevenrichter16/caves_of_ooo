@@ -74,6 +74,13 @@ supplied tools. One clay gave the watch bell a quiet call and the two
 watchkeepers reacted. Fresh Continue kept the chosen outcome and sold stock.
 [Ordinary purchase and use](Verification/MachineSystems/MorrowfastHandSieve20261127/README.md)
 
+For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
+two visible spare willow stakes. The same line takes them for a temporary
+patch and shows when it fails. Ordinary local waiting demonstrated expiry
+at the recorded tick and that Continue preserves the spent stock. The
+native checks retain the oak and binding option for lasting work.
+[Local stock and on-site expiry](Verification/MachineSystems/DrownedLedgerSpareStakes20261127/README.md)
+
 Implement the 45 requirements in connected slices. Once a slice is verified
 and recorded, start the next unblocked slice in the same run. The scheduled
 check-in provides continued work across runs.

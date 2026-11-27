@@ -233,6 +233,7 @@ namespace CavesOfOoo.Core
         {
             if (additionalTicks <= 0) return;
             TickCount += additionalTicks;
+            SettlementRuntime.ReconcileActiveStructurePatches(SettlementRuntime.ActiveZone, this);
         }
 
         /// <summary>
@@ -291,6 +292,10 @@ namespace CavesOfOoo.Core
                         if (actor == null) continue;
                     }
 
+                    Zone actorZone = ResolveActorZone(actor);
+                    if (actor.HasTag("Player"))
+                        SettlementRuntime.ReconcileActiveStructurePatches(actorZone, this);
+
                     // Second player-pick this call: we already did one
                     // blocked turn on them. Yield to the game loop so the
                     // frame renders and the user sees NPC movement. The
@@ -344,7 +349,6 @@ namespace CavesOfOoo.Core
 
                     // Qud-style pre-action event seam: status effects and other parts can
                     // block the action before AI/input executes.
-                    Zone actorZone = ResolveActorZone(actor);
                     var beginTakeAction = GameEvent.New("BeginTakeAction");
                     if (actorZone != null)
                         beginTakeAction.SetParameter("Zone", (object)actorZone);
