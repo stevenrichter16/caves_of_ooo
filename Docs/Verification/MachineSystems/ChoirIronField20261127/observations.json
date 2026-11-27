@@ -1,0 +1,760 @@
+{
+  "baseline": "d37954ac72bf5214b61c6582381ef27665415fb7",
+  "native": {
+    "guide-red": {
+      "counts": {
+        "total": 3,
+        "passed": 0,
+        "failed": 3,
+        "inconclusive": 0,
+        "skipped": 0
+      },
+      "compilerErrors": 0,
+      "xmlSha256": "c1153f23d9a284f373cc684ee876fa3cafaec2695d985792ad854085939fb9b2",
+      "logSha256": "8882b5aec3f22bc17ca6ee7928fc02d9cfd185d3bf83a97fcf4a835547de91be",
+      "failingCases": [
+        [
+          "CavesOfOoo.Tests.FiftySecondPreparationTests.ChoirIronGuideExplainsCostAndEffectWithoutPromisingAForge",
+          "  Expected: not null\n  But was:  null\n"
+        ],
+        [
+          "CavesOfOoo.Tests.FiftySecondPreparationTests.ChoirIronGuideRefusesWhenNoCompatibleItemIsCarried",
+          "  Expected: not null\n  But was:  null\n"
+        ],
+        [
+          "CavesOfOoo.Tests.FiftySecondPreparationTests.ChoirIronGuideShowsTheSameReadyInfusionAsTheInventoryMenu",
+          "  Expected: not null\n  But was:  null\n"
+        ]
+      ]
+    },
+    "guide-green": {
+      "counts": {
+        "total": 237,
+        "passed": 236,
+        "failed": 1,
+        "inconclusive": 0,
+        "skipped": 0
+      },
+      "compilerErrors": 0,
+      "xmlSha256": "13913fa6aeb51d6a514a2b518c359ee70fa20b1c3098402dcbf9aa6804471f25",
+      "logSha256": "e38b97fbbc49ff046551999bb4d97aec9b1940f1183f309a3c2ef81d583bed84",
+      "failingCases": [
+        [
+          "CavesOfOoo.Tests.MachineUseGuideTests.TheStillExplainsBrewingSettlingAndBakingWithItsRates",
+          "  Expected: String containing \"1 fire clay for every 8\"\n  But was:  \"Cost and limits: Brewing uses up the picked reagents. Settling uses the whole flask of mire and gives 1 water or oil for every 4 mire. Baking spends 8 mire for 1 fire clay and leaves any extra mire in the flask. Taking it up keeps its contents and fuel. Handing it over leaves it standing, and you can no longer take it up.\"\n"
+        ]
+      ]
+    },
+    "still-baseline": {
+      "counts": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "inconclusive": 0,
+        "skipped": 0
+      },
+      "compilerErrors": 0,
+      "xmlSha256": "d8c0c39f71d8a6b33d520d4a994907bf71990b8900b23c0ff2bea6e62fd2ae20",
+      "logSha256": "40e44b28cacef946d82ef52de90b5309ab731dc8c50e6fa27bfeca7ce701da43",
+      "failingCases": [
+        [
+          "CavesOfOoo.Tests.MachineUseGuideTests.TheStillExplainsBrewingSettlingAndBakingWithItsRates",
+          "  Expected: String containing \"1 fire clay for every 8\"\n  But was:  \"Cost and limits: Brewing uses up the picked reagents. Settling uses the whole flask of mire and gives 1 water or oil for every 4 mire. Baking spends 8 mire for 1 fire clay and leaves any extra mire in the flask. Taking it up keeps its contents and fuel. Handing it over leaves it standing, and you can no longer take it up.\"\n"
+        ]
+      ]
+    }
+  },
+  "ordinary": {
+    "mine-before": {
+      "zone": "Overworld.5.6.0",
+      "x": 4,
+      "y": 3,
+      "tick": 7250,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "26058",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "26059",
+          "bp": "Bush",
+          "name": "bush"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Autosaved.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake sees you again.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again."
+      ]
+    },
+    "vein-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "harvest",
+      "rows": [
+        {
+          "Display": "harvest",
+          "key": "h",
+          "Command": "Harvest"
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine"
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell"
+        }
+      ]
+    },
+    "harvested": {
+      "zone": "Overworld.5.6.0",
+      "x": 4,
+      "y": 3,
+      "tick": 7260,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "26058",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "26059",
+          "bp": "Bush",
+          "name": "bush"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Your reputation with the Rot Choir worsens.",
+        "The ground closes very slowly over the wound. Something has noticed the digging.",
+        "You harvest choir iron vein: 2 x ChoirIron.",
+        "sari-snake misses you!"
+      ]
+    },
+    "ore-reader-before": {
+      "open": true,
+      "title": "choir-iron ore (x2)",
+      "blueprint": "ChoirIron",
+      "owner": "28404",
+      "lines": [
+        "DECISION DETAILS",
+        "",
+        "You see a choir-iron ore (x2). Heavy ore with an",
+        "uneven, dark metallic grain. Small reddish crumbs",
+        "gather along its fractured edges.",
+        "2 units. Weight per unit: 2. Total weight: 4.",
+        "Lift Strength: 2; yours: 16.",
+        "You can carry this item.",
+        "Grip: one hand.",
+        "choir-iron ore (x2) cannot be thrown.",
+        "Pack weight: 53; with this item: 53. Burden",
+        "threshold: 240.",
+        "",
+        "Type: Item",
+        "Weight: 2 lb each",
+        "Stack: 2; 4 lb total"
+      ]
+    },
+    "ore-reader-away": {
+      "open": true,
+      "title": "choir-iron ore (x2)",
+      "blueprint": "ChoirIron",
+      "lines": [
+        "DECISION DETAILS",
+        "",
+        "You see a choir-iron ore (x2).",
+        "How to use: At a usable forge, open this mineral's",
+        "inventory actions and choose an item to infuse.",
+        "Needs: a compatible unequipped item with a free",
+        "enhancement slot.",
+        "Cost and limits: Infusion spends one unit of the",
+        "mineral and fills one enhancement slot.",
+        "Choir-Iron-edged: +6 damage vs Fungal-tagged",
+        "enemies on hit.",
+        "Right now: stand within reach of a usable forge.",
+        "",
+        "Heavy ore with an uneven, dark metallic grain.",
+        "Small reddish crumbs gather along its fractured",
+        "edges.",
+        "2 units. Weight per unit: 2. Total weight: 4.",
+        "Lift Strength: 2; yours: 16.",
+        "You can carry this item.",
+        "Grip: one hand."
+      ],
+      "sections": [
+        {
+          "Heading": "Decision details",
+          "Text": "You see a choir-iron ore (x2).\nHow to use: At a usable forge, open this mineral's inventory actions and choose an item to infuse.\nNeeds: a compatible unequipped item with a free enhancement slot.\nCost and limits: Infusion spends one unit of the mineral and fills one enhancement slot. Choir-Iron-edged: +6 damage vs Fungal-tagged enemies on hit.\nRight now: stand within reach of a usable forge.\n\nHeavy ore with an uneven, dark metallic grain. Small reddish crumbs gather along its fractured edges.\n2 units. Weight per unit: 2. Total weight: 4.\nLift Strength: 2; yours: 16.\nYou can carry this item.\nGrip: one hand.\nchoir-iron ore (x2) cannot be thrown.\nPack weight: 53; with this item: 53. Burden threshold: 240."
+        }
+      ]
+    },
+    "ore-reader-at-forge": {
+      "open": true,
+      "title": "choir-iron ore (x2)",
+      "blueprint": "ChoirIron",
+      "lines": [
+        "DECISION DETAILS",
+        "",
+        "You see a choir-iron ore (x2).",
+        "How to use: At a usable forge, open this mineral's",
+        "inventory actions and choose an item to infuse.",
+        "Needs: a compatible unequipped item with a free",
+        "enhancement slot.",
+        "Cost and limits: Infusion spends one unit of the",
+        "mineral and fills one enhancement slot.",
+        "Choir-Iron-edged: +6 damage vs Fungal-tagged",
+        "enemies on hit.",
+        "Right now you can: infuse dagger at forge (1",
+        "choir-iron ore; one enhancement slot).",
+        "",
+        "Heavy ore with an uneven, dark metallic grain.",
+        "Small reddish crumbs gather along its fractured",
+        "edges.",
+        "2 units. Weight per unit: 2. Total weight: 4.",
+        "Lift Strength: 2; yours: 16.",
+        "You can carry this item."
+      ],
+      "sections": [
+        {
+          "Heading": "Decision details",
+          "Text": "You see a choir-iron ore (x2).\nHow to use: At a usable forge, open this mineral's inventory actions and choose an item to infuse.\nNeeds: a compatible unequipped item with a free enhancement slot.\nCost and limits: Infusion spends one unit of the mineral and fills one enhancement slot. Choir-Iron-edged: +6 damage vs Fungal-tagged enemies on hit.\nRight now you can: infuse dagger at forge (1 choir-iron ore; one enhancement slot).\n\nHeavy ore with an uneven, dark metallic grain. Small reddish crumbs gather along its fractured edges.\n2 units. Weight per unit: 2. Total weight: 4.\nLift Strength: 2; yours: 16.\nYou can carry this item.\nGrip: one hand.\nchoir-iron ore (x2) cannot be thrown.\nPack weight: 53; with this item: 53. Burden threshold: 240."
+        }
+      ]
+    },
+    "infuse-menu": {
+      "mode": "InventoryOpen",
+      "panel": 1,
+      "equip": false,
+      "query": "choir",
+      "search": false,
+      "visible": [],
+      "actions": [
+        "Label=infuse dagger at forge (1 choir-iron ore; one enhancement slot) | Command=InfuseMineral|2703 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Unspecified | DisabledCode= | DisabledReason= | Hint=",
+        "Label=examine | Command=Examine | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Unspecified | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Label item | Command=edit_storage_label | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Separate one | Command=separate_one | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Drop | Command=drop | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint="
+      ]
+    },
+    "infusion-outcome": {
+      "weapon": "2703",
+      "slot": null,
+      "name": "choir-iron-edged dagger",
+      "bonus": 6,
+      "modifications": 1,
+      "ore": [
+        {
+          "ID": "28404",
+          "n": 1
+        }
+      ]
+    },
+    "infused-final": {
+      "zone": "Overworld.6.6.0",
+      "x": 56,
+      "y": 6,
+      "tick": 7520,
+      "hp": 33,
+      "effects": [],
+      "contents": [
+        {
+          "id": "23984",
+          "bp": "StoneFloor",
+          "name": "stone floor"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You strike sandstone wall.",
+        "sari-snake loses sight of you and searches its last position.",
+        "Brinna Lowbank, weaponsmith [left hand: fist] hits sari-snake in the body for 1 damage! (13 HP remaining)",
+        "Brinna Lowbank, weaponsmith [right hand: fist] hits sari-snake in the body for 1 damage! (12 HP remaining)",
+        "sari-snake sees you again.",
+        "Brinna Lowbank, weaponsmith [left hand: fist] misses sari-snake!",
+        "You unequip dagger.",
+        "You work one choir-iron ore into choir-iron-edged dagger.",
+        "sari-snake CRITICALLY hits you in the body for 9 damage! (33 HP remaining)"
+      ]
+    },
+    "dagger-wielded": {
+      "weapon": "2703",
+      "slot": "7",
+      "name": "choir-iron-edged dagger",
+      "bonus": 6,
+      "modifications": 1,
+      "ore": [
+        {
+          "ID": "28404",
+          "n": 1
+        }
+      ]
+    },
+    "field-search-gear": {
+      "weapon": "2703",
+      "slot": "7",
+      "name": "choir-iron-edged dagger",
+      "bonus": 6,
+      "modifications": 1,
+      "ore": [
+        {
+          "ID": "28404",
+          "n": 1
+        }
+      ]
+    },
+    "field-fresh-gear": {
+      "weapon": "2703",
+      "slot": "7",
+      "name": "choir-iron-edged dagger",
+      "bonus": 6,
+      "modifications": 1,
+      "ore": [
+        {
+          "ID": "28404",
+          "n": 1
+        }
+      ]
+    },
+    "field-fresh-continue": {
+      "zone": "WorldMap",
+      "x": 36,
+      "y": 5,
+      "tick": 8470,
+      "hp": 27,
+      "effects": [],
+      "contents": [
+        {
+          "id": "3a5e12335a904ab587661f39bdaaab76",
+          "bp": "WorldMapCell",
+          "name": "the Grovelands"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved."
+      ]
+    },
+    "original-lampwell-end": {
+      "zone": "Overworld.12.3.3",
+      "x": 39,
+      "y": 13,
+      "tick": 8900,
+      "hp": 27,
+      "effects": [],
+      "contents": [
+        {
+          "id": "72041",
+          "bp": "StairsUp",
+          "name": "stairs leading up"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "Not with company this close.",
+        "Autosaved.",
+        "Autosaved.",
+        "Autosaved."
+      ]
+    }
+  },
+  "nonfungalReactiveCounter": {
+    "strike": "cee9e8c7858e44a0a457d30aee528e7b",
+    "events": [
+      {
+        "kind": "StrikeStarted",
+        "payload": {
+          "ActionId": "ce1a7e41a3d54952bffcaa9b204a24a7",
+          "RootStrikeId": "6fbcb4ae00854fc7be55397d7b0d6f46",
+          "ParentStrikeId": "6fbcb4ae00854fc7be55397d7b0d6f46",
+          "StrikeId": "cee9e8c7858e44a0a457d30aee528e7b",
+          "origin": "ReactiveCounter",
+          "Depth": 1,
+          "CounterDepth": 1,
+          "SuppressFollowups": false
+        }
+      },
+      {
+        "kind": "HitRoll",
+        "payload": {
+          "weapon": "choir-iron-edged dagger",
+          "hitRoll": 10,
+          "agilityMod": 3,
+          "weaponHitBonus": 0,
+          "skillHitBonus": 0,
+          "totalHit": 13,
+          "dv": 6,
+          "naturalTwenty": false,
+          "landed": true
+        }
+      },
+      {
+        "kind": "Penetration",
+        "payload": {
+          "weapon": "choir-iron-edged dagger",
+          "av": 0,
+          "weaponPenBonus": 1,
+          "strMod": 0,
+          "skillPenBonus": 2,
+          "critPenBonus": 0,
+          "totalBonus": 3,
+          "maxBonus": 6,
+          "naturalTwenty": false,
+          "penetrations": 3,
+          "autoPenForced": false
+        }
+      },
+      {
+        "kind": "DamageRoll",
+        "payload": {
+          "weapon": "choir-iron-edged dagger",
+          "damageDice": "1d4",
+          "penetrationsRolled": 3,
+          "baseDamageTotal": 3,
+          "naturalTwenty": false,
+          "attributes": "Melee,Strength,Piercing"
+        }
+      },
+      {
+        "kind": "DamageDealt",
+        "payload": {
+          "amount": 3,
+          "ActualDamage": 3,
+          "hpAfter": 7,
+          "lethal": false,
+          "attributes": [
+            "Melee",
+            "Strength",
+            "Piercing"
+          ]
+        }
+      },
+      {
+        "kind": "ClassEffectRolled",
+        "payload": {
+          "effect": "Confused",
+          "roll": 87,
+          "chancePercent": 10,
+          "fired": false
+        }
+      }
+    ]
+  },
+  "controlledFungalOrdinaryHit": {
+    "root": "c1e4e3d4526b41828d1ac8b68097d11a",
+    "target": {
+      "ID": "37450",
+      "BlueprintName": "Rotling",
+      "name": "rotling",
+      "x": 18,
+      "y": 7,
+      "hp": 8,
+      "fungal": true,
+      "visible": true
+    },
+    "events": [
+      [
+        "StrikeStarted",
+        {
+          "ActionId": "738894918a0e4e8da5c34410c4905767",
+          "RootStrikeId": "c1e4e3d4526b41828d1ac8b68097d11a",
+          "ParentStrikeId": null,
+          "StrikeId": "c1e4e3d4526b41828d1ac8b68097d11a",
+          "origin": "Ordinary",
+          "Depth": 0,
+          "CounterDepth": 0,
+          "SuppressFollowups": false
+        }
+      ],
+      [
+        "HitRoll",
+        {
+          "weapon": "choir-iron-edged dagger",
+          "hitRoll": 13,
+          "agilityMod": 1,
+          "weaponHitBonus": 0,
+          "skillHitBonus": 0,
+          "totalHit": 14,
+          "dv": 8,
+          "naturalTwenty": false,
+          "landed": true
+        }
+      ],
+      [
+        "Penetration",
+        {
+          "weapon": "choir-iron-edged dagger",
+          "av": 0,
+          "weaponPenBonus": 1,
+          "strMod": 1,
+          "skillPenBonus": 0,
+          "critPenBonus": 0,
+          "totalBonus": 2,
+          "maxBonus": 4,
+          "naturalTwenty": false,
+          "penetrations": 3,
+          "autoPenForced": false
+        }
+      ],
+      [
+        "DamageRoll",
+        {
+          "weapon": "choir-iron-edged dagger",
+          "damageDice": "1d4",
+          "penetrationsRolled": 3,
+          "baseDamageTotal": 7,
+          "naturalTwenty": false,
+          "attributes": "Melee,Strength,Piercing"
+        }
+      ],
+      [
+        "DamageDealt",
+        {
+          "amount": 7,
+          "ActualDamage": 7,
+          "hpAfter": 1,
+          "lethal": false,
+          "attributes": [
+            "Melee",
+            "Strength",
+            "Piercing"
+          ]
+        }
+      ],
+      [
+        "ClassEffectRolled",
+        {
+          "effect": "Confused",
+          "roll": 22,
+          "chancePercent": 10,
+          "fired": false
+        }
+      ],
+      [
+        "DamageDealt",
+        {
+          "amount": 6,
+          "ActualDamage": 1,
+          "hpAfter": 0,
+          "lethal": true,
+          "attributes": []
+        }
+      ],
+      [
+        "DeathHandled",
+        {
+          "killerIsPlayer": true,
+          "hadBody": true,
+          "hadInventory": true,
+          "deathX": 18,
+          "deathY": 7
+        }
+      ],
+      [
+        "Triggered",
+        {
+          "enhancement": "EnhancementChoirIron",
+          "tier": 3,
+          "bonusDamage": 6,
+          "targetTag": "Fungal"
+        }
+      ]
+    ],
+    "tick": 6300,
+    "hp": 39
+  },
+  "controlledDaggerSupply": {
+    "actor": "2707",
+    "dagger": "37481",
+    "BlueprintName": "Dagger",
+    "name": "choir-iron-edged dagger",
+    "bonus": 6,
+    "hand": 8
+  },
+  "controlledOriginalFixtureSha256": "af7a52e11180f40947b4429ed982e59451d696532552e9884fbc4e5d0456212c",
+  "surfaceCensuses": {
+    "Overworld.4.6.0": [
+      "Mosshulk",
+      "CanopyStrangler",
+      "AncientGuardian",
+      "PaleStalker",
+      "SariSnake",
+      "SariSnake"
+    ],
+    "Overworld.4.7.0": [
+      "Shambler",
+      "Shambler",
+      "SariSnake",
+      "SariSnake",
+      "SariSnake"
+    ],
+    "Overworld.5.5.0": [
+      "CascadeFather",
+      "GlasspaneFrog",
+      "CanopyStrangler",
+      "PaleStalker",
+      "SariSnake",
+      "SariSnake",
+      "SkySari"
+    ],
+    "Overworld.5.7.0": [
+      "SariSnake",
+      "SariSnake",
+      "Shambler",
+      "Shambler"
+    ],
+    "Overworld.6.2.0": [
+      "Shambler",
+      "Shambler",
+      "SariSnake",
+      "SariSnake"
+    ],
+    "Overworld.6.3.0": [
+      "SariSnake",
+      "SariSnake",
+      "Mosshulk",
+      "SariSnake"
+    ],
+    "Overworld.6.4.0": [
+      "SariSnake",
+      "ChoirTendril",
+      "SariSnake",
+      "Mosshulk"
+    ],
+    "Overworld.7.3.0": [
+      "Shambler",
+      "Shambler",
+      "ChoirTendril",
+      "ChoirTendril",
+      "SariSnake",
+      "SariSnake"
+    ],
+    "Overworld.7.4.0": [
+      "SariSnake",
+      "SariSnake",
+      "Mosshulk",
+      "SariSnake",
+      "Mosshulk"
+    ],
+    "Overworld.7.5.0": [
+      "Mosshulk",
+      "Mosshulk",
+      "SariSnake",
+      "SariSnake"
+    ],
+    "Overworld.7.7.0": [
+      "Magpie",
+      "Viper",
+      "Viper",
+      "SariSnake",
+      "SariSnake"
+    ]
+  },
+  "screenshots": {
+    "01-harvested-choir-iron.png": "530f77833ff57f5724159bd4add6ac449af7b43e9c64151e5df220d072fcd1ec",
+    "02-forge-infusion-guide.png": "abe1e169995a3c1493ce43bd30b3cd0efb31dd39b4b92307322af15d30cdd179",
+    "03-infused-dagger.png": "43a3efd484d850bfa99380120ac7a48985f7e33052d005c8a29001388750f11e",
+    "04-rotling-hit-controlled.png": "c4c192d96a1d67b51e608bcd151b0b8918ad732ea092a79e1364eb8e9a22f58b"
+  },
+  "ordinaryArchiveSha256": {
+    "Mined": {
+      "Quick.json": "4299059ac58b485024528bd08b20945812f2a255a0c12e4932a6b2271cf93f87",
+      "Quick.json.bak": "c5d3f88ad825ac0a234ac06330657b14332a9c9a74c1590df919639958f5c447",
+      "Quick.sav.gz": "2ddd91a02e5d8797048249717a4d438fd7369d27662b9d4b2af3508bfcef970e",
+      "Quick.sav.gz.bak": "45c43a11fb53656b1a2f37eaac5c32dfb4b36e0c55a06366790d76b4f17143d8"
+    },
+    "CinderholdOre": {
+      "Quick.json": "ce21f7c193ce0fb2085031ab12df85f944553314ce76fe5fdd32254cfdafc2ae",
+      "Quick.json.bak": "a76fca647d787043abedd57a79c9464ed1b9d99176471fdec256ad41b122d8ab",
+      "Quick.sav.gz": "e811dc32ec8c2309a5c769d3d5e0febde97778cab75dc92d5de0b3147e0ceec3",
+      "Quick.sav.gz.bak": "c0ff4df40d807e2671f850a8ab4f5fe53dbadbd59a72c33166946def72961dfe"
+    },
+    "ForgeReady": {
+      "Quick.json": "5229e7a30231ab72009bab30c2d78f3d0fc2791d43a6316f18edac41d460b09d",
+      "Quick.json.bak": "ce21f7c193ce0fb2085031ab12df85f944553314ce76fe5fdd32254cfdafc2ae",
+      "Quick.sav.gz": "81044e43db2acbb7a24a8bc2f8ae0ff4f4a1813723b7f9022010f243a636e632",
+      "Quick.sav.gz.bak": "e811dc32ec8c2309a5c769d3d5e0febde97778cab75dc92d5de0b3147e0ceec3"
+    },
+    "InfusedDag": {
+      "Quick.json": "2d4d1d02a4477a6e0222893879d726df8a91cf9023421e61a1cbe8e5fb31c4d5",
+      "Quick.json.bak": "5229e7a30231ab72009bab30c2d78f3d0fc2791d43a6316f18edac41d460b09d",
+      "Quick.sav.gz": "38ef142f16ac8acef0d4b7a3a086e3f6c3cd8c560e80cbbdf8eead70e8bcaf5e",
+      "Quick.sav.gz.bak": "81044e43db2acbb7a24a8bc2f8ae0ff4f4a1813723b7f9022010f243a636e632"
+    },
+    "FieldSearch": {
+      "Quick.json": "cf5a88f87a9d7032e3496175de8a810eb5257eaafdd0abaa776a8da88c0798db",
+      "Quick.json.bak": "516852065b508144884ec8f12fbaf7f9b1474db9c972ee1818c64acf8ae6653e",
+      "Quick.sav.gz": "fc0d2c1715b695579049b92be3784e5a0e68fac8a2019a92a587dacac3d79eca",
+      "Quick.sav.gz.bak": "300ca75dfd6d3a058471c974872dea0c3dfdf1d4a680cf942ae11827499d0554"
+    },
+    "Seed65Depth3": {
+      "Quick.json": "d9e352fc4afca0fea06a2360fc57cb7db4e3e713b5182e6f58f45c5ae0c4f9ea",
+      "Quick.json.bak": "df738122dbdf6bd6f13d27982cf1b1a613d967924085f98d65e5ce27dde7d9ef",
+      "Quick.sav.gz": "2f88b34d0cbc522a1a289f13149a5b10998bc00c93135e2993eb6742bb9bbd99",
+      "Quick.sav.gz.bak": "aab6e1e9d15c994e64074955cc9a6de891b601d729536c2adf77727e6b79c497"
+    }
+  },
+  "editorAtExit": {
+    "playing": false,
+    "changing": false,
+    "saveRoot": null,
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices"
+  }
+}

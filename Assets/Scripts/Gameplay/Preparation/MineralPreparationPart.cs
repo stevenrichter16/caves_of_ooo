@@ -3,21 +3,45 @@ using System.Collections.Generic;
 using CavesOfOoo.Core.Inventory;
 namespace CavesOfOoo.Core
 {
-    public sealed class MineralPreparationPart : Part
+    public sealed class MineralPreparationPart : Part, IDescribeUse, IDescribeUseRows
     {
         public override string Name => "MineralPreparation";
+
+        public int Order => 0;
+
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            var modification = Modification(ParentEntity?.BlueprintName);
+            if (modification == null) return;
+
+            guide.How.Add("At a usable forge, open this mineral's inventory actions and choose an item to infuse.");
+            guide.Needs.Add("a compatible unequipped item with a free enhancement slot");
+            guide.Limits.Add("Infusion spends one unit of the mineral and fills one enhancement slot.");
+            var effect = modification.DescribeEnhancement();
+            if (!string.IsNullOrWhiteSpace(effect)) guide.Limits.Add(effect + ".");
+
+            if (context.Viewer == null) return;
+            if (!PreparationActions.Carried(context.Viewer, ParentEntity))
+                guide.WhyNot = UseGuides.PickUpFirst;
+            else if (!ForgePart.IsNearForge(context.Viewer, context.Zone))
+                guide.WhyNot = "stand within reach of a usable forge";
+            else
+                guide.WhyNot = "carry a compatible unequipped item with a free enhancement slot";
+        }
+
+        public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
+        {
+            if (ForgePart.IsNearForge(actor, zone))
+                AddInfusionRows(actor, ParentEntity, Modification(ParentEntity?.BlueprintName), rows);
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             var actor = e.GetParameter<Entity>("Actor"); var mineral = ParentEntity; var zone = PreparationActions.ZoneFor(e, actor);
             var modification = Modification(mineral.BlueprintName); string enhancement = "Enhancement" + mineral.BlueprintName;
             if (e.ID == "GetInventoryActions")
             {
-                if (modification != null && PreparationActions.Carried(actor, mineral))
-                    foreach (var target in actor.GetPart<InventoryPart>().Objects)
-                        if (Compatible(actor, target, modification, enhancement))
-                            e.GetParameter<InventoryActionList>("Actions")?.AddAction("InfuseMineral" + target.ID,
-                                "infuse " + InventoryPart.GetUnitDisplayName(target) + " at forge (1 " + InventoryPart.GetUnitDisplayName(mineral) + "; one enhancement slot)",
-                                "InfuseMineral|" + PreparationActions.Escaped(target), '\0', 17);
+                AddInfusionRows(actor, mineral, modification, e.GetParameter<InventoryActionList>("Actions"));
                 return true;
             }
             string command = e.GetStringParameter("Command");
@@ -54,6 +78,20 @@ namespace CavesOfOoo.Core
             PreparationActions.Complete(tx, actor, item, command, "You work one " + InventoryPart.GetUnitDisplayName(mineral) + " into " + InventoryPart.GetUnitDisplayName(item) + ".");
             e.Handled = true; return false;
         }
+
+        static void AddInfusionRows(Entity actor, Entity mineral, MineralInfusionTinkerModification modification,
+            InventoryActionList rows)
+        {
+            if (rows == null || modification == null || !PreparationActions.Carried(actor, mineral)) return;
+
+            string enhancement = "Enhancement" + mineral.BlueprintName;
+            foreach (var target in actor.GetPart<InventoryPart>().Objects)
+                if (Compatible(actor, target, modification, enhancement))
+                    rows.AddAction("InfuseMineral" + target.ID,
+                        "infuse " + InventoryPart.GetUnitDisplayName(target) + " at forge (1 " + InventoryPart.GetUnitDisplayName(mineral) + "; one enhancement slot)",
+                        "InfuseMineral|" + PreparationActions.Escaped(target), '\0', 17);
+        }
+
         static bool Compatible(Entity actor, Entity item, MineralInfusionTinkerModification modification, string enhancement) =>
             PreparationActions.Carried(actor, item) && (item.GetPart<StackerPart>()?.StackCount ?? 1) == 1
             && item.GetPart(enhancement) == null && modification.CanApply(item, out _);

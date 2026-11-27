@@ -2501,6 +2501,16 @@ The twelve machines are not all ready because individual foundations exist. Cont
 
 ## Active processing priorities
 
+The existing public forge accepts one choir-iron ore for one slot on
+a compatible unequipped weapon. The mineral reader shows the same
+current forge readiness, eligible item and registered enhancement.
+Ordinary mining and the public forge supplied the exact carried blade
+and left one unit for other uses. A separate Lampwell control used a
+supplied equivalent dagger against a natural rotling. The normal
+Grovelands surface tables list tier-one rotlings, and the tier floor
+excludes them there. The local field target remains a design question.
+[Ore and field evidence](Verification/MachineSystems/ChoirIronField20261127/README.md)
+
 The user prioritizes reclamation of damaged finds and regional raw materials into useful component inputs. M3a accepts an explicit damaged-tool manifest, mutually exclusive dismantle/reclaim choices, and cold dressing of recovered iron into an existing piercing point. Retained quotes, Part-owned policies and shared transactions have native and actual acceptance; both routes feed ordinary equipped weapons used outside the service, with travel/fresh reload. Carrying/selling intact is a demonstrated alternative. Regional raw-material processing is a separate remaining qualification: existing pack timber/cord recipes are retained, and a recovered manufactured blank does not establish ore refining. Full heat/fuel, provenance, useful outputs, waste, economy and actual-play gates must be satisfied by their own scoped processes.
 
 ## Dependency matrix for the twelve machines

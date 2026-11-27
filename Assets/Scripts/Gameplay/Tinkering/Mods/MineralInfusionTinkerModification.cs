@@ -71,6 +71,12 @@ namespace CavesOfOoo.Core
         [System.ThreadStatic]
         public static Entity CurrentCrafter;
 
+        internal string DescribeEnhancement()
+        {
+            EnhancementFactory.EnsureInitialized();
+            return EnhancementFactory.Create(EnhancementName, Tier)?.GetEffectDescription();
+        }
+
         public bool CanApply(Entity item, out string reason)
         {
             reason = string.Empty;

@@ -384,6 +384,71 @@ namespace CavesOfOoo.Tests
             Assert.NotNull(target.GetPart(enhancement)); Assert.AreEqual(1, PackCount(mineralName)); Assert.False(Actor.HasPart<BitLockerPart>());
             Assert.False(Infuse(mineral, target)); Assert.AreEqual(1, PackCount(mineralName)); Assert.AreEqual(1, ItemEnhancing.CountEnhancements(target));
         }
+
+        [Test]
+        public void ChoirIronGuideExplainsCostAndEffectWithoutPromisingAForge()
+        {
+            var mineral = Stock("ChoirIron", 2);
+            var weapon = Stock("Dagger");
+            int tick = Clock.TickCount;
+            int weight = Pack.GetCarriedWeight();
+
+            string guide = UseGuides.SectionText(mineral, Zone, null, Actor);
+            Assert.That(guide, Is.Not.Null);
+            Assert.That(guide, Does.Contain("unequipped").IgnoreCase);
+            Assert.That(guide, Does.Match("(?i)\\b(one|1) unit\\b"));
+            Assert.That(guide, Does.Match("(?i)\\b(one|1) (enhancement )?slot\\b"));
+            Assert.That(guide, Does.Contain("+6").And.Contain("Fungal"));
+            Assert.That(guide, Does.Not.Contain(UseGuides.NowCan));
+            string readiness = guide.Split('\n').Single(line => line.StartsWith(UseGuides.NowReason, StringComparison.Ordinal));
+            Assert.That(readiness, Does.Contain("usable forge").IgnoreCase);
+
+            Assert.AreEqual(tick, Clock.TickCount);
+            Assert.AreEqual(weight, Pack.GetCarriedWeight());
+            Assert.AreSame(mineral, Packed("ChoirIron"));
+            Assert.AreEqual(2, PackCount("ChoirIron"));
+            Assert.AreEqual(0, ItemEnhancing.CountEnhancements(weapon));
+            Assert.False(Actor.HasPart<BitLockerPart>());
+        }
+
+        [Test]
+        public void ChoirIronGuideShowsTheSameReadyInfusionAsTheInventoryMenu()
+        {
+            Forge();
+            var mineral = Stock("ChoirIron", 2);
+            var weapon = Stock("Dagger");
+            string command = "InfuseMineral|" + Id(weapon);
+            var offer = Actions(mineral).Single(action => action.Command == command && !action.IsDisabled);
+
+            string guide = UseGuides.SectionText(mineral, Zone, null, Actor);
+            Assert.That(guide, Is.Not.Null);
+            Assert.That(guide, Does.Contain(UseGuides.NowCan + offer.Display));
+            Assert.AreEqual(2, PackCount("ChoirIron"));
+            Assert.AreEqual(0, ItemEnhancing.CountEnhancements(weapon));
+
+            Assert.True(Act(mineral, command));
+            Assert.AreEqual(1, PackCount("ChoirIron"));
+            Assert.AreEqual(6, weapon.GetPart<EnhancementChoirIron>().BonusDamage);
+        }
+
+        [Test]
+        public void ChoirIronGuideRefusesWhenNoCompatibleItemIsCarried()
+        {
+            Forge();
+            var mineral = Stock("ChoirIron");
+            var stackedWeapons = Stock("Dagger", 2);
+
+            string guide = UseGuides.SectionText(mineral, Zone, null, Actor);
+            Assert.That(guide, Is.Not.Null);
+            Assert.That(guide, Does.Not.Contain(UseGuides.NowCan));
+            string readiness = guide.Split('\n').Single(line => line.StartsWith(UseGuides.NowReason, StringComparison.Ordinal));
+            Assert.That(readiness, Does.Contain("compatible").IgnoreCase);
+            Assert.False(Actions(mineral).Any(action => action.Command.StartsWith("InfuseMineral|", StringComparison.Ordinal)));
+            Assert.AreEqual(1, PackCount("ChoirIron"));
+            Assert.AreEqual(2, stackedWeapons.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(0, ItemEnhancing.CountEnhancements(stackedWeapons));
+        }
+
         [Test] public void PreparationStateAndMineralEnhancementSurviveReplacementSave()
         {
             Forge(); var crop = Plant(); Assert.True(Compost(crop, Stock("InertSludge"))); var item = Stock("Dagger"); Assert.True(Infuse(Stock("PaleSalt"), item));

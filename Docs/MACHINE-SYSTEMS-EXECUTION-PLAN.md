@@ -1,3 +1,16 @@
+**The ore reader explains choir-iron infusion — November 27, 2026, America/Chicago.**
+The guide uses the same compatible item, forge readiness and
+enhancement rules as the existing inventory action. Ordinary seed-65
+play harvested two ore west of Cinderhold, spent one at the public
+forge on the exact carried dagger and kept the other. Continue
+preserved the equipped blade and its bonus. A real sari-snake
+counterstrike had no mineral follow-up. In a separate controlled
+Lampwell encounter, an ordinary dagger hit added the one remaining
+point of damage to a natural rotling. The equipped test dagger was
+supplied in that archived encounter. The seeded surface search found
+the generation floor keeps tier-one rotlings out of Grovelands rolls.
+[Ore, forge and combat evidence](Verification/MachineSystems/ChoirIronField20261127/README.md)
+
 **Cutbank route readers distinguish the watched boards — November 27, 2026, America/Chicago.**
 The west notice explains that the north boards cross watched ground
 when the post is staffed. The post describes the four-dram passage

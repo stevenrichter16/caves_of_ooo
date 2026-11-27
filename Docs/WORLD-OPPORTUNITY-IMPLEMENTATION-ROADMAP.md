@@ -113,6 +113,16 @@ effect retains the exact gas source after leaving the site.
 [Portable gas treatment](Verification/MachineSystems/SumpsieveGasPad20261127/README.md) ·
 [Cross-zone source persistence](Verification/MachineSystems/GasSourceContinue20261127/README.md)
 
+For #12, #14, #19, #36 and #40, the mineral reader explains how a
+gathered ore becomes an optional tool enhancement. Cinderhold's
+western vein yielded two choir-iron ore. One went into the exact
+carried dagger and the other remained for trade or other work. The
+enhancement persisted through Continue. The fungal hit was checked
+in an independent controlled Lampwell encounter. The current seed's
+ordinary route reached the forge, the nonfungal control and the
+Lampwell depths without finding a qualifying fungal creature.
+[Ore, forge and combat evidence](Verification/MachineSystems/ChoirIronField20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry
