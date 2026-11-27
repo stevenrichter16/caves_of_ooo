@@ -38,6 +38,12 @@ all 20 archived files against their pins. The 876 normal Quick files and
 87 pre-existing tracked changes matched their starting hashes. The
 Editor exited Play Mode and restored the normal keyboard and save root.
 
+The universal Mac package for `b204465e4` built from 32,264 pinned inputs
+in 23.12 seconds with zero errors and five warnings. It reached world
+startup on Apple M5 and preserved 876 normal Quick files. All six binaries
+include both architectures. Gameplay in the package and physical Intel
+verification remain open. [Package receipt](mac-startup-verification.json)
+
 [Exposed plate](01-exposed-sealbark.png) ·
 [Gather action](02-gather-exposed-sealbark.png) ·
 [Repair bill](03-brace-the-gate.png) ·

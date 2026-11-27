@@ -5,6 +5,8 @@ The ordinary timber pile yielded four boards, so the player set three aside.
 The remaining board and the prepared slat braced the original gate. A fresh
 Continue kept the same closed gate and spent source. Ordinary Open then worked.
 [Native play and receipts](Verification/MachineSystems/FallenSealbark20261127/README.md)
+The universal Mac package for `b204465e4` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/FallenSealbark20261127/mac-startup-verification.json)
 
 **Natural showers give exposed crop beds a finite boost — November 27, 2026, America/Chicago.**
 Ordinary movement in a real shower at the western Morrowfast allotment
