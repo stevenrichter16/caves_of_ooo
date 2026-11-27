@@ -12,6 +12,7 @@ namespace CavesOfOoo.Core
             guide.How.Add("Carry this sieve and examine a known packet to see what screening yields.");
             guide.How.Add("Sort clay spoil for lining repairs and grit for footing. Quarry sweepings can supply pale-salt for weapon infusion and silver sand for trail marks.");
             guide.How.Add("Away from a public seed frame, rub one gathered knotflax bundle over the sieve to keep a seed. The fixed frame can also save chaff in fair weather.");
+            guide.How.Add("On a dry floor under cover, use carried bellows and the sieve together to keep both the seed and the chaff.");
             guide.Needs.Add("An identified packet or gathered knotflax bundle and room for what you keep.");
             guide.Limits.Add("One action spends one packet or bundle and keeps the sieve. The mesh passes fine and medium stock and retains coarse stock. Unlike materials of the same size stay mixed.");
             guide.WhyNot=MaterialScreeningWorkReceipt.Usable(context.Viewer,ParentEntity,context.Zone)
@@ -35,24 +36,26 @@ namespace CavesOfOoo.Core
             pack=actor.GetPart<InventoryPart>();physics=tool.GetPart<PhysicsPart>();
             capability=tool.GetPart<ScreeningToolPart>();identity=RouteWorkMenu.Identity(tool);weight=physics.Weight;
         }
-        static bool Available(Entity actor,Entity source,Entity tool,Zone zone)
+        internal static bool IsSoundCarriedTool(Entity actor, Entity source, Entity tool, Zone zone)
         {
             if(!RouteWorkMenu.ActorReady(actor,zone) || tool==null || tool==source || tool==actor
                 || tool.ID==actor.ID || tool.ID==source?.ID || !WorldResourceActions.Carried(actor,tool)
                 || actor.GetPart<InventoryPart>().Objects.Contains(tool)!=true || tool.GetPart<PhysicsPart>() is not PhysicsPart physics
                 || physics.Solid || physics.Weight<0 || !tool.HasTag("Item") || tool.HasTag("Creature") || tool.HasTag("Terrain")
                 || tool.HasPart<StackerPart>() || tool.HasPart<SpatialFootprintPart>() || tool.HasPart<MultiCellPilotPropPart>()
-                || tool.GetPart<ScreeningToolPart>()?.ParentEntity!=tool || tool.Parts.Count(p=>p is ScreeningToolPart)!=1
                 || tool.Parts.Count(p=>p is PhysicsPart)!=1 || tool.HasEffect<BrokenEffect>() || tool.HasEffect<FrozenEffect>()
                 || RepairablePart.BlocksFunction(tool) || CombatSystem.IsDeathHandled(tool)
                 || tool.GetStat("Hitpoints")!=null && tool.GetStatValue("Hitpoints")<=0
                 || tool.GetPart<DestructiblePart>() is DestructiblePart d && (d.Gone || d.HP<=0))return false;
             return !zone.GetReadOnlyEntities().Any(e=>e.ID==tool.ID);
         }
+        static bool Available(Entity actor, Entity source, Entity tool, Zone zone)
+            => tool?.GetPart<ScreeningToolPart>() is ScreeningToolPart sieve && sieve.ParentEntity == tool
+                && tool.Parts.Count(p => p is ScreeningToolPart) == 1 && IsSoundCarriedTool(actor, source, tool, zone);
         internal static bool Usable(Entity actor,Entity tool,Zone zone)=>Available(actor,null,tool,zone);
-        internal static MaterialScreeningWorkReceipt Resolve(Entity actor,Entity source,Zone zone)
+        internal static MaterialScreeningWorkReceipt Resolve(Entity actor, Entity source, Zone zone, Predicate<Entity> accepts = null)
         {
-            var tool=actor?.GetPart<InventoryPart>()?.Objects.Where(e=>Available(actor,source,e,zone))
+            var tool=actor?.GetPart<InventoryPart>()?.Objects.Where(e=>Available(actor,source,e,zone) && (accepts == null || accepts(e)))
                 .OrderBy(e=>e.ID,StringComparer.Ordinal).FirstOrDefault();
             return tool==null?null:new MaterialScreeningWorkReceipt(actor,source,tool,zone);
         }
@@ -62,6 +65,64 @@ namespace CavesOfOoo.Core
         {
             if(transaction==null || !Current() || !transaction.TryClaim(Tool,actor,command))return false;
             transaction.BeforeCommit(Current);return true;
+        }
+    }
+
+    internal sealed class ShelteredWinnowWorkReceipt : IMaterialWorkReceipt
+    {
+        public Entity Tool => screening.Tool;
+        internal Entity AirTool { get; }
+        readonly MaterialScreeningWorkReceipt screening;
+        readonly Entity actor, source;
+        readonly Zone zone;
+        readonly Cell cell;
+        readonly Func<bool> airIdentity;
+        readonly int airWeight;
+
+        ShelteredWinnowWorkReceipt(Entity actor, Entity source, Zone zone, Cell cell,
+            MaterialScreeningWorkReceipt screening, Entity airTool)
+        {
+            this.actor = actor;
+            this.source = source;
+            this.zone = zone;
+            this.cell = cell;
+            this.screening = screening;
+            AirTool = airTool;
+            airIdentity = RouteWorkMenu.Identity(airTool);
+            airWeight = airTool.GetPart<PhysicsPart>().Weight;
+        }
+
+        static bool Available(Entity actor, Entity source, Entity airTool, Zone zone)
+            => airTool != null && airTool.GetPart<DirectedAirPart>()?.ParentEntity == airTool
+                && airTool.Parts.Count(part => part is DirectedAirPart) == 1
+                && MaterialScreeningWorkReceipt.IsSoundCarriedTool(actor, source, airTool, zone);
+
+        static bool Distinct(Entity sieve, Entity airTool) => airTool != sieve && airTool.ID != sieve.ID;
+
+        internal static ShelteredWinnowWorkReceipt Resolve(Entity actor, Entity source, Zone zone)
+        {
+            var cell = zone.GetEntityCell(actor);
+            if (cell?.IsInterior != true || !SeedFramePart.IsDryWorkCell(zone, cell)) return null;
+            var airTools = actor.GetPart<InventoryPart>().Objects
+                .Where(item => Available(actor, source, item, zone)).OrderBy(item => item.ID, StringComparer.Ordinal).ToArray();
+            if (airTools.Length == 0) return null;
+            var screening = MaterialScreeningWorkReceipt.Resolve(actor, source, zone, sieve => airTools.Any(air => Distinct(sieve, air)));
+            if (screening == null) return null;
+            var airTool = airTools.First(air => Distinct(screening.Tool, air));
+            return new ShelteredWinnowWorkReceipt(actor, source, zone, cell, screening, airTool);
+        }
+
+        public bool Current()
+            => zone.GetEntityCell(actor) == cell && cell.IsInterior && SeedFramePart.IsDryWorkCell(zone, cell)
+                && screening.Current() && airIdentity() && Distinct(Tool, AirTool) && Available(actor, source, AirTool, zone)
+                && AirTool.GetPart<PhysicsPart>().Weight == airWeight;
+
+        public bool Begin(InventoryTransaction transaction, string command)
+        {
+            if (transaction == null || !Current() || !screening.Begin(transaction, command)
+                || !transaction.TryClaim(AirTool, actor, command)) return false;
+            transaction.BeforeCommit(Current);
+            return true;
         }
     }
 }

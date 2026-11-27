@@ -1,3 +1,16 @@
+**Sheltered winnowing connects the sieve, bellows and allotment — November 26, 2026, America/Chicago.**
+A gathered bundle yields one seed and one chaff with a carried sound
+sieve, separate directed air and dry interior floor. The same material
+receipt checks both tools and outputs, and refuses stale choices without
+payment. At The Dry Hem an ordinary turn converted bundle 7202 into seed
+9280 and chaff 9281. Fresh Continue kept both tools and products. Actual
+planting spent that seed and fresh Continue kept crop 9285, the chaff and
+both tools. The branch supplied two tools and advanced the clock to the ripe
+season. All 302 native checks passed and both reviews cleared. Normal saves,
+foreign edits and previous packages were preserved. Whole-machine gates
+and full current regression remain open. Hourly work stays active.
+[Evidence](Verification/MachineSystems/WinnowBellows20261127/README.md)
+
 **The Morrowfast seed frames show the fair-weather bonus — November 26, 2026, America/Chicago.**
 Both mark their dry mesh before selection. Rain preserves the shared
 water cue. Actual fresh v31 seed 65 travel, a controlled advance to

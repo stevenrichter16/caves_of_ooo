@@ -19,6 +19,7 @@ namespace CavesOfOoo.Core
         internal readonly EntityFactory Factory;
         internal string StationKind => work is AnvilPointWorkReceipt ? AnvilWorkPart.Kind : work == null ? KindFor(Definition) : null;
         internal Entity WorkTool => work?.Tool;
+        internal bool IsShelteredWinnow => work is ShelteredWinnowWorkReceipt;
         readonly InventoryPart pack;
         readonly PhysicsPart physics;
         readonly StackerPart stack;
@@ -48,28 +49,33 @@ namespace CavesOfOoo.Core
         }
         public static MaterialProcessPlan TryCreate(Entity actor, Entity source, string id, Zone zone, EntityFactory factory)
             => Create(actor,source,id,zone,factory,null);
+        internal static MaterialProcessPlan TryCreateShelteredWinnow(Entity actor, Entity source, string id, Zone zone, EntityFactory factory)
+            => Create(actor, source, id, zone, factory, null, shelteredWinnow: true);
         internal static MaterialProcessPlan TryCreateFromStock(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock)
             => stock==null?null:Create(actor,source,id,zone,factory,stock);
         internal static MaterialProcessPlan TryCreateScreening(Entity actor,Entity source,Zone zone,EntityFactory factory,
             SiftableStockPart provider, MaterialProcessStock stock = null)
             => provider?.ParentEntity!=source || source?.GetPart<SiftableStockPart>()!=provider?null:
                 Create(actor,source,SiftableStockPart.ProcessId,zone,factory,stock,provider);
-        static MaterialProcessPlan Create(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,MaterialProcessStock stock,SiftableStockPart sizeStock=null)
+        static MaterialProcessPlan Create(Entity actor,Entity source,string id,Zone zone,EntityFactory factory,
+            MaterialProcessStock stock,SiftableStockPart sizeStock=null,bool shelteredWinnow=false)
         {
             var definition=sizeStock==null?MaterialProcessRegistry.Get(id):sizeStock.Definition(factory);
             if(definition==null || factory==null || ForgePart.Factory!=factory
                 || MaterialProcessRegistry.ValidateForWork(factory,definition.WorkKind).Count!=0 || !PreparationActions.CurrentActor(actor,zone)
                 || !(stock==null?PreparationActions.Carried(actor,source):stock.Contains(source)) || !Permission(source,definition)
                 || (source.GetPart<StackerPart>()?.StackCount??1)<definition.InputCount)return null;
-            IMaterialWorkReceipt work=definition.WorkKind switch
+            if (shelteredWinnow && !SeedFramePart.IsKnotflaxWork(definition)) return null;
+            IMaterialWorkReceipt work=shelteredWinnow ? ShelteredWinnowWorkReceipt.Resolve(actor, source, zone) : definition.WorkKind switch
             {
                 "HandCutting"=>MaterialCuttingWorkReceipt.Resolve(actor,source,zone),
                 "Screening"=>MaterialScreeningWorkReceipt.Resolve(actor,source,zone),
                 _=>null
             };
             string kind=KindFor(definition);
-            bool canUseSieve = stock == null && SeedFramePart.IsKnotflaxWork(definition);
-            var station = canUseSieve ? VisibleSeedFrame(actor, zone)
+            bool canUseSieve = !shelteredWinnow && stock == null && SeedFramePart.IsKnotflaxWork(definition);
+            var station = shelteredWinnow ? (work as ShelteredWinnowWorkReceipt)?.AirTool
+                : canUseSieve ? VisibleSeedFrame(actor, zone)
                 : kind == null ? work?.Tool : StationQuery.Resolve(actor, zone, kind);
             if (station == null && canUseSieve)
             {

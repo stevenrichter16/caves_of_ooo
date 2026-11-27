@@ -1,0 +1,939 @@
+{
+  "start": {
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 8,
+    "inside": false,
+    "tick": 520,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "Initial checkpoint saved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      }
+    ]
+  },
+  "gathered": {
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 8,
+    "inside": false,
+    "tick": 14390,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "name": "knotflax seed-head bundle"
+      }
+    ]
+  },
+  "toolSupply": [
+    {
+      "n": "HandSieve",
+      "ID": "7203"
+    },
+    {
+      "n": "HandBellows",
+      "ID": "7204"
+    }
+  ],
+  "arrival": {
+    "zone": "Overworld.3.6.0",
+    "x": 38,
+    "y": 10,
+    "inside": false,
+    "tick": 14430,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved."
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "name": "knotflax seed-head bundle"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      }
+    ]
+  },
+  "outdoorMenu": {
+    "mode": "InventoryOpen",
+    "panel": 1,
+    "query": "knotflax",
+    "item": "7202",
+    "rows": [
+      {
+        "label": "rub and sift 1 knotflax seed-head bundle",
+        "command": "MaterialProcess|winnow_knotflax_seed|7203"
+      },
+      {
+        "label": "examine",
+        "command": "Examine"
+      },
+      {
+        "label": "Label item",
+        "command": "edit_storage_label"
+      },
+      {
+        "label": "Drop",
+        "command": "drop"
+      }
+    ],
+    "busy": false
+  },
+  "approach": {
+    "zone": "Overworld.3.6.0",
+    "x": 38,
+    "y": 14,
+    "inside": false,
+    "tick": 14470,
+    "hp": 40,
+    "mode": "InventoryOpen",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "name": "knotflax seed-head bundle"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      }
+    ]
+  },
+  "door": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "MorrowfastSceneProp",
+    "cell": [
+      32,
+      13
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "o",
+        "Display": "open door",
+        "Command": "OpenMorrowfastDoor",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "underCover": {
+    "zone": "Overworld.3.6.0",
+    "x": 32,
+    "y": 12,
+    "inside": true,
+    "tick": 14580,
+    "hp": 40,
+    "mode": "InventoryOpen",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You open the door.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7202",
+        "BlueprintName": "KnotflaxSeedHeads",
+        "name": "knotflax seed-head bundle"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      }
+    ]
+  },
+  "shelteredMenu": {
+    "mode": "InventoryOpen",
+    "panel": 1,
+    "query": "knotflax",
+    "item": "7202",
+    "rows": [
+      {
+        "label": "rub and sift 1 knotflax seed-head bundle",
+        "command": "MaterialProcess|winnow_knotflax_seed|7203"
+      },
+      {
+        "label": "winnow with bellows (keep chaff)",
+        "command": "MaterialProcess|winnow_knotflax_seed|7204"
+      },
+      {
+        "label": "examine",
+        "command": "Examine"
+      },
+      {
+        "label": "Label item",
+        "command": "edit_storage_label"
+      },
+      {
+        "label": "Drop",
+        "command": "drop"
+      }
+    ],
+    "busy": false
+  },
+  "processed": {
+    "zone": "Overworld.3.6.0",
+    "x": 32,
+    "y": 12,
+    "inside": true,
+    "tick": 14590,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You open the door.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      },
+      {
+        "ID": "9280",
+        "BlueprintName": "KnotflaxSeed",
+        "name": "knotflax seed"
+      },
+      {
+        "ID": "9281",
+        "BlueprintName": "DryKnotflaxChaff",
+        "name": "dry knotflax chaff"
+      }
+    ]
+  },
+  "interruptedReturn": {
+    "zone": "Overworld.2.6.0",
+    "x": 43,
+    "y": 10,
+    "inside": false,
+    "tick": 14700,
+    "hp": 35,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "The wine-leaf sundew closes around you. Stillness passes.",
+      "You are rooted in place!",
+      "You are coated in acid.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You take 5 acid damage."
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      },
+      {
+        "ID": "9280",
+        "BlueprintName": "KnotflaxSeed",
+        "name": "knotflax seed"
+      },
+      {
+        "ID": "9281",
+        "BlueprintName": "DryKnotflaxChaff",
+        "name": "dry knotflax chaff"
+      }
+    ]
+  },
+  "freshWinnowed": {
+    "zone": "Overworld.3.6.0",
+    "x": 32,
+    "y": 12,
+    "inside": true,
+    "tick": 14590,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You open the door.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      },
+      {
+        "ID": "9280",
+        "BlueprintName": "KnotflaxSeed",
+        "name": "knotflax seed"
+      },
+      {
+        "ID": "9281",
+        "BlueprintName": "DryKnotflaxChaff",
+        "name": "dry knotflax chaff"
+      }
+    ]
+  },
+  "returnSafe": {
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 10,
+    "inside": false,
+    "tick": 14880,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": true,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      },
+      {
+        "ID": "9280",
+        "BlueprintName": "KnotflaxSeed",
+        "name": "knotflax seed"
+      },
+      {
+        "ID": "9281",
+        "BlueprintName": "DryKnotflaxChaff",
+        "name": "dry knotflax chaff"
+      }
+    ]
+  },
+  "plantGroup": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "HearthbulbSeed",
+    "cell": [
+      62,
+      11
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "g",
+        "Display": "take items (3)",
+        "Command": "ViewPile",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 3,
+        "key": "b",
+        "Display": "plant a seed here (3) >>",
+        "Command": "ToolGroup|plant a seed here",
+        "IsDisabled": false,
+        "Hint": "Choose from: emberwheat seed, gladroot seed, knotflax seed."
+      }
+    ],
+    "hint": ""
+  },
+  "seedChoices": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "HearthbulbSeed",
+    "cell": [
+      62,
+      11
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "a",
+        "Display": "plant prepared bed (62,11) [emberwheat seed]",
+        "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "b",
+        "Display": "plant prepared bed (62,11) [gladroot seed]",
+        "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "c",
+        "Display": "plant prepared bed (62,11) [knotflax seed]",
+        "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 3,
+        "key": "d",
+        "Display": "<< back",
+        "Command": "ToolGroupBack|plant a seed here",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "planted": {
+    "crop": [
+      {
+        "ID": "5780",
+        "BlueprintName": "Grass",
+        "reader": "Narrow blades crowd the ground, bending over older growth at their roots."
+      },
+      {
+        "ID": "9285",
+        "BlueprintName": "KnotflaxCrop",
+        "reader": "Blue-green stalks swell at regular knots. Strip and twist the ripe stems while harvesting to make useful cord."
+      },
+      {
+        "ID": "9282",
+        "BlueprintName": "Hearthbulb",
+        "reader": "An ochre bulb under a papery, ribbed skin. Edible raw; roasting beside a cooking fire makes a more nourishing meal."
+      },
+      {
+        "ID": "9283",
+        "BlueprintName": "Hearthbulb",
+        "reader": "An ochre bulb under a papery, ribbed skin. Edible raw; roasting beside a cooking fire makes a more nourishing meal."
+      },
+      {
+        "ID": "9284",
+        "BlueprintName": "HearthbulbSeed",
+        "reader": "Plant in an empty tilled bed. Conjure Rain waters the crop; dry soil pauses growth. Harvest the ripe plant for two useful units and one seed. Growth happens while you act in this area."
+      }
+    ],
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 10,
+    "inside": false,
+    "tick": 14900,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "You harvest hearthbulb crop. The produce and saved seed lie here to pick up.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You plant knotflax seed.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Game saved."
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      },
+      {
+        "ID": "9281",
+        "BlueprintName": "DryKnotflaxChaff",
+        "name": "dry knotflax chaff"
+      }
+    ]
+  },
+  "freshPlanted": {
+    "crop": [
+      {
+        "ID": "5780",
+        "BlueprintName": "Grass",
+        "reader": "Narrow blades crowd the ground, bending over older growth at their roots."
+      },
+      {
+        "ID": "9285",
+        "BlueprintName": "KnotflaxCrop",
+        "reader": "Blue-green stalks swell at regular knots. Strip and twist the ripe stems while harvesting to make useful cord."
+      },
+      {
+        "ID": "9282",
+        "BlueprintName": "Hearthbulb",
+        "reader": "An ochre bulb under a papery, ribbed skin. Edible raw; roasting beside a cooking fire makes a more nourishing meal."
+      },
+      {
+        "ID": "9283",
+        "BlueprintName": "Hearthbulb",
+        "reader": "An ochre bulb under a papery, ribbed skin. Edible raw; roasting beside a cooking fire makes a more nourishing meal."
+      },
+      {
+        "ID": "9284",
+        "BlueprintName": "HearthbulbSeed",
+        "reader": "Plant in an empty tilled bed. Conjure Rain waters the crop; dry soil pauses growth. Harvest the ripe plant for two useful units and one seed. Growth happens while you act in this area."
+      }
+    ],
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 10,
+    "inside": false,
+    "tick": 14900,
+    "hp": 40,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You harvest hearthbulb crop. The produce and saved seed lie here to pick up.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You plant knotflax seed.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve"
+      },
+      {
+        "ID": "7204",
+        "BlueprintName": "HandBellows",
+        "name": "hand bellows"
+      },
+      {
+        "ID": "9281",
+        "BlueprintName": "DryKnotflaxChaff",
+        "name": "dry knotflax chaff"
+      }
+    ]
+  },
+  "closed": {
+    "playing": false,
+    "active": false,
+    "root": null,
+    "ownKeyboard": false,
+    "keyboard": "Keyboard"
+  },
+  "controlledClock": {
+    "from": 520,
+    "to": 14380
+  },
+  "verifiedRouting": {
+    "outdoor": [
+      38,
+      14
+    ],
+    "shelter": [
+      32,
+      12
+    ],
+    "bed": [
+      62,
+      11
+    ],
+    "abandonedReturnPassedThrough": [
+      43,
+      10
+    ]
+  }
+}

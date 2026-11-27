@@ -192,6 +192,15 @@ The earned seed was planted in an existing tilled bed and the crop
 survived Continue.
 [Evidence](Verification/MachineSystems/SeedFrameCue20261127/README.md)
 
+**Sheltered winnowing gives carried bellows a second use.**
+A sound sieve and separate directed-air tool keep seed and chaff on a dry
+interior tile. They share the material receipt and its exact batch and output
+checks. The sieve alone still offers the seed-only result away from the public
+frame. The fair dry frame keeps both fractions without carried tools. Actual
+play gathered one bundle, kept both fractions at The Dry Hem, then planted
+the exact seed and reloaded the crop and companion chaff.
+[Evidence](Verification/MachineSystems/WinnowBellows20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.

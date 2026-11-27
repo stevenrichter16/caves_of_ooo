@@ -26,7 +26,7 @@ namespace CavesOfOoo.Core
                 .Where(summary => summary != null);
             if (definitions.Any(definition => SeedFramePart.IsKnotflaxWork(definition)
                 && MaterialProcessPlan.PermissionPart(ParentEntity, definition) == this))
-                summaries = summaries.Append("Away from a ready public frame, rub the heads over a sound hand sieve to keep one seed. Discard the chaff.");
+                summaries = summaries.Append("Use a public seed frame or rub the heads over a sound hand sieve to keep one seed. Use a sieve and bellows on a dry floor under cover to keep the chaff too.");
             if (definitions.Any(definition => AnvilPointWorkReceipt.Supports(definition) && Allows(definition)))
                 summaries = summaries.Append("A sound warhammer or assembled peat-packing mallet can dress this blank beside an anvil. Keep the hammer.");
             return string.Join("\n", summaries);
@@ -90,10 +90,30 @@ namespace CavesOfOoo.Core
                 if(e.GetParameter<Entity>("MaterialProcessGatherOwner")==owner)return true;
                 e.SetParameter("MaterialProcessGatherOwner",owner);var menu=Menus.GetValue(owner,_=>new Menu());
                 var previous=menu.Quotes.ToArray();menu.Quotes.Clear();
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                string Command(MaterialProcessService.Quote choice)
+                {
+                    var selected = choice.Plan;
+                    var retained = previous.FirstOrDefault(p => p.Value.Plan.Actor == actor && p.Value.Plan.Source == owner
+                        && p.Value.Plan.Zone == zone && p.Value.Plan.Station == selected.Station && p.Value.Plan.SameDefinition(selected)
+                        && p.Value.Plan.WorkTool == selected.WorkTool && p.Value.Plan.IsShelteredWinnow == selected.IsShelteredWinnow
+                        && p.Value.GritGround == choice.GritGround && p.Value.Current());
+                    string token = retained.Key ?? Guid.NewGuid().ToString("N");
+                    menu.Quotes[token] = retained.Value ?? choice;
+                    return MaterialProcessInputPart.CommandPrefix + choice.ActionId + "|" + Uri.EscapeDataString(selected.StationId) + "|" + token;
+                }
                 foreach(var id in ids.Distinct())
                 {
                     var plan=sizeStock==null?MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory)
                         :MaterialProcessPlan.TryCreateScreening(actor,owner,zone,ForgePart.Factory,sizeStock);
+                    if (actions != null && sizeStock == null && SeedFramePart.IsKnotflaxWork(MaterialProcessRegistry.Get(id))
+                        && MaterialProcessService.TryQuote(MaterialProcessPlan.TryCreateShelteredWinnow(actor, owner, id, zone, ForgePart.Factory)) is {} sheltered)
+                    {
+                        var kept = Outputs(sheltered.Plan.Factory, sheltered.Result);
+                        actions.AddActionWithHint("winnow_with_bellows", "winnow with bellows (keep chaff)", Command(sheltered),
+                            "Use a sieve and bellows on one bundle. Makes " + kept + ". Keep both tools. One action.",
+                            '\0', 19, false, ActionTime.OneAction);
+                    }
                     var quoted=MaterialProcessService.TryQuote(plan, out bool reservedForCrafting);
                     if(quoted==null)
                     {
@@ -108,16 +128,6 @@ namespace CavesOfOoo.Core
                             && PreparationActions.Carried(actor,owner) && MaterialProcessTemplate.Capture(ForgePart.Factory,owner.BlueprintName)?.Snapshot(owner,true)!=null)
                             e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,"screen size grades","screening-unavailable","Carry a sound sieve and leave room for both grades.",'\0',19);
                         continue;
-                    }
-                    string Command(MaterialProcessService.Quote choice)
-                    {
-                        var retained = previous.FirstOrDefault(p => p.Value.Plan.Actor == actor && p.Value.Plan.Source == owner
-                            && p.Value.Plan.Zone == zone && p.Value.Plan.Station == plan.Station && p.Value.Plan.SameDefinition(plan)
-                            && p.Value.Plan.WorkTool == plan.WorkTool
-                            && p.Value.GritGround == choice.GritGround && p.Value.Current());
-                        string token = retained.Key ?? Guid.NewGuid().ToString("N");
-                        menu.Quotes[token] = retained.Value ?? choice;
-                        return MaterialProcessInputPart.CommandPrefix + choice.ActionId + "|" + Uri.EscapeDataString(plan.StationId) + "|" + token;
                     }
                     var d=quoted.Result;
                     string outputs = Outputs(plan.Factory, d);

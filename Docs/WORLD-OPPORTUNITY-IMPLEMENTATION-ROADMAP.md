@@ -190,6 +190,14 @@ seed and chaff. The player planted that exact seed in a vacated
 tilled bed and kept its companion chaff through Continue.
 [Weather and frame playtest](Verification/MachineSystems/SeedFrameCue20261127/README.md)
 
+For #14, #19 and #34, directed air from a carried tool can keep knotflax
+chaff when paired with a sound sieve on a dry interior floor. One bundle
+makes the same seed and chaff the public frame can produce. The sieve-only
+choice still works. An actual player gathered the bundle, walked into The Dry
+Hem, winnowed it and planted the resulting seed. This verifies one more
+alternative using the same finite outputs and ordinary cultivation.
+[Sheltered winnowing playtest](Verification/MachineSystems/WinnowBellows20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

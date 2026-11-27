@@ -486,3 +486,25 @@ copy of the same stand supplied a late seed-head bundle and plantable seed.
 The comparison advanced the owned game clock directly to the next growth
 phase. Normal play uses the saved clock and ages the stand's options over time.
 [Evidence](Verification/MachineSystems/SeasonalKnotflaxStems20261125/README.md)
+
+## Sheltered winnowing with carried tools
+
+A traveler can keep the chaff from a gathered knotflax bundle by working with a
+sound hand sieve and directed air on a dry interior tile. This gives the bellows
+a harvest use and makes a guesthouse or cave floor useful during rain. Standing
+water and wet coatings close the assisted choice. Rubbing the heads through a
+sieve still yields one seed and discards the chaff. The public frame still keeps
+chaff on fair, dry days without requiring carried tools.
+
+The assisted choice previews one seed and one unit of dry chaff for one bundle
+and one action. It keeps both tools. The existing material receipt must check
+the exact tools, batch, work cell and canonical products through commit. Losing
+shelter or either tool closes the choice without spending the bundle. The work
+uses no gas action and adds no wind simulation. The seed can be planted and
+the chaff can fuel an eligible hearth.
+
+The Editor trial offered only the sieve outdoors and both methods inside
+The Dry Hem. It kept both outputs in one action and planted the exact seed
+in a vacated bed. Fresh Continues preserved the products and then the crop.
+The test supplied two tools and gathered the heads ordinarily. The outdoor
+comparison occurred after the shower. [Evidence](Verification/MachineSystems/WinnowBellows20261127/README.md)

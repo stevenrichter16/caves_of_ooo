@@ -215,19 +215,27 @@ namespace CavesOfOoo.Core
             var weather = RegionalWeather.Current(zone, WorldClock.CurrentTick, catchment.PolicyVersion);
             if (!weather.Valid || weather.Raining || !StationReadiness.Evaluate(station, zone, Kind, out _)) return false;
             var cell = zone.GetEntityCell(station);
-            return !cell.IsInterior
-                && zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) != true
-                && !cell.Objects.Any(item => item.GetPart<LiquidPoolPart>() is { Volume: > 0 });
+            return cell is { IsInterior: false } && IsDryWorkCell(zone, cell);
+        }
+
+        internal static bool IsDryWorkCell(Zone zone, Cell cell)
+        {
+            if (zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) == true) return false;
+            foreach (var item in cell.Occupants)
+                if (item.GetPart<LiquidPoolPart>() is { Volume: > 0 }) return false;
+            return true;
         }
 
         internal static MaterialProcessTemplate RetainedChaff(MaterialProcessPlan plan)
         {
-            if (plan.StationKind != Kind || !IsKnotflaxWork(plan.Definition)
+            if (!IsKnotflaxWork(plan.Definition)
                 || HandlingService.GetWeight(plan.Source) != 1
                 || !plan.Factory.Blueprints.TryGetValue(SeasonalSeedSite.Output, out var seed)
-                || seed.Parts.ContainsKey("Handling") || !seed.Parts["Physics"].TryGetValue("Weight", out var seedWeight)
+                || seed.Parts.ContainsKey("Handling") || !seed.Parts.TryGetValue("Physics", out var seedPhysics)
+                || !seedPhysics.TryGetValue("Weight", out var seedWeight)
                 || seedWeight != "0"
-                || plan.Station.GetPart<SeedFramePart>()?.CanRetainChaffAt(plan.Zone) != true) return null;
+                || !plan.IsShelteredWinnow && (plan.StationKind != Kind
+                    || plan.Station.GetPart<SeedFramePart>()?.CanRetainChaffAt(plan.Zone) != true)) return null;
 
             var template = MaterialProcessTemplate.Capture(plan.Factory, Chaff, true);
             return template != null && plan.Actor.GetPart<InventoryPart>().Objects

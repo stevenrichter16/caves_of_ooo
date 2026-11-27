@@ -61,7 +61,8 @@ namespace CavesOfOoo.Core
                 reservedForCrafting = source?.WouldMatchWithoutCraftingMark(plan.Source) == true;
                 return null;
             }
-            return new Quote(plan, source, state, outputs, SeedFramePart.RetainedChaff(plan), gritGround);
+            var chaff = SeedFramePart.RetainedChaff(plan);
+            return plan.IsShelteredWinnow && chaff == null ? null : new Quote(plan, source, state, outputs, chaff, gritGround);
         }
         static bool Emit(Entity owner,string id,Quote quote)
         {

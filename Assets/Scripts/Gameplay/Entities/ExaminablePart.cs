@@ -77,6 +77,10 @@ namespace CavesOfOoo.Core
                     "A dry, known clay-working mixture.");
             if (owner?.BlueprintName == "QuarrySweepings")
                 return Text?.Replace(" A carried hand sieve separates one pale-salt and two silver sand; two weight of dust is discarded.", "");
+            if (owner?.BlueprintName == SeasonalSeedSite.Bundle)
+                return Text?.Replace(" Winnow it at a public seed frame for one plantable knotflax seed.", "");
+            if (owner?.BlueprintName == SeedFramePart.Chaff)
+                return Text?.Replace("dry husks caught by the winnowing frame", "dry husks saved while winnowing");
             return Text;
         }
 

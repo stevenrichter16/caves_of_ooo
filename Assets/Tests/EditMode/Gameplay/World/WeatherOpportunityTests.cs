@@ -685,6 +685,177 @@ namespace CavesOfOoo.Tests
             Assert.That(Choice(packet, Work), Does.Contain("|" + Id(spare) + "|"));
         }
 
+        static bool BellowsWinnowRow(InventoryAction row)
+        {
+            return !row.IsDisabled && row.Display.IndexOf("winnow with bellows", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        InventoryAction BellowsWinnowChoice(Entity packet)
+        {
+            var rows = Actions(packet).Where(BellowsWinnowRow).ToArray();
+            Assert.That(rows, Has.Length.EqualTo(1), "One assisted action should be available with both tools in dry shelter.");
+            return rows[0];
+        }
+
+        [Test]
+        public void ShelteredBellowsWinnowRequiresBothToolsAndDryShelter()
+        {
+            EnterAllotment();
+            var cell = Zone.GetEntityCell(Actor);
+            cell.IsInterior = true;
+            var packet = Carry(Bundle);
+            int tick = Clock.TickCount;
+
+            Assert.False(Actions(packet).Any(BellowsWinnowRow));
+            Carry("HandSieve");
+            Assert.True(Actions(packet).Any(a => a.Display.Contains("rub and sift")));
+            Assert.False(Actions(packet).Any(BellowsWinnowRow));
+            Carry("HandBellows");
+            BellowsWinnowChoice(packet);
+
+            cell.IsInterior = false;
+            Assert.False(Actions(packet).Any(BellowsWinnowRow));
+            cell.IsInterior = true;
+            Zone.TileState.WriteCoating(cell.X, cell.Y, "water", 1);
+            var wetRows = Actions(packet);
+            Assert.False(wetRows.Any(BellowsWinnowRow));
+            Assert.True(wetRows.Any(a => a.Display.Contains("rub and sift")));
+
+            Assert.That(Pack.Objects, Does.Contain(packet));
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(Count(Chaff), Is.Zero);
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ShelteredBellowsWinnowKeepsTheSelectedOutputAndTools(bool assisted)
+        {
+            EnterAllotment();
+            Zone.GetEntityCell(Actor).IsInterior = true;
+            var sieve = Carry("HandSieve");
+            var bellows = Carry("HandBellows");
+            var packet = Carry(Bundle);
+            var row = assisted ? BellowsWinnowChoice(packet) : Actions(packet).Single(a => a.Display.Contains("rub and sift"));
+            var observer = new SeedWorkObserver();
+            Actor.AddPart(observer);
+
+            Assert.True(Act(packet, row.Command));
+            Assert.That(observer.Tool, Is.SameAs(sieve));
+            Assert.That(observer.Provider, Is.SameAs(assisted ? bellows : sieve));
+            Assert.That(Pack.Objects, Does.Contain(sieve));
+            Assert.That(Pack.Objects, Does.Contain(bellows));
+            Assert.That(Count(Bundle), Is.Zero);
+            var seed = Pack.Objects.Single(e => e.BlueprintName == "KnotflaxSeed");
+            Assert.That(seed.GetPart<StackerPart>()?.StackCount ?? 1, Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.EqualTo(assisted ? 1 : 0));
+            if (assisted)
+            {
+                var chaff = Pack.Objects.Single(e => e.BlueprintName == Chaff);
+                Assert.That(chaff.GetPart<StackerPart>()?.StackCount ?? 1, Is.EqualTo(1));
+            }
+            int tick = Clock.TickCount;
+            Assert.False(Act(packet, row.Command));
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.EqualTo(assisted ? 1 : 0));
+        }
+
+        [TestCase("wet")]
+        [TestCase("outdoors")]
+        [TestCase("bellows")]
+        [TestCase("sieve")]
+        public void ShelteredBellowsWinnowRefusesAChangedQuote(string change)
+        {
+            EnterAllotment();
+            var cell = Zone.GetEntityCell(Actor);
+            cell.IsInterior = true;
+            var sieve = Carry("HandSieve");
+            var bellows = Carry("HandBellows");
+            var packet = Carry(Bundle);
+            var quote = BellowsWinnowChoice(packet).Command;
+            int tick = Clock.TickCount;
+
+            Entity spare = null;
+            if (change == "wet") Zone.TileState.WriteCoating(cell.X, cell.Y, "water", 1);
+            else if (change == "outdoors") cell.IsInterior = false;
+            else
+            {
+                var selected = change == "bellows" ? bellows : sieve;
+                spare = Carry(selected.BlueprintName);
+                Assert.True(Pack.RemoveObject(selected));
+                Assert.True(Zone.AddEntity(selected, cell.X, cell.Y));
+            }
+
+            Assert.False(Act(packet, quote));
+            Assert.That(Pack.Objects, Does.Contain(packet));
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(Count(Chaff), Is.Zero);
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            if (spare != null)
+            {
+                Assert.That(Pack.Objects, Does.Contain(spare));
+                Assert.That(BellowsWinnowChoice(packet).Command, Is.Not.EqualTo(quote));
+            }
+        }
+
+        [Test]
+        public void ShelteredBellowsWinnowSelectsDistinctToolsWhenTheFirstSieveAlsoMovesAir()
+        {
+            EnterAllotment();
+            Zone.GetEntityCell(Actor).IsInterior = true;
+            var sieves = new[] { Carry("HandSieve"), Carry("HandSieve") }
+                .OrderBy(item => item.ID, StringComparer.Ordinal).ToArray();
+            var airTool = sieves[0];
+            var sieve = sieves[1];
+            airTool.AddPart(new DirectedAirPart());
+            var packet = Carry(Bundle);
+            var row = BellowsWinnowChoice(packet);
+            var observer = new SeedWorkObserver();
+            Actor.AddPart(observer);
+
+            Assert.True(Act(packet, row.Command));
+            Assert.That(observer.Tool, Is.SameAs(sieve));
+            Assert.That(observer.Provider, Is.SameAs(airTool));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ShelteredBellowsWinnowRefusesAnUnsafeChaffTemplateBeforePayment()
+        {
+            EnterAllotment();
+            Zone.GetEntityCell(Actor).IsInterior = true;
+            Carry("HandSieve");
+            Carry("HandBellows");
+            var packet = Carry(Bundle);
+            var row = BellowsWinnowChoice(packet);
+            var reagent = Factory.Blueprints[Chaff].Parts["Reagent"];
+            var probe = new MachineMaterialProcessActionTests.BeforeProcessProbe
+                { Callback = () => reagent["PropertiesRaw"] = "combustible:2" };
+            Actor.AddPart(probe);
+            int tick = Clock.TickCount;
+
+            Assert.False(Act(packet, row.Command));
+            Assert.That(reagent["PropertiesRaw"], Is.EqualTo("combustible:2"));
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(Count(Bundle), Is.EqualTo(1));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(Count(Chaff), Is.Zero);
+            Assert.True(Actor.RemovePart(probe));
+
+            var remaining = Actions(packet);
+            Assert.False(remaining.Any(BellowsWinnowRow));
+            var ordinary = remaining.Single(a => a.Display.Contains("rub and sift"));
+            Assert.True(Act(packet, ordinary.Command));
+            Assert.That(Count(Bundle), Is.Zero);
+            Assert.That(Count("KnotflaxSeed"), Is.EqualTo(1));
+            Assert.That(Count(Chaff), Is.Zero);
+        }
+
         [Test]
         public void ValidFairFrameStillWinsAnOrdinaryQuoteWhenSieveIsCarried()
         {
