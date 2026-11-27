@@ -6,6 +6,8 @@ empty flask and three remaining catches. In a separate branch one scraper
 emptied the same source, clearing the cue and the tray's gather choice.
 All 326 targeted cases passed. Ordinary Tinker acquisition remains open.
 [Playtest and receipts](Verification/MachineSystems/SettlingTrayCue20261127/README.md)
+The universal Mac package for `ca9e658e2` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/SettlingTrayCue20261127/mac-startup-verification.json)
 
 **A shower exposes one fallen sealbark slat — November 27, 2026, America/Chicago.**
 The player walked into an unvisited west Morrowfast allotment during the

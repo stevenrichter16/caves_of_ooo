@@ -39,6 +39,12 @@ All 876 normal Quick files and 87 pre-existing tracked changes matched
 their starting hashes. Play Mode ended, the normal keyboard was restored
 and the private save root cleared.
 
+The universal Mac package for `ca9e658e2` built from 32,264 pinned inputs
+in 23.36 seconds with zero errors and five warnings. Boot reached the
+world on Apple M5. The six binaries include both architectures and the
+launch preserved all 876 normal Quick files. Interactive package play and
+physical Intel testing remain open. [Package receipt](mac-startup-verification.json)
+
 [Empty tray](01-settling-tray-empty.png) ·
 [Ready tray](02-settling-tray-ready.png) ·
 [Gathering](03-gather-vent-scale.png) ·
