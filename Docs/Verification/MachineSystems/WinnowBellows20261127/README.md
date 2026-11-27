@@ -59,3 +59,19 @@ Editor returned to Edit Mode, the isolated save root was cleared and the
 temporary input device was removed.
 
 [Recorded observations](observations.json) · [Native and save receipts](receipt.json)
+
+## Current Mac package
+
+The universal app at
+`/Users/steven/coo-verification/builds/mac-834883678-20261126/CavesOfOoo.app`
+contains runtime `834883678b5be7ef1a64fcc387b9e8d817f27dbb` and the sheltered
+winnowing code. The build checked 32,252 committed inputs and completed in
+25.47 seconds with zero errors and five reported warnings. All six native
+binaries contain Apple Silicon and Intel slices. The current and previous
+apps each matched their 186 verified files.
+
+The new package completed startup on Apple M5 with 2,673 entities. All 876
+normal quick-save files across both roots matched again. The nine preferences
+changed during startup were logically restored. The test player was stopped.
+Packaged gameplay and physical Intel testing remain open.
+[Mac startup receipt](mac-startup-verification.json)

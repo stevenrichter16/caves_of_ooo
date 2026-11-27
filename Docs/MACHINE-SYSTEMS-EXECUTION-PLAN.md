@@ -10,6 +10,17 @@ season. All 302 native checks passed and both reviews cleared. Normal saves,
 foreign edits and previous packages were preserved. Whole-machine gates
 and full current regression remain open. Hourly work stays active.
 [Evidence](Verification/MachineSystems/WinnowBellows20261127/README.md)
+The universal Mac package for `834883678` includes this work and completed
+startup on Apple M5. Packaged interaction and physical Intel remain open.
+[Package receipt](Verification/MachineSystems/WinnowBellows20261127/mac-startup-verification.json)
+
+**Next source-scoped proposal: one shallow settling pocket near Sill.**
+Compare a flask and hand pump on the same twelve finite water units. Once
+the surface clears, a visible streak could yield one ordinary unit of silver
+sand. Retain that deposit's spent state across reload and unload. Sill already
+sells sand and accepts it in the well's filtration repair. Test an admitted
+dry route, outlet and unchanged river geometry before qualifying the site.
+The pocket and its placement remain proposals.
 
 **The Morrowfast seed frames show the fair-weather bonus — November 26, 2026, America/Chicago.**
 Both mark their dry mesh before selection. Rain preserves the shared
