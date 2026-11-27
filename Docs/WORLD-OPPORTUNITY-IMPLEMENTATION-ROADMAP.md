@@ -95,6 +95,11 @@ an orphaned reservation and retains a real sleeper. The available
 bedroll and neighboring campfire gave the same 22 HP and 60-tick result
 from the same ordinary starting save. [Bedroll recovery and campfire comparison](Verification/MachineSystems/BedReservationLoad20261127/README.md)
 
+The still-grown pad led to a second practical choice after harvest.
+Two reclaimed timber restored an existing paid service. One grown
+pad, a cord and a fee became a field dressing, while a second grown
+pad stayed available for portable use. [The Peat Works timber and still-grown pad](Verification/MachineSystems/SellaStillPads20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry

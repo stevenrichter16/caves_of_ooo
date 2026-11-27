@@ -1,0 +1,608 @@
+{
+  "source": "/Users/steven/coo-verification/checkpoints/BedReservationLoad20261127/Rested6590/c6079358f8fc4e4d83fd8416612932e3",
+  "states": {
+    "RestedContinue": {
+      "zone": "Overworld.15.8.0",
+      "at": "(14, 11)",
+      "tick": 6590,
+      "hp": 42,
+      "job": true,
+      "n": -1,
+      "log": [
+        "The wet coating wears off gin frog.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The campfire crackles warmly.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)"
+      ]
+    },
+    "AtPeatWorks": {
+      "zone": "Overworld.17.7.0",
+      "at": "(40, 12)",
+      "tick": 6650,
+      "hp": 42,
+      "job": false,
+      "n": 4,
+      "log": [
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "TimberFooting": {
+      "zone": "Overworld.17.7.0",
+      "at": "(28, 16)",
+      "tick": 6770,
+      "hp": 42,
+      "job": false,
+      "n": 12,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FrameMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "h",
+          "Display": "harvest",
+          "Command": "Harvest",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "a",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "b",
+          "Display": "scatter grit west (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.17.7.0|28|16|27|16|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 4,
+          "key": "c",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "FrameHarvested": {
+      "ready": true,
+      "zone": "Overworld.17.7.0",
+      "at": "(28, 16)",
+      "tick": 6780,
+      "hp": 42,
+      "cash": 5,
+      "frame": null,
+      "bench": null,
+      "worker": null,
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "n": 1,
+          "liquid": 1
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "n": 2,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23319",
+          "BlueprintName": "SalvagedTimber",
+          "n": 4,
+          "liquid": null
+        }
+      ],
+      "job": false,
+      "mode": "Normal",
+      "pause": false,
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest collapsed drying frame: 4 x SalvagedTimber.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "SellaArrival": {
+      "ready": true,
+      "zone": "Overworld.15.7.0",
+      "at": "(40, 12)",
+      "tick": 6840,
+      "hp": 42,
+      "cash": 5,
+      "frame": null,
+      "bench": {
+        "id": "18456",
+        "braced": false,
+        "pos": "(34, 6)"
+      },
+      "worker": {
+        "id": "18458",
+        "cash": 0,
+        "hp": 20,
+        "pos": "(35, 6)",
+        "visible": false
+      },
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "n": 1,
+          "liquid": 1
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "n": 2,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23319",
+          "BlueprintName": "SalvagedTimber",
+          "n": 4,
+          "liquid": null
+        }
+      ],
+      "job": false,
+      "mode": "Normal",
+      "pause": false,
+      "log": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest collapsed drying frame: 4 x SalvagedTimber.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "BenchRepairMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "r",
+          "Display": "brace the dressing bench",
+          "Command": "RepairObject",
+          "Hint": "Uses 2 salvaged timber or 1 salvaged timber plus 1 rough field haft.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "a",
+          "Display": "break",
+          "Command": "Break",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "b",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 4,
+          "key": "c",
+          "Display": "scatter grit north (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.15.7.0|34|7|34|6|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 5,
+          "key": "d",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "BenchBraced": {
+      "ready": true,
+      "zone": "Overworld.15.7.0",
+      "at": "(34, 7)",
+      "tick": 6940,
+      "hp": 42,
+      "cash": 5,
+      "frame": null,
+      "bench": {
+        "id": "18456",
+        "braced": true,
+        "pos": "(34, 6)"
+      },
+      "worker": {
+        "id": "18458",
+        "cash": 0,
+        "hp": 20,
+        "pos": "(35, 6)",
+        "visible": true
+      },
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "n": 1,
+          "liquid": 1
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "n": 2,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23319",
+          "BlueprintName": "SalvagedTimber",
+          "n": 2,
+          "liquid": null
+        }
+      ],
+      "job": false,
+      "mode": "Normal",
+      "pause": false,
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest collapsed drying frame: 4 x SalvagedTimber.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "New timber braces hold the dressing bench firm. The keeper can prepare field dressings.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "DressingMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "p",
+          "Display": "prepare dressing (1 sumpsieve pad, 1 knotflax cord, 2 drams)",
+          "Command": "PrepareSoddenDressing",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "a",
+          "Display": "break",
+          "Command": "Break",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "b",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 4,
+          "key": "c",
+          "Display": "scatter grit north (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.15.7.0|34|7|34|6|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 5,
+          "key": "d",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "DressingCommissioned": {
+      "ready": true,
+      "zone": "Overworld.15.7.0",
+      "at": "(34, 7)",
+      "tick": 6950,
+      "hp": 42,
+      "cash": 3,
+      "frame": null,
+      "bench": {
+        "id": "18456",
+        "braced": true,
+        "pos": "(34, 6)"
+      },
+      "worker": {
+        "id": "18458",
+        "cash": 2,
+        "hp": 20,
+        "pos": "(35, 6)",
+        "visible": true
+      },
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "n": 1,
+          "liquid": 1
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23319",
+          "BlueprintName": "SalvagedTimber",
+          "n": 2,
+          "liquid": null
+        },
+        {
+          "ID": "23323",
+          "BlueprintName": "SoddenFieldDressing",
+          "n": 1,
+          "liquid": null
+        }
+      ],
+      "job": false,
+      "mode": "Normal",
+      "pause": false,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "New timber braces hold the dressing bench firm. The keeper can prepare field dressings.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Sella binds the sumpsieve pad with knotflax cord into one field dressing.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved."
+      ]
+    },
+    "OutcomeArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/SellaStillPads20261127/Dressing6950/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "0b05c94b133ec7afc4d085a9ad1b9fe1295e627e13055952705486d1b5a8b484",
+        "Quick.json.bak": "98de7c7d5234014dd16fe363f8630f5f33c7c2a99a8da686b6610bcf4718f18c",
+        "Quick.sav.gz": "13645d7c3e5647a38c3c48141e77804cedd64f29e0f0b89733cf428acbfaba8c",
+        "Quick.sav.gz.bak": "a97f71c506cf938569070e26123fdd4d252f3f4763e9c8218a3a3ef91d2fc057"
+      }
+    },
+    "DressingFresh": {
+      "ready": true,
+      "spentFrame": true,
+      "zone": "Overworld.15.7.0",
+      "at": "(34, 7)",
+      "tick": 6950,
+      "hp": 42,
+      "cash": 3,
+      "frame": null,
+      "bench": {
+        "id": "18456",
+        "braced": true,
+        "pos": "(34, 6)"
+      },
+      "worker": {
+        "id": "18458",
+        "cash": 2,
+        "hp": 20,
+        "pos": "(35, 6)",
+        "visible": true
+      },
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "n": 1,
+          "liquid": 1
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "n": 1,
+          "liquid": null
+        },
+        {
+          "ID": "23319",
+          "BlueprintName": "SalvagedTimber",
+          "n": 2,
+          "liquid": null
+        },
+        {
+          "ID": "23323",
+          "BlueprintName": "SoddenFieldDressing",
+          "n": 1,
+          "liquid": null
+        }
+      ],
+      "job": false,
+      "mode": "Normal",
+      "pause": false,
+      "log": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "New timber braces hold the dressing bench firm. The keeper can prepare field dressings.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Sella binds the sumpsieve pad with knotflax cord into one field dressing.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    }
+  }
+}

@@ -1,3 +1,15 @@
+**Sella used one of the still-grown pads — November 27, 2026, America/Chicago.**
+From the rested branch, the traveler harvested four timber at Peat
+Works, braced Sella's bench with two, then paid one exact grown pad,
+one cord and two drams for a field dressing. Continue kept the braced
+bench, spent frame, exact dressing, remaining pad and both purses.
+The player finished at 42 HP. [The Peat Works timber and still-grown pad](Verification/MachineSystems/SellaStillPads20261127/README.md)
+Next, scout an ordinary visible hazard with a relevant field treatment.
+The retained traveler carries both the portable pad and Sella's dressing.
+Verify a practical choice through real game actions if it comes up.
+Other worksite or delivery slices remain available if no suitable
+natural condition is nearby.
+
 **Brine Camp’s empty bedroll is available after Continue — November 27, 2026, America/Chicago.**
 Continue now drops abandoned bed claims and preserves living sleepers
 on the exact bed. Canceling an NPC idle offer underfoot now releases
@@ -7,10 +19,8 @@ rested there, recovering 22 HP over 60 ticks. The campfire one tile away
 gave the same recovery in a separate branch. Fresh Continue kept the
 recovered player, exact bedroll and harvested supplies. All 173 focused
 tests passed. [Bedroll recovery and campfire comparison](Verification/MachineSystems/BedReservationLoad20261127/README.md)
-Next, qualify the current earned pads at Sella's existing dressing
-bench. The Peat Works drying frame still holds four recoverable timber.
-Two can brace the bench, then one earned pad, the remaining cord and
-two drams can buy a dressing alongside the portable pad alternative.
+The universal Mac package for `20c2b16e7` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/BedReservationLoad20261127/mac-startup-verification.json)
 
 **The portable still supplies Sella’s dry bed — November 27, 2026, America/Chicago.**
 The same earned still settled 12 mire into three water on natural

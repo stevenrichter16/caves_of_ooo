@@ -2505,6 +2505,12 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The still-grown pad also reached a live regional service. The
+traveler used Peat Works timber to restore Sella's existing bench and
+commissioned one dressing with the exact pad, cord and fee. Continue
+retained the site repair, spare pad and new carried treatment. This
+qualifies supply and commissioning. [The Peat Works timber and still-grown pad](Verification/MachineSystems/SellaStillPads20261127/README.md)
+
 The Brine Camp recovery comparison confirmed that an empty bed's
 saved reservation can block ordinary rest after an NPC's arrival
 callback is lost. Reservations now restore from the actual sleeper.

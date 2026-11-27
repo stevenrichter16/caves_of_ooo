@@ -42,3 +42,13 @@ Independent reviews verified the exact occupancy checks, both archived
 save sets, the matched before and after state, and the screenshots.
 The Editor exited Play Mode. All 876 normal Quick files and 87 earlier
 tracked edits matched. [Observations and save pins](observations.json)
+
+## Mac package
+
+The universal Mac package for `20c2b16e7` built from 32,276 checked
+inputs with zero errors and five warnings. GameBootstrap started on
+Apple M5. Both apps matched their 186-file records, and all 876 normal
+Quick files matched. Changed startup preferences were restored.
+The matched recovery playtest ran in the Editor.
+
+[Startup receipt](mac-startup-verification.json)
