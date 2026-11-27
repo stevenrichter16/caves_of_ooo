@@ -1,0 +1,226 @@
+{
+  "note": "EditMode from a warm separate Unity clone. The 775-case run preceded the added scraper countercase; the latter passed in the 15-case isolation run. The five failures in that run are historical controls.",
+  "nativeRuns": [
+    {
+      "xml": "/Users/steven/coo-verification/results/shared_stock_uninstall_red_20261127.xml",
+      "xmlSHA256": "17a9766c9559bf64497134e2daa195c53ae298c92f387b02a8ceac91ac0b8140",
+      "log": "/Users/steven/coo-verification/results/shared_stock_uninstall_red_20261127.log",
+      "logSHA256": "0c8eeb4d55be49ad56ecf87aff7bf1a40af89ff6d26a0bd5f374f061f109dd0f",
+      "counts": {
+        "total": 5,
+        "passed": 0,
+        "failed": 5,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "compilerErrors": 0,
+      "cases": [
+        {
+          "name": "CavesOfOoo.Tests.FishTrapTests.APartiallyAffordablePackUpPreservesBothTrapsAndTheirSharedPond",
+          "result": "Failed",
+          "message": "  Expected: (0, 0, -1)\n  But was:  (1, 120, 720)\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.FishTrapTests.FailedFullPackTakeUpPreservesTheTrapAndSharedStockUntilAValidRetry(False)",
+          "result": "Failed",
+          "message": "  Expected: (0, 240, 240, 0)\n  But was:  (2, 120, 1320, 0)\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.FishTrapTests.FailedFullPackTakeUpPreservesTheTrapAndSharedStockUntilAValidRetry(True)",
+          "result": "Failed",
+          "message": "  Expected: (0, 240, 240, 0)\n  But was:  (2, 0, 1320, 0)\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.SettlingTrayTests.FailedFullPackTakeUpPreservesTheTrayAndSharedStockUntilAValidRetry(False)",
+          "result": "Failed",
+          "message": "  Expected: (0, 240, 240, , 0)\n  But was:  (2, 120, 1320, heat, 0)\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.SettlingTrayTests.FailedFullPackTakeUpPreservesTheTrayAndSharedStockUntilAValidRetry(True)",
+          "result": "Failed",
+          "message": "  Expected: (0, 240, 240, , 0)\n  But was:  (2, 0, 1320, heat, 0)\n"
+        }
+      ]
+    },
+    {
+      "xml": "/Users/steven/coo-verification/results/shared_stock_uninstall_late_red_retry_20261127.xml",
+      "xmlSHA256": "4a6ae90b038d94dff55a843d8cec4361b0ff21898a0b29e4da287c9ff99112a2",
+      "log": "/Users/steven/coo-verification/results/shared_stock_uninstall_late_red_retry_20261127.log",
+      "logSHA256": "16dc308e0f48351b6c8faf21e9c27833ce7e1e8aa1f1eb1e630c1b022fb44865",
+      "counts": {
+        "total": 2,
+        "passed": 0,
+        "failed": 2,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "compilerErrors": 0,
+      "cases": [
+        {
+          "name": "CavesOfOoo.Tests.FishTrapTests.AnInterruptedPickupRestoresBothTheLoadedTrapAndItsPondWhileBlockingACompetingCatch",
+          "result": "Failed",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.SettlingTrayTests.AnInterruptedPickupRestoresTheLoadedTrayAndItsExactSource",
+          "result": "Failed",
+          "message": "  Expected: (1, 120, 720, heat, 0)\n  But was:  (3, 0, 1800, heat, 0)\n"
+        }
+      ]
+    },
+    {
+      "xml": "/Users/steven/coo-verification/results/shared_stock_camp_green_20261127.xml",
+      "xmlSHA256": "90ee342a5548a0445c32a36dcc9bc1b9a84037d4d394b1c265ad891f1e6f3a8f",
+      "log": "/Users/steven/coo-verification/results/shared_stock_camp_green_20261127.log",
+      "logSHA256": "2134c40396ecd94a29558908ff77ad51c8c2cea726fb8441a2db3d792bdd4e13",
+      "counts": {
+        "total": 775,
+        "passed": 775,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "compilerErrors": 0,
+      "cases": []
+    },
+    {
+      "xml": "/Users/steven/coo-verification/results/shared_stock_and_historical_controls_20261127.xml",
+      "xmlSHA256": "c5fa05df0013a279251b622f2fb71a1fd08fedec5a10b221d33953bc66cfb256",
+      "log": "/Users/steven/coo-verification/results/shared_stock_and_historical_controls_20261127.log",
+      "logSHA256": "04e6564676288bb715bc4a73402a71b2c51da6d2f9e9f9bc244bce39bfc3424f",
+      "counts": {
+        "total": 15,
+        "passed": 10,
+        "failed": 5,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "compilerErrors": 0,
+      "cases": [
+        {
+          "name": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(False,False)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(False,True)",
+          "result": "Failed",
+          "message": "  Expected: True\n  But was:  False\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(True,False)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(True,True)",
+          "result": "Failed",
+          "message": "  Expected: True\n  But was:  False\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"equip\",False)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"equip\",True)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"drop\",False)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"drop\",True)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"throw\",False)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"throw\",True)",
+          "result": "Failed",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(1,False)",
+          "result": "Failed",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(1,True)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(3,False)",
+          "result": "Failed",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(3,True)",
+          "result": "Passed",
+          "message": null
+        },
+        {
+          "name": "CavesOfOoo.Tests.ScraperTests.InterruptedTrayPickupBlocksASharedScrapeAndPreservesAnIndependentScrape",
+          "result": "Passed",
+          "message": null
+        }
+      ]
+    }
+  ],
+  "finalRuntimeAndTests": {
+    "Assets/Scripts/Gameplay/Installations/HeldFixtureActions.cs": "834e63cf9585d9e409c76b6d281cb3c094c1f0f8f50af98caa9250ccf33d2767",
+    "Assets/Scripts/Gameplay/Installations/InstallablePart.cs": "e16b4d1ecae899b516a7bac088813134f9b3ca48e5a7ce06f2250f6232b0c50f",
+    "Assets/Scripts/Gameplay/Items/FishTrapPart.cs": "71275ec0641eb7bdce1dcd54c8946b42ed05cfd6ea7e36359dfc2f4574fd475c",
+    "Assets/Scripts/Gameplay/Items/SettlingTrayPart.cs": "ab7d2c29293e8cb791189723beb439c9a055fb11d0b23a2f26ef08b91c509241",
+    "Assets/Scripts/Gameplay/Items/ScraperPart.cs": "0ca2f945a5554a81c01654e51a75681c39f66f2473fe9ca16cc6434b5e1f68e1",
+    "Assets/Tests/EditMode/Gameplay/World/FishTrapTests.cs": "6dbd30d3b401d518ecb43d32dc9567a168d484775f5a62f67ffdf7e9528fb5da",
+    "Assets/Tests/EditMode/Gameplay/World/SettlingTrayTests.cs": "24e8a4f52fc5eb5df938bce76a3c6f83560b96988af9310dec68b851f946fc7b",
+    "Assets/Tests/EditMode/Gameplay/World/ScraperTests.cs": "65631e9343672c93f83abfd1d6c132d07678414904b6e16877ae87e2be66abf8"
+  },
+  "privateSavePins": {
+    "Carried8460": {
+      "Quick.json": "1bb85feb708770bdb0fcd143d738655a8d316907262d8a09ba494736d5598e85",
+      "Quick.json.bak": "533f978ee0aafee71a1e37952aaab59cb61b6469d34c17fedabb30b796ec4f49",
+      "Quick.sav.gz": "1019f45092a1ccb76826419359d228903fbcbdd17194b706fbab70a98e18da6a",
+      "Quick.sav.gz.bak": "45a86d6c1f668f544197d1446f6c04ece6f522b38dcb88860b0fbc6d2382234a"
+    },
+    "Due8450": {
+      "Quick.json": "533f978ee0aafee71a1e37952aaab59cb61b6469d34c17fedabb30b796ec4f49",
+      "Quick.json.bak": "356f53b40d45d4cc51a77ffe46ff5ccb5f5c4f6bbf1da971a15de394210d3af2",
+      "Quick.sav.gz": "45a86d6c1f668f544197d1446f6c04ece6f522b38dcb88860b0fbc6d2382234a",
+      "Quick.sav.gz.bak": "24e9f59462f4d65d542d8b141fe99b68b9d90b4498de9a95c8588d97a9f5eae3"
+    },
+    "Forge4350": {
+      "Quick.json": "7e312bf1b4a5e0ee129ba6a179bb4bdffe36f4da272b4654b8c6553d2e6e53f9",
+      "Quick.json.bak": "7e312bf1b4a5e0ee129ba6a179bb4bdffe36f4da272b4654b8c6553d2e6e53f9",
+      "Quick.sav.gz": "7a8857e185095515f12ef81c5f59c834c3b7c6b2df5f91a9b732640fe4e54535",
+      "Quick.sav.gz.bak": "7a8857e185095515f12ef81c5f59c834c3b7c6b2df5f91a9b732640fe4e54535"
+    },
+    "Refitted4370": {
+      "Quick.json": "71b7a6e8ebb0c484d5f4ced21b0d7896f28ad6b4c2d5d93674e957ba2d7b0e0d",
+      "Quick.json.bak": "7e312bf1b4a5e0ee129ba6a179bb4bdffe36f4da272b4654b8c6553d2e6e53f9",
+      "Quick.sav.gz": "c20d56cb0d9ea992f282f26a4270b2f33310086ddbf67f65cfc323ac00c5bbe7",
+      "Quick.sav.gz.bak": "7a8857e185095515f12ef81c5f59c834c3b7c6b2df5f91a9b732640fe4e54535"
+    },
+    "Still2480": {
+      "Quick.json": "498e9a2ada2d9069ecb76a616bbcd8e2ced1e1c8d2549e65fb016a82cbbbe6de",
+      "Quick.json.bak": "a18d320624b11a014bc5cbff65b7fa7fc4d6a27b631e6af8c95c7d6216fed686",
+      "Quick.sav.gz": "6d09c23c145b23d7f611a0f54bf435506c517fa26925ddcb65cdf27ee5361f78",
+      "Quick.sav.gz.bak": "0af8beb96832fcb62b1728cd6714fca0411ae970e37a6bb2f92ce23575a35dda"
+    }
+  },
+  "screens": {
+    "01-trap-carried.png": "89f603e0f0d7425daed488e2c58eac385819d6e1a7f93d7ac6a730e91cb79234",
+    "02-hearth-before-still.png": "c61344a6cc25b0bf363b963eaa71b2aa675205d6deba39284a9b2ec8a9dc3673",
+    "03-hearth-after-still.png": "2351910c364b9cc7efb71280c8ca116ad43760497d638c9004cff94cad7076dd",
+    "04-cinderhold-axe-reloaded.png": "8be4b830139b702d3ec2a52e568a3dd2ddb72899c66118a4715d01ad2d5f50ab"
+  }
+}

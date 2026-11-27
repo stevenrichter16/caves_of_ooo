@@ -56,15 +56,43 @@ namespace CavesOfOoo.Core
         {
             if (!Standing(zone)) return 0;
             var p = Project(zone, now);
+            return ApplyProjection(p, p.Taken > 0 ? FishStockPart.For(zone, p.Anchor, now) : null, now);
+        }
+
+        int ApplyProjection(Projection p, FishStockPart stock, int now)
+        {
             int taken = 0;
-            if (p.Pond && p.Taken > 0)
+            if (stock != null)
             {
-                var stock = FishStockPart.For(zone, p.Anchor, now); stock.Reconcile(now);
+                stock.Reconcile(now);
                 taken = Math.Min(p.Taken, Math.Min(MaxHeld - Held, stock.Available));
                 stock.Available -= taken;
             }
             Held += taken; Progress = taken == p.Taken ? p.Progress : 0; LastTick = now;
             return taken;
+        }
+
+        bool StageCatch(Entity actor, Zone zone, int now, Projection p, InventoryTransaction tx)
+        {
+            var anchor = p.Taken > 0 ? p.Anchor : null;
+            if (anchor != null && !tx.TryClaim(anchor, actor, Command))
+                return Block(actor, "in-progress", "The pond is already being worked.");
+
+            var trap = ParentEntity;
+            var priorStock = anchor?.GetPart<FishStockPart>();
+            var stock = priorStock;
+            int held = Held, last = LastTick, progress = Progress;
+            int available = priorStock?.Available ?? 0, stockLast = priorStock?.LastTick ?? 0;
+            tx.Do(null, () =>
+            {
+                if (trap.GetPart<FishTrapPart>() == this) { Held = held; LastTick = last; Progress = progress; }
+                if (stock == null || anchor.GetPart<FishStockPart>() != stock) return;
+                if (priorStock == null) anchor.RemovePart(stock);
+                else { stock.Available = available; stock.LastTick = stockLast; }
+            });
+            if (anchor != null) stock = FishStockPart.For(zone, anchor, now);
+            ApplyProjection(p, stock, now);
+            return true;
         }
 
         // ── reader ──
@@ -108,8 +136,14 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
-            // Taking the trap up (or moving it) brings it up to date first, so the fish it caught while it stood are in it, and in the pond's ledger, before the clock stops. It never vetoes.
-            if (e.ID == InstallEvents.BeforeUninstall) { Reconcile(e.GetParameter<Zone>("Zone"), WorldClock.CurrentTick); return true; }
+            if (e.ID == InstallEvents.BeforeUninstall)
+            {
+                var zone = e.GetParameter<Zone>("Zone");
+                if (!Standing(zone)) return true;
+                var tx = e.GetParameter<InventoryTransaction>("InventoryTransaction");
+                int now = WorldClock.CurrentTick;
+                return tx != null && StageCatch(e.GetParameter<Entity>("Actor"), zone, now, Project(zone, now), tx);
+            }
             if (e.ID == "GetInventoryActions") { AddRows(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone") ?? e.GetParameter<Entity>("Actor")?.SpatialZone, e.GetParameter<InventoryActionList>("Actions")); return true; }
             if (e.ID == "InventoryAction" && e.GetStringParameter("Command") == Command)
             {
@@ -153,20 +187,21 @@ namespace CavesOfOoo.Core
                 int unit = Math.Max(1, HandlingService.GetWeight(fish)), room = pack.MaxWeight < 0 ? int.MaxValue : Math.Max(0, (pack.MaxWeight - pack.GetCarriedWeight()) / unit);
                 int want = Math.Min(before.Held, Math.Min(room, fish.GetPart<StackerPart>()?.MaxStack ?? 1));
                 if (want <= 0) return Block(actor, "no-room", "You cannot carry any more fish.");
-                int heldBefore = Held, progressBefore = Progress, lastBefore = LastTick;
-                var stock = before.Anchor == null ? null : FishStockPart.For(zone, before.Anchor, now);
-                int availBefore = stock?.Available ?? 0, stockLastBefore = stock?.LastTick ?? 0, capBefore = stock?.Capacity ?? 0;
                 if (fish.GetPart<StackerPart>() != null) fish.GetPart<StackerPart>().StackCount = want;
                 var receipt = InventoryTransferSnapshot.Capture(pack, fish);
                 tx.Do(null, receipt.Restore);
                 if (!receipt.Apply(() => pack.AddObject(fish)) || !receipt.ClaimChanges(tx, actor, Command)) return Block(actor, "no-room", "You cannot carry the fish.");
-                tx.Do(() => { Reconcile(zone, now); Held = Math.Max(0, Held - want); },
-                      () => { Held = heldBefore; Progress = progressBefore; LastTick = lastBefore; if (stock != null) { stock.Available = availBefore; stock.LastTick = stockLastBefore; stock.Capacity = capBefore; } });
+                var after = Project(zone, now);
+                if (!Standing(zone) || actor.GetPart<InventoryPart>() != pack || !WorldResourceActions.Nearby(actor, ParentEntity, zone)
+                    || after.Anchor != anchor || after.Held < want)
+                    return Block(actor, "changed-source", "The catch changed before you could take it.");
+                if (!StageCatch(actor, zone, now, after, tx)) return false;
+                Held -= want;
                 var owner = ParentEntity;
                 tx.AfterCommit(() =>
                 {
-                    MessageLog.Add("You lift the weir and take " + want + (want == 1 ? " fish." : " fish.") + (before.Held > want ? " " + (before.Held - want) + " stay in the trap: your pack is full." : ""));
-                    Diag.Record("furniture", "FishTaken", actor, owner, new { taken = want, left = Math.Max(0, before.Held - want) });
+                    MessageLog.Add("You lift the weir and take " + want + " fish." + (after.Held > want ? " " + (after.Held - want) + " stay in the trap: your pack is full." : ""));
+                    Diag.Record("furniture", "FishTaken", actor, owner, new { taken = want, left = after.Held - want });
                 });
                 if (own) tx.Commit();
                 return true;

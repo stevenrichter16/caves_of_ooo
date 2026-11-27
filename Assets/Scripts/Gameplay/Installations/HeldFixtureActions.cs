@@ -326,13 +326,14 @@ namespace CavesOfOoo.Core
                 || fixture.SpatialZone != zone || !IsPlayerHeld(fixture) || Math.Abs(cell.X - origin.X) > reach || Math.Abs(cell.Y - origin.Y) > reach) return Reject(actor, fixture, command, "stale-selection");
             var def = PackableFixtureRegistry.Get(part.Kind);
             if (def == null || def.Class != PackableFixtureDefinition.Carried) return Reject(actor, fixture, command, "unknown-kind");
-            if (!InstallEvents.Allow(InstallEvents.BeforeUninstall, actor, fixture, zone, cell.X, cell.Y, PlayerOrigin)) return Reject(actor, fixture, command, "vetoed");
             if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(fixture, actor, command)) return Reject(actor, fixture, command, "in-progress");
-            if (CarriedStorage.UsesCarriedContents(fixture)
-                && (!WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<InventoryPart>() != pack
-                    || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
-                    || zone.GetEntityCell(actor) != origin || zone.GetEntityCell(fixture) != cell
-                    || !IsPlayerHeld(fixture) || !CanLift(actor, fixture)))
+            if (!InstallEvents.Allow(InstallEvents.BeforeUninstall, actor, fixture, zone, cell.X, cell.Y, PlayerOrigin, tx)) return Reject(actor, fixture, command, "vetoed");
+            if (!WorldResourceActions.ActorCurrent(actor, zone) || actor.GetPart<InventoryPart>() != pack
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
+                || zone.GetEntityCell(actor) != origin || zone.GetEntityCell(fixture) != cell
+                || fixture.GetPart<PackableFixturePart>() != part || !IsPlayerHeld(fixture))
+                return Reject(actor, fixture, command, "stale-selection");
+            if (CarriedStorage.UsesCarriedContents(fixture) && !CanLift(actor, fixture))
                 return Reject(actor, fixture, command, "overweight-load");
 
             var physics = fixture.GetPart<PhysicsPart>(); var installable = fixture.GetPart<InstallablePart>(); var marker = fixture.GetPart<InstallationMarkerPart>();

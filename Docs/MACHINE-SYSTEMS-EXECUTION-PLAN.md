@@ -1,3 +1,16 @@
+**A refused camp pickup preserves the catch and shared supply — November 26, 2026, America/Chicago.**
+The trap and settling tray join the pickup transaction before leaving
+the ground. Refused pickup, interrupted move and failed pack-up
+restore the exact held catch, progress and source ledger. Scraper,
+tray and condenser honor the same stock claim. All 775 focused
+cases passed, plus the separate competing-scraper case. Five
+historical controls reproduced known failures outside this change.
+Live play retried the same full-pack refusal, carried one fish with
+one pond debit, and saved and reloaded it. Hearth-to-still brine
+distillation and the Cinderhold guard-lashing refit also survived
+fresh Continues. Whole-machine gates remain open.
+[Evidence](Verification/MachineSystems/SharedStockPickup20261127/README.md)
+
 **The fire reader is compact and the reading footer is removed — November 26, 2026, America/Chicago.**
 User-requested fuel and remaining-flame lines replace ordinary fire
 description paragraphs. Native 423/423 checks passed. Actual saved

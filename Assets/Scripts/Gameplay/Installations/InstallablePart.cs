@@ -1,3 +1,5 @@
+using CavesOfOoo.Core.Inventory;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -41,12 +43,13 @@ namespace CavesOfOoo.Core
     {
         public const string BeforeInstall = "BeforeInstall", Installed = "Installed", BeforeUninstall = "BeforeUninstall", Uninstalled = "Uninstalled";
 
-        /// <summary>Fires a veto-able event on the fixture; false means a Part refused. Parameters: Actor, Station, Zone, X, Y, Origin.</summary>
-        internal static bool Allow(string id, Entity actor, Entity station, Zone zone, int x, int y, string origin)
+        /// <summary>Fires a veto-able event while the fixture is still in place. Stateful handlers can join the enclosing inventory transaction.</summary>
+        internal static bool Allow(string id, Entity actor, Entity station, Zone zone, int x, int y, string origin, InventoryTransaction tx = null)
         {
             var e = GameEvent.New(id);
             e.SetParameter("Actor", (object)actor); e.SetParameter("Station", (object)station); e.SetParameter("Zone", (object)zone);
             e.SetParameter("X", x); e.SetParameter("Y", y); e.SetParameter("Origin", origin ?? "");
+            if (tx != null) e.SetParameter("InventoryTransaction", (object)tx);
             return station.FireEventAndRelease(e);
         }
 

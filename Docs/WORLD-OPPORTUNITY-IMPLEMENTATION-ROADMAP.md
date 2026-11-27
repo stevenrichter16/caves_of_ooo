@@ -168,6 +168,14 @@ the same carried weight and base trade value. Fresh Continues confirmed
 the meal and eating. The cooking bonus uses the authored healing modifier.
 [Perch playtest](Verification/MachineSystems/RoastedLakePerch20261126/README.md)
 
+The portable collection loop now keeps its catch and finite source
+in sync with a successful pickup. The ordinary shoreline refusal
+left a due fish available and the pond unchanged. The retry spent
+one pond unit and carried the same trap with its catch through a
+fresh Continue. A concurrent scraper can still work an independent
+source while a tray pickup is pending.
+[Pickup and machine playtest](Verification/MachineSystems/SharedStockPickup20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

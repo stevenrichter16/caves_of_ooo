@@ -1,0 +1,512 @@
+{
+  "baselineCommit": "e3e1e3c8c4b0513736d34db261371bc1514e800d",
+  "mode": "GameBootstrap, Flat16x24, private Continue saves and native Input System actions",
+  "controlledRefusal": "Only the private player's max carry weight was set to current carried weight (38); restored to 150 before the successful retry.",
+  "observations": {
+    "fishRedLive": {
+      "tick": 8450,
+      "trap": "71547",
+      "Held": 1,
+      "Progress": 50,
+      "LastTick": 8450,
+      "shown": 1,
+      "pond": "58374",
+      "stock": {
+        "Available": 6,
+        "LastTick": 8450,
+        "Capacity": 7
+      },
+      "MaxWeight": 38,
+      "carried": 38,
+      "isCarried": false
+    },
+    "fishGreenBefore": {
+      "tick": 8450,
+      "trap": "71547",
+      "home": [
+        45,
+        12
+      ],
+      "setTick": 7800,
+      "Held": 0,
+      "Progress": 0,
+      "LastTick": -1,
+      "shown": 1,
+      "pond": "58374",
+      "stock": null,
+      "MaxWeight": 150,
+      "carried": 38,
+      "isCarried": false,
+      "perch": [],
+      "hp": 38
+    },
+    "fishGreenRefused": {
+      "tick": 8450,
+      "trap": "71547",
+      "home": [
+        45,
+        12
+      ],
+      "setTick": 7800,
+      "Held": 0,
+      "Progress": 0,
+      "LastTick": -1,
+      "shown": 1,
+      "pond": "58374",
+      "stock": null,
+      "MaxWeight": 38,
+      "carried": 38,
+      "isCarried": false,
+      "perch": [],
+      "hp": 38
+    },
+    "fishGreenPickup": {
+      "tick": 8460,
+      "trap": "71547",
+      "home": null,
+      "setTick": -1,
+      "Held": 1,
+      "Progress": 50,
+      "LastTick": 8450,
+      "shown": 1,
+      "pond": "58374",
+      "stock": {
+        "Available": 6,
+        "LastTick": 8450,
+        "Capacity": 7
+      },
+      "MaxWeight": 150,
+      "carried": 52,
+      "isCarried": true,
+      "perch": [],
+      "hp": 20
+    },
+    "fishGreenReload": {
+      "tick": 8460,
+      "trap": "71547",
+      "home": null,
+      "setTick": -1,
+      "Held": 1,
+      "Progress": 50,
+      "LastTick": 8450,
+      "shown": 1,
+      "pond": "58374",
+      "stock": {
+        "Available": 6,
+        "LastTick": 8450,
+        "Capacity": 7
+      },
+      "MaxWeight": 150,
+      "carried": 52,
+      "isCarried": true,
+      "perch": [],
+      "hp": 20
+    },
+    "fishCampBefore": {
+      "tick": 2470,
+      "zone": "Overworld.10.11.0",
+      "X": 41,
+      "Y": 9,
+      "hp": 343,
+      "hearth": "2147",
+      "still": "2148",
+      "FuelMass": 7.75,
+      "Temperature": 441.5,
+      "vessels": [
+        {
+          "ID": "2235",
+          "Volume": 4,
+          "LiquidId": "brine"
+        },
+        {
+          "ID": "2236",
+          "Volume": 0,
+          "LiquidId": ""
+        }
+      ],
+      "recent": [
+        "You feed one pitchpod resin to the coals: +5 fuel. Feeding adds no flame.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You spend one fire-moss to light the coals. Its own fuel keeps it burning.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot."
+      ]
+    },
+    "fishCampQuote": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "CampStill",
+      "cell": [
+        41,
+        8
+      ],
+      "rows": [
+        {
+          "i": 14,
+          "key": "r",
+          "Display": "distil brine flask 1 (4/12) into empty flask 1 (0/12) (2 water; 5 fuel)",
+          "Command": "DistillBrine|2235|2236|2147|8FD43E65DE59A8E2EA65E21D7250D5424F9D9B53BFD7C5A8C8845E7D58D17B27",
+          "IsDisabled": false,
+          "Hint": "Uses 4 brine from brine flask 1 (4/12) and receives 2 water in empty flask 1 (0/12). Two units of concentrate are discarded; no salt is recovered."
+        }
+      ],
+      "hint": ""
+    },
+    "fishCampAfter": {
+      "tick": 2480,
+      "zone": "Overworld.10.11.0",
+      "X": 41,
+      "Y": 9,
+      "hp": 343,
+      "hearth": "2147",
+      "still": "2148",
+      "FuelMass": 2.5,
+      "Temperature": 433.17,
+      "vessels": [
+        {
+          "ID": "2235",
+          "Volume": 0,
+          "LiquidId": ""
+        },
+        {
+          "ID": "2236",
+          "Volume": 2,
+          "LiquidId": "water"
+        }
+      ],
+      "recent": [
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a camp hearth.\nFuel: 7.75 / 30\nFlame remaining: about 31 turns",
+        "Interact — choose a direction, or . for underfoot.",
+        "You distil 4 brine into 2 clean water. The fire spends 5 fuel; concentrate is discarded.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fishCampAfterReader": {
+      "tick": 2480,
+      "zone": "Overworld.10.11.0",
+      "X": 41,
+      "Y": 9,
+      "hp": 343,
+      "hearth": "2147",
+      "still": "2148",
+      "FuelMass": 2.5,
+      "Temperature": 433.17,
+      "vessels": [
+        {
+          "ID": "2235",
+          "Volume": 0,
+          "LiquidId": ""
+        },
+        {
+          "ID": "2236",
+          "Volume": 2,
+          "LiquidId": "water"
+        }
+      ],
+      "recent": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You distil 4 brine into 2 clean water. The fire spends 5 fuel; concentrate is discarded.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a camp hearth.\nFuel: 2.5 / 30\nFlame remaining: about 10 turns"
+      ]
+    },
+    "fishCampLowFuel": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "CampStill",
+      "cell": [
+        41,
+        8
+      ],
+      "rows": [
+        {
+          "i": 4,
+          "key": "e",
+          "Display": "settle 4 mire #1",
+          "Command": "Disabled:fuel_short",
+          "IsDisabled": true,
+          "Hint": ""
+        },
+        {
+          "i": 5,
+          "key": "f",
+          "Display": "settle 4 mire #2",
+          "Command": "Disabled:fuel_short",
+          "IsDisabled": true,
+          "Hint": ""
+        },
+        {
+          "i": 10,
+          "key": "n",
+          "Display": "distill brine into water",
+          "Command": "Disabled:needs-distillation-inputs",
+          "IsDisabled": true,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "fishCampReload": {
+      "tick": 2480,
+      "zone": "Overworld.10.11.0",
+      "X": 41,
+      "Y": 9,
+      "hp": 343,
+      "hearth": "2147",
+      "still": "2148",
+      "FuelMass": 2.5,
+      "Temperature": 433.17,
+      "vessels": [
+        {
+          "ID": "2235",
+          "Volume": 0,
+          "LiquidId": ""
+        },
+        {
+          "ID": "2236",
+          "Volume": 2,
+          "LiquidId": "water"
+        }
+      ],
+      "recent": [
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a camp hearth.\nFuel: 7.75 / 30\nFlame remaining: about 31 turns",
+        "Interact — choose a direction, or . for underfoot.",
+        "You distil 4 brine into 2 clean water. The fire spends 5 fuel; concentrate is discarded.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fishForgeBefore": {
+      "zone": "Overworld.6.6.0",
+      "x": 57,
+      "y": 5,
+      "tick": 4350,
+      "hp": 40,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You set plain knotflax binding aside for crafting.",
+        "You set field-hafted leather-bound cinderhook axe aside for crafting.",
+        "You re-forges field-hafted cord-bound cinderhook axe.",
+        "You equip field-hafted cord-bound cinderhook axe.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ],
+      "pack": [
+        {
+          "ID": "2680",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2681",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "2682",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2683",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2684",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "8705",
+          "BlueprintName": "Torch",
+          "name": "torch (x2)"
+        },
+        {
+          "ID": "2679",
+          "BlueprintName": "Dagger",
+          "name": "dagger"
+        },
+        {
+          "ID": "da566d478be54efb8447b08239d44885",
+          "BlueprintName": "Torch",
+          "name": "torch"
+        },
+        {
+          "ID": "13685",
+          "BlueprintName": "KnotflaxSeed",
+          "name": "knotflax seed"
+        },
+        {
+          "ID": "13684",
+          "BlueprintName": "KnotflaxCord",
+          "name": "knotflax cord"
+        },
+        {
+          "ID": "13690",
+          "BlueprintName": "LeatherBindingComponent",
+          "name": "leather binding"
+        }
+      ]
+    },
+    "fishForgeQuote": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "TinkersForge",
+      "cell": [
+        55,
+        5
+      ],
+      "rows": [
+        {
+          "i": 5,
+          "key": "a",
+          "Display": "[x] guard lashing - picked",
+          "Command": "CraftToggle:13691",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 10,
+          "key": "d",
+          "Display": "[x] field-hafted cord-bound cinderhook axe - picked",
+          "Command": "CraftToggle:13682",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 11,
+          "key": "c",
+          "Display": ">> Craft <<",
+          "Command": "CraftKit",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "fishForgeAfterCraft": {
+      "zone": "Overworld.6.6.0",
+      "x": 56,
+      "y": 5,
+      "tick": 4370,
+      "hp": 40,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You unequip field-hafted cord-bound cinderhook axe.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You set guard lashing aside for crafting.",
+        "You re-forges field-hafted guard-lashed cinderhook axe."
+      ],
+      "pack": [
+        {
+          "ID": "2680",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2681",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "2682",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2683",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2684",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "8705",
+          "BlueprintName": "Torch",
+          "name": "torch (x2)"
+        },
+        {
+          "ID": "2679",
+          "BlueprintName": "Dagger",
+          "name": "dagger"
+        },
+        {
+          "ID": "da566d478be54efb8447b08239d44885",
+          "BlueprintName": "Torch",
+          "name": "torch"
+        },
+        {
+          "ID": "13685",
+          "BlueprintName": "KnotflaxSeed",
+          "name": "knotflax seed"
+        },
+        {
+          "ID": "13682",
+          "BlueprintName": "ForgedWeapon",
+          "name": "field-hafted guard-lashed cinderhook axe"
+        },
+        {
+          "ID": "13695",
+          "BlueprintName": "PlainCordBindingComponent",
+          "name": "plain knotflax binding"
+        }
+      ]
+    },
+    "fishForgeAfter": {
+      "tick": 4370,
+      "X": 56,
+      "Y": 5,
+      "ID": "13682",
+      "name": "field-hafted guard-lashed cinderhook axe",
+      "HitBonus": 0,
+      "PenBonus": -1,
+      "binding": "13695",
+      "recent": [
+        "You set guard lashing aside for crafting.",
+        "You re-forges field-hafted guard-lashed cinderhook axe.",
+        "You equip field-hafted guard-lashed cinderhook axe.",
+        "Game saved."
+      ]
+    },
+    "fishForgeReload": {
+      "tick": 4370,
+      "X": 56,
+      "Y": 5,
+      "ID": "13682",
+      "name": "field-hafted guard-lashed cinderhook axe",
+      "HitBonus": 0,
+      "PenBonus": -1,
+      "binding": "13695",
+      "recent": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You set guard lashing aside for crafting.",
+        "You re-forges field-hafted guard-lashed cinderhook axe.",
+        "You equip field-hafted guard-lashed cinderhook axe."
+      ]
+    }
+  },
+  "refusedLog": [
+    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+    "You keep here: mended fish trap. As you left it: fish trap holds 1 by now.",
+    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+    "Autosaved.",
+    "Interact — choose a direction, or . for underfoot.",
+    "You cannot carry that load."
+  ]
+}

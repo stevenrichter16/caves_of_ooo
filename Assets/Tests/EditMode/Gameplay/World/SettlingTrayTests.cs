@@ -491,6 +491,98 @@ namespace CavesOfOoo.Tests
             Days(0.5); Assert.AreEqual(3, Part(tray).HeldNow(wild, WorldClock.CurrentTick), "set down again it settles again, from where it left off");
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FailedFullPackTakeUpPreservesTheTrayAndSharedStockUntilAValidRetry(bool existingStock)
+        {
+            var source = Source(rich: existingStock);
+            var tray = SetTray();
+            var part = Part(tray);
+            var fixture = tray.GetPart<PackableFixturePart>();
+            var cell = wild.GetEntityCell(tray);
+            var stock = source.GetPart<SourceStockPart>();
+            if (stock != null) stock.Available = 1;
+            var stockBefore = stock == null ? default : (stock.Available, stock.LastTick, stock.Capacity);
+
+            Days(0.2);
+            Assert.AreEqual(0, part.Reconcile(wild, WorldClock.CurrentTick));
+            Days(0.9);
+            int tick = WorldClock.CurrentTick;
+            int projected = part.HeldNow(wild, tick);
+            int available = stock?.AvailableAt(tick) ?? SourceStockPart.CapacityFor(wild, source);
+            Assert.AreEqual(2, projected);
+            var before = (part.Held, part.Progress, part.LastTick, part.Element, fixture.SetTick);
+            string command = World(tray).Single(row => row.Name == "TakeUpFixture").Command;
+            int limit = Pack.MaxWeight;
+            Pack.MaxWeight = Pack.GetCarriedWeight();
+
+            Assert.False(Act(tray, command));
+            Assert.AreSame(cell, wild.GetEntityCell(tray));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(tray));
+            Assert.False(Pack.Objects.Contains(tray));
+            Assert.AreEqual(tick, WorldClock.CurrentTick);
+            Assert.AreEqual(before, (part.Held, part.Progress, part.LastTick, part.Element, fixture.SetTick));
+            Assert.AreSame(stock, source.GetPart<SourceStockPart>());
+            if (stock != null) Assert.AreEqual(stockBefore, (stock.Available, stock.LastTick, stock.Capacity));
+
+            Pack.MaxWeight = limit;
+            Assert.True(Act(tray, command));
+            Assert.True(Pack.Objects.Contains(tray));
+            Assert.AreEqual(projected, part.Held);
+            Assert.AreEqual("heat", part.Element);
+            Assert.AreEqual(tick, part.LastTick);
+            var settled = source.GetPart<SourceStockPart>();
+            Assert.NotNull(settled);
+            if (stock != null) Assert.AreSame(stock, settled);
+            Assert.AreEqual(available - projected, settled.Available);
+            Assert.False(Act(tray, command), "a completed pickup cannot be paid twice");
+            Assert.AreEqual(available - projected, settled.Available);
+            Assert.AreEqual(projected, part.Held);
+        }
+
+        [Test] public void AnInterruptedPickupRestoresTheLoadedTrayAndItsExactSource()
+        {
+            var source = Source();
+            var stock = source.GetPart<SourceStockPart>();
+            stock.Available = 3;
+            var tray = SetTray();
+            var part = Part(tray);
+            var cell = wild.GetEntityCell(tray);
+            var fixture = tray.GetPart<PackableFixturePart>();
+            Days(0.6);
+            Assert.AreEqual(1, part.Reconcile(wild, WorldClock.CurrentTick));
+            Days(0.9);
+            int tick = WorldClock.CurrentTick;
+            int expected = part.HeldNow(wild, tick);
+            int expectedRemaining = stock.AvailableAt(tick) - (expected - part.Held);
+            Assert.AreEqual(3, expected);
+            var before = (part.Held, part.Progress, part.LastTick, part.Element, fixture.SetTick);
+            var stockBefore = (stock.Available, stock.LastTick, stock.Capacity);
+            string command = World(tray).Single(row => row.Name == "TakeUpFixture").Command;
+            bool staged = false;
+            var interrupt = new LateFixturePickupProbe
+            {
+                Fixture = tray,
+                Observe = () => staged = wild.GetEntityCell(tray) == null && Pack.Objects.Contains(tray)
+            };
+            Actor.AddPart(interrupt);
+
+            Assert.False(Act(tray, command));
+            Assert.True(staged, "the callback ran after provisional custody changed");
+            Assert.AreSame(cell, wild.GetEntityCell(tray));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(tray));
+            Assert.False(Pack.Objects.Contains(tray));
+            Assert.AreEqual(before, (part.Held, part.Progress, part.LastTick, part.Element, fixture.SetTick));
+            Assert.AreSame(stock, source.GetPart<SourceStockPart>());
+            Assert.AreEqual(stockBefore, (stock.Available, stock.LastTick, stock.Capacity));
+
+            Assert.True(Actor.RemovePart(interrupt));
+            Assert.True(Act(tray, command));
+            Assert.True(Pack.Objects.Contains(tray));
+            Assert.AreEqual(expected, part.Held);
+            Assert.AreEqual(expectedRemaining, stock.Available);
+        }
+
         [Test] public void TheTrayAndItsSourceRideTheSave()
         {
             var vent = Source(); var tray = SetTray(); Days(2.1); Act(tray, TakeRow(tray).Command); Days(1); Part(tray).Reconcile(wild, WorldClock.CurrentTick); var stock = vent.GetPart<SourceStockPart>();

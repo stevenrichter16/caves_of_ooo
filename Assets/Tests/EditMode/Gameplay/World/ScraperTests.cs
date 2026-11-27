@@ -72,6 +72,80 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(scraper, "ScrapeSource")); Assert.AreEqual(before, stock.Available); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard());
         }
 
+        [Test] public void InterruptedTrayPickupBlocksASharedScrapeAndPreservesAnIndependentScrape()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            string id = Enumerable.Range(0, WorldMap.Width * WorldMap.Height)
+                .Select(i => WorldMap.ToZoneID(i % WorldMap.Width, i / WorldMap.Width, 0))
+                .First(zoneId => HeldPlaceZones.Classify(manager, zoneId) == HeldPlaceZoneClass.WildSurface);
+            Zone.RemoveEntity(Actor);
+            Zone = new Zone(id);
+            for (int x = 8; x <= 17; x++)
+                for (int y = 8; y <= 12; y++)
+                    Place("Grass", x, y);
+            Assert.True(Zone.AddEntity(Actor, 10, 10));
+            manager.ReplaceLoadedState(new Dictionary<string, Zone> { { id, Zone } }, id, new Dictionary<string, List<ZoneConnection>>());
+            SettlementRuntime.ActiveZone = Zone;
+
+            var shared = Source("SteamVent", 13, 10);
+            var independent = Source("FrostVent", 15, 10);
+            var sharedStock = SourceStockPart.For(Zone, shared, WorldClock.CurrentTick);
+            var independentStock = SourceStockPart.For(Zone, independent, WorldClock.CurrentTick);
+            var tray = Carry("CampSettlingTray");
+            var setDown = Actions(tray).Single(row => row.Name == "SetDownFixture" && !row.IsDisabled && row.Display.StartsWith("set down east"));
+            Assert.True(Act(tray, setDown.Command));
+            var trayCell = Zone.GetEntityCell(tray);
+            var collector = tray.GetPart<SettlingTrayPart>();
+            Clock.AdvanceClock(WorldClock.DayLengthTicks * 3 / 5);
+            int now = WorldClock.CurrentTick;
+            Assert.AreEqual(1, collector.HeldNow(Zone, now));
+            Assert.Greater(sharedStock.AvailableAt(now), 1);
+            var originalStock = (sharedStock.Available, sharedStock.LastTick, sharedStock.Capacity);
+            var originalTray = (collector.Held, collector.Progress, collector.LastTick, collector.Element);
+            int remainingIndependent = independentStock.AvailableAt(now) - 1;
+
+            var rival = Factory.CreateEntity("Player");
+            Assert.True(Zone.AddEntity(rival, 14, 10));
+            var rivalPack = rival.GetPart<InventoryPart>();
+            rivalPack.MaxWeight = 400;
+            var scraper = Factory.CreateEntity("Scraper");
+            Assert.True(rivalPack.AddObject(scraper));
+            InventoryAction Quote(Entity site) => ScrapeRows(WorldInteractionSystem.GatherCellActions(site, Zone.GetEntityCell(site), rival)).Single();
+            var sharedRow = Quote(shared);
+            var independentRow = Quote(independent);
+            Assert.False(sharedRow.IsDisabled || independentRow.IsDisabled);
+            Assert.AreSame(scraper, sharedRow.Via);
+            Assert.AreSame(scraper, independentRow.Via);
+
+            bool staged = false, sharedSucceeded = false, independentSucceeded = false;
+            Actor.AddPart(new LateFixturePickupProbe
+            {
+                Fixture = tray,
+                Observe = () =>
+                {
+                    staged = Zone.GetEntityCell(tray) == null && Pack.Objects.Contains(tray);
+                    sharedSucceeded = InventorySystem.PerformAction(rival, scraper, sharedRow.Command, Zone);
+                    independentSucceeded = InventorySystem.PerformAction(rival, scraper, independentRow.Command, Zone);
+                }
+            });
+            string pickup = WorldInteractionSystem.GatherActions(tray, Actor).Single(row => row.Name == "TakeUpFixture").Command;
+
+            Assert.False(Act(tray, pickup));
+            Assert.True(staged);
+            Assert.False(sharedSucceeded);
+            Assert.True(independentSucceeded, "a different finite source is outside the pending tray receipt");
+            Assert.AreSame(trayCell, Zone.GetEntityCell(tray));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(tray));
+            Assert.False(Pack.Objects.Contains(tray));
+            Assert.AreEqual(originalTray, (collector.Held, collector.Progress, collector.LastTick, collector.Element));
+            Assert.AreSame(sharedStock, Stock(shared));
+            Assert.AreEqual(originalStock, (sharedStock.Available, sharedStock.LastTick, sharedStock.Capacity));
+            Assert.AreSame(independentStock, Stock(independent));
+            Assert.AreEqual(remainingIndependent, independentStock.Available);
+            Assert.AreEqual(1, rivalPack.Objects.Where(item => item.BlueprintName == "RimeFlake").Sum(item => item.GetPart<StackerPart>()?.StackCount ?? 1));
+            Assert.False(rivalPack.Objects.Any(item => item.BlueprintName == "VentScale"));
+        }
+
         [Test] public void AFullPackRefusesWithoutDrawingOnTheSource_Counter()
         {
             var source = Source(); var scraper = Carry("Scraper"); var stock = SourceStockPart.For(Zone, source, WorldClock.CurrentTick); int before = stock.Available; Pack.MaxWeight = Pack.GetCarriedWeight();

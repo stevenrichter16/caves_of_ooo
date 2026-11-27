@@ -165,6 +165,16 @@ screen no longer draws the reading/turn-cost footer. A native 423-case
 run and actual lit, exhausted and packed readers verified the change.
 Reading remains free. [Evidence](Verification/MachineSystems/CompactFireReader20261127/README.md)
 
+**Camp catches commit with custody — November 26, 2026, America/Chicago.**
+A standing trap or tray projects its catch from saved game time.
+Taking it up banks what is due only when custody changes successfully.
+The same transaction covers the physical fixture, clock, catch and
+canonical source budget during pickup, move and pack-up. Competing
+actions on the same stock are refused and can be retried. Separate sources
+can still pay out independently. Ordinary shoreline play and a fresh
+Continue verified one paid pond unit on the successful retry.
+[Evidence](Verification/MachineSystems/SharedStockPickup20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.

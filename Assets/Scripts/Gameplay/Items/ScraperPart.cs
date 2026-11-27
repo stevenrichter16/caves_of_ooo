@@ -116,18 +116,35 @@ namespace CavesOfOoo.Core
                 if (!WorldResourceActions.Nearby(actor, near, zone)) return Block(actor, "out-of-reach", "The " + near.GetDisplayName() + " is out of reach.");
             }
             var holder = ProofingSources.StockHolder(zone, near, kind);
-            var reagent = HarvestablePart.Factory?.CreateEntity(kind.Collects); if (reagent == null) return Block(actor, "no-reagent", "The place gives you nothing you can take.");
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
             {
-                if (!tx.TryClaim(actor, actor, Command) || !tx.TryClaim(ParentEntity, actor, Command)) return Block(actor, "in-progress", "That is already being worked.");
-                var stock = SourceStockPart.For(zone, holder, now); stock.Reconcile(now);
-                if (stock.Available <= 0) return Block(actor, "spent", "The " + near.GetDisplayName() + " is spent for now.");
-                int availBefore = stock.Available, lastBefore = stock.LastTick, capBefore = stock.Capacity;
+                if (!tx.TryClaim(actor, actor, Command) || !tx.TryClaim(ParentEntity, actor, Command) || !tx.TryClaim(holder, actor, Command))
+                    return Block(actor, "in-progress", "That is already being worked.");
+                var origin = zone.GetEntityCell(actor);
+                var sourceCell = zone.GetEntityCell(near);
+                var priorStock = holder.GetPart<SourceStockPart>();
+                if (priorStock?.AvailableAt(now) <= 0) return Block(actor, "spent", "The " + near.GetDisplayName() + " is spent for now.");
+                var reagent = HarvestablePart.Factory?.CreateEntity(kind.Collects);
+                if (reagent == null) return Block(actor, "no-reagent", "The place gives you nothing you can take.");
                 var receipt = InventoryTransferSnapshot.Capture(pack, reagent);
                 tx.Do(null, receipt.Restore);
                 if (!receipt.Apply(() => pack.AddObject(reagent)) || !receipt.ClaimChanges(tx, actor, Command)) return Block(actor, "no-room", "You cannot carry any more.");
-                tx.Do(() => { stock.Available -= 1; }, () => { stock.Available = availBefore; stock.LastTick = lastBefore; stock.Capacity = capBefore; });
+                if (!Usable(actor, zone) || actor.GetPart<InventoryPart>() != pack || zone.GetEntityCell(actor) != origin
+                    || zone.GetEntityCell(near) != sourceCell || ProofingSources.ElementOf(near) != kind
+                    || ProofingSources.StockHolder(zone, near, kind) != holder || holder.GetPart<SourceStockPart>() != priorStock)
+                    return Block(actor, "changed-source", "The source changed before you could scrape it.");
+                if (priorStock?.AvailableAt(now) <= 0) return Block(actor, "spent", "The " + near.GetDisplayName() + " is spent for now.");
+                var stock = SourceStockPart.For(zone, holder, now);
+                int available = stock.Available, last = stock.LastTick;
+                tx.Do(null, () =>
+                {
+                    if (holder.GetPart<SourceStockPart>() != stock) return;
+                    if (priorStock == null) holder.RemovePart(stock);
+                    else { stock.Available = available; stock.LastTick = last; }
+                });
+                stock.Reconcile(now);
+                stock.Available--;
                 string label = SettlingTrayPart.ReagentName(kind), source = near.GetDisplayName(); string element = kind.Id;
                 tx.AfterCommit(() =>
                 {

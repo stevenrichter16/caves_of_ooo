@@ -257,6 +257,154 @@ namespace CavesOfOoo.Tests
             Days(0.5); Assert.AreEqual(3, Part(trap).HeldNow(wild, WorldClock.CurrentTick), "set down again it fishes again, from where it left off");
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FailedFullPackTakeUpPreservesTheTrapAndSharedStockUntilAValidRetry(bool existingStock)
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east");
+            var part = Part(trap);
+            var fixture = trap.GetPart<PackableFixturePart>();
+            var cell = wild.GetEntityCell(trap);
+            Assert.True(FishPond.TryFind(wild, cell.X, cell.Y, out var anchor));
+            var stock = existingStock ? FishStockPart.For(wild, anchor, WorldClock.CurrentTick) : null;
+            if (stock != null) stock.Available = 1;
+            var stockBefore = stock == null ? default : (stock.Available, stock.LastTick, stock.Capacity);
+
+            Days(0.2);
+            Assert.AreEqual(0, part.Reconcile(wild, WorldClock.CurrentTick));
+            Days(0.9);
+            int tick = WorldClock.CurrentTick;
+            int projected = part.HeldNow(wild, tick);
+            int available = stock?.AvailableAt(tick) ?? 0;
+            Assert.AreEqual(2, projected);
+            var before = (part.Held, part.Progress, part.LastTick, fixture.SetTick);
+            string command = World(trap).Single(row => row.Name == "TakeUpFixture").Command;
+            int limit = Pack.MaxWeight;
+            Pack.MaxWeight = Pack.GetCarriedWeight();
+
+            Assert.False(Act(trap, command));
+            Assert.AreSame(cell, wild.GetEntityCell(trap));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(trap));
+            Assert.False(Pack.Objects.Contains(trap));
+            Assert.AreEqual(tick, WorldClock.CurrentTick);
+            Assert.AreEqual(before, (part.Held, part.Progress, part.LastTick, fixture.SetTick));
+            Assert.AreSame(stock, anchor.GetPart<FishStockPart>());
+            if (stock != null) Assert.AreEqual(stockBefore, (stock.Available, stock.LastTick, stock.Capacity));
+
+            Pack.MaxWeight = limit;
+            Assert.True(Act(trap, command));
+            Assert.True(Pack.Objects.Contains(trap));
+            Assert.AreEqual(projected, part.Held);
+            Assert.AreEqual(tick, part.LastTick);
+            var settled = anchor.GetPart<FishStockPart>();
+            Assert.NotNull(settled);
+            if (stock != null) Assert.AreSame(stock, settled);
+            int left = (stock == null ? settled.Capacity : available) - projected;
+            Assert.AreEqual(left, settled.Available);
+            Assert.False(Act(trap, command), "a completed pickup cannot be paid twice");
+            Assert.AreEqual(left, settled.Available);
+            Assert.AreEqual(projected, part.Held);
+        }
+
+        [Test] public void AnInterruptedPickupRestoresBothTheLoadedTrapAndItsPondWhileBlockingACompetingCatch()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east");
+            var other = SetTrap(PondX0 - 2, PondY0 + 3, "east");
+            var cell = wild.GetEntityCell(trap);
+            var part = Part(trap);
+            Assert.True(FishPond.TryFind(wild, cell.X, cell.Y, out var anchor));
+            var stock = FishStockPart.For(wild, anchor, WorldClock.CurrentTick);
+            stock.Capacity = 6;
+            stock.Available = 4;
+            Days(0.6);
+            Assert.AreEqual(1, part.Reconcile(wild, WorldClock.CurrentTick));
+            Days(0.9);
+            int tick = WorldClock.CurrentTick;
+            int expected = part.HeldNow(wild, tick);
+            int expectedRemaining = stock.AvailableAt(tick) - (expected - part.Held);
+            Assert.AreEqual(3, expected);
+            Assert.Greater(expectedRemaining, 0, "the competing trap could still draw after the pickup debit");
+            var stockBefore = (stock.Available, stock.LastTick, stock.Capacity);
+            var fixture = trap.GetPart<PackableFixturePart>();
+            var before = (part.Held, part.Progress, part.LastTick, fixture.SetTick);
+            var otherBefore = (Part(other).Held, Part(other).Progress, Part(other).LastTick);
+            var rival = Factory.CreateEntity("Player");
+            Assert.True(wild.AddEntity(rival, PondX0 - 1, PondY0 + 4));
+            var rivalPack = rival.GetPart<InventoryPart>();
+            rivalPack.MaxWeight = 400;
+            var competing = WorldInteractionSystem.GatherActions(other, rival).Single(row => row.Name == "TakeTrapFish");
+            Assert.False(competing.IsDisabled);
+
+            bool staged = false, supplierHadFish = false, rivalSucceeded = false;
+            var interrupt = new LateFixturePickupProbe
+            {
+                Fixture = trap,
+                Observe = () =>
+                {
+                    staged = wild.GetEntityCell(trap) == null && Pack.Objects.Contains(trap);
+                    supplierHadFish = Part(other).HeldNow(wild, tick) > 0;
+                    rivalSucceeded = InventorySystem.PerformAction(rival, other, competing.Command, wild);
+                }
+            };
+            Actor.AddPart(interrupt);
+            string command = World(trap).Single(row => row.Name == "TakeUpFixture").Command;
+
+            Assert.False(Act(trap, command));
+            Assert.True(staged && supplierHadFish, "the callback ran after provisional custody changed and a genuine alternative catch still existed");
+            Assert.False(rivalSucceeded);
+            Assert.IsFalse(rivalPack.Objects.Any(item => item.BlueprintName == "LakePerch"));
+            Assert.AreSame(cell, wild.GetEntityCell(trap));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(trap));
+            Assert.False(Pack.Objects.Contains(trap));
+            Assert.AreEqual(before, (part.Held, part.Progress, part.LastTick, fixture.SetTick));
+            Assert.AreEqual(otherBefore, (Part(other).Held, Part(other).Progress, Part(other).LastTick));
+            Assert.AreSame(stock, anchor.GetPart<FishStockPart>());
+            Assert.AreEqual(stockBefore, (stock.Available, stock.LastTick, stock.Capacity));
+
+            Assert.True(Actor.RemovePart(interrupt));
+            Assert.True(Act(trap, command));
+            Assert.True(Pack.Objects.Contains(trap));
+            Assert.AreEqual(expected, part.Held);
+            Assert.AreEqual(expectedRemaining, stock.Available);
+        }
+
+        [Test] public void APartiallyAffordablePackUpPreservesBothTrapsAndTheirSharedPond()
+        {
+            var first = SetTrap(PondX0 - 2, PondY0 + 2, "east");
+            var second = SetTrap(PondX0 - 2, PondY0 + 3, "east");
+            var firstCell = wild.GetEntityCell(first);
+            var secondCell = wild.GetEntityCell(second);
+            Assert.True(FishPond.TryFind(wild, firstCell.X, firstCell.Y, out var anchor));
+            Days(0.6);
+            int now = WorldClock.CurrentTick;
+            Assert.AreEqual(1, Part(first).HeldNow(wild, now));
+            Assert.AreEqual(1, Part(second).HeldNow(wild, now));
+            var firstBefore = (Part(first).Held, Part(first).Progress, Part(first).LastTick);
+            var secondBefore = (Part(second).Held, Part(second).Progress, Part(second).LastTick);
+            string command = World(second).Single(row => row.Name == "PackUpCamp").Command;
+            int limit = Pack.MaxWeight;
+            Pack.MaxWeight = Pack.GetCarriedWeight() + InventoryPart.GetItemWeight(first);
+
+            Assert.False(Act(second, command));
+            Assert.AreSame(firstCell, wild.GetEntityCell(first));
+            Assert.AreSame(secondCell, wild.GetEntityCell(second));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(first));
+            Assert.True(HeldFixtureActions.IsPlayerHeld(second));
+            Assert.False(Pack.Objects.Contains(first) || Pack.Objects.Contains(second));
+            Assert.AreEqual(firstBefore, (Part(first).Held, Part(first).Progress, Part(first).LastTick));
+            Assert.AreEqual(secondBefore, (Part(second).Held, Part(second).Progress, Part(second).LastTick));
+            Assert.IsNull(anchor.GetPart<FishStockPart>());
+
+            Pack.MaxWeight = limit;
+            Assert.True(Act(second, command));
+            Assert.True(Pack.Objects.Contains(first) && Pack.Objects.Contains(second));
+            Assert.AreEqual(1, Part(first).Held);
+            Assert.AreEqual(1, Part(second).Held);
+            var stock = anchor.GetPart<FishStockPart>();
+            Assert.NotNull(stock);
+            Assert.AreEqual(stock.Capacity - 2, stock.Available);
+        }
+
         [Test] public void TheTrapAndItsPondRideTheSave()
         {
             var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east"); Days(2.1); Act(trap, TakeRow(trap).Command); Days(1); Part(trap).Reconcile(wild, WorldClock.CurrentTick); var stock = Stock();
@@ -396,5 +544,18 @@ namespace CavesOfOoo.Tests
         }
 
         static string BandAt(int tick) => WorldClock.BandName(WorldClock.GetBand(tick), 0);
+    }
+
+    internal sealed class LateFixturePickupProbe : Part
+    {
+        internal Entity Fixture;
+        internal Action Observe;
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != "AfterInventoryAction" || e.GetParameter<Entity>("Item") != Fixture) return true;
+            Observe();
+            throw new InvalidOperationException("Interrupt the provisional fixture pickup.");
+        }
     }
 }

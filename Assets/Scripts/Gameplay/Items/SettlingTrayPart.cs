@@ -65,12 +65,17 @@ namespace CavesOfOoo.Core
         {
             if (!Standing(zone)) return 0;
             var p = Project(zone, now);
+            return ApplyProjection(p, p.Taken > 0 ? SourceStockPart.For(zone, p.Holder, now) : null, now);
+        }
+
+        int ApplyProjection(Projection p, SourceStockPart stock, int now)
+        {
             int taken = 0;
             if (p.Source && !p.Mixed)
             {
-                if (p.Taken > 0)
+                if (stock != null)
                 {
-                    var stock = SourceStockPart.For(zone, p.Holder, now); stock.Reconcile(now);
+                    stock.Reconcile(now);
                     taken = Math.Min(p.Taken, Math.Min(MaxHeld - Held, stock.Available));
                     stock.Available -= taken;
                 }
@@ -80,6 +85,33 @@ namespace CavesOfOoo.Core
             }
             LastTick = now;
             return taken;
+        }
+
+        bool StageCatch(Entity actor, Zone zone, int now, Projection p, InventoryTransaction tx)
+        {
+            var holder = p.Taken > 0 ? p.Holder : null;
+            if (holder != null && !tx.TryClaim(holder, actor, Command))
+                return Block(actor, "in-progress", "The source is already being worked.");
+
+            var tray = ParentEntity;
+            var priorStock = holder?.GetPart<SourceStockPart>();
+            var stock = priorStock;
+            string element = Element;
+            int held = Held, last = LastTick, progress = Progress;
+            int available = priorStock?.Available ?? 0, stockLast = priorStock?.LastTick ?? 0;
+            tx.Do(null, () =>
+            {
+                if (tray.GetPart<SettlingTrayPart>() == this)
+                {
+                    Element = element; Held = held; LastTick = last; Progress = progress;
+                }
+                if (stock == null || holder.GetPart<SourceStockPart>() != stock) return;
+                if (priorStock == null) holder.RemovePart(stock);
+                else { stock.Available = available; stock.LastTick = stockLast; }
+            });
+            if (holder != null) stock = SourceStockPart.For(zone, holder, now);
+            ApplyProjection(p, stock, now);
+            return true;
         }
 
         // ── reader ──
@@ -135,8 +167,14 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
-            // Taking the tray up (or moving it) brings it up to date first, so what it settled while it stood is in it, and in the source's ledger, before the clock stops. It never vetoes.
-            if (e.ID == InstallEvents.BeforeUninstall) { Reconcile(e.GetParameter<Zone>("Zone"), WorldClock.CurrentTick); return true; }
+            if (e.ID == InstallEvents.BeforeUninstall)
+            {
+                var zone = e.GetParameter<Zone>("Zone");
+                if (!Standing(zone)) return true;
+                var tx = e.GetParameter<InventoryTransaction>("InventoryTransaction");
+                int now = WorldClock.CurrentTick;
+                return tx != null && StageCatch(e.GetParameter<Entity>("Actor"), zone, now, Project(zone, now), tx);
+            }
             if (e.ID == "GetInventoryActions") { AddRows(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone") ?? e.GetParameter<Entity>("Actor")?.SpatialZone, e.GetParameter<InventoryActionList>("Actions")); return true; }
             if (e.ID == "InventoryAction" && e.GetStringParameter("Command") == Command)
             {
@@ -163,35 +201,39 @@ namespace CavesOfOoo.Core
             if (actor == null || zone == null || pack == null || !Standing(zone) || !WorldResourceActions.Nearby(actor, ParentEntity, zone)) return Block(actor, "invalid-context", "You cannot reach the tray now.");
             int now = WorldClock.CurrentTick;
             var before = Project(zone, now); if (before.Held <= 0) return Block(actor, "empty", "There is nothing in the tray.");
-            var kind = ProofingRegistry.ById(Element) ?? before.Kind;
-            var factory = HarvestablePart.Factory; var reagent = kind == null ? null : factory?.CreateEntity(kind.Collects);
-            if (reagent == null) return Block(actor, "no-reagent", "The tray holds nothing you can take.");
-            int unit = Math.Max(1, HandlingService.GetWeight(reagent)), room = pack.MaxWeight < 0 ? int.MaxValue : Math.Max(0, (pack.MaxWeight - pack.GetCarriedWeight()) / unit);
-            int want = Math.Min(before.Held, Math.Min(room, reagent.GetPart<StackerPart>()?.MaxStack ?? 1));
-            if (want <= 0) return Block(actor, "no-room", "You cannot carry any more.");
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
             {
                 if (!tx.TryClaim(ParentEntity, actor, Command) || !tx.TryClaim(actor, actor, Command)) return Block(actor, "in-progress", "The tray is already being worked.");
-                string elementBefore = Element; int heldBefore = Held, progressBefore = Progress, lastBefore = LastTick;
-                var stock = before.Holder == null || before.Mixed ? null : SourceStockPart.For(zone, before.Holder, now);
-                int availBefore = stock?.Available ?? 0, stockLastBefore = stock?.LastTick ?? 0, capBefore = stock?.Capacity ?? 0;
-                // Bring the pan and its source up to date first, so what you are given is exactly what the source gave (never more than the stock held).
-                tx.Do(() => Reconcile(zone, now),
-                      () => { Element = elementBefore; Held = heldBefore; Progress = progressBefore; LastTick = lastBefore; if (stock != null) { stock.Available = availBefore; stock.LastTick = stockLastBefore; stock.Capacity = capBefore; } });
-                int give = Math.Min(want, Held); if (give <= 0) return Block(actor, "empty", "There is nothing in the tray.");
+                var holder = before.Holder;
+                if (holder != null && !tx.TryClaim(holder, actor, Command)) return Block(actor, "in-progress", "The source is already being worked.");
+                var kind = ProofingRegistry.ById(Element) ?? before.Kind;
+                var reagent = kind == null ? null : HarvestablePart.Factory?.CreateEntity(kind.Collects);
+                if (reagent == null) return Block(actor, "no-reagent", "The tray holds nothing you can take.");
+                if (!Standing(zone) || actor.GetPart<InventoryPart>() != pack || !WorldResourceActions.Nearby(actor, ParentEntity, zone))
+                    return Block(actor, "invalid-context", "You cannot reach the tray now.");
+                before = Project(zone, now);
+                if (before.Holder != holder || (ProofingRegistry.ById(Element) ?? before.Kind) != kind)
+                    return Block(actor, "changed-source", "The catch changed before you could take it.");
+                int unit = Math.Max(1, HandlingService.GetWeight(reagent)), room = pack.MaxWeight < 0 ? int.MaxValue : Math.Max(0, (pack.MaxWeight - pack.GetCarriedWeight()) / unit);
+                int give = Math.Min(before.Held, Math.Min(room, reagent.GetPart<StackerPart>()?.MaxStack ?? 1));
+                if (give <= 0) return Block(actor, "no-room", "There is nothing in the tray you can carry.");
                 if (reagent.GetPart<StackerPart>() != null) reagent.GetPart<StackerPart>().StackCount = give;
                 var receipt = InventoryTransferSnapshot.Capture(pack, reagent);
                 tx.Do(null, receipt.Restore);
                 if (!receipt.Apply(() => pack.AddObject(reagent)) || !receipt.ClaimChanges(tx, actor, Command)) return Block(actor, "no-room", "You cannot carry it.");
-                int heldAfterReconcile = Held;
-                tx.Do(() => { Held = Math.Max(0, Held - give); if (Held == 0) Element = ""; }, () => { Held = heldAfterReconcile; });
-                want = give;
+                var after = Project(zone, now);
+                if (!Standing(zone) || actor.GetPart<InventoryPart>() != pack || !WorldResourceActions.Nearby(actor, ParentEntity, zone)
+                    || after.Holder != holder || after.Held < give || (ProofingRegistry.ById(Element) ?? after.Kind) != kind)
+                    return Block(actor, "changed-source", "The catch changed before you could take it.");
+                if (!StageCatch(actor, zone, now, after, tx)) return false;
+                Held -= give;
+                if (Held == 0) Element = "";
                 var owner = ParentEntity; string label = ReagentName(kind);
                 tx.AfterCommit(() =>
                 {
-                    MessageLog.Add("You lift the pan and take " + want + " " + label + "." + (before.Held > want ? " " + (before.Held - want) + " stay in the tray: your pack is full." : ""));
-                    Diag.Record("furniture", "TrayGathered", actor, owner, new { taken = want, left = Math.Max(0, before.Held - want), element = kind.Id });
+                    MessageLog.Add("You lift the pan and take " + give + " " + label + "." + (after.Held > give ? " " + (after.Held - give) + " stay in the tray: your pack is full." : ""));
+                    Diag.Record("furniture", "TrayGathered", actor, owner, new { taken = give, left = after.Held - give, element = kind.Id });
                 });
                 if (own) tx.Commit();
                 return true;
