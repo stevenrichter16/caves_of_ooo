@@ -52,3 +52,13 @@ The Editor exited Play Mode. All 876 normal Quick files and 87 earlier
 tracked edits matched.
 
 [Native observations and checkpoint hashes](observations.json)
+
+## Mac package
+
+The universal Mac package for `fd1e80a83` built from 32,274 checked
+inputs with zero errors and five warnings. GameBootstrap ran on Apple
+M5. Both apps matched their 186-file records. All 876 normal Quick
+files matched again and changed preferences were restored. The crop
+comparison was played in the Editor.
+
+[Startup receipt](mac-startup-verification.json)

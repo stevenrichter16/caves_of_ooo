@@ -1,0 +1,82 @@
+{
+  "build": {
+    "project": "/Users/steven/coo-verification/mac-fd1e80a83-20261127/Assets",
+    "commit": "fd1e80a8356cb2f598e7d7ade056bf011cadfb46",
+    "result": "Succeeded",
+    "output": "/Users/steven/coo-verification/builds/mac-fd1e80a83-20261127/CavesOfOoo.app",
+    "errors": 0,
+    "warnings": 5,
+    "bytes": 365318493,
+    "seconds": 24.616553999999997,
+    "messages": [
+      {
+        "type": "Log",
+        "content": "1 URP assets included in build\n- UniversalRP - Assets/Settings/UniversalRP.asset\n\t - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData\n\t - Village3DRenderer - Assets/Art3D/Village/Rendering/Village3DRenderer.asset - UnityEngine.Rendering.Universal.UniversalRendererData\n"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/PoisonedByGasEffect.cs(39,23): warning CS0108: 'PoisonedByGasEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/CoatedInPlasmaEffect.cs(44,23): warning CS0108: 'CoatedInPlasmaEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs(552,25): warning CS0162: Unreachable code detected"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs(49,22): warning CS0414: The field 'ShortBlades_Backstab._isFlanked' is assigned but its value is never used"
+      },
+      {
+        "type": "Log",
+        "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+      },
+      {
+        "type": "Warning",
+        "content": "Access token is empty. Native symbols will not be uploaded for this build. Please make sure you are signed in to the Unity Cloud."
+      }
+    ]
+  },
+  "sourceCommit": "fd1e80a8356cb2f598e7d7ade056bf011cadfb46",
+  "committedInputs": 32274,
+  "inputManifestSHA256": "b2a9d8760619f400f16d9678d301a7693b4d96777c6485ece4983ab4624c264e",
+  "runtimeSourcesChangedAfterBuild": [],
+  "importChangedFiles": 84,
+  "appFilesVerified": 186,
+  "previousAppFilesVerified": 186,
+  "universalBinaries": {
+    "Contents/MacOS/caves-of-ooo": "x86_64 arm64",
+    "Contents/PlugIns/lib_burst_generated.bundle": "x86_64 arm64",
+    "Contents/Frameworks/libMonoPosixHelper.dylib": "x86_64 arm64",
+    "Contents/Frameworks/libmono-native.dylib": "x86_64 arm64",
+    "Contents/Frameworks/UnityPlayer.dylib": "x86_64 arm64",
+    "Contents/Frameworks/libmonobdwgc-2.0.dylib": "x86_64 arm64"
+  },
+  "startupCompleted": true,
+  "bootLine": "[Bootstrap] DONE. Zone has 2664 entities. WASD/arrows to move.",
+  "playerStopped": true,
+  "normalSaveFilesPreserved": 876,
+  "normalSaveRoots": [
+    "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo",
+    "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP"
+  ],
+  "priorStartupScope": "This startup freshly hashed both roots. No gameplay input.",
+  "preferencesLogicallyRestored": true,
+  "changedPreferenceKeys": [
+    "Screenmanager Fullscreen mode",
+    "Screenmanager Resolution Height",
+    "Screenmanager Resolution Use Native",
+    "Screenmanager Resolution Width",
+    "Screenmanager Window Position Y",
+    "unity.player_session_count",
+    "unity.player_sessionid",
+    "unity_connect.mega_session_id",
+    "unity_connect.session_id"
+  ],
+  "logSHA256": "d3217f2148e9cd4ce88f7adb0a8ca0f00cbf9f96312a4f1f4f4b619deac3fc83",
+  "packagedGameplayVerified": false,
+  "physicalIntelVerified": false,
+  "hardware": "Apple M5"
+}

@@ -7,6 +7,8 @@ saved one flask measure. In fair weather a second flask measure
 completed the same crop. Both earned two pads and a seed, preserved
 the neighboring ripe plant and passed fresh Continue. All 164 focused
 tests passed. [Portable water and crop evidence](Verification/MachineSystems/PortableStillCrop20261127/README.md)
+The universal Mac package for `fd1e80a83` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/PortableStillCrop20261127/mac-startup-verification.json)
 Next, use the earned pads in a useful field or town service, or
 qualify a smaller recovery opportunity from the same region. Check
 whether the real occupied-bed refusals reflect live sleepers or stale
