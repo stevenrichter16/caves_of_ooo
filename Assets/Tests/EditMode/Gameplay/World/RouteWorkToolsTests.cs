@@ -41,15 +41,85 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(30,pool.Density);Assert.AreSame(Actor,pool.Creator);Assert.AreEqual(2,pool.Level);CollectionAssert.AreEqual(parts,gas.Parts);
             Assert.AreEqual(1,Zone.GetReadOnlyEntities().Count(e=>e.HasPart<GasPoolPart>()));
         }
-        [TestCase("dense")] [TestCase("stable")] [TestCase("hidden")] [TestCase("door")]
-        public void BellowsRefusesUnsupportedOrBlockedGasPath(string mode)
+        [TestCase("dense", "cloud-too-thick")]
+        [TestCase("stable", "cloud-stable")]
+        [TestCase("hidden", "cloud-no-path")]
+        [TestCase("door", "cloud-no-path")]
+        public void BellowsExplainsVisibleGasRefusalsInThePackAndWorldMenus(string mode, string code)
         {
-            var tool=Carry("HandBellows");var gas=Cloud();
-            if(mode=="dense")gas.GetPart<GasPoolPart>().Density=41;
-            if(mode=="stable")gas.GetPart<GasPoolPart>().Stable=true;
-            if(mode=="hidden")Zone.GetCell(12,10).IsVisible=false;
-            if(mode=="door"){var d=Place("SalvagedTimber",12,10);d.GetPart<PhysicsPart>().Takeable=false;d.AddPart(new DoorPart{IsOpen=false});}
-            Assert.False(Actions(tool).Any(a=>a.Command.StartsWith("PushGas|")));
+            var tool = Carry("HandBellows");
+            var gas = Cloud();
+            var pool = gas.GetPart<GasPoolPart>();
+            var source = Zone.GetEntityCell(gas);
+            var beyond = Zone.GetCell(12, 10);
+            Entity blocker = null;
+            if (mode == "dense") pool.Density = DirectedAirPart.MaximumDensity + 1;
+            if (mode == "stable") pool.Stable = true;
+            if (mode == "hidden") beyond.IsVisible = false;
+            if (mode == "door")
+            {
+                blocker = Place("SalvagedTimber", 12, 10);
+                blocker.GetPart<PhysicsPart>().Takeable = false;
+                blocker.AddPart(new DoorPart { IsOpen = false });
+            }
+
+            var packRow = Actions(tool).SingleOrDefault(row => row.DisabledCode == code);
+            var worldRow = CellMenu(11, 10).SingleOrDefault(row => row.DisabledCode == code);
+            Assert.NotNull(packRow);
+            Assert.NotNull(worldRow);
+            Assert.True(packRow.IsDisabled);
+            Assert.True(worldRow.IsDisabled);
+            Assert.AreEqual(packRow.DisabledReason, worldRow.DisabledReason);
+            Assert.AreEqual(worldRow.DisabledReason, worldRow.Hint);
+            Assert.False(Actions(tool).Any(row => !row.IsDisabled && row.Command?.StartsWith("PushGas|", StringComparison.Ordinal) == true));
+
+            int tick = Clock.TickCount;
+            int density = pool.Density;
+            Assert.False(Act(tool, packRow.Command));
+            Assert.False(ChooseRow(worldRow, 11, 10));
+            Assert.False(Act(tool, "PushGas|" + gas.ID + "|unquoted"));
+            Assert.AreSame(source, Zone.GetEntityCell(gas));
+            Assert.AreEqual(density, pool.Density);
+            Assert.AreEqual(tick, Clock.TickCount);
+            if (blocker != null)
+            {
+                Assert.True(Zone.RemoveEntity(blocker));
+                beyond.IsVisible = false;
+                var hiddenRow = Actions(tool).Single(row => row.DisabledCode == code);
+                Assert.AreEqual(packRow.DisabledReason, hiddenRow.DisabledReason, "The refusal does not distinguish hidden terrain from an obstruction.");
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void BellowsDoesNotExposeAnUnseenSourceInEitherMenu(bool staleReference)
+        {
+            var tool = Carry("HandBellows");
+            var gas = Cloud(DirectedAirPart.MaximumDensity + 1, staleReference ? 8 : 11, 10);
+            Zone.GetEntityCell(gas).IsVisible = false;
+            if (staleReference) Zone.GetCell(11, 10).Objects.Add(gas);
+            bool GasRow(InventoryAction row) => row.DisabledCode?.StartsWith("cloud-", StringComparison.Ordinal) == true
+                || row.Command?.StartsWith("PushGas|", StringComparison.Ordinal) == true;
+            Assert.False(Actions(tool).Any(GasRow));
+            Assert.False(CellMenu(11, 10).Any(GasRow));
+        }
+
+        [Test]
+        public void ThinningTheSameCloudToTheBellowsLimitAllowsTheNormalWorldAction()
+        {
+            Carry("HandBellows");
+            var gas = Cloud(DirectedAirPart.MaximumDensity + 1);
+            var pool = gas.GetPart<GasPoolPart>();
+            Assert.True(CellMenu(11, 10).Any(row => row.IsDisabled && row.DisabledCode == "cloud-too-thick"));
+
+            pool.Density = DirectedAirPart.MaximumDensity;
+            var actions = CellMenu(11, 10);
+            Assert.False(actions.Any(row => row.DisabledCode == "cloud-too-thick"));
+            var push = actions.Single(row => !row.IsDisabled && row.Command?.StartsWith("PushGas|", StringComparison.Ordinal) == true);
+            Assert.True(ChooseRow(push, 11, 10));
+            Assert.AreSame(Zone.GetCell(12, 10), Zone.GetEntityCell(gas));
+            Assert.AreSame(pool, gas.GetPart<GasPoolPart>());
+            Assert.AreEqual(DirectedAirPart.MaximumDensity, pool.Density);
         }
         [Test] public void InterruptedBellowsDoesNotMoveOrThinGas()
         {var tool=Carry("HandBellows");var gas=Cloud();var choice=Choice(tool,"PushGas|");FailAfter();Assert.False(Act(tool,choice));Assert.AreSame(Zone.GetCell(11,10),Zone.GetEntityCell(gas));Assert.AreEqual(30,gas.GetPart<GasPoolPart>().Density);}

@@ -1,3 +1,11 @@
+**Hand bellows explain the limits of moving gas.**
+The pack and adjacent world menu say when a visible cloud is too
+thick, fixed or obstructed. The shared reader uses the same reasons.
+A real Brine Camp cloud visibly refused the action at density 60.
+The same tool moved a separate thin cloud one cell. The moved cloud
+and its creator survived Continue.
+[Bellows field evidence](Verification/MachineSystems/BellowsMarshGas20261127/README.md)
+
 **A sounding rod reports terrain and can draw sound hunters.**
 The survey reach and the noise warning are visible separately.
 A matched natural cave trial showed a quiet wait leave a Pale Stalker

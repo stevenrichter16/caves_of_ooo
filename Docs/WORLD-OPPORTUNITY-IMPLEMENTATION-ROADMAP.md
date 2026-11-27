@@ -966,6 +966,12 @@ Quiet waiting left a natural Pale Stalker wandering. Sounding
 from the same saved position drew it into pursuit and left a coarse
 terrain entry that survived Continue. [Matched playtest](Verification/MachineSystems/SoundingRodHearing20261127/README.md)
 
+At Brine Camp the same hand bellows gave a free reason beside a
+thick cloud and moved a separate thin cloud from nearby burning
+mire. The player can read the exact local refusal in either menu.
+The subsequent Continue preserved the displaced gas's identity,
+strength and creator. [Bellows evidence](Verification/MachineSystems/BellowsMarshGas20261127/README.md)
+
 36. **Use one truthful preview across entry points.** Explain accepted result,
     selected stock, output, loss, cost and exact blocker in player language.
     Material, tool, shop and receiver readers must agree. Reading and cancellation

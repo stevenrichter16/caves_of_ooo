@@ -79,7 +79,14 @@ namespace CavesOfOoo.Core
         public const int MaximumDensity=40;
         public int Order=>40;
         public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<DirectedAirPart>()==this && command?.StartsWith("PushGas|",StringComparison.Ordinal)==true;
-        IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor,Zone zone)
+        static (string code,string reason) Refusal(GasPoolPart pool,bool clearPath)
+        {
+            if(pool.Stable)return ("cloud-stable","This cloud stays where it is.");
+            if(pool.Density>MaximumDensity)return ("cloud-too-thick","This cloud is too thick for the bellows. Wait for it to thin.");
+            if(!clearPath)return ("cloud-no-path","The bellows need a clear, visible path through and beyond this cloud.");
+            return (null,null);
+        }
+        IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor,Zone zone,InventoryActionList rows)
         {
             var tool=ParentEntity;
             if(!RouteWorkMenu.ActorReady(actor,zone) || !WorldResourceActions.Carried(actor,tool) || !actor.GetPart<InventoryPart>().Objects.Contains(tool) || tool.GetPart<DirectedAirPart>()!=this
@@ -92,13 +99,21 @@ namespace CavesOfOoo.Core
             {
                 var from=zone.GetCell(origin.X+d.x,origin.Y+d.y);var to=zone.GetCell(origin.X+2*d.x,origin.Y+2*d.y);
                 bool Path()=>RouteWorkMenu.Visible(from) && RouteWorkMenu.Visible(to) && !from.BlocksMovement() && !to.BlocksMovement();
-                if(!Path())continue;
+                if(!RouteWorkMenu.Visible(from))continue;
                 foreach(var gas in from.Objects.ToArray())
                 {
                     var pool=gas.GetPart<GasPoolPart>();var physics=gas.GetPart<PhysicsPart>();
-                    if(pool?.ParentEntity!=gas || physics?.ParentEntity!=gas || !gas.HasTag("Gas") || pool.Stable || pool.Density<1 || pool.Density>MaximumDensity
+                    if(pool?.ParentEntity!=gas || physics?.ParentEntity!=gas || !gas.HasTag("Gas") || pool.Density<1
                         || gas.HasPart<SpatialFootprintPart>() || gas.HasPart<MultiCellPilotPropPart>() || gas.HasTag("Creature")
-                        || !WorldResourceActions.Ground(gas,zone) || physics.Takeable)continue;
+                        || zone.GetEntityCell(gas)!=from || !WorldResourceActions.Ground(gas,zone) || physics.Takeable)continue;
+                    var refusal=Refusal(pool,Path());
+                    if(refusal.code!=null)
+                    {
+                        // A refusal belongs to the visible cloud's cell and never enters the executable quote cache.
+                        var row=rows.AddDisabled("RouteWork","push "+gas.GetDisplayName(),refusal.code,refusal.reason,'\0',19).AtCell(from.X,from.Y);
+                        row.Hint=refusal.reason;
+                        continue;
+                    }
                     var sameGas=RouteWorkMenu.Identity(gas);int density=pool.Density,level=pool.Level;bool seeping=pool.Seeping;
                     string id=pool.GasId,type=pool.GasType,color=pool.ColorString;var creator=pool.Creator;
                     bool Current()=>Context() && Path() && sameGas() && zone.GetEntityCell(gas)==from && WorldResourceActions.Ground(gas,zone)
@@ -115,10 +130,12 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             var actor=e.GetParameter<Entity>("Actor");var zone=PreparationActions.ZoneFor(e,actor);
-            if(e.ID=="GetInventoryActions")RouteWorkMenu.Rows(ParentEntity,actor,zone,e.GetParameter<InventoryActionList>("Actions"),Choices(actor,zone),true);
+            if(e.ID=="GetInventoryActions")AddRows(actor,zone,e.GetParameter<InventoryActionList>("Actions"),true);
             if(e.ID=="InventoryAction" && OwnsInventoryReceipt(e.GetStringParameter("Command")) && RouteWorkMenu.Act(ParentEntity,e)){e.Handled=true;return false;}return true;
         }
-        public void AddUseRows(Entity actor,Zone zone,InventoryActionList rows)=>RouteWorkMenu.Rows(ParentEntity,actor,zone,rows,Choices(actor,zone),false);
+        void AddRows(Entity actor,Zone zone,InventoryActionList rows,bool retain)
+            =>RouteWorkMenu.Rows(ParentEntity,actor,zone,rows,Choices(actor,zone,rows),retain);
+        public void AddUseRows(Entity actor,Zone zone,InventoryActionList rows)=>AddRows(actor,zone,rows,false);
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {guide.How.Add("Carry the bellows; choose an adjacent thin cloud from the pack or its cell's C menu.");guide.Needs.Add("a visible clear cardinal path; one transient cloud of at most "+MaximumDensity+" density");guide.Limits.Add("One action moves the same cloud one cell farther away, conserving its density. It can drift back. Stable clouds refuse; existing gas turns still expose creatures. A lampvein fan can thin denser clouds first.");guide.WhyNot="carry sound bellows beside a thin cloud with a clear visible cell beyond it";}
     }
