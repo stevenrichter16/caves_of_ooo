@@ -51,3 +51,17 @@ Play Mode and cleared the private keyboard and save root. All 876
 normal Quick files and 87 earlier tracked edits matched.
 
 [Recorded states and test receipts](observations.json)
+
+Independent source and gameplay reviews confirmed the rollback boundary,
+the exact refill and all eight saved-file hashes.
+
+## Mac package
+
+The universal package for `78dabfde6` built with zero errors and five
+warnings. The previous build workspace was copied and its 88 differing
+inputs restored. All 32,266 tracked inputs matched the runtime commit
+before building. The app reached GameBootstrap on Apple M5. Both apps
+matched their recorded 186 files. The 876 normal Quick files matched
+again, and startup preferences were restored. This checks package
+startup. The refill was played in the Editor.
+[Startup receipt](mac-startup-verification.json)

@@ -6,6 +6,8 @@ and lowered the same pool from 78 to 74. Fresh Continue kept those
 counts, the other pools, recovered torch, injury and worn coat.
 All 461 targeted cases passed.
 [Playtest and receipts](Verification/MachineSystems/FiniteFlaskPoolReceipt20261127/README.md)
+The universal Mac package for `78dabfde6` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/FiniteFlaskPoolReceipt20261127/mac-startup-verification.json)
 
 **A bought torch powers the public still — November 27, 2026, America/Chicago.**
 The still's menu and Examine explain the missing brine, flask, heat or
