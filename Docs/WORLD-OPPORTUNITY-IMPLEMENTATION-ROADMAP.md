@@ -67,6 +67,13 @@ to turn the same dried material into two fire clay and grit for firm
 footing. The original rest remains available under its usual conditions.
 [Drying and downstream use](Verification/MachineSystems/GantryShelteredDrying20261127/README.md)
 
+For #12, #14, #19, #36 and #40, a newly generated Morrowfast gives Orrit
+one buyable sieve beside the retained fabrication route. An ordinary
+traveler paid 29 drams and screened the same Gantry-dried packet without
+supplied tools. One clay gave the watch bell a quiet call and the two
+watchkeepers reacted. Fresh Continue kept the chosen outcome and sold stock.
+[Ordinary purchase and use](Verification/MachineSystems/MorrowfastHandSieve20261127/README.md)
+
 Implement the 45 requirements in connected slices. Once a slice is verified
 and recorded, start the next unblocked slice in the same run. The scheduled
 check-in provides continued work across runs.

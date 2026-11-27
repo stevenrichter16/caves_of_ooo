@@ -40,18 +40,25 @@ namespace CavesOfOoo.Core
         {
             if(!RouteWorkMenu.ActorReady(actor,zone) || tool==null || tool==source || tool==actor
                 || tool.ID==actor.ID || tool.ID==source?.ID || !WorldResourceActions.Carried(actor,tool)
-                || actor.GetPart<InventoryPart>().Objects.Contains(tool)!=true || tool.GetPart<PhysicsPart>() is not PhysicsPart physics
+                || actor.GetPart<InventoryPart>().Objects.Contains(tool)!=true || !IsSoundTool(tool)) return false;
+            return !zone.GetReadOnlyEntities().Any(e=>e.ID==tool.ID);
+        }
+        internal static bool IsSoundTool(Entity tool)
+        {
+            if(tool?.GetPart<PhysicsPart>() is not PhysicsPart physics
                 || physics.Solid || physics.Weight<0 || !tool.HasTag("Item") || tool.HasTag("Creature") || tool.HasTag("Terrain")
                 || tool.HasPart<StackerPart>() || tool.HasPart<SpatialFootprintPart>() || tool.HasPart<MultiCellPilotPropPart>()
                 || tool.Parts.Count(p=>p is PhysicsPart)!=1 || tool.HasEffect<BrokenEffect>() || tool.HasEffect<FrozenEffect>()
                 || RepairablePart.BlocksFunction(tool) || CombatSystem.IsDeathHandled(tool)
                 || tool.GetStat("Hitpoints")!=null && tool.GetStatValue("Hitpoints")<=0
                 || tool.GetPart<DestructiblePart>() is DestructiblePart d && (d.Gone || d.HP<=0))return false;
-            return !zone.GetReadOnlyEntities().Any(e=>e.ID==tool.ID);
+            return true;
         }
-        static bool Available(Entity actor, Entity source, Entity tool, Zone zone)
+        internal static bool HasScreeningCapability(Entity tool)
             => tool?.GetPart<ScreeningToolPart>() is ScreeningToolPart sieve && sieve.ParentEntity == tool
-                && tool.Parts.Count(p => p is ScreeningToolPart) == 1 && IsSoundCarriedTool(actor, source, tool, zone);
+                && tool.Parts.Count(p => p is ScreeningToolPart) == 1;
+        static bool Available(Entity actor, Entity source, Entity tool, Zone zone)
+            => HasScreeningCapability(tool) && IsSoundCarriedTool(actor, source, tool, zone);
         internal static bool Usable(Entity actor,Entity tool,Zone zone)=>Available(actor,null,tool,zone);
         internal static MaterialScreeningWorkReceipt Resolve(Entity actor, Entity source, Zone zone, Predicate<Entity> accepts = null)
         {

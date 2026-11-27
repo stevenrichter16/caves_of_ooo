@@ -97,6 +97,8 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
             guide.How.Add("Carry this known mixed stock and a sound hand sieve; choose screen size grades.");
+            if (ParentEntity?.BlueprintName == RainClaySeamSite.Packet)
+                guide.How.Add("Check Orrit's rope shop in Morrowfast for a sieve, or make one at a ready forge from an iron spike, two salvaged timber and two knotflax cord.");
             guide.Needs.Add("One packet, a sound carried sieve and pack space for the material you keep.");
             guide.Limits.Add("One action keeps the same sieve and separates fine/medium passing stock from coarse retained stock. Quantities and material identities stay the same. Equal-sized unlike materials refuse; screening does not identify, grind, dry or purify anything.");
             if (Definition(ForgePart.Factory) is {} result && result.OutputCounts[1] == 1

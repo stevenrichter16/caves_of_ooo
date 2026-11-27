@@ -110,6 +110,22 @@ namespace CavesOfOoo.Core
             inventory.AddObject(kit);
         }
 
+        internal static void StageHandSieve(Entity merchant, EntityFactory factory)
+        {
+            const string blueprint = "HandSieve";
+            var inventory = merchant.GetPart<InventoryPart>();
+            if (inventory == null || inventory.Objects.Exists(item => item.BlueprintName == blueprint)
+                || !factory.Blueprints.ContainsKey(blueprint)) return;
+
+            var sieve = factory.CreateEntity(blueprint);
+            if (!PreparationActions.Fresh(sieve, blueprint) || sieve.GetPart<PhysicsPart>().Weight != 4
+                || !MaterialScreeningWorkReceipt.IsSoundTool(sieve) || !MaterialScreeningWorkReceipt.HasScreeningCapability(sieve)
+                || sieve.GetPart<CommercePart>() is not { Value: > 0 })
+                return;
+
+            inventory.AddObject(sieve);
+        }
+
         private static void Stock(Entity actor, EntityFactory factory, string[] items, int[] counts)
         {
             var inventory = actor.GetPart<InventoryPart>();

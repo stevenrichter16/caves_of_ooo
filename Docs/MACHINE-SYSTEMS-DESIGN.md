@@ -1,3 +1,10 @@
+**Orrit sells one reusable sieve at a fresh Morrowfast shop.**
+The shop uses the ordinary four-pound sieve and trade rules. Its opening
+unit stays out of restocking and leaves the forge route useful. The clay
+packet's reader points to both options. In actual play the bought sieve
+processed Gantry-dried clay. One measure gave the watch bell a quiet call.
+[Playtest and receipts](Verification/MachineSystems/MorrowfastHandSieve20261127/README.md)
+
 **Gantry's restored guest-cloth offers a second public service in rain.**
 Clear footing beside the original repaired pole lets a traveler air out
 one damp carried item. One action removes up to 15 points of moisture.

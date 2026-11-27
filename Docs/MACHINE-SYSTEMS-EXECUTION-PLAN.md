@@ -1,3 +1,12 @@
+**Orrit's one-time sieve gives rain clay an ordinary path to the watch bell — November 27, 2026, America/Chicago.**
+The player followed the retained dry packet's new Examine clue to Orrit,
+paid 29 of 31 drams for one native sieve, and screened the original packet.
+One of the two clay measures quieted Morrowfast's bell. Only the two
+watchkeepers reacted to its call. Fresh Continue kept the completed job,
+same sieve, quiet bell, remaining clay and grit, and Orrit's sold-out slot.
+All 182 connected cases passed.
+[Playtest and receipts](Verification/MachineSystems/MorrowfastHandSieve20261127/README.md)
+
 **Gantry's repaired guest-cloth dries damp gear in a shower — November 27, 2026, America/Chicago.**
 The ordinary seed-65 traveler gathered a rainy seam packet at western
 Morrowfast, carried it back to Gantry, and aired it from 25% moisture to
