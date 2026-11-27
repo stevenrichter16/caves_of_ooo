@@ -22,10 +22,10 @@ namespace CavesOfOoo.Core
                 return Refuse("Speak to a porter who is free to work.", out refusal);
             if (!WorldResourceActions.Ground(parcel, zone) || parcel.GetPart<PhysicsPart>()?.Takeable != true
                 || SpatialQuery.Distance(zone, worker, parcel) > 1 || SpatialQuery.Distance(zone, payer, parcel) > 1)
-                return Refuse("Set a box with two measures of lining clay beside you and the porter.", out refusal);
-            int weight = DeliveryStoragePart.ParcelWeightOrZero(parcel, zone);
+                return Refuse($"Set a box with {DeliveryStoragePart.ParcelMeasureText(shelf, zone)} measures of lining clay beside you and the porter.", out refusal);
+            int weight = DeliveryStoragePart.ParcelWeightOrZero(parcel, zone, shelf);
             if (weight == 0)
-                return Refuse("The shelf takes one box packed with two measures of lining clay.", out refusal);
+                return Refuse($"The shelf takes one box packed with {DeliveryStoragePart.ParcelMeasureText(shelf, zone)} measures of lining clay.", out refusal);
             long looseWeight = parcel.GetPart<ContainerPart>().Contents.Sum(item => (long)InventoryPart.GetItemWeight(item));
             if (looseWeight < 0 || looseWeight > weight)
                 return Refuse("The contents do not match the weight of this box.", out refusal);
@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
             if (new[] { payer, worker, parcel, shelf }.Any(owner => zone.GetReadOnlyEntities().Count(e => e.ID == owner.ID) != 1))
                 return Refuse("The people, loading point and shelf must still be here.", out refusal);
 
-            if (!Fits(worker, parcel, alreadyCarried: false, out int freeBefore))
+            if (!Fits(worker, parcel, alreadyCarried: false, out int freeBefore, shelf))
                 return Refuse("The porter cannot carry this box with their current gear.", out refusal);
 
             var steps = Route(worker, shelf, zone);
@@ -73,11 +73,11 @@ namespace CavesOfOoo.Core
                     && order.SiteCurrent(zone) && !order.Active && ClearStep(worker, zone, next));
         }
 
-        internal bool Fits(Entity worker, Entity parcel, bool alreadyCarried, out int freeBefore)
+        internal bool Fits(Entity worker, Entity parcel, bool alreadyCarried, out int freeBefore, Entity shelf = null)
         {
             freeBefore = 0;
             if (worker?.GetPart<InventoryPart>() is not { } pack || worker.SpatialZone == null) return false;
-            int weight = DeliveryStoragePart.ParcelWeightOrZero(parcel, worker.SpatialZone);
+            int weight = DeliveryStoragePart.ParcelWeightOrZero(parcel, worker.SpatialZone, shelf);
             if (weight == 0 || !HandlingService.CanLift(worker, parcel, out _)) return false;
             int capacity = pack.GetMaxCarryWeight();
             if (pack.MaxWeight >= 0) capacity = Math.Min(capacity, pack.MaxWeight);

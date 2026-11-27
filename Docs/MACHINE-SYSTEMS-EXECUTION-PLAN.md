@@ -1,3 +1,14 @@
+**One measure by porter and one on foot repair the Gleaners' well — November 27, 2026, America/Chicago.**
+Seed 65 supplied four fire clay through an ordinary allotment harvest.
+The player boxed one, carried one and left two nearby. The same
+25-step public route quoted seven drams for the four-pound parcel.
+The porter delivered the same box and received seven drams. The player
+collected the box and used both measures for the existing well repair.
+Fresh Continue kept the repaired well, payment and empty box. All 112
+targeted native checks passed. The original Editor paused during nearby
+NPC combat before booking and then recovered. Wider performance remains open.
+[Playtest, test results and limits](Verification/MachineSystems/GleanersOneMeasure20261127/README.md)
+
 **Sill's locally gathered sand earns the same durable well repair — November 27, 2026, America/Chicago.**
 In seed 65, ordinary trade and pocket work produced one local silver sand
 and filled a reusable flask. The elder's manual and that exact sand paid

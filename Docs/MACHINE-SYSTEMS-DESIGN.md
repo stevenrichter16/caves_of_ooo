@@ -1,3 +1,10 @@
+**Gleaners' public porter can take a smaller load.**
+The traveler can box one or two measures at the same post. One costs
+one dram less on the same walk. The player used one delivered measure
+and one carried measure for the same two-measure well repair. A fresh
+Continue kept the working well and the settled fare.
+[Playtest and receipts](Verification/MachineSystems/GleanersOneMeasure20261127/README.md)
+
 **Local and freight sand serve the same Sill filtration repair.**
 One real local deposit and one earned freight reward reached the same
 existing permanent repair in two different seeds. Each keeper took one

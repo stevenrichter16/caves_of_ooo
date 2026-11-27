@@ -137,8 +137,8 @@ namespace CavesOfOoo.Core
             if (ReceivesParcels)
             {
                 if (container.Contents.Count != 0) return "The receiving shelf already holds a box.";
-                return ParcelWeightOrZero(item, zone) > 0
-                    ? null : "The shelf takes one box packed with two measures of lining clay.";
+                return ParcelWeightOrZero(item, zone, ParentEntity) > 0
+                    ? null : $"The shelf takes one box packed with {ParcelMeasureText(ParentEntity, zone)} measures of lining clay.";
             }
 
             int stored = ReadMeasures(zone);
@@ -192,10 +192,20 @@ namespace CavesOfOoo.Core
                 transaction.AfterCommit(() => ContentsWithdrawn = true);
         }
 
-        internal static int ParcelWeightOrZero(Entity item, Zone zone)
+        private static bool AcceptsOneMeasure(Entity shelf, Zone zone) =>
+            zone?.ZoneID == GleanersDistrict.SurfaceID
+            && shelf?.BlueprintName == GleanersReceivingSite.ShelfBlueprint
+            && !shelf.HasPart<LocalShipmentReceiverPart>();
+
+        internal static string ParcelMeasureText(Entity shelf, Zone zone) =>
+            AcceptsOneMeasure(shelf, zone) ? "one or two" : "two";
+
+        internal static int ParcelWeightOrZero(Entity item, Zone zone, Entity shelf = null)
         {
             var storage = item?.GetPart<DeliveryStoragePart>();
-            if (storage == null || storage.IsFixed || storage.ReadMeasures(zone) != Measures) return 0;
+            if (storage == null || storage.IsFixed) return 0;
+            int measures = storage.ReadMeasures(zone);
+            if (measures != Measures && !(measures == 1 && AcceptsOneMeasure(shelf, zone))) return 0;
             int weight = HandlingService.GetWeight(item);
             return weight is > 0 and <= 8 ? weight : 0;
         }

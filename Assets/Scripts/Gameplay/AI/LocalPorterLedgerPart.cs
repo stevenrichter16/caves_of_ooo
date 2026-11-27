@@ -37,7 +37,7 @@ namespace CavesOfOoo.Core
             if (Active && context.Viewer != Payer)
                 return shipment == null ? "The porter has a delivery booked." : "The porter is carrying out a delivery to the wayside kitchen.";
             if (!Active) return Note ?? (shipment != null ? "A box of lining clay waits for the wayside kitchen."
-                : "Pack two measures of clay and set the box at this loading marker. Manual carrying remains free.");
+                : $"Pack {DeliveryStoragePart.ParcelMeasureText(Shelf, context.Zone)} measures of clay and set the box at this loading marker. Manual carrying remains free.");
             int held = Phase == LocalPorterPhase.Booked ? Fare : Fare - DepartureFee;
             string status = Phase switch
             {
@@ -53,7 +53,7 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             if (context.Owner != ParentEntity || Shipment != null || Role == null || Box == null || Shelf == null) return;
-            guide.How.Add("Carry one measure at a time or both loose without a fee. To hire the porter, pack both measures into the box and bring it here.");
+            guide.How.Add($"Carry one measure at a time or both loose without a fee. To hire the porter, pack {DeliveryStoragePart.ParcelMeasureText(Shelf, context.Zone)} measures into the box and bring it here.");
             guide.Limits.Add("A shorter clear walk can lower the next fare. The hire quote includes the current route and the weight of the packed box.");
             guide.Limits.Add("Hard pack room is the remaining space under your pack limit. The weight on the HUD shows your strength allowance.");
             guide.Limits.Add("The porter earns one dram at pickup and the rest on receipt. If the parcel returns, you get the remaining fare back.");
@@ -183,7 +183,7 @@ namespace CavesOfOoo.Core
                 return Execute(zone, Load);
 
             var target = Phase == LocalPorterPhase.Returning ? ParentEntity : Shelf;
-            if (!Role.Fits(Worker, Box, alreadyCarried: true, out _)) return Pause("The loaded box is too heavy.");
+            if (!Role.Fits(Worker, Box, alreadyCarried: true, out _, Shelf)) return Pause("The loaded box is too heavy.");
             if (Phase == LocalPorterPhase.Carrying && !EmptyShelf()) return Pause("The receiving shelf is full or locked.");
             if (SpatialQuery.Distance(zone, Worker, target) <= 1)
                 return Execute(zone, Phase == LocalPorterPhase.Returning ? ReturnBox : Deliver);
@@ -197,7 +197,7 @@ namespace CavesOfOoo.Core
             bool moved = MovementSystem.TryMoveChecked(Worker, zone, next.X - here.X, next.Y - here.Y,
                 () => Phase == phase && zone.GetEntityCell(Worker) == here && SiteCurrent(zone)
                     && (phase == LocalPorterPhase.Returning || StaticShelf(zone)) && Reserved(zone) && Carrying(zone)
-                    && Role?.Available(Worker, zone) == true && Role.Fits(Worker, Box, alreadyCarried: true, out _)
+                    && Role?.Available(Worker, zone) == true && Role.Fits(Worker, Box, alreadyCarried: true, out _, Shelf)
                     && LocalPorterPart.ClearStep(Worker, zone, next));
             if (OrderID == order && Phase == phase)
             {
@@ -250,7 +250,7 @@ namespace CavesOfOoo.Core
             var command = new PutInContainerCommand(Shelf, Box);
             if (!command.Validate(context).IsValid || !command.Execute(context, tx).Success) return false;
             if (shipment != null) tx.Do(() => Box.AddPart(mark), () => Box.RemovePart(mark));
-            tx.BeforeCommit(() => Shipment == shipment && StaticShelf(zone) && Shelf.GetPart<ContainerPart>().Contents.Count == 1
+            tx.BeforeCommit(() => Shipment == shipment && StaticShelf(zone) && CargoCurrent(zone) && Shelf.GetPart<ContainerPart>().Contents.Count == 1
                 && Shelf.GetPart<ContainerPart>().Contents[0] == Box && Box.GetPart<PhysicsPart>()?.InInventory == Shelf);
             return Close(zone, tx, LocalPorterPhase.Delivered, "The box reached the receiving shelf. The porter has been paid.");
         }
@@ -263,7 +263,7 @@ namespace CavesOfOoo.Core
             if (!snapshot.Apply(() => Worker.GetPart<InventoryPart>().RemoveObject(Box))) return false;
             if (!zone.AddEntity(Box, OriginX, OriginY)) return false;
             tx.Do(null, () => { if (Box.SpatialZone == zone) zone.RemoveEntity(Box); });
-            tx.BeforeCommit(() => SiteCurrent(zone) && AtSource(zone) && DeliveryStoragePart.ParcelWeightOrZero(Box, zone) > 0);
+            tx.BeforeCommit(() => SiteCurrent(zone) && AtSource(zone) && CargoCurrent(zone));
             return Close(zone, tx, LocalPorterPhase.Cancelled, "The same box returned to the loading marker. One dram was earned at pickup.");
         }
 
@@ -371,8 +371,13 @@ namespace CavesOfOoo.Core
         private bool Reserved(Zone zone)
         {
             if (OrderZone != zone?.ZoneID || Box?.GetPart<LocalPorterReservationPart>() is not { } mark
-                || mark.ParentEntity != Box || mark.Ledger != ParentEntity || mark.OrderID != OrderID
-                || DeliveryStoragePart.ParcelWeightOrZero(Box, zone) <= 0) return false;
+                || mark.ParentEntity != Box || mark.Ledger != ParentEntity || mark.OrderID != OrderID) return false;
+            return CargoCurrent(zone);
+        }
+
+        private bool CargoCurrent(Zone zone)
+        {
+            if (DeliveryStoragePart.ParcelWeightOrZero(Box, zone, Shelf) <= 0) return false;
             var contents = Box.GetPart<ContainerPart>().Contents;
             return contents[0] == FirstMeasure && (contents.Count == 2 ? contents[1] : null) == SecondMeasure && CargoText() == Manifest;
         }
@@ -380,7 +385,7 @@ namespace CavesOfOoo.Core
             && !zone.GetReadOnlyEntities().Any(e => e.ID == Box.ID);
         private bool LoadCurrent(Zone zone) => Phase == LocalPorterPhase.Booked && SiteCurrent(zone) && EscrowCurrent()
             && AtSource(zone) && StaticShelf(zone) && Reserved(zone) && Role?.Available(Worker, zone) == true
-            && SpatialQuery.Distance(zone, Worker, Box) <= 1 && Role.Fits(Worker, Box, alreadyCarried: false, out _);
+            && SpatialQuery.Distance(zone, Worker, Box) <= 1 && Role.Fits(Worker, Box, alreadyCarried: false, out _, Shelf);
         private bool Failure(Zone zone) => !LocalGatheringClaims.Alive(Worker) || !Exact(Worker, zone) || Role == null || !Reserved(zone)
             || zone.GetEntityPosition(ParentEntity) != (OriginX, OriginY)
             || (Phase == LocalPorterPhase.Booked ? !StaticShelf(zone) || !AtSource(zone) : !Carrying(zone));

@@ -58,6 +58,16 @@ namespace CavesOfOoo.Core
             var owner = ParentEntity;
             if (Text == GleanersDistrict.LegacyWellFlavor && owner?.GetPart<ExaminablePart>() == this)
                 return GleanersDistrict.ResolveWellFlavor(owner);
+            if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<DeliveryStoragePart>() is { } storage
+                && storage.ParentEntity == owner)
+            {
+                if (owner.BlueprintName == GleanersReceivingSite.ShelfBlueprint)
+                    return Text?.Replace("An open shelf for one small box containing two measures of lining clay.",
+                        $"An open shelf for one small box containing {DeliveryStoragePart.ParcelMeasureText(owner, owner.SpatialZone)} measures of lining clay.");
+                if (owner.BlueprintName == GleanersReceivingSite.ParcelBlueprint)
+                    return Text?.Replace("A small wooden box for two measures of lining clay.",
+                        "A small wooden box that holds up to two measures of lining clay.");
+            }
             if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<KitchenBatchPart>() is KitchenBatchPart batch
                 && batch.ParentEntity == owner)
                 return batch.ResolveDescription(Text);

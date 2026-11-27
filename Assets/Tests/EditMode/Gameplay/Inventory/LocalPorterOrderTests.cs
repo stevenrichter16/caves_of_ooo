@@ -11,6 +11,211 @@ namespace CavesOfOoo.Tests
     public sealed class LocalPorterOrderTests : FiftyWorldFixture
     {
         [Test]
+        public void OneMeasureHomeFreightCostsOneDramLessOnTheSameWalk()
+        {
+            using var content = new HaulingContentScope();
+            var (ledger, clay, _) = ArrangeHomeFreight(content);
+            var porter = ledger.Worker.GetPart<LocalPorterPart>();
+            var additional = content.Factory.CreateEntity("FireClay");
+            Assert.True(Pack.AddObject(additional));
+            var packed = InventorySystem.ExecuteCommand(new PutInContainerCommand(ledger.Box, additional), Actor, Zone);
+            Assert.True(packed.Success, packed.ErrorMessage);
+            Assert.True(porter.TryQuote(Actor, ledger.Box, ledger.Shelf, Zone, out var two, out var refusal), refusal);
+            var old = HireRow(ledger);
+            Assert.That(old.Hint, Does.Contain("5 lb boxed").And.Contain("2 lb loose"));
+            Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(ledger.Box, additional), Actor, Zone).Success);
+
+            Assert.True(porter.TryQuote(Actor, ledger.Box, ledger.Shelf, Zone, out var one, out refusal), refusal);
+            Assert.AreEqual(5, two.LoadedWeight);
+            Assert.AreEqual(4, one.LoadedWeight);
+            Assert.AreEqual(1, one.LooseWeight);
+            Assert.That(one.Steps, Is.EqualTo(two.Steps));
+            Assert.AreEqual(two.Fare - 1, one.Fare);
+            var fresh = HireRow(ledger);
+            Assert.That(fresh.Display, Is.EqualTo($"hire porter ({one.Fare} drams)"));
+            Assert.That(fresh.Hint, Does.Contain("4 lb boxed").And.Contain("1 lb loose"));
+            Assert.That(fresh.Command, Is.Not.EqualTo(old.Command));
+            Assert.False(Act(ledger.ParentEntity, old.Command));
+            Assert.AreEqual(50, TradeSystem.GetDrams(Actor));
+            Assert.AreEqual(0, TradeSystem.GetDrams(ledger.ParentEntity));
+            Assert.AreEqual(LocalPorterPhase.Open, ledger.Phase);
+            Assert.False(LocalPorterReservationPart.Blocks(ledger.Box));
+            Assert.That(ledger.Box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(clay));
+            Assert.That(Pack.Objects, Does.Contain(additional));
+        }
+
+        [Test]
+        public void OneMeasureHomeFreightMovesTheExactBoxThroughPickupSaveAndWithdrawal()
+        {
+            using var content = new HaulingContentScope();
+            var (ledger, clay, manager) = ArrangeHomeFreight(content);
+            var box = ledger.Box;
+            var worker = ledger.Worker;
+            var marker = ledger.ParentEntity;
+            Assert.False(LocalPorterReservationPart.Blocks(box));
+            string command = Hire(ledger);
+            Assert.True(Act(marker, command));
+            int fare = ledger.Fare;
+            string order = ledger.OrderID;
+            Assert.AreEqual(LocalPorterPhase.Booked, ledger.Phase);
+            Assert.AreEqual(50 - fare, TradeSystem.GetDrams(Actor));
+            Assert.AreEqual(fare, TradeSystem.GetDrams(marker));
+            Assert.That(box.GetPart<LocalPorterReservationPart>().Ledger, Is.SameAs(marker));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(clay));
+            Assert.False(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(box, clay), Actor, Zone).Success);
+
+            Assert.True(ledger.TryAct(Zone));
+            Assert.AreEqual(LocalPorterPhase.Carrying, ledger.Phase);
+            Assert.That(box.GetPart<PhysicsPart>().InInventory, Is.SameAs(worker));
+            Assert.AreEqual(fare - 1, TradeSystem.GetDrams(marker));
+            Assert.AreEqual(8, TradeSystem.GetDrams(worker));
+
+            using var stream = new MemoryStream();
+            GameSessionState.Capture("gleaners-one-measure", "carrying", manager, null, Actor).Save(new SaveWriter(stream));
+            stream.Position = 0;
+            var saved = GameSessionState.Load(new SaveReader(stream, content.Factory));
+            Zone = saved.ZoneManager.ActiveZone;
+            Actor = saved.Player;
+            SettlementRuntime.ActiveZone = Zone;
+            var returned = Zone.GetReadOnlyEntities().Single(e => e.ID == marker.ID).GetPart<LocalPorterLedgerPart>();
+            Assert.AreEqual(order, returned.OrderID);
+            Assert.AreEqual(LocalPorterPhase.Carrying, returned.Phase);
+            Assert.That(returned.Payer, Is.SameAs(Actor));
+            Assert.AreEqual(box.ID, returned.Box.ID);
+            var destination = returned.Shelf;
+            var returnedClay = returned.Box.GetPart<ContainerPart>().Contents.Single();
+            Assert.AreEqual(clay.ID, returnedClay.ID);
+            Assert.That(returned.Box.GetPart<PhysicsPart>().InInventory, Is.SameAs(returned.Worker));
+
+            WorkUntil(returned, LocalPorterPhase.Delivered);
+            Assert.That(destination.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(returned.Box));
+            Assert.That(returned.Box.GetPart<PhysicsPart>().InInventory, Is.SameAs(destination));
+            Assert.False(LocalPorterReservationPart.Blocks(returned.Box));
+            Assert.AreEqual(7 + fare, TradeSystem.GetDrams(returned.Worker));
+            Assert.AreEqual(50 - fare, TradeSystem.GetDrams(Actor));
+            Assert.AreEqual(0, TradeSystem.GetDrams(returned.ParentEntity));
+            Assert.False(returned.TryAct(Zone));
+            Assert.AreEqual(7 + fare, TradeSystem.GetDrams(returned.Worker));
+
+            var at = Zone.GetEntityCell(destination);
+            Assert.True(Zone.MoveEntity(Actor, at.X, at.Y));
+            Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(destination, returned.Box), Actor, Zone).Success);
+            Assert.True(InventorySystem.ExecuteCommand(new DropCommand(returned.Box), Actor, Zone).Success);
+            Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(returned.Box, returnedClay), Actor, Zone).Success);
+            Assert.That(Pack.Objects.Single(e => e.BlueprintName == "PreparedLiningClay"), Is.SameAs(returnedClay));
+            Assert.AreEqual(1, returnedClay.GetPart<StackerPart>().StackCount);
+            Assert.That(destination.GetPart<ContainerPart>().Contents, Is.Empty);
+            Assert.That(returned.Box.GetPart<ContainerPart>().Contents, Is.Empty);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void OneMeasureHomeFreightCancellationReturnsTheSameStockAndClosesTheQuote(bool afterPickup)
+        {
+            using var content = new HaulingContentScope();
+            var (ledger, clay, _) = ArrangeHomeFreight(content);
+            var box = ledger.Box;
+            var origin = Zone.GetEntityCell(box);
+            var worker = ledger.Worker;
+            string previous = Hire(ledger);
+            Assert.True(Act(ledger.ParentEntity, previous));
+            if (afterPickup)
+            {
+                Assert.True(ledger.TryAct(Zone));
+                Assert.True(ledger.TryAct(Zone));
+                Assert.AreEqual(LocalPorterPhase.Carrying, ledger.Phase);
+            }
+            Assert.True(Act(ledger.ParentEntity, Cancel(ledger)));
+            if (afterPickup) WorkUntil(ledger, LocalPorterPhase.Cancelled);
+
+            Assert.AreEqual(LocalPorterPhase.Cancelled, ledger.Phase);
+            Assert.That(Zone.GetEntityCell(box), Is.SameAs(origin));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(clay));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.AreEqual(1, clay.GetPart<StackerPart>().StackCount);
+            Assert.That(ledger.Shelf.GetPart<ContainerPart>().Contents, Is.Empty);
+            Assert.False(LocalPorterReservationPart.Blocks(box));
+            Assert.False(Act(ledger.ParentEntity, previous));
+            Assert.AreEqual(afterPickup ? 49 : 50, TradeSystem.GetDrams(Actor));
+            Assert.AreEqual(afterPickup ? 8 : 7, TradeSystem.GetDrams(worker));
+            Assert.AreEqual(0, TradeSystem.GetDrams(ledger.ParentEntity));
+        }
+
+        [Test]
+        public void OneMeasureHomeFreightReturnsTheSameBoxWhenTheShelfDisappearsInTransit()
+        {
+            using var content = new HaulingContentScope();
+            var (ledger, clay, _) = ArrangeHomeFreight(content);
+            var box = ledger.Box;
+            var origin = Zone.GetEntityCell(box);
+            var shelf = ledger.Shelf;
+            Assert.True(Act(ledger.ParentEntity, Hire(ledger)));
+            Assert.True(ledger.TryAct(Zone));
+            Assert.True(ledger.TryAct(Zone));
+            Assert.AreEqual(LocalPorterPhase.Carrying, ledger.Phase);
+            Assert.That(box.GetPart<PhysicsPart>().InInventory, Is.SameAs(ledger.Worker));
+            Assert.True(Zone.RemoveEntity(shelf));
+
+            Assert.True(ledger.TryAct(Zone));
+            Assert.AreEqual(LocalPorterPhase.Returning, ledger.Phase);
+            Assert.That(box.GetPart<PhysicsPart>().InInventory, Is.SameAs(ledger.Worker));
+            WorkUntil(ledger, LocalPorterPhase.Cancelled);
+            Assert.That(Zone.GetEntityCell(box), Is.SameAs(origin));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(clay));
+            Assert.That(clay.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.AreEqual(1, clay.GetPart<StackerPart>().StackCount);
+            Assert.That(shelf.GetPart<ContainerPart>().Contents, Is.Empty);
+            Assert.False(LocalPorterReservationPart.Blocks(box));
+            Assert.AreEqual(49, TradeSystem.GetDrams(Actor));
+            Assert.AreEqual(8, TradeSystem.GetDrams(ledger.Worker));
+            Assert.AreEqual(0, TradeSystem.GetDrams(ledger.ParentEntity));
+        }
+
+        [Test]
+        public void OneMeasureHomeFreightDoesNotRelaxANoncanonicalLoadingPost()
+        {
+            var ledger = Arrange();
+            var stock = ledger.Box.GetPart<ContainerPart>().Contents.Single();
+            string normal = Hire(ledger);
+            stock.GetPart<StackerPart>().StackCount = 1;
+
+            Assert.False(ledger.Worker.GetPart<LocalPorterPart>().TryQuote(Actor, ledger.Box, ledger.Shelf, Zone, out _, out _));
+            Assert.False(Act(ledger.ParentEntity, normal));
+            Assert.AreEqual(LocalPorterPhase.Open, ledger.Phase);
+            Assert.AreEqual(50, TradeSystem.GetDrams(Actor));
+            Assert.False(LocalPorterReservationPart.Blocks(ledger.Box));
+            Assert.That(stock.GetPart<PhysicsPart>().InInventory, Is.SameAs(ledger.Box));
+        }
+
+        private (LocalPorterLedgerPart ledger, Entity clay, OverworldZoneManager manager) ArrangeHomeFreight(HaulingContentScope content)
+        {
+            content.Seed(64);
+            var manager = OverworldZoneManager.CreateDetached(content.Factory, 64, true);
+            Assert.True(Zone.RemoveEntity(Actor));
+            Zone = manager.GetZone(GleanersDistrict.SurfaceID);
+            manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            var marker = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == "GleanersLoadingMarker");
+            var ledger = marker.GetPart<LocalPorterLedgerPart>();
+            Assert.That(ledger.Shelf.BlueprintName, Is.EqualTo("LiningClayReceivingShelf"));
+            var post = Zone.GetEntityCell(marker);
+            // Generated owners and test participants share one sequence of physical IDs.
+            Actor = content.Factory.CreateEntity("Player");
+            Assert.NotNull(Actor);
+            Assert.True(Zone.AddEntity(Actor, post.X, post.Y));
+            Pack.MaxWeight = 200;
+            var clay = content.Factory.CreateEntity("PreparedLiningClay");
+            Assert.NotNull(clay);
+            Assert.True(Pack.AddObject(clay));
+            Assert.AreEqual(1, clay.GetPart<StackerPart>().StackCount);
+            var packed = InventorySystem.ExecuteCommand(new PutInContainerCommand(ledger.Box, clay), Actor, Zone);
+            Assert.True(packed.Success, packed.ErrorMessage);
+            TradeSystem.SetDrams(Actor, 50);
+            TradeSystem.SetDrams(ledger.Worker, 7);
+            return (ledger, clay, manager);
+        }
+
+        [Test]
         public void TheLoadingGuideExplainsFreeSmallCarriesAndTheActualWalkingFare()
         {
             var ledger = Arrange();

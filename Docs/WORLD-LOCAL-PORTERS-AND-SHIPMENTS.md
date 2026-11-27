@@ -52,6 +52,19 @@ spends one action and pays one dram at pickup, then settles or refunds the
 rest. A changed load requires a fresh choice even within the same fare band.
 [Evidence](Verification/MachineSystems/PorterLoadComparison20261125/README.md)
 
+The public Gleaners’ loading post quotes a box with one or two measures.
+On the same walk, one measure brings the box down from five pounds to four and
+costs one dram less under the existing fare. This gives a traveler a reason to
+send one measure and bring another on foot. The well still needs two compatible
+measures together. The Wayside kitchen’s existing order still requires its
+agreed two measures.
+
+Requote when the contents change. Preserve the agreed physical box, exact clay
+and custody through pickup, delivery, cancellation and reload. If the shelf
+disappears after pickup, the porter returns that same parcel and earns only the
+pickup dram. The shelf stays open to ordinary collection.
+[Evidence](Verification/MachineSystems/GleanersOneMeasure20261127/README.md)
+
 ## Park a loose measure near the work
 
 Roadmap 16–17. The Gleaners’ well can have an optional public tray

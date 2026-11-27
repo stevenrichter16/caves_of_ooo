@@ -6,8 +6,8 @@ namespace CavesOfOoo.Core
     /// <summary>Optional fittings for a freshly built Gleaners' district.</summary>
     internal static class GleanersReceivingSite
     {
-        private const string ParcelBlueprint = "LiningClayParcel";
-        private const string ShelfBlueprint = "LiningClayReceivingShelf";
+        internal const string ParcelBlueprint = "LiningClayParcel";
+        internal const string ShelfBlueprint = "LiningClayReceivingShelf";
         private const string TrayBlueprint = "LiningClaySupplyTray";
 
         internal static bool TryInstallLooseStorage(Zone zone, OverworldZoneManager manager)
