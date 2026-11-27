@@ -7,6 +7,8 @@ F1 returned to the same two-unit offer. Fresh Continue kept the
 purchase and Yevven's custody of the original sold stack.
 All 508 focused native checks passed.
 [Trading screen playtest](Verification/TradeLedger20261127/README.md)
+The universal Mac package for `4822322fe` passed Apple M5 startup.
+[Mac startup receipt](Verification/TradeLedger20261127/mac-startup-verification.json)
 The next machine slice can use the retained field dressing at a natural
 hazard. Two native expiry regressions already reproduce against main.
 

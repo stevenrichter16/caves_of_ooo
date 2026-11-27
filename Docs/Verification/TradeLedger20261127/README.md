@@ -53,3 +53,11 @@ included trade, consignment, barter, inventory presentation, F1,
 capacity refusal and modal ownership. The accepted whole-suite
 accounting remains on the separately pinned regression snapshot.
 [Full regression accounting](../MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
+
+## Mac startup
+
+The universal Mac package for `4822322fe` built and started on Apple M5.
+Six bundled binaries contain arm64 and x86_64. The startup check
+preserved the previous package and all 876 normal Quick files. The
+gameplay checks above ran in the Editor.
+[Mac startup receipt](mac-startup-verification.json)
