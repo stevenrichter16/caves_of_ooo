@@ -60,6 +60,21 @@ namespace CavesOfOoo.Core
             return weather.Season == Season ? ("*", "&Y") : (";", "&y");
         }
 
+        internal bool TryGetNorthLichenReadiness(Zone zone, out bool ready)
+        {
+            ready = false;
+            var owner = ParentEntity;
+            if (zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID || Harvested
+                || owner?.BlueprintName != "FrostLichenPatch"
+                || owner.GetProperty(SpreadExplorationWorksites.RoleKey) != SpreadExplorationWorksites.SeasonalColdForage
+                || Season != 3 || YieldBlueprint != "FrostLichen" || YieldMin != 1 || YieldMax != 1 || YieldChance != 100
+                || !FixedSource(zone)) return false;
+            var weather = Weather(zone);
+            if (!weather.Valid) return false;
+            ready = weather.Season == Season;
+            return true;
+        }
+
         internal Func<bool> CaptureSeason(Zone zone, Cell sourceCell, int? selectedSeason = null)
         {
             var owner = ParentEntity;

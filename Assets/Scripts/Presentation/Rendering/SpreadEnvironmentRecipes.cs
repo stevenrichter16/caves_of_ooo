@@ -22,7 +22,17 @@ namespace CavesOfOoo.Rendering
    int variant;char last=native.ModelId[native.ModelId.Length-1];
    if(last>='0'&&last<='3')variant=last-'0';
    else{unchecked{uint hash=2166136261;foreach(char c in native.ModelId)hash=(hash^c)*16777619;if(owner.ID!=null)foreach(char c in owner.ID)hash=(hash^c)*16777619;variant=(int)(hash%4);}}
-   return new SpawnRing3DRecipe(owner,SpreadEnvironmentSource.ModelId(family,variant),native.ComponentId,native.Position,native.Transient,native.Batched,quarterTurns:native.QuarterTurns);
+   // A seasonal source uses its existing frost body but keeps an individual,
+   // visible-only view so the current crust cannot be read through fog.
+   bool seasonalLichen=family=="frost-lichen"&&TryGetNorthLichenReadiness(zone,owner,out _);
+   return new SpawnRing3DRecipe(owner,SpreadEnvironmentSource.ModelId(family,variant),native.ComponentId,native.Position,
+    native.Transient||seasonalLichen,native.Batched&&!seasonalLichen,quarterTurns:native.QuarterTurns);
+  }
+  internal static bool TryGetNorthLichenReadiness(Zone zone,Entity owner,out bool ready)
+  {
+   ready=false;
+   return owner?.GetPart<SeasonalHarvestPart>() is { } harvest && harvest.ParentEntity==owner
+    && harvest.TryGetNorthLichenReadiness(zone,out ready);
   }
   // Both initial admission and final refinement use this exact native source.
   internal static string GatheringFamily(Zone zone,Entity owner)

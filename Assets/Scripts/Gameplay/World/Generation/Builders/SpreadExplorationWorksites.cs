@@ -11,7 +11,7 @@ namespace CavesOfOoo.Core
  {
   /// <summary>Presentation/debug identity on new site owners; never authority to acquire a source.</summary>
   public const string RoleKey="SpreadWorksite.Role";
-  const string SeasonalColdForage="seasonal-cold-forage";
+  internal const string NorthWorksZoneID="Overworld.11.9.0", SeasonalColdForage="seasonal-cold-forage";
   static readonly (int x,int y) Arrival=(40,12);
   const int MaxTrials=256;
   public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,

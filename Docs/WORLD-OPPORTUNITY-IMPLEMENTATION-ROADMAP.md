@@ -76,6 +76,13 @@ comparison used the same view with controlled calendar advances. The
 player harvested the ripe heads and retained the exact bundle through
 Continue. [Knotflax playtest](Verification/MachineSystems/KnotflaxWorldCue20261126/README.md)
 
+At North Works the shallow frost lichen's growing phase also changes
+its shape while the ordinary deep patch keeps its year-round appearance.
+The two map views and existing one-pinch gathering passed a controlled
+calendar comparison and ordinary Continue in one seed. This extends
+#32 to native art and a separate regional material.
+[North Works playtest](Verification/MachineSystems/NorthLichenWorldCue20261127/README.md)
+
 The Sumphold oil recovery also supports #39–40 through an earned purchase
 and paid lasting Sill repair. Actual play returned to the same path
 approach and measured greater light in two already visible cells. Fresh

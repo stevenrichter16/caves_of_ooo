@@ -631,7 +631,7 @@ namespace CavesOfOoo.Rendering
             ClearWorldAffordance();
             CurrentZone = zone;
             _fieldOpportunityPaintTick = int.MinValue;
-            _knotflaxPaintSeason = -1;
+            _fieldOpportunityPaintSeason = -1;
             _envSpriteRenderer?.ClearFlatPaintReceipts();
             SyncFlatPixelMode();
             _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
@@ -832,29 +832,32 @@ namespace CavesOfOoo.Rendering
         internal bool OwnsEnvironmentRenderer(EnvironmentSpriteRenderer renderer) => _envSpriteRenderer == renderer;
 
         private int _fieldOpportunityPaintTick = int.MinValue;
-        private int _knotflaxPaintSeason = -1;
+        private int _fieldOpportunityPaintSeason = -1;
 
         // A wait can change local bloom or rain without moving the player.
         // Repaint only the visible sources affected by that clock change.
         private void InvalidateFieldOpportunityPaint()
         {
             var zone = CurrentZone;
-            if (zone?.ZoneID != RepairCultivationSite.ZoneID) return;
+            bool allotment = zone?.ZoneID == RepairCultivationSite.ZoneID;
+            if (!allotment && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
             int tick = WorldClock.CurrentTick;
             if (tick == _fieldOpportunityPaintTick) return;
             _fieldOpportunityPaintTick = tick;
-            foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>())
-                if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
-                    MarkCellDirty(cell, "Rain seam appearance");
+            if (allotment)
+                foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>())
+                    if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
+                        MarkCellDirty(cell, "Rain seam appearance");
 
             var weather = RegionalWeather.Current(zone, tick, RegionalWeather.PolicyVersion);
             int season = weather.Valid ? weather.Season : -1;
-            if (season == _knotflaxPaintSeason) return;
-            _knotflaxPaintSeason = season;
+            if (season == _fieldOpportunityPaintSeason) return;
+            _fieldOpportunityPaintSeason = season;
             foreach (var owner in zone.GetReadOnlyEntitiesWithPart<SeasonalHarvestPart>())
-                if (owner.BlueprintName == SeasonalSeedSite.Stand
+                if ((allotment ? owner.BlueprintName == SeasonalSeedSite.Stand
+                    : owner.GetProperty(SpreadExplorationWorksites.RoleKey) == SpreadExplorationWorksites.SeasonalColdForage)
                     && zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
-                    MarkCellDirty(cell, "Knotflax appearance");
+                    MarkCellDirty(cell, "Seasonal growth appearance");
         }
 
         private void LateUpdate()

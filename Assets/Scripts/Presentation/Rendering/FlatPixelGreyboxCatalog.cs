@@ -304,7 +304,13 @@ namespace CavesOfOoo.Rendering
             bool sharedVineNative = false;
             bool bucklerNative = false;
             bool portableCropNative = false;
-            if (!remembered && SharedVineRole(zone, owner))
+            if (!remembered && FieldOpportunityAppearance.IsDormantNorthLichen(zone, owner)
+                && TryResolveFallback(zone, x, y, out var crust))
+            {
+                foreground = crust.ForegroundTile;
+                foregroundColor = crust.ForegroundColor;
+            }
+            else if (!remembered && SharedVineRole(zone, owner))
             {
                 var vines = SharedVineWallArtFor(zone, owner);
                 if (vines != null && vines.TryResolve(zone, x, y, out var vineTile))
@@ -1553,7 +1559,13 @@ namespace CavesOfOoo.Rendering
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                             && _openingArt.TryResolve(owner, x, y, out art));
-            if (native) { foreground = art; foregroundColor = wellNative ? wellTint : boundaryNative ? boundaryTint : Color.white; }
+            if (!fallback.Remembered && FieldOpportunityAppearance.IsDormantNorthLichen(zone, owner))
+            {
+                native = false;
+                foreground = fallback.ForegroundTile;
+                foregroundColor = fallback.ForegroundColor;
+            }
+            else if (native) { foreground = art; foregroundColor = wellNative ? wellTint : boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
                 || mapGround && owner == mapFloor && FlatPixelWorldMapCatalog.IsPlainTerrain(mapFloor)
                 || spreadGround && owner == spreadFloor

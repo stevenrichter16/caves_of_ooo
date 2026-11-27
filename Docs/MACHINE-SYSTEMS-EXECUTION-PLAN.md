@@ -1,3 +1,11 @@
+**North Works shows the shallow lichen's harvest phase — November 27 UTC, 2026.**
+The fixed approach shows a low crust and then full fronds in both
+world views. The dormant menu withheld harvest. The real ripe harvest
+earned one pinch and cleared the shallow patch. Fresh Continue kept
+that result and the exact deeper ordinary patch. The clock advance was
+controlled and kept the same time of day.
+[North Works comparisons](Verification/MachineSystems/NorthLichenWorldCue20261127/README.md)
+
 **The S regression follow-up qualified the pinned inputs and fixtures — November 26 UTC, 2026.**
 Two files from the original commit restored 21 tests in the isolated
 clone. The four other additional S assertions passed with exact

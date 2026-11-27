@@ -1,3 +1,9 @@
+**North Works shows its shallow lichen's seasonal growth.**
+The low crust develops full fronds at the same phase that allows its
+one pinch to be gathered. Ordinary deep lichen keeps its usual supply.
+The previously proven freezing use still takes the same physical item.
+[North Works comparison](Verification/MachineSystems/NorthLichenWorldCue20261127/README.md)
+
 **The knotflax stand shows its current work on the map.**
 The existing early cord choice and later seed choice have distinct
 appearances. A dormant stand gives neither cue. The existing growth

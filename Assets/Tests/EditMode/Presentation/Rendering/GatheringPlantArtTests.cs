@@ -1,7 +1,9 @@
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
+using UnityEngine;
 namespace CavesOfOoo.Tests
 {
     public sealed class GatheringPlantArtTests
@@ -47,5 +49,71 @@ namespace CavesOfOoo.Tests
         [TestCase("BerryBush")][TestCase("FlowerField")]
         public void ExistingGatheringAndFlowerModelsKeepTheirIdentity(string blueprint)
         {using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID)){var plant=f.Add(blueprint);var id=Recipe(f,plant).ModelId;Assert.NotNull(id);Assert.False(id.Contains("stoneburr")||id.Contains("frost-lichen"));}}
+
+        [Test]
+        public void NorthShallowLichenChangesItsOwnSilhouetteAndKeepsVisibleCellSelection()
+        {
+            const string north = "Overworld.11.9.0";
+            var savedClock = TurnManager.Active;
+            try
+            {
+                using var f = new SpawnRing3DIntegrationFixture(north);
+                using var generation = new HaulingContentScope();
+                var clock = new TurnManager();
+                generation.Seed(unchecked(64 ^ FormationSelector.StableIndex(north, int.MaxValue)));
+                Assert.True(f.Zone.RemoveEntity(f.Player));
+                f.Manager = OverworldZoneManager.CreateDetached(generation.Factory, 64, true);
+                f.Manager.SetActiveZone(north);
+                f.Zone = f.Manager.ActiveZone;
+                Assert.True(f.Zone.AddEntity(f.Player, 40, 12));
+                var shallow = f.Zone.GetReadOnlyEntities().Single(owner =>
+                    owner.GetProperty(SpreadExplorationWorksites.RoleKey) == "seasonal-cold-forage");
+                var deep = f.Zone.GetReadOnlyEntities().Single(owner =>
+                    owner.GetProperty(SpreadExplorationWorksites.RoleKey) == "cold-forage");
+                var cell = f.Zone.GetEntityCell(shallow);
+                f.Reveal();
+                f.Bind(f.Zone);
+                f.Refresh();
+
+                var prior = Recipe(f, shallow);
+                Assert.That(prior.ModelId, Does.StartWith("spread-environment-frost-lichen-"));
+                Assert.That(prior.Transient, Is.True);
+                Assert.That(prior.Batched, Is.False);
+                var view = f.View(shallow);
+                var dormant = view.transform.localScale;
+                var deepModel = Recipe(f, deep);
+                Assert.That(deepModel.Batched, Is.True);
+                var center = Village3DProjection.CellCentre(cell.X, cell.Y);
+                var edge = new Vector2(center.x + .46f, center.z + .46f);
+                var presenter = (SpawnRing3DPresenter)f.Presenter;
+                Physics.SyncTransforms();
+                Assert.True(presenter.TryPickWorld(edge, out var picked, out int x, out int y));
+                Assert.That(picked, Is.SameAs(shallow));
+                Assert.That((x, y), Is.EqualTo((cell.X, cell.Y)));
+
+                clock.AdvanceClock(3 * RegionalWeather.CycleWindows / 4 * RegionalWeather.WindowTicks);
+                f.Refresh(f.Dirty(shallow));
+                Assert.That(f.View(shallow), Is.SameAs(view));
+                Assert.That(Recipe(f, shallow).ModelId, Is.EqualTo(prior.ModelId));
+                Assert.That(view.transform.localScale.x, Is.GreaterThan(dormant.x));
+                Assert.That(view.transform.localScale.y, Is.GreaterThan(dormant.y));
+                Assert.That(Recipe(f, deep).ModelId, Is.EqualTo(deepModel.ModelId));
+
+                cell.IsVisible = false;
+                f.Refresh(f.Dirty(shallow));
+                Assert.False(f.Rendered(shallow));
+                Assert.False(presenter.TryPickWorld(edge, out picked, out _, out _) && picked == shallow);
+                cell.IsVisible = true;
+                f.Refresh(f.Dirty(shallow));
+                Assert.True(f.Rendered(shallow));
+                Assert.That(f.View(shallow), Is.SameAs(view));
+                Assert.False(cell.BlocksMovement(f.Player));
+            }
+            finally
+            {
+                typeof(TurnManager).GetField("<Active>k__BackingField", BindingFlags.NonPublic | BindingFlags.Static)
+                    .SetValue(null, savedClock);
+            }
+        }
     }
 }

@@ -386,6 +386,12 @@ namespace CavesOfOoo.Rendering
             }
             if (view.Transient != recipe.Transient)
             { PrepareModel(view.Root, recipe.Transient, recipe.ModelId); view.Transient = recipe.Transient; }
+            if (SpreadEnvironmentRecipes.TryGetNorthLichenReadiness(CurrentZone, entity, out bool lichenReady))
+            {
+                var authoredScale = view.SourcePrefab.transform.localScale;
+                view.Root.transform.localScale = lichenReady ? authoredScale
+                    : Vector3.Scale(authoredScale, new Vector3(.55f, .3f, .55f));
+            }
             if (view.AuthoredQuarterTurns != recipe.QuarterTurns)
             { view.Root.transform.localRotation = view.FlatKeeper ? SeedKeeperFlatLibrary.WorldRotation : Quaternion.Euler(0, recipe.QuarterTurns * 90, 0); view.AuthoredQuarterTurns = recipe.QuarterTurns; }
             if (view.Target != recipe.Position || !Application.isPlaying || !PresentationVisible || view.MoveDuration <= 0)
@@ -797,7 +803,10 @@ namespace CavesOfOoo.Rendering
             // owns that complete native cell even at a rounded no-mesh corner.
             if (!flatOwnerWasHit && top != null && top.HasPart<MultiCellPilotPropPart>() && IsRenderedEntity(top))
             { owner = top; x = px; y = py; return true; }
-            if (top == null || !recipes.TryGetValue(top, out var recipe) || !recipe.Batched || !IsRenderedEntity(top)) return false;
+            if (top == null || !recipes.TryGetValue(top, out var recipe) || !IsRenderedEntity(top)) return false;
+            // A low seasonal crust retains the same visible-cell selection as
+            // the former batch, including places outside its small silhouette.
+            if (!recipe.Batched && (flatOwnerWasHit || !SpreadEnvironmentRecipes.TryGetNorthLichenReadiness(CurrentZone, top, out _))) return false;
             owner = top; x = px; y = py; return true;
         }
         private void Subscribe()

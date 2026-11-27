@@ -8,11 +8,16 @@ namespace CavesOfOoo.Rendering
 {
     internal static class FieldOpportunityAppearance
     {
+        internal static bool IsDormantNorthLichen(Zone zone, Entity owner)
+            => owner?.BlueprintName == "FrostLichenPatch" && zone?.GetEntityCell(owner) is { Explored: true, IsVisible: true }
+                && owner.GetPart<SeasonalHarvestPart>() is { } source && source.ParentEntity == owner
+                && source.TryGetNorthLichenReadiness(zone, out bool ready) && !ready;
+
         internal static bool TryGet(Zone zone, Entity owner, out char glyph, out string color)
         {
             glyph = default;
             color = null;
-            if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand) || owner.SpatialZone != zone
+            if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand or "FrostLichenPatch") || owner.SpatialZone != zone
                 || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true })
                 return false;
 
@@ -21,7 +26,8 @@ namespace CavesOfOoo.Rendering
             var (symbol, tint) = source switch
             {
                 RainSeamHarvestPart seam => seam.Appearance(zone),
-                SeasonalHarvestPart stand => stand.KnotflaxAppearance(zone),
+                SeasonalHarvestPart stand when owner.BlueprintName == SeasonalSeedSite.Stand => stand.KnotflaxAppearance(zone),
+                SeasonalHarvestPart when IsDormantNorthLichen(zone, owner) => ("_", "&c"),
                 _ => default
             };
             if (symbol?.Length != 1 || !AsciiWorldRenderPolicy.IsPrintableGlyph(symbol[0])

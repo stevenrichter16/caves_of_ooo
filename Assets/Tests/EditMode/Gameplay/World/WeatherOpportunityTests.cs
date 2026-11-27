@@ -514,11 +514,11 @@ namespace CavesOfOoo.Tests
         [SetUp] public void BindForge() { oldForge = ForgePart.Factory; ForgePart.Factory = Factory; }
         [TearDown] public void RestoreForge() { ForgePart.Factory = oldForge; }
 
-        OverworldZoneManager EnterAllotment(bool missingProduct = false)
+        OverworldZoneManager EnterAllotment(bool missingProduct = false, int seed = 64)
         {
             if (missingProduct) Factory.Blueprints.Remove(Bundle);
             Assert.True(Zone.RemoveEntity(Actor));
-            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            var manager = OverworldZoneManager.CreateDetached(Factory, seed, true);
             Zone = manager.GetZone("Overworld.2.6.0");
             manager.SetActiveZone(Zone); SettlementRuntime.ActiveZone = Zone;
             Assert.True(Zone.AddEntity(Actor, 40, 12));
@@ -674,7 +674,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void AnEarlyCordOfferCannotSpendTheStandAfterPhaseChanges()
         {
-            EnterAllotment();
+            EnterAllotment(seed: 2);
             var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
             StandBeside(source);
             var cell = Zone.GetEntityCell(source);
@@ -707,7 +707,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void AnUnsafeCordTemplateCannotPublishOutputOrSpendTheSeasonalStand()
         {
-            EnterAllotment();
+            EnterAllotment(seed: 2);
             var source = Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == Patch);
             StandBeside(source);
             var cell = Zone.GetEntityCell(source);

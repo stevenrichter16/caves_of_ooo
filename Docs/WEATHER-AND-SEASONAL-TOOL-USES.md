@@ -283,6 +283,14 @@ marks the ripe seed heads, and muted stalks mark dormant growth. The
 player can see these before selecting tools. Harvest clears the stand as
 before. [Knotflax map playtest](Verification/MachineSystems/KnotflaxWorldCue20261126/README.md)
 
+At North Works the shallow seasonal lichen shows a low crust as
+the dormant shape, with full frosted growth during the existing harvest
+phase. The deeper ordinary patch supplies lichen all year and keeps its
+own appearance. Both appearances follow the existing bound source and
+visibility rules. The player still gathers one pinch from the shallow
+source and uses the same lichen in the field or at a still.
+[North Works playtest](Verification/MachineSystems/NorthLichenWorldCue20261127/README.md)
+
 Design opportunities to last long enough for noticing and trying. Where a bonus
 exposes a material, the claimed physical material persists after the weather.
 Where it advances work, bank only validated progress on that exact paid batch.
