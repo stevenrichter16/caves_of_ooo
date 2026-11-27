@@ -57,3 +57,15 @@ matched their pre-run hashes.
 - [Reporting back](captures/03-warden-report.png)
 - [Reward and saved result](captures/04-oil-reward.png)
 - [A later resident remark](captures/05-resident-remark.png)
+
+## Mac package
+
+The universal package from `2d3f09488` built with zero errors and
+five warnings. The first attempt aborted in Unity's file-descriptor
+handling. An isolated retry with the open-file limit set to 16,384
+built the same pinned inputs. The app reached GameBootstrap startup on
+Apple M5. Six binaries contain both arm64 and x86_64. All 186 prior
+app files and 876 normal Quick files matched their original hashes.
+Startup preferences were restored. The gameplay evidence above
+comes from the Editor.
+[Mac startup receipt](mac-startup-verification.json)
