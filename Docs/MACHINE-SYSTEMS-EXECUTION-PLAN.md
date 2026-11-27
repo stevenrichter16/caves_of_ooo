@@ -7,6 +7,9 @@ original catch-well and drank from it. Fresh Continue and travel back
 preserved both the working well and the same grit. One box and the
 hard pack limit were controlled. All 374 targeted native cases passed.
 [Evidence](Verification/MachineSystems/StoredScreeningGrit20261127/README.md)
+The universal Mac package for `c3794f2d6` includes camp screening,
+bench service, and the one-board crate action. Apple M5 startup passed.
+[Package receipt](Verification/MachineSystems/StoredScreeningGrit20261127/mac-startup-verification.json)
 
 **A ready camp bench services a worn flint striker — November 27, 2026, America/Chicago.**
 One spike restores up to 15 strikes at an accessible ready cold-work station.

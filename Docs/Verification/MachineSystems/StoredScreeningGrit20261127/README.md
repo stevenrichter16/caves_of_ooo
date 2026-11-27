@@ -64,3 +64,18 @@ Flat Editor play on Apple Silicon, with the box and hard carry limit
 controlled.
 
 [Recorded observations](observations.json) · [Native and save receipts](receipt.json)
+
+## Current Mac package
+
+`/Users/steven/coo-verification/builds/mac-c3794f2d6-20261127/CavesOfOoo.app`
+contains the camp-box, bench and cargo changes. Unity verified 32,254
+committed inputs and built the universal app in 24.73 seconds with zero
+errors and five reported warnings. All 186 current app files and all
+186 previous app files matched. Six binaries have Apple Silicon and
+Intel slices.
+
+Startup on Apple M5 reached a world with 2,702 entities. Both normal
+save roots kept all 876 quick-save files. Nine preferences changed
+during startup and were restored. The test player stopped.
+Packaged interaction and physical Intel testing remain open.
+[Mac startup receipt](mac-startup-verification.json)
