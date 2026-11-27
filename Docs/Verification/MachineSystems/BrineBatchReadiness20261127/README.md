@@ -67,3 +67,20 @@ remain open. The separate scraped-bank and supplied camp branches retain
 their prior evidence.
 
 [Recorded states, tests and save pins](observations.json)
+
+Independent source and gameplay reviews matched both paid branches and
+all 20 playtest files. The old screenshots showed an empty highlight
+area. The final two-line reason was checked in the Editor after
+retrieving the same torch. All 876 normal save files and 87 earlier
+tracked edits matched their original hashes. The private save root
+and temporary keyboard were cleared.
+
+## Mac package
+
+The universal Mac package for `d1b16bb89` built with zero errors and
+five warnings. An Apple M5 launch reached GameBootstrap. Both the
+current and previous apps matched their recorded 186 files. All 876
+normal Quick files matched again and startup preferences were restored.
+The Mac check covers startup. The actions above were exercised in
+the Editor.
+[Startup receipt](mac-startup-verification.json)

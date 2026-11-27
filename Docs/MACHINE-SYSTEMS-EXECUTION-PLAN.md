@@ -6,6 +6,8 @@ fixed still. Both batch choices used the same exact loose torch in
 separate native branches. The recovered crust coated the original
 buckler and fresh Continue kept the result. All 218 targeted cases passed.
 [Playtest and receipts](Verification/MachineSystems/BrineBatchReadiness20261127/README.md)
+The universal Mac package for `d1b16bb89` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/BrineBatchReadiness20261127/mac-startup-verification.json)
 
 **The hearth nozzle names visible ice — November 27, 2026, America/Chicago.**
 The world and pack quotes share one paid heat action and reject an ice
