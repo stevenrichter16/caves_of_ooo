@@ -58,3 +58,13 @@ normal Quick files and 87 pre-existing tracked changes matched, and
 Play Mode and the private input and save context were closed.
 
 [Recorded states, test receipts and save hashes](observations.json)
+
+## Mac package
+
+The universal Mac package built from `cd167d202` with zero errors and
+five warnings. It reached GameBootstrap startup on Apple M5. Six
+binaries contain arm64 and x86_64. All 186 previous-app files and 876
+normal Quick files matched their pre-launch hashes. Preferences were
+restored. The package check covers startup. The action comparison
+above was played in the Editor.
+[Startup receipt](mac-startup-verification.json)

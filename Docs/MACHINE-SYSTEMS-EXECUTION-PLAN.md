@@ -7,6 +7,8 @@ nozzle spent five additional hearth fuel. Fresh Continue retained the
 paid result. All 323 targeted cases passed. Ordinary acquisition and
 natural surface ice near a lawful camp remain open.
 [Playtest and receipts](Verification/MachineSystems/HearthNozzleIceCue20261127/README.md)
+The universal Mac package for `cd167d202` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/HearthNozzleIceCue20261127/mac-startup-verification.json)
 
 **The paid copy-room lamps illuminate both desk bays — November 27, 2026, America/Chicago.**
 In a retained ordinary seed-65 save, a watering grimoire and 28 drams
