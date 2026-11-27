@@ -72,3 +72,13 @@ Editor play.
 - [Lit road from the same spot](captures/03-east-road-lit.png)
 - [Examine a lit lamp](captures/04-east-lamp-lit.png)
 - [Recorded world state, light samples and save pins](observations.json)
+
+## Mac package
+
+The universal package from `7c8c0705c` built from 32,270 committed
+inputs with zero errors and five warnings. It reached GameBootstrap
+startup on Apple M5. All 186 prior app files and 876 normal Quick
+files matched their original hashes. Nine preferences changed by
+startup were restored. The playtest and screenshots are from the
+Unity Editor.
+[Mac startup receipt](mac-startup-verification.json)

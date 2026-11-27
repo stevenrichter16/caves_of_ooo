@@ -7,10 +7,20 @@ ambient level. Both distant controls stayed at 0.4. Continue kept
 the two exact lamps, and a pre-existing supplied save gained two lit
 lamps on entry. All 213 focused tests passed.
 [Road comparison and reloads](Verification/MachineSystems/SlipEastLamps20261127/README.md)
+The universal Mac package for `7c8c0705c` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/SlipEastLamps20261127/mac-startup-verification.json)
 Next scoped work compares the public still with ordinary access to
 the portable still around Peat Works. Verify the existing locker,
 its custody and the kit's trade value before choosing a finite source.
 Follow a real local heat route without supplied tools.
+The existing locker at (61,6) is retained with the Peat Works map.
+The commercial still weighs 18 lb and has a base value of 110 drams.
+Investigate whether a once-recoverable damaged body and real repair
+cost can give the player a practical second route to an ordinary kit.
+The generic material output policy currently has no contract for
+an entire packable still. A repairable case holding one existing
+packed kit is another candidate. Check its exact custody and access
+before deciding which recovery can reuse current rules.
 
 **Slip takes settled oil and returns the player's flask — November 27, 2026, America/Chicago.**
 The existing east-lamp job takes three measures from one carried
