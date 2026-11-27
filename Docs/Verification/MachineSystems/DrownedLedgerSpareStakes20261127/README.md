@@ -53,6 +53,13 @@ save root cleared. The lasting oak repair was checked natively. The compact
 menu can clip the final word of the countdown, which is visible in full
 Examine. The full current regression remains open.
 
+The universal Mac build for `8a74224ed` used 32,266 pinned inputs and
+took 25.38 seconds, with zero errors and five warnings. Apple M5 startup
+loaded the world. The six binaries contain both architectures. All 186
+files in each of the current and previous packages matched their hashes.
+Startup preserved 876 normal quick files and restored the nine changed
+preferences. Packaged play and physical Intel remain open. [Mac receipt](mac-startup-verification.json)
+
 [Spare stakes and both bills](01-spare-stakes-and-repair-bills.png) ·
 [The active patch in Examine](02-live-patch-examine.png) ·
 [Ten ticks left](03-ten-ticks-before-failure.png) ·

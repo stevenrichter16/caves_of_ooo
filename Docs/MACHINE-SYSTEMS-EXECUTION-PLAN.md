@@ -6,6 +6,10 @@ waited in the commons. The same marker and spent stock survived expiry
 and another Continue. Lasting repair and its concern credit stay distinct.
 The final filter passed 176 cases with one opt-in skip.
 [Playtest and receipts](Verification/MachineSystems/DrownedLedgerSpareStakes20261127/README.md)
+The universal Mac package for `8a74224ed` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/DrownedLedgerSpareStakes20261127/mac-startup-verification.json)
+The next scoped review is the still's mire reader. It can name clay with
+vent heat alone even though firing requires a separate fire that can pay.
 
 **Orrit's one-time sieve gives rain clay an ordinary path to the watch bell — November 27, 2026, America/Chicago.**
 The player followed the retained dry packet's new Examine clue to Orrit,
