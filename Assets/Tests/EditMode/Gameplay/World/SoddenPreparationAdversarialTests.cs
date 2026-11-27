@@ -98,6 +98,30 @@ namespace CavesOfOoo.Tests
             int count = Status.EffectCount; Assert.False(Act(dressing, SoddenDressingPart.ApplyCommand));
             Assert.AreEqual(1, Units("SoddenFieldDressing")); Assert.AreEqual(count, Status.EffectCount); Assert.AreEqual(20, Actor.GetStatValue("Hitpoints"));
         }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Adversarial_ExpiredOrdinaryEffectOffersNoDressingAndCannotSpendOne(bool poison)
+        {
+            var dressing = Supply("SoddenFieldDressing");
+            var gas = new PoisonedByGasEffect { Duration = 5 };
+            Effect expired = poison ? (Effect)new PoisonedEffect(3) : new BleedingEffect();
+            Assert.True(Status.ApplyEffect(gas));
+            Assert.True(Status.ApplyEffect(expired));
+            expired.Duration = 0;
+            Assert.AreSame(Actor, expired.Owner);
+            Assert.True(Status.GetAllEffects().Contains(expired), "The expired effect is still attached until normal cleanup.");
+
+            bool offered = InventorySystem.GetActions(Actor, dressing).Any(action => action.Command == SoddenDressingPart.ApplyCommand);
+            bool executed = Act(dressing, SoddenDressingPart.ApplyCommand);
+            Assert.That(new[] { offered, executed }, Is.EqualTo(new[] { false, false }),
+                "Both the normal offer and the submitted Apply must refuse an expired-only dressing target.");
+            Assert.AreEqual(1, Units("SoddenFieldDressing"));
+            Assert.AreSame(Actor, dressing.GetPart<PhysicsPart>().InInventory);
+            Assert.AreSame(gas, Status.GetEffect<PoisonedByGasEffect>());
+            Assert.AreEqual(20, Actor.GetStatValue("Hitpoints"));
+        }
+
         [TestCase("ground")][TestCase("equipped")][TestCase("blocked")][TestCase("duplicate-part")]
         public void Adversarial_DressingNeedsOneGenuineCarriedOwnerAndAvailableActor(string fault)
         {

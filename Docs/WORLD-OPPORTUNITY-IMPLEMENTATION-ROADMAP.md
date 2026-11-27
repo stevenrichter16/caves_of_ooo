@@ -100,6 +100,13 @@ Two reclaimed timber restored an existing paid service. One grown
 pad, a cord and a fee became a field dressing, while a second grown
 pad stayed available for portable use. [The Peat Works timber and still-grown pad](Verification/MachineSystems/SellaStillPads20261127/README.md)
 
+For #19, #36 and #40, the commissioned dressing then treated a natural
+sari-snake bleed. A matched wait lost two more HP. Applying took one
+action, left HP steady, spent one dressing and kept the other pad
+through Continue. A separate exposed application cleared the old
+bleed before a fresh bite started another.
+[Live treatment comparison](Verification/MachineSystems/SoddenDressingActive20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry

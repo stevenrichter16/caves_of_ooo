@@ -2511,6 +2511,13 @@ commissioned one dressing with the exact pad, cord and fee. Continue
 retained the site repair, spare pad and new carried treatment. This
 qualifies supply and commissioning. [The Peat Works timber and still-grown pad](Verification/MachineSystems/SellaStillPads20261127/README.md)
 
+That exact dressing also stopped an ordinary sari-snake bleed after
+retreating from the fight. A matched wait cost two health and left the
+bleed active. The same treatment applied near the snakes cleared the
+first wound and a fresh bite started another. Self and companion Apply
+share one active-effect rule so an expired wound cannot spend a dose.
+[The matched treatment and wait](Verification/MachineSystems/SoddenDressingActive20261127/README.md)
+
 The Brine Camp recovery comparison confirmed that an empty bed's
 saved reservation can block ordinary rest after an NPC's arrival
 callback is lost. Reservations now restore from the actual sleeper.

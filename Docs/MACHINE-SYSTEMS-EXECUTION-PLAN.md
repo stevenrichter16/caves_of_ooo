@@ -1,3 +1,15 @@
+**Sella’s field dressing treats a real Sodden wound — November 27, 2026, America/Chicago.**
+The shared self and companion rule admits only active ordinary poison
+or bleeding. The traveler used Sella’s exact dressing in a native
+comparison from one saved sari-snake wound. On clear ground after
+retreat, waiting cost two HP and left the bleed active. Applying took
+the same action, held at 33 HP, spent the dressing and kept the spare
+pad. Application while exposed cleared the first wound and a fresh bite
+started another. Fresh Continue kept the treated state. The expiry
+tests passed. The wider run had 299 passes and one reproduced baseline
+Peat Works model failure.
+[The bite, treatment and matched wait](Verification/MachineSystems/SoddenDressingActive20261127/README.md)
+
 **Trading screen follows the inventory style — November 27, 2026, America/Chicago.**
 The shop and counted offer show the actual quantities and prices with
 smooth type, shared item icons and clear special-stock labels.
@@ -9,8 +21,6 @@ All 508 focused native checks passed.
 [Trading screen playtest](Verification/TradeLedger20261127/README.md)
 The universal Mac package for `4822322fe` passed Apple M5 startup.
 [Mac startup receipt](Verification/TradeLedger20261127/mac-startup-verification.json)
-The next machine slice can use the retained field dressing at a natural
-hazard. Two native expiry regressions already reproduce against main.
 
 **Sella used one of the still-grown pads — November 27, 2026, America/Chicago.**
 From the rested branch, the traveler harvested four timber at Peat
@@ -18,11 +28,7 @@ Works, braced Sella's bench with two, then paid one exact grown pad,
 one cord and two drams for a field dressing. Continue kept the braced
 bench, spent frame, exact dressing, remaining pad and both purses.
 The player finished at 42 HP. [The Peat Works timber and still-grown pad](Verification/MachineSystems/SellaStillPads20261127/README.md)
-Next, scout an ordinary visible hazard with a relevant field treatment.
-The retained traveler carries both the portable pad and Sella's dressing.
-Verify a practical choice through real game actions if it comes up.
-Other worksite or delivery slices remain available if no suitable
-natural condition is nearby.
+The commissioned dressing was used in the comparison above.
 
 **Brine Camp’s empty bedroll is available after Continue — November 27, 2026, America/Chicago.**
 Continue now drops abandoned bed claims and preserves living sleepers

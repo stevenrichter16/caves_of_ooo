@@ -109,7 +109,10 @@ namespace CavesOfOoo.Core
             // Reverse deletion keeps original indexes stable during rollback.
             for (int i = cures.Length - 1; i >= 0; i--)
             {
-                var effect = cures[i]; var receipt = new ChangeReceipt(target, effect, status); tx.Do(null, receipt.Undo);
+                var effect = cures[i];
+                if (payload.Kind == "Dressing" && !SoddenDressingPart.TreatsActiveEffect(effect))
+                    return Reject(actor, item, "cure-changed");
+                var receipt = new ChangeReceipt(target, effect, status); tx.Do(null, receipt.Undo);
                 if (!status.RemoveEffectWithReceipt(effect, receipt.Before, receipt.After)) return Reject(actor, item, "cure-changed");
                 cured++; benefited = true;
                 if (!current()) return Reject(actor, item, "changed-during-cure");
@@ -193,8 +196,8 @@ namespace CavesOfOoo.Core
         }
         static bool Matches(Effect effect, Payload p)
         {
+            if (p.Kind == "Dressing") return SoddenDressingPart.TreatsActiveEffect(effect);
             if (effect == null || effect.Duration == 0) return false;
-            if (p.Kind == "Dressing") return effect.GetType() == typeof(PoisonedEffect) || effect.GetType() == typeof(BleedingEffect);
             if (p.Kind == "FieldMeal") return effect.GetType() == typeof(BleedingEffect);
             return p.Cure == "All" ? (effect.GetEffectType() & Effect.TYPE_NEGATIVE) != 0
                 : !string.IsNullOrEmpty(p.Cure) && (effect.ClassName == p.Cure || p.Cure == nameof(PoisonedEffect) && effect is PoisonedByGasEffect);

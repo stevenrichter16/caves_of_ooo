@@ -11,12 +11,13 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "SoddenDressing";
         public const string ApplyCommand = "Apply";
-        static bool Eligible(Effect effect) => effect?.GetType() == typeof(PoisonedEffect) || effect?.GetType() == typeof(BleedingEffect);
+        internal static bool TreatsActiveEffect(Effect effect) => effect != null && effect.Duration != 0
+            && (effect.GetType() == typeof(PoisonedEffect) || effect.GetType() == typeof(BleedingEffect));
         bool Available(Entity actor, Zone zone) => actor != null && SoddenPreparationRules.CurrentActor(actor, zone, zone?.GetEntityCell(actor))
             && SoddenPreparationRules.Dressing(ParentEntity) && ParentEntity.GetPart<SoddenDressingPart>() == this
             && SoddenPreparationRules.Carried(actor, actor.GetPart<InventoryPart>(), ParentEntity)
             && actor.GetPart<StatusEffectsPart>()?.ParentEntity == actor
-            && actor.GetPart<StatusEffectsPart>().GetAllEffects().Any(e => e.Owner == actor && Eligible(e));
+            && actor.GetPart<StatusEffectsPart>().GetAllEffects().Any(e => TreatsActiveEffect(e) && e.Owner == actor);
         public override bool HandleEvent(GameEvent e)
         {
             var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
@@ -38,16 +39,18 @@ namespace CavesOfOoo.Core
             var at = zone.GetEntityCell(actor); var parts = item.Parts.ToArray();
             if (!tx.TryClaim(actor, actor, "ApplySoddenDressing") || !tx.TryClaim(item, actor, "ApplySoddenDressing")) return Reject(actor, "in-progress");
             var effects = status.GetAllEffects().Select((effect, index) => new { effect, index, cause = effect.LastRemovalCause })
-                .Where(s => s.effect.Owner == actor && Eligible(s.effect)).ToArray();
+                .Where(s => TreatsActiveEffect(s.effect) && s.effect.Owner == actor).ToArray();
             var receipt = InventoryTransferSnapshot.Capture(pack, item); tx.Do(null, receipt.Restore);
             if (!receipt.Apply(() => pack.TryConsumeOne(item)) || !receipt.ClaimChanges(tx, actor, "ApplySoddenDressing")
                 || !SoddenPreparationRules.CurrentActor(actor, zone, at) || actor.GetPart<InventoryPart>() != pack
                 || actor.GetPart<StatusEffectsPart>() != status || !item.Parts.SequenceEqual(parts)
-                || effects.Any(s => s.effect.Owner != actor || !status.GetAllEffects().Contains(s.effect))) return Reject(actor, "source-changed");
+                || effects.Any(s => !TreatsActiveEffect(s.effect) || s.effect.Owner != actor || !status.GetAllEffects().Contains(s.effect))) return Reject(actor, "source-changed");
             // Remove in reverse order so transaction rollback restores exact prior ordering.
             for (int i = effects.Length - 1; i >= 0; i--)
             {
                 var saved = effects[i];
+                if (!TreatsActiveEffect(saved.effect) || saved.effect.Owner != actor)
+                    return Reject(actor, "effect-changed");
                 tx.Do(null, () =>
                 {
                     bool removed = !status.GetAllEffects().Contains(saved.effect);
