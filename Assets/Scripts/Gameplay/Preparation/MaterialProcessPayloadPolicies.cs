@@ -44,6 +44,7 @@ namespace CavesOfOoo.Core
             // It is not admitted as a nested stock/output creation permission.
             Policies[typeof(SiftableStockPart)]=new ScalarPolicy(typeof(SiftableStockPart),false);
             Policies[typeof(RepairMaterialPart)]=new ScalarPolicy(typeof(RepairMaterialPart));
+            Policies[typeof(BotanicalProcessingPart)]=new ScalarPolicy(typeof(BotanicalProcessingPart));
             Policies[typeof(SeedPart)]=new ScalarPolicy(typeof(SeedPart));
             Policies[typeof(ReagentPart)]=new ScalarPolicy(typeof(ReagentPart));
             // Compared by inertness only, never by Revision: consuming the last unit of a stack invalidates its throw

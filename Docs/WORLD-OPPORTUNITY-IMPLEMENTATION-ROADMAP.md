@@ -714,6 +714,13 @@ and other approved furnishings keep their existing services.
 
 ## Priority 7: add seasonal bonus work without making travel a chore
 
+Requirements 31–32 have an additional optional material near Morrowfast. A
+shower exposes one finite slat and changes its appearance before Examine.
+The existing Prepare action turns it into a board, which shares the original
+gate bill with ordinary salvage. The existing timber pile covers the whole
+bill in dry weather. Native tests cover the fair weather and spent states.
+[Mixed-material repair playtest](Verification/MachineSystems/FallenSealbark20261127/README.md)
+
 A real local shower now moistens an exposed prepared crop bed once per
 rain window. An ordinary western Morrowfast sowing compared the same
 bed and seed during rain and afterward. The wet branch earned early

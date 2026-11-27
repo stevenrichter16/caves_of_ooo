@@ -1,3 +1,10 @@
+**Rain-exposed sealbark and ordinary salvage share a repair bill.**
+One finite outdoor slat can surface near the western Morrowfast allotment.
+It trims into ordinary salvaged timber. One slat-derived board and one
+from the local pile restored the existing gate's swing and latch. The pile
+also supplies a complete dry-weather route.
+[Playtest and receipts](Verification/MachineSystems/FallenSealbark20261127/README.md)
+
 **An ordinary shower can water an exposed planted bed.**
 Current regional rain supplies one modest moisture dose per exact
 prepared bed. Growth spends it normally, and the bed keeps its

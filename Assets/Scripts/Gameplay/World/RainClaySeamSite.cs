@@ -21,6 +21,7 @@ namespace CavesOfOoo.Core
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 38;
+        internal bool PreparesWetClay => ParentEntity?.BlueprintName == RainClaySeamSite.Source;
 
         public bool OwnsInventoryReceipt(string command) => command == "Harvest"
             && ParentEntity?.GetPart<HarvestablePart>() == this;
@@ -31,13 +32,14 @@ namespace CavesOfOoo.Core
         {
             var owner = ParentEntity;
             var manager = WorldLocationContext.For(zone);
+            string source = owner?.BlueprintName;
             if (zone?.ZoneID != RepairCultivationSite.ZoneID || TurnManager.Active == null
                 || manager?.ActiveZone != zone || string.IsNullOrEmpty(WorldKey)
-                || manager.Exploration?.WorldKey != WorldKey || owner?.BlueprintName != RainClaySeamSite.Source
+                || manager.Exploration?.WorldKey != WorldKey || RainClaySeamSite.YieldFor(source) is not string product
                 || owner.GetPart<HarvestablePart>() != this || owner.Parts.Count(part => part is HarvestablePart) != 1
-                || YieldBlueprint != RainClaySeamSite.Packet || YieldMin != 1 || YieldMax != 1 || YieldChance != 100
+                || YieldBlueprint != product || YieldMin != 1 || YieldMax != 1 || YieldChance != 100
                 || !RainCatchmentPart.FixedOn(owner, Ground, zone) || zone.GetEntityCell(owner) != zone.GetCell(SiteX, SiteY)
-                || zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>().Count != 1)
+                || zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>().Count(other => other.BlueprintName == source) != 1)
                 return SeamState.Unavailable;
 
             int tick = WorldClock.CurrentTick;
@@ -51,21 +53,29 @@ namespace CavesOfOoo.Core
                 ? SeamState.Settling : SeamState.Firm;
         }
 
-        internal (string Glyph, string Color) Appearance(Zone zone) => State(zone) switch
+        internal (string Glyph, string Color) Appearance(Zone zone) => (State(zone), PreparesWetClay) switch
         {
-            SeamState.Firm => ("_", "&r"),
-            SeamState.Loose => ("*", "&R"),
-            SeamState.Settling => (":", "&y"),
-            SeamState.Spent => ("-", "&r"),
+            (SeamState.Firm, true) => ("_", "&r"),
+            (SeamState.Loose, true) => ("*", "&R"),
+            (SeamState.Settling, true) => (":", "&y"),
+            (SeamState.Spent, true) => ("-", "&r"),
+            (SeamState.Firm, false) => ("_", "&y"),
+            (SeamState.Loose, false) => (";", "&Y"),
+            (SeamState.Settling, false) => (";", "&y"),
+            (SeamState.Spent, false) => ("-", "&y"),
             _ => (null, null)
         };
 
-        public string DescribeState(DescribeContext context) => State(context.Zone ?? ParentEntity?.SpatialZone) switch
+        public string DescribeState(DescribeContext context) => (State(context.Zone ?? ParentEntity?.SpatialZone), PreparesWetClay) switch
         {
-            SeamState.Loose => "Rain has slumped the bank. A loose heap of clay and grit lies below it.",
-            SeamState.Settling => "The rain has passed. The loose clay is starting to set. There is still one packet to gather.",
-            SeamState.Spent => "A shallow scrape marks where the loose clay and grit were lifted.",
-            SeamState.Firm => "The clay holds fast in a low seam. A shower can loosen it.",
+            (SeamState.Loose, true) => "Rain has slumped the bank. A loose heap of clay and grit lies below it.",
+            (SeamState.Settling, true) => "The rain has passed. The loose clay is starting to set. There is still one packet to gather.",
+            (SeamState.Spent, true) => "A shallow scrape marks where the loose clay and grit were lifted.",
+            (SeamState.Firm, true) => "The clay holds fast in a low seam. A shower can loosen it.",
+            (SeamState.Loose, false) => "Rain has washed the leaves aside. One stiff sealbark slat lies exposed.",
+            (SeamState.Settling, false) => "Water is draining back through the litter. One sealbark slat is still exposed.",
+            (SeamState.Spent, false) => "A narrow mark in the leaf litter shows where a slat was lifted.",
+            (SeamState.Firm, false) => "Leaf litter lies thick here. A shower can wash it aside.",
             _ => null
         };
 
@@ -126,21 +136,38 @@ namespace CavesOfOoo.Core
     internal static class RainClaySeamSite
     {
         internal const string Source = "RainClaySeam", Packet = "RainClaySpoil";
+        internal const string BarkSource = "RainFallenSealbark", Slat = "SealbarkSlat";
+
+        internal static string YieldFor(string source) => source switch
+        {
+            Source => Packet,
+            BarkSource => Slat,
+            _ => null
+        };
 
         internal static void TryInstall(Zone zone, OverworldZoneManager manager)
         {
             var factory = manager.Factory;
-            if (zone.ZoneID != RepairCultivationSite.ZoneID || manager.Exploration is not { Version: >= 31 } exploration
-                || string.IsNullOrEmpty(exploration.WorldKey) || factory == null || !factory.Blueprints.ContainsKey(Source)
-                || MaterialProcessTemplate.Capture(factory, Packet) == null) return;
+            if (zone.ZoneID != RepairCultivationSite.ZoneID || manager.Exploration is not { Enabled: true } exploration
+                || string.IsNullOrEmpty(exploration.WorldKey) || factory == null) return;
+
+            if (exploration.Version >= 31)
+                InstallNear(zone, factory, exploration.WorldKey, Source, "RepairClayBank", "clay", 0, 0);
+            InstallNear(zone, factory, exploration.WorldKey, BarkSource, "Signpost", "notice", -3, -2);
+        }
+
+        private static void InstallNear(Zone zone, EntityFactory factory, string worldKey,
+            string blueprint, string anchorBlueprint, string anchorRole, int offsetX, int offsetY)
+        {
+            string yield = YieldFor(blueprint);
+            if (!factory.Blueprints.ContainsKey(blueprint) || MaterialProcessTemplate.Capture(factory, yield, blueprint != Source) == null)
+                return;
 
             var before = zone.GetReadOnlyEntities().ToArray();
-            if (before.Any(owner => owner.BlueprintName == Source || owner.HasPart<RainSeamHarvestPart>())) return;
-            var banks = before.Where(owner => owner.BlueprintName == "RepairClayBank"
-                && owner.GetProperty(RepairCultivationSite.RoleKey) == "clay").Take(2).ToArray();
-            if (banks.Length != 1) return;
-            var bankCell = zone.GetEntityCell(banks[0]);
-            if (bankCell == null) return;
+            if (before.Any(owner => owner.BlueprintName == blueprint)) return;
+            var anchors = before.Where(owner => owner.BlueprintName == anchorBlueprint
+                && owner.GetProperty(RepairCultivationSite.RoleKey) == anchorRole).Take(2).ToArray();
+            if (anchors.Length != 1 || zone.GetEntityCell(anchors[0]) is not Cell anchor) return;
 
             var reached = RepairCultivationSite.Reach(zone, new HashSet<(int, int)>());
             bool Available(Cell cell) => RepairCultivationSite.Bare(cell) && reached.Contains((cell.X, cell.Y))
@@ -150,7 +177,7 @@ namespace CavesOfOoo.Core
                     && Math.Max(Math.Abs(other.X - cell.X), Math.Abs(other.Y - cell.Y)) <= 2);
             var target = (from dy in Enumerable.Range(-2, 5)
                           from dx in Enumerable.Range(-2, 5)
-                          let cell = zone.GetCell(bankCell.X + dx, bankCell.Y + dy)
+                          let cell = zone.GetCell(anchor.X + offsetX + dx, anchor.Y + offsetY + dy)
                           where Available(cell)
                           orderby Math.Abs(dx) + Math.Abs(dy), cell.Y, cell.X
                           select cell).FirstOrDefault();
@@ -162,7 +189,7 @@ namespace CavesOfOoo.Core
             bool placed = false, complete = false;
             try
             {
-                owner = factory.CreateEntity(Source);
+                owner = factory.CreateEntity(blueprint);
                 if (owner?.GetPart<RainSeamHarvestPart>() is not { Harvested: false } seam
                     || owner.GetPart<PhysicsPart>() is not { Takeable: false, Solid: false, InInventory: null, Equipped: null }
                     || owner.SpatialZone != null || string.IsNullOrEmpty(owner.ID) || before.Any(other => other.ID == owner.ID)
@@ -170,7 +197,7 @@ namespace CavesOfOoo.Core
                     || !Available(target) || target.Objects[0] != ground) return;
 
                 seam.Ground = ground;
-                seam.WorldKey = exploration.WorldKey;
+                seam.WorldKey = worldKey;
                 seam.SiteX = target.X;
                 seam.SiteY = target.Y;
                 placed = zone.AddEntity(owner, target.X, target.Y);
@@ -179,8 +206,8 @@ namespace CavesOfOoo.Core
             }
             catch (Exception error)
             {
-                CavesOfOoo.Diagnostics.Diag.Record("worldgen", "RainClaySeamRefused", target: owner,
-                    payload: new { error = error.GetType().Name });
+                CavesOfOoo.Diagnostics.Diag.Record("worldgen", "RainSourceRefused", target: owner,
+                    payload: new { blueprint, error = error.GetType().Name });
             }
             finally
             {

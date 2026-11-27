@@ -545,3 +545,32 @@ ordinary trial bought an empty flask, drew twelve water and saw the deposit
 change before opening the action menu. The exact sand became a saved trail
 note for water. Native tests verified the pump as a second approach.
 [Evidence](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
+
+## Fallen sealbark at the west allotment
+
+A shower washes leaf litter away from one fallen sealbark plate near the
+allotment approach. The same local weather makes the plate visible and opens
+the gather action. It stays exposed briefly after rain. Once gathered, the
+spot keeps its spent appearance across travel, Continue and later showers.
+The opportunity adds no exposure cost and supports no compulsory upkeep.
+
+Gather one ordinary sealbark slat and use its existing Prepare action to
+trim one length of salvaged timber. Combine it with compatible timber from
+any other source to brace the jammed gate. The ordinary timber pile supplies
+enough wood on its own. Cultivated sealbark and ordinary timber keep their
+existing uses. A braced gate can swing and latch again.
+
+Use the allotment's fixed harvest and shared regional rain, including its
+150-tick grace. Keep the clay seam's damp yield specific to clay. Admit the
+optional spot only during fresh generation on reachable, unoccupied outdoor
+grass. An older bound world can find it if it has yet to visit the allotment.
+Already saved allotments preserve their layout. A failed gather
+leaves the finite slat at its source. A successful gather packs it or leaves
+it on the source tile when the pack cannot take it.
+
+Acceptance requires native tests for the weather boundary, exact yield and
+persistence, plus an ordinary walk from a retained save with an unvisited
+allotment. Record the visible cue before Examine, verify that one board came
+from the slat and one from the existing pile, and exercise the repaired latch
+before and after Continue. One guided route establishes the interaction.
+How often travelers notice and use such opportunities remains to be measured.

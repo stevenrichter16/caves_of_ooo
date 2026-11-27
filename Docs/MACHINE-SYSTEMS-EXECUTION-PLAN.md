@@ -1,3 +1,11 @@
+**A shower exposes one fallen sealbark slat — November 27, 2026, America/Chicago.**
+The player walked into an unvisited west Morrowfast allotment during the
+ordinary rain in a retained version-17 save. The new source yielded one slat.
+The ordinary timber pile yielded four boards, so the player set three aside.
+The remaining board and the prepared slat braced the original gate. A fresh
+Continue kept the same closed gate and spent source. Ordinary Open then worked.
+[Native play and receipts](Verification/MachineSystems/FallenSealbark20261127/README.md)
+
 **Natural showers give exposed crop beds a finite boost — November 27, 2026, America/Chicago.**
 Ordinary movement in a real shower at the western Morrowfast allotment
 moistened young crops. The same emberwheat seed and prepared bed showed

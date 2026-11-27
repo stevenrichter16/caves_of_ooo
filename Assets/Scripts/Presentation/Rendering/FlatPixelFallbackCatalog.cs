@@ -17,7 +17,7 @@ namespace CavesOfOoo.Rendering
         {
             glyph = default;
             color = null;
-            if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand
+            if (owner?.BlueprintName is not (RainClaySeamSite.Source or RainClaySeamSite.BarkSource or SeasonalSeedSite.Stand
                     or BiomeCropPlacement.EarlyPitchpod or SillSettlingPocket.Deposit or "FrostLichenPatch" or "CampAwning") || owner.SpatialZone != zone
                 || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true })
                 return false;

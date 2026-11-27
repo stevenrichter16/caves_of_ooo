@@ -101,7 +101,7 @@ namespace CavesOfOoo.Core
             string reason = Validate(actor, zone, seasonalYield?.Season, out bool carried, out var sourceCell, out var dropCell);
             if (reason != null) return Reject(actor, reason);
             var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell, seasonalYield?.Season);
-            var rainSeam = this as RainSeamHarvestPart;
+            var rainSeam = this is RainSeamHarvestPart { PreparesWetClay: true } clay ? clay : null;
             var fixedProof = CaptureFixedGathering(actor, zone, sourceCell);
             if (RetainsFixedSource && fixedProof == null) return Reject(actor, "fixed-source-unavailable");
             string declaredProduct = YieldBlueprint;

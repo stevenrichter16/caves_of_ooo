@@ -37,6 +37,17 @@
       "Tags": []
     },
     {
+      "Name": "RainFallenSealbark",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "leaf litter" },{ "Key": "RenderString", "Value": "_" },{ "Key": "ColorString", "Value": "&y" },{ "Key": "RenderLayer", "Value": "2" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "false" },{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "RainSeamHarvest", "Params": [{ "Key": "YieldBlueprint", "Value": "SealbarkSlat" },{ "Key": "ActionText", "Value": "gather exposed sealbark" }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "DryClaySpoil",
       "Inherits": "Item",
       "Parts": [
