@@ -10,8 +10,8 @@ namespace CavesOfOoo.Core
     /// Exact source terrain is preserved. No cached migration or world RNG calls.</summary>
     public sealed class BiomeCropPlacement : IZoneBuilder
     {
-        private const string PosyOutskirts = "Overworld.4.9.0";
-        private const string EarlyPitchpod = "EarlyPitchpodStand";
+        internal const string PosyOutskirts = "Overworld.4.9.0";
+        internal const string EarlyPitchpod = "EarlyPitchpodStand";
         private const int EarlyPitchpodVersion = 28;
         private const int MinimumWalkSaving = 3;
         private const int PatchShoulderReach = 6;

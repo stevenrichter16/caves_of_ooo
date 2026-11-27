@@ -89,6 +89,13 @@ changed both frames. The second frame withheld collection and a fresh
 Continue kept the common spent allowance.
 [Catch-cloth playtest](Verification/MachineSystems/PublicCatchClothCue20261127/README.md)
 
+In Posy’s outskirts the early wild pitchpod now shows a separate
+finite resin opportunity before Examine. Its normal dry look follows
+the same seasonal rule as the hand harvest. Taking the bead leaves the
+two ordinary crops available. This extends #32–33 to the shorter
+one-measure resin trip.
+[Pitchpod map comparison](Verification/MachineSystems/PosyPitchpodWorldCue20261127/README.md)
+
 The Sumphold oil recovery also supports #39–40 through an earned purchase
 and paid lasting Sill repair. Actual play returned to the same path
 approach and measured greater light in two already visible cells. Fresh

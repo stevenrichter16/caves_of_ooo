@@ -528,6 +528,41 @@ namespace CavesOfOoo.Tests
             StandardCrops();
         }
 
+        [Test]
+        public void WildPitchpodShowsItsBeadBeforeExamineAndKeepsOrdinaryCropLooks()
+        {
+            EnterPatch();
+            var source = Bead();
+            var crops = StandardCrops();
+            var render = source.GetPart<RenderPart>();
+            using var catalog = new FlatPixelFallbackCatalog();
+
+            FlatPixelGreyboxCell Visible(Entity owner)
+            {
+                var at = Zone.GetEntityCell(owner);
+                Assert.True(catalog.TryResolve(Zone, at.X, at.Y, out var view));
+                Assert.That(view.Owner, Is.SameAs(owner));
+                return view;
+            }
+
+            var cropTiles = crops.Select(crop => Visible(crop).ForegroundTile).ToArray();
+            string authoredGlyph = render.RenderString, authoredColor = render.ColorString;
+            Assert.That(Visible(source).ForegroundTile.name, Is.EqualTo("Flat world glyph 42"));
+            var cell = Zone.GetEntityCell(source);
+            cell.IsVisible = false;
+            Assert.True(catalog.TryResolve(Zone, cell.X, cell.Y, out var memory));
+            Assert.That(memory.ForegroundTile?.name, Is.Not.EqualTo("Flat world glyph 42"));
+            cell.IsVisible = true;
+
+            Clock.AdvanceClock(16 * RegionalWeather.WindowTicks);
+            Assert.That(Visible(source).ForegroundTile.name, Is.EqualTo("Flat world glyph 59"));
+            Assert.That(crops.Select(crop => Visible(crop).ForegroundTile), Is.EqualTo(cropTiles));
+            Assert.That(render.RenderString, Is.EqualTo(authoredGlyph));
+            Assert.That(render.ColorString, Is.EqualTo(authoredColor));
+            Assert.That(source.GetPart<SeasonalHarvestPart>().Harvested, Is.False);
+            Assert.That(Count(Resin), Is.Zero);
+        }
+
         [TestCase(true)]
         [TestCase(false)]
         public void OldVersionOrMissingOptionalSourceKeepsTheOrdinaryPatch(bool old)

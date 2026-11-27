@@ -1,3 +1,8 @@
+**The side path near Posy shows when its wild pitchpod has resin.**
+The bright bead and dry stalk follow the existing finite hand harvest.
+The ordinary plants keep the longer route for more resin and a seed.
+[Map and playtest evidence](Verification/MachineSystems/PosyPitchpodWorldCue20261127/README.md)
+
 **The Morrowfast catch-cloths show their shared water.**
 The public frames sag in rain while water is available and flatten
 after either frame uses the common allowance. The same water remains

@@ -1,0 +1,428 @@
+{
+  "sourceArchive": "/private/tmp/coo-posy-early-v28-arrival-20261125/9d0861c3cd7e4715b558696a6d662435",
+  "seed": 64,
+  "generation": 28,
+  "actualApproach": "One southwest step, then twelve west from the ordinary arrival. Forty HP throughout.",
+  "approach": {
+    "path": "/private/tmp/coo-pitchpod-cue-20261127/approach/9d0861c3cd7e4715b558696a6d662435",
+    "sha256": {
+      "Quick.json": "f21a698816d064420aa7b43d0a44304821f49c2e583767ec047d74d1225d9ec0",
+      "Quick.json.bak": "b7f4f735c9ca2947359a636a41e5986741549318559afb3f94063653de0ca2b5",
+      "Quick.sav.gz": "81209254ef14eedac26ae1f72e0c61abc7d546454f007bfd1c95819bba34e3a7",
+      "Quick.sav.gz.bak": "06c0f4bbe00aa22fa839f3aba03b87415d28ea4536844403c955abad40544a75"
+    }
+  },
+  "gathered": {
+    "path": "/private/tmp/coo-pitchpod-cue-20261127/gathered/9d0861c3cd7e4715b558696a6d662435",
+    "sha256": {
+      "Quick.json": "4485be3b69d9724ed1f948ab64846ef094c38e42afa9b4ca34c63ab201ca386d",
+      "Quick.json.bak": "f21a698816d064420aa7b43d0a44304821f49c2e583767ec047d74d1225d9ec0",
+      "Quick.sav.gz": "16d8c49d870cbe4435f99c7e5251f6fda4efc26ae1064ba92ac582b264b8c5de",
+      "Quick.sav.gz.bak": "81209254ef14eedac26ae1f72e0c61abc7d546454f007bfd1c95819bba34e3a7"
+    }
+  },
+  "controlledJumps": [
+    {
+      "tick": 9920,
+      "before": "Height",
+      "after": "Height"
+    },
+    {
+      "tick": 38720,
+      "before": "Height",
+      "after": "Height"
+    }
+  ],
+  "states": {
+    "Arrival": {
+      "scene": "SampleScene",
+      "zone": "Overworld.4.9.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 40,
+      "y": 12,
+      "tick": 190,
+      "hp": 40,
+      "Valid": true,
+      "Season": 0,
+      "Window": 0,
+      "plants": [
+        {
+          "ID": "7013",
+          "x": 18,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7013",
+          "glyph": "Flat world glyph 46",
+          "rgba": "RGBA(0.000, 0.670, 0.000, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": ".",
+          "color": "&g",
+          "harvested": null
+        },
+        {
+          "ID": "7012",
+          "x": 20,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7012",
+          "glyph": "Flat world glyph 84",
+          "rgba": "RGBA(1.000, 1.000, 0.330, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": "T",
+          "color": "&W",
+          "harvested": null
+        },
+        {
+          "ID": "7014",
+          "x": 26,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7014",
+          "glyph": "Flat world glyph 42",
+          "rgba": "RGBA(1.000, 1.000, 1.000, 1.000)",
+          "BlueprintName": "EarlyPitchpodStand",
+          "authored": ";",
+          "color": "&y",
+          "harvested": false
+        }
+      ],
+      "resin": []
+    },
+    "Ready": {
+      "scene": "SampleScene",
+      "zone": "Overworld.4.9.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 27,
+      "y": 13,
+      "tick": 320,
+      "hp": 40,
+      "Valid": true,
+      "Season": 0,
+      "Window": 0,
+      "plants": [
+        {
+          "ID": "7013",
+          "x": 18,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7013",
+          "glyph": "Flat world glyph 46",
+          "rgba": "RGBA(0.000, 0.670, 0.000, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": ".",
+          "color": "&g",
+          "harvested": null
+        },
+        {
+          "ID": "7012",
+          "x": 20,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7012",
+          "glyph": "Flat world glyph 84",
+          "rgba": "RGBA(1.000, 1.000, 0.330, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": "T",
+          "color": "&W",
+          "harvested": null
+        },
+        {
+          "ID": "7014",
+          "x": 26,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7014",
+          "glyph": "Flat world glyph 42",
+          "rgba": "RGBA(1.000, 1.000, 1.000, 1.000)",
+          "BlueprintName": "EarlyPitchpodStand",
+          "authored": ";",
+          "color": "&y",
+          "harvested": false
+        }
+      ],
+      "resin": []
+    },
+    "Dormant": {
+      "scene": "SampleScene",
+      "zone": "Overworld.4.9.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 27,
+      "y": 13,
+      "tick": 9920,
+      "hp": 40,
+      "Valid": true,
+      "Season": 1,
+      "Window": 16,
+      "plants": [
+        {
+          "ID": "7013",
+          "x": 18,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7013",
+          "glyph": "Flat world glyph 46",
+          "rgba": "RGBA(0.000, 0.670, 0.000, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": ".",
+          "color": "&g",
+          "harvested": null
+        },
+        {
+          "ID": "7012",
+          "x": 20,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7012",
+          "glyph": "Flat world glyph 84",
+          "rgba": "RGBA(1.000, 1.000, 0.330, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": "T",
+          "color": "&W",
+          "harvested": null
+        },
+        {
+          "ID": "7014",
+          "x": 26,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7014",
+          "glyph": "Flat world glyph 59",
+          "rgba": "RGBA(0.670, 0.670, 0.670, 1.000)",
+          "BlueprintName": "EarlyPitchpodStand",
+          "authored": ";",
+          "color": "&y",
+          "harvested": false
+        }
+      ],
+      "resin": []
+    },
+    "DormantMenu": {
+      "mode": "WorldActionMenuOpen",
+      "target": "7014",
+      "rows": [
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "key": "X"
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "key": "A"
+        }
+      ]
+    },
+    "Return": {
+      "scene": "SampleScene",
+      "zone": "Overworld.4.9.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 27,
+      "y": 13,
+      "tick": 38720,
+      "hp": 40,
+      "Valid": true,
+      "Season": 0,
+      "Window": 64,
+      "plants": [
+        {
+          "ID": "7013",
+          "x": 18,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7013",
+          "glyph": "Flat world glyph 46",
+          "rgba": "RGBA(0.000, 0.670, 0.000, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": ".",
+          "color": "&g",
+          "harvested": null
+        },
+        {
+          "ID": "7012",
+          "x": 20,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7012",
+          "glyph": "Flat world glyph 84",
+          "rgba": "RGBA(1.000, 1.000, 0.330, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": "T",
+          "color": "&W",
+          "harvested": null
+        },
+        {
+          "ID": "7014",
+          "x": 26,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7014",
+          "glyph": "Flat world glyph 42",
+          "rgba": "RGBA(1.000, 1.000, 1.000, 1.000)",
+          "BlueprintName": "EarlyPitchpodStand",
+          "authored": ";",
+          "color": "&y",
+          "harvested": false
+        }
+      ],
+      "resin": []
+    },
+    "ReadyMenu": {
+      "mode": "WorldActionMenuOpen",
+      "target": "7014",
+      "rows": [
+        {
+          "Command": "Harvest",
+          "Display": "gather the amber bead (1 pitchpod resin)",
+          "IsDisabled": false,
+          "key": "H"
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "key": "X"
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "key": "A"
+        }
+      ]
+    },
+    "Gathered": {
+      "scene": "SampleScene",
+      "zone": "Overworld.4.9.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 27,
+      "y": 13,
+      "tick": 38730,
+      "hp": 40,
+      "Valid": true,
+      "Season": 0,
+      "Window": 64,
+      "plants": [
+        {
+          "ID": "7013",
+          "x": 18,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7013",
+          "glyph": "Flat world glyph 46",
+          "rgba": "RGBA(0.000, 0.670, 0.000, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": ".",
+          "color": "&g",
+          "harvested": null
+        },
+        {
+          "ID": "7012",
+          "x": 20,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7012",
+          "glyph": "Flat world glyph 84",
+          "rgba": "RGBA(1.000, 1.000, 0.330, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": "T",
+          "color": "&W",
+          "harvested": null
+        }
+      ],
+      "resin": [
+        {
+          "ID": "7015",
+          "n": 1
+        }
+      ]
+    },
+    "Fresh": {
+      "scene": "SampleScene",
+      "zone": "Overworld.4.9.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 27,
+      "y": 13,
+      "tick": 38730,
+      "hp": 40,
+      "Valid": true,
+      "Season": 0,
+      "Window": 64,
+      "plants": [
+        {
+          "ID": "7013",
+          "x": 18,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7013",
+          "glyph": "Flat world glyph 46",
+          "rgba": "RGBA(0.000, 0.670, 0.000, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": ".",
+          "color": "&g",
+          "harvested": null
+        },
+        {
+          "ID": "7012",
+          "x": 20,
+          "y": 14,
+          "visible": true,
+          "resolves": true,
+          "owner": "7012",
+          "glyph": "Flat world glyph 84",
+          "rgba": "RGBA(1.000, 1.000, 0.330, 1.000)",
+          "BlueprintName": "PitchpodCrop",
+          "authored": "T",
+          "color": "&W",
+          "harvested": null
+        }
+      ],
+      "resin": [
+        {
+          "ID": "7015",
+          "n": 1
+        }
+      ]
+    }
+  },
+  "captures": {
+    "ready": "b7a8962a416345fe4c7283bc503c5740be4667d9cf9e3a83682fde54e21f3756",
+    "dormant": "aede19886f6800ea1912cb496ef4cd8bab96050bb742abea00c676f863a5bbef"
+  },
+  "native": {
+    "red": {
+      "receipt": "pitchpod_world_cue_red_20261127.xml",
+      "sha256": "cc7b26a6f84a78c69e869b0828b2e9652b01f3ef46ab4d6973ab418f0f174dc4",
+      "passed": 5,
+      "failed": 1
+    },
+    "green": {
+      "receipt": "pitchpod_world_cue_green_20261127.xml",
+      "sha256": "21099dc05383fb46d2299aebdd76c9706c956f81eac13fbf201b5e2be28610e1",
+      "passed": 64,
+      "failed": 0
+    }
+  }
+}

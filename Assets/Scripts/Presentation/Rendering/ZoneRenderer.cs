@@ -842,7 +842,8 @@ namespace CavesOfOoo.Rendering
         {
             var zone = CurrentZone;
             bool allotment = zone?.ZoneID == RepairCultivationSite.ZoneID;
-            if (!allotment && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
+            bool posy = zone?.ZoneID == BiomeCropPlacement.PosyOutskirts;
+            if (!allotment && !posy && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
             int tick = WorldClock.CurrentTick;
             if (tick == _fieldOpportunityPaintTick) return;
             _fieldOpportunityPaintTick = tick;
@@ -864,8 +865,12 @@ namespace CavesOfOoo.Rendering
             if (season == _fieldOpportunityPaintSeason) return;
             _fieldOpportunityPaintSeason = season;
             foreach (var owner in zone.GetReadOnlyEntitiesWithPart<SeasonalHarvestPart>())
-                if ((allotment ? owner.BlueprintName == SeasonalSeedSite.Stand
-                    : owner.GetProperty(SpreadExplorationWorksites.RoleKey) == SpreadExplorationWorksites.SeasonalColdForage)
+                if ((zone.ZoneID switch
+                    {
+                        RepairCultivationSite.ZoneID => owner.BlueprintName == SeasonalSeedSite.Stand,
+                        BiomeCropPlacement.PosyOutskirts => owner.BlueprintName == BiomeCropPlacement.EarlyPitchpod,
+                        _ => owner.GetProperty(SpreadExplorationWorksites.RoleKey) == SpreadExplorationWorksites.SeasonalColdForage
+                    })
                     && zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
                     MarkCellDirty(cell, "Seasonal growth appearance");
         }

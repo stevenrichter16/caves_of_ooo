@@ -1,3 +1,10 @@
+**Posy’s early pitchpod bead now shows on the map — November 27 UTC, 2026.**
+The wild stalk shows a bead in the early window and its dry shape
+later. In the same-place comparison the dormant menu withheld harvest.
+Actual gathering in the next early window yielded one resin. Fresh
+Continue kept the resin in the pack and both ordinary plants in place.
+[Comparison and save evidence](Verification/MachineSystems/PosyPitchpodWorldCue20261127/README.md)
+
 **Morrowfast shows when its public cloths hold rain — November 27 UTC, 2026.**
 Both frames sag with visible water and flatten when either spends the
 shared allowance. The ordinary catch filled the carried flask with

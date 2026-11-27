@@ -60,6 +60,15 @@ namespace CavesOfOoo.Core
             return weather.Season == Season ? ("*", "&Y") : (";", "&y");
         }
 
+        internal (string Glyph, string Color) EarlyPitchpodAppearance(Zone zone)
+        {
+            if (zone?.ZoneID != BiomeCropPlacement.PosyOutskirts || Harvested
+                || ParentEntity?.BlueprintName != BiomeCropPlacement.EarlyPitchpod
+                || Season != 0 || YieldBlueprint != "PitchpodResin" || YieldMin != 1 || YieldMax != 1 || YieldChance != 100
+                || !Ready(zone)) return default;
+            return ("*", "&Y");
+        }
+
         internal bool TryGetNorthLichenReadiness(Zone zone, out bool ready)
         {
             ready = false;

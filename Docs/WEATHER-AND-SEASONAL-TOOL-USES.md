@@ -51,6 +51,12 @@ dormant readers describe the visible state of this plant. The patch’s
 existing retained record prevents a spent site from refilling on travel
 or reload. Keep v27 and cached sites on their original layout.
 
+The wild plant shows a bright bead in the existing early window and
+its dry stalk outside it. Both appearances precede Examine and share
+the hand harvest’s exact source and season. The two ordinary plants
+use their existing map art and growth.
+[Same-position map playtest](Verification/MachineSystems/PosyPitchpodWorldCue20261127/README.md)
+
 ## Current foundations and required additions
 
 Source qualification refers to committed runtime7edc5a4c2. Source support alone
