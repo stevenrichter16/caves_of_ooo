@@ -54,3 +54,17 @@ one supplied box isolate the comparison. Paid stock acquisition and
 out-of-camp acquisition were outside this run.
 
 [Observations](observations.json) · [Native and save receipts](receipt.json)
+
+## Current Mac package
+
+`/Users/steven/coo-verification/builds/mac-bac91380a-20261127/CavesOfOoo.app`
+contains the new refill. Unity verified 32,254 committed inputs and
+built the universal app in 21.05 seconds with zero errors and five
+reported warnings. Six binaries contain Apple Silicon and Intel slices.
+All 186 current and all 186 previous app files matched.
+
+The app started on Apple M5 and initialized a world with 2,715 entities.
+Both normal save roots kept all 876 quick-save files. The nine changed
+startup preferences were restored and the player stopped. Packaged
+gameplay and physical Intel testing remain open.
+[Mac startup receipt](mac-startup-verification.json)

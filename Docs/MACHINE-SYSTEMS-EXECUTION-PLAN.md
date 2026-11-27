@@ -6,6 +6,9 @@ lit torch at 24.7 fuel, two oil in the original boxed flask, and three
 moss. The private comparison supplied one box on the retained camp.
 All 555 targeted checks passed. Both independent reviews cleared.
 [Evidence](Verification/MachineSystems/BoxedTorchOil20261127/README.md)
+The universal Mac package for `bac91380a` includes the refill.
+Startup passed on Apple M5.
+[Package receipt](Verification/MachineSystems/BoxedTorchOil20261127/mac-startup-verification.json)
 
 **A two-pound sieve option keeps the grit in camp storage — November 27, 2026, America/Chicago.**
 Ordinary harvest at the western Morrowfast allotment supplied one dry
