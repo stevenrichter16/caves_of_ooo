@@ -5,6 +5,84 @@ using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Tests
 {
+    public sealed class WetGroundAppearanceTests
+    {
+        private Zone zone, previousZone;
+        private Action<int, int, string> previousDirty;
+        private Entity item;
+        private int repaints;
+
+        [SetUp]
+        public void SetUp()
+        {
+            previousZone = SettlementRuntime.ActiveZone;
+            previousDirty = ZoneRenderHooks.CellDirtyCallback;
+            zone = new Zone("WetGroundAppearance");
+            SettlementRuntime.ActiveZone = zone;
+            item = new Entity { ID = "wet-ground-item", BlueprintName = "RainClaySpoil" };
+            item.SetTag("Item");
+            item.AddPart(new PhysicsPart { Takeable = true });
+            item.AddPart(new RenderPart { RenderString = "%", ColorString = "&r", Visible = true });
+            Assert.True(zone.AddEntity(item, 11, 9));
+            zone.GetCell(11, 9).Explored = zone.GetCell(11, 9).IsVisible = true;
+            item.ApplyEffect(new WetEffect(.025f));
+            ZoneRenderHooks.CellDirtyCallback = (x, y, reason) =>
+            {
+                Assert.That((x, y), Is.EqualTo((11, 9)));
+                repaints++;
+            };
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            ZoneRenderHooks.CellDirtyCallback = previousDirty;
+            SettlementRuntime.ActiveZone = previousZone;
+        }
+
+        [Test]
+        public void StationaryDryingRepaintsTheExactVisibleLooseItemOnlyAtCompletion()
+        {
+            for (int tick = 0; tick < 2; tick++) MaterialSimSystem.TickMaterialEntities(zone);
+            Assert.True(item.HasEffect<WetEffect>());
+            Assert.That(repaints, Is.Zero);
+            MaterialSimSystem.TickMaterialEntities(zone);
+            Assert.False(item.HasEffect<WetEffect>());
+            Assert.That(repaints, Is.EqualTo(1));
+            MaterialSimSystem.TickMaterialEntities(zone);
+            Assert.That(repaints, Is.EqualTo(1));
+            Assert.That(item.GetPart<RenderPart>().ColorString, Is.EqualTo("&r"));
+            Assert.That(zone.GetEntityCell(item), Is.SameAs(zone.GetCell(11, 9)));
+        }
+
+        [TestCase("off-zone")]
+        [TestCase("hidden")]
+        [TestCase("unexplored")]
+        [TestCase("carried")]
+        [TestCase("equipped")]
+        [TestCase("scenery")]
+        [TestCase("creature")]
+        [TestCase("invisible")]
+        [TestCase("detached")]
+        [TestCase("stale-cell")]
+        public void DryingOutsideVisibleLooseGroundCannotRepaintAnotherCell(string condition)
+        {
+            if (condition == "off-zone") SettlementRuntime.ActiveZone = new Zone(zone.ZoneID);
+            if (condition == "hidden") zone.GetCell(11, 9).IsVisible = false;
+            if (condition == "unexplored") zone.GetCell(11, 9).Explored = false;
+            if (condition == "carried") item.GetPart<PhysicsPart>().InInventory = new Entity();
+            if (condition == "equipped") item.GetPart<PhysicsPart>().Equipped = new Entity();
+            if (condition == "scenery") item.GetPart<PhysicsPart>().Takeable = false;
+            if (condition == "creature") item.SetTag("Creature");
+            if (condition == "invisible") item.GetPart<RenderPart>().Visible = false;
+            if (condition == "detached") zone.RemoveEntity(item);
+            if (condition == "stale-cell") zone.Cells[11, 9] = new Cell(11, 9, zone);
+            repaints = 0;
+            Assert.True(item.GetPart<StatusEffectsPart>().RemoveEffect(typeof(WetEffect)));
+            Assert.That(repaints, Is.Zero);
+        }
+    }
+
     public class StatusEffectTests
     {
         [SetUp]

@@ -1,0 +1,178 @@
+{
+  "scope": "Supplied controlled packet on retained camp fixture. Ordinary native inventory drop, one step and stationary waits. No calendar advance.",
+  "states": {
+    "baselineWet": {
+      "zone": "Overworld.10.11.0",
+      "x": 40,
+      "y": 9,
+      "tick": 2420,
+      "hp": 343,
+      "mode": "Normal",
+      "boot": false,
+      "packet": "2731",
+      "wet": 0.159999952,
+      "ground": [
+        41,
+        9
+      ],
+      "tile": "Flat world glyph 37",
+      "tint": "RGBA(0.242, 0.242, 0.697, 1.000)",
+      "rows": [
+        {
+          "ID": "2115",
+          "bp": "Viper",
+          "at": "(7, 19)"
+        }
+      ],
+      "busy": false
+    },
+    "baselineDry": {
+      "zone": "Overworld.10.11.0",
+      "x": 40,
+      "y": 9,
+      "tick": 2600,
+      "hp": 343,
+      "mode": "Normal",
+      "boot": false,
+      "packet": "2731",
+      "wet": null,
+      "ground": [
+        41,
+        9
+      ],
+      "tile": "Flat world glyph 37",
+      "tint": "RGBA(0.242, 0.242, 0.697, 1.000)",
+      "rows": [
+        {
+          "ID": "2115",
+          "bp": "Viper",
+          "at": "(3, 14)"
+        }
+      ],
+      "busy": false
+    },
+    "fixedStart": {
+      "zone": "Overworld.10.11.0",
+      "x": 40,
+      "y": 9,
+      "tick": 2340,
+      "hp": 343,
+      "mode": "Normal",
+      "boot": false,
+      "packet": "2731",
+      "wet": 0.24,
+      "ground": [
+        41,
+        9
+      ],
+      "tile": "Flat world glyph 37",
+      "tint": "RGBA(0.242, 0.242, 0.697, 1.000)",
+      "rows": [
+        {
+          "ID": "2115",
+          "bp": "Viper",
+          "at": "(7, 17)"
+        }
+      ],
+      "busy": false
+    },
+    "fixedWet": {
+      "zone": "Overworld.10.11.0",
+      "x": 40,
+      "y": 9,
+      "tick": 2420,
+      "hp": 343,
+      "mode": "Normal",
+      "boot": false,
+      "packet": "2731",
+      "wet": 0.159999952,
+      "ground": [
+        41,
+        9
+      ],
+      "tile": "Flat world glyph 37",
+      "tint": "RGBA(0.242, 0.242, 0.697, 1.000)",
+      "rows": [
+        {
+          "ID": "2115",
+          "bp": "Viper",
+          "at": "(5, 14)"
+        }
+      ],
+      "busy": false
+    },
+    "fixedDry": {
+      "zone": "Overworld.10.11.0",
+      "x": 40,
+      "y": 9,
+      "tick": 2600,
+      "hp": 343,
+      "mode": "Normal",
+      "boot": false,
+      "packet": "2731",
+      "wet": null,
+      "ground": [
+        41,
+        9
+      ],
+      "tile": "Flat world glyph 37",
+      "tint": "RGBA(0.491, 0.000, 0.000, 1.000)",
+      "rows": [
+        {
+          "ID": "2115",
+          "bp": "Viper",
+          "at": "(3, 17)"
+        }
+      ],
+      "busy": false
+    },
+    "fresh": {
+      "zone": "Overworld.10.11.0",
+      "x": 40,
+      "y": 9,
+      "tick": 2600,
+      "hp": 343,
+      "mode": "Normal",
+      "boot": false,
+      "packet": "2731",
+      "wet": null,
+      "ground": [
+        41,
+        9
+      ],
+      "tile": "Flat world glyph 37",
+      "tint": "RGBA(0.491, 0.000, 0.000, 1.000)",
+      "rows": [
+        {
+          "ID": "2115",
+          "bp": "Viper",
+          "at": "(3, 17)"
+        }
+      ],
+      "busy": false
+    }
+  },
+  "archives": "/Users/steven/coo-verification/checkpoints/WetPacket20261127",
+  "screen": "EnvironmentSpriteTilemap",
+  "sameBand": [
+    2420,
+    2600
+  ],
+  "oldResult": "Dry effect removed at2600 while blue until manual control repaint.",
+  "newResult": "Red automatic at2600",
+  "normalScopedFiles": 860,
+  "native": {
+    "red": "wet_ground_appearance_red_corrected_20261127.xml",
+    "green": "wet_ground_appearance_green_20261127.xml",
+    "passed": 126,
+    "failed": 0,
+    "redSHA256": "f461f49051c801ba5c597ce39155954e92124d4db67d37fc90b8130aa6ea8f4d",
+    "greenSHA256": "8e28b8801dafe4317450c9cc87df1f9a0cd2532bd9f0b03985734ed04c565f74"
+  },
+  "limitations": [
+    "Earlier earned rain packet temporary checkpoint is absent after external cleanup.",
+    "Original camp fixture has supplied equipment and343/400HP.",
+    "This comparison exercises one Flat layout in the Editor."
+  ],
+  "normalExclusion": "TestResults.xml is expected Unity batch output"
+}

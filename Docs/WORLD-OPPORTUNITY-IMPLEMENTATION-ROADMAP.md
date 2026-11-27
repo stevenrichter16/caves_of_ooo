@@ -96,6 +96,12 @@ two ordinary crops available. This extends #32–33 to the shorter
 one-measure resin trip.
 [Pitchpod map comparison](Verification/MachineSystems/PosyPitchpodWorldCue20261127/README.md)
 
+The wet-to-dry packet comparison extends #32’s visible-state requirement.
+A dropped item's existing wet color now clears at effect removal during
+stationary waiting. The actual test packet was supplied on a retained
+camp fixture. Its dry state and identity survived Continue.
+[Drying display evidence](Verification/MachineSystems/WetGroundAppearance20261127/README.md)
+
 The Sumphold oil recovery also supports #39–40 through an earned purchase
 and paid lasting Sill repair. Actual play returned to the same path
 approach and measured greater light in two already visible cells. Fresh

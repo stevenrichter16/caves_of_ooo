@@ -34,6 +34,16 @@ namespace CavesOfOoo.Core
         public override void OnRemove(Entity target)
         {
             MessageLog.AddObserved(target, target.GetDisplayName() + " has dried off.");
+            var zone = target.SpatialZone;
+            var render = target.GetPart<RenderPart>();
+            if (Owner != target || zone != SettlementRuntime.ActiveZone || !StationReadiness.CurrentZone(zone)
+                || !target.HasTag("Item") || target.HasTag("Creature")
+                || !WorldResourceActions.Ground(target, zone) || !target.GetPart<PhysicsPart>().Takeable
+                || render?.ParentEntity != target || !render.Visible
+                || zone.GetEntityCell(target) is not { Explored: true, IsVisible: true } cell
+                || zone.GetCell(cell.X, cell.Y) != cell)
+                return;
+            ZoneRenderHooks.MarkCellDirty(cell, "Loose item dried");
         }
 
         public override void OnTurnEnd(Entity target)

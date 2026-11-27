@@ -1,3 +1,9 @@
+**Loose materials repaint when their wet effect ends.**
+Ordinary waiting now shows a dropped item's existing dry appearance
+without moving or opening a menu. A controlled clay-and-grit packet
+comparison and fresh Continue verified the same physical stock.
+[Native evidence](Verification/MachineSystems/WetGroundAppearance20261127/README.md)
+
 **The side path near Posy shows when its wild pitchpod has resin.**
 The bright bead and dry stalk follow the existing finite hand harvest.
 The ordinary plants keep the longer route for more resin and a seed.

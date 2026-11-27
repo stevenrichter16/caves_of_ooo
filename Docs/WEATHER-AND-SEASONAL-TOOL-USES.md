@@ -268,6 +268,11 @@ describe ordinary conditions only, not unseen actors, contents or mysteries.
 
 ### Show the change in the world
 
+Loose materials must also show the end of an existing material condition.
+Stationary drying now refreshes the visible item when its wet effect ends.
+The same packet keeps its identity and normal dry color through Continue.
+[Native wet-to-dry comparison](Verification/MachineSystems/WetGroundAppearance20261127/README.md)
+
 Every environmental material opportunity needs a visible cue in normal
 exploration at the usual viewing scale. The cue comes from what changed
 in that place. A bank gains a broken edge and a loose apron of sediment.

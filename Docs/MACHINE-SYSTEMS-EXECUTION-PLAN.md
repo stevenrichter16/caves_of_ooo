@@ -1,3 +1,11 @@
+**Dropped materials show their dry state after waiting — November 26, 2026, America/Chicago.**
+The existing wet effect had expired while the world still painted the
+packet blue. One visible-cell refresh on effect removal fixes the stale
+color. Native inventory drop, stationary waits and fresh Continue
+verified the dry packet. The comparison supplied one packet on a retained
+camp fixture. All 126 focused checks passed.
+[Visible comparison](Verification/MachineSystems/WetGroundAppearance20261127/README.md)
+
 **Loose moisture comparison awaiting Unity scratch space — November 27 UTC, 2026.**
 The earned rain-seam archive at tick 2410 contains packet 17139 with
 25% moisture in the exact player's pack. A new isolated Editor session
