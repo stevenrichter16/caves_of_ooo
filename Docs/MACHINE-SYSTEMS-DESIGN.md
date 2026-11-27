@@ -127,11 +127,15 @@ repair work. Mining retained its real standing cost. The player carried
 the second ore to Orrit, who awarded the quoted work payment and put the
 same ore into stock. A fresh load retained both completed jobs.
 The two earned clay and bought spike then made one reusable hearth
-nozzle. Its ordinary heating route still needs a player-owned fire.
+nozzle. A later supplied camp trial used the same action on visible ice.
+Its shared preview names the ice and expires if the patch changes before
+the five-fuel payment. Spell heat reached the same meltwater state in a
+separate branch. The ordinary purchase-to-use chain remains open.
 [Economy design](ECONOMY-SYSTEM.md#job-and-mission-rewards) ·
 [Cinderhold playtest](Verification/MachineSystems/RegionalIronRewards20261126/README.md) ·
 [Morrowfast playtest](Verification/MachineSystems/MorrowfastCarriedOre20261126/README.md) ·
-[Earned nozzle](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md)
+[Earned nozzle](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md) ·
+[Ice cue and heat comparison](Verification/MachineSystems/HearthNozzleIceCue20261127/README.md)
 
 **Silver sand from the Sumphold recovery has a lasting use at Sill.**
 The player brought the exact reward to the existing MainWell project.

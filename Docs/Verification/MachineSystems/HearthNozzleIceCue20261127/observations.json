@@ -1,0 +1,1600 @@
+{
+  "baseCheckpoint": "/Users/steven/coo-verification/checkpoints/BenchStriker20261127/Relit2740/d3c56928ecec4cd0a4532b3402867974",
+  "setup": {
+    "startingCamp": "retained supplied seed 64 generation 17",
+    "added": {
+      "id": "2732",
+      "weight": 562,
+      "capacity": 5000
+    },
+    "firstStart": "Deferred editor compilation reloaded the initial Play session before setup completed. No action or save earned in that session. Repeated native Continue from the unchanged exact initial four files."
+  },
+  "initial": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2740,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 9.75,
+        "temp": 441.5,
+        "vol": null
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x7)",
+        "n": 7,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 3
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      }
+    ],
+    "ice": 0,
+    "water": 0,
+    "cold": 0
+  },
+  "dryMenu": {
+    "open": true,
+    "selected": 0,
+    "rows": [
+      {
+        "i": 0,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "Hint": "",
+        "via": null
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "direct hearth heat to 41,10 (5 fuel, 1 action) [hearth nozzle]",
+        "Command": "DirectHearthHeat|41|10|1dc05b3a934c4cc0a49450c8835cbafb",
+        "Hint": "Uses 5 fuel from your adjacent burning hearth. Shared heat can thaw ice or ignite coatings and affect nearby things.",
+        "via": "2732"
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "lay hush strip south",
+        "Command": "LayDevice|Overworld.10.11.0|41|9|41|10|2136",
+        "Hint": "Lays one hush strip on that cell. You can take it up again from beside it.",
+        "via": "2136"
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "pour out a liquid here (6) >>",
+        "Command": "ToolGroup|pour out a liquid here",
+        "Hint": "Choose from: liquid flask.",
+        "via": null
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "spread brine south (1 item) [glimmer-brine]",
+        "Command": "MaterialField|Film|Overworld.10.11.0|41|9|41|10||7|brine",
+        "Hint": "",
+        "via": "2215"
+      },
+      {
+        "i": 5,
+        "key": "e",
+        "Display": "lay the fire moss trap south [spring trap]",
+        "Command": "LaySpringTrap|Overworld.10.11.0|41|9|41|10",
+        "Hint": "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. Recover it from beside it before it springs to keep the loaded frame.",
+        "via": "2730"
+      },
+      {
+        "i": 6,
+        "key": "f",
+        "Display": "set down south (nothing to catch here) [settling tray]",
+        "Command": "SetDown|Overworld.10.11.0|41|9|41|10|2134",
+        "Hint": "",
+        "via": "2134"
+      }
+    ]
+  },
+  "pourMenu": {
+    "open": true,
+    "selected": 0,
+    "rows": [
+      {
+        "i": 0,
+        "key": "a",
+        "Display": "pour bog mire south (4) [liquid flask]",
+        "Command": "PourLiquidVessel|bog-mire|4|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2232"
+      },
+      {
+        "i": 1,
+        "key": "b",
+        "Display": "pour water south (2) [liquid flask]",
+        "Command": "PourLiquidVessel|water|2|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 2,
+        "key": "c",
+        "Display": "pour water south (3) [liquid flask]",
+        "Command": "PourLiquidVessel|water|3|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2234"
+      },
+      {
+        "i": 3,
+        "key": "d",
+        "Display": "pour one bog mire south [liquid flask]",
+        "Command": "PourOneLiquidVessel|bog-mire|4|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2232"
+      },
+      {
+        "i": 4,
+        "key": "e",
+        "Display": "pour one water south [liquid flask] (2/12 water)",
+        "Command": "PourOneLiquidVessel|water|2|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 5,
+        "key": "f",
+        "Display": "pour one water south [liquid flask] (3/12 water)",
+        "Command": "PourOneLiquidVessel|water|3|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2234"
+      },
+      {
+        "i": 6,
+        "key": "g",
+        "Display": "<< back",
+        "Command": "ToolGroupBack|pour out a liquid here",
+        "Hint": "",
+        "via": null
+      }
+    ]
+  },
+  "poured": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2750,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 9.5,
+        "temp": 433.17,
+        "vol": null
+      },
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x7)",
+        "n": 7,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 0,
+    "water": 2147483647,
+    "cold": 0
+  },
+  "freezeMenu": {
+    "open": true,
+    "selected": 0,
+    "rows": [
+      {
+        "i": 0,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "Hint": "",
+        "via": null
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "direct hearth heat to 41,10 (5 fuel, 1 action) [hearth nozzle]",
+        "Command": "DirectHearthHeat|41|10|ee1bd9ad0b824778acb3dab7afe9d320",
+        "Hint": "Uses 5 fuel from your adjacent burning hearth. Shared heat can thaw ice or ignite coatings and affect nearby things.",
+        "via": "2732"
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "fill with water (41,10) [liquid flask] (2/12 water)",
+        "Command": "FillLiquidVessel|2733|water",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "fill with water (41,10) [liquid flask] (empty)",
+        "Command": "FillLiquidVessel|2733|water",
+        "Hint": "",
+        "via": "2235"
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "spread a material here (3) >>",
+        "Command": "ToolGroup|spread a material here",
+        "Hint": "Choose from: spark-root, frost lichen, glimmer-brine.",
+        "via": null
+      },
+      {
+        "i": 5,
+        "key": "e",
+        "Display": "lay hush strip south",
+        "Command": "LayDevice|Overworld.10.11.0|41|9|41|10|2136",
+        "Hint": "Lays one hush strip on that cell. You can take it up again from beside it.",
+        "via": "2136"
+      },
+      {
+        "i": 6,
+        "key": "f",
+        "Display": "pour water south (2) [liquid flask]",
+        "Command": "PourLiquidVessel|water|2|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 7,
+        "key": "g",
+        "Display": "lay the fire moss trap south [spring trap]",
+        "Command": "LaySpringTrap|Overworld.10.11.0|41|9|41|10",
+        "Hint": "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. Recover it from beside it before it springs to keep the loaded frame.",
+        "via": "2730"
+      },
+      {
+        "i": 8,
+        "key": "h",
+        "Display": "pour one water south [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|2|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 9,
+        "key": "i",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "Hint": "",
+        "via": null
+      }
+    ]
+  },
+  "frozen": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2760,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 9.25,
+        "temp": 425.006622,
+        "vol": null
+      },
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 3,
+    "water": 0,
+    "cold": 0
+  },
+  "iceMenu": {
+    "open": true,
+    "selected": 0,
+    "rows": [
+      {
+        "i": 0,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "Hint": "",
+        "via": null
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "heat ice at 41,10 (5 fuel, 1 action) [hearth nozzle]",
+        "Command": "DirectHearthHeat|41|10|9cfffc6c29e94669aabf3122d033fe93",
+        "Hint": "Uses 5 fuel. Heat can thaw the ice into temporary meltwater on the ground. Cold or other coatings can absorb the heat.",
+        "via": "2732"
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "lay hush strip south",
+        "Command": "LayDevice|Overworld.10.11.0|41|9|41|10|2136",
+        "Hint": "Lays one hush strip on that cell. You can take it up again from beside it.",
+        "via": "2136"
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "spread brine south (1 item) [glimmer-brine]",
+        "Command": "MaterialField|Film|Overworld.10.11.0|41|9|41|10||7|brine",
+        "Hint": "",
+        "via": "2215"
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "lay the fire moss trap south [spring trap]",
+        "Command": "LaySpringTrap|Overworld.10.11.0|41|9|41|10",
+        "Hint": "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. Recover it from beside it before it springs to keep the loaded frame.",
+        "via": "2730"
+      },
+      {
+        "i": 5,
+        "key": "e",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "Hint": "",
+        "via": null
+      }
+    ]
+  },
+  "cancelled": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2760,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 9.25,
+        "temp": 425.006622,
+        "vol": null
+      },
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 3,
+    "water": 0,
+    "cold": 0
+  },
+  "nozzleThaw": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2770,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 4,
+        "temp": 417.0065,
+        "vol": null
+      },
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 0,
+    "water": 5,
+    "cold": 0
+  },
+  "freshContinue": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2770,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      },
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 4,
+        "temp": 417.0065,
+        "vol": null
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 0,
+    "water": 5,
+    "cold": 0
+  },
+  "lowFuelMenu": {
+    "open": true,
+    "selected": 0,
+    "rows": [
+      {
+        "i": 0,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "Hint": "",
+        "via": null
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "fill with water (41,10) [liquid flask] (2/12 water)",
+        "Command": "FillLiquidVessel|2733|water",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "fill with water (41,10) [liquid flask] (empty)",
+        "Command": "FillLiquidVessel|2733|water",
+        "Hint": "",
+        "via": "2235"
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "spread a material here (3) >>",
+        "Command": "ToolGroup|spread a material here",
+        "Hint": "Choose from: spark-root, frost lichen, glimmer-brine.",
+        "via": null
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "lay hush strip south",
+        "Command": "LayDevice|Overworld.10.11.0|41|9|41|10|2136",
+        "Hint": "Lays one hush strip on that cell. You can take it up again from beside it.",
+        "via": "2136"
+      },
+      {
+        "i": 5,
+        "key": "e",
+        "Display": "pour water south (2) [liquid flask]",
+        "Command": "PourLiquidVessel|water|2|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 6,
+        "key": "f",
+        "Display": "lay the fire moss trap south [spring trap]",
+        "Command": "LaySpringTrap|Overworld.10.11.0|41|9|41|10",
+        "Hint": "Lays it on that cell. It springs on the next thing to step there, you included, and is spent. Recover it from beside it before it springs to keep the loaded frame.",
+        "via": "2730"
+      },
+      {
+        "i": 7,
+        "key": "g",
+        "Display": "pour one water south [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|2|Overworld.10.11.0|41|10",
+        "Hint": "",
+        "via": "2231"
+      },
+      {
+        "i": 8,
+        "key": "h",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "Hint": "",
+        "via": null
+      }
+    ]
+  },
+  "movedAfterContinue": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2790,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      },
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 3.5,
+        "temp": 401.483063,
+        "vol": null
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 0,
+    "water": 3,
+    "cold": 0
+  },
+  "spellFromSameFrozenSave": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2760,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      },
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 9.25,
+        "temp": 425.006622,
+        "vol": null
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 3,
+    "water": 0,
+    "cold": 0
+  },
+  "spellThaw": {
+    "ready": true,
+    "busy": false,
+    "mode": "Normal",
+    "boot": true,
+    "zone": "Overworld.10.11.0",
+    "tick": 2770,
+    "hp": 343,
+    "x": 41,
+    "y": 9,
+    "g": [
+      {
+        "id": "2733",
+        "bp": "PouredLiquidPool",
+        "x": 41,
+        "y": 10,
+        "fuel": null,
+        "temp": null,
+        "vol": 1
+      },
+      {
+        "id": "2147",
+        "bp": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "fuel": 9,
+        "temp": 417.0065,
+        "vol": null
+      }
+    ],
+    "items": [
+      {
+        "id": "2175",
+        "bp": "FrostLichen",
+        "name": "frost lichen (x6)",
+        "n": 6,
+        "vol": null
+      },
+      {
+        "id": "2232",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2233",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 4
+      },
+      {
+        "id": "2234",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2235",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2236",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2237",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2238",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2239",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2240",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2241",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2242",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 0
+      },
+      {
+        "id": "2231",
+        "bp": "LiquidFlask",
+        "name": "liquid flask",
+        "n": 1,
+        "vol": 2
+      },
+      {
+        "id": "2732",
+        "bp": "HearthNozzle",
+        "name": "hearth nozzle",
+        "n": 1,
+        "vol": null
+      }
+    ],
+    "ice": 0,
+    "water": 5,
+    "cold": 0
+  },
+  "restoredEditor": {
+    "play": false,
+    "changing": false,
+    "compiling": false,
+    "active": false,
+    "rootNull": true,
+    "keys": [
+      "Keyboard"
+    ]
+  },
+  "archives": [
+    {
+      "dst": "/Users/steven/coo-verification/checkpoints/HearthNozzleIceCue20261127/Frozen2760/d3c56928ecec4cd0a4532b3402867974",
+      "pins": {
+        "Quick.json": "e4bd8143cb53312d9a3b88384bd354ee8298afeebab047805265717de593ef9a",
+        "Quick.json.bak": "1b5daed664cea76dcfaea20cbb7b1c3f4fe0eb36e6ef4183deababa812f328b2",
+        "Quick.sav.gz": "58283316ad2ca755eaa44cc728ab6751588cc75d3a9ae097c0c86c505abe726d",
+        "Quick.sav.gz.bak": "a941e54bfd40f8733668aaf39939e9a4f233a8542d4f8ffd5bacbdd60abd6fe0"
+      }
+    },
+    {
+      "dst": "/Users/steven/coo-verification/checkpoints/HearthNozzleIceCue20261127/Nozzle2770/d3c56928ecec4cd0a4532b3402867974",
+      "pins": {
+        "Quick.json": "299dd3fc7cbd0a616a92aaeaca873124a2b33401d510329d98c35d9831420715",
+        "Quick.json.bak": "e4bd8143cb53312d9a3b88384bd354ee8298afeebab047805265717de593ef9a",
+        "Quick.sav.gz": "79b2897180531d820b4d11a8a8934476b64f9ae614a457350a759cd518886502",
+        "Quick.sav.gz.bak": "58283316ad2ca755eaa44cc728ab6751588cc75d3a9ae097c0c86c505abe726d"
+      }
+    },
+    {
+      "dst": "/Users/steven/coo-verification/checkpoints/HearthNozzleIceCue20261127/Spell2770/d3c56928ecec4cd0a4532b3402867974",
+      "pins": {
+        "Quick.json": "5ae7037a1474c0459ebb06868b5fa1a27fcbc1495c6b246c986945ab8be07b63",
+        "Quick.json.bak": "e4bd8143cb53312d9a3b88384bd354ee8298afeebab047805265717de593ef9a",
+        "Quick.sav.gz": "40987f38788a1b64638a1fd6846018e45a44cc267eec74a871c5b7b3c096050d",
+        "Quick.sav.gz.bak": "58283316ad2ca755eaa44cc728ab6751588cc75d3a9ae097c0c86c505abe726d"
+      }
+    }
+  ],
+  "native": {
+    "red": {
+      "counts": "81 total, 77 passed, 4 expected failures",
+      "xml": "/Users/steven/coo-verification/runs/HearthNozzleIceCue20261127/red.xml"
+    },
+    "final": {
+      "counts": "323 total, 323 passed, zero failures, skips or inconclusive",
+      "xml": "/Users/steven/coo-verification/runs/HearthNozzleIceCue20261127/final-text.xml",
+      "sourceSHA256": "04fe83687f3948790390e9ced08b9bcfe1ab7459f92e017a1b6053e889f5e0ec",
+      "testsSHA256": "0d1dff492da7cf907b6566cd0c875408bc8f5de0f3f0a50d0f18ec82647896e2"
+    }
+  },
+  "preservation": {
+    "normalQuickExact": 876,
+    "foreignTrackedExact": 87,
+    "archiveFilesExact": 12
+  }
+}

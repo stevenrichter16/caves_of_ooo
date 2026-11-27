@@ -1,3 +1,13 @@
+**The hearth nozzle names visible ice — November 27, 2026, America/Chicago.**
+The world and pack quotes share one paid heat action and reject an ice
+change before payment commits. A supplied camp used one existing water
+and one lichen to make a visible icy patch. Cancelling was free. A nozzle
+and spell fork each thawed it, keeping the same puddle volume. Only the
+nozzle spent five additional hearth fuel. Fresh Continue retained the
+paid result. All 323 targeted cases passed. Ordinary acquisition and
+natural surface ice near a lawful camp remain open.
+[Playtest and receipts](Verification/MachineSystems/HearthNozzleIceCue20261127/README.md)
+
 **The paid copy-room lamps illuminate both desk bays — November 27, 2026, America/Chicago.**
 In a retained ordinary seed-65 save, a watering grimoire and 28 drams
 bought three oils from Yevven in Sill. Nerrit accepted all three at the

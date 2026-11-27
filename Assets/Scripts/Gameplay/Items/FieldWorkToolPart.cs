@@ -82,9 +82,15 @@ namespace CavesOfOoo.Core
                     for(int dx=-1;dx<=1;dx++)for(int dy=-1;dy<=1;dy++)
                     {
                         var target=zone.GetCell(origin.X+dx,origin.Y+dy);if(target==origin || !Visible(target))continue;
-                        yield return Make(Heat,"direct hearth heat to "+target.X+","+target.Y+" (5 fuel, 1 action)",
-                            "Uses 5 fuel from your adjacent burning hearth. Shared heat can thaw ice or ignite coatings and affect nearby things.",target,new[]{source},
-                            ()=>SourceCurrent(amount) && Visible(target),()=>SourceCurrent(amount-HeatFuel) && Visible(target),tx=>
+                        bool icy = zone.TileState.HasCoating(target.X, target.Y, "ice");
+                        bool TargetCurrent() => Visible(target) && zone.GetCell(target.X, target.Y) == target
+                            && zone.TileState.HasCoating(target.X, target.Y, "ice") == icy;
+                        string aim = icy ? "heat ice at " : "direct hearth heat to ";
+                        string hint = icy
+                            ? "Uses 5 fuel. Heat can thaw the ice into temporary meltwater on the ground. Cold or other coatings can absorb the heat."
+                            : "Uses 5 fuel from your adjacent burning hearth. Shared heat can thaw ice or ignite coatings and affect nearby things.";
+                        yield return Make(Heat,aim+target.X+","+target.Y+" (5 fuel, 1 action)",hint,target,new[]{source},
+                            ()=>SourceCurrent(amount) && TargetCurrent(),()=>SourceCurrent(paidFuel) && TargetCurrent(),tx=>
                             {
                                 fuel.FuelMass-=HeatFuel;
                                 tx.Do(null,()=>{if(source.GetPart<FuelPart>()==fuel && fuel.ParentEntity==source && fuel.MaxFuel==max

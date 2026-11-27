@@ -96,6 +96,119 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(tool,Row(tool,"DirectHearthHeat|")));Assert.AreEqual(10,h.GetPart<FuelPart>().FuelMass);
             Assert.False(Zone.TileState.HasCoating(11,10,"ice"));Assert.AreEqual(0,PoolUnits());
         }
+
+        [Test]
+        public void NozzleShowsHeatIceInBothMenusAndRetainsOrdinaryHeatForOtherGround()
+        {
+            var hearth = Hearth();
+            var tool = Carry("HearthNozzle");
+            Zone.TileState.WriteCoating(11, 10, "ice", 5);
+            var rows = Actions(tool).Where(action => action.Command.StartsWith("DirectHearthHeat|")).ToArray();
+            var thaw = rows.Single(action => action.ActsOnCell(11, 10));
+            var direct = rows.Single(action => action.ActsOnCell(10, 11));
+            var worldThaw = CellMenu(11, 10).Single(action => action.Via == tool && action.Command.StartsWith("DirectHearthHeat|"));
+
+            Assert.That(thaw.Display, Does.Contain("heat ice").IgnoreCase);
+            Assert.That(thaw.Display, Does.Contain("5 fuel"));
+            Assert.That(thaw.Hint, Does.Contain("thaw").IgnoreCase);
+            Assert.That(thaw.Hint, Does.Contain("water").IgnoreCase);
+            Assert.That(worldThaw.Display, Does.Contain("heat ice").IgnoreCase);
+            Assert.That(direct.Display, Does.Contain("direct hearth heat").IgnoreCase);
+            Assert.That(thaw.Time, Is.EqualTo(ActionTime.OneAction));
+            Assert.That(worldThaw.Time, Is.EqualTo(thaw.Time));
+            Assert.That(direct.Time, Is.EqualTo(thaw.Time));
+            Assert.AreEqual(15f, hearth.GetPart<FuelPart>().FuelMass);
+            Assert.AreEqual(5, Zone.TileState.CoatingTurns(11, 10, "ice"));
+        }
+
+        [TestCase(false, true)] [TestCase(true, false)]
+        public void HiddenOrUnexploredIceNeverOffersAHeatRow(bool visible, bool explored)
+        {
+            Hearth();
+            var tool = Carry("HearthNozzle");
+            var cell = Zone.GetCell(11, 10);
+            Zone.TileState.WriteCoating(cell.X, cell.Y, "ice", 5);
+            cell.IsVisible = visible;
+            cell.Explored = explored;
+
+            Assert.False(Actions(tool).Any(action => action.Command.StartsWith("DirectHearthHeat|") && action.ActsOnCell(cell.X, cell.Y)));
+            Assert.False(CellMenu(cell.X, cell.Y).Any(action => action.Via == tool && action.Command.StartsWith("DirectHearthHeat|")));
+            Assert.AreEqual(5, Zone.TileState.CoatingTurns(cell.X, cell.Y, "ice"));
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void AThawQuoteCannotSpendFuelAfterIceMeltsEvenWithOilStillPresent(bool meltsDuringAction)
+        {
+            var hearth = Hearth();
+            var fuel = hearth.GetPart<FuelPart>();
+            var tool = Carry("HearthNozzle");
+            Zone.TileState.WriteCoating(11, 10, "oil", 12);
+            Zone.TileState.WriteCoating(11, 10, "ice", 5);
+            string command = Row(tool, "DirectHearthHeat|");
+            string afterMelt = null;
+            void Melt()
+            {
+                Assert.True(Zone.TileState.RemoveCoating(11, 10, "ice"));
+                afterMelt = Zone.TileState.ToSaveString();
+            }
+            if (meltsDuringAction)
+            {
+                Actor.AddPart(new Probe { Run = e =>
+                {
+                    if (e.ID != "AfterInventoryAction") return;
+                    Assert.AreEqual(10f, fuel.FuelMass, "The five fuel has been staged before the ice melts.");
+                    Melt();
+                } });
+            }
+            else Melt();
+
+            Assert.False(Act(tool, command));
+            Assert.NotNull(afterMelt);
+            Assert.AreEqual(afterMelt, Zone.TileState.ToSaveString());
+            Assert.AreEqual(12, Zone.TileState.CoatingTurns(11, 10, "oil"));
+            Assert.AreEqual(15f, fuel.FuelMass);
+        }
+
+        [Test]
+        public void NewIceInvalidatesTheOrdinaryHeatQuoteButAFreshThawQuoteWorks()
+        {
+            var hearth = Hearth();
+            var tool = Carry("HearthNozzle");
+            string ordinary = Row(tool, "DirectHearthHeat|");
+            Zone.TileState.WriteCoating(11, 10, "ice", 5);
+            string frozen = Zone.TileState.ToSaveString();
+
+            Assert.False(Act(tool, ordinary));
+            Assert.AreEqual(15f, hearth.GetPart<FuelPart>().FuelMass);
+            Assert.AreEqual(frozen, Zone.TileState.ToSaveString());
+            string thaw = Row(tool, "DirectHearthHeat|");
+            Assert.AreNotEqual(ordinary, thaw);
+            Assert.True(Act(tool, thaw));
+            Assert.False(Zone.TileState.HasCoating(11, 10, "ice"));
+            Assert.AreEqual(10f, hearth.GetPart<FuelPart>().FuelMass);
+            Assert.AreEqual(0, PoolUnits());
+        }
+
+        [Test]
+        public void ActiveColdCanAbsorbThePaidHeatWithoutThawingIce()
+        {
+            var hearth = Hearth();
+            var tool = Carry("HearthNozzle");
+            Zone.TileState.WriteCoating(11, 10, "ice", 5);
+            Zone.TileState.AddCold(11, 10, 1);
+            var row = Actions(tool).Single(action => action.Command.StartsWith("DirectHearthHeat|") && action.ActsOnCell(11, 10));
+
+            Assert.That(row.Display, Does.Contain("heat ice").IgnoreCase);
+            Assert.That(row.Hint, Does.Contain("can thaw").IgnoreCase);
+            Assert.That(row.Hint, Does.Contain("cold").IgnoreCase);
+            Assert.True(Act(tool, row.Command));
+            Assert.AreEqual(10f, hearth.GetPart<FuelPart>().FuelMass);
+            Assert.AreEqual(0, Zone.TileState.Get(11, 10).Cold);
+            Assert.AreEqual(5, Zone.TileState.CoatingTurns(11, 10, "ice"));
+            Assert.False(Zone.TileState.HasCoating(11, 10, "water"));
+            Assert.AreEqual(0, PoolUnits());
+        }
+
         [TestCase("cold")] [TestCase("empty")] [TestCase("public")] [TestCase("nonplayer")]
         public void NozzleCannotUseUnpaidOrUnownedHeat(string change)
         {

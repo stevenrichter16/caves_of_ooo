@@ -79,6 +79,13 @@ exhausted and packed views were checked alongside native authority and
 countercases. This improves comprehension without changing the work.
 [Compact fire readers](Verification/MachineSystems/CompactFireReader20261127/README.md)
 
+For #36, #37 and #40, the nozzle names visible ice before asking for
+five fuel. A cancelled quote kept fuel and tile unchanged, and an
+ordinary nozzle use and spell heat thawed the same patch in separate
+supplied-camp branches. Fresh Continue kept the nozzle result. The
+ordinary gear acquisition and natural-ice route stay open.
+[Nozzle cue and heat alternatives](Verification/MachineSystems/HearthNozzleIceCue20261127/README.md)
+
 For #14, #16 and #40, a visible deployed settling tray now shows when
 the same finite stock allows a gather. A retained supplied tray used a
 natural steam vent to make one garment heat coat. A competing scraper
