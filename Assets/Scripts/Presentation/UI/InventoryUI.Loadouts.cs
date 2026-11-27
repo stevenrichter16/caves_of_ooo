@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using CavesOfOoo.Core;
 using UnityEngine;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {

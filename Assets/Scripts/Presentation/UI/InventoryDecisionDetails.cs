@@ -127,10 +127,23 @@ namespace CavesOfOoo.Rendering
                 }
             return header + (remaining <= 0 ? "\nThe entire stack can merge without a new entry." : "\nContainer is full; this stack needs a new entry.");
         }
-        public static string Trade(Entity actor, Entity trader, Entity item, bool buying)
+        public static string Trade(Entity actor, Entity trader, Entity item, bool buying, int? markedCount = null)
         {
             if (actor == null || trader == null || !Owned(buying ? trader : actor, item)) return null;
             double perf = TradeSystem.GetTradePerformance(actor);
+            if (markedCount.HasValue)
+            {
+                bool barter = Tender.For(trader) == TenderKind.Barter;
+                string tender = barter ? " value" : " drams";
+                int unitPrice = buying ? TradeSystem.GetBuyPrice(item, perf, trader, 1) : TradeSystem.GetSellPrice(item, perf, trader, 1);
+                int count = markedCount.Value;
+                int total = count <= 0 ? 0 : buying ? TradeSystem.GetBuyPrice(item, perf, trader, count)
+                    : TradeSystem.GetSellPrice(item, perf, trader, count);
+                return BaseItem(item) + "\n\n" + (buying ? "Take from merchant" : "Give from your pack")
+                    + "\nIn offer: " + count + " of " + BarterDeal.Units(item) + ".\n"
+                    + Weight(item) + "\nPer item: " + unitPrice + tender + ".\nMarked line: " + total + tender + "."
+                    + "\nReview the balance of the whole offer before confirming.";
+            }
             int price = buying ? TradeSystem.GetBuyPrice(item, perf, trader) : TradeSystem.GetSellPrice(item, perf, trader);
             long after = (long)TradeSystem.GetDrams(actor) + (buying ? -price : price);
             var pack = actor.GetPart<InventoryPart>();

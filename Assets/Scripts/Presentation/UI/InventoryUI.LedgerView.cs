@@ -4,6 +4,7 @@ using System.Linq;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.UI;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
@@ -33,16 +34,6 @@ namespace CavesOfOoo.Rendering
         AnnouncementDocument _ledgerSelectionDocument;
         string _ledgerSelectionText;
         const int LedgerListRows = 12;
-        static readonly Color LBackground = new Color(.018f, .044f, .040f);
-        static readonly Color LInk = new Color(.86f, .88f, .76f);
-        static readonly Color LMuted = new Color(.57f, .69f, .60f);
-        static readonly Color LGold = new Color(.97f, .77f, .33f);
-        static readonly Color LBorder = new Color(.21f, .38f, .31f);
-        static readonly Color LPanel = new Color(.028f, .073f, .065f);
-        static readonly Color LSelected = new Color(.085f, .14f, .105f);
-        static readonly Color LRed = new Color(.96f, .55f, .44f);
-        static readonly Color LGreen = new Color(.48f, .86f, .57f);
-
         void EnsureLedgerView()
         {
             if (_ledgerRoot == null)

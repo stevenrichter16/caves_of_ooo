@@ -189,6 +189,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void TradeConfirmationKeepsWholeStackPricePaintedForShortAndLongNames()
         {
+            input.TradeUI.gameObject.SetActive(true);
             input.TradeUI.Tilemap = Make<UnityEngine.Tilemaps.Tilemap>();
             var trader = factory.CreateEntity("Player"); var item = factory.CreateEntity("Dagger");
             item.GetPart<StackerPart>().StackCount = 3; item.GetPart<CommercePart>().Value = 17;
@@ -198,14 +199,10 @@ namespace CavesOfOoo.Tests
             {
                 item.GetPart<RenderPart>().DisplayName = name; input.TradeUI.Open(trader);
                 typeof(TradeUI).GetMethod("ShowConfirmation", Private).Invoke(input.TradeUI, null);
-                string painted = "";
-                for (int x = 22; x < 58; x++)
-                {
-                    var tile = input.TradeUI.Tilemap.GetTile(new Vector3Int(x, 24, 0)); char glyph = ' ';
-                    for (int c = 33; c < 127; c++) if (tile == CP437TilesetGenerator.GetUiTile((char)c)) { glyph = (char)c; break; }
-                    painted += glyph;
-                }
-                StringAssert.Contains(" for " + price + "$?", painted, "Truncate only the item name, never the transaction price.");
+                var labels = input.TradeUI.GetComponentsInChildren<UnityEngine.UI.Text>(false);
+                Assert.That(System.Array.Exists(labels, label => label.text == "Buy item"), Is.True);
+                Assert.That(System.Array.Exists(labels, label => label.text.Contains(price + " drams")), Is.True,
+                    "A long item name must leave the whole-stack quote visible.");
                 Assert.True(trader.GetPart<InventoryPart>().Contains(item)); Assert.AreEqual(3, item.GetPart<StackerPart>().StackCount);
             }
         }
@@ -213,6 +210,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void TradeUsesTheSharedItemIconsForBothInventories()
         {
+            input.TradeUI.gameObject.SetActive(true);
             bool previous = InventoryIconSettings.Enabled;
             var trade = input.TradeUI;
             var trader = factory.CreateEntity("Player");
@@ -223,8 +221,6 @@ namespace CavesOfOoo.Tests
             Assert.True(merchantPack.AddObject(offered));
             Assert.True(playerPack.AddObject(carried));
             trade.Tilemap = Make<UnityEngine.Tilemaps.Tilemap>();
-            var merchantIconAt = new Vector3Int(1, 41, 0);
-            var playerIconAt = new Vector3Int(40, 41, 0);
             int tick = turns.TickCount;
 
             try
@@ -235,18 +231,16 @@ namespace CavesOfOoo.Tests
                 Assert.NotNull(offeredIcon);
                 Assert.NotNull(carriedIcon);
                 trade.Open(trader);
-                Assert.AreSame(offeredIcon, trade.Tilemap.GetSprite(merchantIconAt));
-                Assert.AreSame(carriedIcon, trade.Tilemap.GetSprite(playerIconAt));
-                var priceCell = new Vector3Int(38, 41, 0);
-                var currencyGlyph = CP437TilesetGenerator.GetUiTile('$');
-                Assert.NotNull(currencyGlyph);
-                Assert.AreSame(currencyGlyph, trade.Tilemap.GetTile(priceCell));
+                var images = trade.GetComponentsInChildren<UnityEngine.UI.Image>(false);
+                Assert.That(System.Array.Exists(images, image => image.sprite == offeredIcon), Is.True);
+                Assert.That(System.Array.Exists(images, image => image.sprite == carriedIcon), Is.True);
 
                 InventoryIconSettings.Enabled = false;
                 trade.RestoreAfterDecisionReader();
-                Assert.False(trade.Tilemap.HasTile(merchantIconAt));
-                Assert.False(trade.Tilemap.HasTile(playerIconAt));
-                Assert.AreSame(currencyGlyph, trade.Tilemap.GetTile(priceCell));
+                images = trade.GetComponentsInChildren<UnityEngine.UI.Image>(false);
+                Assert.That(System.Array.Exists(images, image => image.sprite == offeredIcon || image.sprite == carriedIcon), Is.False);
+                Assert.That(System.Array.Exists(trade.GetComponentsInChildren<UnityEngine.UI.Text>(false),
+                    label => label.text == "Drams"), Is.True);
                 Assert.True(merchantPack.Contains(offered));
                 Assert.True(playerPack.Contains(carried));
                 Assert.AreEqual(tick, turns.TickCount);

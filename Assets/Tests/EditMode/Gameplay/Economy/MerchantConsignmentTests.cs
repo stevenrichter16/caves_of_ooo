@@ -351,37 +351,24 @@ namespace CavesOfOoo.Tests
             Assert.False(MerchantStockService.IsSpecial(e, item));
         }
         [TestCase(false)] [TestCase(true)]
-        public void ActualTradeTilesShowWholeProjectBenefitAndClosingReleasesOffers(bool repaired)
+        public void ActualTradeLedgerShowsWholeProjectBenefitAndClosingReleasesOffers(bool repaired)
         {
             Zone.ZoneID = SettlementSiteDefinitions.StartingVillageZoneId; var manager = new SettlementManager();
             var settlement = manager.GetOrCreateSettlement(Zone.ZoneID, new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
             if (repaired) settlement.GetSite(SettlementSiteDefinitions.VillageOvenSiteId).Stage = RepairStage.StableRepair;
             var e = Merchant(); var state = Start(e);
-            var host = new UnityEngine.GameObject("consignment-ui-test"); host.SetActive(false);
-            var map = new UnityEngine.GameObject("consignment-tiles-test"); map.SetActive(false);
+            var host = new UnityEngine.GameObject("consignment-ui-test");
             var ui = host.AddComponent<CavesOfOoo.Rendering.TradeUI>();
-            ui.Tilemap = map.AddComponent<UnityEngine.Tilemaps.Tilemap>(); ui.PlayerEntity = Actor; ui.CurrentZone = Zone;
+            ui.PlayerEntity = Actor; ui.CurrentZone = Zone;
             try
             {
-                ui.Open(e); string status = ReadRow(ui, 41), project = ReadRow(ui, 42);
-                StringAssert.Contains("game day", status);
-                StringAssert.Contains(repaired ? "Oven baking included" : "Repair the local oven", project);
+                ui.Open(e); string text = TradeLedgerTestReader.VisibleText(ui);
+                StringAssert.Contains("game day", text);
+                StringAssert.Contains(repaired ? "Oven baking included" : "Repair the local oven", text);
                 ui.DealKey(UnityEngine.KeyCode.D); Assert.True(ui.Deal.SetTake(state.Specials[0], 1)); ui.Close();
                 Assert.True(MerchantStockService.Reconcile(e, Zone, 1210), "closing must release both view and pending offer");
             }
-            finally { ui.Close(); UnityEngine.Object.DestroyImmediate(host); UnityEngine.Object.DestroyImmediate(map); }
-        }
-        static string ReadRow(CavesOfOoo.Rendering.TradeUI ui, int row)
-        {
-            string text = "";
-            for (int x = 0; x < 80; x++)
-            {
-                var tile = ui.Tilemap.GetTile(new UnityEngine.Vector3Int(x, 44 - row, 0)); char glyph = ' ';
-                if (tile != null) for (int c = 33; c < 127; c++)
-                    if (tile == CavesOfOoo.Rendering.CP437TilesetGenerator.GetUiTile((char)c)) { glyph = (char)c; break; }
-                text += glyph;
-            }
-            return text;
+            finally { ui.Close(); UnityEngine.Object.DestroyImmediate(host); }
         }
         [Test] public void FailedBarterKeepsExactMembershipAndOfferUntilCancelled()
         {

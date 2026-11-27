@@ -496,7 +496,9 @@ namespace CavesOfOoo.Core
         /// Get the display name of this entity from its Render-equivalent part or blueprint name.
         /// Includes stack count if stacked (e.g. "torch (x5)").
         /// </summary>
-        public string GetDisplayName()
+        public string GetDisplayName() => GetDisplayName(includeStackCount: true);
+
+        internal string GetDisplayName(bool includeStackCount)
         {
             var render = GetPart("Render");
             string name;
@@ -513,7 +515,7 @@ namespace CavesOfOoo.Core
             if (BlueprintName == FlintStrikerPart.Blueprint && GetPart<FlintStrikerPart>() is FlintStrikerPart striker && striker.ParentEntity == this) name += " [" + striker.Strikes + "]";
 
             var stacker = GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
+            if (includeStackCount && stacker != null && stacker.StackCount > 1)
                 name += $" (x{stacker.StackCount})";
 
             return name;

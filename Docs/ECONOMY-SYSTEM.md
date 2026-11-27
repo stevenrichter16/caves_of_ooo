@@ -699,3 +699,13 @@ fixture.
    - Lumen-hours, once catacomb traders exist.
 2. E5: `PalimpsestEcho` (a superseded-world trader); decide its fate against `Lore/`.
 3. A commit-time `trade/Transferred` record for transactional fees (EC2b note).
+
+### Trading screen readability — November 27, 2026
+
+The fullscreen merchant screen shares the pack palette and item icons.
+Smooth type separates side, quantity, price, purse and special-stock
+status. Whole-stack confirmations keep the exact item and quote.
+Composed offers and F1 use the current tender and counted line value.
+The native playtest covered ordinary buy, sell, refusal, cancellation,
+a partially composed offer and Continue.
+[Trading screen playtest](Verification/TradeLedger20261127/README.md)

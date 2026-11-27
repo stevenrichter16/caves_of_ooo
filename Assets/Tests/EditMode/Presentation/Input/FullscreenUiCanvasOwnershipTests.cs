@@ -138,7 +138,8 @@ namespace CavesOfOoo.Tests
                 r.Open(screen);
                 Assert.That(r.Main.GetTile(r.WorldPos), Is.Null,
                     "an unused fullscreen row must not retain its old world glyph");
-                Assert.That(r.Main.GetUsedTilesCount(), Is.GreaterThan(0),
+                if (screen == "Trade") AssertTradeCanvas(r);
+                else Assert.That(r.Main.GetUsedTilesCount(), Is.GreaterThan(0),
                     "the visible header must have been drawn, not the whole UI hidden");
                 Assert.That(r.Renderer.PopupFgTilemap.GetUsedTilesCount(), Is.Zero,
                     "a fullscreen page must not leave a second old popup canvas");
@@ -170,6 +171,7 @@ namespace CavesOfOoo.Tests
                         if (label.isActiveAndEnabled && !string.IsNullOrWhiteSpace(label.Content)) hasText = true;
                     Assert.That(hasText, Is.True, "The replacement view must actually paint its inventory text.");
                 }
+                else if (screen == "Trade") AssertTradeCanvas(r);
                 else Assert.That(r.Main.GetUsedTilesCount(), Is.GreaterThan(0));
                 r.PauseFrame();
                 Assert.That(r.Main.GetTile(r.WorldPos), Is.Null,
@@ -178,6 +180,14 @@ namespace CavesOfOoo.Tests
                     "the previous world overlay must also be gone");
                 r.AssertWorldUntouched();
             }
+        }
+
+        private static void AssertTradeCanvas(Rig r)
+        {
+            Assert.That(r.Main.GetUsedTilesCount(), Is.Zero);
+            Assert.That(r.Trade.GetComponentsInChildren<Canvas>(false).Length, Is.EqualTo(1));
+            Assert.That(System.Array.Exists(r.Trade.GetComponentsInChildren<UnityEngine.UI.Text>(false),
+                label => label.IsActive() && label.text == "Trade"), Is.True);
         }
 
         [TestCase("Trade")]

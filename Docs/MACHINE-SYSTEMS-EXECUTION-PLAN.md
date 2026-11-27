@@ -1,3 +1,15 @@
+**Trading screen follows the inventory style — November 27, 2026, America/Chicago.**
+The shop and counted offer show the actual quantities and prices with
+smooth type, shared item icons and clear special-stock labels.
+Ordinary Sill play refused an unaffordable purchase, canceled and then
+completed a whole-stack sale and bought an exact special-stock mushroom.
+F1 returned to the same two-unit offer. Fresh Continue kept the
+purchase and Yevven's custody of the original sold stack.
+All 508 focused native checks passed.
+[Trading screen playtest](Verification/TradeLedger20261127/README.md)
+The next machine slice can use the retained field dressing at a natural
+hazard. Two native expiry regressions already reproduce against main.
+
 **Sella used one of the still-grown pads — November 27, 2026, America/Chicago.**
 From the rested branch, the traveler harvested four timber at Peat
 Works, braced Sella's bench with two, then paid one exact grown pad,

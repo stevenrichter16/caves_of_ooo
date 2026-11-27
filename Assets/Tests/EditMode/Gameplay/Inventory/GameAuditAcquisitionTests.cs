@@ -148,12 +148,17 @@ namespace CavesOfOoo.Tests
             try
             {
             var ui = go.AddComponent<TradeUI>(); ui.PlayerEntity = _actor; ui.Open(_trader);
-            var execute = typeof(TradeUI).GetMethod("ExecuteTrade", BindingFlags.Instance | BindingFlags.NonPublic);
+            void Confirm()
+            {
+                const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+                typeof(TradeUI).GetMethod("ShowConfirmation", flags).Invoke(ui, null);
+                typeof(TradeUI).GetMethod("ConfirmTrade", flags).Invoke(ui, null);
+            }
             var status = typeof(TradeUI).GetField("_statusMessage", BindingFlags.Instance | BindingFlags.NonPublic);
-            execute.Invoke(ui, null);
+            Confirm();
             Assert.AreEqual(full ? "You cannot carry that much weight." : null, status.GetValue(ui));
             Assert.AreEqual(!full, Inv.Objects.Contains(item));
-            if (full) { Inv.RemoveObject(ballast); execute.Invoke(ui, null); Assert.IsNull(status.GetValue(ui)); Assert.IsTrue(Inv.Objects.Contains(item)); }
+            if (full) { Inv.RemoveObject(ballast); Confirm(); Assert.IsNull(status.GetValue(ui)); Assert.IsTrue(Inv.Objects.Contains(item)); }
             ui.Close();
             }
             finally { UnityEngine.Object.DestroyImmediate(go); }

@@ -8,7 +8,6 @@ using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Tests
 {
@@ -60,10 +59,9 @@ namespace CavesOfOoo.Tests
             var player = factory.CreateEntity("Player"); zone.AddEntity(player, 11, 10);
             var ego = player.GetStat("Ego"); ego.Max = System.Math.Max(ego.Max, 40); ego.BaseValue = 34;
             TradeSystem.SetDrams(player, 100); TradeSystem.SetDrams(trader, 100);
-            var host = new GameObject("TradeUI"); host.SetActive(false); objects.Add(host);
+            var host = new GameObject("TradeUI"); objects.Add(host);
             var ui = host.AddComponent<TradeUI>();
-            var mapHost = new GameObject("Tilemap"); mapHost.SetActive(false); objects.Add(mapHost);
-            ui.Tilemap = mapHost.AddComponent<Tilemap>(); ui.PlayerEntity = player; ui.CurrentZone = zone;
+            ui.PlayerEntity = player; ui.CurrentZone = zone;
             return (zone, player, trader, ui);
         }
         static Entity Give(Entity holder, string blueprint, int count = 1)
@@ -73,17 +71,7 @@ namespace CavesOfOoo.Tests
             Assert.True(holder.GetPart<InventoryPart>().AddObject(item));
             return item;
         }
-        static string Row(TradeUI ui, int y)
-        {
-            string text = "";
-            for (int x = 0; x < 80; x++)
-            {
-                var tile = ui.Tilemap.GetTile(new Vector3Int(x, 44 - y, 0)); char glyph = ' ';
-                if (tile != null) for (int c = 33; c < 127; c++) if (tile == CP437TilesetGenerator.GetUiTile((char)c)) { glyph = (char)c; break; }
-                text += glyph;
-            }
-            return text;
-        }
+        static string ScreenText(TradeUI ui) => TradeLedgerTestReader.VisibleText(ui);
         static void Select(TradeUI ui, int panel, int index)
         {
             typeof(TradeUI).GetField("_panel", Private).SetValue(ui, panel);
@@ -96,12 +84,11 @@ namespace CavesOfOoo.Tests
             Give(trader, "HealingTonic");
             ui.Open(trader);
             Assert.True(ui.IsDealMode);
-            StringAssert.Contains("Barter with", Row(ui, 0));
-            StringAssert.Contains("not drams", Row(ui, 1));
-            StringAssert.DoesNotContain("$", Row(ui, 1), "no purse is shown where drams are dead weight");
-            StringAssert.Contains("Mark goods on either side", Row(ui, 41));
-            StringAssert.Contains("healing tonic", Row(ui, 3));
-            StringAssert.DoesNotContain("$", Row(ui, 3), "values, not drams, on a barter row (found in live play)");
+            string text = ScreenText(ui);
+            Assert.That(text, Does.Contain("Barter").IgnoreCase.And.Contain("salt").IgnoreCase);
+            Assert.That(text, Does.Contain("Value").IgnoreCase.And.Contain("healing tonic").IgnoreCase);
+            Assert.That(text, Does.Not.Match(@"(?i)\b100\s+drams\b|\$\s*100"), "a barter trader shows no dram purse");
+            StringAssert.Contains("Mark goods on either side", ui.DealSummary(out _));
             Assert.False(ui.DealKey(KeyCode.D), "a barter trader has no shop to return to");
             Assert.True(ui.IsDealMode);
         }
@@ -112,10 +99,10 @@ namespace CavesOfOoo.Tests
             Give(trader, "HealingTonic");
             ui.Open(trader);
             Assert.False(ui.IsDealMode, "counter-check: a dram trader opens the shop");
-            StringAssert.Contains("Buy from", Row(ui, 0)); StringAssert.Contains("[D]deal", Row(ui, 44));
-            StringAssert.Contains("$", Row(ui, 3), "counter-check: a dram shop prices in drams");
+            Assert.That(ScreenText(ui), Does.Contain("buy").IgnoreCase.And.Contain("deal").IgnoreCase);
+            Assert.That(ScreenText(ui), Does.Contain("Drams").IgnoreCase, "a dram shop prices in drams");
             Assert.True(ui.DealKey(KeyCode.D)); Assert.True(ui.IsDealMode);
-            StringAssert.Contains("Deal with", Row(ui, 0)); StringAssert.Contains("Trader: $", Row(ui, 1));
+            Assert.That(ScreenText(ui), Does.Contain("deal").IgnoreCase.And.Contain("drams").IgnoreCase);
             Assert.True(ui.DealKey(KeyCode.D)); Assert.False(ui.IsDealMode);
         }
 
@@ -125,12 +112,12 @@ namespace CavesOfOoo.Tests
             var tonic = Give(trader, "HealingTonic"); var sword = Give(player, "LongSword");
             ui.Open(trader);
             Select(ui, 0, 0); Assert.True(ui.DealKey(KeyCode.Return)); Assert.AreEqual(1, ui.Deal.Taking(tonic));
-            StringAssert.Contains("Short", Row(ui, 41));
+            Assert.That(ScreenText(ui), Does.Contain("Short").IgnoreCase);
             Select(ui, 1, 0); Assert.True(ui.DealKey(KeyCode.Return)); Assert.AreEqual(1, ui.Deal.Giving(sword));
-            StringAssert.Contains("They keep", Row(ui, 41));
-            StringAssert.Contains("*", Row(ui, 3), "a marked row shows its mark");
+            Assert.That(ScreenText(ui), Does.Contain("They keep").IgnoreCase);
+            Assert.That(ScreenText(ui), Does.Contain("in offer").IgnoreCase, "the selected item shows its marked quantity");
             Assert.True(ui.DealKey(KeyCode.O));
-            StringAssert.Contains("Offer Deal", string.Join("\n", Enumerable.Range(15, 12).Select(y => Row(ui, y))));
+            Assert.That(ScreenText(ui), Does.Contain("Yes").IgnoreCase.And.Contain("No").IgnoreCase);
             ui.ConfirmPendingDeal();
             Assert.True(player.GetPart<InventoryPart>().Contains(tonic)); Assert.True(trader.GetPart<InventoryPart>().Contains(sword));
             Assert.True(ui.Deal.IsEmpty, "a fresh deal after success");
@@ -145,7 +132,7 @@ namespace CavesOfOoo.Tests
             Select(ui, 0, 0); ui.DealKey(KeyCode.Return);
             Assert.True(ui.DealKey(KeyCode.O));
             Assert.AreEqual(Barter.Explain("short"), ui.StatusMessage);
-            StringAssert.Contains("Not enough", Row(ui, 44));
+            Assert.That(ScreenText(ui), Does.Contain("Not enough").IgnoreCase);
             Assert.True(trader.GetPart<InventoryPart>().Contains(sword), "nothing moved");
         }
 
@@ -156,11 +143,11 @@ namespace CavesOfOoo.Tests
             ui.Open(trader);
             Select(ui, 1, 0);
             ui.DealKey(KeyCode.RightArrow); ui.DealKey(KeyCode.RightArrow); Assert.AreEqual(2, ui.Deal.Giving(salt));
-            StringAssert.Contains("2/9", Row(ui, 3));
+            Assert.That(ScreenText(ui), Does.Match(@"(?i)\b2\s*(?:/|of)\s*9\s+in offer\b"));
             ui.DealKey(KeyCode.LeftArrow); Assert.AreEqual(1, ui.Deal.Giving(salt));
             ui.DealKey(KeyCode.A); Assert.AreEqual(9, ui.Deal.Giving(salt));
             ui.DealKey(KeyCode.A); Assert.AreEqual(0, ui.Deal.Giving(salt));
-            StringAssert.Contains("in deal 0 of 9", Row(ui, 43));
+            Assert.That(ScreenText(ui), Does.Match(@"(?i)\b0\s*(?:/|of)\s*9\s+in offer\b"));
         }
 
         [Test] public void TheSaltKeyBalancesAShortDeal()
@@ -172,7 +159,7 @@ namespace CavesOfOoo.Tests
             Assert.Less(ui.Deal.Balance, 0, "precondition");
             ui.DealKey(KeyCode.S);
             Assert.GreaterOrEqual(ui.Deal.Balance, 0);
-            StringAssert.DoesNotContain("Short", Row(ui, 41));
+            Assert.That(ScreenText(ui), Does.Not.Match(@"(?i)\bShort\s+\d"));
         }
 
         [Test] public void TheSaltKeySaysSoWhenThereIsNoSalt()

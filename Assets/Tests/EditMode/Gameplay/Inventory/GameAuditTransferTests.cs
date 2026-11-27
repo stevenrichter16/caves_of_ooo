@@ -190,13 +190,18 @@ namespace CavesOfOoo.Tests
                 var ui = go.AddComponent<TradeUI>(); ui.PlayerEntity = _actor; ui.Open(trader);
                 const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
                 typeof(TradeUI).GetField("_panel", flags).SetValue(ui, 1);
-                typeof(TradeUI).GetMethod("ExecuteTrade", flags).Invoke(ui, null);
+                void Confirm()
+                {
+                    typeof(TradeUI).GetMethod("ShowConfirmation", flags).Invoke(ui, null);
+                    typeof(TradeUI).GetMethod("ConfirmTrade", flags).Invoke(ui, null);
+                }
+                Confirm();
                 string status = (string)typeof(TradeUI).GetField("_statusMessage", flags).GetValue(ui);
                 if (full)
                 {
                     Assert.AreEqual("The trader cannot carry that much weight.", status);
                     var shelf = trader.GetPart<InventoryPart>(); shelf.RemoveObject(shelf.Objects.Single());
-                    typeof(TradeUI).GetMethod("ExecuteTrade", flags).Invoke(ui, null);
+                    Confirm();
                     Assert.IsNull(typeof(TradeUI).GetField("_statusMessage", flags).GetValue(ui),
                         "The same refused screen must clear its status after a successful retry.");
                     Assert.IsTrue(shelf.Objects.Any(e => e.BlueprintName == "Dagger"));

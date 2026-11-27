@@ -4,6 +4,7 @@ using System.Linq;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.UI;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {

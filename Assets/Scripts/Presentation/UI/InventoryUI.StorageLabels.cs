@@ -1,6 +1,7 @@
 using System;
 using CavesOfOoo.Core;
 using UnityEngine;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
