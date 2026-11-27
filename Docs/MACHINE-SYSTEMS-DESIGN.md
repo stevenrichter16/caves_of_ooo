@@ -1,3 +1,10 @@
+**Local and freight sand serve the same Sill filtration repair.**
+One real local deposit and one earned freight reward reached the same
+existing permanent repair in two different seeds. Each keeper took one
+silver sand with the manual and offered follow-up maintenance. The local
+route also kept the water taken out of the pocket.
+[Compared playtests](Verification/MachineSystems/LocalSillFiltration20261127/README.md)
+
 **Camp storage can fuel portable light.**
 A directly stored oil flask can refill an unlit carried torch from
 beside a ready own camp box. One oil buys up to 25 fuel and the flask

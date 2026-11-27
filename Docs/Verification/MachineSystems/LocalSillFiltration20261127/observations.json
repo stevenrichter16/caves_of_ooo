@@ -1,0 +1,884 @@
+{
+  "Start": {
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 8,
+    "tick": 520,
+    "hp": 40,
+    "mode": "Normal",
+    "drams": 50,
+    "site": null,
+    "npcs": [],
+    "pack": [],
+    "recent": [
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ]
+  },
+  "Arrival": {
+    "zone": "Overworld.10.10.0",
+    "x": 39,
+    "y": 11,
+    "tick": 780,
+    "hp": 40,
+    "mode": "Normal",
+    "drams": 50,
+    "site": {
+      "stage": "Fouled",
+      "outcome": "None",
+      "method": "None",
+      "resolved": -1,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 46,
+        "y": 5,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 61,
+        "y": 16,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 9,
+        "y": 17,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": false
+      },
+      {
+        "ID": "10209",
+        "BlueprintName": "PouredLiquidPool",
+        "name": "poured liquid",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": 12,
+        "spent": null
+      }
+    ],
+    "pack": [],
+    "recent": [
+      "Autosaved.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again.",
+      "Autosaved."
+    ]
+  },
+  "Trade": {
+    "IsOpen": true,
+    "cursor": 0,
+    "rows": [
+      {
+        "item": "9873",
+        "name": "liquid flask",
+        "price": 19
+      },
+      {
+        "item": "9874",
+        "name": "waterskin",
+        "price": 19
+      },
+      {
+        "item": "9875",
+        "name": "dried meat (x3)",
+        "price": 48
+      }
+    ]
+  },
+  "Bought": {
+    "zone": "Overworld.10.10.0",
+    "x": 44,
+    "y": 6,
+    "tick": 840,
+    "hp": 40,
+    "mode": "Normal",
+    "drams": 31,
+    "site": {
+      "stage": "Fouled",
+      "outcome": "None",
+      "method": "None",
+      "resolved": -1,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 45,
+        "y": 6,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 63,
+        "y": 15,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 9,
+        "y": 17,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": false
+      },
+      {
+        "ID": "10209",
+        "BlueprintName": "PouredLiquidPool",
+        "name": "poured liquid",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": 12,
+        "spent": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "qty": null,
+        "volume": 0,
+        "liquid": ""
+      }
+    ],
+    "recent": [
+      "The wet coating wears off soot gremlin.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You buy liquid flask for 19 drams."
+    ]
+  },
+  "GatherMenu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "SillSettlingDeposit",
+    "cell": [
+      42,
+      18
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "h",
+        "Display": "gather exposed silver sand",
+        "Command": "Harvest",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "pour water south (12) [liquid flask]",
+        "Command": "PourLiquidVessel|water|12|Overworld.10.10.0|42|18",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 3,
+        "key": "b",
+        "Display": "pour one water south [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|12|Overworld.10.10.0|42|18",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 4,
+        "key": "c",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "LocalSand": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 980,
+    "hp": 40,
+    "mode": "Normal",
+    "drams": 31,
+    "site": {
+      "stage": "Fouled",
+      "outcome": "None",
+      "method": "None",
+      "resolved": -1,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 43,
+        "y": 6,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 72,
+        "y": 10,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 9,
+        "y": 17,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": true
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "qty": null,
+        "volume": 12,
+        "liquid": "water"
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "qty": 1,
+        "volume": null,
+        "liquid": null
+      }
+    ],
+    "recent": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You harvest settling pocket: 1 x SilverSand.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Game saved."
+    ]
+  },
+  "Elder": {
+    "open": true,
+    "actor": "10009",
+    "node": "Start",
+    "cursor": 0,
+    "revealing": true,
+    "rows": [
+      "Tell me about the bitter well.",
+      "Do you have any records about repairing the well?",
+      "Is there any way to purify the water?",
+      "Is there anything else the village needs?",
+      "The watch lantern is out. Do you know how to relight it?",
+      "Tell me about this place.",
+      "Farewell.",
+      "[What troubles this place?]",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "AfterManualChoice": {
+    "open": true,
+    "actor": "10009",
+    "node": "GiveManual",
+    "cursor": 0,
+    "revealing": true,
+    "rows": [
+      "I'll take it.",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "Manual": {
+    "zone": "Overworld.10.10.0",
+    "x": 72,
+    "y": 11,
+    "tick": 1360,
+    "hp": 40,
+    "mode": "DialogueOpen",
+    "drams": 31,
+    "site": {
+      "stage": "Fouled",
+      "outcome": "None",
+      "method": "None",
+      "resolved": -1,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 60,
+        "y": 16,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 72,
+        "y": 10,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 43,
+        "y": 13,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": true
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "qty": null,
+        "volume": 12,
+        "liquid": "water"
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "qty": 1,
+        "volume": null,
+        "liquid": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "WellMaintenanceManual",
+        "qty": 1,
+        "volume": null,
+        "liquid": null
+      }
+    ],
+    "recent": [
+      "The wet coating wears off villager.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You receive well maintenance manual."
+    ]
+  },
+  "Keeper": {
+    "open": true,
+    "actor": "10054",
+    "node": "Start",
+    "cursor": 0,
+    "revealing": true,
+    "rows": [
+      "Tell me what the well is doing.",
+      "Farewell.",
+      "[Is something wrong here?]",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "KeeperFouled": {
+    "open": true,
+    "actor": "10054",
+    "node": "Fouled",
+    "cursor": 0,
+    "revealing": true,
+    "rows": [
+      "I have the manual and silver sand. Let's rebuild the ring properly.",
+      "What do you need for a proper repair?",
+      "Back.",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "Patched": {
+    "zone": "Overworld.10.10.0",
+    "x": 58,
+    "y": 13,
+    "tick": 1500,
+    "hp": 40,
+    "mode": "DialogueOpen",
+    "drams": 31,
+    "site": {
+      "stage": "StableRepair",
+      "outcome": "Stable",
+      "method": "ManualRepair",
+      "resolved": 1500,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 60,
+        "y": 16,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "repaired well",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 72,
+        "y": 10,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 57,
+        "y": 13,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": true
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "qty": null,
+        "volume": 12,
+        "liquid": "water"
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "WellMaintenanceManual",
+        "qty": 1,
+        "volume": null,
+        "liquid": null
+      }
+    ],
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You hand over silver sand.",
+      "You rebuild the well's filtration ring with silver sand and set the water running clear again."
+    ]
+  },
+  "Maintenance": {
+    "open": true,
+    "actor": "10054",
+    "node": "AfterRepair",
+    "cursor": 0,
+    "revealing": true,
+    "rows": [
+      "Good. Keep watch on it.",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "AfterTalk": {
+    "open": true,
+    "actor": "10054",
+    "node": "Start",
+    "cursor": 0,
+    "revealing": true,
+    "rows": [
+      "The ring is repaired. Want me to show you how to keep it that way?",
+      "Farewell.",
+      "[Let's trade.]",
+      "[Attack]"
+    ]
+  },
+  "DrawMenu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "Well",
+    "cell": [
+      40,
+      12
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "w",
+        "Display": "draw water",
+        "Command": "DrawWaterAtWell",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "Drank": {
+    "zone": "Overworld.10.10.0",
+    "x": 41,
+    "y": 11,
+    "tick": 1850,
+    "hp": 40,
+    "mode": "Normal",
+    "drams": 31,
+    "site": {
+      "stage": "StableRepair",
+      "outcome": "Stable",
+      "method": "ManualRepair",
+      "resolved": 1500,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 60,
+        "y": 16,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "repaired well",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 72,
+        "y": 10,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 25,
+        "y": 18,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": true
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "qty": null,
+        "volume": 12,
+        "liquid": "water"
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "WellMaintenanceManual",
+        "qty": 1,
+        "volume": null,
+        "liquid": null
+      }
+    ],
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You drink. The well water is cool.",
+      "Game saved."
+    ]
+  },
+  "Fresh": {
+    "zone": "Overworld.10.10.0",
+    "x": 41,
+    "y": 11,
+    "tick": 1850,
+    "hp": 40,
+    "mode": "Normal",
+    "drams": 31,
+    "site": {
+      "stage": "StableRepair",
+      "outcome": "Stable",
+      "method": "ManualRepair",
+      "resolved": 1500,
+      "relapse": null
+    },
+    "npcs": [
+      {
+        "ID": "10054",
+        "BlueprintName": "WellKeeper",
+        "name": "Dovrin Reedfall, well-keeper",
+        "x": 25,
+        "y": 18,
+        "dialogue": "WellKeeper_1",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "repaired well",
+        "x": 40,
+        "y": 12,
+        "dialogue": null,
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10208",
+        "BlueprintName": "SillSettlingDeposit",
+        "name": "settling pocket",
+        "x": 42,
+        "y": 18,
+        "dialogue": null,
+        "volume": null,
+        "spent": true
+      },
+      {
+        "ID": "9872",
+        "BlueprintName": "Provisioner",
+        "name": "Yevven Reedfall, provisioner",
+        "x": 60,
+        "y": 16,
+        "dialogue": "Shop_Provisioner",
+        "volume": null,
+        "spent": null
+      },
+      {
+        "ID": "10009",
+        "BlueprintName": "Elder",
+        "name": "elder",
+        "x": 72,
+        "y": 10,
+        "dialogue": "Elder_Well_1",
+        "volume": null,
+        "spent": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "qty": null,
+        "volume": 12,
+        "liquid": "water"
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "WellMaintenanceManual",
+        "qty": 1,
+        "volume": null,
+        "liquid": null
+      }
+    ],
+    "recent": [
+      "The wet coating wears off elder.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You drink. The well water is cool."
+    ]
+  },
+  "FreshMenu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "Well",
+    "cell": [
+      40,
+      12
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "w",
+        "Display": "draw water",
+        "Command": "DrawWaterAtWell",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  }
+}

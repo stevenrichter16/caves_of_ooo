@@ -138,6 +138,13 @@ approach and measured greater light in two already visible cells. Fresh
 Continue kept the lamp's reach and the retained recipe.
 [Sill light playtest](Verification/MachineSystems/SillLanternLight20261126/README.md)
 
+For #40, two real sources paid the same lasting Sill well result across
+distinct seeds. One player collected the sand locally after buying a
+flask. The earlier player earned it through a physical Sumphold
+consignment. Both paid one sand and retained the elder's manual, and the
+same stable repair persisted through Continue in each world.
+[Local and freight comparison](Verification/MachineSystems/LocalSillFiltration20261127/README.md)
+
 An earlier connected regression passed 615 executable cases. Actual play used
 separate guided branches. Requirements for ordinary discovery and complete
 cross-seed comparisons remain open.

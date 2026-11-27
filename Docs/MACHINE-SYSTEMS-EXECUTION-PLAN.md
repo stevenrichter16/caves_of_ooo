@@ -1,3 +1,13 @@
+**Sill's locally gathered sand earns the same durable well repair — November 27, 2026, America/Chicago.**
+In seed 65, ordinary trade and pocket work produced one local silver sand
+and filled a reusable flask. The elder's manual and that exact sand paid
+for the existing stable repair through Dovrin, who offered maintenance.
+Continue kept the repaired well, 31 drams, 40 HP, manual and twelve water.
+The already verified
+seed 2 Sumphold freight reward earned the same stable repair via Perret
+and the same nominal bill. No runtime changed for this comparison.
+[Equivalent repair evidence](Verification/MachineSystems/LocalSillFiltration20261127/README.md)
+
 **A camp box can supply a carried torch — November 27, 2026, America/Chicago.**
 One directly stored oil unit brought the original dark torch from zero
 to 25 fuel. Normal travel and one fire-moss lit it east of camp. Two
