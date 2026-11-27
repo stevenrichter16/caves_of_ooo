@@ -94,3 +94,19 @@ performance are separate.
 [save and worktree protection](protection-verification.json).
 All 876 normal quick-save files across the Editor and player roots
 and 87 previously modified tracked files matched their before hashes.
+
+## Current Mac package
+
+The universal package at
+`/Users/steven/coo-verification/builds/mac-fbc34ce26-20261126/CavesOfOoo.app`
+was built from runtime `fbc34ce263cbbea9fb70dda3c654462a35d8c06b`.
+All 32,252 committed build inputs matched before compilation. Unity
+completed the build in 23.45 seconds with zero errors and five warnings.
+All 186 app files and 186 previous app files matched their hashes.
+Each of the six Mach-O binaries includes Apple Silicon and Intel.
+
+The package completed GameBootstrap on Apple M5 with 2,673 entities.
+All 876 normal quick saves matched again. The nine preferences changed
+by startup were logically restored, and the test player was stopped.
+Packaged gameplay and operation on physical Intel hardware remain open.
+[Apple Silicon startup receipt](mac-startup-verification.json).

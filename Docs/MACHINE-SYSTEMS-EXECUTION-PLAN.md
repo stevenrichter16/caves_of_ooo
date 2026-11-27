@@ -10,6 +10,9 @@ one pond debit, and saved and reloaded it. Hearth-to-still brine
 distillation and the Cinderhold guard-lashing refit also survived
 fresh Continues. Whole-machine gates remain open.
 [Evidence](Verification/MachineSystems/SharedStockPickup20261127/README.md)
+The universal Mac package for `fbc34ce26` built with zero errors and
+completed startup on Apple M5. Both normal save roots matched again.
+[Package receipt](Verification/MachineSystems/SharedStockPickup20261127/mac-startup-verification.json)
 
 **The fire reader is compact and the reading footer is removed — November 26, 2026, America/Chicago.**
 User-requested fuel and remaining-flame lines replace ordinary fire
