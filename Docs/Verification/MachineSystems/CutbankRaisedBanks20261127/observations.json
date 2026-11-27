@@ -1,0 +1,1003 @@
+{
+  "runtimeSource": "1404a6c8d1ce7a55d60fcd51f3405fa781fa0a0e",
+  "stages": {
+    "rested-start": {
+      "zone": "Overworld.15.8.0",
+      "x": 14,
+      "y": 11,
+      "tick": 6590,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "11209",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "12536",
+          "bp": "Bedroll",
+          "name": "bedroll"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You gather sumpsieve: 3 packed, 0 left here.",
+        "Autosaved.",
+        "Autosaved.",
+        "gin frog is covered in wet.",
+        "gin frog is drenched.",
+        "The wet coating wears off gin frog.",
+        "The campfire crackles warmly.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)"
+      ]
+    },
+    "brine-map": {
+      "zone": "WorldMap",
+      "x": 45,
+      "y": 11,
+      "tick": 6600,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "2c2fcd98d04e42e0a3d764a0355efd59",
+          "bp": "WorldMapCell",
+          "name": "the Sodden"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Autosaved.",
+        "Autosaved.",
+        "gin frog is covered in wet.",
+        "gin frog is drenched.",
+        "The wet coating wears off gin frog.",
+        "The campfire crackles warmly.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved."
+      ]
+    },
+    "shelter-arrival": {
+      "zone": "Overworld.15.7.0",
+      "x": 40,
+      "y": 12,
+      "tick": 6630,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "19156",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Autosaved.",
+        "gin frog is covered in wet.",
+        "gin frog is drenched.",
+        "The wet coating wears off gin frog.",
+        "The campfire crackles warmly.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved."
+      ]
+    },
+    "crossing-entry": {
+      "zone": "Overworld.16.7.0",
+      "x": 0,
+      "y": 12,
+      "tick": 7030,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24663",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "gin frog is drenched.",
+        "The wet coating wears off gin frog.",
+        "The campfire crackles warmly.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved."
+      ]
+    },
+    "fork-before": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 12,
+      "tick": 7230,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24683",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!"
+      ]
+    },
+    "look-bank": {
+      "x": 26,
+      "y": 10,
+      "Header": "[26,10] peat bank",
+      "Summary": "You see peat bank with 1 other visible object(s).",
+      "DetailLines": [
+        "HP 10/10",
+        "Contents: grass, peat bank",
+        "Flags: solid"
+      ],
+      "id": "24453",
+      "bp": "PeatBank",
+      "visible": true
+    },
+    "bank-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "break",
+      "rows": [
+        {
+          "Display": "break",
+          "key": "k",
+          "Command": "Break"
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine"
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell"
+        }
+      ]
+    },
+    "look-mire": {
+      "x": 21,
+      "y": 12,
+      "Header": "[21,12] mire",
+      "Summary": "You see mire with 1 other visible object(s).",
+      "DetailLines": [
+        "HP 200/200",
+        "Contents: grass, mire",
+        "On the ground: bog mire"
+      ],
+      "id": "24685",
+      "bp": "MirePool",
+      "visible": true
+    },
+    "mire-examine": {
+      "open": true,
+      "title": "mire",
+      "blueprint": "MirePool",
+      "owner": "24685",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "On the ground: bog mire",
+        "",
+        "SURFACE DETAILS",
+        "",
+        "On the ground: bog mire",
+        "",
+        "bog mire: dampens fire damage by 50% while coated;",
+        "1 Acid damage per turn while the coat persists;",
+        "Agility -2 while coated.",
+        "",
+        "Tea-dark and still. It holds what it takes; the bog",
+        "country is patient that way.",
+        "",
+        "Type: Terrain",
+        "Material: Peat",
+        "Structure: 200 / 200"
+      ]
+    },
+    "notice-examine": {
+      "open": true,
+      "title": "cutbank crossing route notice",
+      "blueprint": "SoddenRouteNotice",
+      "owner": "24560",
+      "lines": [
+        "The dressing shelter is west; the abandoned works",
+        "are east. A scarlet-banded frog rests beside the",
+        "direct mire crossing; striking its caustic skin can",
+        "poison you. Raised boards turn north around the",
+        "cut; the southern bank also stays dry. Both detours",
+        "are longer. Heating mire can release poisonous",
+        "marsh gas. Leather boots are armor, not protection",
+        "from the mire.",
+        "",
+        "Type: Object"
+      ]
+    },
+    "first-mire-step": {
+      "zone": "Overworld.16.7.0",
+      "x": 21,
+      "y": 12,
+      "tick": 7240,
+      "hp": 41,
+      "effects": [
+        {
+          "type": "LiquidCoveredEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "24684",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "24685",
+          "bp": "MirePool",
+          "name": "mire"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!",
+        "Game saved.",
+        "You see a peat bank.\n\nCut peat, the tool marks still clean. The bank face is layered like a book nobody meant to write.",
+        "You see a mire.\nOn the ground: bog mire\n\nTea-dark and still. It holds what it takes; the bog country is patient that way.\n\nSurface details\nOn the ground: bog mire\n\nbog mire: dampens fire damage by 50% while coated; 1 Acid damage per turn while the coat persists; Agility -2 while coated.",
+        "You are covered in mire-soaked."
+      ]
+    },
+    "before-bank-contact": {
+      "zone": "Overworld.16.7.0",
+      "x": 25,
+      "y": 10,
+      "tick": 7300,
+      "hp": 27,
+      "effects": [
+        {
+          "type": "LiquidCoveredEffect",
+          "Duration": -1
+        },
+        {
+          "type": "BleedingEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "24450",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "24451",
+          "bp": "MirePool",
+          "name": "mire"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You see a mire.\nOn the ground: bog mire\n\nTea-dark and still. It holds what it takes; the bog country is patient that way.\n\nSurface details\nOn the ground: bog mire\n\nbog mire: dampens fire damage by 50% while coated; 1 Acid damage per turn while the coat persists; Agility -2 while coated.",
+        "You are covered in mire-soaked.",
+        "sari-snake is covered in mire-soaked.",
+        "sari-snake is covered in mire-soaked.",
+        "sari-snake hits you in the left arm for 1 damage! (36 HP remaining)",
+        "You are bleeding!",
+        "You take 2 bleed damage.",
+        "sari-snake hits you in the right arm for 2 damage! (31 HP remaining)",
+        "You take 3 bleed damage."
+      ]
+    },
+    "bank-before-bump": {
+      "bank": [
+        {
+          "id": "24453",
+          "hp": 10,
+          "solid": true
+        }
+      ],
+      "mire": [
+        {
+          "id": "24685",
+          "volume": 60
+        }
+      ]
+    },
+    "bank-after-bump": {
+      "bank": [
+        {
+          "id": "24453",
+          "hp": 7,
+          "solid": true
+        }
+      ],
+      "mire": [
+        {
+          "id": "24685",
+          "volume": 60
+        }
+      ]
+    },
+    "blocked-bank-face": {
+      "zone": "Overworld.16.7.0",
+      "x": 25,
+      "y": 10,
+      "tick": 7310,
+      "hp": 22,
+      "effects": [
+        {
+          "type": "LiquidCoveredEffect",
+          "Duration": -1
+        },
+        {
+          "type": "BleedingEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "24450",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "24451",
+          "bp": "MirePool",
+          "name": "mire"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You take 2 bleed damage.",
+        "sari-snake hits you in the right arm for 2 damage! (31 HP remaining)",
+        "You take 3 bleed damage.",
+        "You strike peat bank.",
+        "sari-snake hits you in the feet for 2 damage! (25 HP remaining)",
+        "sari-snake misses you!",
+        "You (Rejoinder) hit sari-snake in the body for 7 damage! (2 HP remaining)",
+        "sari-snake is bleeding!",
+        "You take 2 bleed damage."
+      ]
+    },
+    "before-bank-opening": {
+      "zone": "Overworld.16.7.0",
+      "x": 25,
+      "y": 10,
+      "tick": 7320,
+      "hp": 18,
+      "effects": [
+        {
+          "type": "LiquidCoveredEffect",
+          "Duration": -1
+        },
+        {
+          "type": "BleedingEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "24450",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "24451",
+          "bp": "MirePool",
+          "name": "mire"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You [left hand: dagger] CRITICALLY hit sari-snake in the body for 8 damage!",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "sari-snake stops bleeding.",
+        "The mire-soaked coating wears off sari-snake.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 2 bleed damage.",
+        "You take 3 bleed damage."
+      ]
+    },
+    "gap-start": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 12,
+      "tick": 7230,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24683",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!"
+      ]
+    },
+    "stepped-through-opening": {
+      "zone": "Overworld.16.7.0",
+      "x": 26,
+      "y": 12,
+      "tick": 7290,
+      "hp": 36,
+      "effects": [
+        {
+          "type": "LiquidCoveredEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "24694",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "24695",
+          "bp": "MirePool",
+          "name": "mire"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!",
+        "You are covered in mire-soaked.",
+        "sari-snake is covered in mire-soaked.",
+        "sari-snake is covered in mire-soaked."
+      ]
+    },
+    "dry-start": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 12,
+      "tick": 7230,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24683",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!"
+      ]
+    },
+    "first-dry-step": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 11,
+      "tick": 7240,
+      "hp": 39,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24562",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "24563",
+          "bp": "Duckboard",
+          "name": "duckboard"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!",
+        "sari-snake hits you in the head for 3 damage! (39 HP remaining)"
+      ]
+    },
+    "dry-northwest-bend": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 3,
+      "tick": 7320,
+      "hp": 39,
+      "effects": [],
+      "contents": [
+        {
+          "id": "23579",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "23580",
+          "bp": "Duckboard",
+          "name": "duckboard"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "sari-snake hits you in the head for 3 damage! (39 HP remaining)",
+        "sari-snake misses you!",
+        "You (Rejoinder) hit sari-snake in the body for 3 damage! (11 HP remaining)",
+        "sari-snake is bleeding!",
+        "sari-snake takes 2 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake stops bleeding."
+      ]
+    },
+    "dry-midpoint": {
+      "zone": "Overworld.16.7.0",
+      "x": 40,
+      "y": 3,
+      "tick": 7520,
+      "hp": 36,
+      "effects": [],
+      "contents": [
+        {
+          "id": "23619",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "23620",
+          "bp": "Duckboard",
+          "name": "duckboard"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You (Rejoinder) hit sari-snake in the body for 3 damage! (11 HP remaining)",
+        "sari-snake is bleeding!",
+        "sari-snake takes 2 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake stops bleeding.",
+        "sari-snake hits you in the body for 3 damage! (36 HP remaining)",
+        "cutbank watcher warns you to leave the marked ground."
+      ]
+    },
+    "dry-northeast-bend": {
+      "zone": "Overworld.16.7.0",
+      "x": 60,
+      "y": 3,
+      "tick": 7720,
+      "hp": 36,
+      "effects": [],
+      "contents": [
+        {
+          "id": "23659",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "23660",
+          "bp": "Duckboard",
+          "name": "duckboard"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You (Rejoinder) hit sari-snake in the body for 3 damage! (11 HP remaining)",
+        "sari-snake is bleeding!",
+        "sari-snake takes 2 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake stops bleeding.",
+        "sari-snake hits you in the body for 3 damage! (36 HP remaining)",
+        "cutbank watcher warns you to leave the marked ground."
+      ]
+    },
+    "dry-east-fork": {
+      "zone": "Overworld.16.7.0",
+      "x": 60,
+      "y": 12,
+      "tick": 7810,
+      "hp": 18,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24762",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake stops bleeding.",
+        "sari-snake hits you in the body for 3 damage! (36 HP remaining)",
+        "cutbank watcher warns you to leave the marked ground.",
+        "sari-snake hits you in the head for 12 damage! (24 HP remaining)",
+        "sari-snake CRITICALLY hits you in the head for 6 damage! (18 HP remaining)",
+        "sari-snake misses you!"
+      ]
+    },
+    "fresh-east": {
+      "zone": "Overworld.16.7.0",
+      "x": 60,
+      "y": 12,
+      "tick": 7810,
+      "hp": 18,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24762",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake stops bleeding.",
+        "sari-snake hits you in the body for 3 damage! (36 HP remaining)",
+        "cutbank watcher warns you to leave the marked ground.",
+        "sari-snake hits you in the head for 12 damage! (24 HP remaining)",
+        "sari-snake CRITICALLY hits you in the head for 6 damage! (18 HP remaining)",
+        "sari-snake misses you!"
+      ]
+    },
+    "south-start": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 12,
+      "tick": 7230,
+      "hp": 42,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24683",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You rest by the bed. (22 HP restored; time passes.)",
+        "Autosaved.",
+        "Autosaved.",
+        "The air here says sari, sari, and does not finish the word.",
+        "Autosaved.",
+        "sari-snake misses you!",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!"
+      ]
+    },
+    "southwest-bend": {
+      "zone": "Overworld.16.7.0",
+      "x": 20,
+      "y": 21,
+      "tick": 7320,
+      "hp": 39,
+      "effects": [],
+      "contents": [
+        {
+          "id": "25772",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!",
+        "You see a cutbank crossing route notice.\n\nThe dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire.",
+        "sari-snake misses you!",
+        "You (Rejoinder) hit sari-snake in the body for 4 damage! (10 HP remaining)",
+        "sari-snake hits you in the body for 2 damage! (40 HP remaining)",
+        "You are bleeding!",
+        "You take 1 bleed damage.",
+        "You stop bleeding."
+      ]
+    },
+    "south-midpoint": {
+      "zone": "Overworld.16.7.0",
+      "x": 40,
+      "y": 21,
+      "tick": 7520,
+      "hp": 30,
+      "effects": [],
+      "contents": [
+        {
+          "id": "25792",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You are bleeding!",
+        "You take 2 bleed damage.",
+        "You take 1 bleed damage.",
+        "You take 3 bleed damage.",
+        "You stop bleeding.",
+        "sari-snake loses sight of you and keeps retreating.",
+        "bandfrog is covered in mire-soaked.",
+        "bandfrog is killed by something!",
+        "The mire-soaked coating wears off bandfrog."
+      ]
+    },
+    "southeast-bend": {
+      "zone": "Overworld.16.7.0",
+      "x": 60,
+      "y": 21,
+      "tick": 7720,
+      "hp": 30,
+      "effects": [],
+      "contents": [
+        {
+          "id": "25812",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You are bleeding!",
+        "You take 2 bleed damage.",
+        "You take 1 bleed damage.",
+        "You take 3 bleed damage.",
+        "You stop bleeding.",
+        "sari-snake loses sight of you and keeps retreating.",
+        "bandfrog is covered in mire-soaked.",
+        "bandfrog is killed by something!",
+        "The mire-soaked coating wears off bandfrog."
+      ]
+    },
+    "south-east-fork": {
+      "zone": "Overworld.16.7.0",
+      "x": 60,
+      "y": 12,
+      "tick": 7810,
+      "hp": 30,
+      "effects": [],
+      "contents": [
+        {
+          "id": "24762",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "bandfrog is killed by something!",
+        "The mire-soaked coating wears off bandfrog.",
+        "sari-snake misses you!",
+        "You (Rejoinder) hit sari-snake in the body for 5 damage! (9 HP remaining)",
+        "sari-snake is bleeding!",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake takes 2 bleed damage.",
+        "sari-snake stops bleeding."
+      ]
+    },
+    "weather": {
+      "atStart": {
+        "tick": 7230,
+        "Valid": true,
+        "Raining": true,
+        "Window": 12
+      },
+      "current": {
+        "tick": 7810,
+        "Valid": true,
+        "Raining": true,
+        "Window": 13
+      }
+    },
+    "baseline-environment": {
+      "playing": false,
+      "changing": false,
+      "saveRoot": null,
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices"
+    }
+  },
+  "screenshots": {
+    "01-west-fork.png": "bccb3dd3301d1c2aedc78a08a001012669fc9639ecacc564bb1cf25c3e956f94",
+    "02-bank-look.png": "5b5d2df73eedda42b0e457a022400edf5f54e83e64278b073326b73d11f72c3a",
+    "03-mire-opening.png": "5df5fc98e655f432e58693aff99add46c4ba7baf6768fcd5ef37d09962c2a23e",
+    "04-dry-duckboard.png": "a1fc720f0407fe924b1ada8b947276f04c9b7dbe66978ace8c3098de98e880e8",
+    "05-south-bank.png": "8f2eddab99f0ea15eed26bb575838b0a33954082e06df8578a613e703c0e01db"
+  },
+  "saveArchiveSha256": {
+    "Rested6590": {
+      "Quick.json": "21d8fe274d54a348d0f45fc990a9148bbe24900bfb875ecda2d8b423a60c546e",
+      "Quick.json.bak": "e765da927717765f5a33a567cfddfe92b01e756ec42bc58eeddfb9a8634365a0",
+      "Quick.sav.gz": "085c36b2cd809563283152a6deba6998527f1337d4e5881956fea75cb08603ac",
+      "Quick.sav.gz.bak": "ab832a5fbe7fee501885c91c30f50061b56326695c069962bac954b15eba91e6"
+    },
+    "WestFork": {
+      "Quick.json": "857f69b6625988597cf725981fa85d6313eb983e1b3c17d8b246145c435744cb",
+      "Quick.json.bak": "d06605fb1e998a49c09c8acd3f9d1efdda274397c0273365c1853f1a54891262",
+      "Quick.sav.gz": "185a5a4a0cf840f9d585ae6a8f67016f0164770053514c4e70f0d23c6e2b8310",
+      "Quick.sav.gz.bak": "91ad4ab369a4bd65e836f38923bf8dce885fbdfe281671ee0c17b0ae66cd7cf9"
+    },
+    "DryEast": {
+      "Quick.json": "ae7de16a2f45fb3ccc0d65b81d0d67a929e13bcf9bf6855aa9456ca43b78feff",
+      "Quick.json.bak": "857f69b6625988597cf725981fa85d6313eb983e1b3c17d8b246145c435744cb",
+      "Quick.sav.gz": "aeff6ad3ec6a161754e6d03c74514856ac9ee05bfae87446dcf2aa0f679ae322",
+      "Quick.sav.gz.bak": "185a5a4a0cf840f9d585ae6a8f67016f0164770053514c4e70f0d23c6e2b8310"
+    }
+  },
+  "protectedHashesMatched": {
+    "normalQuickSaveFiles": 876,
+    "priorTrackedFiles": 87
+  }
+}

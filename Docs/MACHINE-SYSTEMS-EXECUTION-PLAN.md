@@ -1,3 +1,12 @@
+**The Cutbank Crossing banks, gap and dry detours work in live play — November 27, 2026, America/Chicago.**
+Look found the solid peat face. An ordinary bump damaged it without
+moving the traveler. From the same western fork, six wet steps passed
+the existing opening and applied bog mire to the traveler and nearby
+sari-snakes. Both dry detours reached the east fork. The northern
+boards crossed watched ground and the southern bank did not. The west
+notice omits that distinction. It is the next local reader correction.
+[Cutbank routes and screenshots](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md)
+
 **Marsh-gas source survives Continue — November 27, 2026, America/Chicago.**
 Lingering gas poison now stores its damage source separately from
 the patient. GameBootstrap restored the exact Brine Camp mire in

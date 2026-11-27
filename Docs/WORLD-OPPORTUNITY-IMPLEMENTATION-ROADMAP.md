@@ -1213,6 +1213,16 @@ the appearance and reader at the face and opening. The west shore
 also gives ordinary flask access to the finite mire pool. If the
 existing paths already read clearly, reuse the layout as a reference.
 
+Ordinary Cutbank play confirmed the solid face, passable mire opening
+and both dry detours. The solid banks cast visible shadows and form
+readable edges around the mire on the flat map. The north boards
+cross watched ground. The south bank gives a free dry detour. The
+existing west notice described both paths without the watched stretch.
+The next small change is to clarify that distinction in the readers.
+Use the longer horizontal peat faces as a separate visual reference
+for the raised-pool silhouette.
+[Cutbank routes and screenshots](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md)
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the
