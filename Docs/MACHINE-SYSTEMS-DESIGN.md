@@ -1,3 +1,12 @@
+**An ordinary catch can become a field meal.**
+Raw food with a cooking recipe shows the current Cook option and a
+separate pack guide alongside its eating details. An adjacent usable
+station makes Cook available. Existing finite campfire rules use both
+remaining heat and fuel. An unavailable cook costs nothing, and raw Eat
+remains a choice. One perch bought from Tine's restored weir traveled to
+the glade's cooking fire and became one roasted perch in one action.
+[Field cooking](Verification/MachineSystems/PerchFieldCook20261127/README.md)
+
 **Hand bellows explain the limits of moving gas.**
 The pack and adjacent world menu say when a visible cloud is too
 thick, fixed or obstructed. The shared reader uses the same reasons.

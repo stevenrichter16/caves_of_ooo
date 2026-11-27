@@ -379,6 +379,13 @@ ordinary hearth relight spends one of those strikes. The same fixture
 can also serve other cold-work jobs.
 [Bench and hearth playtest](Verification/MachineSystems/BenchStriker20261127/README.md)
 
+For #14, #19 and #36, one perch bought after Tine's weir work traveled
+to the Gleaners' cooking fire and became one roasted perch. The pack's
+Cook row and item guide reflect the same finite fire readiness. The
+player can still Eat the catch raw. The trial followed a trade item
+into a portable meal using existing ordinary cooking and travel.
+[Field cooking](Verification/MachineSystems/PerchFieldCook20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

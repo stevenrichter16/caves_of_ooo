@@ -67,6 +67,93 @@ namespace CavesOfOoo.Tests
         {var raw=factory.CreateEntity("RawMeat");raw.GetPart<StackerPart>().StackCount=quantity;Assert.True(actor.GetPart<InventoryPart>().AddObject(raw));Assert.AreSame(actor,raw.GetPart<PhysicsPart>().InInventory);return raw;}
         int Units(string blueprint)=>actor.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
 
+        private Entity Perch(int quantity = 2)
+        {
+            var raw = factory.CreateEntity("LakePerch");
+            raw.GetPart<StackerPart>().StackCount = quantity;
+            Assert.True(actor.GetPart<InventoryPart>().AddObject(raw));
+            return raw;
+        }
+
+        private InventoryAction[] WorldCookingRows(Entity station)
+        {
+            var here = zone.GetEntityCell(actor);
+            var cell = zone.GetEntityCell(station);
+            here.IsVisible = here.Explored = cell.IsVisible = cell.Explored = true;
+            return WorldInteractionSystem.GatherCellActions(station, cell, actor).Where(row => row.Name == "Cook").ToArray();
+        }
+
+        private void ExpectNoFireGuide(Entity raw, InventoryAction row)
+        {
+            Assert.True(row.IsDisabled);
+            Assert.AreEqual("no_fire", row.DisabledCode);
+            StringAssert.StartsWith("No usable fire within reach.", row.DisabledReason);
+            string guide = UseGuides.SectionText(raw, zone, null, actor);
+            Assert.That(guide, Does.Contain(UseGuides.NowCannot).And.Contain(row.DisabledReason.TrimEnd('.')));
+        }
+
+        [Test]
+        public void UnheatedPerchExplainsOptionalCookingAndStillOffersRawEat()
+        {
+            var raw = Perch();
+            var rows = InventorySystem.GetActions(actor, raw);
+            var cook = rows.Single(row => row.Name == "Cook");
+            Assert.True(rows.Any(row => row.Command == "Eat" && !row.IsDisabled));
+            ExpectNoFireGuide(raw, cook);
+
+            Assert.False(InventorySystem.PerformAction(actor, raw, "Cook", zone));
+            Assert.That(Units("LakePerch"), Is.EqualTo(2));
+            Assert.That(Units("RoastedLakePerch"), Is.Zero);
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [TestCase(false, 25f, 0f, true)]
+        [TestCase(true, 149.99f, 7f, false)]
+        [TestCase(true, 500f, 0f, false)]
+        [TestCase(true, 150f, 1f, true)]
+        public void PerchPackAndReaderUseTheSameLegacyOrFiniteReadinessAsTheCookingStation(bool finite, float heat, float fuel, bool ready)
+        {
+            var raw = Perch();
+            var station = Station(finite);
+            station.GetPart<ThermalPart>().Temperature = heat;
+            station.GetPart<FuelPart>().FuelMass = fuel;
+            var cook = InventorySystem.GetActions(actor, raw).Single(row => row.Name == "Cook");
+            Assert.AreEqual(ready, WorldCookingRows(station).Any(row => !row.IsDisabled && row.Command == "Cook" && row.Via == raw));
+
+            if (ready)
+            {
+                Assert.False(cook.IsDisabled);
+                Assert.AreEqual("Cook", cook.Command);
+                Assert.True(cook.ActsOnCell(11, 10));
+                Assert.That(UseGuides.SectionText(raw, zone, null, actor), Does.Contain(UseGuides.NowCan).And.Contain(cook.Display));
+            }
+            else ExpectNoFireGuide(raw, cook);
+        }
+
+        [Test]
+        public void AColdNeighborDoesNotHideAnotherReadyFireAndAnOldCookQuoteCannotSpend()
+        {
+            var raw = Perch();
+            var cold = Station(true);
+            cold.GetPart<ThermalPart>().Temperature = 149f;
+            var hot = Station(true, 10, 11);
+            hot.GetPart<ThermalPart>().Temperature = 150f;
+            hot.GetPart<FuelPart>().FuelMass = 1f;
+            var cook = InventorySystem.GetActions(actor, raw).Single(row => row.Name == "Cook");
+            Assert.False(cook.IsDisabled);
+            Assert.False(cook.ActsOnCell(11, 10));
+            Assert.True(cook.ActsOnCell(10, 11));
+            Assert.False(WorldCookingRows(cold).Any(row => !row.IsDisabled));
+            Assert.True(WorldCookingRows(hot).Any(row => row.Command == "Cook" && !row.IsDisabled && row.Via == raw));
+
+            hot.GetPart<FuelPart>().FuelMass = 0f;
+            Assert.False(InventorySystem.PerformAction(actor, raw, cook.Command, zone));
+            Assert.That(Units("LakePerch"), Is.EqualTo(2));
+            Assert.That(Units("RoastedLakePerch"), Is.Zero);
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+            ExpectNoFireGuide(raw, InventorySystem.GetActions(actor, raw).Single(row => row.Name == "Cook"));
+        }
+
         [Test]
         public void LakePerchHasAnOptionalOneForOneCookingRecipeWithAModestHealingBonus()
         {

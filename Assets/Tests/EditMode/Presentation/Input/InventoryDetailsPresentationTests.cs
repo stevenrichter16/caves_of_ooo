@@ -80,6 +80,38 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(before, UI.SelectedDecisionDetails(), "Closing the reader preserves the same inventory selection.");
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void RawPerchDetailsKeepEatingFactsAndShowOneSeparateCookingGuide(bool popup)
+        {
+            const string noFire = "No usable fire within reach";
+            var fish = Select("LakePerch", popup);
+            int tick = turns.TickCount;
+            int energy = turns.GetEnergy(player);
+            int quantity = fish.GetPart<StackerPart>().StackCount;
+
+            var document = UI.SelectedDecisionPresentation(out string preview);
+            Assert.NotNull(document);
+            Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+            StringAssert.Contains("Eat one unit.", preview);
+            var decision = document.Sections.Single(section => section.Heading == "Decision details");
+            StringAssert.Contains("Eat one unit.", decision.Text);
+            StringAssert.Contains("Heals 2d4 HP.", decision.Text);
+            StringAssert.DoesNotContain(noFire, decision.Text);
+            var guides = document.Sections.Where(section => section.Heading == UseGuides.Heading).ToArray();
+            Assert.That(guides, Has.Length.EqualTo(1));
+            StringAssert.Contains(noFire, guides[0].Text);
+            Assert.AreEqual(1, document.ToPlainText().Split(new[] { noFire }, StringSplitOptions.None).Length - 1);
+
+            Call(input, "OpenInventoryDetailsReader");
+            AssertDocument(fish, null);
+            StringAssert.Contains(noFire, input.AnnouncementUI.Document.Sections.Single(section => section.Heading == UseGuides.Heading).Text);
+            Assert.True(Pack.Contains(fish));
+            Assert.AreEqual(quantity, fish.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(tick, turns.TickCount);
+            Assert.AreEqual(energy, turns.GetEnergy(player));
+        }
+
         [Test] public void KeyboardF1DispatchesTheRealInventoryRouteWithItemIdentity()
         {
             var item = Select("HealingTonic", false); var devices = new InputTestFixture(); devices.Setup();

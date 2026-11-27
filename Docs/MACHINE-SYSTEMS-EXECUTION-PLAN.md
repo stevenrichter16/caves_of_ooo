@@ -1,3 +1,16 @@
+**A bought lake perch reaches a real field fire — November 27, 2026, America/Chicago.**
+The existing Cook rules now drive an available or unavailable row in the
+pack and a separate cooking guide in item details. Ordinary Continue
+restored the exact previously bought Tine perch at tick 2900. The
+traveler reached the Gleaners' finite cooking fire by atlas and walking.
+At tick 3050 it held 200 fuel and enough heat. One action made one roast,
+which survived fresh Continue at tick 3060. A matched branch waited until
+the same fire was too cool and refused cooking at tick 3780 without taking
+the fish or a turn. Raw Eat remains. The recipe made no separate fuel
+debit. All 272 focused cases and both independent reviews passed.
+The standalone Mac package remains at `2c4931acc`.
+[Field cooking playtest](Verification/MachineSystems/PerchFieldCook20261127/README.md)
+
 **Stump Cascade Gorge shows a raised spray basin — November 27, 2026, America/Chicago.**
 One ordinary saved view showed the same full, calm spray pool over
 the existing solid pink-stone wall. The new layered face reads as

@@ -185,8 +185,19 @@ namespace CavesOfOoo.Rendering
                 sections = fire.Sections;
                 return string.Join("\n\n", sections.Select(section => section.Heading + "\n" + section.Text));
             }
-            // Food/action-specific previews keep their established scope. Equipment
-            // captures both full prose and compact overviews in one validated pass.
+            if (item.HasPart<FoodPart>() && item.GetPart<CookablePart>()?.ParentEntity == item)
+            {
+                var examinable = item.GetPart<ExaminablePart>();
+                string details = DetailsForItem(item);
+                string use = UseGuides.SectionText(item, null, null, PlayerEntity);
+                if (!InventoryDecisionDetails.Owned(PlayerEntity, item)
+                    || !ReferenceEquals(examinable, item.GetPart<ExaminablePart>())) return null;
+                if (!string.IsNullOrWhiteSpace(use))
+                    sections = new[] { new AnnouncementSection("Decision details", details),
+                        new AnnouncementSection(UseGuides.Heading, use) };
+                return details;
+            }
+            // Equipment captures full prose and compact overviews in one validated pass.
             if (!item.HasPart<EquippablePart>() || item.HasPart<FoodPart>()) return DetailsForItem(item);
             var description = item.GetPart<ExaminablePart>();
             string flavor = description?.GetDescriptionText();

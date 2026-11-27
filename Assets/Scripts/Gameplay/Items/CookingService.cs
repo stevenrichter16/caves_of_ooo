@@ -10,6 +10,7 @@ namespace CavesOfOoo.Core
     {
         // New opt-in stored-heat cooking contract; legacy authored stations ignore it.
         public const float MinimumFiniteCookingTemperature = 150f;
+        internal const string NoReadyFire = "No usable fire within reach.";
 
         public static bool TryCook(Entity actor, Entity food, Zone zone, EntityFactory factory, InventoryTransaction transaction = null)
         {
@@ -25,7 +26,7 @@ namespace CavesOfOoo.Core
                 return Reject(actor, food, "unavailable_food", "You must carry a usable stack of raw food.");
             if (factory == null) return Reject(actor, food, "no_factory", "That food cannot be prepared right now.");
             StationProof source = FindStation(actor, zone);
-            if (source == null) return Reject(actor, food, "no_fire", "Stand beside a campfire, hearth, or stove to cook.");
+            if (source == null) return Reject(actor, food, "no_fire", NoReadyFire);
             Entity station = source.Owner;
             bool own = transaction == null;
             transaction ??= new InventoryTransaction();

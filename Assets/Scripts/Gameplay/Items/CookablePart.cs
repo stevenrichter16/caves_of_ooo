@@ -4,10 +4,18 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>Authored inventory recipe; thermal ground recipes remain independent.</summary>
-    public sealed class CookablePart : Part
+    public sealed class CookablePart : Part, IDescribeUse
     {
         public override string Name => "Cookable";
+        public int Order => 30;
         public string Into = "";
+
+        public void DescribeUse(DescribeContext context, UseGuide guide)
+        {
+            guide.How.Add("Stand beside a campfire, hearth or stove and choose Cook from this item in your pack.");
+            guide.Limits.Add("Cooking prepares the whole stack. Camp hearths and coals need heat and fuel.");
+            guide.WhyNot = UseGuides.PickUpFirst;
+        }
 
         internal static void RestoreLakePerchRecipe(Entity item, EntityFactory factory)
         {
@@ -30,11 +38,17 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actor = e.GetParameter<Entity>("Actor");
-                if (actor?.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true)
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                if (actions == null || actor?.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) != true) return true;
+                const string label = "cook this stack beside a fire";
+                var zone = actor.SpatialZone;
+                var stations = CookingService.StationsBeside(actor, zone);
+                if (stations.Count == 0)
+                    actions.AddDisabled("Cook", label, "no_fire", CookingService.NoReadyFire, 'c', 19);
+                else
                 {
-                    var row = e.GetParameter<InventoryActionList>("Actions")?.AddAction("Cook", "cook this stack beside a fire", "Cook", 'c', 19);
-                    // Cooking is done at a fire: the interact menu of each campfire or hearth beside you offers it too.
-                    if (row != null && actor.SpatialZone != null) foreach (var station in CookingService.StationsBeside(actor, actor.SpatialZone)) row.AtEntity(actor.SpatialZone, station).InGroup(ToolGroups.Cook);
+                    var row = actions.AddAction("Cook", label, "Cook", 'c', 19).InGroup(ToolGroups.Cook);
+                    foreach (var station in stations) row.AtEntity(zone, station);
                 }
                 return true;
             }
