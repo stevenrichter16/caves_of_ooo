@@ -46,6 +46,11 @@ new guide, receipts, exact save bodies and same-strike damage events.
 All 876 checked normal save files and 87 existing tracked edits
 matched after the Editor playtest.
 
+A test-only follow-up checks the current eight-mire bake and flask
+remainder. A new run covered the original filter plus natural-heat
+and still-settling tests. All 290 cases passed with zero skips or
+compiler errors.
+
 The universal Mac package for `9dae6a99c` built from 32,282 checked
 source inputs with zero errors and four warnings. Startup reached
 GameBootstrap on Apple M5. Verification checked six universal binaries,

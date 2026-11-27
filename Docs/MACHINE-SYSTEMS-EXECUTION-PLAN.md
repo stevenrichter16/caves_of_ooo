@@ -1,3 +1,12 @@
+**Still baking guide regression cleared — November 27, 2026, America/Chicago.**
+The native reader test now checks the single eight-mire bake and the
+remainder kept in the flask. The earlier assertion failed on unchanged
+main because it expected older wording. All 290 focused cases passed
+after the test correction, including settlement heat, fuel, interruption,
+and material conservation. Game behavior was unchanged. The
+[earlier public-still playtest](Verification/MachineSystems/MireHeatReadiness20261127/README.md)
+observed one fire clay and four mire left in the original flask.
+
 **The ore reader explains choir-iron infusion — November 27, 2026, America/Chicago.**
 The guide uses the same compatible item, forge readiness and
 enhancement rules as the existing inventory action. Ordinary seed-65

@@ -242,7 +242,9 @@ namespace CavesOfOoo.Tests
             var still = Standing("CampStill"); var lines = Guide(still); string how = Line(lines, "How to use");
             StringAssert.Contains("brew the mix", how); StringAssert.Contains("settle", how); StringAssert.Contains("bake", how);
             StringAssert.Contains("to settle: a flask with at least " + LiquidSettlingPart.Ratio + " units", Line(lines, "Needs")); StringAssert.Contains("to bake clay: a flask with at least " + LiquidSettlingPart.ClayRatio + " units", Line(lines, "Needs")); StringAssert.Contains(LiquidSettlingPart.FuelPerBatch + " fuel", Line(lines, "Needs"));
-            StringAssert.Contains("1 fire clay for every " + LiquidSettlingPart.ClayRatio, Line(lines, "Cost and limits"));
+            string limits = Line(lines, "Cost and limits");
+            StringAssert.Contains("spends " + LiquidSettlingPart.ClayRatio + " mire for 1 fire clay", limits);
+            StringAssert.Contains("leaves any extra mire in the flask", limits);
         }
 
         [Test] public void TheBenchAndTheForgeExplainCrafting_AndACarriedBenchLeavesItToTheKit()
