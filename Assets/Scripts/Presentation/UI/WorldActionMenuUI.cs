@@ -441,14 +441,36 @@ namespace CavesOfOoo.Rendering
             }
 
             // A fire or torch always says its fuel and what that is in turns (not on a pile summary, whose lines are not about one thing).
-            string fuelLine = cell != null && WorldInteractionSystem.IsPileCell(cell) ? null : CellStatusReadout.FuelLine(target);
-            if (fuelLine != null) lines.Insert(0, fuelLine);
+            string fuelLine = null;
+            int fuelRows = 0;
+            if (CellStatusReadout.TryFireLines(target, out var fireFuel, out var fireTurns))
+            {
+                fuelLine = null;
+                var fireAnchor = zone?.GetEntityCell(target);
+                if (zone != null && cell?.ParentZone == zone && cell.Explored && cell.IsVisible
+                    && zone.GetCell(cell.X, cell.Y) == cell && target.SpatialZone == zone
+                    && fireAnchor?.ParentZone == zone && zone.GetCell(fireAnchor.X, fireAnchor.Y) == fireAnchor
+                    && fireAnchor.Objects.Contains(target)
+                    && cell.Occupants.Contains(target) && !WorldInteractionSystem.IsPileCell(cell)
+                    && target.GetPart<RenderPart>()?.ParentEntity == target && target.GetPart<RenderPart>().Visible
+                    && target.GetPart<PhysicsPart>()?.ParentEntity == target
+                    && target.GetPart<PhysicsPart>().InInventory == null && target.GetPart<PhysicsPart>().Equipped == null)
+                {
+                    lines.InsertRange(0, new[] { fireFuel, fireTurns });
+                    fuelRows = 2;
+                }
+            }
+            else
+            {
+                fuelLine = cell != null && WorldInteractionSystem.IsPileCell(cell) ? null : CellStatusReadout.FuelLine(target);
+                if (fuelLine != null) { lines.Insert(0, fuelLine); fuelRows = 1; }
+            }
 
             // A station says the live state of what the menu is for (a still's mix and what it would make). Not on a pile summary, and only for a viewer who can act.
             if (viewer != null && target != null && !(cell != null && WorldInteractionSystem.IsPileCell(cell)))
             {
                 var station = new List<string>(); StateReader.CollectMenuStatus(target, zone, cell, viewer, station);
-                lines.InsertRange(fuelLine != null ? 1 : 0, station);
+                lines.InsertRange(fuelRows, station);
             }
 
             if (zone != null && cell != null)

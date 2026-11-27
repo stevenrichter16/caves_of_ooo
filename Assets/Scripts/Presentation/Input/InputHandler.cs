@@ -4900,6 +4900,7 @@ namespace CavesOfOoo.Rendering
             }
 
             string surface = InventoryDecisionDetails.Surface(CurrentZone, cell);
+            if (!pile && CellStatusReadout.TryFireLines(target, out _, out _)) surface = null;
             if (!string.IsNullOrEmpty(surface)) text += "\n\nSurface details\n" + surface;
 
             if (document != null && !string.IsNullOrEmpty(surface))

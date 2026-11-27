@@ -143,6 +143,8 @@ namespace CavesOfOoo.Core
             if (repair != null) baseLine += "\n\n" + repair.Heading.ToUpperInvariant() + "\n" + repair.Text + "\n";
             if (!string.IsNullOrEmpty(intent)) baseLine += "\n" + intent;
             if (!string.IsNullOrEmpty(threat)) baseLine += "\n" + threat;
+            if (CellStatusReadout.TryFireLines(ParentEntity, out var fireFuel, out var fireTurns))
+                return baseLine + "\n" + fireFuel + "\n" + fireTurns;
             // The state lines come from one collector (film, kitchen, dressing, oil, contained liquid, repair, trap, and any Part added later).
             var stateLines = new System.Collections.Generic.List<string>();
             StateReader.Collect(ParentEntity, false, ParentEntity?.SpatialZone, null, null, stateLines,

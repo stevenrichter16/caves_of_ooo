@@ -178,6 +178,13 @@ namespace CavesOfOoo.Rendering
         {
             sections = null;
             if (item == null || !InventoryDecisionDetails.Owned(PlayerEntity, item)) return null;
+            if (CellStatusReadout.TryFireLines(item, out _, out _))
+            {
+                var fire = ExamineDocumentBuilder.BuildInventory(item, PlayerEntity);
+                if (fire == null) return null;
+                sections = fire.Sections;
+                return string.Join("\n\n", sections.Select(section => section.Heading + "\n" + section.Text));
+            }
             // Food/action-specific previews keep their established scope. Equipment
             // captures both full prose and compact overviews in one validated pass.
             if (!item.HasPart<EquippablePart>() || item.HasPart<FoodPart>()) return DetailsForItem(item);

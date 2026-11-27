@@ -157,6 +157,14 @@ own result. The shared storylet applies the existing lasting lamp
 condition. The merchant uses it on the next consignment boundary.
 [Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
 
+**Fire descriptions are two clear lines — November 26, 2026, America/Chicago.**
+The ordinary fire body now shows only fuel amount and remaining flame
+on separate labeled lines, shared across world and inventory readers.
+Action choices retain their individual hints. The common announcement
+screen no longer draws the reading/turn-cost footer. A native 423-case
+run and actual lit, exhausted and packed readers verified the change.
+Reading remains free. [Evidence](Verification/MachineSystems/CompactFireReader20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.

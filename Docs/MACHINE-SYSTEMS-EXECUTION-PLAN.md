@@ -1,3 +1,12 @@
+**The fire reader is compact and the reading footer is removed — November 26, 2026, America/Chicago.**
+User-requested fuel and remaining-flame lines replace ordinary fire
+description paragraphs. Native 423/423 checks passed. Actual saved
+2510 showed 1.75/30 and about seven turns; seven waits exhausted the
+flame, and the same packed hearth showed zero in inventory F1. A fresh
+packed Continue checks that surface after the global footer removal.
+The shared reader retains its close/back/page controls. No burn rule or
+reading time changed. [Evidence](Verification/MachineSystems/CompactFireReader20261127/README.md)
+
 **Stored oil connects the camp box, hearth and still — November 26, 2026, America/Chicago.**
 The new menu feeds up to three oil directly from one exact stored flask
 beside an installed hearth. Native play kept the empty flask in the box

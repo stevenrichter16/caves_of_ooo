@@ -1,0 +1,163 @@
+{
+  "lit-final2510": {
+    "stage": "lit-final2510",
+    "tick": 2510,
+    "hp": 343,
+    "subject": "2147",
+    "Title": "camp hearth",
+    "sections": [
+      {
+        "Heading": "Fire",
+        "Text": "Fuel: 1.75 / 30\nFlame remaining: about 7 turns"
+      }
+    ],
+    "fuel": 1.75,
+    "heat": 409.166382,
+    "light": true,
+    "holder": null
+  },
+  "out2580": {
+    "stage": "out2580",
+    "tick": 2580,
+    "hp": 343,
+    "subject": "2147",
+    "Title": "camp hearth",
+    "sections": [
+      {
+        "Heading": "Fire",
+        "Text": "Fuel: 0 / 30\nFlame remaining: 0 turns"
+      }
+    ],
+    "fuel": 0.0,
+    "heat": 358.504669,
+    "light": false,
+    "holder": null
+  },
+  "packed-inventory2590": {
+    "stage": "packed-inventory2590",
+    "tick": 2590,
+    "hp": 343,
+    "subject": "2147",
+    "Title": "camp hearth",
+    "sections": [
+      {
+        "Heading": "Fire",
+        "Text": "Fuel: 0 / 30\nFlame remaining: 0 turns"
+      }
+    ],
+    "fuel": 0.0,
+    "heat": 25.0,
+    "light": false,
+    "holder": "2126"
+  },
+  "fresh-packed-final2590": {
+    "stage": "fresh-packed-final2590",
+    "tick": 2590,
+    "hp": 343,
+    "subject": "2147",
+    "Title": "camp hearth",
+    "sections": [
+      {
+        "Heading": "Fire",
+        "Text": "Fuel: 0 / 30\nFlame remaining: 0 turns"
+      }
+    ],
+    "fuel": 0.0,
+    "heat": 25.0,
+    "light": false,
+    "holder": "2126"
+  },
+  "sourceCheckpoint": "/Users/steven/coo-verification/checkpoints/StoredHearthOil20261127/Worked2510/d3c56928ecec4cd0a4532b3402867974",
+  "scope": "Retained supplied camp. UI readback and seven ordinary waits, take-up, inventory F1, F5 and fresh Continue. No ordinary camp acquisition claim.",
+  "normalSaves": {
+    "samePathsAndSHA256": true,
+    "files": 876,
+    "roots": [
+      "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo",
+      "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP"
+    ]
+  },
+  "packedFreshStateExact": true,
+  "native": {
+    "compact_fire_reader_red_20261127": {
+      "counts": {
+        "total": "25",
+        "passed": "15",
+        "failed": "10",
+        "skipped": "0",
+        "inconclusive": "0"
+      },
+      "sha256": {
+        "xml": "5fba250b4ab6b5c753cfd1eb20d5858d13c579e3fa2d713f57e7931300e28ec2",
+        "log": "d6a021b23364265452d18de067057df6faa344e1a3f9ab990c125a24d53d4eba"
+      }
+    },
+    "compact_fire_reader_green_20261127": {
+      "counts": {
+        "total": "407",
+        "passed": "402",
+        "failed": "5",
+        "skipped": "0",
+        "inconclusive": "0"
+      },
+      "sha256": {
+        "xml": "2257e24610518a1e642625fb20d0991238f274533a7f96c38ec382f5ddbe4c40",
+        "log": "aad262804ea9ef4bf6f185fb993de829955f4b9d9266f5569abc84b7f2382b97"
+      }
+    },
+    "compact_fire_reader_final_20261127": {
+      "counts": {
+        "total": "423",
+        "passed": "422",
+        "failed": "1",
+        "skipped": "0",
+        "inconclusive": "0"
+      },
+      "sha256": {
+        "xml": "a25a0eb2ae6a90e44231e6ea62b46ce245414f1974267ab88f18382e3709c48d",
+        "log": "cbc8e58a07104ef80f1720fba0c5435a68683ba3fdebea399f02b4bb64a97af2"
+      }
+    },
+    "compact_fire_and_footer_final_20261127": {
+      "counts": {
+        "total": "423",
+        "passed": "423",
+        "failed": "0",
+        "skipped": "0",
+        "inconclusive": "0"
+      },
+      "sha256": {
+        "xml": "2ff5cbd8563d27e4b2f361721340a2fe124e358c8c3554a08ccf779eddf0d839",
+        "log": "e4417ff234c3036c467195a6ac3ee6b8233d6ffb2551cf6293aa98e660947f0c"
+      }
+    }
+  },
+  "packedSavePins": {
+    "Quick.json": "4b8750443a98f61f6e438a9cb35c50533240ba55d0b107d351ef356585879f63",
+    "Quick.json.bak": "baf65c316b736e77ca8e9c01692bb7b6a55fd511feabd3281d93890424e834cc",
+    "Quick.sav.gz": "070b8b164155aa4711fd309c65a601c7ea76a0e114249885860c63fb07098411",
+    "Quick.sav.gz.bak": "423567a6bddc0c8f627027e84c98b799722e4c00f42c9cdef61420c0a95ea789"
+  },
+  "checkpointRoot": "/Users/steven/coo-verification/checkpoints/CompactFireReader20261127",
+  "screenshots": {
+    "01-lit-fire.png": "eb06bf27f0ee55c1f2992143d120fe31ce03d96f7f5f60cb354f972b2b5d8d62",
+    "02-packed-fire.png": "9cacbe37dedd53c6775ac7e2cf2bfb65984974a7a7ce6a94075837f852fe9fdb"
+  },
+  "independentReview": {
+    "source": "No remaining P1/P2",
+    "native": "423/423, zero compiler errors",
+    "recordedGameplay": "Both final images, seven ordinary waits, exact packed fresh state and all four raw save pins verified",
+    "normalSaveScope": "876 exact Quick paths and hashes across both roots"
+  },
+  "sourcePins": {
+    "Assets/Scripts/Gameplay/Entities/ExaminablePart.cs": "80e7beecde1bc5c098883ea85f6756f42f6673dfc2815c3a0007c298e970210d",
+    "Assets/Scripts/Gameplay/Entities/ExamineDocumentBuilder.cs": "7f067f5cf57d4862382e4a799c6e2104d25eb1003b56f87daa569c5325a42ecc",
+    "Assets/Scripts/Gameplay/Look/CellStatusReadout.cs": "e56dec13153fee1e42ecb6bce40efa1390a7672ebf1c147d8894d2b4bc36d9f7",
+    "Assets/Scripts/Gameplay/Look/LookQueryService.cs": "c12baaf1efebee3dcdba88155eee744ecec6124394ed338607e488c8943104fd",
+    "Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs": "c704328417b4bd8112f8f608b646f67197cb115b0433cdc8efc40cfa905bd99a",
+    "Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs": "d701cc3af031a446000a8f669e56a63f46a2c9d661c164a3e09891f7809a7f87",
+    "Assets/Scripts/Presentation/Input/InputHandler.cs": "d5fb4ab0a500b502469cf48cbf3a9aca7677c2bc031af2f681142d178c082ac0",
+    "Assets/Scripts/Presentation/UI/AnnouncementUI.cs": "3c23eb1b1df266eef606968c3dd05f34e58d3709833e54fa6da46aaa53428a14",
+    "Assets/Tests/EditMode/Gameplay/World/CampFireUxTests.cs": "258040018c5ddf02b9fd3796fac8e679be444965e321e7223845b22576d585f3"
+  }
+}

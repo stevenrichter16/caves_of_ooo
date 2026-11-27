@@ -62,6 +62,12 @@ check-in provides continued work across runs.
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. 35 has a bounded ordinary harvest with a live shower offer left unused. Broader road, load and seasonal variation remain open. |
 | Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided wayside meals, portable and prepared treatment, ordinary quarry processing and distinct Peat Works approaches. At the Causeway, one supplied scraper supports both garment protection and an ordinary brew with a physical effect on the local brine. The next comparisons still need varied current layouts and discovery without navigation guidance. |
 
+For #36, ordinary fire readers now share two separate fuel and flame
+readouts. The common reading/turn-cost footer is removed. Actual lit,
+exhausted and packed views were checked alongside native authority and
+countercases. This improves comprehension without changing the work.
+[Compact fire readers](Verification/MachineSystems/CompactFireReader20261127/README.md)
+
 For #15–17, a singular flask in an adjacent own installed box can now
 feed an installed hearth directly. The same empty flask survived stored
 custody through Continue, was retrieved, and received two water from a

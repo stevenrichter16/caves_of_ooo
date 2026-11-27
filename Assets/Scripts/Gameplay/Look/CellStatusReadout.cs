@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CavesOfOoo.Core
 {
@@ -34,27 +36,99 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// What a fire or torch always says about its fuel: how much is left and how many turns that is at its burn rate, whether it is burning or is out ("once you light it").
-        /// A finite cooking fire (the camp hearth, the coals) also says how long its heat lasts: a lighting cools below cooking heat before a full load of fuel is gone, so the fire
-        /// needs a flame again after that many turns whatever fuel is left. Null for anything without fuel.
+        /// Compact fuel and flame lines for fires. Other fueled objects keep their
+        /// usual fuel readout. Null for anything without fuel.
         /// </summary>
         public static string FuelLine(Entity entity)
         {
+            if (TryFireLines(entity, out string fuelLine, out string flameLine))
+                return fuelLine + "\n" + flameLine;
+
             var fuel = entity?.GetPart<FuelPart>();
             if (fuel == null || fuel.ParentEntity != entity || float.IsNaN(fuel.FuelMass) || float.IsInfinity(fuel.FuelMass) || fuel.FuelMass < 0f) return null;
             if (fuel.FuelMass < 0.5f) return "Fuel: none left.";
             int left = (int)System.Math.Floor(fuel.FuelMass);
             if (float.IsNaN(fuel.BurnRate) || float.IsInfinity(fuel.BurnRate) || fuel.BurnRate <= 0f) return "Fuel: " + left + " left.";
             int turns = (int)System.Math.Min(int.MaxValue / 2, System.Math.Floor(fuel.FuelMass / (double)fuel.BurnRate + 1e-6));
-            var camp = entity.GetPart<CampfirePart>(); var heat = entity.GetPart<ThermalPart>();
-            bool finite = camp != null && camp.FiniteCooking && heat != null;
-            bool burning = finite ? CampfireWorkActions.Hot(camp) : heat != null && heat.IsAflame;
-            string line = "Fuel: " + left + " left, about " + turns + " turns";
-            if (!burning) return line + " once you light it.";
-            if (!finite) return line + " of burning.";
-            int more = System.Math.Min(turns, HearthGlowPart.HeatTurns(heat));
-            return line + ". Burning for about " + more + " more turns" + (more < turns ? " before it needs a flame again." : ".");
+            bool burning = entity.GetPart<ThermalPart>()?.IsAflame == true;
+            return "Fuel: " + left + " left, about " + turns + " turns" + (burning ? " of burning." : " once you light it.");
         }
+
+        internal static bool TryFireLines(Entity entity, out string fuelLine, out string flameLine)
+        {
+            fuelLine = flameLine = null;
+            var fire = entity?.GetPart<CampfirePart>();
+            var fuel = entity?.GetPart<FuelPart>();
+            var heat = entity?.GetPart<ThermalPart>();
+            if (fire == null || fire.ParentEntity != entity || fuel == null || fuel.ParentEntity != entity
+                || heat == null || heat.ParentEntity != entity) return false;
+
+            bool validFuel = WorldResourceActions.Finite(fuel.FuelMass) && WorldResourceActions.Finite(fuel.MaxFuel)
+                && fuel.FuelMass >= 0f && fuel.MaxFuel > 0f && fuel.FuelMass <= fuel.MaxFuel;
+            fuelLine = validFuel
+                ? "Fuel: " + fuel.FuelMass.ToString("G5", CultureInfo.InvariantCulture)
+                    + " / " + fuel.MaxFuel.ToString("G5", CultureInfo.InvariantCulture)
+                : "Fuel: unavailable";
+            flameLine = "Flame remaining: " + (validFuel ? EstimateFlameTurns(entity, fire, fuel, heat) : "unavailable");
+            return true;
+        }
+
+        private static string EstimateFlameTurns(Entity owner, CampfirePart fire, FuelPart fuel, ThermalPart heat)
+        {
+            // Destructive combustion has intensity and self-heating beyond an
+            // ordinary hearth's passive countdown. Do not invent a lifetime.
+            var burning = owner.GetEffect<BurningEffect>();
+            if (burning?.Owner == owner && burning.Duration != 0) return "unavailable";
+            float threshold = fire.FiniteCooking ? CookingService.MinimumFiniteCookingTemperature : heat.FlameTemperature;
+            float temperature = heat.Temperature;
+            float ambient = heat.AmbientTemperature;
+            float decay = heat.AmbientDecayRate;
+            if (!WorldResourceActions.Finite(temperature) || !WorldResourceActions.Finite(threshold)
+                || !WorldResourceActions.Finite(ambient) || !WorldResourceActions.Finite(decay)
+                || decay < 0f || decay > 1f) return "unavailable";
+            if (temperature < threshold || fuel.FuelMass == 0f
+                || owner.GetPart<PackableFixturePart>() != null && (PackableFixturePart.IsInertKit(owner)
+                    || owner.GetPart<PhysicsPart>()?.InInventory != null || owner.GetPart<PhysicsPart>()?.Equipped != null))
+                return "0 turns";
+
+            // Only the finite hearth spends fuel on its own. Coals and legacy
+            // campfires cool without that debit, so their fuel does not set a timer.
+            double fuelTurns = double.PositiveInfinity;
+            var glow = owner.GetPart<HearthGlowPart>();
+            if (fire.FiniteCooking && glow?.ParentEntity == owner
+                && owner.GetPart<LightSourcePart>()?.ParentEntity == owner)
+            {
+                if (!WorldResourceActions.Finite(fuel.BurnRate) || fuel.BurnRate <= 0f) return "unavailable";
+                fuelTurns = Math.Ceiling(fuel.FuelMass / (double)fuel.BurnRate);
+            }
+
+            // Mirror ThermalPart's ordinary per-turn cooling and HearthGlow's
+            // surviving-turn convention on local values. The reader never advances time.
+            const int predictionLimit = 2000;
+            for (int turn = 1; turn <= predictionLimit; turn++)
+            {
+                float next = temperature;
+                if (next != ambient)
+                {
+                    next -= (next - ambient) * decay;
+                    if (Math.Abs(next - ambient) < 0.5f) next = ambient;
+                }
+                if (!WorldResourceActions.Finite(next)) return "unavailable";
+                if (next < threshold) return FormatFlameTurns(turn - 1);
+                if (turn >= fuelTurns) return FormatFlameTurns(turn);
+                if (next == temperature)
+                {
+                    if (double.IsPositiveInfinity(fuelTurns)) return "indefinite";
+                    if (fuelTurns <= int.MaxValue) return FormatFlameTurns((int)fuelTurns);
+                    break;
+                }
+                temperature = next;
+            }
+            return "at least " + predictionLimit.ToString(CultureInfo.InvariantCulture) + " turns";
+        }
+
+        private static string FormatFlameTurns(int turns) => turns == 0 ? "0 turns"
+            : "about " + turns.ToString(CultureInfo.InvariantCulture) + (turns == 1 ? " turn" : " turns");
 
         /// <summary>
         /// Compact name list for titles and messages: "water, embers".

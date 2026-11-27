@@ -68,8 +68,24 @@ namespace CavesOfOoo.Core
             // menu reads the same readout, so a frozen viper can no longer
             // show its status in one surface and not the other).
             CellStatusReadout.AppendAfflictionLines(primary, details);
-            string fuelDetail = CellStatusReadout.FuelLine(primary);
-            if (fuelDetail != null) details.Add(fuelDetail);
+            var fireAnchor = primary == null ? null : zone.GetEntityCell(primary);
+            bool currentFireCell = cell.Explored && cell.IsVisible && cell.ParentZone == zone
+                && zone.GetCell(cell.X, cell.Y) == cell && primary?.SpatialZone == zone
+                && fireAnchor?.ParentZone == zone && zone.GetCell(fireAnchor.X, fireAnchor.Y) == fireAnchor
+                && fireAnchor.Objects.Contains(primary)
+                && cell.Occupants.Contains(primary) && primary.GetPart<RenderPart>()?.ParentEntity == primary
+                && primary.GetPart<RenderPart>().Visible && primary.GetPart<PhysicsPart>()?.ParentEntity == primary
+                && primary.GetPart<PhysicsPart>().InInventory == null && primary.GetPart<PhysicsPart>().Equipped == null;
+            bool compactFire = CellStatusReadout.TryFireLines(primary, out var fireFuel, out var fireTurns);
+            if (compactFire)
+            {
+                if (currentFireCell) { details.Add(fireFuel); details.Add(fireTurns); }
+            }
+            else
+            {
+                string fuelDetail = CellStatusReadout.FuelLine(primary);
+                if (fuelDetail != null) details.Add(fuelDetail);
+            }
 
             string contents = BuildContentsLine(visibleObjects);
             if (!string.IsNullOrEmpty(contents))

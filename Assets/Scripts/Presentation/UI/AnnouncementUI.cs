@@ -391,7 +391,6 @@ namespace CavesOfOoo.Rendering
             }
             DrawRule(_popupH - 4);
             DrawText(2, _popupH - 3, FooterText, Ivory);
-            DrawText(2, _popupH - 2, "READING  /  no turn passes", SeaGreen);
             string pages = (_pageIndex + 1) + " / " + PageCount;
             DrawText(POPUP_W - 2 - pages.Length, _popupH - 2, pages, SeaGreen);
             _fgDrawn = true; _fgDrawnW = POPUP_W; _fgDrawnH = _popupH;

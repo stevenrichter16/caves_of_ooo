@@ -103,6 +103,16 @@ namespace CavesOfOoo.Core
             var repair = RepairExamine.Section(owner);
             if (repair != null) sections.Add(repair);
 
+            if (CellStatusReadout.TryFireLines(owner, out var fireFuel, out var fireTurns))
+            {
+                var danger = new List<string>();
+                Add(danger,CombatIntentReadout.ActorLine(owner,zone));
+                if(inWorld)Add(danger,CombatIntentReadout.ThreatLine(zone,cell));
+                Add(sections,"Attention",string.Join("\n",danger),AnnouncementTone.Warning);
+                Add(sections,"Fire",fireFuel+"\n"+fireTurns);
+                return Complete(owner,zone,cell,viewer,sections,facts);
+            }
+
             // Public commitments, current effects and visible ground must precede long flavor.
             var state=new List<string>();
             Add(state,CombatIntentReadout.ActorLine(owner,zone));
@@ -149,10 +159,16 @@ namespace CavesOfOoo.Core
             Add(sections,"Directions",owner.GetPart<RegionalSignpostPart>()?.GetDirectionsText());
             Add(sections,"Local observations",SpreadExplorationReadout.Describe(owner));
 
+            return Complete(owner,zone,cell,viewer,sections,facts);
+        }
+
+        static AnnouncementDocument Complete(Entity owner,Zone zone,Cell cell,Entity viewer,
+            List<AnnouncementSection> sections,List<AnnouncementFact> facts)
+        {
             AddFacts(owner,facts);
             var render=owner.GetPart<RenderPart>();
             if(render?.ParentEntity!=owner||!render.Visible)return null;
-            char? glyph=inWorld?render.ResolveGlyph(cell.X,cell.Y):string.IsNullOrEmpty(render.RenderString)?(char?)null:render.RenderString[0];
+            char? glyph=zone!=null&&cell!=null?render.ResolveGlyph(cell.X,cell.Y):string.IsNullOrEmpty(render.RenderString)?(char?)null:render.RenderString[0];
             return new AnnouncementDocument(owner.GetDisplayName(),"EXAMINE",sections,facts,
                 owner.BlueprintName,glyph,render.ColorString,owner,zone,cell,viewer);
         }
