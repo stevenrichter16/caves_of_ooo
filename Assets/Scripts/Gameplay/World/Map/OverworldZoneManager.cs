@@ -1281,6 +1281,7 @@ namespace CavesOfOoo.Core
             ReferenceGladePlan.Attach(zone, WorldMap,
                 zone.ZoneID==ReferenceGladePlan.ZoneID&&ReferenceGladeBuilder.SupportsContent(Factory));
             WorldLocationContext.Attach(zone, this);
+            RestoredPlaceRestPart.BindGantry(zone);
         }
 
         protected override void OnZoneGenerated(Zone zone, string zoneID)

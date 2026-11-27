@@ -1,3 +1,10 @@
+**Gantry's restored guest-cloth provides ordinary rest.**
+A cloak and compatible peg secure the same lasting service through the
+original pole or the host. The pole shows its current state. A nearby
+hostile can still block rest. In actual play a rough haft from reclaimed
+Sumphold timber paid for the repair, and the traveler rested for seven HP.
+[Playtest and receipts](Verification/MachineSystems/GantryGuestCloth20261127/README.md)
+
 **Gleaners' public porter can take a smaller load.**
 The traveler can box one or two measures at the same post. One costs
 one dram less on the same walk. The player used one delivered measure

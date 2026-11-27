@@ -1,3 +1,13 @@
+**Gantry's repaired guest-cloth opens free public rest — November 27, 2026, America/Chicago.**
+An ordinary rough haft from reclaimed Sumphold timber pegged the existing
+pole after a carried cloak covered it. Nearby danger initially blocked
+rest. The player and a villager dealt with the last nearby threat.
+Then 60 ticks restored seven HP and cost no money. Fresh Continue kept
+the hung cloth, lasting repair, 40 HP and 31 drams. Native checks passed
+all twelve new cases. The matched prior and current suites both hit the
+same existing Tine weir lookup failure.
+[Gameplay, native and save evidence](Verification/MachineSystems/GantryGuestCloth20261127/README.md)
+
 **One measure by porter and one on foot repair the Gleaners' well — November 27, 2026, America/Chicago.**
 Seed 65 supplied four fire clay through an ordinary allotment harvest.
 The player boxed one, carried one and left two nearby. The same

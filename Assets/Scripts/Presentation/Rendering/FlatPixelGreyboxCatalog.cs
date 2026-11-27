@@ -697,7 +697,7 @@ namespace CavesOfOoo.Rendering
             {
                 var cloth = SharedCampClothArtFor(owner);
                 if (cloth != null && cloth.TryResolve(owner, x, y, out var clothTile))
-                { sprite = clothTile.sprite; return sprite != null; }
+                { sprite = clothTile.sprite; tint = FlatPixelSharedCampClothCatalog.StateTint(owner); return sprite != null; }
                 return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
             }
             if (FlatPixelWellmeetWellCatalog.HasKnownRole(owner))
@@ -1565,7 +1565,7 @@ namespace CavesOfOoo.Rendering
                 foreground = fallback.ForegroundTile;
                 foregroundColor = fallback.ForegroundColor;
             }
-            else if (native) { foreground = art; foregroundColor = wellNative ? wellTint : boundaryNative ? boundaryTint : Color.white; }
+            else if (native) { foreground = art; foregroundColor = wellNative ? wellTint : boundaryNative ? boundaryTint : clothNative ? FlatPixelSharedCampClothCatalog.StateTint(owner) : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
                 || mapGround && owner == mapFloor && FlatPixelWorldMapCatalog.IsPlainTerrain(mapFloor)
                 || spreadGround && owner == spreadFloor
@@ -1757,7 +1757,7 @@ namespace CavesOfOoo.Rendering
             {
                 var cloth = SharedCampClothArtFor(subject);
                 if (cloth != null && cloth.TryResolve(subject, x, y, out var clothTile))
-                { sprite = clothTile.sprite; return sprite != null; }
+                { sprite = clothTile.sprite; tint = FlatPixelSharedCampClothCatalog.StateTint(subject); return sprite != null; }
                 return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             }
             if (FlatPixelWellmeetWellCatalog.HasKnownRole(subject))

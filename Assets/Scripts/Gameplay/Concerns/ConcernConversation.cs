@@ -358,7 +358,8 @@ namespace CavesOfOoo.Concerns
             foreach (var m in fix.Materials)
             {
                 if (b.Length > 0) b.Append(", ");
-                b.Append(m.Count).Append(' ').Append(SplitWords(m.Blueprint).ToLowerInvariant());
+                b.Append(m.Count).Append(' ').Append(m.SubstituteBlueprint == null
+                    ? SplitWords(m.Blueprint).ToLowerInvariant() : PlaceSiteRepairs.MaterialName(m));
             }
             if (!string.IsNullOrEmpty(fix.Tool)) b.Append("; with a ").Append(SplitWords(fix.Tool).ToLowerInvariant());
             return b.ToString();
@@ -366,7 +367,7 @@ namespace CavesOfOoo.Concerns
 
         static bool CanFix(Entity actor, PlaceSiteFixData fix)
         {
-            foreach (var m in fix.Materials) if (ConcernItems.CountCarried(actor, m.Blueprint) < m.Count) return false;
+            foreach (var m in fix.Materials) if (PlaceSiteRepairs.CarriedAmount(actor, m) < m.Count) return false;
             return string.IsNullOrEmpty(fix.Tool) || ConcernItems.CountCarried(actor, fix.Tool) > 0;
         }
 

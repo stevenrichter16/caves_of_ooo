@@ -49,6 +49,17 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+**Gantry guest-cloth trial.** The existing lasting repair also opens a
+local rest at Gantry's physical pole. A carried cloak and sound wooden peg
+pay once. An oak haft and a sound rough field haft serve the same peg role.
+The pole action and the host's existing repair choice use that bill and
+the same saved structure state. The hanging cloth, repair reader and
+rest action visibly reflect that state. Rest is free and uses the
+usual elapsed time, healing, bleeding and safety rules. A well traveler
+can continue through Gantry. The host's social concern keeps its own
+report and reward.
+[Ordinary repair and rest evidence](Verification/MachineSystems/GantryGuestCloth20261127/README.md)
+
 Implement the 45 requirements in connected slices. Once a slice is verified
 and recorded, start the next unblocked slice in the same run. The scheduled
 check-in provides continued work across runs.

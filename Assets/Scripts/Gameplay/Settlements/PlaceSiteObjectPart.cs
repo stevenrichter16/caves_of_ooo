@@ -14,7 +14,7 @@ namespace CavesOfOoo.Core
     /// what you carry of it, offers "mend for good" and "patch for now" when they could be made and says what is missing when they could not; and a repair is one action that takes the
     /// materials only at commit, so a refused or interrupted action takes nothing.</para>
     /// </summary>
-    public sealed class PlaceSiteObjectPart : Part, IDescribeState, IMenuStatus, IDescribeUse
+    public sealed class PlaceSiteObjectPart : Part, IDescribeState, IMenuStatus, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "PlaceSiteObject";
 
@@ -42,6 +42,8 @@ namespace CavesOfOoo.Core
         RepairableSiteState Site => Data == null || _zoneId == null || SettlementManager.Current == null ? null : SettlementManager.Current.GetSite(_zoneId, SiteId);
 
         public static bool IsCommand(string command) => command != null && command.StartsWith(RepairPrefix, StringComparison.Ordinal);
+
+        public bool OwnsInventoryReceipt(string command) => Data?.OffersShelteredRest == true && IsCommand(command);
 
         // ── the world's side: the object reads as what happened to it ──
 
@@ -99,7 +101,7 @@ namespace CavesOfOoo.Core
         private static void AddRepairRequirements(List<string> lines, PlaceSiteFixData fix)
         {
             foreach (var material in fix.Materials)
-                lines.Add("- " + material.Count + " " + PlaceSiteRepairs.NameOf(material.Blueprint) + " (used)");
+                lines.Add("- " + material.Count + " " + PlaceSiteRepairs.MaterialName(material) + " (used)");
             lines.Add("Tools and machines");
             lines.Add(string.IsNullOrEmpty(fix.Tool) ? "None required." : "- " + PlaceSiteRepairs.NameOf(fix.Tool) + " (kept)");
         }
@@ -108,7 +110,11 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             var data = Data; var site = Site; if (data == null || site == null) return;
-            if (site.Stage >= RepairStage.StableRepair) { guide.Limits.Add("It is mended and working; there is nothing more to do to it."); return; }
+            if (site.Stage >= RepairStage.StableRepair)
+            {
+                if (!data.OffersShelteredRest) guide.Limits.Add("It is mended and working; there is nothing more to do to it.");
+                return;
+            }
             guide.How.Add("Stand beside it, press C and choose mend the " + data.Name + " for good" + (data.HasPatch && site.Stage == RepairStage.Fouled ? ", or patch it for now" : "") + ". The menu lists each material with how many you carry.");
             guide.Needs.Add("to mend it for good: " + PlaceSiteRepairs.NeedsPlain(data.Lasting));
             if (data.HasPatch && site.Stage == RepairStage.Fouled) guide.Needs.Add("to patch it for now: " + PlaceSiteRepairs.NeedsPlain(data.Patch));
@@ -139,7 +145,7 @@ namespace CavesOfOoo.Core
         static void AddFix(List<string> lines, string label, PlaceSiteFixData fix, Entity viewer)
         {
             var items = new List<string>();
-            foreach (var m in fix.Materials) items.Add(PlaceSiteRepairs.NameOf(m.Blueprint) + " " + ConcernItems.CountCarried(viewer, m.Blueprint) + "/" + m.Count);
+            foreach (var m in fix.Materials) items.Add(PlaceSiteRepairs.MaterialName(m) + " " + PlaceSiteRepairs.CarriedAmount(viewer, m) + "/" + m.Count);
             if (!string.IsNullOrEmpty(fix.Tool)) items.Add(PlaceSiteRepairs.NameOf(fix.Tool) + " " + Math.Min(1, ConcernItems.CountCarried(viewer, fix.Tool)) + "/1 (kept)");
             // Greedy wrap at the narrowest menu's width, never splitting one item; continuation lines are indented.
             const string pad = "  "; string current = label;
@@ -175,7 +181,8 @@ namespace CavesOfOoo.Core
         {
             var render = ParentEntity?.GetPart<RenderPart>(); var data = Data; var site = Site; if (render == null || data == null || site == null) return;
             render.DisplayName = data.Name + " (" + StateWord(site) + ")";
-            render.ColorString = site.Stage >= RepairStage.StableRepair ? "&c" : site.Stage == RepairStage.TemporarilyPurified ? "&W" : "&y";
+            render.ColorString = site.Stage >= RepairStage.StableRepair ? (data.OffersShelteredRest ? "&Y" : "&c")
+                : site.Stage == RepairStage.TemporarilyPurified ? "&W" : "&y";
         }
 
         void AddRows(Entity actor, Zone zone, InventoryActionList actions)
@@ -214,6 +221,18 @@ namespace CavesOfOoo.Core
             {
                 if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(owner, actor, command)) return Reject(actor, "in_progress", "That is already being worked on.");
                 var manager = SettlementManager.Current; var pack = actor.GetPart<InventoryPart>(); if (manager == null || pack == null || _zoneId == null) return Reject(actor, "invalid_context", "You cannot work on that right now.");
+                if ((lasting ? data.Lasting : data.Patch).HasSubstitutes)
+                {
+                    var cell = zone.GetEntityCell(owner);
+                    tx.BeforeCommit(() => manager == SettlementManager.Current && owner.GetPart<PlaceSiteObjectPart>() == this
+                        && WorldResourceActions.Nearby(actor, owner, zone) && zone.GetEntityCell(owner) == cell && cell.IsVisible
+                        && (!data.OffersShelteredRest || RestoredPlaceRestPart.GantryPole(zone) == owner));
+                    if (data.OffersShelteredRest && RestoredPlaceRestPart.GantryPole(zone) != owner) return false;
+                    string paid = manager.RepairPlaceSite(_zoneId, SiteId, lasting, actor, tx);
+                    if (paid != null) return Reject(actor, paid, "The materials could not be used to mend it.");
+                    if (own) tx.Commit();
+                    return true;
+                }
                 // The same call the elder's conversation makes does the work, inside this action: the pack and the site are captured first, so an outer step that fails (or the repair itself
                 // refusing) puts the materials and the site back exactly. The announcement it shows is the only thing not taken back.
                 var siteBefore = manager.SnapshotSite(_zoneId, SiteId); var receipt = InventoryTransferSnapshot.Capture(pack); string zoneId = _zoneId, siteId = SiteId;

@@ -1,0 +1,246 @@
+{
+  "seed": 65,
+  "arrived": {
+    "zone": "Overworld.7.8.0",
+    "x": 39,
+    "y": 11,
+    "tick": 1680,
+    "hp": 33,
+    "money": 31,
+    "max": 22,
+    "lb": 22,
+    "pole": "15237",
+    "poleX": 66,
+    "poleY": 15,
+    "poleName": "guest-cloth (torn)",
+    "poleColor": "&y",
+    "parts": [
+      "Render",
+      "Physics",
+      "Examinable",
+      "PlaceSiteObject",
+      "RestoredPlaceRest"
+    ],
+    "stage": "Fouled",
+    "method": "None",
+    "packed": [
+      {
+        "ID": "13034",
+        "BlueprintName": "FieldHaftComponent"
+      }
+    ],
+    "equipped": [
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak"
+      }
+    ],
+    "busy": false
+  },
+  "afterRepair": {
+    "zone": "Overworld.7.8.0",
+    "x": 65,
+    "y": 14,
+    "tick": 1950,
+    "hp": 33,
+    "money": 31,
+    "max": 22,
+    "lb": 18,
+    "pole": "15237",
+    "poleX": 66,
+    "poleY": 15,
+    "poleName": "guest-cloth (hung)",
+    "poleColor": "&Y",
+    "parts": [
+      "Render",
+      "Physics",
+      "Examinable",
+      "PlaceSiteObject",
+      "RestoredPlaceRest"
+    ],
+    "stage": "StableRepair",
+    "method": "ManualRepair",
+    "packed": [],
+    "equipped": [],
+    "busy": false
+  },
+  "restOffer": {
+    "busy": false,
+    "open": true,
+    "target": "15237",
+    "highlight": "RestAtRestoredPlaceSite",
+    "rows": [
+      {
+        "Display": "rest under the guest-cloth",
+        "Command": "RestAtRestoredPlaceSite",
+        "Hint": "Free. 60 ticks pass. Restores health and stops bleeding."
+      },
+      {
+        "Display": "examine",
+        "Command": "Examine",
+        "Hint": ""
+      },
+      {
+        "Display": "pour water southeast (12) [liquid flask]",
+        "Command": "PourLiquidVessel|water|12|Overworld.7.8.0|66|15",
+        "Hint": ""
+      },
+      {
+        "Display": "pour one water southeast [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|12|Overworld.7.8.0|66|15",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "Hint": ""
+      }
+    ]
+  },
+  "beforeRest": {
+    "zone": "Overworld.7.8.0",
+    "x": 65,
+    "y": 14,
+    "tick": 2000,
+    "hp": 33,
+    "money": 31,
+    "max": 22,
+    "lb": 18,
+    "pole": "15237",
+    "poleX": 66,
+    "poleY": 15,
+    "poleName": "guest-cloth (hung)",
+    "poleColor": "&Y",
+    "parts": [
+      "Render",
+      "Physics",
+      "Examinable",
+      "PlaceSiteObject",
+      "RestoredPlaceRest"
+    ],
+    "stage": "StableRepair",
+    "method": "ManualRepair",
+    "packed": [],
+    "equipped": [],
+    "busy": false
+  },
+  "afterRest": {
+    "zone": "Overworld.7.8.0",
+    "x": 65,
+    "y": 14,
+    "tick": 2060,
+    "hp": 40,
+    "money": 31,
+    "max": 22,
+    "lb": 18,
+    "pole": "15237",
+    "poleX": 66,
+    "poleY": 15,
+    "poleName": "guest-cloth (hung)",
+    "poleColor": "&Y",
+    "parts": [
+      "Render",
+      "Physics",
+      "Examinable",
+      "PlaceSiteObject",
+      "RestoredPlaceRest"
+    ],
+    "stage": "StableRepair",
+    "method": "ManualRepair",
+    "packed": [],
+    "equipped": [],
+    "busy": false
+  },
+  "fresh": {
+    "zone": "Overworld.7.8.0",
+    "x": 65,
+    "y": 14,
+    "tick": 2060,
+    "hp": 40,
+    "money": 31,
+    "max": 22,
+    "lb": 18,
+    "pole": "15237",
+    "poleX": 66,
+    "poleY": 15,
+    "poleName": "guest-cloth (hung)",
+    "poleColor": "&Y",
+    "parts": [
+      "Render",
+      "Physics",
+      "Examinable",
+      "PlaceSiteObject",
+      "RestoredPlaceRest"
+    ],
+    "stage": "StableRepair",
+    "method": "ManualRepair",
+    "packed": [],
+    "equipped": [],
+    "busy": false
+  },
+  "freshMenu": {
+    "busy": false,
+    "open": true,
+    "target": "15237",
+    "highlight": "Disabled:rest_unavailable",
+    "rows": [
+      {
+        "Display": "rest under the guest-cloth",
+        "Command": "Disabled:rest_unavailable",
+        "Hint": ""
+      },
+      {
+        "Display": "examine",
+        "Command": "Examine",
+        "Hint": ""
+      },
+      {
+        "Display": "pour water southeast (12) [liquid flask]",
+        "Command": "PourLiquidVessel|water|12|Overworld.7.8.0|66|15",
+        "Hint": ""
+      },
+      {
+        "Display": "pour one water southeast [liquid flask]",
+        "Command": "PourOneLiquidVessel|water|12|Overworld.7.8.0|66|15",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "Hint": ""
+      }
+    ]
+  },
+  "cleanup": {
+    "play": false,
+    "active": false,
+    "rootNull": true,
+    "keys": [
+      "Keyboard"
+    ]
+  },
+  "native": {
+    "red": {
+      "passed": 2,
+      "failed": 10
+    },
+    "matchedPrevious": {
+      "passed": 109,
+      "failed": 1
+    },
+    "current": {
+      "passed": 121,
+      "failed": 1
+    },
+    "newFeature": {
+      "passed": 12,
+      "failed": 0
+    }
+  },
+  "preservation": {
+    "normalQuickFiles": 876,
+    "normalQuickFilesMatch": true,
+    "priorTrackedFiles": 87,
+    "priorTrackedFilesMatch": true
+  }
+}

@@ -1152,6 +1152,8 @@ namespace CavesOfOoo.Core
                     if (ReferenceEquals(state.ZoneManager.ActiveZone, morrowfastZone))
                         MorrowfastSceneRuntime.RegisterActiveActors(morrowfastZone, state.TurnManager);
                 }
+                if (zones.TryGetValue(GantryCompositionPlan.ZoneID, out var gantryZone))
+                    RestoredPlaceRestPart.BindGantry(gantryZone);
                 // Entity bodies are now resolved. Repair derived map appearance
                 // without creating an uncached map or clearing saved occupants.
                 if (zones.TryGetValue(WorldMap.WorldMapZoneID, out var mapZone))

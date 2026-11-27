@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -372,6 +373,9 @@ namespace CavesOfOoo.Core
         /// the refusal reason.
         /// </summary>
         public string RepairPlaceSite(string settlementId, string siteId, bool lasting, Entity player)
+            => RepairPlaceSite(settlementId, siteId, lasting, player, null);
+
+        internal string RepairPlaceSite(string settlementId, string siteId, bool lasting, Entity player, InventoryTransaction transaction)
         {
             if (player == null) return "missing_player";
             var data = PlaceSiteCatalog.Get(PlaceSiteCatalog.PlaceAt(settlementId), siteId);
@@ -394,9 +398,39 @@ namespace CavesOfOoo.Core
                 return refusal;
             }
             var fix = lasting ? data.Lasting : data.Patch;
+            if (fix.HasSubstitutes)
+            {
+                var zone = player.SpatialZone;
+                var cell = zone?.GetEntityCell(player);
+                var stage = site.Stage;
+                var world = WorldLocationContext.For(zone);
+                if (zone?.ZoneID != settlementId || world?.SettlementManager != this || world.ActiveZone != zone
+                    || !WorldResourceActions.ActorCurrent(player, zone)
+                    || player.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return "invalid_context";
+                bool own = transaction == null;
+                transaction ??= new InventoryTransaction();
+                try
+                {
+                    if (!transaction.TryClaim(player, player, "PlaceSiteRepair")
+                        || !PlaceSiteRepairs.TryPaySubstituteBill(player, zone, fix, transaction)) return "payment_refused";
+                    transaction.BeforeCommit(() => WorldResourceActions.ActorCurrent(player, zone)
+                        && player.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
+                        && zone.GetEntityCell(player) == cell && WorldLocationContext.For(zone) == world && world.ActiveZone == zone
+                        && TryGetExistingSite(settlementId, siteId, out var current) && current == site && current.Stage == stage);
+                    transaction.AfterCommit(() => ApplyPlaceRepair(state, site, settlementId, lasting, fix));
+                    if (own) transaction.Commit();
+                    return null;
+                }
+                finally { if (own) transaction.Rollback(); }
+            }
             foreach (var m in fix.Materials)
                 CavesOfOoo.Concerns.ConcernItems.TakeCarried(player, m.Blueprint, m.Count);
+            ApplyPlaceRepair(state, site, settlementId, lasting, fix);
+            return null;
+        }
 
+        private void ApplyPlaceRepair(SettlementState state, RepairableSiteState site, string settlementId, bool lasting, PlaceSiteFixData fix)
+        {
             site.ResolvedAtTurn = GetCurrentTurn();
             if (lasting)
             {
@@ -412,7 +446,6 @@ namespace CavesOfOoo.Core
             MessageLog.AddAnnouncement(fix.Text);
             SyncConditions(state);
             RaiseSiteChanged(settlementId, site);
-            return null;
         }
 
         /// <summary>A copy of a site's state, for an undo (an interrupted action that repaired it). Null when the site is unknown.</summary>

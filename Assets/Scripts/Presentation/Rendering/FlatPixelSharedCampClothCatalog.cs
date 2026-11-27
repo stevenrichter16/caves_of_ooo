@@ -17,6 +17,11 @@ namespace CavesOfOoo.Rendering
         { wallA = Build(atlas, 0); wallB = Build(atlas, 1); pole = Build(atlas, 2); }
         public static bool HasKnownRole(Entity e)
             => e?.BlueprintName == "TentWall" || e?.BlueprintName == "GuestClothPole";
+        public static Color StateTint(Entity e) => TornGantryCloth(e)
+            ? new Color(.62f, .55f, .49f) : Color.white;
+
+        private static bool TornGantryCloth(Entity e) => e?.BlueprintName == "GuestClothPole"
+            && e.GetPart<RestoredPlaceRestPart>()?.ParentEntity == e && e.GetPart<RenderPart>()?.ColorString == "&y";
         public bool TryResolve(Entity e, int x, int y, out Tile tile)
         {
             tile = null;
@@ -25,7 +30,7 @@ namespace CavesOfOoo.Rendering
             bool wall = e.BlueprintName == "TentWall";
             var r = Owned<RenderPart>(e); var p = Owned<PhysicsPart>(e);
             if (r == null || !r.Visible || r.RenderLayer != 2 || r.RenderString != (wall ? "#" : "|")
-                || r.ColorString != (wall ? "&y" : "&Y") || !string.IsNullOrEmpty(r.BackgroundColor)
+                || (r.ColorString != (wall ? "&y" : "&Y") && !TornGantryCloth(e)) || !string.IsNullOrEmpty(r.BackgroundColor)
                 || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
                 || !string.IsNullOrEmpty(r.GlyphVariants) || p == null || p.Solid != wall
                 || p.Takeable || p.InInventory != null || p.Equipped != null

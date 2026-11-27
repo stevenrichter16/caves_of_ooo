@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CavesOfOoo.Core
@@ -108,7 +109,12 @@ namespace CavesOfOoo.Core
             {
                 if (m == null || m.Count < 1) problems.Add(who + ": material count");
                 else if (factory != null && !factory.Blueprints.ContainsKey(m.Blueprint ?? "")) problems.Add(who + ": unknown material '" + m.Blueprint + "'");
+                if (!string.IsNullOrEmpty(m?.SubstituteBlueprint) && factory != null
+                    && !factory.Blueprints.ContainsKey(m.SubstituteBlueprint))
+                    problems.Add(who + ": unknown substitute '" + m.SubstituteBlueprint + "'");
             }
+            if (fix.HasSubstitutes && fix.Materials.Any(m => m == null || m.Count != 1))
+                problems.Add(who + ": substitute bills require one unit per material");
             if (!string.IsNullOrEmpty(fix.Tool) && factory != null && !factory.Blueprints.ContainsKey(fix.Tool)) problems.Add(who + ": unknown tool '" + fix.Tool + "'");
         }
 
@@ -129,6 +135,7 @@ namespace CavesOfOoo.Core
         public string Name;
         /// <summary>How it looks while broken.</summary>
         public string Broken;
+        public bool OffersShelteredRest;
         public PlaceSiteFixData Lasting = new PlaceSiteFixData();
         public PlaceSiteFixData Patch = new PlaceSiteFixData();
         /// <summary>The message on returning to find a patch has failed.</summary>
@@ -145,12 +152,14 @@ namespace CavesOfOoo.Core
         public string Tool;
         public int RelapseTurns;
         public string Text;
+        public bool HasSubstitutes => Materials?.Any(m => !string.IsNullOrEmpty(m?.SubstituteBlueprint)) == true;
     }
 
     [Serializable]
     public class PlaceSiteMaterial
     {
         public string Blueprint;
+        public string SubstituteBlueprint;
         public int Count = 1;
     }
 }

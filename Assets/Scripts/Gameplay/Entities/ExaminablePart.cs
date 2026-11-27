@@ -56,6 +56,8 @@ namespace CavesOfOoo.Core
         public string GetDescriptionText()
         {
             var owner = ParentEntity;
+            if (owner?.BlueprintName == "GuestClothPole" && owner.GetPart<RestoredPlaceRestPart>()?.ParentEntity == owner)
+                return "A public guest-cloth pole at Gantry.";
             if (Text == GleanersDistrict.LegacyWellFlavor && owner?.GetPart<ExaminablePart>() == this)
                 return GleanersDistrict.ResolveWellFlavor(owner);
             if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<DeliveryStoragePart>() is { } storage
