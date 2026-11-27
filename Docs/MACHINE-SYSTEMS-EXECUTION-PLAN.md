@@ -5,6 +5,8 @@ and the free dry detour on the south bank. Both Examine readers
 correct the stock directions on the exact physical notices, including
 visited saves. All 172 focused cases passed.
 [Cutbank route readers](Verification/MachineSystems/CutbankRouteReaders20261127/README.md)
+The universal Mac package for `82f5cc2df` passed Apple M5 startup.
+[Mac startup receipt](Verification/MachineSystems/CutbankRouteReaders20261127/mac-startup-verification.json)
 
 **The Cutbank Crossing banks, gap and dry detours work in live play — November 27, 2026, America/Chicago.**
 Look found the solid peat face. An ordinary bump damaged it without

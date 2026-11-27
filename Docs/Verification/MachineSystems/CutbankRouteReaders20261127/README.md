@@ -31,3 +31,13 @@ matched after the Editor exited Play Mode.
 [West notice after Continue](01-west-notice.png) ·
 [Passage post after Continue](02-north-post.png) ·
 [Native counts and live readouts](observations.json)
+
+## Mac startup
+
+The universal package for `82f5cc2df` built from 32,282 checked
+inputs with zero errors and four warnings. GameBootstrap reached
+the world on Apple M5. All six native binaries include both
+architectures. Both package file records, all 876 checked normal
+save files, and startup preferences were preserved. The route and
+reader playtests ran in the Editor.
+[Startup receipt](mac-startup-verification.json)
