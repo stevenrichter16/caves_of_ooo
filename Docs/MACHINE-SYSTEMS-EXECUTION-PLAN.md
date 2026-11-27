@@ -1,3 +1,16 @@
+**Sill's still names the heat and shares its mire preview — November 27, 2026, America/Chicago.**
+The public still's Examine and interaction menu agree on available
+heat, portions and refusal. Twelve finite mire from the natural Peat
+Works pool made three water in one branch. In the matched branch the
+still baked one clay, and the four remaining mire made one oil. That
+oil refilled the same recovered torch. Both branches survived fresh
+Continue. The final focused run passed 174 cases.
+[Mire heat and reuse playtest](Verification/MachineSystems/MireHeatReadiness20261127/README.md)
+The next scoped processing trial is Slip's lamp-supply concern.
+Check whether one flask of three settled oil can satisfy the same
+existing demand as bottled lamp oil and preserve the emptied flask
+and the separate report. Exterior lighting remains a separate gate.
+
 **Spare willow can patch the Drowned Ledger's survey line — November 27, 2026, America/Chicago.**
 The original line supplied two physical stakes and kept its spent state.
 An ordinary traveler used both in the existing timed patch. The repaired

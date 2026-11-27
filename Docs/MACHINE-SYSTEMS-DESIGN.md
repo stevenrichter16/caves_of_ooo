@@ -2505,6 +2505,17 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The November 27 still trial proves one public mire site with two
+costed uses from the same ordinary checkpoint. A finite Peat Works
+draw reached Sill. The shared readiness checks distinguish settling
+on steady heat or five fuel from baking on ten fuel. Paid water
+and a clay-plus-oil branch survived separate Continues. The latter
+used its one oil to refill the original torch. This covers discrete
+processing, visible eligibility, carried residue and portable reuse
+for the fractionating still dependency. General fractionation,
+physical waste and jobs that run over time remain open.
+[Ordinary mire alternatives](Verification/MachineSystems/MireHeatReadiness20261127/README.md)
+
 The November 26 shipment follow-up adds a physical player report of
 where an overdue porter was seen alive. The existing personal search
 can check that location using its saved budget. The verified Wayside

@@ -28,6 +28,13 @@ namespace CavesOfOoo.Tests
         string Row(Entity still, string target) => Rows(still).Single(a => !a.IsDisabled && a.Command.StartsWith("SettleLiquid|" + target + "|", StringComparison.Ordinal)).Command;
         int Clay() => Pack.Objects.Where(o => o.BlueprintName == "FireClay").Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
         string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, Zone, Zone.GetEntityCell(e), Actor, l); return string.Join(" ", l); }   // Full: the quick reader passes no viewer, so a describer that needs one is read here
+        InventoryAction[] WorldRows(Entity still)
+        {
+            var at = Zone.GetEntityCell(still);
+            var origin = Zone.GetEntityCell(Actor);
+            at.IsVisible = at.Explored = origin.IsVisible = origin.Explored = true;
+            return CellMenu(at.X, at.Y).ToArray();
+        }
 
         [Test] public void AVentBesideTheStillSettlesMireWithNoFireAndSpendsNoFuel()
         {
@@ -80,6 +87,105 @@ namespace CavesOfOoo.Tests
         [Test] public void TheReaderSaysTheVentIsDoingTheWork_AndNamesNoFuel()
         {
             var still = Still(); Vent(); Flask(12, "bog-mire"); string text = Read(still); StringAssert.Contains("settle your mire", text); StringAssert.Contains("vent", text.ToLowerInvariant()); StringAssert.DoesNotContain("fuel", text.ToLowerInvariant());
+        }
+
+        [Test]
+        public void VentOnlyReaderOffersSettlingAndRepeatsTheWorldMenusClayRefusal()
+        {
+            var still = Still();
+            Vent();
+            var flask = Flask(12, "bog-mire");
+            var rows = WorldRows(still);
+            Assert.True(rows.Any(row => row.Name == "SettleLiquid" && !row.IsDisabled));
+            var bake = rows.Single(row => row.Name == "BakeClay");
+            Assert.True(bake.IsDisabled);
+            Assert.That(bake.DisabledReason, Does.Contain("not hot enough").IgnoreCase);
+
+            string text = Read(still);
+            Assert.That(text, Does.Contain(bake.DisabledReason.TrimEnd('.')).IgnoreCase);
+            Assert.That(text, Does.Not.Contain("or bake").IgnoreCase);
+            Assert.That(text, Does.Not.Contain("you can bake").IgnoreCase);
+            Assert.That(text, Does.Not.Contain("fuel").IgnoreCase);
+            Assert.AreEqual(12, Vessel(flask).Volume);
+        }
+
+        [TestCase(5f)] [TestCase(9f)]
+        public void AFireThatCanSettleButCannotBakeExplainsTheSameTenFuelRequirement(float fuel)
+        {
+            var still = Still();
+            var fire = Fire(fuel: fuel);
+            var flask = Flask(12, "bog-mire");
+            var rows = WorldRows(still);
+            Assert.True(rows.Any(row => row.Name == "SettleLiquid" && !row.IsDisabled));
+            var bake = rows.Single(row => row.Name == "BakeClay");
+            Assert.True(bake.IsDisabled);
+            Assert.That(bake.DisabledReason, Does.Contain("10 fuel").IgnoreCase);
+            Assert.That(Read(still), Does.Contain(bake.DisabledReason.TrimEnd('.')).IgnoreCase);
+            Assert.That(Read(still), Does.Not.Contain("or bake").IgnoreCase);
+            Assert.AreEqual(fuel, Fuel(fire));
+            Assert.AreEqual(12, Vessel(flask).Volume);
+        }
+
+        [Test]
+        public void AReadyBakeNamesThePayingFireAndTheFourMireThatStayInTheFlask()
+        {
+            var still = Still();
+            var fire = Fire(9, 12f);
+            fire.GetPart<RenderPart>().DisplayName = "workshop coals";
+            Zone.GetEntityCell(fire).IsVisible = true;
+            var nearerFire = Fire(10, 7f);
+            var flask = Flask(12, "bog-mire");
+            var bake = WorldRows(still).Single(row => row.Name == "BakeClay" && !row.IsDisabled);
+            foreach (var preview in new[] { bake.Hint, Read(still) })
+            {
+                Assert.That(preview, Does.Contain("workshop coals").IgnoreCase);
+                Assert.That(preview, Does.Contain("10 fuel").IgnoreCase);
+                Assert.That(preview, Does.Contain("4 mire").IgnoreCase);
+            }
+
+            Assert.True(ChooseRow(bake, 11, 10));
+            Assert.AreEqual(2f, Fuel(fire));
+            Assert.AreEqual(7f, Fuel(nearerFire));
+            Assert.AreEqual(4, Vessel(flask).Volume);
+            Assert.AreEqual("bog-mire", Vessel(flask).LiquidId);
+            Assert.AreEqual(1, Clay());
+        }
+
+        [Test]
+        public void AnUnseenFireCanSupplyHeatWithoutRevealingItsNameOrFuel()
+        {
+            var still = Still();
+            var fire = Fire(9, 17.25f);
+            fire.GetPart<RenderPart>().DisplayName = "workshop coals";
+            Zone.GetEntityCell(fire).IsVisible = false;
+            Flask(12, "bog-mire");
+
+            var bake = WorldRows(still).Single(row => row.Name == "BakeClay" && !row.IsDisabled);
+            foreach (var preview in new[] { bake.Hint, Read(still) })
+            {
+                Assert.That(preview, Does.Contain("10 fuel"));
+                Assert.That(preview, Does.Not.Contain("workshop coals"));
+                Assert.That(preview, Does.Not.Contain("17.25"));
+            }
+        }
+
+        [Test]
+        public void TwoShortFlasksNeedFourMireInOneFlaskAndNeverPreviewZeroOutput()
+        {
+            var still = Still();
+            Vent();
+            var first = Flask(2, "bog-mire");
+            var second = Flask(2, "bog-mire");
+            var rows = WorldRows(still).Where(row => row.Name == "SettleLiquid" || row.Name == "SettleAll").ToArray();
+            Assert.That(rows, Is.Not.Empty);
+            Assert.That(rows.All(row => row.IsDisabled), Is.True);
+            Assert.That(rows.All(row => row.DisabledReason.IndexOf("in one flask", StringComparison.OrdinalIgnoreCase) >= 0), Is.True);
+
+            string text = Read(still);
+            Assert.That(text, Does.Contain("in one flask").IgnoreCase);
+            Assert.That(text, Does.Not.Match(@"(?i)\b0 (?:clean )?(?:water|oil)\b"));
+            Assert.AreEqual(2, Vessel(first).Volume);
+            Assert.AreEqual(2, Vessel(second).Volume);
         }
 
         [Test] public void TheVentSaysWhatItIsGoodForOnlyWhereAStillCouldStandAndToSomeoneWhoCouldUseIt()

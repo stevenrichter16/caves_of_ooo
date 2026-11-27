@@ -63,7 +63,9 @@ namespace CavesOfOoo.Tests
 
         [Test] public void AFireThatCannotSpareTheFuelRefusesWithTheNumbers()
         {
-            var still = Still(); var fire = Fire(9, 3f); var flask = Flask(12, "bog-mire"); var rows = Rows(still); Assert.True(rows.All(a => a.IsDisabled)); StringAssert.Contains("5", rows[0].DisabledReason); StringAssert.Contains("3", rows[0].DisabledReason);
+            var still = Still(); var fire = Fire(9, 3f); var flask = Flask(12, "bog-mire");
+            Zone.GetEntityCell(fire).IsVisible = true;
+            var rows = Rows(still); Assert.True(rows.All(a => a.IsDisabled)); StringAssert.Contains("5", rows[0].DisabledReason); StringAssert.Contains("3", rows[0].DisabledReason);
             Assert.False(Act(still, "SettleLiquid|water|" + flask.ID + "|12")); Assert.AreEqual(3f, Fuel(fire), 0.001f); Assert.AreEqual(12, Vessel(flask).Volume);
         }
 

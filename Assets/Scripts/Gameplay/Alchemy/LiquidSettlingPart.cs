@@ -37,9 +37,10 @@ namespace CavesOfOoo.Core
         /// <summary>Firing: baking mire into fire clay (Docs/MACHINE-INVENTED-USES.md 3j). Eight mire to one clay, ten of the lit fire's fuel; the rest of the flask stays as mire.</summary>
         public const string BakeCommand = "BakeClay|", ClayBlueprint = "FireClay";
         public const int ClayRatio = 8, ClayFuel = 10;
+        const string InvalidBakeVolume = "That flask cannot hold the selected mire.";
 
         /// <summary>The small text under a settle row: what it turns the mire into, at what rate, and what the fire pays.</summary>
-        static string SettleHint(string output, bool vent = false) => "Settles bog-mire into clean " + output + ", " + Ratio + " mire to 1. " + (vent ? "The vent's steady heat pays; no fuel." : "The lit fire spends " + FuelPerBatch + " fuel per flask.");
+        static string SettleHint(string output, string heat) => "Settles bog-mire into clean " + output + ", " + Ratio + " mire to 1. " + heat;
         const float WetLimit = 0.35f;
 
         public override bool HandleEvent(GameEvent e)
@@ -83,17 +84,18 @@ namespace CavesOfOoo.Core
             return lit && !(fire.GetEffect<FrozenEffect>()?.Cold > 0) && !(fire.GetEffect<WetEffect>()?.Moisture > WetLimit);
         }
 
-        /// <summary>The nearest burning fire that can spare a batch (ties by ID), or null with the fullest burning fire's fuel in <paramref name="fullest"/> (-1 when none burns).</summary>
-        Entity FindFire(Zone zone, out float fullest, float need = FuelPerBatch)
+        /// <summary>The nearest burning fire that can spare a batch (ties by ID), and the fullest nearby burning fire.</summary>
+        Entity FindFire(Zone zone, out Entity fullest, float need = FuelPerBatch)
         {
-            fullest = -1f; Entity best = null; int bestDistance = int.MaxValue;
+            fullest = null; Entity best = null; int bestDistance = int.MaxValue;
             var cell = zone?.GetEntityCell(ParentEntity); if (cell == null) return null;
             foreach (var other in zone.GetReadOnlyEntities())
             {
                 if (!Burning(other, ParentEntity) || !WorldResourceActions.Ground(other, zone)) continue;
                 var at = zone.GetEntityCell(other); if (at == null) continue;
                 int distance = Math.Max(Math.Abs(at.X - cell.X), Math.Abs(at.Y - cell.Y)); if (distance > FireReach) continue;
-                float fuel = other.GetPart<FuelPart>().FuelMass; if (fuel > fullest) fullest = fuel;
+                float fuel = other.GetPart<FuelPart>().FuelMass;
+                if (fullest == null || fuel > fullest.GetPart<FuelPart>().FuelMass) fullest = other;
                 if (fuel < need) continue;
                 if (distance < bestDistance || (distance == bestDistance && best != null && string.CompareOrdinal(other.ID, best.ID) < 0)) { best = other; bestDistance = distance; }
             }
@@ -104,24 +106,81 @@ namespace CavesOfOoo.Core
         Entity FindVent(Zone zone) => NaturalHeat.Find(zone, zone?.GetEntityCell(ParentEntity), FireReach);
 
         /// <summary>Why baking has no fire: a vent beside the still settles mire but is not a kiln, and the text says so rather than just "no fire".</summary>
-        string NoFireToBake(Zone zone) => FindVent(zone) != null ? "The vent is not hot enough to bake clay; baking needs a lit fire beside the still." : "Baking clay needs a lit fire beside the still.";
+        static string NoFireToBake(bool hasVent) => hasVent
+            ? "The vent is not hot enough to bake clay. Baking needs a lit fire beside the still."
+            : "Baking clay needs a lit fire beside the still.";
+
+        static bool VisibleHeat(Zone zone, Entity source)
+            => source != null && zone.GetEntityCell(source)?.IsVisible == true && source.GetPart<RenderPart>() is { Visible: true };
+
+        static string VisibleFuelShortfall(Zone zone, Entity fullest)
+            => VisibleHeat(zone, fullest) ? " The fullest nearby fire has " + Math.Floor(fullest.GetPart<FuelPart>().FuelMass) + "." : "";
+
+        (Entity Vent, Entity Fire, string Code, string Reason) SettlingHeat(Zone zone)
+        {
+            var vent = FindVent(zone);
+            if (vent != null) return (vent, null, null, null);
+            var fire = FindFire(zone, out var fullest);
+            if (fire != null) return (null, fire, null, null);
+            return fullest == null
+                ? (null, null, "no_fire", "Settling needs a lit fire beside the still.")
+                : (null, null, "fuel_short", "Settling burns " + FuelPerBatch + " fuel per flask." + VisibleFuelShortfall(zone, fullest));
+        }
+
+        (Entity Fire, string Code, string Reason) BakingHeat(Zone zone, bool hasVent, InventoryPart pack)
+        {
+            var fire = FindFire(zone, out var fullest, ClayFuel);
+            if (fire == null)
+                return fullest == null ? (null, "no_fire", NoFireToBake(hasVent))
+                    : (null, "fuel_short", "Baking burns " + ClayFuel + " fuel." + VisibleFuelShortfall(zone, fullest));
+            var fuel = fire.GetPart<FuelPart>();
+            if (!WorldResourceActions.Finite(fuel.MaxFuel) || fuel.MaxFuel < fuel.FuelMass || fuel.FuelMass - ClayFuel >= fuel.FuelMass)
+                return (null, "invalid_inputs", "The nearby fire cannot supply a measured clay batch.");
+            int weight = SiftableStockPart.Weight(AlchemyStillPart.Factory, ClayBlueprint);
+            if (weight >= 0 && pack.MaxWeight >= 0 && (long)pack.GetCarriedWeight() + weight > pack.MaxWeight)
+                return (null, "no_room", "Leave room for " + weight + " lb of fire clay.");
+            return (fire, null, null);
+        }
+
+        static bool BakeVolume(LiquidVesselPart vessel, int volume)
+            => vessel.Capacity > 0 && volume >= ClayRatio && volume <= vessel.Capacity;
+
+        static string FuelQuote(Zone zone, Entity fire, int cost)
+            => "Uses " + cost + " fuel from a nearby fire." + (VisibleHeat(zone, fire)
+                ? " Ready now: " + fire.GetDisplayName() + " ("
+                    + fire.GetPart<FuelPart>().FuelMass.ToString("0.##", CultureInfo.InvariantCulture) + " fuel)." : "");
+
+        static string SettlingQuote(Zone zone, Entity vent, Entity fire, int batches)
+        {
+            if (vent != null) return "The still can use steady heat from " + (VisibleHeat(zone, vent) ? vent.GetDisplayName() : "a nearby vent or ash bed") + " right now.";
+            return batches == 1 ? FuelQuote(zone, fire, FuelPerBatch)
+                : "Uses " + (batches * (long)FuelPerBatch) + " fuel across nearby fires.";
+        }
+
+        static string BakeQuote(Zone zone, Entity fire, int volume)
+            => FuelQuote(zone, fire, ClayFuel) + (volume == ClayRatio ? " The flask empties."
+                : " " + (volume - ClayRatio) + " mire stays in the flask.");
 
         /// <summary>Batches the burning fires within reach could pay for between them (each fire spares whole batches of <see cref="FuelPerBatch"/>).</summary>
-        int Capacity(Zone zone)
+        int Capacity(Zone zone, int requested)
         {
             int batches = 0; var cell = zone?.GetEntityCell(ParentEntity); if (cell == null) return 0;
             foreach (var other in zone.GetReadOnlyEntities())
             {
                 if (!Burning(other, ParentEntity) || !WorldResourceActions.Ground(other, zone)) continue;
                 var at = zone.GetEntityCell(other); if (at == null || Math.Max(Math.Abs(at.X - cell.X), Math.Abs(at.Y - cell.Y)) > FireReach) continue;
-                batches += (int)Math.Floor(other.GetPart<FuelPart>().FuelMass / FuelPerBatch);
+                batches += (int)Math.Min(requested - batches, Math.Floor(other.GetPart<FuelPart>().FuelMass / FuelPerBatch));
+                if (batches == requested) break;
             }
             return batches;
         }
 
-        Entity[] SettleableFlasks(Entity actor)
-            => actor?.GetPart<InventoryPart>()?.Objects.Where(o => o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v && v.LiquidId == Feed && v.Volume >= Ratio && WorldResourceActions.Carried(actor, o))
-                .OrderBy(o => o.ID, StringComparer.Ordinal).ToArray() ?? new Entity[0];
+        Entity[] CarriedMire(Entity actor)
+            => actor?.GetPart<InventoryPart>()?.Objects.Where(o => o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v
+                && v.LiquidId == Feed && v.Volume > 0 && WorldResourceActions.Carried(actor, o)).ToArray() ?? Array.Empty<Entity>();
+
+        static Entity[] SettleableFlasks(Entity[] flasks)
+            => flasks.Where(o => o.GetPart<LiquidVesselPart>().Volume >= Ratio).OrderBy(o => o.ID, StringComparer.Ordinal).ToArray();
 
         bool Standing => ParentEntity?.GetPart<PhysicsPart>()?.InInventory == null && !PackableFixturePart.IsInertKit(ParentEntity);
 
@@ -132,14 +191,30 @@ namespace CavesOfOoo.Core
         {
             var actor = context.Viewer; var zone = context.Zone ?? ParentEntity?.SpatialZone;
             if (actor == null || zone == null || !Standing || zone.GetEntityCell(ParentEntity) == null) return null;
-            int mire = 0; var pack = actor.GetPart<InventoryPart>(); if (pack == null) return null;
-            foreach (var o in pack.Objects) if (o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v && v.LiquidId == Feed && WorldResourceActions.Carried(actor, o)) mire += v.Volume;
-            if (mire < Ratio) return null;
-            bool vent = FindVent(zone) != null; Entity fire = vent ? null : FindFire(zone, out _);
-            if (!vent && fire == null) return "You carry " + mire + " mire. Settling it needs a lit fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel.";
-            var settleable = SettleableFlasks(actor); int batches = vent ? settleable.Length : Math.Min(settleable.Length, Math.Max(1, Capacity(zone))); int yield = 0;
-            for (int i = 0; i < batches && i < settleable.Length; i++) yield += settleable[i].GetPart<LiquidVesselPart>().Volume / Ratio;
-            return "Here you can settle your mire: " + yield + " clean water or oil from " + batches + (batches == 1 ? " flask" : " flasks") + (vent ? ", on the vent's heat." : ".") + (AlchemyStillPart.Factory != null && settleable.Any(o => o.GetPart<LiquidVesselPart>().Volume >= ClayRatio) ? " Or bake " + ClayRatio + " of it into fire clay." : "");
+            var flasks = CarriedMire(actor);
+            if (flasks.Length == 0) return null;
+            var settleable = SettleableFlasks(flasks);
+            if (settleable.Length == 0) return "Settling needs at least " + Ratio + " mire in one flask.";
+            var heat = SettlingHeat(zone);
+            string state = heat.Reason;
+            if (state == null)
+            {
+                int batches = heat.Vent != null ? settleable.Length : Capacity(zone, settleable.Length);
+                int yield = settleable.Take(batches).Sum(o => o.GetPart<LiquidVesselPart>().Volume / Ratio);
+                string heatText = SettlingQuote(zone, heat.Vent, heat.Fire, batches);
+                state = "You can settle your mire into " + yield + " clean water or oil from " + batches
+                    + (batches == 1 ? " flask. " : " flasks. ") + heatText;
+            }
+            if (AlchemyStillPart.Factory == null) return state;
+            var bakingFlasks = settleable.Select(o => o.GetPart<LiquidVesselPart>()).Where(v => v.Volume >= ClayRatio).ToArray();
+            if (bakingFlasks.Length == 0) return state;
+            var bakeable = bakingFlasks.Where(v => BakeVolume(v, v.Volume)).ToArray();
+            if (bakeable.Length == 0) return state + "\n" + InvalidBakeVolume;
+            var bake = BakingHeat(zone, heat.Vent != null, actor.GetPart<InventoryPart>());
+            if (bake.Reason != null) return state + "\n" + bake.Reason;
+            return state + "\nYou can bake " + ClayRatio + " of it into fire clay. " + (bakeable.Length == 1
+                ? BakeQuote(zone, bake.Fire, bakeable[0].Volume)
+                : FuelQuote(zone, bake.Fire, ClayFuel) + " The remaining mire stays in the selected flask.");
         }
 
         /// <summary>How to settle and bake mire at the still (the owner, 2026-11-21), from the live constants. The "right now" line is built from <see cref="AddRows"/>'s rows (disabled with the reason when the fire is short).</summary>
@@ -151,7 +226,7 @@ namespace CavesOfOoo.Core
             guide.How.Add("With a flask of bog-mire in your pack, press C beside it and choose settle (to clean water or to oil), or bake to boil mire down to fire clay.");
             guide.Needs.Add("to settle: a flask with at least " + Ratio + " units of bog-mire, and either a burning fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel a flask or a steam vent or ash bed within " + FireReach + " cells");
             guide.Needs.Add("to bake clay: a flask with at least " + ClayRatio + " units, and a burning fire within " + FireReach + " cells that can spare " + ClayFuel + " fuel (a vent is not hot enough)");
-            guide.Limits.Add("Settling gives 1 water or oil for every " + Ratio + " mire. Baking gives 1 fire clay for every " + ClayRatio + " mire. Both spend the dregs.");
+            guide.Limits.Add("Settling uses the whole flask of mire and gives 1 water or oil for every " + Ratio + " mire. Baking spends " + ClayRatio + " mire for 1 fire clay and leaves any extra mire in the flask.");
         }
 
         // ── rows ──
@@ -159,55 +234,57 @@ namespace CavesOfOoo.Core
         void AddRows(Entity actor, Zone zone, InventoryActionList actions)
         {
             if (actions == null || actor == null || zone == null || !Standing || !WorldResourceActions.ActorCurrent(actor, zone) || zone.GetEntityCell(ParentEntity) == null) return;
-            var pack = actor.GetPart<InventoryPart>(); if (pack == null) return;
-            var flasks = pack.Objects.Where(o => o?.GetPart<LiquidVesselPart>() is LiquidVesselPart v && v.LiquidId == Feed && v.Volume > 0 && WorldResourceActions.Carried(actor, o)).ToArray();
+            var flasks = CarriedMire(actor);
             if (flasks.Length == 0) return;   // the zone scan for a fire is only worth doing for a player who carries mire
-            bool vent = FindVent(zone) != null; float fullest = -1f; Entity fire = vent ? null : FindFire(zone, out fullest);
+            var heat = SettlingHeat(zone);
+            string quote = heat.Reason == null ? SettlingQuote(zone, heat.Vent, heat.Fire, 1) : null;
             for (int n = 0; n < flasks.Length; n++)
             {
                 var flask = flasks[n]; var vessel = flask.GetPart<LiquidVesselPart>(); string tag = flasks.Length > 1 ? " #" + (n + 1) : "";
-                string code = null, reason = null;
-                if (vessel.Volume < Ratio) { code = "too_little"; reason = "Settling needs at least " + Ratio + " units of mire."; }
-                else if (!vent && fire == null)
-                {
-                    code = fullest < 0 ? "no_fire" : "fuel_short";
-                    reason = fullest < 0 ? "Settling needs a lit fire beside the still." : "No fire here can spare the fuel: a batch burns " + FuelPerBatch + " and the fullest has " + (int)Math.Floor(fullest) + ".";
-                }
+                string code = vessel.Volume < Ratio ? "too_little" : heat.Code;
+                string reason = vessel.Volume < Ratio ? "Settling needs at least " + Ratio + " mire in one flask." : heat.Reason;
                 if (code != null) { actions.AddDisabled("SettleLiquid", "settle " + vessel.Volume + " mire" + tag, code, reason, '\0', 12); continue; }
                 int yield = vessel.Volume / Ratio;
-                actions.AddActionWithHint("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water" + tag, CommandFor(Water, flask, vessel), SettleHint("water", vent), '\0', 12, false, ActionTime.OneAction);
-                actions.AddActionWithHint("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil" + tag, CommandFor(Oil, flask, vessel), SettleHint("oil", vent), '\0', 11, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " water" + tag, CommandFor(Water, flask, vessel), SettleHint(Water, quote), '\0', 12, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleLiquid", "settle " + vessel.Volume + " mire to " + yield + " oil" + tag, CommandFor(Oil, flask, vessel), SettleHint(Oil, quote), '\0', 11, false, ActionTime.OneAction);
             }
             // Two or more flasks: one row for all of them, saying how many the fires could pay for and what comes out.
-            var settleable = SettleableFlasks(actor);
-            if (settleable.Length >= 2 && (vent || fire != null))
+            var settleable = SettleableFlasks(flasks);
+            if (settleable.Length >= 2 && heat.Reason == null)
             {
-                int batches = vent ? settleable.Length : Math.Min(settleable.Length, Capacity(zone)); if (batches < 1) return;
+                int batches = heat.Vent != null ? settleable.Length : Capacity(zone, settleable.Length);
                 int yield = 0; for (int i = 0; i < batches; i++) yield += settleable[i].GetPart<LiquidVesselPart>().Volume / Ratio;
                 string scope = batches == settleable.Length ? "all " + batches + " flasks" : batches + " of " + settleable.Length + " flasks";
-                actions.AddActionWithHint("SettleAll", "settle " + scope + " to " + yield + " water", AllCommand + Water, SettleHint("water", vent), '\0', 10, false, ActionTime.OneAction);
-                actions.AddActionWithHint("SettleAll", "settle " + scope + " to " + yield + " oil", AllCommand + Oil, SettleHint("oil", vent), '\0', 9, false, ActionTime.OneAction);
+                string batchQuote = SettlingQuote(zone, heat.Vent, heat.Fire, batches);
+                actions.AddActionWithHint("SettleAll", "settle " + scope + " to " + yield + " water", AllCommand + Water, SettleHint(Water, batchQuote), '\0', 10, false, ActionTime.OneAction);
+                actions.AddActionWithHint("SettleAll", "settle " + scope + " to " + yield + " oil", AllCommand + Oil, SettleHint(Oil, batchQuote), '\0', 9, false, ActionTime.OneAction);
             }
-            AddBakeRows(actor, zone, actions, flasks);
+            AddBakeRows(actor, zone, actions, flasks, heat.Vent != null);
         }
 
         /// <summary>One "bake" row per flask holding enough mire: boils the water off and bakes what is left into one fire clay. Needs the camp's hands (the content factory), a lit fire that can spare ten fuel, and room in the pack.</summary>
-        void AddBakeRows(Entity actor, Zone zone, InventoryActionList actions, Entity[] flasks)
+        void AddBakeRows(Entity actor, Zone zone, InventoryActionList actions, Entity[] flasks, bool hasVent)
         {
             if (AlchemyStillPart.Factory == null) return;
-            Entity fire = null; float fullest = -1f; bool looked = false;
+            (Entity Fire, string Code, string Reason)? heat = null;
             for (int n = 0; n < flasks.Length; n++)
             {
                 var flask = flasks[n]; var vessel = flask.GetPart<LiquidVesselPart>(); if (vessel.Volume < ClayRatio) continue;
-                if (!looked) { fire = FindFire(zone, out fullest, ClayFuel); looked = true; }
                 string tag = flasks.Length > 1 ? " #" + (n + 1) : "", label = "bake " + ClayRatio + (vessel.Volume > ClayRatio ? " of the " + vessel.Volume : "") + " mire to 1 fire clay" + tag;
-                if (fire == null)
+                if (!BakeVolume(vessel, vessel.Volume))
                 {
-                    actions.AddDisabled("BakeClay", label, fullest < 0 ? "no_fire" : "fuel_short", fullest < 0 ? NoFireToBake(zone) : "No fire here can spare the fuel: baking burns " + ClayFuel + " and the fullest has " + (int)Math.Floor(fullest) + ".", '\0', 8);
+                    actions.AddDisabled("BakeClay", label, "invalid_volume", InvalidBakeVolume, '\0', 8);
+                    continue;
+                }
+                heat ??= BakingHeat(zone, hasVent, actor.GetPart<InventoryPart>());
+                var offer = heat.Value;
+                if (offer.Reason != null)
+                {
+                    actions.AddDisabled("BakeClay", label, offer.Code, offer.Reason, '\0', 8);
                     continue;
                 }
                 actions.AddActionWithHint("BakeClay", label, BakeCommand + flask.ID + "|" + vessel.Volume.ToString(CultureInfo.InvariantCulture),
-                    "Boils the water off bog-mire and bakes what is left into fire clay: " + ClayRatio + " mire to 1, and the lit fire spends " + ClayFuel + " fuel.", '\0', 8, false, ActionTime.OneAction);
+                    "Makes 1 fire clay. " + BakeQuote(zone, offer.Fire, vessel.Volume), '\0', 8, false, ActionTime.OneAction);
             }
         }
 
@@ -229,10 +306,11 @@ namespace CavesOfOoo.Core
             var matches=pack.Objects.Where(o=>o?.ID==f[1]).ToArray();
             var flask=matches.Length==1?matches[0]:null;var vessel=flask?.GetPart<LiquidVesselPart>();
             if(!WorldResourceActions.Carried(actor,flask) || vessel?.ParentEntity!=flask || vessel.LiquidId!=Feed
-                || vessel.Volume!=volume || vessel.Capacity<=0 || volume>vessel.Capacity || volume<ClayRatio)
+                || vessel.Volume!=volume || !BakeVolume(vessel, volume))
                 return Reject(actor,"stale_selection","The flask is not as it was, or has too little mire.");
-            var fire=FindFire(zone,out float fullest,ClayFuel);
-            if(fire==null)return Reject(actor,"no_fire",fullest<0?NoFireToBake(zone):"No fire here can spare ten fuel.");
+            var offer = BakingHeat(zone, FindVent(zone) != null, pack);
+            if (offer.Reason != null) return Reject(actor, offer.Code, offer.Reason);
+            var fire = offer.Fire;
             var factory=AlchemyStillPart.Factory;var fuel=fire.GetPart<FuelPart>();var heat=fire.GetPart<ThermalPart>();
             float fuelBefore=fuel.FuelMass,temperature=heat.Temperature,maxFuel=fuel.MaxFuel;
             float paidFuel=fuelBefore-ClayFuel;
@@ -328,11 +406,10 @@ namespace CavesOfOoo.Core
             var flask = pack?.Objects.FirstOrDefault(o => o != null && o.ID == f[2] && WorldResourceActions.Carried(actor, o));
             var vessel = flask?.GetPart<LiquidVesselPart>();
             if (vessel == null || vessel.LiquidId != Feed || vessel.Volume != volume) return Reject(actor, "stale_selection", "The flask is not as it was.");
-            if (volume < Ratio) return Reject(actor, "too_little", "Settling needs at least " + Ratio + " units of mire.");
-            bool vent = FindVent(zone) != null; float fullest = -1f; Entity fire = vent ? null : FindFire(zone, out fullest);
-            if (!vent && fire == null)
-                return fullest < 0 ? Reject(actor, "no_fire", "Settling needs a lit fire beside the still.")
-                    : Reject(actor, "fuel_short", "No fire here can spare the fuel: a batch burns " + FuelPerBatch + " and the fullest has " + (int)Math.Floor(fullest) + ".");
+            if (volume < Ratio) return Reject(actor, "too_little", "Settling needs at least " + Ratio + " mire in one flask.");
+            var offer = SettlingHeat(zone);
+            if (offer.Reason != null) return Reject(actor, offer.Code, offer.Reason);
+            bool vent = offer.Vent != null; Entity fire = offer.Fire;
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
             {
@@ -361,7 +438,7 @@ namespace CavesOfOoo.Core
             if (zone == null || actor == null || !WorldResourceActions.ActorCurrent(actor, zone) || CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
                 || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !Standing || zone.GetEntityCell(ParentEntity) == null || SpatialQuery.Distance(zone, actor, ParentEntity) > 1)
                 return Reject(actor, "actor_unavailable", "You cannot work the still right now.");
-            var flasks = SettleableFlasks(actor);
+            var flasks = SettleableFlasks(CarriedMire(actor));
             if (flasks.Length == 0) return Reject(actor, "stale_selection", "You carry no mire to settle.");
             bool own = transaction == null; transaction ??= new InventoryTransaction();
             try
@@ -378,8 +455,10 @@ namespace CavesOfOoo.Core
                     batches++; produced += yield;
                 }
                 if (batches == 0)
-                    return FindFire(zone, out float fullest) == null && fullest < 0 ? Reject(actor, "no_fire", "Settling needs a lit fire beside the still.")
-                        : Reject(actor, "fuel_short", "No fire here can spare the fuel: a batch burns " + FuelPerBatch + ".");
+                {
+                    var offer = SettlingHeat(zone);
+                    return Reject(actor, offer.Code ?? "fuel_short", offer.Reason ?? "No fire here can spare fuel for another batch.");
+                }
                 int done = batches, total = flasks.Length, made = produced;
                 transaction.AfterCommit(() => MessageLog.Add("You settle " + done + (done == total ? " flasks" : " of " + total + " flasks") + " of mire " + (vent ? "on the vent's heat" : "over the fire") + ": " + made + " " + target + ". The dregs stay in the pot."));
                 if (own) transaction.Commit();
