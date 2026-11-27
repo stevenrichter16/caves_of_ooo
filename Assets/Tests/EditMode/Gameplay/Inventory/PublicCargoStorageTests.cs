@@ -10,6 +10,8 @@ namespace CavesOfOoo.Tests
     public sealed class PublicCargoStorageTests : FiftyWorldFixture
     {
         const int ShellWeight = 12;
+        const string Timber = "SalvagedTimber";
+        const string TakeUnit = "TakePublicCargoUnit|";
 
         Entity Crate(int x, int y, bool publicCargo = true)
         {
@@ -50,6 +52,198 @@ namespace CavesOfOoo.Tests
             }
             Assert.That(container.Contents.Count, Is.EqualTo(8));
             return resident;
+        }
+
+        Entity StoreTwoTimber(Entity crate)
+        {
+            var timber = Carry(Timber);
+            timber.GetPart<StackerPart>().StackCount = 2;
+            Assert.True(InventorySystem.PutInContainer(Actor, crate, timber));
+            return timber;
+        }
+
+        InventoryAction[] CargoUnitRows() => CellMenu(11, 10).Where(row => row.Command.StartsWith(TakeUnit, StringComparison.Ordinal)).ToArray();
+
+        InventoryAction CargoUnitChoice()
+        {
+            var rows = CargoUnitRows().Where(row => !row.IsDisabled).ToArray();
+            Assert.That(rows, Has.Length.EqualTo(1), "The released crate should offer to take a single timber.");
+            return rows[0];
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CargoUnitTransfersOnePoundWhenTheWholeStackWillNotFit(bool merge)
+        {
+            var crate = Crate(11, 10);
+            var container = crate.GetPart<ContainerPart>();
+            var stock = StoreTwoTimber(crate);
+            var resident = merge ? Carry(Timber) : null;
+            int carriedBefore = Pack.GetCarriedWeight();
+            int loadedBefore = HandlingService.GetWeight(crate);
+            Pack.MaxWeight = carriedBefore + 1;
+
+            Assert.AreEqual(ShellWeight + 2, loadedBefore);
+            Assert.That(CellMenu(11, 10).Any(row => row.Command == "OpenContainer"), Is.True);
+            Assert.False(InventorySystem.TakeFromContainer(Actor, crate, stock));
+            Assert.That(container.Contents.Single(), Is.SameAs(stock));
+            Assert.AreEqual(2, stock.GetPart<StackerPart>().StackCount);
+            var row = CargoUnitChoice();
+            Assert.That(row.Display.ToLowerInvariant(), Does.Contain("take one salvaged timber"));
+            Assert.True(ChooseRow(row, 11, 10));
+
+            Assert.That(container.Contents.Single(), Is.SameAs(stock));
+            Assert.That(stock.GetPart<PhysicsPart>().InInventory, Is.SameAs(crate));
+            Assert.AreEqual(1, stock.GetPart<StackerPart>().StackCount);
+            var carried = Pack.Objects.Single(e => e.BlueprintName == Timber);
+            Assert.That(carried.ID, Is.Not.EqualTo(stock.ID));
+            Assert.That(carried.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.True(carried.GetPart<StackerPart>().CanStackWith(stock));
+            Assert.AreEqual(1, HandlingService.GetWeight(carried));
+            Assert.AreEqual(merge ? 2 : 1, carried.GetPart<StackerPart>().StackCount);
+            if (merge) Assert.That(carried, Is.SameAs(resident));
+            Assert.AreEqual(loadedBefore - 1, HandlingService.GetWeight(crate));
+            Assert.AreEqual(carriedBefore + 1, Pack.GetCarriedWeight());
+            Assert.IsEmpty(CargoUnitRows().Where(choice => !choice.IsDisabled));
+            Assert.False(Act(row.Via ?? crate, row.Command));
+        }
+
+        [Test]
+        public void CargoUnitKeepsItsLabelSeparateFromDifferentlyLabeledTimberInThePack()
+        {
+            var crate = Crate(11, 10);
+            var stock = StoreTwoTimber(crate);
+            var stockLabel = new StorageLabelPart { Mode = (int)StorageLabelMode.Text, ColorIndex = 3, Text = "gate bracing" };
+            stock.AddPart(stockLabel);
+            var resident = Carry(Timber);
+            var packLabel = new StorageLabelPart { Mode = (int)StorageLabelMode.ColorMark, ColorIndex = 1 };
+            resident.AddPart(packLabel);
+            int weight = Pack.GetCarriedWeight();
+            Pack.MaxWeight = weight + 1;
+            Assert.False(resident.GetPart<StackerPart>().CanStackWith(stock));
+
+            Assert.True(ChooseRow(CargoUnitChoice(), 11, 10));
+            var boards = Pack.Objects.Where(item => item.BlueprintName == Timber).ToArray();
+            Assert.That(boards, Has.Length.EqualTo(2));
+            var unit = boards.Single(item => item != resident);
+            var unitLabel = unit.GetPart<StorageLabelPart>();
+            Assert.NotNull(unitLabel);
+            Assert.That(unitLabel, Is.Not.SameAs(stockLabel));
+            Assert.That(unitLabel.ParentEntity, Is.SameAs(unit));
+            Assert.That(stock.GetPart<StorageLabelPart>(), Is.SameAs(stockLabel));
+            Assert.That(resident.GetPart<StorageLabelPart>(), Is.SameAs(packLabel));
+            Assert.AreEqual((stockLabel.Mode, stockLabel.ColorIndex, stockLabel.Text), (unitLabel.Mode, unitLabel.ColorIndex, unitLabel.Text));
+            Assert.AreEqual(1, resident.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(1, stock.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(1, unit.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(weight + 1, Pack.GetCarriedWeight());
+            Assert.AreEqual(ShellWeight + 1, HandlingService.GetWeight(crate));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CargoUnitLateContextChangeConservesBothBoards(bool renameRecipient)
+        {
+            var crate = Crate(11, 10);
+            var contents = crate.GetPart<ContainerPart>();
+            var stock = StoreTwoTimber(crate);
+            var originalPack = Pack.Objects.ToArray();
+            int weight = Pack.GetCarriedWeight();
+            Pack.MaxWeight = weight + 1;
+            var row = CargoUnitChoice();
+            string lastMessage = MessageLog.GetLast();
+            var tx = new InventoryTransaction();
+            var action = GameEvent.New("InventoryAction");
+            var newId = Guid.NewGuid().ToString("N");
+            Entity recipient = null;
+            try
+            {
+                action.SetParameter("Actor", (object)Actor);
+                action.SetParameter("Zone", (object)Zone);
+                action.SetParameter("Command", row.Command);
+                action.SetParameter("InventoryTransaction", (object)tx);
+                (row.Via ?? crate).FireEvent(action);
+                Assert.True(action.Handled);
+                Assert.AreEqual(1, stock.GetPart<StackerPart>().StackCount);
+                recipient = Pack.Objects.Single(item => item.BlueprintName == Timber);
+                Assert.AreEqual(1, recipient.GetPart<StackerPart>().StackCount);
+                Assert.AreEqual(weight + 1, Pack.GetCarriedWeight());
+                Assert.AreEqual(lastMessage, MessageLog.GetLast());
+
+                if (renameRecipient) recipient.ID = newId;
+                else contents.Locked = true;
+                Assert.Throws<InvalidOperationException>(tx.Commit);
+                Assert.False(tx.ActionCommitted);
+            }
+            finally
+            {
+                action.Release();
+                tx.Rollback();
+            }
+
+            Assert.True(tx.IsRolledBack);
+            Assert.That(contents.IsLocked, Is.EqualTo(!renameRecipient));
+            Assert.That(contents.Contents.Single(), Is.SameAs(stock));
+            Assert.That(stock.GetPart<PhysicsPart>().InInventory, Is.SameAs(crate));
+            int remaining = stock.GetPart<StackerPart>().StackCount;
+            Assert.AreEqual(renameRecipient ? 1 : 2, remaining);
+            if (renameRecipient)
+            {
+                Assert.That(Pack.Objects.Single(item => item.BlueprintName == Timber), Is.SameAs(recipient));
+                Assert.That(recipient.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+                Assert.AreEqual(newId, recipient.ID);
+                Assert.AreEqual(1, recipient.GetPart<StackerPart>().StackCount);
+            }
+            else CollectionAssert.AreEqual(originalPack, Pack.Objects);
+            Assert.AreEqual(2, remaining + Pack.Objects.Where(item => item.BlueprintName == Timber)
+                .Sum(item => item.GetPart<StackerPart>().StackCount));
+            Assert.AreEqual(ShellWeight + remaining, HandlingService.GetWeight(crate));
+            Assert.AreEqual(weight + (renameRecipient ? 1 : 0), Pack.GetCarriedWeight());
+            Assert.AreEqual(lastMessage, MessageLog.GetLast());
+        }
+
+        [TestCase("capacity")]
+        [TestCase("locked")]
+        [TestCase("gripped")]
+        [TestCase("moved")]
+        [TestCase("equivalent replacement")]
+        public void CargoUnitRefusesAStaleChoiceWithoutTakingAnyStock(string change)
+        {
+            var crate = Crate(11, 10);
+            var container = crate.GetPart<ContainerPart>();
+            var stock = StoreTwoTimber(crate);
+            int carriedBefore = Pack.GetCarriedWeight();
+            Pack.MaxWeight = carriedBefore + 1;
+            var row = CargoUnitChoice();
+            var remaining = stock;
+            switch (change)
+            {
+                case "capacity": Pack.MaxWeight = carriedBefore; break;
+                case "locked": container.Locked = true; break;
+                case "gripped": Assert.That(DragSystem.TryGrab(Actor, crate, Zone), Is.EqualTo(DragVerdict.Ok)); break;
+                case "moved":
+                    Show(10, 11);
+                    Assert.True(Zone.MoveEntity(crate, 10, 11));
+                    break;
+                case "equivalent replacement":
+                    remaining = Factory.CreateEntity(Timber);
+                    remaining.ID = stock.ID;
+                    remaining.GetPart<StackerPart>().StackCount = 2;
+                    Assert.True(container.RemoveItem(stock));
+                    Assert.True(container.AddItem(remaining));
+                    break;
+            }
+            int tick = Clock.TickCount;
+
+            Assert.False(Act(row.Via ?? crate, row.Command));
+            Assert.That(container.Contents.Single(), Is.SameAs(remaining));
+            Assert.That(remaining.GetPart<PhysicsPart>().InInventory, Is.SameAs(crate));
+            Assert.AreEqual(2, remaining.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(ShellWeight + 2, HandlingService.GetWeight(crate));
+            Assert.AreEqual(carriedBefore, Pack.GetCarriedWeight());
+            Assert.AreEqual(tick, Clock.TickCount);
+            if (change != "equivalent replacement")
+                Assert.IsEmpty(CargoUnitRows().Where(choice => !choice.IsDisabled));
         }
 
         [TestCase(11, 10)]

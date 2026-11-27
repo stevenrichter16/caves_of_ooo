@@ -13,6 +13,13 @@ unlocked crate, ordinary **Open** offers its exact contents and the pack's
 **Put in wooden crate** action accepts eligible carried goods. The
 transfer rechecks both owners and the exact destination object or stack.
 
+## One-board withdrawal
+
+A released crate now offers a one-board withdrawal for eligible salvaged
+timber stacks. The exact stack remains under the crate with one less board.
+Opening and hauling remain available.
+[One-board playtest](../CargoOneBoard20261127/README.md)
+
 ## Actual play
 
 Two private GameBootstrap runs selected the ordinary Duelist and took

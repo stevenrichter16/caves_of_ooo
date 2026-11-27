@@ -16,6 +16,8 @@ namespace CavesOfOoo.Core.Inventory
         readonly PhysicsPart physics;
         readonly string id, blueprint;
         readonly int expected;
+        internal Entity Recipient => owner;
+        internal bool RetractedUnit { get; private set; }
         InventoryUnitOutputReceipt(InventoryPart inventory, Entity actor, Entity owner, int expected)
         {
             this.inventory=inventory;this.actor=actor;this.owner=owner;this.expected=expected;
@@ -56,7 +58,9 @@ namespace CavesOfOoo.Core.Inventory
         {
             if(owner.ID!=id || owner.BlueprintName!=blueprint || owner.GetPart<StackerPart>()!=stack || stack?.ParentEntity!=owner)
             {Diag.Record("event","UnitOutputUndoIdentityChanged",actor,owner);return;}
-            stack.StackCount=WaterQuantityUndo.Restore(stack.StackCount,1);
+            int before = stack.StackCount;
+            stack.StackCount=WaterQuantityUndo.Restore(before,1);
+            RetractedUnit = before > 0 && stack.StackCount == before - 1;
             if(stack.StackCount>0)return; // retain independent later stock, wherever the owner now is
             var current=owner.GetPart<PhysicsPart>();
             if(current!=physics || current?.ParentEntity!=owner)

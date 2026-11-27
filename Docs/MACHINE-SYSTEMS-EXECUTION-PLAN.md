@@ -1,3 +1,13 @@
+**Sumphold's public crate supports one-board withdrawal — November 27, 2026, America/Chicago.**
+The released crate offers one pound of eligible salvaged timber. Its
+original stack and other goods stay in place. In actual play a controlled
+21/22 lb pack refused the whole stack. One ordinary action then took one
+board and reduced the same crate from 74 to 73 lb. The player shaped the
+exact board into a rough field haft. Fresh Continue kept the haft and
+the original board left in the crate. All 344 targeted checks passed.
+Both reviews cleared. Existing Open, Haul and whole-machine status remain.
+[Evidence](Verification/MachineSystems/CargoOneBoard20261127/README.md)
+
 **Sheltered winnowing connects the sieve, bellows and allotment — November 26, 2026, America/Chicago.**
 A gathered bundle yields one seed and one chaff with a carried sound
 sieve, separate directed air and dry interior floor. The same material

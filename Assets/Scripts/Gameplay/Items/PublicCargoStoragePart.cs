@@ -1,14 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>Authorizes use of an adjacent, movable public stock crate.</summary>
-    public sealed class PublicCargoStoragePart : Part, IDescribeState
+    public sealed class PublicCargoStoragePart : Part, IDescribeState, IPostCommitInventoryActionNotification
     {
         public override string Name => "PublicCargoStorage";
         public const int CargoLimit = 24;
+        const string Timber = "SalvagedTimber";
+        const string TakeUnit = "TakePublicCargoUnit|";
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 24;
 
@@ -18,7 +21,104 @@ namespace CavesOfOoo.Core
             int packed = PackedWeight();
             if (container == null || packed < 0) return null;
             return $"Public cargo crate. {packed}/{CargoLimit} lb of goods, {container.Contents.Count}/{container.MaxItems} entries. "
-                + "Open from beside it to take goods. Put loose goods in from your pack. Set the crate down before transferring anything.";
+                + "Open from beside it to take goods, or take one board from an eligible timber stack. "
+                + "Put loose goods in from your pack. Set the crate down before transferring anything.";
+        }
+
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<PublicCargoStoragePart>() == this
+            && command?.StartsWith(TakeUnit, StringComparison.Ordinal) == true;
+
+        public bool NotifyAfterCommit(string command) => OwnsInventoryReceipt(command);
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions" && ParentEntity != null)
+            {
+                var actor = e.GetParameter<Entity>("Actor");
+                var zone = PreparationActions.ZoneFor(e, actor);
+                RouteWorkMenu.Rows(ParentEntity, actor, zone, e.GetParameter<InventoryActionList>("Actions"), UnitChoices(actor, zone), true);
+            }
+            if (e.ID != "InventoryAction" || !OwnsInventoryReceipt(e.GetStringParameter("Command"))
+                || !RouteWorkMenu.Act(ParentEntity, e)) return true;
+            e.Handled = true;
+            return false;
+        }
+
+        IEnumerable<RouteWorkMenu.Entry> UnitChoices(Entity actor, Zone zone)
+        {
+            if (!CanReach(actor, zone)) yield break;
+            var owner = ParentEntity;
+            var container = owner.GetPart<ContainerPart>();
+            var contents = container.Contents;
+            var entries = contents.ToArray();
+            var pack = actor.GetPart<InventoryPart>();
+            var from = zone.GetEntityCell(actor);
+            var at = zone.GetEntityCell(owner);
+            var ownerIdentity = RouteWorkMenu.Identity(owner);
+            int packed = PackedWeight();
+            if (packed < 0) yield break;
+            var factory = WorldLocationContext.For(zone)?.Factory ?? HarvestablePart.Factory;
+            var template = MaterialProcessTemplate.Capture(factory, Timber);
+            if (template == null) yield break;
+
+            foreach (var stock in entries)
+            {
+                if (stock?.BlueprintName != Timber || !CanWithdraw(actor, stock, zone)
+                    || stock.GetPart<StackerPart>() is not { StackCount: > 1 } stack || stack.StackCount > stack.MaxStack
+                    || !stack.CanSplit() || !HandlingService.CanLift(actor, stock, out _)
+                    || !StorageLabels.TryRead(stock, out var label) || template.Snapshot(stock) is not { } payload) continue;
+                int count = stack.StackCount;
+                int weight = HandlingService.GetWeight(stock);
+                if (weight <= 0 || !CarriedStorage.FitsCombinedLoad(pack, weight)) continue;
+                var stockIdentity = RouteWorkMenu.Identity(stock);
+                Entity unit = null;
+                InventoryUnitOutputReceipt destination = null;
+
+                bool Context() => ParentEntity == owner && ownerIdentity() && container.Contents == contents
+                    && zone.GetEntityCell(owner) == at && zone.GetEntityCell(actor) == from && actor.GetPart<InventoryPart>() == pack
+                    && contents.SequenceEqual(entries) && CanWithdraw(actor, stock, zone) && payload.Matches()
+                    && StorageLabels.TryRead(stock, out var currentLabel) && currentLabel.Equals(label);
+                bool Before() => Context() && stack.StackCount == count && stack.CanSplit() && PackedWeight() == packed
+                    && HandlingService.CanLift(actor, stock, out _) && CarriedStorage.FitsCombinedLoad(pack, weight);
+                bool After() => Context() && stack.StackCount == count - 1 && PackedWeight() == packed - weight
+                    && destination?.Current() == true && template.Matches(destination.Recipient)
+                    && StorageLabels.SameStackLabel(stock, destination.Recipient) && CarriedStorage.FitsCombinedLoad(pack, 0);
+
+                yield return new RouteWorkMenu.Entry
+                {
+                    Actor = actor, Zone = zone, Cell = at, Key = TakeUnit + stock.ID,
+                    Claims = new[] { stock }, Label = $"take one {InventoryPart.GetUnitDisplayName(stock)} ({weight} lb)",
+                    Hint = $"Take one board and leave {count - 1} in this stack. One action.",
+                    Before = Before, After = After,
+                    Apply = tx =>
+                    {
+                        unit = stock.CloneForStack();
+                        unit.GetPart<StackerPart>().StackCount = 1;
+                        if (!Before() || !template.Matches(unit) || !StorageLabels.SameStackLabel(stock, unit)
+                            || !PreparationActions.Fresh(unit, Timber) || unit.ID == actor.ID || unit.ID == owner.ID
+                            || contents.Concat(pack.Objects).Concat(pack.EquippedItems.Values).Any(item => item?.ID == unit.ID)
+                            || zone.GetReadOnlyEntities().Any(item => item.ID == unit.ID)) return false;
+
+                        tx.Do(() => stack.StackCount--, () =>
+                        {
+                            // Only refund a board the destination receipt could retract. A later move or lock stays in effect.
+                            if (!stockIdentity() || destination is { RetractedUnit: false }) return;
+                            stack.StackCount = WaterQuantityUndo.Restore(stack.StackCount, -1, stack.MaxStack);
+                            stock.GetPart<PhysicsPart>()?.InInventory?.GetPart<InventoryPart>()?.RefreshHandlingCarryPenalty();
+                        });
+                        return InventoryUnitOutputReceipt.TryPlace(pack, actor, unit, tx, TakeUnit, out destination);
+                    },
+                    Publish = () =>
+                    {
+                        ThrowingRules.OnStackChanged(stock);
+                        var taken = GameEvent.New("Taken");
+                        taken.SetParameter("Actor", actor);
+                        taken.SetParameter("Item", unit);
+                        unit.FireEventAndRelease(taken);
+                        MessageLog.Add($"You take one board from the {owner.GetDisplayName()}.");
+                    }
+                };
+            }
         }
 
         internal bool CanReach(Entity actor, Zone zone)

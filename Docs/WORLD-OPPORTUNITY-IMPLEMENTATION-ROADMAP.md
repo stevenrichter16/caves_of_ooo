@@ -205,6 +205,13 @@ gather. Ordinary trade paid for the flask in play. The exact new sand
 became a saved trail note. Native tests also verified the pump alternative.
 [Settling pocket playtest](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
 
+For #11, #12 and #16, a player beside Sumphold's public crate can take
+one timber board, take the whole stack through Open, or haul the crate.
+With only one pound of room, the one-board option fed ordinary field
+haft work. The original crate kept its remaining board and weighed one
+pound less through Continue.
+[One-board playtest](Verification/MachineSystems/CargoOneBoard20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

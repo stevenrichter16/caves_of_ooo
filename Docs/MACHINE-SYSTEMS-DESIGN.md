@@ -209,6 +209,14 @@ across refills, reload and ordinary eviction. Actual play converted the
 one sand to a trail note and kept the collected water in the same flask.
 [Evidence](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
 
+**One-board withdrawal makes loose cargo useful at a tight pack limit.**
+A released public crate can transfer one board and retain its original
+timber stack. Container weight and carried weight follow the same one-pound
+transfer. The receipt validates the exact remainder and actual pack recipient,
+including compatible merges and labels. Actual play used the carried board
+in ordinary field haft work and continued with the other board still stored.
+[Evidence](Verification/MachineSystems/CargoOneBoard20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.
