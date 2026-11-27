@@ -23,6 +23,9 @@ one sand. Ordinary trail marking used that exact sand and fresh Continue
 kept the note, flask and spent site. All 167 native checks passed,
 including the pump route and the changed work cell before commitment.
 [Evidence](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
+The current universal Mac package for `30e1f1af0` includes both changes
+and completed startup on Apple M5. It retained the previous package.
+[Package receipt](Verification/MachineSystems/SillSettlingPocket20261127/mac-startup-verification.json)
 
 **The Morrowfast seed frames show the fair-weather bonus — November 26, 2026, America/Chicago.**
 Both mark their dry mesh before selection. Rain preserves the shared
