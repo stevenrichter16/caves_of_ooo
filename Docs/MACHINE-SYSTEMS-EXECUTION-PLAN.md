@@ -1,3 +1,14 @@
+**Loose moisture comparison awaiting Unity scratch space — November 27 UTC, 2026.**
+The earned rain-seam archive at tick 2410 contains packet 17139 with
+25% moisture in the exact player's pack. A new isolated Editor session
+stopped before Continue when Unity could not write its input helper
+to the temporary directory. The session released the isolated save
+root. No drop, wait or field observation was made in this attempt.
+The existing loose evaporation and wet render color are source
+evidence. The next comparison needs a safe visible tile, the same
+approach during actual waits, and no map redraw from reopening a menu.
+[Exact source archive](Verification/MachineSystems/RainClaySeam20261126/observations.json)
+
 **Posy’s early pitchpod bead now shows on the map — November 27 UTC, 2026.**
 The wild stalk shows a bead in the early window and its dry shape
 later. In the same-place comparison the dormant menu withheld harvest.

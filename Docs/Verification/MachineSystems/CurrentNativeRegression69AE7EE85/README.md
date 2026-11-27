@@ -107,4 +107,11 @@ The logs establish the interruption and contain no compiler error
 report. The underlying cause is still open. T membership, the last
 filter, strict I–R membership and the separate whole-process verdict
 remain open.
+
+Smaller T filters recovered 166 exact names. Both Tally fixtures passed
+all 37 cases. Terrain and tender passed 42 of 43. The same historical
+terrain census again reports the cloth screen, caustic film and laid
+hush strip as glyph-only owners without ground-material assignments.
+Test support passed all 86. The three receipts cover disjoint parts
+of T. An additional 984 expected T names are still open.
 [Case counts and receipts](coverage.json)
