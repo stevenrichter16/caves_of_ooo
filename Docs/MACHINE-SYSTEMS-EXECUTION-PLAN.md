@@ -125,15 +125,17 @@ finite; 343 health stayed unchanged. The controlled retained camp needed
 one supplied box. Ordinary acquisition and all twelve whole-machine
 gates remain open. [Evidence](Verification/MachineSystems/StoredHearthOil20261127/README.md)
 
-**The pinned regression partitions are accounted for — November 26, 2026, America/Chicago.**
+**The pinned regression partitions are accounted for — November 27, 2026, America/Chicago.**
 The fifteen original receipts contain 42,389 rows: 42,226 passes,
 146 failures, nine inconclusive cases and eight skips. The single rounded
 reagent name leaves 42,388 distinct names. Both final additional failures
 were fixture or scratch-input issues: the trap now reads its live Examine
 document, and moved-actor audio uses the legitimate plain rope repair.
-Focused follow-ups passed 59/59 and 41/41. Historical failures, strict
-I–R membership, whole-process behavior and final-runtime regression remain
-open. The deleted standalone discovery file is not claimed available.
+Focused follow-ups passed 59/59 and 41/41. A fresh native discovery from
+the pinned clone reproduced the original file hash. The reagent case's
+reported child index identifies the generated name, so all 42,389 cases
+appear exactly once across the fifteen receipts. Historical failures,
+whole-process behavior and final-runtime regression remain open.
 [Results and limits](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
 
 **The environmental-cue Mac package completed startup — November 26, 2026, America/Chicago.**

@@ -36,8 +36,8 @@ Screen without the required throwable handling data, so their
 AfterUnequip hook never runs. The later
 [test-only follow-up](../CurrentNativeRegression69AE7EE85/README.md#historical-throw-and-equipment-follow-up)
 checks the correct prelaunch and postlaunch behavior.
-Strict I–R name reconciliation and a whole-process
-regression on the final runtime are still open.
+The pinned receipts now reconcile all I–R case names. A whole-process
+regression on the final runtime remains open.
 [Pinned wider comparison](../CurrentNativeRegression69AE7EE85/README.md)
 and [exact test receipts](receipts.json).
 

@@ -58,7 +58,8 @@
   },
   "commit": "69ae7ee85fc0ddca9b6681b0b501ba5c2049c77f",
   "currentDiscoveryFormerPath": "/private/tmp/coo-native-discovery-69ae7ee85/cases.json",
-  "currentDiscoveryAvailable": false,
+  "currentDiscoveryRestoredPath": "/Users/steven/coo-verification/results/restored-discovery-69ae7ee85-20261127.json",
+  "currentDiscoveryAvailable": true,
   "currentDiscoverySHA256": "9bdfcc8f28ed198577b4fa090d9d8cce7b3424fdfafe3bd4d50fb12fcffec3a9",
   "currentCount": 42389,
   "originalPartitionTotals": {
@@ -70,7 +71,10 @@
     "failed": 146,
     "skipped": 8,
     "inconclusive": 9,
-    "strictIToRMembership": "open",
+    "strictIToRMembership": "verified against byte-identical discovery with the documented child-index mapping",
+    "uniqueDiscoveredCasesMapped": 42389,
+    "missingDiscoveredCases": 0,
+    "unexpectedDiscoveredCases": 0,
     "wholeProcessVerdict": "open",
     "finalCurrentRuntimeVerdict": "open",
     "includesFocusedCorrections": false
@@ -178,6 +182,12 @@
       "29204",
       "29205"
     ],
+    "mappedNameByRunnerId": {
+      "29204": "CavesOfOoo.Tests.ReagentFuelTests.UnrepresentableOrRoundedUpFuelGainsNeverSpendAReagent(1.342177E+08f)",
+      "29205": "CavesOfOoo.Tests.ReagentFuelTests.UnrepresentableOrRoundedUpFuelGainsNeverSpendAReagent(1.342177E+08f GeneratedTestCase2)"
+    },
+    "mappedSecondChildIndex": 2,
+    "exactExpectedMembershipAfterMapping": true,
     "matchingBaselineFailures": 11,
     "additionalProvisionerFailures": 25,
     "additionalFixtureFailures": 2,

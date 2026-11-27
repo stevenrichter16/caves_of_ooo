@@ -9,11 +9,15 @@ The original partition reports contain 42,389 rows with 42,226 passes,
 These counts reflect the pinned runtime. Focused follow-ups are recorded
 separately from the original partition reports.
 
-External storage cleanup removed the temporary discovery list at
-`/private/tmp/coo-native-discovery-69ae7ee85/cases.json`. The later T
-subsets and U–Z use historical case names and pinned source for their
-membership reconciliation. The native runs used the pinned scratch clone at
-`/Users/steven/coo-verification/clone-native-69ae7ee85`.
+The first discovery list was lost during external storage cleanup. A
+fresh native discovery from the same pinned scratch clone rebuilt it with
+the same SHA-256. The temporary clay-test correction was replaced with the
+original pinned fixture for discovery and then restored. The rebuilt list
+is preserved at
+`/Users/steven/coo-verification/results/restored-discovery-69ae7ee85-20261127.json`.
+Compared against all fifteen original XML receipts, it verifies each of the
+42,389 discovered cases exactly once across the nine intended filters
+after the single documented mapping below.
 
 The first filter produced exactly its 527 expected names. Two
 clay-baking assertions failed again when run alone. The fixture added
@@ -59,12 +63,12 @@ shelf. Both original failure cases and the adjacent controls passed in a
 398-case follow-up. These test corrections did not change production art
 or merchant behavior.
 
-I–R produced 7,625 rows with 7,587 passes and 38 failures. Strict name
-comparison found 7,624 distinct names. Two passed reagent fuel cases with
-different runner IDs shared a rounded float display name. Discovery had
-given the second a generated suffix. The test now names the two inputs
-explicitly, preserving their literals and assertions. The original
-report remains ambiguous by name.
+I–R produced 7,625 rows with 7,587 passes and 38 failures. Two passing
+reagent fuel cases share a rounded display name in the original report.
+Runner entry 29204 maps to the unsuffixed discovery name. Entry 29205
+carries XML `childIndex=2` and maps to the discovery name with
+`GeneratedTestCase2`. This accounts for the one difference and verifies
+all 7,625 original cases. The test now names both inputs explicitly.
 
 Eleven failure names are historical. Twenty-five provisioner cases
 found one shared defect: the ordinary empty satchel refused the merchant
@@ -149,9 +153,9 @@ selected cases passed in the focused follow-up with zero skips or
 compiler errors.
 
 The 59-case and 41-case runs used the pinned runtime with targeted test
-fixture overlays. The follow-ups did not rerun the full bands. Strict
-I–R name membership, the separate whole-process verdict, and regression
-on the final current runtime remain open.
+fixture overlays. The follow-ups did not rerun the full bands. The
+separate whole-process verdict and regression on the final current
+runtime remain open.
 
 [Case counts and receipts](coverage.json)
 
