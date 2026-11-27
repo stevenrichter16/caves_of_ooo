@@ -1264,6 +1264,13 @@ for the raised-pool silhouette.
 [Cutbank routes and screenshots](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md) ·
 [Updated route readers](Verification/MachineSystems/CutbankRouteReaders20261127/README.md)
 
+In Stump Cascade Gorge, a visible stocked spray pool backs the layered
+face of the existing solid wall. Look and Examine retain the real stone
+owner. A separate ordinary approach filled an earned flask from dry
+shore and kept the exact finite draw through Continue. The raised look
+and physical route stay distinctions the player can test in the world.
+[Matched ledge and water access](Verification/MachineSystems/StumpSprayLedge20261127/README.md)
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the

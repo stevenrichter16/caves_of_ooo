@@ -234,7 +234,20 @@ namespace CavesOfOoo.Rendering
             if (!JoinsSolid(zone, family, x + 1, y)) mask |= 2;
             if (!JoinsSolid(zone, family, x, y + 1)) mask |= 4;
             if (!JoinsSolid(zone, family, x - 1, y)) mask |= 8;
+            // At Cascade Gorge, the existing deep stone face gives disclosed
+            // water a raised rim. Keep every edge from the ordinary wall mask.
+            if (family == "TepuiWall" && (mask & 1) != 0 && zone.ZoneID == "Overworld.4.4.0"
+                && HasCalmSprayPool(zone, x, y - 1))
+                first = 56;
             return mask == 0 ? interior : first + mask - 1;
+        }
+        bool HasCalmSprayPool(Zone zone, int x, int y)
+        {
+            if (!TryResolveWaterGround(zone, x, y, out _, out var pool)
+                || Owned<LiquidPoolPart>(pool).Volume <= 0) return false;
+            var water = zone.TileState.Get(x, y);
+            return water.Heat == 0 && water.Cold == 0 && water.Charge == 0
+                && water.Residues.Count == 0 && string.IsNullOrEmpty(water.Cloud);
         }
         bool JoinsSolid(Zone zone, string family, int x, int y)
         {

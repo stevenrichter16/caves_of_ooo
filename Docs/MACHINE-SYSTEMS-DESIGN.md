@@ -2583,6 +2583,15 @@ Examine readers use the same corrected directions on the local signs.
 [Live terrain](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md) ·
 [Route readers](Verification/MachineSystems/CutbankRouteReaders20261127/README.md)
 
+The wet top and dark face of a raised-looking natural shelf can guide
+players toward the actual water and the dry shore. Stump Cascade Gorge
+now uses an existing stone relief face when a visible, calm, stocked
+spray pool backs a real solid wall. Current disclosed owners decide
+the picture. Physical collision and the ordinary flask action govern
+access. The first practical check drew eleven finite measures from
+dry ground and restored the same flask and balance on Continue.
+[Cascade Gorge pilot](Verification/MachineSystems/StumpSprayLedge20261127/README.md)
+
 The Brine Camp recovery comparison confirmed that an empty bed's
 saved reservation can block ordinary rest after an NPC's arrival
 callback is lost. Reservations now restore from the actual sleeper.

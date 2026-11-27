@@ -493,6 +493,135 @@ namespace CavesOfOoo.Tests
             for (int i=0;i<4;i++) neighbors[i]=Add(name,X+Cardinal[i].x,Y+Cardinal[i].y);
             return neighbors;
         }
+
+        const string SprayReliefGorge = "Overworld.4.4.0";
+
+        Entity SprayReliefWall(string address = SprayReliefGorge, bool joinedSouth = false)
+        {
+            zone = Attach(address);
+            var wall = Add("TepuiWall");
+            Add("TepuiWall", X - 1, Y);
+            Add("TepuiWall", X + 1, Y);
+            if (joinedSouth) Add("TepuiWall", X, Y + 1);
+            return wall;
+        }
+
+        static int MaterialFrame(Tile tile)
+        {
+            NativeTile(tile);
+            return (int)tile.sprite.rect.x / 16;
+        }
+
+        [TestCase(5)]
+        [TestCase(1)]
+        public void TheExactVisibleNorthSprayPoolGivesAnOtherwiseUnchangedWallItsWetRelief(int mask)
+        {
+            var wall = SprayReliefWall(joinedSouth: mask == 1);
+            Perimeter(wall, mask);
+            var ordinary = View();
+            var cell = zone.GetEntityCell(wall);
+            var dryReader = ExamineDocumentBuilder.BuildWorld(wall, zone, cell);
+            Assert.NotNull(dryReader);
+            var source = Add(Pool, X, Y - 1);
+            int stock = source.GetPart<LiquidPoolPart>().Volume;
+            Assert.Greater(stock, 0);
+            Assert.AreEqual(ZoneTileState.Permanent, zone.TileState.CoatingTurns(X, Y - 1, "water"));
+            var originalEntities = zone.GetReadOnlyEntities().ToArray();
+            string tileState = zone.TileState.ToSaveString();
+            int version = zone.EntityVersion;
+
+            var view = View();
+            Assert.AreEqual(56 + mask - 1, MaterialFrame(view.ForegroundTile));
+            Assert.True(view.NativeForeground);
+            Assert.AreSame(wall, view.Owner);
+            Assert.AreSame(wall, WorldInteractionSystem.ResolveTarget(cell));
+            Assert.AreEqual(ordinary.Kind, view.Kind);
+            Assert.AreEqual(ordinary.BlocksMovement, view.BlocksMovement);
+            Assert.True(cell.BlocksMovement());
+            var wetReader = ExamineDocumentBuilder.BuildWorld(wall, zone, cell);
+            Assert.True(ExamineDocumentBuilder.IsCurrentSubject(wetReader));
+            Assert.AreEqual('#', wetReader.Glyph);
+            Assert.AreEqual(dryReader.ToPlainText(), wetReader.ToPlainText());
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, wall, X, Y, out var portrait, out var tint));
+            Assert.AreEqual(view.ForegroundTile.sprite.rect, portrait.rect);
+            Assert.AreSame(view.ForegroundTile.sprite.texture, portrait.texture);
+            Assert.AreEqual(Color.white, tint);
+            CollectionAssert.AreEquivalent(originalEntities, zone.GetReadOnlyEntities());
+            Assert.AreEqual(version, zone.EntityVersion);
+            Assert.AreEqual(tileState, zone.TileState.ToSaveString());
+            Assert.AreEqual(stock, source.GetPart<LiquidPoolPart>().Volume);
+        }
+
+        [TestCase("absent")]
+        [TestCase("remembered")]
+        [TestCase("unexplored")]
+        [TestCase("hidden-owner")]
+        [TestCase("depleted")]
+        [TestCase("contaminated")]
+        [TestCase("heated")]
+        [TestCase("temporary")]
+        [TestCase("other-gorge")]
+        [TestCase("other-stump")]
+        public void IneligibleWaterAndOtherSitesKeepTheOrdinaryWallFrame(string condition)
+        {
+            string address = condition == "other-gorge" ? Home
+                : condition == "other-stump" ? "Overworld.2.2.0" : SprayReliefGorge;
+            var wall = SprayReliefWall(address);
+            var source = condition == "absent" ? null : Add(Pool, X, Y - 1);
+            var north = zone.GetCell(X, Y - 1);
+            if (condition == "remembered") north.IsVisible = false;
+            if (condition == "unexplored") north.Explored = false;
+            if (condition == "hidden-owner") source.GetPart<RenderPart>().Visible = false;
+            if (condition == "depleted") source.GetPart<LiquidPoolPart>().Volume = 0;
+            if (condition == "contaminated") zone.TileState.WriteCoating(X, Y - 1, "oil", 3);
+            if (condition == "heated") zone.TileState.AddHeat(X, Y - 1, 1);
+            if (condition == "temporary")
+            {
+                zone.TileState.Clear(X, Y - 1);
+                zone.TileState.WriteCoating(X, Y - 1, "water", 3);
+            }
+            Perimeter(wall, 5);
+        }
+
+        [Test]
+        public void AnExhaustedWallDoesNotGainNativeReliefFromTheNorthPool()
+        {
+            var wall = SprayReliefWall();
+            Add(Pool, X, Y - 1);
+            wall.GetPart<DestructiblePart>().HP = 0;
+
+            Fallback();
+            Assert.False(Subject(wall));
+        }
+
+        [Test]
+        public void DrawingTheLastSprayWaterRepaintsTheWallThroughTheNormalDirtyHook()
+        {
+            var wall = SprayReliefWall();
+            var source = Add(Pool, X, Y - 1);
+            var pool = source.GetPart<LiquidPoolPart>();
+            pool.Volume = 1;
+            var actor = Add("Player", X - 1, Y - 1);
+            var flask = content.Factory.CreateEntity("LiquidFlask");
+            Assert.True(actor.GetPart<InventoryPart>().AddObject(flask));
+            string command = "FillLiquidVessel|" + Uri.EscapeDataString(source.ID) + "|water";
+
+            using var paint = new Paint(world, zone);
+            paint.Step();
+            Assert.AreEqual(60, MaterialFrame(paint.At(X, Y)));
+            long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+            Assert.True(LiquidVesselService.TryAct(actor, flask, zone, command));
+            Assert.AreEqual(0, pool.Volume);
+            Assert.AreEqual(1, flask.GetPart<LiquidVesselPart>().Volume);
+            Assert.AreEqual(ZoneTileState.Permanent, zone.TileState.CoatingTurns(X, Y - 1, "water"));
+            Assert.AreSame(source, zone.GetEntityCell(source).Objects.Single(entity => entity == source));
+
+            paint.Step();
+            Assert.AreEqual(30, MaterialFrame(paint.At(X, Y)));
+            Assert.AreSame(wall, View().Owner);
+            Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+        }
+
         [TestCase("TepuiWall")] [TestCase("GrainRidge")] [TestCase("StoneDome")]
         public void PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(string name)
         {

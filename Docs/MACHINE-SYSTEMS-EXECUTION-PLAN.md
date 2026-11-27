@@ -1,3 +1,20 @@
+**Stump Cascade Gorge shows a raised spray basin — November 27, 2026, America/Chicago.**
+One ordinary saved view showed the same full, calm spray pool over
+the existing solid pink-stone wall. The new layered face reads as
+the basin’s rim, and the same wall’s Examine shares that portrait.
+A separate ordinary traveler used a purchased flask from dry shore.
+One fill moved eleven real measures. Fresh Continue kept the full
+flask and the source’s remaining 29. Both focused source and gameplay
+reviews passed. Native checks went from 11 of 14 to 216 of 216.
+[Matched screenshots and ordinary water draw](Verification/MachineSystems/StumpSprayLedge20261127/README.md)
+
+The requested spare-pad exposure and treatment had already been
+verified with the exact still-grown sumpsieve pad. The old treatment
+receipt covers cured Continue, and the later source fix covers active
+poison attribution and treatment after Continue.
+[Spare pad](Verification/MachineSystems/SumpsieveGasPad20261127/README.md) ·
+[Source persistence](Verification/MachineSystems/GasSourceContinue20261127/README.md)
+
 **Tine’s Concord work follows its promised day — November 27, 2026, America/Chicago.**
 Ordinary seed 2 reached the broken weir and paid the elder’s 45-dram
 contract at tick 600. Continue and an early return kept the booked work,
