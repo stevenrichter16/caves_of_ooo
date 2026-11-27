@@ -1,3 +1,14 @@
+**The environmental-cue Mac package completed startup — November 26, 2026, America/Chicago.**
+Runtime 0ab67c515 contains the recent source cues and the loose-material
+drying fix. The isolated universal build passed with zero errors and
+five warnings. Its new and previous apps each match 186 files.
+GameBootstrap completed on Apple M5. A repeated startup freshly preserved all 876 Quick files across both
+Editor and player save roots, including archived copies. Runtime
+preferences were logically restored. The first limited check had covered
+only the Editor root. Packaged play,
+physical Intel execution and whole-process regression remain open.
+[Package verification](Verification/MachineSystems/MacCandidate0AB67C515/README.md)
+
 **Dropped materials show their dry state after waiting — November 26, 2026, America/Chicago.**
 The existing wet effect had expired while the world still painted the
 packet blue. One visible-cell refresh on effect removal fixes the stale
