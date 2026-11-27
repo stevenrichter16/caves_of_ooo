@@ -41,3 +41,13 @@ matched. Play Mode ended and the private input and save state cleared.
 [Lit floor after Continue](06-matched-floor-after.png) ·
 [Desk reader](04-copy-desk-reader.png) ·
 [Recorded states and save pins](observations.json)
+
+## Mac package
+
+The universal Mac package built from `b4b057b49` with zero errors and
+five warnings. It reached GameBootstrap startup on Apple M5. Six
+binaries contain arm64 and x86_64. All 186 previous-app files and 876
+normal Quick files matched their pre-launch hashes. Preferences were
+restored. Gameplay evidence above is from the Editor. The packaged
+check covers startup on Apple Silicon.
+[Startup receipt](mac-startup-verification.json)

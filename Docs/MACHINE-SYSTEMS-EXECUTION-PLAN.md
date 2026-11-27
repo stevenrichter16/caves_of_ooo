@@ -5,6 +5,8 @@ original desks. The nearby floors brightened at unchanged ambient and
 the ordinary desk reader named the lamp's state. The concern awarded
 the existing ink payment. All 330 targeted cases passed.
 [Playtest and receipts](Verification/MachineSystems/QuillholdDeskLamps20261127/README.md)
+The universal Mac package for `b4b057b49` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/QuillholdDeskLamps20261127/mac-startup-verification.json)
 
 **A settling tray shows its present opportunity — November 27, 2026, America/Chicago.**
 One supplied tray beside natural connected steam vents showed its first
