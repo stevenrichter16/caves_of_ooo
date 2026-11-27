@@ -20,7 +20,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ScenarioLoadout.Give(ctx, Loadout, "[Sounding]");
             if (WorldMap.GetDepth(ctx.Zone?.ZoneID) <= 0) { ctx.Log("[Sounding] The start did not start you underground (the cave start could not be placed), and the rod refuses on the surface. Take any stairs down into an ordinary cave to use it; the rod is in your pack."); return; }
             ctx.Log("[Sounding] You are in an ordinary cave one floor below wild ground, with a sounding rod in your pack.");
-            ctx.Log("[Sounding] 1. Open the pack, choose the rod's 'sound the ground (carries about N paces)': the strike is loud, and it names open ground, a way up or down and dense stone you have not seen, as a bearing and a distance. 2. Walk toward what it named and see whether it is so (nothing it reports is a promise about what is there beyond the bearing and the distance). 3. Sound again somewhere else, then choose 'read the survey log': it reprints your last eight soundings with where you stood. 4. Climb the stairs and try the rod on the surface: the ground there is too loose to carry a sounding.");
+            ctx.Log("[Sounding] 1. Open the pack and choose 'sound the ground'. The row gives the survey reach. The strike can draw nearby creatures that hunt by sound. The rod gives bearings and rough distances to unseen open ground, bores through stone and dense rock. 2. Walk toward a lead to check it. 3. Sound again somewhere else, then choose 'read the survey log' to reread your last eight soundings with where you stood. 4. Climb the stairs and try the rod on the surface: the ground there is too loose to carry a sounding.");
         }
     }
 }

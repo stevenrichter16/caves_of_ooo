@@ -195,9 +195,9 @@ namespace CavesOfOoo.Tests
 
         // ── the reader ──
 
-        [Test] public void TheReaderSaysHowFarTheStoneCarriesHereAndWhatItLastHeard()
+        [Test] public void TheReaderSaysTheLocalSurveyReachAndWhatItLastHeard()
         {
-            Hollow(50, 10, 56, 14); var lines = new List<string>(); StateReader.Collect(rod, false, cave, null, Actor, lines); StringAssert.Contains("about 18 paces", string.Join(" ", lines)); StringAssert.DoesNotContain("Last sounding", string.Join(" ", lines));
+            Hollow(50, 10, 56, 14); var lines = new List<string>(); StateReader.Collect(rod, false, cave, null, Actor, lines); StringAssert.Contains("The rod can survey up to 18 paces here.", string.Join(" ", lines)); StringAssert.DoesNotContain("Last sounding", string.Join(" ", lines));
             Assert.True(Act(rod, SoundRow())); lines.Clear(); StateReader.Collect(rod, false, cave, null, Actor, lines); StringAssert.Contains("Last sounding (just now): Open ground lies east", string.Join(" ", lines));
         }
 
@@ -235,9 +235,16 @@ namespace CavesOfOoo.Tests
 
         [Test] public void TheCellYouStandInOffersToSoundTheGround_RunByTheRod_AndNoOtherCellDoes()
         {
+            Actor.IntProperties.Remove(Noise.Property);
             var own = CellMenu(40, 12).Where(a => a.Name == "SoundGround").ToArray(); Assert.AreEqual(1, own.Length); Assert.AreSame(rod, own[0].Via); Assert.AreEqual(SoundRow(), own[0].Command, "the very command the pack row runs");
+            var carried = Actions(rod).Single(a => a.Name == "SoundGround");
+            Assert.AreEqual("sound the ground (survey up to 18 paces)", carried.Display);
+            StringAssert.StartsWith(carried.Display, own[0].Display, "the cell menu adds the tool name");
+            StringAssert.Contains("can draw nearby creatures that hunt by sound", own[0].Hint);
+            Assert.AreEqual(own[0].Hint, carried.Hint);
             Assert.IsEmpty(CellMenu(41, 12).Where(a => a.Name == "SoundGround"), "it is about the floor under you");
-            Actor.IntProperties.Remove(Noise.Property); Assert.True(ChooseRow(own[0], 40, 12), Said()); Assert.True(Noise.Recent(Actor, 1), "the strike is loud, as it is from the pack");
+            Assert.False(Noise.Recent(Actor, 1), "previewing the action makes no noise");
+            Assert.True(ChooseRow(own[0], 40, 12), Said()); Assert.True(Noise.Recent(Actor, 1), "the strike is loud, as it is from the pack");
         }
     }
 }

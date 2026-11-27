@@ -94,6 +94,8 @@ namespace CavesOfOoo.Tests
             var rod = Carry("SoundingRod"); var lines = Guide(rod, true);
             StringAssert.Contains("sound the ground", Line(lines, "How to use")); StringAssert.Contains("survey log", Line(lines, "How to use"));
             StringAssert.Contains("ordinary cave floor below the surface", Line(lines, "Needs")); StringAssert.Contains("rings through the stone", Line(lines, "Cost and limits"));
+            StringAssert.Contains("can draw nearby creatures that hunt by sound", Line(lines, "Cost and limits"));
+            StringAssert.Contains("Survey reach depends on the stone", Line(lines, "Cost and limits"));
             StringAssert.Contains("nothing nearer than " + SoundingRodPart.MinPaces + " paces", Line(lines, "Cost and limits"));
             string now = Line(lines, "Right now"); StringAssert.StartsWith("Right now you cannot", now); StringAssert.Contains("sound the ground (The ground up here is too loose to carry a sounding)", now, "the surface is refused, and the row says so");
         }

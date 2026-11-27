@@ -51,7 +51,7 @@ namespace CavesOfOoo.Tests
             Assert.That(reach, Is.EqualTo(SandstoneReach));
             var lines = new List<string>();
             StateReader.Collect(rod, false, Zone, null, Actor, lines);
-            Assert.That(string.Join(" ", lines), Does.Contain("about 12 paces"));
+            Assert.That(string.Join(" ", lines), Does.Contain("The rod can survey up to 12 paces here."));
             Assert.That(rod.GetPart<SoundingRodPart>().Log, Is.Empty);
         }
 

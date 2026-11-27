@@ -1,3 +1,14 @@
+**A sounding rod strike drew a natural Pale Stalker — November 27, 2026, America/Chicago.**
+The action and guide now distinguish survey reach from the warning
+that the strike can draw sound hunters. From one ordinary cave save,
+a quiet wait left a Pale Stalker wandering. In a matched fresh
+Continue the strike brought the same stalker next to the traveler
+and started pursuit. The supplied scenario rod, saved notebook and
+noise stamp survived Continue. All 171 focused cases passed.
+[Matched Editor playtest](Verification/MachineSystems/SoundingRodHearing20261127/README.md)
+The latest verified Mac package remains the frost trap build
+`2c4931acc`. The build volume had 1.1 GiB free after this rod trial.
+
 **A frost trap can freeze the traveler who springs it — November 27, 2026, America/Chicago.**
 The spring trap guide now names both the ice and the risk to whoever
 steps onto it. An ordinary traveler used a Ledger survey reward and

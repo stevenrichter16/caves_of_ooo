@@ -18,6 +18,7 @@ namespace CavesOfOoo.Core
         public override string Name => "SoundingRod";
 
         public const string Blueprint = "SoundingRod", Command = "SoundGround";
+        const string NoiseWarning = "The strike rings through the stone and can draw nearby creatures that hunt by sound.";
         /// <summary>Nothing closer than this counts: a lead is about ground beyond the next few steps.</summary>
         public const int MinPaces = 4;
         /// <summary>An open-ground lead needs at least this many connected unseen cells, so a single stray gap is not a hollow.</summary>
@@ -181,7 +182,7 @@ namespace CavesOfOoo.Core
         {
             var parts = new List<string>();
             if (context.Viewer != null && context.Zone != null && Refusal(context.Viewer, context.Zone, out _, out int reach) == null)
-                parts.Add("Here the stone would carry a sounding about " + reach + " paces.");
+                parts.Add("The rod can survey up to " + reach + " paces here.");
             if (!string.IsNullOrEmpty(LastReading))
             {
                 int age = LastTick >= 0 ? WorldClock.CurrentTick - LastTick : -1;
@@ -195,11 +196,12 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             int low = int.MaxValue, high = 0; foreach (var (_, reach) in Ground) { low = Math.Min(low, reach); high = Math.Max(high, reach); }
-            guide.How.Add("Press C on your own cell and choose sound the ground (or choose it from the pack). The stone answers with a bearing and a distance for open ground, a way up or down, or dense stone you have not seen.");
+            guide.How.Add("Press C on your own cell and choose sound the ground (or choose it from the pack). The stone answers with a bearing and a rough distance for unseen open ground, a bore through stone, or dense rock.");
             guide.How.Add("Choose read the survey log to read back your last " + LogSize + " soundings.");
-            guide.Needs.Add("an ordinary cave floor below the surface, including dry bare rock in a natural cave (" + low + " to " + high + " paces, by the stone)");
+            guide.Needs.Add("an ordinary cave floor below the surface, including dry bare rock in a natural cave");
             guide.Needs.Add("the rod in your pack");
-            guide.Limits.Add("The strike rings through the stone: eyeless hunters hear it. It names only terrain, never creatures or things, and nothing nearer than " + MinPaces + " paces. It uses nothing up.");
+            guide.Limits.Add("Survey reach depends on the stone (" + low + " to " + high + " paces). It reports only terrain and nothing nearer than " + MinPaces + " paces. It uses nothing up.");
+            guide.Limits.Add(NoiseWarning);
             if (context.Viewer != null && !UseGuides.CarriedBy(context.Viewer, ParentEntity)) guide.WhyNot = UseGuides.PickUpFirst;
         }
 
@@ -231,8 +233,8 @@ namespace CavesOfOoo.Core
             if (Log.Count > 0) actions.AddActionWithHint("SurveyLog", "read the survey log (" + Log.Count + (Log.Count == 1 ? " sounding)" : " soundings)"), LogVerb, "Reads back what the rod told you, oldest first, and where you stood. It changes nothing and takes no time.", 'l', 19, false, ActionTime.Free);
             else actions.AddDisabled("SurveyLog", "read the survey log", "empty", "You have not sounded anything with this rod yet.", 'l', 19);
             string code = Refusal(actor, zone, out string why, out int reach);
-            const string hint = "Drives the rod into the floor and strikes it. It hears open ground, ways up or down and dense stone you have not seen, as a bearing and a distance. The strike is loud.";
-            if (code == null) actions.AddActionWithHint("SoundGround", "sound the ground (carries about " + reach + " paces)", Command, hint, 's', 20, false, ActionTime.OneAction).AtCell(zone.GetEntityCell(actor).X, zone.GetEntityCell(actor).Y);
+            const string hint = "Drives the rod into the floor and strikes it. It reports a direction and a rough distance for unseen open ground, a bore through stone, or dense rock. " + NoiseWarning;
+            if (code == null) actions.AddActionWithHint("SoundGround", "sound the ground (survey up to " + reach + " paces)", Command, hint, 's', 20, false, ActionTime.OneAction).AtCell(zone.GetEntityCell(actor).X, zone.GetEntityCell(actor).Y);
             else actions.AddDisabled("SoundGround", "sound the ground", code, why, 's', 20);
         }
 

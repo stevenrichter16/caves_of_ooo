@@ -1,3 +1,11 @@
+**A sounding rod reports terrain and can draw sound hunters.**
+The survey reach and the noise warning are visible separately.
+A matched natural cave trial showed a quiet wait leave a Pale Stalker
+wandering and a strike draw it next to the same traveler. Continue
+kept the coarse notebook entry and pursuit. This qualifies a portable
+survey choice and its consequence in one cave.
+[Matched playtest](Verification/MachineSystems/SoundingRodHearing20261127/README.md)
+
 **Frost lichen can freeze water now or wait in a spring trap.**
 From the same dry shoulder the earned lichen made ice either by direct
 application or after a loaded frame was crossed. The delayed choice

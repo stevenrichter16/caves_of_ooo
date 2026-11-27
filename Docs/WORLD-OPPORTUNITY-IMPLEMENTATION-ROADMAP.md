@@ -959,6 +959,13 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
 
 ## Priority 8: explain choices and prove the combined experience
 
+One matched cave playtest connected the portable sounding rod's
+survey and sound risk. The action and guide identify survey reach
+and separately explain that the strike can draw sound hunters.
+Quiet waiting left a natural Pale Stalker wandering. Sounding
+from the same saved position drew it into pursuit and left a coarse
+terrain entry that survived Continue. [Matched playtest](Verification/MachineSystems/SoundingRodHearing20261127/README.md)
+
 36. **Use one truthful preview across entry points.** Explain accepted result,
     selected stock, output, loss, cost and exact blocker in player language.
     Material, tool, shop and receiver readers must agree. Reading and cancellation
