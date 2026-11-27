@@ -726,6 +726,139 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(xp, player.GetStat("Experience").BaseValue);
         }
 
+        const string SlipEastLamp = "SlipEastLamp";
+
+        private Zone GenerateSlip(OverworldZoneManager manager)
+        {
+            bool loadLoot = !LootTableRegistry.IsInitialized;
+            if (loadLoot) CinderholdCompositionTests.LoadLoot();
+            try { return manager.GetZone(SlipZone); }
+            finally { if (loadLoot) LootTableRegistry.ResetForTests(); }
+        }
+
+        private static IEnumerable<Cell> SlipCardinalNeighbors(Zone zone, Cell cell)
+        {
+            yield return zone.GetCell(cell.X + 1, cell.Y);
+            yield return zone.GetCell(cell.X, cell.Y + 1);
+            yield return zone.GetCell(cell.X - 1, cell.Y);
+            yield return zone.GetCell(cell.X, cell.Y - 1);
+        }
+
+        private static bool DrySlipCell(Zone zone, Cell cell) => cell != null && !cell.IsInterior
+            && zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) != true
+            && !cell.Occupants.Any(entity => entity.GetPart<LiquidPoolPart>() is { Volume: > 0 });
+
+        [Test]
+        public void SlipsEastLampsAreReachableFixedFixturesInTheGeneratedVillage()
+        {
+            var manager = new OverworldZoneManager(factory, 65);
+            var zone = GenerateSlip(manager);
+            var well = zone.GetEntityCell(Who(zone, "Well"));
+            var lamps = zone.GetAllEntities().Where(entity => entity.BlueprintName == SlipEastLamp).ToArray();
+            Assert.That(lamps, Has.Length.EqualTo(2));
+            var square = SlipCardinalNeighbors(zone, well).First(cell => DrySlipCell(zone, cell) && !cell.BlocksMovement());
+            var cells = lamps.Select(zone.GetEntityCell).ToArray();
+            Assert.AreNotSame(cells[0], cells[1]);
+            foreach (var lamp in lamps)
+            {
+                var cell = zone.GetEntityCell(lamp);
+                Assert.Greater(cell.X, well.X);
+                Assert.True(DrySlipCell(zone, cell));
+                Assert.False(InventorySystem.GetTakeableItemsInCell(cell).Contains(lamp));
+                Assert.True(SlipCardinalNeighbors(zone, cell).Any(approach => DrySlipCell(zone, approach)
+                    && !approach.BlocksMovement()
+                    && FindPath.Search(zone, square.X, square.Y, approach.X, approach.Y, ignoreCreatures: true).Usable));
+            }
+
+            Assert.AreSame(zone, manager.GetZone(SlipZone));
+            CollectionAssert.AreEquivalent(lamps, zone.GetAllEntities().Where(entity => entity.BlueprintName == SlipEastLamp));
+        }
+
+        [Test]
+        public void SlipsSuppliedEastLampsBrightenTheRoadOnTheSameMapWhileReadingNamesDoesNot()
+        {
+            var manager = new OverworldZoneManager(factory, 65);
+            manager.SetTurnProvider(() => turn);
+            var zone = GenerateSlip(manager);
+            var well = zone.GetEntityCell(Who(zone, "Well"));
+            var ordinary = zone.GetEntityCell(Who(zone, "WatchLantern"));
+            zone.AmbientLevel = 0.1f;
+            var light = new LightMap();
+            light.Compute(zone);
+            float west = light.GetBrightness(well.X - 1, well.Y + 3);
+            float ordinaryLight = light.GetBrightness(ordinary.X, ordinary.Y);
+            var east = Enumerable.Range(well.X + 1, 11)
+                .SelectMany(x => Enumerable.Range(well.Y - 3, 7).Select(y => zone.GetCell(x, y)))
+                .Where(cell => DrySlipCell(zone, cell) && !cell.BlocksMovement()).ToArray();
+            var before = east.ToDictionary(cell => cell, cell => light.GetBrightness(cell.X, cell.Y));
+            Assert.That(east, Is.Not.Empty);
+
+            manager.SettlementManager.SetCondition(SlipZone, SlipNames, true);
+            light.Compute(zone);
+            Assert.True(east.All(cell => Math.Abs(light.GetBrightness(cell.X, cell.Y) - before[cell]) < 0.0001f));
+
+            manager.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            light.Compute(zone);
+            Assert.True(east.Any(cell => light.GetBrightness(cell.X, cell.Y) > before[cell] + 0.0001f));
+            foreach (var lamp in zone.GetAllEntities().Where(entity => entity.BlueprintName == SlipEastLamp))
+                Assert.True(SlipCardinalNeighbors(zone, zone.GetEntityCell(lamp)).Any(cell => cell != null
+                    && before.TryGetValue(cell, out float dark) && light.GetBrightness(cell.X, cell.Y) > dark + 0.0001f));
+            Assert.AreEqual(west, light.GetBrightness(well.X - 1, well.Y + 3), 0.0001f);
+            Assert.Greater(ordinaryLight, zone.AmbientLevel);
+            Assert.AreEqual(ordinaryLight, light.GetBrightness(ordinary.X, ordinary.Y), 0.0001f);
+        }
+
+        private static Zone AttachOlderCachedSlip(OverworldZoneManager manager)
+        {
+            var zone = new Zone(SlipZone) { AmbientLevel = 0.1f };
+            for (int x = 36; x <= 54; x++)
+                for (int y = 8; y <= 16; y++)
+                    Assert.True(zone.AddEntity(factory.CreateEntity("Grass"), x, y));
+            var well = factory.CreateEntity("Well");
+            well.Properties["SettlementId"] = SlipZone;
+            well.Properties["SettlementSiteId"] = SettlementSiteDefinitions.MainWellSiteId;
+            well.AddPart(new WellSitePart { SettlementId = SlipZone, SiteId = SettlementSiteDefinitions.MainWellSiteId });
+            Assert.True(zone.AddEntity(well, 40, 12));
+            manager.ReplaceLoadedState(new Dictionary<string, Zone> { { SlipZone, zone } }, SlipZone, null);
+            return zone;
+        }
+
+        [Test]
+        public void OlderCachedSlipGetsOneLampPairAndCannotBorrowAnotherWorldsOil()
+        {
+            var supplied = new OverworldZoneManager(factory, 65);
+            supplied.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            var suppliedZone = AttachOlderCachedSlip(supplied);
+            Assert.AreSame(suppliedZone, supplied.GetZone(SlipZone));
+            var suppliedLamps = suppliedZone.GetAllEntities().Where(entity => entity.BlueprintName == SlipEastLamp).ToArray();
+            Assert.That(suppliedLamps, Has.Length.EqualTo(2));
+            Assert.AreSame(suppliedZone, supplied.GetZone(SlipZone));
+            CollectionAssert.AreEquivalent(suppliedLamps, suppliedZone.GetAllEntities().Where(entity => entity.BlueprintName == SlipEastLamp));
+
+            var other = OverworldZoneManager.CreateDetached(factory, 65, enableExploration: true);
+            var otherZone = AttachOlderCachedSlip(other);
+            Assert.AreSame(otherZone, other.GetZone(SlipZone));
+            Assert.That(otherZone.GetAllEntities().Count(entity => entity.BlueprintName == SlipEastLamp), Is.EqualTo(2));
+            Assert.AreSame(supplied.SettlementManager, SettlementManager.Current);
+            Assert.False(other.SettlementManager.HasExistingCondition(SlipZone, SlipLamps));
+
+            var sample = suppliedZone.GetEntityCell(suppliedLamps[0]);
+            var light = new LightMap();
+            light.Compute(suppliedZone);
+            Assert.Greater(light.GetBrightness(sample.X, sample.Y), suppliedZone.AmbientLevel);
+
+            var state = supplied.SettlementManager.GetAllSettlementsSnapshot()[SlipZone];
+            state.SetCondition(SlipLamps, false);
+            light.Compute(suppliedZone);
+            Assert.AreEqual(suppliedZone.AmbientLevel, light.GetBrightness(sample.X, sample.Y), 0.0001f);
+            state.SetCondition(SlipLamps, true);
+            light.Compute(suppliedZone);
+            Assert.Greater(light.GetBrightness(sample.X, sample.Y), suppliedZone.AmbientLevel);
+
+            light.Compute(otherZone);
+            Assert.AreEqual(otherZone.AmbientLevel, light.GetBrightness(sample.X, sample.Y), 0.0001f);
+        }
+
         [Test] public void SlipsEastWallIsReadAloud()
         {
             var slip = Place(SlipZone, "Warden"); var warden = Who(slip, "Warden");

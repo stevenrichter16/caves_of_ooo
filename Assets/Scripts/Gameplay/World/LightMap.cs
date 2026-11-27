@@ -12,6 +12,10 @@ namespace CavesOfOoo.Core
     {
         private float[,] _brightness;
         private Color[,] _tint;
+        private readonly float[,] _authoredGroundLightWeights = new float[Zone.Width, Zone.Height];
+        private SettlementState _lastPlaceConditions;
+        private long _lastPlaceConditionVersion;
+        private int _lastPlaceLightMembership;
         private int _lastEntityVersion = -1;
         private int _lastSightVersion = -1;
         private int _lastDoorOcclusionVersion = -1;
@@ -64,6 +68,11 @@ namespace CavesOfOoo.Core
             int currentEquipmentVersion = EquipmentChangeBus.GlobalVersion;
             string currentDoors = zone.ZoneID == MorrowfastSceneRuntime.ZoneID ? MorrowfastSceneRuntime.GetState(zone)?.OpenDoorIds : null;
             var deskLamps = QuillholdDeskLighting.Sources(zone);
+            var placeLights = zone.GetReadOnlyEntitiesWithPart<PlaceConditionLightPart>();
+            int placeLightMembership = zone.GetPartMembershipVersion<PlaceConditionLightPart>();
+            var placeConditions = placeLights.Count == 0 ? null
+                : PlaceConditionLightPart.SettlementAt(zone)?.ExistingSettlement(zone.ZoneID);
+            long placeConditionVersion = placeConditions?.ConditionVersion ?? 0;
             // Compare the ambient inputs by VALUE, not by bumping a
             // version — the day-cycle would otherwise force a full
             // recompute every turn whether or not the light changed.
@@ -74,6 +83,9 @@ namespace CavesOfOoo.Core
                 && currentEquipmentVersion == _lastEquipmentVersion
                 && currentDoors == _lastMorrowfastDoors
                 && deskLamps.Equals(_lastDeskLamps)
+                && placeConditions == _lastPlaceConditions
+                && placeConditionVersion == _lastPlaceConditionVersion
+                && placeLightMembership == _lastPlaceLightMembership
                 && zone.AmbientLevel == _lastAmbientLevel
                 && zone.AmbientTint == _lastAmbientTint)
                 return;
@@ -84,6 +96,9 @@ namespace CavesOfOoo.Core
             _lastEquipmentVersion = currentEquipmentVersion;
             _lastMorrowfastDoors = currentDoors;
             _lastDeskLamps = deskLamps;
+            _lastPlaceConditions = placeConditions;
+            _lastPlaceConditionVersion = placeConditionVersion;
+            _lastPlaceLightMembership = placeLightMembership;
             _lastAmbientLevel = zone.AmbientLevel;
             _lastAmbientTint = zone.AmbientTint;
             AmbientLevel = zone.AmbientLevel;
@@ -96,6 +111,7 @@ namespace CavesOfOoo.Core
                 {
                     _brightness[x, y] = AmbientLevel;
                     _tint[x, y] = baseTint;
+                    _authoredGroundLightWeights[x, y] = 0;
                 }
             }
 
@@ -125,14 +141,21 @@ namespace CavesOfOoo.Core
             {
                 // Pass 1: the entity itself is a light source.
                 var ownLight = entity.GetPart<LightSourcePart>();
-                if (ownLight != null && ownLight.Enabled)
+                if (ownLight != null)
                 {
                     var cell = zone.GetEntityCell(entity);
-                    if (cell != null)
+                    var binding = entity.GetPart<PlaceConditionLightPart>();
+                    if (cell != null && binding == null && ownLight.Enabled)
                     {
                         Color lightColor = QudColorParser.Parse(ownLight.LightColor);
                         AddLight(zone, cell.X, cell.Y, ownLight.Radius,
                                  ownLight.Intensity, lightColor);
+                    }
+                    else if (cell != null && binding != null && binding.TryReadState(zone, out bool lit))
+                    {
+                        if (lit || binding.LightsAuthoredGround)
+                            AddLight(zone, cell.X, cell.Y, ownLight.Radius, ownLight.Intensity,
+                                QudColorParser.Parse(ownLight.LightColor), binding.LightsAuthoredGround, lit);
                     }
                 }
 
@@ -158,7 +181,7 @@ namespace CavesOfOoo.Core
                     if (!_equipDedupe.Add(item)) continue;
 
                     var itemLight = item.GetPart<LightSourcePart>();
-                    if (itemLight == null || !itemLight.Enabled) continue;
+                    if (itemLight == null || !itemLight.Enabled || item.HasPart<PlaceConditionLightPart>()) continue;
 
                     Color itemColor = QudColorParser.Parse(itemLight.LightColor);
                     AddLight(zone, wielderCell.X, wielderCell.Y, itemLight.Radius,
@@ -184,7 +207,11 @@ namespace CavesOfOoo.Core
                 QudColorParser.Parse("&Y"));
         }
 
-        private void AddLight(Zone zone, int srcX, int srcY, int radius, float intensity, Color color)
+        internal float AuthoredGroundLightWeight(Zone zone, int x, int y) => ReferenceEquals(zone, _lastZone)
+            && zone?.InBounds(x, y) == true ? _authoredGroundLightWeights[x, y] : 0;
+
+        private void AddLight(Zone zone, int srcX, int srcY, int radius, float intensity, Color color,
+            bool markAuthoredGround = false, bool emit = true)
         {
             int r2 = radius * radius;
 
@@ -207,6 +234,10 @@ namespace CavesOfOoo.Core
                     // Linear falloff
                     float dist = Mathf.Sqrt(dist2);
                     float falloff = 1f - (dist / (radius + 1));
+                    // Ease into the authored palette at the edge of a fixed lamp's reach.
+                    if (markAuthoredGround && zone.GetCell(x, y)?.IsWall() == false)
+                        _authoredGroundLightWeights[x, y] = Mathf.Max(_authoredGroundLightWeights[x, y], .65f * falloff);
+                    if (!emit) continue;
                     float contribution = intensity * falloff;
 
                     // Add brightness (clamped to 1.0)

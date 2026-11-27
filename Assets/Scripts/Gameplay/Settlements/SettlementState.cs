@@ -15,6 +15,7 @@ namespace CavesOfOoo.Core
         private readonly List<string> _pendingMessages = new List<string>();
 
         public IReadOnlyDictionary<string, RepairableSiteState> Sites => _sites;
+        internal long ConditionVersion { get; private set; }
 
         public RepairableSiteState GetSite(string siteId)
         {
@@ -40,10 +41,8 @@ namespace CavesOfOoo.Core
             if (string.IsNullOrEmpty(condition))
                 return;
 
-            if (enabled)
-                _conditions.Add(condition);
-            else
-                _conditions.Remove(condition);
+            bool changed = enabled ? _conditions.Add(condition) : _conditions.Remove(condition);
+            if (changed) ConditionVersion++;
         }
 
         public void AddPendingMessage(string message)
@@ -85,6 +84,7 @@ namespace CavesOfOoo.Core
             }
 
             _conditions.Clear();
+            ConditionVersion++;
             if (conditions != null)
             {
                 foreach (string condition in conditions)

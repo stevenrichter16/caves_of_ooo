@@ -217,7 +217,8 @@ namespace CavesOfOoo.Rendering
             }
             return ItemTile(AssemblyItemRow(owner,canonical));
         }
-        static bool PropRole(string blueprint) => !string.IsNullOrEmpty(blueprint) && Props.AnyRow.ContainsKey(blueprint);
+        static string PropArtRole(string blueprint) => blueprint == SlipEastLighting.Blueprint ? "WatchLantern" : blueprint;
+        static bool PropRole(string blueprint) => !string.IsNullOrEmpty(blueprint) && Props.AnyRow.ContainsKey(PropArtRole(blueprint));
 
         /// <summary>Has a generated item icon (and no shared body that would take precedence).</summary>
         public static bool HasItemIcon(Entity owner) => owner != null && ItemRole(owner.BlueprintName, out _) && !UpperRole(owner.BlueprintName, out _);
@@ -352,7 +353,7 @@ namespace CavesOfOoo.Rendering
         {
             if (UpperRole(role, out int u)) { glyph = SharedBodies[u].Glyph; color = SharedBodies[u].Color; return true; }
             if (ItemRole(role, out var item)) { glyph = item.Glyph; color = item.Color; return true; }
-            if (PropRole(role)) { var any = Props.AnyRow[role]; glyph = any.Glyph; color = any.Color; return true; }
+            if (PropRole(role)) { var any = Props.AnyRow[PropArtRole(role)]; glyph = any.Glyph; color = any.Color; return true; }
             switch (role)
             {
                 case "Magpie": glyph = "b"; color = "&K"; return true;
@@ -465,7 +466,7 @@ namespace CavesOfOoo.Rendering
                 if (owner.HasPart<DestructiblePart>())
                 { var d = Owned<DestructiblePart>(owner); if (d == null || d.Gone || d.HP <= 0) return false; }
                 string state = PropState(owner);
-                if (state == null || !Props.TryGet(owner.BlueprintName, state, out var propRow)
+                if (state == null || !Props.TryGet(PropArtRole(owner.BlueprintName), state, out var propRow)
                     || r.RenderString != propRow.Glyph || r.ColorString != propRow.Color || (r.BackgroundColor ?? "") != (propRow.Background ?? "")) return false;
                 tile = PropTile(propRow, VariantAt(zone, owner, propRow.Variants)); return tile != null;
             }

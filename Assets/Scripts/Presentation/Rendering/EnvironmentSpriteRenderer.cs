@@ -350,12 +350,13 @@ namespace CavesOfOoo.Rendering
 
         private Color FlatForegroundTint(Zone zone, int x, int y, in FlatPixelGreyboxCell flat)
         {
-            if (flat.NativeForeground && !flat.PreserveRenderColorCue) return flat.ForegroundColor;
+            if (flat.NativeForeground && !flat.PreserveRenderColorCue)
+                return ZoneRenderer.FixedLampTint(zone, flat, flat.ForegroundColor);
             var receipt = _flatPaintReceipts[y * Zone.Width + x];
             var render = flat.Owner?.GetPart<RenderPart>();
             if (!flat.Remembered && receipt.Zone == zone && receipt.Cell == zone.GetCell(x, y)
                 && receipt.Owner == flat.Owner && receipt.Render == render && flat.Owner != null)
-                return flat.NativeForeground ? receipt.NativeColorCue : receipt.Tint;
+                return flat.NativeForeground ? ZoneRenderer.FixedLampTint(zone, flat, receipt.NativeColorCue) : receipt.Tint;
             // A neighbor reclaim has no authority to dispatch another Render
             // event. Without its matching receipt, retain the neutral body.
             if (flat.NativeForeground) return flat.ForegroundColor;

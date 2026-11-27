@@ -1,3 +1,17 @@
+**Oil for Slip lights the east road — November 27, 2026, America/Chicago.**
+Two fixed lamps on dry grass use the same saved supply condition
+for light, appearance and Examine. An ordinary traveler paid three
+bought oils, took one normal turn and returned to the same standing
+cell. Two east ground samples rose from 0.4 to 0.725 at the same
+ambient level. Both distant controls stayed at 0.4. Continue kept
+the two exact lamps, and a pre-existing supplied save gained two lit
+lamps on entry. All 213 focused tests passed.
+[Road comparison and reloads](Verification/MachineSystems/SlipEastLamps20261127/README.md)
+Next scoped work compares the public still with ordinary access to
+the portable still around Peat Works. Verify the existing locker,
+its custody and the kit's trade value before choosing a finite source.
+Follow a real local heat route without supplied tools.
+
 **Slip takes settled oil and returns the player's flask — November 27, 2026, America/Chicago.**
 The existing east-lamp job takes three measures from one carried
 flask or three bottles of lamp oil. An ordinary Sill mire batch

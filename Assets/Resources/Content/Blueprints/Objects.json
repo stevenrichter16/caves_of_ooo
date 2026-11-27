@@ -28810,6 +28810,44 @@
       ]
     },
     {
+      "Name": "SlipEastLamp",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "east road lamp" },
+            { "Key": "RenderString", "Value": "!" },
+            { "Key": "ColorString", "Value": "&K" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "false" },
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "LightSource",
+          "Params": [
+            { "Key": "Radius", "Value": "3" },
+            { "Key": "LightColor", "Value": "&Y" },
+            { "Key": "Intensity", "Value": "0.65" }
+          ]
+        },
+        { "Name": "PlaceConditionLight", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A guarded oil lamp fixed beside the road east of Slip's well. The town tends it when the warden has oil." }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
       "Name": "LanternGroundMarker",
       "Inherits": "Terrain",
       "Parts": [

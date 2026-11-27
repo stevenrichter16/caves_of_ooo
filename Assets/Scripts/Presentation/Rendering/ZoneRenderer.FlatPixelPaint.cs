@@ -11,8 +11,21 @@ namespace CavesOfOoo.Rendering
 
         internal Color ResolveFlatGroundColor(Color color, int x, int y, bool authoredGround, bool remembered)
         {
-            bool useLight = QuillholdDeskLighting.IsWorkFloor(CurrentZone, x, y) ? !remembered : !authoredGround;
-            return useLight ? ApplyFlatLighting(color, x, y) : color;
+            if (QuillholdDeskLighting.IsWorkFloor(CurrentZone, x, y))
+                return remembered ? color : ApplyFlatLighting(color, x, y);
+
+            float weight = _lightMap?.AuthoredGroundLightWeight(CurrentZone, x, y) ?? 0;
+            if (weight > 0 && authoredGround)
+                return remembered ? color : Color.Lerp(color, ApplyFlatLighting(color, x, y), weight);
+            return authoredGround ? color : ApplyFlatLighting(color, x, y);
+        }
+
+        internal static Color FixedLampTint(Zone zone, in FlatPixelGreyboxCell flat, Color color)
+        {
+            if (flat.NativeForeground && !flat.Remembered && flat.Owner?.GetPart<PlaceConditionLightPart>() is { } lamp
+                && lamp.TryReadState(zone, out bool lit) && !lit)
+                return new Color(color.r * .45f, color.g * .45f, color.b * .45f, color.a);
+            return color;
         }
 
         // Runs before legacy CP437 lookup. The environment pass uses the same
@@ -46,8 +59,8 @@ namespace CavesOfOoo.Rendering
             _envSpriteRenderer.RecordFlatPaint(CurrentZone, x, y, flat, tint, nativeColorCue);
             _tilemap.SetTile(position, flat.ForegroundTile);
             _tilemap.SetTileFlags(position, TileFlags.None);
-            _tilemap.SetColor(position, flat.NativeForeground
-                ? (flat.PreserveRenderColorCue ? nativeColorCue : flat.ForegroundColor) : tint);
+            var foreground = flat.NativeForeground ? (flat.PreserveRenderColorCue ? nativeColorCue : flat.ForegroundColor) : tint;
+            _tilemap.SetColor(position, FixedLampTint(CurrentZone, flat, foreground));
             _tilemap.SetTransformMatrix(position, Matrix4x4.identity);
             if (_bgTilemap != null)
             {

@@ -1256,6 +1256,7 @@ namespace CavesOfOoo.Core
                 if (soddenAccepted) SoddenWorksDrainage.TryInstall(zone, this);
                 CausewaySteamSeam.Install(this, zone);
                 SillSettlingPocket.Install(this, zone);
+                SlipEastLighting.Install(this, zone);
                 sumphold?.InstallCargo(zone);
             }
             return accepted;
@@ -1269,6 +1270,8 @@ namespace CavesOfOoo.Core
             && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
             && !InstallationMarkerPart.Retain(this,zoneID) && !CausewaySteamSeam.Retain(this,zoneID)
             && !SillSettlingPocket.Retain(this,zoneID) && !CropRain.Retain(this,zoneID)
+            && !(zoneID == SlipEastLighting.ZoneId && CachedZones.TryGetValue(zoneID, out var slip)
+                 && slip.GetReadOnlyEntitiesWithPart<PlaceConditionLightPart>().Count > 0)
             && !SumpholdFurnishingBuilder.RetainsCargoSite(this,zoneID);
 
         private bool RetainMorrowfast(string zoneID) => zoneID == MorrowfastSceneRuntime.ZoneID
@@ -1465,6 +1468,8 @@ namespace CavesOfOoo.Core
         {
             Exploration?.ValidateAccess(this,zoneID);
             CausewaySteamSeam.PrepareForAccess(this, zoneID);
+            if (zoneID == SlipEastLighting.ZoneId && CachedZones.TryGetValue(zoneID, out var slip))
+                SlipEastLighting.Install(this, slip);
             // Lateral first entry still establishes the real surface endpoint.
             // A cached old cellar is returned verbatim without creating a parent.
             if (zoneID == GleanersCellarBuilder.ZoneID && !CachedZones.ContainsKey(zoneID)

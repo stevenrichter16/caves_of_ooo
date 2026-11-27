@@ -2505,14 +2505,24 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+Slip's oil bill now has a physical receiving service. An ordinary
+handover lit two fixed road lamps through the saved condition.
+The condition binding reuses the environmental light map and local
+examination state. Same-position east ground brightened at unchanged
+ambient and both distant controls stayed stable. Continue preserved
+the fixtures and the paid condition. This is one lasting settlement
+benefit for the existing fractionating still's oil output and an
+existing stocked alternative.
+[Visible Slip lamps](Verification/MachineSystems/SlipEastLamps20261127/README.md)
+
 The November 27 Slip trial extends the fractionating still's existing
 oil output to a second settlement supply bill. Slip's warden used
 the shared measured-liquid handover for three settled oil and
 accepted the established three bottled oils separately. Both
 ordinary routes left the same saved service condition and earned
 the same report. The measured flask stayed with the player.
-The lamp condition has a local remark. Physical lighting still
-needs a local receiver, suitable placement and a matched play test.
+The lamp condition first gained a local remark. The separate road
+trial above verifies the physical receiver.
 [Slip material acceptance and downstream report](Verification/MachineSystems/SlipSettledOil20261127/README.md)
 
 The November 27 still trial proves one public mire site with two

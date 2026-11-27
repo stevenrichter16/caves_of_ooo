@@ -90,6 +90,11 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(Resources.Load<Texture2D>(FlatPixelWildFaunaCatalog.PropAtlasResourcePath), portrait.texture, "the reader shows the same art");
         }
 
+        [Test] public void AnEastRoadLampUsesTheExistingWatchLanternFrame()
+        {
+            AssertFrame(Place("SlipEastLamp"), RowOf("WatchLantern"));
+        }
+
         [Test] public void QuillholdArchiveWallsReadAsCloudedMarbleInWorldAndReader()
         {
             var town = manager.GetZone("Overworld.14.9.0"); manager.SetActiveZone(town);

@@ -88,11 +88,11 @@ namespace CavesOfOoo.Core
         /// <summary>Read already saved local conditions without creating or
         /// backfilling a settlement. Content readers must not initialize supply.</summary>
         public bool HasExistingCondition(string settlementId, string condition)
-        {
-            return !string.IsNullOrEmpty(settlementId) && !string.IsNullOrEmpty(condition)
-                && _settlements.TryGetValue(settlementId, out var state)
-                && state != null && state.SettlementId == settlementId && state.HasCondition(condition);
-        }
+            => ExistingSettlement(settlementId)?.HasCondition(condition) == true;
+
+        internal SettlementState ExistingSettlement(string settlementId)
+            => !string.IsNullOrEmpty(settlementId) && _settlements.TryGetValue(settlementId, out var state)
+                && state?.SettlementId == settlementId ? state : null;
 
         public bool AdvanceSettlement(string settlementId, int currentTurn)
         {
@@ -486,9 +486,22 @@ namespace CavesOfOoo.Core
             if (state == null)
                 return;
 
-            bool lampChanged = condition == QuillholdDeskLighting.Condition && state.HasCondition(condition) != enabled;
+            bool changed = state.HasCondition(condition) != enabled;
             state.SetCondition(condition, enabled);
-            if (lampChanged) QuillholdDeskLighting.InvalidateActive(this, settlementId);
+            if (!changed || string.IsNullOrEmpty(condition)) return;
+
+            if (condition == QuillholdDeskLighting.Condition)
+                QuillholdDeskLighting.InvalidateActive(this, settlementId);
+
+            var active = SettlementRuntime.ActiveZone;
+            if (active?.ZoneID != settlementId || WorldLocationContext.For(active)?.SettlementManager != this) return;
+            foreach (var owner in active.GetReadOnlyEntitiesWithPart<PlaceConditionLightPart>())
+            {
+                var binding = owner.GetPart<PlaceConditionLightPart>();
+                if (binding.Condition != condition || !binding.IsInstalled(active)) continue;
+                SettlementRuntime.MarkZoneDirty();
+                break;
+            }
         }
 
         public List<string> ConsumePendingMessages(string settlementId)
