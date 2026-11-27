@@ -48,3 +48,12 @@ automated coverage. Independent review checked both live branches,
 the exact retained pad and archived saves. All 876 normal Quick
 files and 87 prior tracked edits matched their earlier hashes. The
 Editor exited Play Mode.
+
+## Mac startup
+
+The universal package for `4d90fb4af` built from 32,282 checked
+inputs with zero errors and five warnings. GameBootstrap started on
+Apple M5. Six binaries include both arm64 and x86_64. Both 186-file
+app records matched, all 876 normal Quick files matched, and startup
+preferences were restored. The treatment playtest ran in the Editor.
+[Startup receipt](mac-startup-verification.json)

@@ -9,6 +9,8 @@ started another. Fresh Continue kept the treated state. The expiry
 tests passed. The wider run had 299 passes and one reproduced baseline
 Peat Works model failure.
 [The bite, treatment and matched wait](Verification/MachineSystems/SoddenDressingActive20261127/README.md)
+The universal Mac package for `4d90fb4af` passed Apple M5 startup.
+[Mac startup receipt](Verification/MachineSystems/SoddenDressingActive20261127/mac-startup-verification.json)
 
 **Trading screen follows the inventory style — November 27, 2026, America/Chicago.**
 The shop and counted offer show the actual quantities and prices with
