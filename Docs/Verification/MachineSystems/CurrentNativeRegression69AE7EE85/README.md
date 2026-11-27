@@ -101,6 +101,10 @@ corrected fixtures. The gathering tests now check the exact ordinary
 source and confirm that the shallow seasonal patch remains unspent
 after loading. The cap test checks the armor readout's current label.
 
-The T filter has started with 1,150 expected names. The last filter,
-strict I–R membership and the separate whole-process verdict remain open.
+The 1,150-name T filter terminated before writing XML. Its first
+541-name retry also ended with signal 9 and no XML. Keep both logs.
+The logs establish the interruption and contain no compiler error
+report. The underlying cause is still open. T membership, the last
+filter, strict I–R membership and the separate whole-process verdict
+remain open.
 [Case counts and receipts](coverage.json)
