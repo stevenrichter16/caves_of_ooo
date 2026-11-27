@@ -8,6 +8,8 @@ traveler when crossed, and stayed spent through another Continue.
 Both branches retained one water in their puddle and eleven in the
 same flask. The lost turn in the trap branch exposed the traveler to
 sari-snake attacks. [Ordinary comparison](Verification/MachineSystems/FrostSpringTrap20261127/README.md)
+The universal Mac package for `2c4931acc` passed Apple M5 startup.
+[Mac startup receipt](Verification/MachineSystems/FrostSpringTrap20261127/mac-startup-verification.json)
 
 **Still baking guide regression cleared — November 27, 2026, America/Chicago.**
 The native reader test now checks the single eight-mire bake and the

@@ -52,6 +52,12 @@ and terrain state on both branches. The Editor was stopped and all
 matched after play. The crossing was player-triggered. NPC triggering
 and play inside the packaged app remain open.
 
+The universal Mac package for `2c4931acc` built from 32,282 checked
+inputs with zero errors and four warnings. Apple M5 startup reached
+GameBootstrap. Verification checked six universal binaries, all
+186 files in each of the current and prior packages, and all 876
+normal save files. [Mac startup receipt](mac-startup-verification.json)
+
 [Trap purchase](01-trap-purchase.png) · [Direct ice](02-direct-ice.png) ·
 [Armed on water](03-armed-water.png) · [Spring trap triggered](04-trap-sprung.png) ·
 [The warning in Examine](05-frost-trap-warning.png) ·
