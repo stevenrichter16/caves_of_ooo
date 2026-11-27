@@ -1,3 +1,17 @@
+**The Lampvein fan previews the next action on a cloud — November 27, 2026, America/Chicago.**
+The existing held fan shows clear at density 1–5 or how much remains
+immediately after it removes five. The equipment and world rows share
+the exact visible cloud check. A matched Brine Camp trial used a supplied,
+normally equipped fan on a natural 60-density cloud. Waiting left 58.
+Fanning left 55 before the turn's ordinary dispersal took it to 53.
+In the polished replay the same action left 55 before burning mire
+emitted more gas. A private density-5 copy qualified the clear action
+and kept the selected cloud gone on Continue while another mire's cloud
+persisted. All 171 focused cases passed, including the bellows capacity
+transition. Both independent reviews passed.
+The standalone Mac package is `2c4931acc`.
+[Gas handling playtest](Verification/MachineSystems/LampveinFanPreview20261127/README.md)
+
 **A bought lake perch reaches a real field fire — November 27, 2026, America/Chicago.**
 The existing Cook rules now drive an available or unavailable row in the
 pack and a separate cooking guide in item details. Ordinary Continue

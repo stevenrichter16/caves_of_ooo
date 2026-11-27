@@ -11,6 +11,7 @@ namespace CavesOfOoo.Core
     public static class EquipmentUtilityActions
     {
         public const string GlowBlueprint = "CrackedGlowQuartz";
+        private const int FanStrength = 5;
         static readonly string[] Verbs = { "TouchTorch", "FanGas", "GroundCharge", "BraceGrip", "BraceBoots", "CrackQuartz" };
         public static bool IsCommand(string command) => command != null && Verbs.Any(v => command.StartsWith(v + "|", StringComparison.Ordinal));
         internal static bool ActorReady(Entity actor, Zone zone) => WorldResourceActions.ActorCurrent(actor, zone)
@@ -96,10 +97,11 @@ namespace CavesOfOoo.Core
             var origin = zone.GetEntityCell(actor);
             string command = verb + "|" + Escape(zone.ZoneID) + "|" + N(origin.X) + "|" + N(origin.Y) + "|" + N(x) + "|" + N(y)
                 + "|" + Escape(target?.ID) + "|" + Fingerprint(actor,item,target,verb);
-            string label = verb == "TouchTorch" ? "touch lit torch" : verb == "FanGas" ? "fan gas (up to 5 density)"
+            string label = verb == "TouchTorch" ? "touch lit torch" : verb == "FanGas" ? FanLabel(target.GetPart<GasPoolPart>())
                 : verb == "GroundCharge" ? "ground held charge" : verb == "BraceGrip" ? "brace against wall (one shove, 3 turns)"
                 : verb == "BraceBoots" ? "plant feet (one shove, 3 turns)" : "crack quartz light (1 mineral, 30 turns)";
-            var row = actions.AddAction(verb,label + (target != null ? " — " + target.GetDisplayName() : "") + " [" + x + "," + y + "]",command,'\0',18);
+            var row = actions.AddAction(verb,label + (target != null ? " - " + target.GetDisplayName() : "") + " [" + x + "," + y + "]",command,'\0',18);
+            if (verb == "FanGas") row.Hint = "Gas can change again as the turn advances.";
             // Bracing the feet is about you, not a place; the rest act on the cell or the thing at [x,y]. A bare film of oil under a lit torch is already offered as "light it" (FireStarting), so the torch's own row stays for things.
             if (verb != "BraceBoots" && !(verb == "TouchTorch" && target == null)) { if (target != null) row.AtEntity(zone, target); else row.AtCell(x, y); }
         }
@@ -138,7 +140,16 @@ namespace CavesOfOoo.Core
                 tx.BeforeCommit(() => current() && (verb=="BraceGrip"||verb=="BraceBoots" ? Equipped(actor,item,verb=="BraceGrip"?"Handwear":"Feet") : Verb(actor,item,zone) == verb) && Fingerprint(actor,item,target,verb) == fingerprint
                     && (verb != "GroundCharge" || actor.GetEffect<ElectrifiedEffect>() == charge));
                 if (verb == "FanGas") tx.AfterCommit(() =>
-                { gas.Density = Math.Max(0,gas.Density-5); if(gas.Density==0 && WorldResourceActions.Ground(target,zone)) zone.RemoveEntity(target); ZoneRenderHooks.MarkCellDirty(zone.GetCell(x,y),"FanGas"); });
+                {
+                    int remaining = FanRemaining(gas.Density);
+                    gas.Density = remaining;
+                    if (gas.Density == 0 && WorldResourceActions.Ground(target, zone))
+                        zone.RemoveEntity(target);
+                    ZoneRenderHooks.MarkCellDirty(zone.GetCell(x, y), "FanGas");
+                    if (gas.Density == remaining)
+                        MessageLog.Add(remaining == 0 ? "You fan this cloud away."
+                            : $"You thin this cloud by {FanStrength}. Density remaining: {remaining}.");
+                });
                 else if (verb == "GroundCharge") tx.AfterCommit(() =>
                 {
                     int amount = (int)Math.Min(2,Math.Ceiling(charge.Charge));
@@ -162,7 +173,11 @@ namespace CavesOfOoo.Core
                     tx.AfterCommit(()=>brace.Armed=true);
                 }
             }
-            tx.AfterCommit(() => { Diag.Record("event","EquipmentUtilityApplied",actor,item,new { verb,x,y }); MessageLog.Add(Feedback(verb)); });
+            tx.AfterCommit(() =>
+            {
+                Diag.Record("event", "EquipmentUtilityApplied", actor, item, new { verb, x, y });
+                if (verb != "FanGas") MessageLog.Add(Feedback(verb));
+            });
             return true;
         }
         static bool Deploy(Entity actor,Entity item,Zone zone,string command,InventoryTransaction tx,Func<bool> current,Cell origin,Part[] originalParts,int x,int y)
@@ -215,12 +230,18 @@ namespace CavesOfOoo.Core
             && target.GetPart<RenderPart>() is RenderPart render && render.ParentEntity==target && render.Visible
             && zone.GetOccupiedCells(target).Any(c=>c!=null&&c.IsVisible&&SpatialQuery.DistanceToCell(zone,actor,c.X,c.Y)<=1);
         static bool GasReady(Entity target,Zone zone)=>WorldResourceActions.Ground(target,zone)&&target.GetPart<GasPoolPart>() is GasPoolPart gas
-            &&gas.ParentEntity==target&&!gas.Stable&&gas.Density>0&&!target.HasTag("Creature");
+            &&gas.ParentEntity==target&&!gas.Stable&&gas.Density>0&&!target.HasTag("Creature")
+            &&zone.GetEntityCell(target)?.IsVisible==true;
+        static int FanRemaining(int density) => Math.Max(0, density - FanStrength);
+        static string FanLabel(GasPoolPart gas)
+        {
+            int remaining = FanRemaining(gas.Density);
+            return remaining == 0 ? "clear this cloud" : $"thin this cloud by {FanStrength} ({remaining} remains)";
+        }
         static string Fingerprint(Entity actor,Entity item,Entity target,string verb)=>verb=="TouchTorch"?N(item.GetPart<FuelPart>().FuelMass)
             :verb=="FanGas"?N(target?.GetPart<GasPoolPart>()?.Density??-1):verb=="GroundCharge"?N(actor.GetEffect<ElectrifiedEffect>()?.Charge??0)+":"+N(actor.GetEffect<ElectrifiedEffect>()?.Duration??0)
             :verb=="CrackQuartz"?N(Quantity(item)):"ready";
         static string Feedback(string verb)=>verb=="TouchTorch"?"You spend torch fuel to kindle the existing material. Fire can spread."
-            :verb=="FanGas"?"You fan away part of the cloud. Remaining gas and other haze are still dangerous."
             :verb=="GroundCharge"?"You ground the charge through the screen. Connected wet or metal ground can carry it onward."
             :"You brace for one physical shove or pull. Moving releases the stance.";
         static int Quantity(Entity item)=>item?.GetPart<StackerPart>()?.StackCount??1;

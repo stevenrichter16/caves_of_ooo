@@ -79,6 +79,58 @@ namespace CavesOfOoo.Tests
             Assert.True(Zone.TileState.ObscuresSight(11, 10));
         }
 
+        [TestCase(5, 0, "clear this cloud", "You fan this cloud away.")]
+        [TestCase(6, 1, "thin this cloud by 5 (1 remains)", "You thin this cloud by 5. Density remaining: 1.")]
+        [TestCase(12, 7, "thin this cloud by 5 (7 remains)", "You thin this cloud by 5. Density remaining: 7.")]
+        public void FanPackAndWorldMenusPreviewWhatTheSameActionActuallyDoes(int density, int remaining, string label, string receipt)
+        {
+            var fan = Wear("LampveinFan");
+            var gas = Gas(density);
+            var pool = gas.GetPart<GasPoolPart>();
+            var cell = Zone.GetEntityCell(gas);
+            var packRow = Actions(fan).Single(row => row.Name == "FanGas");
+            var worldRow = CellMenu(11, 10).Single(row => row.Name == "FanGas");
+
+            StringAssert.StartsWith(label, packRow.Display);
+            StringAssert.Contains(" - ", packRow.Display);
+            StringAssert.StartsWith(packRow.Display, worldRow.Display);
+            Assert.AreEqual("Gas can change again as the turn advances.", packRow.Hint);
+            Assert.AreEqual(packRow.Hint, worldRow.Hint);
+            Assert.AreEqual(packRow.Command, worldRow.Command);
+            Assert.AreSame(fan, worldRow.Via);
+            Assert.AreEqual(ActionTime.OneAction, worldRow.Time);
+            Assert.AreEqual(density, pool.Density);
+            Assert.AreSame(cell, Zone.GetEntityCell(gas));
+
+            Assert.True(ChooseRow(worldRow, 11, 10));
+            Assert.AreEqual(remaining, pool.Density);
+            Assert.AreSame(remaining == 0 ? null : cell, Zone.GetEntityCell(gas));
+            Assert.AreSame(Actor, fan.GetPart<PhysicsPart>().Equipped);
+            StringAssert.Contains(receipt, string.Join("\n", MessageLog.GetRecent(4)));
+        }
+
+        [Test]
+        public void FanThinsTheSameCloudEnoughForTheBellowsToMoveIt()
+        {
+            var fan = Wear("LampveinFan");
+            var bellows = Carry("HandBellows");
+            var gas = Gas(45);
+            var pool = gas.GetPart<GasPoolPart>();
+            var before = CellMenu(11, 10);
+            Assert.True(before.Any(row => row.Via == bellows && row.IsDisabled && row.DisabledCode == "cloud-too-thick"));
+            var thin = before.Single(row => row.Name == "FanGas" && row.Via == fan);
+            StringAssert.StartsWith("thin this cloud by 5 (40 remains)", thin.Display);
+
+            Assert.True(ChooseRow(thin, 11, 10));
+            Assert.AreEqual(DirectedAirPart.MaximumDensity, pool.Density);
+            Assert.AreSame(Zone.GetCell(11, 10), Zone.GetEntityCell(gas));
+            var push = CellMenu(11, 10).Single(row => row.Via == bellows && !row.IsDisabled && row.Command.StartsWith("PushGas|"));
+            Assert.True(ChooseRow(push, 11, 10));
+            Assert.AreSame(Zone.GetCell(12, 10), Zone.GetEntityCell(gas));
+            Assert.AreSame(pool, gas.GetPart<GasPoolPart>());
+            Assert.AreEqual(DirectedAirPart.MaximumDensity, pool.Density);
+        }
+
         [TestCase(true)] [TestCase(false)]
         public void StableGasOrStowedFanOffersNoDispersal(bool stable)
         {

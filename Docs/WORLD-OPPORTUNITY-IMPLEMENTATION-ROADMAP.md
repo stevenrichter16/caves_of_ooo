@@ -379,6 +379,15 @@ ordinary hearth relight spends one of those strikes. The same fixture
 can also serve other cold-work jobs.
 [Bench and hearth playtest](Verification/MachineSystems/BenchStriker20261127/README.md)
 
+For #14, #19, #36 and #37, an equipped Lampvein fan previews how much
+gas will remain in the selected visible cloud immediately after use.
+The player can wait for ordinary dispersal, reduce a cloud with the
+fan or move a suitable cloud with bellows. A native test shows the
+same cloud becoming eligible for bellows when fanning brings it
+from 45 to 40. A separate Brine Camp comparison records the exact
+native action, ordinary dispersal and further emissions.
+[Gas handling](Verification/MachineSystems/LampveinFanPreview20261127/README.md)
+
 For #14, #19 and #36, one perch bought after Tine's weir work traveled
 to the Gleaners' cooking fire and became one roasted perch. The pack's
 Cook row and item guide reflect the same finite fire readiness. The

@@ -1,3 +1,12 @@
+**A held Lampvein fan can clear one cloud or make it thinner.**
+The equipment and nearby interaction menus show the immediate result
+for the same visible cloud. Ordinary dispersal and active sources keep
+working as the turn advances. In Brine Camp, a normal wait left an
+existing 60-density cloud at 58. Fanning removed five before the same
+amount of natural dispersal left 53. A separate replay showed new gas
+from burning mire adding to the same cloud after the fan acted.
+[Fan playtest](Verification/MachineSystems/LampveinFanPreview20261127/README.md)
+
 **An ordinary catch can become a field meal.**
 Raw food with a cooking recipe shows the current Cook option and a
 separate pack guide alongside its eating details. An adjacent usable
