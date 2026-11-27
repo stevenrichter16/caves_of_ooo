@@ -34,6 +34,13 @@ matched their starting hashes. The Editor returned to Edit Mode and
 cleared the private save root. Packaged gameplay, physical Intel and the
 whole current regression remain open.
 
+The universal Mac package for `78774d7b0` built from 32,254 pinned inputs
+in 21.21 seconds with zero errors and five warnings. Apple M5 startup
+loaded the world and then stopped. Each of the six binaries includes both
+architectures. All 186 package files and the previous package's 186 files
+matched their hashes. Startup preserved all 876 normal quick saves and
+restored the nine preferences it changed. [Mac receipt](mac-startup-verification.json)
+
 [Quote](01-one-measure-quote.png) ·
 [Exact box at the receiving shelf](03-delivered-box-at-shelf.png) ·
 [Working well after Continue](06-continued-and-still-draws.png) ·

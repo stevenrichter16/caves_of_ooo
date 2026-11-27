@@ -8,6 +8,8 @@ Fresh Continue kept the repaired well, payment and empty box. All 112
 targeted native checks passed. The original Editor paused during nearby
 NPC combat before booking and then recovered. Wider performance remains open.
 [Playtest, test results and limits](Verification/MachineSystems/GleanersOneMeasure20261127/README.md)
+The universal Mac package for `78774d7b0` passed startup on Apple M5.
+[Package receipt](Verification/MachineSystems/GleanersOneMeasure20261127/mac-startup-verification.json)
 
 **Sill's locally gathered sand earns the same durable well repair — November 27, 2026, America/Chicago.**
 In seed 65, ordinary trade and pocket work produced one local silver sand
