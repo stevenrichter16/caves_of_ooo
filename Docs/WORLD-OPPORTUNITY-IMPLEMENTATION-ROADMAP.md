@@ -198,6 +198,13 @@ Hem, winnowed it and planted the resulting seed. This verifies one more
 alternative using the same finite outputs and ordinary cultivation.
 [Sheltered winnowing playtest](Verification/MachineSystems/WinnowBellows20261127/README.md)
 
+For #14, #19 and #36, Sill's finite north-bank pocket exposes silver sand
+when either the carried flask or hand pump clears the same twelve units
+of water. The same cell state changes the visible mark and permits one
+gather. Ordinary trade paid for the flask in play. The exact new sand
+became a saved trail note. Native tests also verified the pump alternative.
+[Settling pocket playtest](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

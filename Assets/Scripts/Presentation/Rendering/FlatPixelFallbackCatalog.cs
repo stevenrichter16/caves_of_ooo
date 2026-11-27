@@ -18,7 +18,7 @@ namespace CavesOfOoo.Rendering
             glyph = default;
             color = null;
             if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand
-                    or BiomeCropPlacement.EarlyPitchpod or "FrostLichenPatch" or "CampAwning") || owner.SpatialZone != zone
+                    or BiomeCropPlacement.EarlyPitchpod or SillSettlingPocket.Deposit or "FrostLichenPatch" or "CampAwning") || owner.SpatialZone != zone
                 || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true })
                 return false;
 
@@ -27,6 +27,7 @@ namespace CavesOfOoo.Rendering
             var (symbol, tint) = (source?.ParentEntity == owner ? source : null) switch
             {
                 RainSeamHarvestPart seam => seam.Appearance(zone),
+                SillSettlingDepositPart deposit when owner.BlueprintName == SillSettlingPocket.Deposit => deposit.Appearance(zone),
                 SeasonalHarvestPart stand when owner.BlueprintName == SeasonalSeedSite.Stand => stand.KnotflaxAppearance(zone),
                 SeasonalHarvestPart stand when owner.BlueprintName == BiomeCropPlacement.EarlyPitchpod => stand.EarlyPitchpodAppearance(zone),
                 SeasonalHarvestPart when IsDormantNorthLichen(zone, owner) => ("_", "&c"),

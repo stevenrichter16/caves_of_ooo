@@ -1,0 +1,85 @@
+{
+  "native": {
+    "sill-pocket-geometry-probe": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0,
+      "xml": "/Users/steven/coo-verification/results/sill-pocket-geometry-probe.xml",
+      "sha256": "9e5b81809cfcf48500e2ddab9317b246597215c9d8e8749802914626625ce44a"
+    },
+    "sill-settling-pocket-red": {
+      "total": 7,
+      "passed": 0,
+      "failed": 7,
+      "inconclusive": 0,
+      "skipped": 0,
+      "xml": "/Users/steven/coo-verification/results/sill-settling-pocket-red.xml",
+      "sha256": "6730830b59c565cd9ae46f4e9af639ff7de34b5ae813fb19b7b7c988f92985e1"
+    },
+    "sill-settling-pocket-fixed": {
+      "total": 165,
+      "passed": 165,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0,
+      "xml": "/Users/steven/coo-verification/results/sill-settling-pocket-fixed.xml",
+      "sha256": "f0df65d9f73e387c099e5d590a527d4098f841980b0139fc2464c3342510f5cb"
+    },
+    "sill-settling-pocket-final": {
+      "total": 165,
+      "passed": 163,
+      "failed": 2,
+      "inconclusive": 0,
+      "skipped": 0,
+      "xml": "/Users/steven/coo-verification/results/sill-settling-pocket-final.xml",
+      "sha256": "66828e71d467b8b3092b85d68a49c028c7f144b54137c749994ce054cf1315b3"
+    },
+    "sill-settling-pocket-sealed": {
+      "total": 165,
+      "passed": 165,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0,
+      "xml": "/Users/steven/coo-verification/results/sill-settling-pocket-sealed.xml",
+      "sha256": "aa4b11f721267289be02da6466b276d043bc1cd12e5fb3e2014e537b3ce4eca8"
+    },
+    "sill-settling-pocket-verified": {
+      "total": 167,
+      "passed": 167,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0,
+      "xml": "/Users/steven/coo-verification/results/sill-settling-pocket-verified.xml",
+      "sha256": "a81bd58d7e247b169e4e2b19aa30ada8f45c5f0930ccd2c5550ff2c4de45b2c0"
+    }
+  },
+  "fixtureCorrections": [
+    "Late callback occurs after commit for fixed harvests. Stage the event then change coating before commit instead.",
+    "The Edit Mode assembly cannot call internal DoHarvest. Send the ordinary InventoryAction with an explicit receipt."
+  ],
+  "controls": {
+    "normalQuickFiles": 876,
+    "normalChanges": [],
+    "foreignFiles": 87,
+    "foreignChanges": [],
+    "editorReturnedToEditMode": true
+  },
+  "saveArchive": "/Users/steven/coo-verification/checkpoints/SillSettlingPocket20261127",
+  "saves": {
+    "Marked980-pins": {
+      "Quick.json": "7aa6947b26e6269e19e7f35849926eaea5750d3929ec04e6694ff4b5b47b6e56",
+      "Quick.json.bak": "488703c34cdfa1e4c1f30209cde13c0c1e9f5f2b8edb93d175e0e32ecba762a9",
+      "Quick.sav.gz": "f78e10e81dc6781704f0d86fb7d79c0b088ae13ce7578584d62b993f54d6ef43",
+      "Quick.sav.gz.bak": "34a72af0ac6ffda00a0c9a816efaa8ec3380e207fa78b71a814eeaf2544bf46c"
+    }
+  },
+  "images": {
+    "01-covered-pocket.png": "be74a0bdac5a54c890bc5fb44e5e391629ed2c0bd0d711c3c915b72926bda2e4",
+    "02-exposed-sand.png": "adbe98a9521e7fe47782b4424566bab0a97c5306bb362ba03df2ecfc58dd88d2",
+    "03-spent-scrape.png": "a2944ae2015dc5546a1d629c79535fd36f769ef1bbb2ff701b91cfdb13a277cf",
+    "04-reloaded-water-mark.png": "d4905f7d05489f218f24d7c0f53f091146b3b194a67954afe5bcbe42f554df6c"
+  },
+  "observationsSha256": "de8237c0e7c3c9c74f647bb21f9ae8a81be8996f325ff1161668451b1a97245c"
+}

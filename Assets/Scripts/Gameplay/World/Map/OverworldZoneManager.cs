@@ -1255,6 +1255,7 @@ namespace CavesOfOoo.Core
                 ConnectedSpreadSatellite.AddSideParkingGuide(this, zone);
                 if (soddenAccepted) SoddenWorksDrainage.TryInstall(zone, this);
                 CausewaySteamSeam.Install(this, zone);
+                SillSettlingPocket.Install(this, zone);
                 sumphold?.InstallCargo(zone);
             }
             return accepted;
@@ -1267,6 +1268,7 @@ namespace CavesOfOoo.Core
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
             && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
             && !InstallationMarkerPart.Retain(this,zoneID) && !CausewaySteamSeam.Retain(this,zoneID)
+            && !SillSettlingPocket.Retain(this,zoneID)
             && !SumpholdFurnishingBuilder.RetainsCargoSite(this,zoneID);
 
         private bool RetainMorrowfast(string zoneID) => zoneID == MorrowfastSceneRuntime.ZoneID

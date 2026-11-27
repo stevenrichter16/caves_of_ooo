@@ -44,7 +44,7 @@ namespace CavesOfOoo.Core
             return new SillCourtComposition(manager, smithy, larder);
         }
 
-        static bool MatchesSite(OverworldZoneManager manager, string zoneID)
+        internal static bool MatchesSite(OverworldZoneManager manager, string zoneID)
         {
             if (zoneID != ZoneID) return false;
             var map = manager?.WorldMap;

@@ -15,6 +15,17 @@
       "Tags": []
     },
     {
+      "Name": "SillSettlingDeposit",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "settling pocket" },{ "Key": "RenderString", "Value": "~" },{ "Key": "ColorString", "Value": "&c" },{ "Key": "RenderLayer", "Value": "2" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "false" },{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "SillSettlingDeposit", "Params": [{ "Key": "YieldBlueprint", "Value": "SilverSand" },{ "Key": "ActionText", "Value": "gather exposed silver sand" }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "RainClaySeam",
       "Inherits": "PhysicalObject",
       "Parts": [

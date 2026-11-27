@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 using NUnit.Framework;
 
@@ -12,6 +13,7 @@ namespace CavesOfOoo.Tests
     public sealed class SillCourtPopulationTests
     {
         const string Sill = "Overworld.10.10.0";
+        const string SettlingDeposit = "SillSettlingDeposit";
         static readonly string[] Keepers = { "Weaponsmith", "Armorer", "Apothecary", "Arcanist", "Provisioner" };
         static readonly (int x, int y)[] Aprons = {
             (37,6),(38,6),(41,6),(42,6),(37,7),(38,7),(39,7),(40,7),(41,7),(42,7) };
@@ -99,6 +101,44 @@ namespace CavesOfOoo.Tests
             Assert.IsNotEmpty(Owners(zone,"Elder")); Assert.IsNotEmpty(Owners(zone,"WellKeeper")); Assert.IsNotEmpty(Owners(zone,"Farmer"));
         }
 
+        [TestCase(2)] [TestCase(41)] [TestCase(64)] [TestCase(65)] [TestCase(777)]
+        public void SettlingPocketPlacesOneFiniteStockBesideTheReachableWellCourt(int seed)
+        {
+            var zone = Manager(seed).GetZone(Sill);
+            var deposit = One(zone, SettlingDeposit);
+            var inlet = zone.GetCell(42, 18);
+            Assert.AreSame(inlet, zone.GetEntityCell(deposit));
+            Assert.True(deposit.HasTag("Terrain"));
+            Assert.False(deposit.GetPart<PhysicsPart>().Solid);
+            Assert.False(deposit.GetPart<PhysicsPart>().Takeable);
+            Assert.That(deposit.GetProperty("OwnerID"), Is.Null.Or.Empty);
+            var harvest = deposit.GetPart<HarvestablePart>();
+            Assert.NotNull(harvest);
+            Assert.False(harvest.Harvested);
+            Assert.AreEqual("SilverSand", harvest.YieldBlueprint);
+            Assert.AreEqual((1, 1, 100), (harvest.YieldMin, harvest.YieldMax, harvest.YieldChance));
+            var stock = inlet.Occupants.Single(e => e.HasPart<LiquidPoolPart>());
+            Assert.AreEqual("PouredLiquidPool", stock.BlueprintName);
+            Assert.AreEqual(12, stock.GetPart<LiquidPoolPart>().Volume);
+            Assert.True(zone.TileState.HasCoating(inlet.X, inlet.Y, stock.GetPart<LiquidPoolPart>().LiquidId));
+            Assert.False(inlet.BlocksMovement());
+            Assert.True(Reachable(zone, 40, 11)[42, 17]);
+            var outlet = zone.GetCell(41, 17);
+            Assert.False(outlet.BlocksMovement());
+            Assert.IsEmpty(outlet.Occupants.Where(e => e.HasPart<LiquidPoolPart>()));
+        }
+
+        [TestCase("Takeable")] [TestCase("Solid")]
+        public void SettlingPocketRefusesAnInvalidAuthoredPool(string unsafeProperty)
+        {
+            var manager = Manager();
+            scope.Factory.Blueprints["PouredLiquidPool"].Parts["Physics"][unsafeProperty] = "true";
+            var zone = manager.GetZone(Sill);
+            Assert.NotNull(zone);
+            Assert.IsEmpty(Owners(zone, SettlingDeposit));
+            Assert.IsEmpty(zone.GetCell(42, 18).Occupants.Where(e => e.HasPart<LiquidPoolPart>()));
+        }
+
         [TestCase("other-village")] [TestCase("alias")] [TestCase("name")] [TestCase("biome")] [TestCase("profile")]
         public void CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(string fault)
         {
@@ -112,6 +152,7 @@ namespace CavesOfOoo.Tests
             var zone=manager.GetZone(id); Assert.NotNull(zone);
             Assert.False(Owners(zone,"Weaponsmith").Any(e=>At(zone,e,32,5))
                 && Owners(zone,"Provisioner").Any(e=>At(zone,e,46,5)),"These preferred places belong only to the exact ordinary Sill contract.");
+            Assert.IsEmpty(Owners(zone, SettlingDeposit));
         }
 
         sealed class Obstruction : IZoneBuilder
@@ -180,7 +221,102 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(old,manager.GetZone(Sill)); Assert.AreSame(old,manager.GetZone(Sill));
             Assert.AreEqual(before,Snapshot(old)); Assert.AreEqual(version,old.EntityVersion);
             Assert.IsEmpty(Owners(old,"Weaponsmith")); Assert.IsEmpty(Owners(old,"Provisioner"));
+            Assert.IsEmpty(Owners(old, SettlingDeposit));
             Assert.True(old.GenReservedCells.Contains((31,4))); Assert.AreSame(old.GetCell(31,4),old.GetEntityCell(wall));
+        }
+    }
+
+    public sealed class SillSettlingPocketInteractionTests : FiftyWorldFixture
+    {
+        const string Sill = "Overworld.10.10.0";
+        const string Deposit = "SillSettlingDeposit";
+
+        [TestCase(false)] [TestCase(true)]
+        public void SettlingPocketDrainsThroughAnOrdinaryToolAndKeepsOneSpentDeposit(bool pumping)
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            Assert.True(Zone.RemoveEntity(Actor));
+            Zone = manager.GetZone(Sill);
+            manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            Assert.True(Zone.AddEntity(Actor, 42, 17));
+            foreach (var cell in Zone.Cells) { cell.IsVisible = true; cell.Explored = true; }
+
+            var inlet = Zone.GetCell(42, 18);
+            var deposit = inlet.Occupants.SingleOrDefault(e => e.BlueprintName == Deposit);
+            Assert.NotNull(deposit, "The fresh Sill pocket has a real deposit under the inlet.");
+            var harvest = deposit.GetPart<HarvestablePart>();
+            var source = inlet.Occupants.Single(e => e.BlueprintName == "PouredLiquidPool");
+            var liquid = source.GetPart<LiquidPoolPart>().LiquidId;
+            var flask = Flask(0);
+            var tool = pumping ? Carry("HandPump") : flask;
+            const string Harvest = "Harvest";
+            Assert.False(CellMenu(42, 18).Any(a => a.Command == Harvest));
+            Assert.False(Act(deposit, Harvest));
+            Assert.AreEqual(12, PoolUnits(42, 18));
+            Assert.False(harvest.Harvested);
+            Assert.Zero(Count("SilverSand"));
+
+            string drain = pumping
+                ? Choice(tool, "PumpLiquid|" + source.ID + "|", row => row.Display.Contains("to 41,17"))
+                : Choice(flask, "FillLiquidVessel|" + Id(source) + "|");
+            Assert.True(Act(tool, drain));
+            Assert.Null(Zone.GetEntityCell(source));
+            Assert.False(Zone.TileState.HasCoating(42, 18, liquid));
+            Assert.AreEqual(pumping ? 12 : 0, PoolUnits(41, 17));
+            Assert.AreEqual(pumping ? 0 : 12, Units(flask));
+            Assert.That(Pack.Objects, Does.Contain(tool));
+            var dryRow = CellMenu(42, 18).Single(a => a.Command == Harvest);
+
+            if (pumping)
+            {
+                var outletPool = Zone.GetCell(41, 17).Occupants.Single(e => e.HasPart<LiquidPoolPart>());
+                Assert.True(Act(flask, Choice(flask, "FillLiquidVessel|" + Id(outletPool) + "|")));
+            }
+            Assert.True(Act(flask, Pour(flask, false, 42, 18)));
+            Assert.Zero(Units(flask));
+            Assert.Zero(PoolUnits(41, 17));
+            Assert.AreEqual(12, PoolUnits(42, 18));
+            Assert.False(Act(deposit, dryRow.Command));
+            Assert.False(harvest.Harvested);
+            Assert.False(CellMenu(42, 18).Any(a => a.Command == Harvest));
+
+            var refill = inlet.Occupants.Single(e => e.HasPart<LiquidPoolPart>());
+            Assert.True(Act(flask, Choice(flask, "FillLiquidVessel|" + Id(refill) + "|")));
+            var interrupted = new InventoryTransaction();
+            var attempt = GameEvent.New("InventoryAction");
+            attempt.SetParameter("Actor", Actor);
+            attempt.SetParameter("Zone", Zone);
+            attempt.SetParameter("Command", Harvest);
+            attempt.SetParameter("InventoryTransaction", interrupted);
+            Assert.False(deposit.FireEventAndRelease(attempt));
+            Zone.TileState.WriteCoating(42, 18, liquid, 3);
+            Assert.Throws<InvalidOperationException>(() => interrupted.Commit());
+            interrupted.Rollback();
+            Assert.False(harvest.Harvested);
+            Assert.Zero(Count("SilverSand"));
+            Assert.True(Zone.TileState.RemoveCoating(42, 18, liquid));
+            Assert.True(ChooseRow(CellMenu(42, 18).Single(a => a.Command == Harvest), 42, 18));
+            Assert.That(Pack.Objects, Does.Contain(tool));
+            Assert.AreEqual(1, Count("SilverSand"));
+            Assert.True(harvest.Harvested);
+            Assert.AreSame(inlet, Zone.GetEntityCell(deposit));
+            Assert.False(Act(deposit, Harvest));
+
+            Assert.True(Act(flask, Pour(flask, false, 42, 18)));
+            Assert.AreEqual(12, PoolUnits(42, 18));
+            Assert.True(harvest.Harvested);
+            Assert.False(CellMenu(42, 18).Any(a => a.Command == Harvest));
+            var loaded = HotbarSaveFixture.RoundTrip(GameSessionState.Capture("sill-settling", "spent", manager, Clock, Actor));
+            var loadedZone = loaded.ZoneManager.GetZone(Sill);
+            loaded.ZoneManager.UnloadZone(Sill);
+            Assert.AreSame(loadedZone, loaded.ZoneManager.GetZone(Sill), "A settled deposit must survive ordinary zone eviction pressure.");
+            var oldInlet = loadedZone.GetCell(42, 18);
+            var loadedDeposit = oldInlet.Occupants.Single(e => e.ID == deposit.ID);
+            Assert.True(loadedDeposit.GetPart<HarvestablePart>().Harvested);
+            Assert.AreEqual(12, oldInlet.Occupants.Single(e => e.HasPart<LiquidPoolPart>()).GetPart<LiquidPoolPart>().Volume);
+            Assert.AreEqual(1, loaded.Player.GetPart<InventoryPart>().Objects.Where(e => e.BlueprintName == "SilverSand")
+                .Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
         }
     }
 }

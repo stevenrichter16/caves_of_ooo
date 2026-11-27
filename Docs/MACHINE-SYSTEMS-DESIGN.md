@@ -201,6 +201,14 @@ play gathered one bundle, kept both fractions at The Dry Hem, then planted
 the exact seed and reloaded the crop and companion chaff.
 [Evidence](Verification/MachineSystems/WinnowBellows20261127/README.md)
 
+**Sill's settling pocket gives liquid transfer a material consequence.**
+The pocket holds twelve water and covers one gather of silver sand. A
+flask or a hand pump can clear it through the existing liquid rules. The
+mark, reader and gather use the same dry state. The pocket stays spent
+across refills, reload and ordinary eviction. Actual play converted the
+one sand to a trail note and kept the collected water in the same flask.
+[Evidence](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.

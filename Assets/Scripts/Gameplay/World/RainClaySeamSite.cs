@@ -69,11 +69,13 @@ namespace CavesOfOoo.Core
             _ => null
         };
 
-        internal bool CanGather(Entity actor, Zone zone) => State(zone, showSpent: false) is SeamState.Loose or SeamState.Settling
+        internal override bool RetainsFixedSource => true;
+
+        internal override bool CanGatherFixedSource(Entity actor, Zone zone) => State(zone, showSpent: false) is SeamState.Loose or SeamState.Settling
             && SeasonalHarvestPart.ActorCanGather(actor, zone) && RouteWorkMenu.Visible(zone.GetEntityCell(ParentEntity))
             && SpatialQuery.Distance(zone, actor, ParentEntity) <= 1;
 
-        internal Func<bool> CaptureGathering(Entity actor, Zone zone, Cell cell)
+        internal override Func<bool> CaptureFixedGathering(Entity actor, Zone zone, Cell cell)
         {
             var owner = ParentEntity;
             var ground = Ground;
@@ -84,7 +86,7 @@ namespace CavesOfOoo.Core
             return () => Harvested && ParentEntity == owner && owner.ID == id && Ground == ground
                 && WorldKey == key && PolicyVersion == policy && TurnManager.Active == clock
                 && WorldClock.CurrentTick == tick && zone.GetEntityCell(owner) == cell
-                && zone.GetEntityCell(actor) == actorCell && CanGather(actor, zone);
+                && zone.GetEntityCell(actor) == actorCell && CanGatherFixedSource(actor, zone);
         }
 
         internal Func<bool> PrepareYield(Entity item, Entity actor, Cell sourceCell,

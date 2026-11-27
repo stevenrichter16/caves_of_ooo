@@ -37,6 +37,9 @@ namespace CavesOfOoo.Core
                         out int units) && units == 1);
 
         internal bool SeasonalAccess(Zone zone) => this is not SeasonalHarvestPart seasonal || seasonal.Ready(zone);
+        internal virtual bool RetainsFixedSource => false;
+        internal virtual bool CanGatherFixedSource(Entity actor, Zone zone) => true;
+        internal virtual Func<bool> CaptureFixedGathering(Entity actor, Zone zone, Cell cell) => null;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -44,8 +47,8 @@ namespace CavesOfOoo.Core
             {
                 var actor = e.GetParameter<Entity>("Actor");
                 var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? ParentEntity?.SpatialZone;
-                bool canGather = this is RainSeamHarvestPart seam ? seam.CanGather(actor, zone)
-                    : SeasonalAccess(zone) && (this is not SeasonalHarvestPart || SeasonalHarvestPart.ActorCanGather(actor, zone));
+                bool canGather = CanGatherFixedSource(actor, zone) && SeasonalAccess(zone)
+                    && (this is not SeasonalHarvestPart || SeasonalHarvestPart.ActorCanGather(actor, zone));
                 if (!Harvested && canGather)
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", ActionText, "Harvest", 'h', 20);
                 return true;
@@ -68,7 +71,7 @@ namespace CavesOfOoo.Core
                 if (!seasonal.Ready(zone, selectedSeason)) return "seasonal-source-unavailable";
                 if (!SeasonalHarvestPart.ActorCanGather(actor, zone)) return "seasonal-actor-unavailable";
             }
-            if (this is RainSeamHarvestPart seam && !seam.CanGather(actor, zone)) return "rain-seam-unavailable";
+            if (!CanGatherFixedSource(actor, zone)) return "fixed-source-unavailable";
             if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)) return "actor-dead";
             var inventory = actor.GetPart<InventoryPart>();
             carried = inventory?.CanConsumeOne(ParentEntity) == true;
@@ -99,7 +102,8 @@ namespace CavesOfOoo.Core
             if (reason != null) return Reject(actor, reason);
             var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell, seasonalYield?.Season);
             var rainSeam = this as RainSeamHarvestPart;
-            var rainProof = rainSeam?.CaptureGathering(actor, zone, sourceCell);
+            var fixedProof = CaptureFixedGathering(actor, zone, sourceCell);
+            if (RetainsFixedSource && fixedProof == null) return Reject(actor, "fixed-source-unavailable");
             string declaredProduct = YieldBlueprint;
             int declaredMin = YieldMin, declaredMax = YieldMax, declaredChance = YieldChance;
             string product = seasonalYield?.Product ?? declaredProduct;
@@ -111,8 +115,9 @@ namespace CavesOfOoo.Core
             var factory = Factory;
             if (factory == null || string.IsNullOrEmpty(product) || !factory.Blueprints.ContainsKey(product))
                 return Reject(actor, "missing-yield");
-            var outputTemplate = seasonalYield.HasValue ? MaterialProcessTemplate.Capture(factory, product, true) : null;
-            if (!CanCreateYield(factory, product) || seasonalYield.HasValue && outputTemplate == null)
+            bool exactYield = seasonalYield.HasValue || RetainsFixedSource && rainSeam == null;
+            var outputTemplate = exactYield ? MaterialProcessTemplate.Capture(factory, product, true) : null;
+            if (!CanCreateYield(factory, product) || exactYield && outputTemplate == null)
                 return Reject(actor, "invalid-product");
 
             bool ownTransaction = transaction == null;
@@ -199,7 +204,7 @@ namespace CavesOfOoo.Core
                 {
                     if (carried)
                     { if (!inventory.RemoveObject(source)) return false; }
-                    else if (rainSeam == null)
+                    else if (!RetainsFixedSource)
                     {
                         var currentHeld = source.GetPart<DraggedPart>();
                         var currentHauler = currentHeld?.Dragger;
@@ -231,8 +236,15 @@ namespace CavesOfOoo.Core
                 bool applied = receipt == null ? Transfer() : receipt.Apply(Transfer);
                 if (!applied || (receipt != null && !receipt.ClaimChanges(transaction, actor, "Harvest"))) return Fail("transfer-refused");
                 if (seasonalProof != null) transaction.BeforeCommit(seasonalProof);
-                if (rainProof != null)
-                    transaction.BeforeCommit(() => rainProof() && moistYield?.Invoke() == true);
+                if (fixedProof != null)
+                {
+                    if (exactYield) receipt?.WatchChangedOwners(transaction);
+                    transaction.BeforeCommit(() => fixedProof() && outputTemplate?.Current() != false
+                        && (rainSeam == null || moistYield?.Invoke() == true)
+                        && droppedItems.All(item => zone.GetEntityCell(item) == dropCell
+                            && item.GetPart<PhysicsPart>() is { InInventory: null, Equipped: null }
+                            && (outputTemplate == null || outputTemplate.Matches(item))));
+                }
                 int dropped = droppedItems.Count;
                 transaction.AfterCommit(()=>audio?.Publish());
                 transaction.AfterCommit(() =>

@@ -508,3 +508,27 @@ The Dry Hem. It kept both outputs in one action and planted the exact seed
 in a vacated bed. Fresh Continues preserved the products and then the crop.
 The test supplied two tools and gathered the heads ordinarily. The outdoor
 comparison occurred after the shower. [Evidence](Verification/MachineSystems/WinnowBellows20261127/README.md)
+
+## Sill's shallow settling pocket
+
+One ordinary shallow pocket can form on bare ground on Sill's north bank. The
+regular river and the court stay intact. A pale streak under the water gives
+the player a reason to stand on the bank and choose where the water goes.
+A carried flask can collect twelve units. A pump can move those same units
+to a clear outlet. Either physical result exposes the same pale sand. A
+partial draw leaves the sand covered. Ordinary trade and other sources
+still supply the same sand for Sill's existing filtration repair.
+
+One fixed deposit keeps its spent state when the owner leaves the area.
+The same cleared surface controls the mark, Examine and the gather action.
+A refill or unsafe coating covers an unspent deposit. A fresh gather must
+check the exact ground and state through transfer. One ordinary measure
+of silver sand can join an existing compatible stack or remain in the
+world if the pack is full. A spent deposit keeps its scrape after refill.
+
+Five detached Unity layouts admitted bare grass at inlet 42,18, standing
+cell 42,17 and outlet 41,17, with a dry path from the well approach. One
+ordinary trial bought an empty flask, drew twelve water and saw the deposit
+change before opening the action menu. The exact sand became a saved trail
+note for water. Native tests verified the pump as a second approach.
+[Evidence](Verification/MachineSystems/SillSettlingPocket20261127/README.md)
