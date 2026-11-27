@@ -1,3 +1,12 @@
+**Gantry's repaired guest-cloth dries damp gear in a shower — November 27, 2026, America/Chicago.**
+The ordinary seed-65 traveler gathered a rainy seam packet at western
+Morrowfast, carried it back to Gantry, and aired it from 25% moisture to
+zero in two actions under the original hung cloth. The dry packet kept its
+identity through Continue. A separate downstream run used one supplied
+sieve to make two fire clay and one coarse grit. The same grit made firm
+footing which survived Continue. All 336 targeted cases passed.
+[Playtest and receipts](Verification/MachineSystems/GantryShelteredDrying20261127/README.md)
+
 **A flask commits a finite draw from its exact pool — November 27, 2026, America/Chicago.**
 Open-pool fills recheck both owners. Refusal reverses only the matching
 transferred measures and preserves independent changes. The ordinary

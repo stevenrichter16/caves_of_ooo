@@ -16,6 +16,7 @@ namespace CavesOfOoo.Tests
         const string GuestPole = "GuestPole";
         const string Rest = "RestAtRestoredPlaceSite";
         const string Mend = "PlaceSiteRepair|Lasting";
+        const string Drying = "DryUnderGuestCloth|";
         static readonly FieldInfo LootTables = typeof(LootTableRegistry).GetField("_byName", BindingFlags.Static | BindingFlags.NonPublic);
         static readonly FieldInfo LootInitialized = typeof(LootTableRegistry).GetField("_initialized", BindingFlags.Static | BindingFlags.NonPublic);
         Dictionary<string, LootTableData> previousLootTables;
@@ -74,6 +75,131 @@ namespace CavesOfOoo.Tests
         {
             var at = Zone.GetEntityCell(pole);
             return ChooseRow(row, at.X, at.Y);
+        }
+
+        InventoryAction[] DryingRows(Entity pole) => PoleMenu(pole)
+            .Where(row => !row.IsDisabled && row.Command.StartsWith(Drying, StringComparison.Ordinal)).ToArray();
+
+        void SetShower(bool raining)
+        {
+            int now = Clock.TickCount;
+            int first = now / RegionalWeather.WindowTicks;
+            var tick = Enumerable.Range(first, RegionalWeather.CycleWindows)
+                .Select(window => Math.Max(now, window * RegionalWeather.WindowTicks))
+                .FirstOrDefault(candidate =>
+                {
+                    var weather = RegionalWeather.Current(Zone, candidate, RegionalWeather.PolicyVersion);
+                    return weather.Valid && weather.Raining == raining;
+                });
+            Clock.AdvanceClock(tick - now);
+            var current = RegionalWeather.Current(Zone, Clock.TickCount, RegionalWeather.PolicyVersion);
+            Assert.True(current.Valid);
+            Assert.AreEqual(raining, current.Raining);
+        }
+
+        (Entity striker, WetEffect wet) DampStriker(float moisture = .48f)
+        {
+            var striker = Carry("FlintStriker");
+            var wet = new WetEffect(moisture);
+            Assert.True(striker.ApplyEffect(wet));
+            wet.Moisture = moisture;
+            return (striker, wet);
+        }
+
+        [Test]
+        public void RepairMakesShelteredDryingAvailableAndTheSameStrikerLightsATorch()
+        {
+            var pole = EnterPlace();
+            SetShower(true);
+            var (striker, wet) = DampStriker();
+            Assert.IsEmpty(DryingRows(pole), "Torn cloth offers no shelter work.");
+            Carry("Cloak");
+            Carry("FieldHaftComponent");
+            Assert.True(ChoosePole(pole, PoleMenu(pole).Single(row => !row.IsDisabled && row.Command == Mend)));
+            Assert.AreEqual(RepairStage.StableRepair, Site.Stage);
+
+            var torch = Carry("Torch");
+            Assert.True(InventorySystem.Equip(Actor, torch));
+            Assert.True(Act(torch, "ExtinguishTorch"));
+            Assert.False(Act(torch, "LightTorch"));
+            var mechanism = striker.GetPart<FlintStrikerPart>();
+            int originalStrikes = mechanism.Strikes;
+            TradeSystem.SetDrams(Actor, 15);
+
+            var row = DryingRows(pole).Single();
+            Assert.That(row.Command, Does.Contain(Id(striker)));
+            Assert.That(row.Display, Does.Contain("48").And.Contain("33"));
+            Assert.AreEqual(ActionTime.OneAction, row.Time);
+            var reader = ExamineDocumentBuilder.BuildWorld(pole, Zone, Zone.GetEntityCell(pole), Actor);
+            Assert.That(reader.Sections.Single(section => section.Heading == "How to use").Text,
+                Does.Contain(row.Display));
+            Assert.True(ChoosePole(pole, row));
+            Assert.AreSame(wet, striker.GetEffect<WetEffect>());
+            Assert.AreEqual(.33f, wet.Moisture, .0001f);
+            Assert.AreSame(Actor, striker.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(originalStrikes, mechanism.Strikes);
+            Assert.AreEqual(15, TradeSystem.GetDrams(Actor));
+            Assert.False(Act(pole, row.Command));
+
+            Assert.True(Act(torch, "LightTorch"));
+            Assert.True(torch.GetPart<ThermalPart>().IsAflame);
+            Assert.AreEqual(originalStrikes - 1, mechanism.Strikes);
+        }
+
+        [Test]
+        public void AnInterruptedDryingActionPreservesIndependentWetnessOnTheSameItem()
+        {
+            var pole = EnterPlace();
+            Site.Stage = RepairStage.StableRepair;
+            SetShower(true);
+            var (striker, wet) = DampStriker();
+            var row = DryingRows(pole).Single();
+            int calls = 0;
+            Actor.AddPart(new FiftyWorldEventProbe { Callback = e =>
+            {
+                if (e.ID != "AfterInventoryAction") return;
+                calls++;
+                Assert.AreEqual(.33f, wet.Moisture, .0001f);
+                wet.Moisture += .10f;
+            } });
+
+            Assert.False(ChoosePole(pole, row));
+            Assert.AreEqual(1, calls);
+            Assert.AreSame(wet, striker.GetEffect<WetEffect>());
+            Assert.AreEqual(.58f, wet.Moisture, .0001f);
+        }
+
+        [TestCase("fair")] [TestCase("wet footing")] [TestCase("torn again")] [TestCase("hidden pole")]
+        public void ChangingTheShelterContextInvalidatesAnOpenDryingChoice(string change)
+        {
+            var pole = EnterPlace();
+            Site.Stage = RepairStage.StableRepair;
+            SetShower(true);
+            var (_, wet) = DampStriker();
+            var row = DryingRows(pole).Single();
+            if (change == "fair") SetShower(false);
+            if (change == "wet footing")
+            {
+                var at = Zone.GetEntityCell(Actor);
+                Zone.TileState.WriteCoating(at.X, at.Y, "water", ZoneTileState.Permanent);
+            }
+            if (change == "torn again") Site.Stage = RepairStage.Fouled;
+            if (change == "hidden pole") pole.GetPart<RenderPart>().Visible = false;
+
+            Assert.False(ChoosePole(pole, row));
+            Assert.IsEmpty(DryingRows(pole));
+            Assert.AreEqual(.48f, wet.Moisture, .0001f);
+        }
+
+        [Test]
+        public void ASharedPoleElsewhereOffersNoDryingEvenDuringItsShower()
+        {
+            var pole = EnterPlace(WellmeetCompositionPlan.ZoneID);
+            Site.Stage = RepairStage.StableRepair;
+            SetShower(true);
+            var (_, wet) = DampStriker();
+            Assert.IsEmpty(DryingRows(pole));
+            Assert.AreEqual(.48f, wet.Moisture, .0001f);
         }
 
         void Injure(bool bleeding = false)

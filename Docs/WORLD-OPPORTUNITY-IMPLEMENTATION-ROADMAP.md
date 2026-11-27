@@ -60,6 +60,13 @@ can continue through Gantry. The host's social concern keeps its own
 report and reward.
 [Ordinary repair and rest evidence](Verification/MachineSystems/GantryGuestCloth20261127/README.md)
 
+For #18, #19 and #34, that same repair now makes local showers useful.
+The player brought home a naturally damp seam packet and dried it in two
+ordinary actions under the cloth. A separate trial used a supplied sieve
+to turn the same dried material into two fire clay and grit for firm
+footing. The original rest remains available under its usual conditions.
+[Drying and downstream use](Verification/MachineSystems/GantryShelteredDrying20261127/README.md)
+
 Implement the 45 requirements in connected slices. Once a slice is verified
 and recorded, start the next unblocked slice in the same run. The scheduled
 check-in provides continued work across runs.

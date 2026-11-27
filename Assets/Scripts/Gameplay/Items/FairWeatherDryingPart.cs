@@ -9,7 +9,9 @@ namespace CavesOfOoo.Core
         IDescribeUseRows, IInventoryActionReceiptOwner
     {
         const string Prefix = "DryInFairAir|";
+        internal const string ShelteredPrefix = "DryUnderGuestCloth|";
         const float MaximumReduction = .25f;
+        const float ShelteredReduction = .15f;
 
         public override string Name => "FairWeatherDrying";
         public ReaderScope Scope => ReaderScope.Both;
@@ -19,29 +21,30 @@ namespace CavesOfOoo.Core
             => ParentEntity?.GetPart<FairWeatherDryingPart>() == this
                 && command?.StartsWith(Prefix, StringComparison.Ordinal) == true;
 
-        static bool DryExposed(Cell cell, Zone zone)
-            => cell != null && !cell.IsInterior
+        internal static bool DryFooting(Cell cell, Zone zone)
+            => cell != null
                 && zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(coat => coat.Turns > 0) != true
                 && !cell.Occupants.Any(e => e.HasPart<LiquidPoolPart>() || e.HasPart<GasPoolPart>());
 
-        bool Conditions(Zone zone, out RegionalWeather.Observation weather)
+        bool SurfaceReady(Zone zone)
         {
-            weather = default;
             var surface = ParentEntity;
-            if (TurnManager.Active == null || !WorldResourceActions.Ground(surface, zone)
-                || WorldLocationContext.For(zone)?.ActiveZone != zone
+            if (!WorldResourceActions.Ground(surface, zone)
                 || surface.HasTag("Creature") || surface.HasPart<SpatialFootprintPart>()
                 || surface.GetPart<PhysicsPart>().Takeable || SecondExplorationActions.Special(surface)
                 || surface.Parts.Count(part => part is FairWeatherDryingPart) != 1
                 || surface.GetPart<FairWeatherDryingPart>() != this)
                 return false;
-            weather = RegionalWeather.Current(zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion);
-            return weather.Valid && DryExposed(zone.GetEntityCell(surface), zone);
+            var cell = zone.GetEntityCell(surface);
+            return DryFooting(cell, zone) && !cell.IsInterior;
         }
 
         public string DescribeState(DescribeContext context)
         {
-            if (!Conditions(context.Zone ?? ParentEntity?.SpatialZone, out var weather))
+            var zone = context.Zone ?? ParentEntity?.SpatialZone;
+            var weather = RegionalWeather.Current(zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion);
+            if (TurnManager.Active == null || WorldLocationContext.For(zone)?.ActiveZone != zone
+                || !weather.Valid || !SurfaceReady(zone))
                 return "This surface needs open, dry footing to air out gear.";
             return weather.Raining ? "Mild showers. There is no fair-air drying here now."
                 : "Fair weather. A dry approach to this shelf lets you air out carried gear.";
@@ -56,23 +59,37 @@ namespace CavesOfOoo.Core
         }
 
         IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor, Zone zone)
+            => ChoicesAt(ParentEntity, actor, zone, () => SurfaceReady(zone));
+
+        internal static IEnumerable<RouteWorkMenu.Entry> ChoicesAt(Entity surface, Entity actor, Zone zone,
+            Func<bool> surfaceReady, bool underCover = false)
         {
-            if (!RouteWorkMenu.ActorReady(actor, zone) || !Conditions(zone, out var weather) || weather.Raining)
+            var clock = TurnManager.Active;
+            if (clock == null || !RouteWorkMenu.ActorReady(actor, zone)
+                || WorldLocationContext.For(zone)?.ActiveZone != zone || !surfaceReady()) yield break;
+            var weather = RegionalWeather.Current(zone, clock.TickCount, RegionalWeather.PolicyVersion);
+            if (!weather.Valid || weather.Raining != underCover)
                 yield break;
-            var surface = ParentEntity;
             var work = zone.GetEntityCell(surface);
             var origin = zone.GetEntityCell(actor);
             var pack = actor.GetPart<InventoryPart>();
-            var clock = TurnManager.Active;
             var sameSurface = RouteWorkMenu.Identity(surface);
-            bool Available() => TurnManager.Active == clock && RouteWorkMenu.ActorReady(actor, zone)
-                && zone.GetEntityCell(actor) == origin && zone.GetEntityCell(surface) == work
-                && actor.GetPart<InventoryPart>() == pack && sameSurface()
-                && RouteWorkMenu.Visible(work) && DryExposed(origin, zone) && !origin.BlocksMovement(actor)
-                && Math.Abs(origin.X - work.X) + Math.Abs(origin.Y - work.Y) == 1
-                && Conditions(zone, out var current) && !current.Raining && current.Window == weather.Window;
+            bool SameWeather()
+            {
+                var current = RegionalWeather.Current(zone, clock.TickCount, RegionalWeather.PolicyVersion);
+                return current.Valid && current.Raining == underCover && current.Window == weather.Window;
+            }
+            bool Available() => TurnManager.Active == clock && WorldLocationContext.For(zone)?.ActiveZone == zone
+                && RouteWorkMenu.ActorReady(actor, zone) && actor.GetPart<InventoryPart>() == pack
+                && zone.GetEntityCell(actor) == origin && zone.GetEntityCell(surface) == work && sameSurface()
+                && RouteWorkMenu.Visible(work) && DryFooting(origin, zone) && (underCover || !origin.IsInterior)
+                && !origin.BlocksMovement(actor) && Math.Abs(origin.X - work.X) + Math.Abs(origin.Y - work.Y) == 1
+                && surfaceReady() && SameWeather();
             if (pack == null || !Available()) yield break;
 
+            float maximum = underCover ? ShelteredReduction : MaximumReduction;
+            string prefix = underCover ? ShelteredPrefix : Prefix;
+            string place = underCover ? "under the guest-cloth" : "on the drying shelf";
             foreach (var item in pack.Objects)
             {
                 if (!WorldResourceActions.Carried(actor, item)
@@ -83,7 +100,7 @@ namespace CavesOfOoo.Core
                     continue;
                 var effects = item.GetPart<StatusEffectsPart>();
                 var sameItem = RouteWorkMenu.Identity(item);
-                float before = wet.Moisture, removed = Math.Min(before, MaximumReduction), after = before - removed;
+                float before = wet.Moisture, removed = Math.Min(before, maximum), after = before - removed;
                 int duration = wet.Duration;
                 bool SameWet() => effects?.ParentEntity == item && wet.Owner == item
                     && item.GetPart<StatusEffectsPart>() == effects && item.GetEffect<WetEffect>() == wet;
@@ -94,10 +111,10 @@ namespace CavesOfOoo.Core
                 yield return new RouteWorkMenu.Entry
                 {
                     Actor = actor, Zone = zone, Cell = work, Claims = new[] { item },
-                    Key = Prefix + Uri.EscapeDataString(item.ID),
+                    Key = prefix + Uri.EscapeDataString(item.ID),
                     Label = "air out " + item.GetDisplayName() + " (" + Math.Round(before * 100)
                         + "% to " + Math.Round(after * 100) + "% moisture)",
-                    Hint = "One action. The item stays in your pack.",
+                    Hint = (underCover ? "One action under cover." : "One action.") + " The item stays in your pack.",
                     Before = () => Current(before),
                     After = () => Current(after),
                     Apply = tx =>
@@ -112,7 +129,7 @@ namespace CavesOfOoo.Core
                     Publish = () =>
                     {
                         if (after == 0) effects.RemoveEffect(wet);
-                        MessageLog.Add("You air out " + item.GetDisplayName() + " on the drying shelf.");
+                        MessageLog.Add("You air out " + item.GetDisplayName() + " " + place + ".");
                     }
                 };
             }

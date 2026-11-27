@@ -1,10 +1,12 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>Free sheltered rest at a physical structure whose saved repair is complete.</summary>
-    public sealed class RestoredPlaceRestPart : Part, IDescribeState, IDescribeUse, IInventoryActionReceiptOwner
+    public sealed class RestoredPlaceRestPart : Part, IDescribeState, IDescribeUse, IDescribeUseRows, IInventoryActionReceiptOwner
     {
         public override string Name => "RestoredPlaceRest";
         public ReaderScope Scope => ReaderScope.Both;
@@ -50,31 +52,65 @@ namespace CavesOfOoo.Core
                 && site.Stage == RepairStage.StableRepair ? site : null;
         }
 
-        public string DescribeState(DescribeContext context) => WorkingSite(ParentEntity?.SpatialZone) == null
-            ? null : "You can rest under the hung cloth when the area is safe.";
+        public string DescribeState(DescribeContext context)
+        {
+            var zone = context.Zone ?? ParentEntity?.SpatialZone;
+            if (WorkingSite(zone) == null) return null;
+            var weather = RegionalWeather.Current(zone, WorldClock.CurrentTick, RegionalWeather.PolicyVersion);
+            const string rest = "You can rest under the hung cloth when the area is safe.";
+            return weather.Raining ? rest + " The cloth gives you cover to air out damp gear during this shower." : rest;
+        }
 
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             if (WorkingSite(ParentEntity?.SpatialZone) == null) return;
             guide.How.Add("Stand beside the hung cloth and choose rest when hurt or bleeding.");
+            guide.How.Add("During a shower, stand directly beside the cloth on dry footing to air out one damp item from your pack.");
             guide.Limits.Add("Rest is free and time passes. Nearby danger interrupts it.");
+            guide.Limits.Add("Airing out takes one action and removes up to 15 points of moisture. Frozen items need to thaw first.");
         }
 
-        public bool OwnsInventoryReceipt(string command) => command == Command;
+        public bool OwnsInventoryReceipt(string command) => command == Command || IsDryingReceipt(command);
+
+        bool IsDryingReceipt(string command) => ParentEntity?.GetPart<RestoredPlaceRestPart>() == this
+            && command?.StartsWith(FairWeatherDryingPart.ShelteredPrefix, StringComparison.Ordinal) == true;
+
+        IEnumerable<RouteWorkMenu.Entry> DryingChoices(Entity actor, Zone zone)
+        {
+            var owner = ParentEntity;
+            var site = WorkingSite(zone);
+            var render = owner?.GetPart<RenderPart>();
+            return FairWeatherDryingPart.ChoicesAt(owner, actor, zone,
+                () => site != null && WorkingSite(zone) == site
+                    && render is { Visible: true } && render.ParentEntity == owner && owner.GetPart<RenderPart>() == render
+                    && FairWeatherDryingPart.DryFooting(zone.GetEntityCell(owner), zone), underCover: true);
+        }
+
+        public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
+            => AddRows(actor, zone, rows, false);
+
+        void AddRows(Entity actor, Zone zone, InventoryActionList rows, bool retain)
+        {
+            if (rows == null) return;
+            if (WorkingSite(zone) != null && WorldResourceActions.Nearby(actor, ParentEntity, zone))
+            {
+                string refusal = RestRefusal(actor, zone, TurnManager.Active);
+                if (refusal == null) rows.AddActionWithHint("ShelteredRest", Label, Command, Hint, 'r', 20, time: ActionTime.Free);
+                else rows.AddDisabled("ShelteredRest", Label, "rest_unavailable", refusal, 'r', 20);
+            }
+            RouteWorkMenu.Rows(ParentEntity, actor, zone, rows, DryingChoices(actor, zone), retain);
+        }
 
         public override bool HandleEvent(GameEvent e)
         {
             var actor = e.GetParameter<Entity>("Actor");
             var zone = PreparationActions.ZoneFor(e, actor);
-            if (e.ID == "GetInventoryActions" && WorkingSite(zone) != null && WorldResourceActions.Nearby(actor, ParentEntity, zone))
-            {
-                var rows = e.GetParameter<InventoryActionList>("Actions");
-                string refusal = RestRefusal(actor, zone, TurnManager.Active);
-                if (refusal == null) rows?.AddActionWithHint("ShelteredRest", Label, Command, Hint, 'r', 20, time: ActionTime.Free);
-                else rows?.AddDisabled("ShelteredRest", Label, "rest_unavailable", refusal, 'r', 20);
-            }
-            if (e.ID == "InventoryAction" && OwnsInventoryReceipt(e.GetStringParameter("Command"))
-                && TryRest(actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction")))
+            if (e.ID == "GetInventoryActions")
+                AddRows(actor, zone, e.GetParameter<InventoryActionList>("Actions"), true);
+            if (e.ID != "InventoryAction") return true;
+            string command = e.GetStringParameter("Command");
+            if ((command == Command && TryRest(actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction")))
+                || (IsDryingReceipt(command) && RouteWorkMenu.Act(ParentEntity, e)))
             {
                 e.Handled = true;
                 return false;

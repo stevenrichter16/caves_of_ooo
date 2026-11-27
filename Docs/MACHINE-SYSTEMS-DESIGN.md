@@ -1,3 +1,11 @@
+**Gantry's restored guest-cloth offers a second public service in rain.**
+Clear footing beside the original repaired pole lets a traveler air out
+one damp carried item. One action removes up to 15 points of moisture.
+The sheltered and fair-weather choices share a moisture receipt. In
+actual play a naturally damp seam packet became dry, then supplied clay
+and grit for ordinary use. A sieve was supplied for the screening branch.
+[Playtest and receipts](Verification/MachineSystems/GantryShelteredDrying20261127/README.md)
+
 **Quillhold's existing oil delivery lights its two desks.**
 Either oil payment sets the saved supply condition that powers ordinary
 task light at the original work bays. An Editor run bought three bottles
