@@ -1,0 +1,297 @@
+{
+  "startingArchive": "/private/tmp/coo-chaff-fair-retained-20261125/cbe1eaf7b4f3494289ffbb059fd8c91a",
+  "retainedSpentArchive": "/private/tmp/coo-public-cloth-cue-20261127/spent/cbe1eaf7b4f3494289ffbb059fd8c91a",
+  "seed": 65,
+  "generation": 21,
+  "controlledAdvance": 4800,
+  "states": {
+    "Dry": {
+      "scene": "SampleScene",
+      "zone": "Overworld.2.6.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 59,
+      "y": 8,
+      "tick": 14410,
+      "hp": 40,
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "frames": [
+        {
+          "ID": "7197",
+          "x": 60,
+          "y": 8,
+          "visible": true,
+          "tile": null,
+          "rgba": "RGBA(1.000, 1.000, 1.000, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 0,
+          "LastWindow": -1
+        },
+        {
+          "ID": "7198",
+          "x": 64,
+          "y": 8,
+          "visible": true,
+          "tile": null,
+          "rgba": "RGBA(1.000, 1.000, 1.000, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 0,
+          "LastWindow": -1
+        }
+      ],
+      "flask": 0,
+      "capacity": 12,
+      "keyboardBusy": false,
+      "keys": "1"
+    },
+    "Wet": {
+      "scene": "SampleScene",
+      "zone": "Overworld.2.6.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 59,
+      "y": 8,
+      "tick": 19210,
+      "hp": 40,
+      "Valid": true,
+      "Raining": true,
+      "Window": 32,
+      "frames": [
+        {
+          "ID": "7197",
+          "x": 60,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7197",
+          "glyph": "Flat world glyph 118",
+          "rgba": "RGBA(0.330, 1.000, 1.000, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 0,
+          "LastWindow": -1
+        },
+        {
+          "ID": "7198",
+          "x": 64,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7198",
+          "glyph": "Flat world glyph 118",
+          "rgba": "RGBA(0.330, 1.000, 1.000, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 0,
+          "LastWindow": -1
+        }
+      ],
+      "flask": 0,
+      "capacity": 12,
+      "keyboardBusy": false,
+      "keys": "1"
+    },
+    "MenuAccepted": {
+      "mode": "WorldActionMenuOpen",
+      "target": "7197",
+      "rows": [
+        {
+          "Command": "CollectRain|repair-cultivation%3Aallotment-notice|7197|2706|32|-1|0||0|12",
+          "Display": "catch 3 water in liquid flask (0→3/12)",
+          "IsDisabled": false,
+          "key": "A"
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "key": "X"
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "key": "B"
+        }
+      ]
+    },
+    "Spent": {
+      "scene": "SampleScene",
+      "zone": "Overworld.2.6.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 59,
+      "y": 8,
+      "tick": 19220,
+      "hp": 40,
+      "Valid": true,
+      "Raining": true,
+      "Window": 32,
+      "frames": [
+        {
+          "ID": "7197",
+          "x": 60,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7197",
+          "glyph": "Flat world glyph 95",
+          "rgba": "RGBA(0.000, 0.670, 0.670, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 3,
+          "LastWindow": 32
+        },
+        {
+          "ID": "7198",
+          "x": 64,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7198",
+          "glyph": "Flat world glyph 95",
+          "rgba": "RGBA(0.000, 0.670, 0.670, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 3,
+          "LastWindow": 32
+        }
+      ],
+      "flask": 3,
+      "capacity": 12,
+      "keyboardBusy": false,
+      "keys": "1"
+    },
+    "MenuSpent": {
+      "mode": "WorldActionMenuOpen",
+      "target": "7198",
+      "rows": [
+        {
+          "Command": "Disabled:spent",
+          "Display": "catch rain",
+          "IsDisabled": true,
+          "key": "A"
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "key": "X"
+        },
+        {
+          "Command": "PourLiquidVessel|water|3|Overworld.2.6.0|64|8",
+          "Display": "pour water east (3) [liquid flask]",
+          "IsDisabled": false,
+          "key": "B"
+        },
+        {
+          "Command": "PourOneLiquidVessel|water|3|Overworld.2.6.0|64|8",
+          "Display": "pour one water east [liquid flask]",
+          "IsDisabled": false,
+          "key": "C"
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "key": "D"
+        }
+      ]
+    },
+    "Saved": {
+      "scene": "SampleScene",
+      "zone": "Overworld.2.6.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 59,
+      "y": 8,
+      "tick": 19300,
+      "hp": 40,
+      "Valid": true,
+      "Raining": true,
+      "Window": 32,
+      "frames": [
+        {
+          "ID": "7197",
+          "x": 60,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7197",
+          "glyph": "Flat world glyph 95",
+          "rgba": "RGBA(0.000, 0.670, 0.670, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 3,
+          "LastWindow": 32
+        },
+        {
+          "ID": "7198",
+          "x": 64,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7198",
+          "glyph": "Flat world glyph 95",
+          "rgba": "RGBA(0.000, 0.670, 0.670, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 3,
+          "LastWindow": 32
+        }
+      ],
+      "flask": 3,
+      "capacity": 12,
+      "keyboardBusy": false,
+      "keys": "7"
+    },
+    "Fresh": {
+      "scene": "SampleScene",
+      "zone": "Overworld.2.6.0",
+      "state": "Normal",
+      "boot": false,
+      "x": 59,
+      "y": 8,
+      "tick": 19300,
+      "hp": 40,
+      "Valid": true,
+      "Raining": true,
+      "Window": 32,
+      "frames": [
+        {
+          "ID": "7197",
+          "x": 60,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7197",
+          "glyph": "Flat world glyph 95",
+          "rgba": "RGBA(0.000, 0.670, 0.670, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 3,
+          "LastWindow": 32
+        },
+        {
+          "ID": "7198",
+          "x": 64,
+          "y": 8,
+          "visible": true,
+          "resolves": true,
+          "owner": "7198",
+          "glyph": "Flat world glyph 95",
+          "rgba": "RGBA(0.000, 0.670, 0.670, 1.000)",
+          "anchor": "repair-cultivation:allotment-notice",
+          "Spent": 3,
+          "LastWindow": 32
+        }
+      ],
+      "flask": 3,
+      "capacity": 12,
+      "keyboardBusy": false,
+      "keys": "1"
+    }
+  },
+  "saveSHA256": {
+    "Quick.json": "aa87bdc5f458bd246fc79b95432359f39d5413f477cb58a61bfd385d36d06646",
+    "Quick.json.bak": "b31173b94274268679686ce829b9e3cdbd215be43c7579c1e5a2c7d7d391bcb1",
+    "Quick.sav.gz": "bf26303d75537ceafbfa2f78fcae17bbd9c5630e5f778868928430ef1d23e40f",
+    "Quick.sav.gz.bak": "901f2abd7692991e38c224b42640ca2419e277042954771dbb357797e919923a"
+  },
+  "screenshotSHA256": "c80f9a8c2ca90f398c0e2f5dccbfe12c2f01296cbdb9ec5be6b57e399f498918"
+}

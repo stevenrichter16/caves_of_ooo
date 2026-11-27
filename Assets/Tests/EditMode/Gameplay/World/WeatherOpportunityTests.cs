@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
 using NUnit.Framework;
 
 namespace CavesOfOoo.Tests
@@ -140,6 +141,62 @@ namespace CavesOfOoo.Tests
             Assert.True(Act(first, Row(first, small).Command)); Assert.AreEqual(1, Spent);
             var other = Flask(0); Assert.True(Act(second, Row(second, other).Command));
             Assert.AreEqual(2, Units(other)); Assert.AreEqual(3, Spent); Assert.IsEmpty(Rows(first));
+        }
+        [Test]
+        public void PublicClothsShowTheSharedAllowanceBeforeExamine()
+        {
+            anchor.ID = "repair-cultivation:allotment-notice";
+            anchor.Properties[RepairCultivationSite.RoleKey] = "notice";
+            WeatherTestApi.Set(allowance, "PlotKey", "morrowfast-public-allotment-v1");
+            var ordinary = Place("CampAwning", 12, 10);
+            ordinary.GetPart<PhysicsPart>().Takeable = false;
+            using var catalog = new FlatPixelFallbackCatalog();
+
+            string Glyph(Entity owner)
+            {
+                var at = Zone.GetEntityCell(owner);
+                at.Explored = at.IsVisible = true;
+                Assert.True(catalog.TryResolve(Zone, at.X, at.Y, out var view));
+                Assert.That(view.Owner, Is.SameAs(owner));
+                return view.ForegroundTile?.name;
+            }
+
+            int fair = Enumerable.Range(Clock.TickCount / 600 + 1, 64)
+                .First(window => !WeatherTestApi.Rain(64, BiomeType.Grovelands, window)
+                    && WeatherTestApi.Rain(64, BiomeType.Grovelands, window + 1));
+            Clock.AdvanceClock(fair * 600 - Clock.TickCount);
+            Assert.That(Glyph(first), Is.EqualTo("Flat world glyph 94"));
+            Assert.That(Glyph(second), Is.EqualTo("Flat world glyph 94"));
+            string ordinaryGlyph = Glyph(ordinary);
+            Clock.AdvanceClock(600);
+            var small = Flask(0, capacity: 1);
+            var large = Flask(0);
+            Assert.That(Glyph(first), Is.EqualTo("Flat world glyph 118"));
+            Assert.That(Glyph(second), Is.EqualTo("Flat world glyph 118"));
+            Assert.That(Spent, Is.Zero);
+            var dirty = new List<(int, int)>();
+            var original = ZoneRenderHooks.CellDirtyCallback;
+            try
+            {
+                ZoneRenderHooks.CellDirtyCallback = (x, y, source) =>
+                {
+                    if (source == "Public catch-cloth") dirty.Add((x, y));
+                };
+                Assert.True(Act(first, Row(first, small).Command));
+                Assert.That(Glyph(second), Is.EqualTo("Flat world glyph 118"));
+                Assert.That(dirty, Is.Empty);
+                Assert.True(Act(second, Row(second, large).Command));
+                Assert.That(dirty, Is.EquivalentTo(new[] { (11, 10), (9, 10) }));
+            }
+            finally
+            {
+                ZoneRenderHooks.CellDirtyCallback = original;
+            }
+            Assert.That(Units(large), Is.EqualTo(2));
+            Assert.That(Glyph(first), Is.EqualTo("Flat world glyph 95"));
+            Assert.That(Glyph(second), Is.EqualTo("Flat world glyph 95"));
+            Assert.That(Glyph(ordinary), Is.EqualTo(ordinaryGlyph));
+            Assert.That(first.GetPart<RenderPart>().RenderString, Is.EqualTo("^"));
         }
         [Test] public void ReadersAndMenuReopeningDoNotSpendOrRefillTheSharedAllowance()
         {

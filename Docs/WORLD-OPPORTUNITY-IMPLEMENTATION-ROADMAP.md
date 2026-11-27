@@ -83,6 +83,12 @@ calendar comparison and ordinary Continue in one seed. This extends
 #32 to native art and a separate regional material.
 [North Works playtest](Verification/MachineSystems/NorthLichenWorldCue20261127/README.md)
 
+The two public catch-cloths in Morrowfast now show #32’s water
+opportunity and its spent state on the map. One ordinary collection
+changed both frames. The second frame withheld collection and a fresh
+Continue kept the common spent allowance.
+[Catch-cloth playtest](Verification/MachineSystems/PublicCatchClothCue20261127/README.md)
+
 The Sumphold oil recovery also supports #39–40 through an earned purchase
 and paid lasting Sill repair. Actual play returned to the same path
 approach and measured greater light in two already visible cells. Fresh

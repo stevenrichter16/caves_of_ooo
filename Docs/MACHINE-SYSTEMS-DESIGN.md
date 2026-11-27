@@ -1,3 +1,9 @@
+**The Morrowfast catch-cloths show their shared water.**
+The public frames sag in rain while water is available and flatten
+after either frame uses the common allowance. The same water remains
+usable through ordinary carried vessels and local work.
+[Native playtest](Verification/MachineSystems/PublicCatchClothCue20261127/README.md)
+
 **North Works shows its shallow lichen's seasonal growth.**
 The low crust develops full fronds at the same phase that allows its
 one pinch to be gathered. Ordinary deep lichen keeps its usual supply.

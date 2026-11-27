@@ -17,17 +17,18 @@ namespace CavesOfOoo.Rendering
         {
             glyph = default;
             color = null;
-            if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand or "FrostLichenPatch") || owner.SpatialZone != zone
+            if (owner?.BlueprintName is not (RainClaySeamSite.Source or SeasonalSeedSite.Stand or "FrostLichenPatch" or "CampAwning") || owner.SpatialZone != zone
                 || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true })
                 return false;
 
             var source = owner.GetPart<HarvestablePart>();
-            if (source?.ParentEntity != owner) return false;
-            var (symbol, tint) = source switch
+            var collector = owner.GetPart<RainCollectorPart>();
+            var (symbol, tint) = (source?.ParentEntity == owner ? source : null) switch
             {
                 RainSeamHarvestPart seam => seam.Appearance(zone),
                 SeasonalHarvestPart stand when owner.BlueprintName == SeasonalSeedSite.Stand => stand.KnotflaxAppearance(zone),
                 SeasonalHarvestPart when IsDormantNorthLichen(zone, owner) => ("_", "&c"),
+                _ when owner.BlueprintName == "CampAwning" && collector?.ParentEntity == owner => collector.PublicClothAppearance(zone),
                 _ => default
             };
             if (symbol?.Length != 1 || !AsciiWorldRenderPolicy.IsPrintableGlyph(symbol[0])

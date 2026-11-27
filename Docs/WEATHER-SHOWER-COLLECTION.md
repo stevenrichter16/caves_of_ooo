@@ -29,6 +29,11 @@ season phases are provisional tuning; weather does not disclose protected lore.
 
 ## Fixed shared authority
 
+Morrowfast’s public cloths give a normal-map cue before any menu opens.
+The frame shape shows dry, pooled and drained cloth. Both frames read
+the same saved allowance and repaint after the final draw or a window
+change. [Native cue and reload evidence](Verification/MachineSystems/PublicCatchClothCue20261127/README.md)
+
 A fresh-only public allotment can provide a fixed catchment anchor and two
 fixed collecting frames. No cached retrofit, automatic inventory grant,
 portable entitlement or player-created new allowance in W1a. Each collector

@@ -79,6 +79,33 @@ namespace CavesOfOoo.Core
                 || SpatialQuery.Distance(zone, actor, ParentEntity) > 1)) return false;
             weather = RegionalWeather.Current(zone, now, claim.PolicyVersion); return weather.Valid;
         }
+
+        private bool IsPublicCloth => ParentEntity?.BlueprintName == "CampAwning"
+            && Anchor?.ID == ShowerCollectionSite.PublicNoticeId
+            && Anchor.GetProperty(RepairCultivationSite.RoleKey) == "notice"
+            && Anchor.GetPart<RainCatchmentPart>()?.PlotKey == ShowerCollectionSite.PublicPlotKey;
+
+        internal (string Glyph, string Color) PublicClothAppearance(Zone zone)
+        {
+            if (!IsPublicCloth || zone?.ZoneID != RepairCultivationSite.ZoneID
+                || WorldLocationContext.For(zone)?.ActiveZone != zone
+                || !Context(null, zone, out var claim, out var weather) || !weather.Raining)
+                return default;
+            return claim.Remaining(weather.Window) > 0 ? ("v", "&C") : ("_", "&c");
+        }
+
+        internal static void InvalidatePublicCloths(Zone zone, Entity anchor = null)
+        {
+            if (zone?.ZoneID != RepairCultivationSite.ZoneID || WorldLocationContext.For(zone)?.ActiveZone != zone)
+                return;
+            foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainCollectorPart>())
+                if (owner.GetPart<RainCollectorPart>() is { IsPublicCloth: true } collector
+                    && collector.ParentEntity == owner
+                    && (anchor == null || collector.Anchor == anchor)
+                    && zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
+                    ZoneRenderHooks.MarkCellDirty(cell, "Public catch-cloth");
+        }
+
         static bool Receiver(Entity actor, Entity owner, out int amount, out int capacity, bool needsRoom = true)
         {
             amount = capacity = 0;
@@ -182,8 +209,13 @@ namespace CavesOfOoo.Core
                 && vessel.GetPart<PhysicsPart>() == physics && vessel.GetPart<WaterskinPart>() == skin && vessel.GetPart<LiquidVesselPart>() == liquid
                 && Receiver(actor, vessel, out int currentUnits, out int currentCap, false) && currentUnits == before + take && currentCap == capacity
                 && LiquidRegistry.Get("water") == water);
-            tx.AfterCommit(() => { MessageLog.Add("You catch " + take + " water in the " + vessel.GetDisplayName() + ". " + (RainCatchmentPart.Allowance - expectedSpent) + " remain in this shared catchment interval.");
-                CavesOfOoo.Diagnostics.Diag.Record("weather", "RainCollected", actor, owner, new { anchor = rid, recipient = vid, window = weather.Window, amount = take, spent = expectedSpent }); });
+            tx.AfterCommit(() =>
+            {
+                if (expectedSpent == RainCatchmentPart.Allowance && IsPublicCloth)
+                    InvalidatePublicCloths(zone, anchor);
+                MessageLog.Add("You catch " + take + " water in the " + vessel.GetDisplayName() + ". " + (RainCatchmentPart.Allowance - expectedSpent) + " remain in this shared catchment interval.");
+                CavesOfOoo.Diagnostics.Diag.Record("weather", "RainCollected", actor, owner, new { anchor = rid, recipient = vid, window = weather.Window, amount = take, spent = expectedSpent });
+            });
             return true;
         }
     }

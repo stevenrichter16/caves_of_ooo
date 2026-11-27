@@ -9,6 +9,8 @@ namespace CavesOfOoo.Core
     /// allotment. Original beds, materials, paths and cached saves stay literal.</summary>
     public static class ShowerCollectionSite
     {
+        internal const string PublicNoticeId = "repair-cultivation:allotment-notice";
+        internal const string PublicPlotKey = "morrowfast-public-allotment-v1";
         static readonly HashSet<Zone> Working = new HashSet<Zone>();
         public static bool TryInstall(Zone zone, OverworldZoneManager manager)
         {
@@ -20,7 +22,7 @@ namespace CavesOfOoo.Core
                 || manager.WorldMap.GetBiome(2, 6) != BiomeType.Grovelands || manager.WorldMap.GetPOI(2, 6) != null
                 || !factory.Blueprints.ContainsKey("CampAwning") || zone.GetReadOnlyEntitiesWithPart<RainCatchmentPart>().Count != 0) return false;
             var before = zone.GetReadOnlyEntities().ToArray();
-            var notices = before.Where(e => e.ID == "repair-cultivation:allotment-notice" && e.GetProperty(RepairCultivationSite.RoleKey) == "notice").ToArray();
+            var notices = before.Where(e => e.ID == PublicNoticeId && e.GetProperty(RepairCultivationSite.RoleKey) == "notice").ToArray();
             if (notices.Length != 1) return false;
             var anchor = notices[0]; var cell = zone.GetEntityCell(anchor);
             var ground = cell?.Objects.SingleOrDefault(e => e.HasTag("Terrain"));
@@ -67,7 +69,7 @@ namespace CavesOfOoo.Core
                 if (!source() || !checks.All(check => check()) || !candidates.All(c => Clear(zone, c)) || frames.Select(e => e.ID).Distinct().Count() != frames.Count
                     || frames.Any(e => before.Any(old => old.ID == e.ID)) || WorldClock.CurrentTick < 0) return false;
                 claim = new RainCatchmentPart { Ground = ground, WorldKey = manager.Exploration.WorldKey,
-                    PlotKey = "morrowfast-public-allotment-v1", Public = true, PolicyVersion = RegionalWeather.PolicyVersion, ActivatedAt = WorldClock.CurrentTick };
+                    PlotKey = PublicPlotKey, Public = true, PolicyVersion = RegionalWeather.PolicyVersion, ActivatedAt = WorldClock.CurrentTick };
                 anchor.AddPart(claim);
                 for (int i = 0; i < frames.Count; i++)
                 {

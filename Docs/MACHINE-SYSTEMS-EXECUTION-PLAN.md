@@ -1,3 +1,10 @@
+**Morrowfast shows when its public cloths hold rain — November 27 UTC, 2026.**
+Both frames sag with visible water and flatten when either spends the
+shared allowance. The ordinary catch filled the carried flask with
+three water. The other frame refused a second draw. Fresh Continue
+kept both drained cues and the exact 3/12 flask.
+[Playtest and capture](Verification/MachineSystems/PublicCatchClothCue20261127/README.md)
+
 **North Works shows the shallow lichen's harvest phase — November 27 UTC, 2026.**
 The fixed approach shows a low crust and then full fronds in both
 world views. The dormant menu withheld harvest. The real ripe harvest

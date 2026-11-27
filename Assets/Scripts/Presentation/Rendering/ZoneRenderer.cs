@@ -632,6 +632,7 @@ namespace CavesOfOoo.Rendering
             CurrentZone = zone;
             _fieldOpportunityPaintTick = int.MinValue;
             _fieldOpportunityPaintSeason = -1;
+            _catchClothPaintWindow = -1;
             _envSpriteRenderer?.ClearFlatPaintReceipts();
             SyncFlatPixelMode();
             _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
@@ -833,6 +834,7 @@ namespace CavesOfOoo.Rendering
 
         private int _fieldOpportunityPaintTick = int.MinValue;
         private int _fieldOpportunityPaintSeason = -1;
+        private int _catchClothPaintWindow = -1;
 
         // A wait can change local bloom or rain without moving the player.
         // Repaint only the visible sources affected by that clock change.
@@ -845,9 +847,17 @@ namespace CavesOfOoo.Rendering
             if (tick == _fieldOpportunityPaintTick) return;
             _fieldOpportunityPaintTick = tick;
             if (allotment)
+            {
                 foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>())
                     if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
                         MarkCellDirty(cell, "Rain seam appearance");
+                int window = tick / RegionalWeather.WindowTicks;
+                if (window != _catchClothPaintWindow)
+                {
+                    _catchClothPaintWindow = window;
+                    RainCollectorPart.InvalidatePublicCloths(zone);
+                }
+            }
 
             var weather = RegionalWeather.Current(zone, tick, RegionalWeather.PolicyVersion);
             int season = weather.Valid ? weather.Season : -1;
