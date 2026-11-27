@@ -1218,10 +1218,12 @@ and both dry detours. The solid banks cast visible shadows and form
 readable edges around the mire on the flat map. The north boards
 cross watched ground. The south bank gives a free dry detour. The
 existing west notice described both paths without the watched stretch.
-The next small change is to clarify that distinction in the readers.
+The revised notice and post now describe the north claim and the free
+south route on the same physical signs, including visited worlds.
 Use the longer horizontal peat faces as a separate visual reference
 for the raised-pool silhouette.
-[Cutbank routes and screenshots](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md)
+[Cutbank routes and screenshots](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md) ·
+[Updated route readers](Verification/MachineSystems/CutbankRouteReaders20261127/README.md)
 
 ## Improvement pass after all 45 are verified
 

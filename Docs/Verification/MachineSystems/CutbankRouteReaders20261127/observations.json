@@ -1,0 +1,138 @@
+{
+  "baseline": "6dcc5a367091437f32f5a0a52a95fd7e081b0af8",
+  "native": {
+    "red": {
+      "counts": {
+        "total": 5,
+        "passed": 3,
+        "failed": 2,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "focusedCases": {
+        "CutbankNoticeNeverCorrectsUnrelatedOwners(\"Overworld.15.7.0\",18,11,\"notice\")": "Passed",
+        "CutbankNoticeNeverCorrectsUnrelatedOwners(\"Overworld.16.7.0\",19,11,\"notice\")": "Passed",
+        "CutbankNoticeNeverCorrectsUnrelatedOwners(\"Overworld.16.7.0\",18,11,\"unrelated\")": "Passed",
+        "CutbankReadersClarifyTheWatchedRouteOnExistingOwners(\"SoddenRouteNotice\",18,11,\"SoddenDistrict.Role\",\"notice\",\"The dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire.\")": "Failed",
+        "CutbankReadersClarifyTheWatchedRouteOnExistingOwners(\"SoddenPassagePost\",36,2,\"SecondExploration.Role\",\"cutbank-post\",\"A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open.\")": "Failed"
+      },
+      "compilerErrors": 0,
+      "logSha256": "7868f88447b429cd6867093f639317de1f2de0e977e35395c9f37c49c14fc00e",
+      "xmlSha256": "7133aba29a1023fdb89cde14cf8b873f8cf46d43e25c8552cf83338971bdaf81"
+    },
+    "green": {
+      "counts": {
+        "total": 172,
+        "passed": 172,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "focusedCases": {
+        "CutbankNoticeNeverCorrectsUnrelatedOwners(\"Overworld.15.7.0\",18,11,\"notice\")": "Passed",
+        "CutbankNoticeNeverCorrectsUnrelatedOwners(\"Overworld.16.7.0\",19,11,\"notice\")": "Passed",
+        "CutbankNoticeNeverCorrectsUnrelatedOwners(\"Overworld.16.7.0\",18,11,\"unrelated\")": "Passed",
+        "CutbankReadersClarifyTheWatchedRouteOnExistingOwners(\"SoddenRouteNotice\",18,11,\"SoddenDistrict.Role\",\"notice\",\"The dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire.\")": "Passed",
+        "CutbankReadersClarifyTheWatchedRouteOnExistingOwners(\"SoddenPassagePost\",36,2,\"SecondExploration.Role\",\"cutbank-post\",\"A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open.\")": "Passed"
+      },
+      "compilerErrors": 0,
+      "logSha256": "05df5a18a9175e66a10b0ca5e45993fbed460a72a619975a44e0615365796842",
+      "xmlSha256": "fac3da4ff7067644a844207037eb855090877268b3172d7c8f426000307314fe"
+    }
+  },
+  "live": {
+    "notice-examine": {
+      "open": true,
+      "title": "cutbank crossing route notice",
+      "blueprint": "SoddenRouteNotice",
+      "owner": "24560",
+      "lines": [
+        "The dressing shelter is west; the abandoned works",
+        "are east. A scarlet-banded frog rests beside the",
+        "direct mire crossing; striking its caustic skin can",
+        "poison you. Raised boards turn north around the",
+        "cut; the southern bank also stays dry. Both detours",
+        "are longer. Heating mire can release poisonous",
+        "marsh gas. Leather boots are armor, not protection",
+        "from the mire.",
+        "",
+        "Type: Object"
+      ]
+    },
+    "unmodified-saved-prose": {
+      "notice": {
+        "ID": "24560",
+        "raw": "The dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire."
+      },
+      "post": {
+        "ID": "26073",
+        "raw": "A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open."
+      },
+      "tick": 7230
+    },
+    "updated-notice": {
+      "open": true,
+      "title": "cutbank crossing route notice",
+      "blueprint": "SoddenRouteNotice",
+      "owner": "24560",
+      "lines": [
+        "The dressing shelter is west; the abandoned works",
+        "are east. A scarlet-banded frog rests beside the",
+        "direct mire crossing; striking its caustic skin can",
+        "poison you. The north boards cross watched ground",
+        "when the passage post is staffed. Ask the watcher",
+        "before entering the marked stretch. The south bank",
+        "is dry and free. Both detours are longer than the",
+        "wet crossing. Heating mire can release poisonous",
+        "marsh gas. Leather boots are armor, not protection",
+        "from the mire.",
+        "",
+        "Type: Object"
+      ]
+    },
+    "updated-post": {
+      "open": true,
+      "title": "cutbank passage post",
+      "blueprint": "SoddenPassagePost",
+      "owner": "26073",
+      "lines": [
+        "When the post is staffed, four drams buy one",
+        "passage over the watched north boards. The south",
+        "bank is a free dry detour. The direct mire crossing",
+        "stays wet and open.",
+        "",
+        "Type: Object"
+      ]
+    },
+    "after-read-prose": {
+      "notice": {
+        "ID": "24560",
+        "raw": "The dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire."
+      },
+      "post": {
+        "ID": "26073",
+        "raw": "A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open."
+      },
+      "tick": 7460
+    },
+    "reader-environment": {
+      "playing": false,
+      "changing": false,
+      "saveRoot": null,
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices"
+    }
+  },
+  "westForkArchiveSha256": {
+    "Quick.json": "857f69b6625988597cf725981fa85d6313eb983e1b3c17d8b246145c435744cb",
+    "Quick.json.bak": "d06605fb1e998a49c09c8acd3f9d1efdda274397c0273365c1853f1a54891262",
+    "Quick.sav.gz": "185a5a4a0cf840f9d585ae6a8f67016f0164770053514c4e70f0d23c6e2b8310",
+    "Quick.sav.gz.bak": "91ad4ab369a4bd65e836f38923bf8dce885fbdfe281671ee0c17b0ae66cd7cf9"
+  },
+  "screenshots": {
+    "01-west-notice.png": "b84ec686d2be16ccad92d7109506bb62ee1fa2a99f651ebed40acf5c731697c8",
+    "02-north-post.png": "463f3ecf296e9ed47f464a8143e65edd70961a99052027fe15ecc669e083f2ca"
+  },
+  "normalQuickSaveFilesPreserved": 876,
+  "priorTrackedFilesPreserved": 87
+}

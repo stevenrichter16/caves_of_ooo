@@ -76,6 +76,9 @@ namespace CavesOfOoo.Core
             if (owner?.BlueprintName == "SoddenDressingBench" && owner.GetPart<ExaminablePart>() == this
                 && owner.GetPart<SoddenPreparationPart>()?.ParentEntity == owner)
                 return Text?.Replace(SoddenPreparationPart.LegacyBraceSentence, "");
+            if ((owner?.BlueprintName == "SoddenRouteNotice" || owner?.BlueprintName == "SoddenPassagePost")
+                && owner.GetPart<ExaminablePart>() == this)
+                return SoddenDistrict.DescribeCutbankRoutes(owner, Text);
             if (owner?.GetPart<ExaminablePart>() == this && FieldWorkRigRules.Payload(owner))
                 return (Text ?? "").Replace("It can be hauled locally; release it before working.",
                     "It can be hauled locally. Across a straight area edge, align it behind you on plain, clear ground: "

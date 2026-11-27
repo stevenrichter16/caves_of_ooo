@@ -35,9 +35,10 @@ claim. Fresh Continue restored the northern branch's destination,
 The west notice describes the two detours but omits the watched part
 of the north boards. The passage post suggests the longer boardwalks
 are open, although the actual claim overlaps the north boards. Those
-readers need to distinguish a watched north stretch from the free
-south bank. The solid peat and mire already give the player usable
-visible boundaries. No rendering, terrain or movement rules changed.
+readers now distinguish the watched north stretch from the free
+south bank in the [reader follow-up](../CutbankRouteReaders20261127/README.md).
+The solid peat and mire already give the player usable visible
+boundaries. This playtest ran on the existing terrain.
 
 [West fork](01-west-fork.png) · [Look at the peat face](02-bank-look.png) ·
 [Mire opening](03-mire-opening.png) · [North duckboards](04-dry-duckboard.png) ·

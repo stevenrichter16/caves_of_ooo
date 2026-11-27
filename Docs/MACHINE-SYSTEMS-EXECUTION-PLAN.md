@@ -1,10 +1,18 @@
+**Cutbank route readers distinguish the watched boards — November 27, 2026, America/Chicago.**
+The west notice explains that the north boards cross watched ground
+when the post is staffed. The post describes the four-dram passage
+and the free dry detour on the south bank. Both Examine readers
+correct the stock directions on the exact physical notices, including
+visited saves. All 172 focused cases passed.
+[Cutbank route readers](Verification/MachineSystems/CutbankRouteReaders20261127/README.md)
+
 **The Cutbank Crossing banks, gap and dry detours work in live play — November 27, 2026, America/Chicago.**
 Look found the solid peat face. An ordinary bump damaged it without
 moving the traveler. From the same western fork, six wet steps passed
 the existing opening and applied bog mire to the traveler and nearby
 sari-snakes. Both dry detours reached the east fork. The northern
-boards crossed watched ground and the southern bank did not. The west
-notice omits that distinction. It is the next local reader correction.
+boards crossed watched ground and the southern bank stayed outside
+the claim. The old west notice omitted that distinction.
 [Cutbank routes and screenshots](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md)
 
 **Marsh-gas source survives Continue — November 27, 2026, America/Chicago.**

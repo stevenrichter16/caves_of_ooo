@@ -2532,6 +2532,14 @@ cached-zone pool after retreat and Continue. Older saves retain the
 original damage and duration with no source to recover.
 [Source identity and live checks](Verification/MachineSystems/GasSourceContinue20261127/README.md)
 
+At Cutbank Crossing, the bank itself blocks ordinary movement while
+the gap exposes a traveler to real mire. The north boards and southern
+bank offer the longer dry alternatives. The north claim applies to
+the marked stretch when staffed, and the south route is free. Both
+Examine readers use the same corrected directions on the local signs.
+[Live terrain](Verification/MachineSystems/CutbankRaisedBanks20261127/README.md) ·
+[Route readers](Verification/MachineSystems/CutbankRouteReaders20261127/README.md)
+
 The Brine Camp recovery comparison confirmed that an empty bed's
 saved reservation can block ordinary rest after an NPC's arrival
 callback is lost. Reservations now restore from the actual sleeper.

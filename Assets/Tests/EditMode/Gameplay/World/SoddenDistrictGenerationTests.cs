@@ -20,6 +20,68 @@ namespace CavesOfOoo.Tests
         }
         internal static readonly string[] Sites={"Overworld.15.7.0","Overworld.16.7.0","Overworld.17.7.0"};
 
+        private const string LegacyCrossingNotice = "The dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire.";
+        private const string LegacyCrossingPost = "A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open.";
+
+        [TestCase("SoddenRouteNotice", 18, 11, SoddenDistrictBuilder.RoleKey, "notice", LegacyCrossingNotice)]
+        [TestCase("SoddenPassagePost", 36, 2, SecondExplorationSites.RoleKey, "cutbank-post", LegacyCrossingPost)]
+        public void CutbankReadersClarifyTheWatchedRouteOnExistingOwners(string blueprint, int x, int y,
+            string roleKey, string role, string legacyText)
+        {
+            var zone = new Zone(SoddenDistrictPlan.CrossingZoneID);
+            var owner = Factory().CreateEntity(blueprint);
+            owner.Properties[roleKey] = role;
+            Assert.IsTrue(zone.AddEntity(owner, x, y));
+            var cell = zone.GetCell(x, y);
+            cell.IsVisible = cell.Explored = true;
+            var examine = owner.GetPart<ExaminablePart>();
+            examine.Text = legacyText;
+
+            string corrected = examine.GetDescriptionText();
+            Assert.That(corrected, Does.Match("(?i)north[^.!?]*board"));
+            Assert.That(corrected, Does.Match("(?i)watch"));
+            Assert.That(corrected, Does.Match("(?i)south[^.!?]*bank"));
+            Assert.That(corrected, Does.Match("(?i)wet"));
+            Assert.That(corrected, Does.Match("(?i)dry"));
+            if (role == "notice")
+            {
+                Assert.That(corrected, Does.Match("(?i)\\b(if|when)\\b"), "Old worlds can have no staffed post.");
+                Assert.That(corrected, Does.Contain("Heating mire can release poisonous marsh gas."));
+                Assert.That(corrected, Does.Contain("Leather boots are armor, not protection from the mire."));
+            }
+            else
+            {
+                Assert.That(corrected, Does.Match("(?i)four drams"));
+                Assert.That(corrected, Does.Not.Contain("A short dry crossing"));
+            }
+
+            Assert.That(examine.BuildWorldExamineLine(zone, cell), Does.Contain(corrected));
+            var document = ExamineDocumentBuilder.BuildWorld(owner, zone, cell);
+            Assert.IsNotNull(document);
+            var description = document.Sections.Single(section => section.Heading == "Description");
+            Assert.AreEqual(corrected, description.Text);
+            Assert.AreEqual(legacyText, examine.Text, "Reading must preserve the saved description.");
+
+            const string custom = "This reader has a traveler's handwritten instructions.";
+            examine.Text = custom;
+            Assert.AreEqual(custom, examine.GetDescriptionText());
+        }
+
+        [TestCase("Overworld.15.7.0", 18, 11, "notice")]
+        [TestCase(SoddenDistrictPlan.CrossingZoneID, 19, 11, "notice")]
+        [TestCase(SoddenDistrictPlan.CrossingZoneID, 18, 11, "unrelated")]
+        public void CutbankNoticeNeverCorrectsUnrelatedOwners(string zoneId, int x, int y, string role)
+        {
+            var zone = new Zone(zoneId);
+            var owner = Factory().CreateEntity("SoddenRouteNotice");
+            owner.Properties[SoddenDistrictBuilder.RoleKey] = role;
+            Assert.IsTrue(zone.AddEntity(owner, x, y));
+            var examine = owner.GetPart<ExaminablePart>();
+            examine.Text = LegacyCrossingNotice;
+
+            Assert.AreEqual(LegacyCrossingNotice, examine.GetDescriptionText());
+        }
+
         [Test] public void ThreeSoddenDestinationsFormAnExactChainBelowSumphold()
         {
             CollectionAssert.AreEqual(Sites,new[]{SoddenDistrictPlan.StopZoneID,SoddenDistrictPlan.CrossingZoneID,SoddenDistrictPlan.WorksZoneID});

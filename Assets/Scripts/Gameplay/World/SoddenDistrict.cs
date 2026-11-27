@@ -9,6 +9,32 @@ namespace CavesOfOoo.Core
     {
         public const int FirstVersion=14;
         public static bool Retain(string id)=>SoddenDistrictPlan.IsSupportedZone(id);
+
+        // Visited sites keep their original saved notices. Correct only their stock route directions at read time.
+        internal static string DescribeCutbankRoutes(Entity owner, string text)
+        {
+            Zone zone = owner.SpatialZone;
+            if (text == null || zone?.ZoneID != SoddenDistrictPlan.CrossingZoneID)
+                return text;
+
+            var cell = zone.GetEntityPosition(owner);
+            if (owner.BlueprintName == "SoddenRouteNotice" && cell == (18, 11)
+                && owner.GetProperty(SoddenDistrictBuilder.RoleKey) == "notice")
+            {
+                return text.Replace("Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer.",
+                    "The north boards cross watched ground when the passage post is staffed. Ask the watcher before entering the marked stretch. The south bank is dry and free. Both detours are longer than the wet crossing.");
+            }
+
+            if (owner.BlueprintName == "SoddenPassagePost" && cell == (36, 2)
+                && owner.GetProperty(SecondExplorationSites.RoleKey) == "cutbank-post")
+            {
+                return text.Replace("A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open.",
+                    "When the post is staffed, four drams buy one passage over the watched north boards. The south bank is a free dry detour. The direct mire crossing stays wet and open.");
+            }
+
+            return text;
+        }
+
         /// <summary>Only the current generated crossing's real western notice
         /// selects its first map arrival. Remembered returns take precedence in
         /// WorldMapTraversal; this never edits or rebuilds a destination graph.</summary>
