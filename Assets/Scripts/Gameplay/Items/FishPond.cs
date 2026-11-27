@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
         // connected pond different anchors when approached from opposite shores.
         public const int MinCells = 12, MaxCells = Zone.Width * Zone.Height;
         public const string PouredPool = "PouredLiquidPool", FishTag = "FishWater", LegacyBlueprint = "SprayPool";
+        internal enum Activity { None, Quiet, Thin, Active }
 
         /// <summary>The pool owner of a fishable-water cell, whatever its volume or ice: the pond's structure. Null when the cell holds none.</summary>
         public static Entity StructuralAt(Zone zone, int x, int y)
@@ -75,8 +76,15 @@ namespace CavesOfOoo.Core
             anchor = null;
             var water = Component(zone, x, y);
             if (water.Count < MinCells) return false;
+            anchor = StockHolder(zone, water);
+            return anchor != null;
+        }
+
+        static Entity StockHolder(Zone zone, List<Entity> water)
+        {
             (int y, int x) best = (int.MaxValue, int.MaxValue);
-            Entity stocked = null; (int y, int x) stockedAt = (int.MaxValue, int.MaxValue);
+            Entity anchor = null, stocked = null;
+            (int y, int x) stockedAt = (int.MaxValue, int.MaxValue);
             foreach (var e in water)
             {
                 var at = zone.GetEntityCell(e); if (at == null) continue;
@@ -85,8 +93,72 @@ namespace CavesOfOoo.Core
                 if (stock?.ParentEntity == e && (at.Y, at.X).CompareTo(stockedAt) < 0)
                 { stocked = e; stockedAt = (at.Y, at.X); }
             }
-            anchor = stocked ?? anchor;
-            return anchor != null;
+            return stocked ?? anchor;
         }
+
+        static bool Disclosed(Cell cell) => cell is { Explored: true, IsVisible: true };
+
+        static bool ShowsSurface(Zone zone, Cell cell, Entity owner)
+            => Disclosed(cell) && owner != null && owner.GetPart<RenderPart>() is RenderPart render
+                && render.ParentEntity == owner && render.Visible && PoolAt(zone, cell.X, cell.Y) == owner;
+
+        static Activity ReadActivity(Entity holder, int now)
+        {
+            var stock = holder?.GetPart<FishStockPart>();
+            if (holder == null) return Activity.None;
+            if (stock == null || stock.ParentEntity != holder) return Activity.Active;
+            int available = stock.AvailableAt(now);
+            if (available <= 0) return Activity.Quiet;
+            return available * 3 <= stock.Capacity ? Activity.Thin : Activity.Active;
+        }
+
+        /// <summary>A cue on the visible, drawable surface of this exact basin.
+        /// Only the actual pond ledger is projected. Traps have committed no
+        /// catch merely because their readers forecast one.</summary>
+        internal static Activity VisibleActivity(Zone zone, Cell cell, int now)
+        {
+            if (zone == null || !Disclosed(cell) || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell)
+                return Activity.None;
+            var owner = StructuralAt(zone, cell.X, cell.Y);
+            return ShowsSurface(zone, cell, owner) && TryFind(zone, cell.X, cell.Y, out var holder)
+                ? ReadActivity(holder, now) : Activity.None;
+        }
+
+        /// <summary>Choose one visible shore tile per active basin. Traverse each
+        /// touched component once per paint refresh, never once per water tile.</summary>
+        internal static void FillShoreMarks(Zone zone, Cell observer, int now, Dictionary<Cell, Activity> marks)
+        {
+            marks.Clear();
+            if (zone == null) return;
+            HashSet<Entity> seen = null;
+            foreach (var owner in zone.GetReadOnlyEntitiesWithPart<LiquidPoolPart>())
+            {
+                if (seen?.Contains(owner) == true) continue;
+                var at = zone.GetEntityCell(owner);
+                if (!ShowsSurface(zone, at, owner)) continue;
+                var water = Component(zone, at.X, at.Y);
+                (seen ??= new HashSet<Entity>()).UnionWith(water);
+                if (water.Count < MinCells) continue;
+                var activity = ReadActivity(StockHolder(zone, water), now);
+                if (activity != Activity.Active && activity != Activity.Thin) continue;
+
+                Cell best = null;
+                (int distance, int y, int x) bestRank = (int.MaxValue, int.MaxValue, int.MaxValue);
+                foreach (var member in water)
+                {
+                    var candidate = zone.GetEntityCell(member);
+                    if (!Disclosed(candidate) || candidate.GetTopVisibleObject() != member || !OnBank(zone, candidate)
+                        || !ShowsSurface(zone, candidate, member)) continue;
+                    int distance = observer == null ? 0 : Math.Abs(observer.X - candidate.X) + Math.Abs(observer.Y - candidate.Y);
+                    var rank = (distance, candidate.Y, candidate.X);
+                    if (rank.CompareTo(bestRank) < 0) { best = candidate; bestRank = rank; }
+                }
+                if (best != null) marks.Add(best, activity);
+            }
+        }
+
+        static bool OnBank(Zone zone, Cell cell)
+            => StructuralAt(zone, cell.X - 1, cell.Y) == null || StructuralAt(zone, cell.X + 1, cell.Y) == null
+                || StructuralAt(zone, cell.X, cell.Y - 1) == null || StructuralAt(zone, cell.X, cell.Y + 1) == null;
     }
 }

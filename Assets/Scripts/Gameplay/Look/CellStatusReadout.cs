@@ -28,8 +28,11 @@ namespace CavesOfOoo.Core
         /// tile-state store used by coatings and hazards.
         /// </summary>
         public static string GroundLine(Zone zone, Cell cell)
+            => GroundLine(zone, cell, includeFishActivity: true);
+
+        internal static string GroundLine(Zone zone, Cell cell, bool includeFishActivity)
         {
-            var parts = Collect(zone, cell, withCounts: true);
+            var parts = Collect(zone, cell, withCounts: true, includeFishActivity);
             if (parts == null || parts.Count == 0)
                 return null;
             return "On the ground: " + string.Join(", ", parts);
@@ -136,7 +139,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static string GroundSummary(Zone zone, Cell cell)
         {
-            var parts = Collect(zone, cell, withCounts: false);
+            var parts = Collect(zone, cell, withCounts: false, includeFishActivity: true);
             if (parts == null || parts.Count == 0)
                 return null;
             return string.Join(", ", parts);
@@ -175,7 +178,7 @@ namespace CavesOfOoo.Core
         }
 
 
-        private static List<string> Collect(Zone zone, Cell cell, bool withCounts)
+        private static List<string> Collect(Zone zone, Cell cell, bool withCounts, bool includeFishActivity)
         {
             if (zone == null || cell == null || !cell.Explored || !cell.IsVisible
                 || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell)
@@ -192,8 +195,22 @@ namespace CavesOfOoo.Core
             // so the signature no longer offers a way to desync.
             var state = zone.TileState.Get(cell.X, cell.Y);
             bool preparedBed = HasDisclosedPreparedBed(zone, cell);
+            var activity = includeFishActivity ? FishPond.VisibleActivity(zone, cell, WorldClock.CurrentTick) : FishPond.Activity.None;
+            string fishActivity = activity switch
+            {
+                FishPond.Activity.Active => "fish rings",
+                FishPond.Activity.Thin => "faint fish rings",
+                FishPond.Activity.Quiet => "water quiet",
+                _ => null
+            };
             if (state == null)
-                return preparedBed ? new List<string> { "prepared planting bed" } : null;
+            {
+                if (!preparedBed && fishActivity == null) return null;
+                var visible = new List<string>();
+                if (preparedBed) visible.Add("prepared planting bed");
+                if (fishActivity != null) visible.Add(fishActivity);
+                return visible;
+            }
 
             var parts = new List<string>();
             bool gritted = LiquidSlipSystem.HasGrit(zone, cell.X, cell.Y);
@@ -219,6 +236,7 @@ namespace CavesOfOoo.Core
                     + FormatTurns(state.CloudTurns, withCounts)
                     + (state.Cloud == "veil-mist" && state.CloudTurns > 0 ? " (blocks sight)" : ""));
             if (preparedBed) parts.Add("prepared planting bed");
+            if (fishActivity != null) parts.Add(fishActivity);
             return parts;
         }
 

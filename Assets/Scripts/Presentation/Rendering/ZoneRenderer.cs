@@ -633,6 +633,9 @@ namespace CavesOfOoo.Rendering
             _fieldOpportunityPaintTick = int.MinValue;
             _fieldOpportunityPaintSeason = -1;
             _catchClothPaintWindow = -1;
+            _fishMarks.Clear();
+            _nextFishMarks.Clear();
+            _fishPaintTick = int.MinValue;
             _envSpriteRenderer?.ClearFlatPaintReceipts();
             SyncFlatPixelMode();
             _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
@@ -835,6 +838,29 @@ namespace CavesOfOoo.Rendering
         private int _fieldOpportunityPaintTick = int.MinValue;
         private int _fieldOpportunityPaintSeason = -1;
         private int _catchClothPaintWindow = -1;
+        private int _fishPaintTick = int.MinValue;
+        private Dictionary<Cell, FishPond.Activity> _fishMarks = new Dictionary<Cell, FishPond.Activity>();
+        private Dictionary<Cell, FishPond.Activity> _nextFishMarks = new Dictionary<Cell, FishPond.Activity>();
+
+        private void RefreshFishMarks(bool fullRedraw)
+        {
+            if (_tileStateTilemap == null || CurrentZone == null) return;
+            int tick = WorldClock.CurrentTick;
+            if (!fullRedraw && tick == _fishPaintTick && _dirtyCells.Count == 0) return;
+            _fishPaintTick = tick;
+            var observer = PlayerEntity == null ? null : CurrentZone.GetEntityCell(PlayerEntity);
+            FishPond.FillShoreMarks(CurrentZone, observer, tick, _nextFishMarks);
+            if (!fullRedraw)
+            {
+                foreach (var entry in _fishMarks)
+                    if (!_nextFishMarks.ContainsKey(entry.Key))
+                        MarkCellDirty(entry.Key, "Fish activity");
+                foreach (var entry in _nextFishMarks)
+                    if (!_fishMarks.TryGetValue(entry.Key, out var previous) || previous != entry.Value)
+                        MarkCellDirty(entry.Key, "Fish activity");
+            }
+            (_fishMarks, _nextFishMarks) = (_nextFishMarks, _fishMarks);
+        }
 
         // A wait can change local bloom or rain without moving the player.
         // Repaint only the visible sources affected by that clock change.
@@ -1015,6 +1041,8 @@ namespace CavesOfOoo.Rendering
                     _nativeGeometryFullDirty = true;
                 }
 
+                if (!_fullDirty) RefreshFishMarks(fullRedraw: false);
+
                 // Retain this trigger before the world pass consumes its dirty set.
                 // The actual query follows FOV recomputation and visible-world painting.
                 bool refreshLookAfterWorldPaint = _worldCursorState != null
@@ -1117,6 +1145,8 @@ namespace CavesOfOoo.Rendering
                             FieldOfView.Compute(CurrentZone, playerCell.X, playerCell.Y, FovRadius);
                     }
                 }
+
+                RefreshFishMarks(fullRedraw: true);
 
                 // Compute lighting from all light sources
                 if (_lightMap == null)
@@ -1369,7 +1399,7 @@ namespace CavesOfOoo.Rendering
             var state = CurrentZone.TileState.Get(x, y);
             if (state == null)
             {
-                _tileStateTilemap.SetTile(tilePos, null);
+                if (!TryPaintFishMark(tilePos, cell)) _tileStateTilemap.SetTile(tilePos, null);
                 return;
             }
 
@@ -1378,6 +1408,10 @@ namespace CavesOfOoo.Rendering
             if(_spawnRing3DPresenter!=null&&ReferenceEquals(_spawnRing3DPresenter.CurrentZone,CurrentZone)
                 &&_spawnRing3DPresenter.TryGetElementVolume(x,y,out _,out _))
             {_tileStateTilemap.SetTile(tilePos,null);return;}
+            if (string.IsNullOrEmpty(state.Cloud) && state.Residues.Count == 0
+                && state.Charge <= 0 && state.Heat <= 0 && state.Cold <= 0
+                && (state.Coatings.Count == 0 || state.Coatings.Count == 1 && state.Coatings[0].Id == "water")
+                && TryPaintFishMark(tilePos, cell)) return;
             char glyph;
             Color color;
             if (state.Cloud == "veil-mist" && state.CloudTurns > 0)
@@ -1474,6 +1508,19 @@ namespace CavesOfOoo.Rendering
                 || (_spawnRing3DPresenter != null
                     && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.ClaimsCell(x, y));
             _tileStateTilemap.SetTransformMatrix(tilePos, nativeCell ? NativeGroundMarkTransform : Matrix4x4.identity);
+        }
+
+        private static readonly Matrix4x4 FishRingTransform = Matrix4x4.Scale(new Vector3(0.65f, 0.65f, 1f));
+
+        private bool TryPaintFishMark(Vector3Int position, Cell cell)
+        {
+            if (!_fishMarks.TryGetValue(cell, out var activity)) return false;
+            bool thin = activity == FishPond.Activity.Thin;
+            _tileStateTilemap.SetTile(position, CP437TilesetGenerator.GetTile(thin ? '.' : 'o'));
+            _tileStateTilemap.SetTileFlags(position, TileFlags.None);
+            _tileStateTilemap.SetColor(position, thin ? QudColorParser.DarkCyan : QudColorParser.BrightCyan);
+            _tileStateTilemap.SetTransformMatrix(position, FishRingTransform);
+            return true;
         }
 
         private static bool IsFlatPixelWaterRepresented(ZoneTileState.TileState state, bool represented)

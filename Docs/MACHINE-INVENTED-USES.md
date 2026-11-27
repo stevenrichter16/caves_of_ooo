@@ -236,6 +236,13 @@ A test now ties the two data files together: every repair site in `PlaceSites.js
 
 **When to come back (2026-11-20).** The reader and the empty take row name when the next fish is due in the time of day the sidebar shows ("The next fish is due around Dusk."; "due soon" in the last two hours of a catch), never a tick count. A full trap says "It is full: it catches no more until you empty it." and a fished-out pond promises nothing (the water's own look says why). Pure projection from the same state the catch already uses; reading changes nothing. Five tests pin it, four mutants (no "soon", full still promising, fished-out still promising, row without timing) each fail a test.
 
+**Shore discovery (2026-11-26).** Visible fishable basins show a small ring
+near the bank before the player sets down a trap. Thin supply shows a
+fainter mark. A spent basin is quiet. Look explains the visible activity
+on the drawable pool. A real Stump catch from the marked basin became a
+meal after retreat and its source debit survived a fresh Continue.
+[Editor evidence](Verification/MachineSystems/FishActivityCue20261127/README.md)
+
 **Honest limits.** Historical supplied Editor play now covers catch->perch->eating->fresh1100 (ScenarioLoadout20261121), not ordinary acquisition or balance. November24 callback/shared-pond/legacy-holder corrections have102/102native plus independent source review; no new fishing playback or chronological freeze/drain history. The rates (a half-day catch, a day to refill, capacity 4 to 8, a cap of four) remain tuning proposals. Fishable water is rare by the game's own design; the Tine lake is a `WaterPuddle` inside a town where kits cannot be set down. The trap has no bait and no skill.
 
 ## 3o. The thirteenth build: shade as a capability, and the awning (2026-11-20)

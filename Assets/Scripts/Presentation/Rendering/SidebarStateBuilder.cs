@@ -251,7 +251,9 @@ namespace CavesOfOoo.Rendering
                     null);
             }
 
-            return LookQueryService.BuildSnapshot(player, zone, x, y);
+            // Automatic focus runs every frame. Deliberate Looks can inspect
+            // the basin; the map already paints its turn-based activity.
+            return LookQueryService.BuildSnapshot(player, zone, x, y, includeFishActivity: false);
         }
 
         private static readonly IReadOnlyList<SidebarLogEntry> _logEntryView = _logEntryScratch.AsReadOnly();

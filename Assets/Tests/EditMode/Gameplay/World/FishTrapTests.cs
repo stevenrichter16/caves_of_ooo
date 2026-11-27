@@ -102,6 +102,138 @@ namespace CavesOfOoo.Tests
 
         // ── catching, reading and taking ──
 
+        [Test] public void FishActivityShowsAnUntouchedBasinWithoutCreatingStock()
+        {
+            var water = wild.GetCell(PondX0, PondY0 + 2);
+            water.IsVisible = water.Explored = true;
+            Assert.True(FishPond.TryFind(wild, water.X, water.Y, out var anchor));
+            Assert.IsNull(anchor.GetPart<FishStockPart>());
+            int tick = WorldClock.CurrentTick;
+
+            string line = CellStatusReadout.GroundLine(wild, water);
+
+            Assert.IsNull(anchor.GetPart<FishStockPart>());
+            Assert.AreEqual(tick, WorldClock.CurrentTick);
+            StringAssert.Contains("fish rings", line);
+            StringAssert.DoesNotContain("faint fish rings", line);
+        }
+
+        [Test] public void FishActivityOnlyAppearsOnVisibleDrawableWaterOfABigEnoughBasin()
+        {
+            void NoFishActivity(Cell cell)
+            {
+                string line = CellStatusReadout.GroundLine(wild, cell) ?? "";
+                StringAssert.DoesNotContain("fish rings", line);
+                StringAssert.DoesNotContain("water quiet", line);
+            }
+
+            var bank = wild.GetCell(PondX0 - 1, PondY0 + 2);
+            bank.IsVisible = bank.Explored = true;
+            NoFishActivity(bank);
+
+            var dry = wild.GetCell(PondX0, PondY0 + 2);
+            dry.IsVisible = dry.Explored = true;
+            FishPond.StructuralAt(wild, dry.X, dry.Y).GetPart<LiquidPoolPart>().Volume = 0;
+            NoFishActivity(dry);
+
+            var frozen = wild.GetCell(PondX0, PondY0 + 3);
+            frozen.IsVisible = frozen.Explored = true;
+            wild.TileState.WriteCoating(frozen.X, frozen.Y, "ice", 100);
+            NoFishActivity(frozen);
+
+            var filmCell = wild.GetCell(PondX0, PondY0 + 4);
+            filmCell.IsVisible = filmCell.Explored = true;
+            FishPond.StructuralAt(wild, filmCell.X, filmCell.Y).AddPart(new FiniteLiquidFilmPart());
+            NoFishActivity(filmCell);
+
+            for (int x = 40; x <= 42; x++)
+                for (int y = 9; y <= 11; y++)
+                    Assert.True(wild.AddEntity(Factory.CreateEntity("SprayPool"), x, y));
+            var small = wild.GetCell(40, 10);
+            small.IsVisible = small.Explored = true;
+            NoFishActivity(small);
+
+            var water = wild.GetCell(PondX0, PondY0 + 5);
+            water.Explored = true;
+            water.IsVisible = false;
+            NoFishActivity(water);
+            water.IsVisible = true;
+            StringAssert.Contains("fish rings", CellStatusReadout.GroundLine(wild, water));
+        }
+
+        [Test] public void FishActivityUsesSavedStockAndGameTimeWithoutForecastingTrapDebits()
+        {
+            var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east");
+            var water = wild.GetCell(PondX0, PondY0 + 2);
+            water.IsVisible = water.Explored = true;
+            var savedHolder = FishPond.StructuralAt(wild, PondX1, PondY1);
+            Assert.False(wild.GetEntityCell(savedHolder).IsVisible, "the old stock holder is outside sight");
+            int stockTick = WorldClock.CurrentTick;
+            var stock = new FishStockPart { Available = 0, Capacity = 6, LastTick = stockTick };
+            savedHolder.AddPart(stock);
+            StringAssert.Contains("water quiet", CellStatusReadout.GroundLine(wild, water));
+
+            Days(1);
+            Assert.AreEqual(1, Part(trap).HeldNow(wild, WorldClock.CurrentTick), "an installed trap also forecasts this catch");
+            StringAssert.Contains("faint fish rings", CellStatusReadout.GroundLine(wild, water));
+            Assert.AreEqual(0, Part(trap).Held);
+            Assert.AreEqual(0, stock.Available);
+            Assert.AreEqual(stockTick, stock.LastTick);
+            Assert.AreSame(stock, Stock());
+        }
+
+        [Test] public void FishActivityMarksOneVisibleShoreAndUpdatesFromTheOtherBank()
+        {
+            const System.Reflection.BindingFlags hidden = System.Reflection.BindingFlags.NonPublic;
+            var activityType = typeof(FishPond).GetNestedType("Activity", hidden);
+            var fill = typeof(FishPond).GetMethod("FillShoreMarks", hidden | System.Reflection.BindingFlags.Static);
+            Assert.NotNull(activityType);
+            Assert.NotNull(fill);
+            var marks = (System.Collections.IDictionary)Activator.CreateInstance(
+                typeof(Dictionary<,>).MakeGenericType(typeof(Cell), activityType));
+
+            var west = wild.GetCell(PondX0, PondY0 + 2);
+            var east = wild.GetCell(PondX1, PondY0 + 2);
+            var interior = wild.GetCell(PondX0 + 2, PondY0 + 2);
+            foreach (var cell in new[] { west, east, interior })
+                cell.IsVisible = cell.Explored = true;
+
+            void Fill(Cell observer) => fill.Invoke(null, new object[] { wild, observer, WorldClock.CurrentTick, marks });
+            void OnlyMark(Cell expected, string activity)
+            {
+                Assert.AreEqual(1, marks.Count);
+                Assert.AreEqual(activity, marks[expected]?.ToString());
+            }
+
+            Fill(wild.GetCell(PondX0 - 1, west.Y));
+            OnlyMark(west, "Active");
+            Assert.IsNull(Stock(), "the paint projection leaves an untouched pond untouched");
+
+            var eastBank = wild.GetCell(PondX1 + 1, east.Y);
+            Fill(eastBank);
+            OnlyMark(east, "Active");
+            east.IsVisible = false;
+            Fill(eastBank);
+            OnlyMark(west, "Active");
+            Assert.False(marks.Contains(east), "a remembered shore must not keep an activity mark");
+
+            Assert.True(FishPond.TryFind(wild, west.X, west.Y, out var holder));
+            int stockTick = WorldClock.CurrentTick;
+            var stock = new FishStockPart { Available = 0, Capacity = 6, LastTick = stockTick };
+            holder.AddPart(stock);
+            Fill(eastBank);
+            Assert.AreEqual(0, marks.Count, "a spent basin has no map ring");
+            Days(1);
+            Fill(eastBank);
+            OnlyMark(west, "Thin");
+            Assert.AreEqual(0, stock.Available);
+            Assert.AreEqual(stockTick, stock.LastTick);
+
+            west.IsVisible = false;
+            Fill(eastBank);
+            Assert.AreEqual(0, marks.Count, "an isolated view of the interior must not expose either hidden shore");
+        }
+
         [Test] public void SharedPondReview_CreationCallbackCannotTakeTheSameFishTwice()
         {
             var trap = SetTrap(PondX0 - 2, PondY0 + 2, "east");

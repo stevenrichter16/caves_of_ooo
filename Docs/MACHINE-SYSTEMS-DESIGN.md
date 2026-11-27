@@ -175,6 +175,14 @@ can still pay out independently. Ordinary shoreline play and a fresh
 Continue verified one paid pond unit on the successful retry.
 [Evidence](Verification/MachineSystems/SharedStockPickup20261127/README.md)
 
+**Fishable shores show activity — November 26, 2026, America/Chicago.**
+The mark and deliberate Look use the pond's shared ledger and the same
+drawable-water rule the trap uses. One mark per
+visible active basin offers discovery without disclosing a stock count.
+The ordinary Stump branch saw two basins, while the existing paid-trap
+branch produced one meal and one durable pond debit.
+[Evidence](Verification/MachineSystems/FishActivityCue20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.

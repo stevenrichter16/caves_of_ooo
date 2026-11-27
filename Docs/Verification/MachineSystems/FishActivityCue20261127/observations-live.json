@@ -1,0 +1,427 @@
+{
+  "mode": "Flat 16×24 GameBootstrap Editor with native keys and private Continue saves",
+  "baseline": "6cdd019c285fa2b0bf0869d440be12d7c59d1f9b",
+  "controlledQuiet": "One temporary zero-stock record was added to exact pond 58374 and its cell repainted at the same tick. This private comparison was discarded before the separate ordinary catch branch.",
+  "observations": {
+    "cueInitial": {
+      "tick": 7360,
+      "zone": "Overworld.2.5.0",
+      "X": 43,
+      "Y": 12,
+      "hp": 38,
+      "mode": "Normal",
+      "carriesTrap": false,
+      "stats": [
+        {
+          "X": 43,
+          "Y": 11,
+          "Explored": true,
+          "IsVisible": true,
+          "band": "Active",
+          "tile": "CP437_6F",
+          "scale": 0.65,
+          "ground": "On the ground: water, fish rings",
+          "anchor": "58374",
+          "liveStock": null
+        },
+        {
+          "X": 60,
+          "Y": 13,
+          "Explored": true,
+          "IsVisible": true,
+          "band": "Active",
+          "tile": "CP437_6F",
+          "scale": 0.65,
+          "ground": "On the ground: water, fish rings",
+          "anchor": "59250",
+          "liveStock": null
+        }
+      ]
+    },
+    "cueFirstLook": {
+      "X": 43,
+      "Y": 11,
+      "Header": "[43,11] spray pool",
+      "DetailLines": [
+        "Contents: pink stone, spray pool",
+        "On the ground: water, fish rings"
+      ],
+      "tick": 7360
+    },
+    "cueQuietSetup": {
+      "anchor": "58374",
+      "Available": 0,
+      "Capacity": 7,
+      "LastTick": 7360
+    },
+    "cueQuietDisplay": {
+      "before": {
+        "success": true,
+        "message": "Code executed successfully.",
+        "data": {
+          "result": {
+            "tick": 7360,
+            "zone": "Overworld.2.5.0",
+            "X": 43,
+            "Y": 12,
+            "hp": 38,
+            "mode": "LookMode",
+            "carriesTrap": false,
+            "stats": [
+              {
+                "X": 60,
+                "Y": 13,
+                "Explored": true,
+                "IsVisible": true,
+                "band": "Active",
+                "tile": "CP437_6F",
+                "scale": 0.65,
+                "ground": "On the ground: water, fish rings",
+                "anchor": "59250",
+                "liveStock": null
+              }
+            ]
+          },
+          "compiler": "codedom"
+        }
+      },
+      "look": {
+        "success": true,
+        "message": "Code executed successfully.",
+        "data": {
+          "result": {
+            "X": 43,
+            "Y": 11,
+            "Header": "[43,11] spray pool",
+            "DetailLines": [
+              "Contents: pink stone, spray pool",
+              "On the ground: water, water quiet"
+            ],
+            "tick": 7360
+          },
+          "compiler": "codedom"
+        }
+      }
+    },
+    "cueDue": {
+      "tick": 8450,
+      "zone": "Overworld.2.5.0",
+      "X": 44,
+      "Y": 12,
+      "hp": 38,
+      "mode": "Normal",
+      "carriesTrap": false,
+      "stats": [
+        {
+          "X": 44,
+          "Y": 11,
+          "Explored": true,
+          "IsVisible": true,
+          "band": "Active",
+          "tile": "CP437_6F",
+          "scale": 0.65,
+          "ground": "On the ground: water, fish rings",
+          "anchor": "58374",
+          "liveStock": null
+        },
+        {
+          "X": 60,
+          "Y": 13,
+          "Explored": true,
+          "IsVisible": true,
+          "band": "Active",
+          "tile": "CP437_6F",
+          "scale": 0.65,
+          "ground": "On the ground: water, fish rings",
+          "anchor": "59250",
+          "liveStock": null
+        }
+      ]
+    },
+    "cueCatchMenu": {
+      "i": 1,
+      "key": "t",
+      "Display": "take the fish (1)",
+      "Command": "TakeTrapFish",
+      "IsDisabled": false,
+      "Hint": "Empties the trap into your pack. It catches again while it stands, up to four at a time, from the pond's own supply."
+    },
+    "cueCatch": {
+      "tick": 8460,
+      "trap": "71547",
+      "home": [
+        45,
+        12
+      ],
+      "setTick": 7800,
+      "Held": 0,
+      "Progress": 50,
+      "LastTick": 8450,
+      "shown": 0,
+      "pond": "58374",
+      "stock": {
+        "Available": 6,
+        "LastTick": 8450,
+        "Capacity": 7
+      },
+      "MaxWeight": 150,
+      "carried": 39,
+      "isCarried": false,
+      "perch": [
+        {
+          "ID": "71583",
+          "count": 1
+        }
+      ],
+      "hp": 18
+    },
+    "cueEscaped": {
+      "zone": "WorldMap",
+      "x": 32,
+      "y": 8,
+      "tick": 8470,
+      "hp": 18,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sky-sari hits you in the right arm for 20 damage! (18 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You keep mended fish trap: this place.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ],
+      "pack": [
+        {
+          "ID": "2696",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2697",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2698",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "42025",
+          "BlueprintName": "PaleSalt",
+          "name": "pale-salt"
+        },
+        {
+          "ID": "49426",
+          "BlueprintName": "GoldCoin",
+          "name": "gold coin (x3)"
+        },
+        {
+          "ID": "51793",
+          "BlueprintName": "GroveRed",
+          "name": "grove-red"
+        },
+        {
+          "ID": "69509",
+          "BlueprintName": "Tepuibone",
+          "name": "tepuibone"
+        },
+        {
+          "ID": "71583",
+          "BlueprintName": "LakePerch",
+          "name": "lake perch"
+        }
+      ]
+    },
+    "cueConsumerMenu": {
+      "mode": "InventoryOpen",
+      "panel": 1,
+      "query": "lake perch",
+      "item": "71583",
+      "rows": [
+        {
+          "label": "Examine",
+          "command": "examine_item"
+        },
+        {
+          "label": "eat",
+          "command": "Eat"
+        },
+        {
+          "label": "cook this stack beside a fire",
+          "command": "Cook"
+        },
+        {
+          "label": "Label item",
+          "command": "edit_storage_label"
+        },
+        {
+          "label": "Drop",
+          "command": "drop"
+        }
+      ],
+      "busy": false
+    },
+    "cueAte": {
+      "zone": "WorldMap",
+      "x": 32,
+      "y": 8,
+      "tick": 8480,
+      "hp": 21,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "You keep mended fish trap: this place.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "You heal 3 HP.",
+        "You eat lake perch.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ],
+      "pack": [
+        {
+          "ID": "2696",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2697",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2698",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "42025",
+          "BlueprintName": "PaleSalt",
+          "name": "pale-salt"
+        },
+        {
+          "ID": "49426",
+          "BlueprintName": "GoldCoin",
+          "name": "gold coin (x3)"
+        },
+        {
+          "ID": "51793",
+          "BlueprintName": "GroveRed",
+          "name": "grove-red"
+        },
+        {
+          "ID": "69509",
+          "BlueprintName": "Tepuibone",
+          "name": "tepuibone"
+        }
+      ]
+    },
+    "cueAteArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/FishActivityCue20261127/Ate8480/50e670c30b6d48feb82756df64bd1cbc",
+      "pins": {
+        "Quick.json": "5c62d23cecfef9d17289ae1aea85a47b11c6855fc7128374081288daa9fa4062",
+        "Quick.json.bak": "57a24c313283747679ddcbe5317b0c41988ea3f3b4803e719a18f440b8c354df",
+        "Quick.sav.gz": "c0e78d14ebd0a3788c55a7353c6f394f3a90c6657b37d5f5acb3a383c7e2385a",
+        "Quick.sav.gz.bak": "ed6acb22b64c9ed7bb8129414398fe3bb22649ec4cbb53b8ea4933e012efaf40"
+      }
+    },
+    "cueFresh": {
+      "zone": "WorldMap",
+      "x": 32,
+      "y": 8,
+      "tick": 8480,
+      "hp": 21,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "You keep mended fish trap: this place.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "You heal 3 HP.",
+        "You eat lake perch.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ],
+      "pack": [
+        {
+          "ID": "2696",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2697",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2698",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "42025",
+          "BlueprintName": "PaleSalt",
+          "name": "pale-salt"
+        },
+        {
+          "ID": "49426",
+          "BlueprintName": "GoldCoin",
+          "name": "gold coin (x3)"
+        },
+        {
+          "ID": "51793",
+          "BlueprintName": "GroveRed",
+          "name": "grove-red"
+        },
+        {
+          "ID": "69509",
+          "BlueprintName": "Tepuibone",
+          "name": "tepuibone"
+        }
+      ]
+    },
+    "cueFreshStock": {
+      "cached": true,
+      "trap": "71547",
+      "Held": 0,
+      "Progress": 50,
+      "LastTick": 8450,
+      "anchor": "58374",
+      "Available": 6,
+      "Capacity": 7
+    }
+  }
+}

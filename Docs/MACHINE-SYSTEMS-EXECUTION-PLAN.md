@@ -1,3 +1,15 @@
+**Stump fishable water has a visible activity cue — November 26, 2026, America/Chicago.**
+Small rings and exact-cell Look text show a usable basin before a kit
+is deployed. Thin supply looks faint. Spent water and fog suppress the
+mark. The reader projects the canonical pond stock without creating
+it or paying a catch. Three RED cases reproduced the missing reader.
+The adjacent run passed 510 checks and the final reader run passed 114.
+Ordinary
+Stump discovery, a controlled quiet-water comparison, and a native
+catch, retreat, meal and fresh Continue were recorded. The package
+for the previous pickup fix remains the latest verified Mac build.
+[Evidence](Verification/MachineSystems/FishActivityCue20261127/README.md)
+
 **A refused camp pickup preserves the catch and shared supply — November 26, 2026, America/Chicago.**
 The trap and settling tray join the pickup transaction before leaving
 the ground. Refused pickup, interrupted move and failed pack-up

@@ -176,6 +176,12 @@ fresh Continue. A concurrent scraper can still work an independent
 source while a tray pickup is pending.
 [Pickup and machine playtest](Verification/MachineSystems/SharedStockPickup20261127/README.md)
 
+For #36, a small ring now signals each visible stocked Stump basin
+before the player has a trap. Look explains the surface activity.
+Quiet and recovering water read from the same finite stock. Actual
+play connected one marked basin to a trap catch, retreat and meal.
+[Fish activity and catch](Verification/MachineSystems/FishActivityCue20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

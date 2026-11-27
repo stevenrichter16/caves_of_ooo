@@ -11,6 +11,9 @@ namespace CavesOfOoo.Core
     public static class LookQueryService
     {
         public static LookSnapshot BuildSnapshot(Entity player, Zone zone, int x, int y)
+            => BuildSnapshot(player, zone, x, y, includeFishActivity: true);
+
+        internal static LookSnapshot BuildSnapshot(Entity player, Zone zone, int x, int y, bool includeFishActivity)
         {
             if (zone == null || !zone.InBounds(x, y))
             {
@@ -95,7 +98,7 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(flags))
                 details.Add(flags);
 
-            string ground = CellStatusReadout.GroundLine(zone, cell);
+            string ground = CellStatusReadout.GroundLine(zone, cell, includeFishActivity);
             if (!string.IsNullOrEmpty(ground))
                 details.Add(ground);
 
