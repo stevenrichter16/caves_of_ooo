@@ -86,23 +86,76 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase(1, false)] [TestCase(1, true)] [TestCase(3, false)] [TestCase(3, true)]
-        public void RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(int count, bool commit)
+        public void LaunchedSingletonOrSplitRemainsBaitAfterRollbackRequest(int count, bool requestRollback)
         {
             Configure(); Meat("DriedMeat", count);
             Assert.True(zone.RemoveEntity(meat)); Assert.True(zone.MoveEntity(player, 20, 10));
-            Assert.True(player.GetPart<InventoryPart>().AddObject(meat));
+            var pack = player.GetPart<InventoryPart>();
+            Assert.True(pack.AddObject(meat));
+            string originalId = meat.ID;
             var context = new InventoryContext(player, zone); var transaction = new InventoryTransaction();
+            int serialBefore = player.GetPart<ThrowingStatePart>()?.ThrowSerial ?? 0;
             var command = new ThrowItemCommand(meat, 11, 10, new Random(1));
             Assert.True(command.Validate(context).IsValid); Assert.True(command.Execute(context, transaction).Success);
+            Assert.True(transaction.ActionCommitted);
+            if (requestRollback) transaction.Rollback(); else transaction.Commit();
+            Assert.True(transaction.IsCommitted);
+            Assert.False(transaction.IsRolledBack);
+
             var landed = zone.GetReadOnlyEntities().Single(e => e.BlueprintName == "DriedMeat");
             Assert.AreEqual((11, 10), zone.GetEntityPosition(landed)); Assert.AreEqual(1, Units(landed));
-            if (commit) transaction.Commit(); else transaction.Rollback();
+            Assert.IsNull(landed.GetPart<PhysicsPart>().InInventory);
+            Assert.IsNull(landed.GetPart<PhysicsPart>().Equipped);
+            Assert.AreEqual(originalId, meat.ID);
+            if (count == 1)
+            {
+                Assert.AreSame(meat, landed);
+                Assert.IsFalse(pack.Objects.Contains(meat));
+            }
+            else
+            {
+                Assert.AreNotSame(meat, landed);
+                Assert.AreNotEqual(originalId, landed.ID);
+                Assert.True(pack.Objects.Contains(meat));
+                Assert.AreSame(player, meat.GetPart<PhysicsPart>().InInventory);
+                Assert.AreEqual(count - 1, Units(meat));
+            }
+            var receipt = landed.GetPart<ThrownRecoveryPart>();
+            Assert.NotNull(receipt);
+            Assert.AreEqual((player.ID, landed.ID, "DriedMeat", zone.ZoneID, 11, 10, serialBefore + 1),
+                (receipt.ThrowerId, receipt.ItemId, receipt.Blueprint, receipt.ZoneId, receipt.X, receipt.Y, receipt.Serial));
             for (int i = 0; i < 3; i++) Turn(hunter);
             Assert.False(zone.GetReadOnlyEntities().Any(e => e.BlueprintName == "DriedMeat"));
-            Assert.AreEqual(commit, Field<bool>("MeatDiversionAttempted"));
-            int carried = player.GetPart<InventoryPart>().Objects.Where(e => e.BlueprintName == "DriedMeat").Sum(Units);
-            Assert.AreEqual(commit ? count - 1 : count, carried);
-            if (carried > 0) Assert.True(player.GetPart<InventoryPart>().Objects.Contains(meat));
+            Assert.True(Field<bool>("MeatDiversionAttempted"));
+            Assert.AreEqual("Consumed", MeatPhase);
+            Assert.AreEqual(count - 1, pack.Objects.Where(e => e.BlueprintName == "DriedMeat").Sum(Units));
+        }
+
+        [TestCase(1)] [TestCase(3)]
+        public void ThrowRefusedBeforeLaunchKeepsExactMeatAndOffersNoBait(int count)
+        {
+            Configure(); Meat("DriedMeat", count);
+            Assert.True(zone.RemoveEntity(meat)); Assert.True(zone.MoveEntity(player, 20, 10));
+            var pack = player.GetPart<InventoryPart>();
+            Assert.True(pack.AddObject(meat));
+            string originalId = meat.ID;
+            int serialBefore = player.GetPart<ThrowingStatePart>()?.ThrowSerial ?? 0;
+
+            var result = InventorySystem.ExecuteCommand(
+                new ThrowItemCommand(meat, Zone.Width, 10, new Random(1)), player, zone);
+
+            Assert.False(result.Success);
+            Assert.False(result.ActionCommitted);
+            Assert.AreEqual(InventoryCommandErrorCode.ValidationFailed, result.ErrorCode);
+            Assert.AreEqual(serialBefore, player.GetPart<ThrowingStatePart>()?.ThrowSerial ?? 0);
+            for (int i = 0; i < 3; i++) Turn(hunter);
+            Assert.False(Field<bool>("MeatDiversionAttempted"));
+            Assert.AreEqual("None", MeatPhase);
+            Assert.False(zone.GetReadOnlyEntities().Any(e => e.BlueprintName == "DriedMeat"));
+            Assert.AreSame(meat, pack.Objects.Single(e => e.BlueprintName == "DriedMeat"));
+            Assert.AreEqual(originalId, meat.ID);
+            Assert.AreEqual(count, Units(meat));
+            Assert.AreSame(player, meat.GetPart<PhysicsPart>().InInventory);
         }
 
         [TestCase(1)] [TestCase(2)]

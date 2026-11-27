@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
@@ -74,34 +75,68 @@ namespace CavesOfOoo.Tests
             using (var f = new EquipmentLifecycleFixture())
             {
                 var screen = EquipScreen(f); var hand = f.LeftHand;
+                var screenPhysics = screen.GetPart<PhysicsPart>();
+                if (throwing)
+                    screen.AddPart(new HandlingPart { Throwable = true, Weight = screenPhysics.Weight });
                 var successor = f.Item("Dagger"); Assert.IsTrue(f.Inventory.AddObject(successor));
+                var successorPhysics = successor.GetPart<PhysicsPart>();
                 bool committed = false;
                 var observer = new EquipmentLifecycleObserver { After = removed =>
                 {
                     Assert.AreSame(screen, removed);
+                    Assert.IsNull(hand._Equipped);
+                    Assert.AreSame(f.Actor, screenPhysics.InInventory);
+                    Assert.AreEqual(0, f.Actor.GetStatValue("ElectricResistance"));
                     if (takeover) committed = InventorySystem.Equip(f.Actor, successor, hand);
+                    if (throwing) Assert.IsTrue(f.Zone.MoveEntity(f.Actor, 6, 5));
                 }};
                 f.Actor.AddPart(observer);
-                var transaction = new InventoryTransaction();
-                // Throwing exercises the symmetric UnequipAndRemove helper;
-                // its ground-placement rollback must return the real screen.
-                IInventoryCommand command = throwing ? (IInventoryCommand)new ThrowItemCommand(screen, 5, 6, new Random(17))
-                    : new UnequipCommand(screen);
-                try { Assert.IsTrue(command.Execute(new InventoryContext(f.Actor, f.Zone), transaction).Success); }
-                finally { transaction.Rollback(); }
+                var context = new InventoryContext(f.Actor, f.Zone);
+                if (throwing)
+                {
+                    // The callback completes the nested equip and moves the thrower
+                    // before launch, invalidating the original launch cell.
+                    var command = new ThrowItemCommand(screen, 5, 6, new Random(17));
+                    var validation = command.Validate(context);
+                    Assert.IsTrue(validation.IsValid, validation.ErrorMessage);
+                    var result = InventorySystem.ExecuteCommand(command, f.Actor, f.Zone);
+                    Assert.IsFalse(result.Success);
+                    Assert.AreEqual(InventoryCommandErrorCode.ExecutionFailed, result.ErrorCode);
+                    Assert.IsFalse(result.ActionCommitted);
+                    StringAssert.Contains("changed while readying the throw", result.ErrorMessage);
+                    Assert.AreEqual((6, 5), f.Zone.GetEntityPosition(f.Actor));
+                }
+                else
+                {
+                    var transaction = new InventoryTransaction();
+                    try { Assert.IsTrue(new UnequipCommand(screen).Execute(context, transaction).Success); }
+                    finally { transaction.Rollback(); }
+                }
                 Assert.AreEqual(1, observer.AfterCount); Assert.AreEqual(takeover, committed);
                 Assert.AreSame(takeover ? successor : screen, hand._Equipped);
                 Assert.AreEqual(takeover ? 0 : 50, f.Actor.GetStatValue("ElectricResistance"));
                 Assert.AreEqual(!takeover, screen.GetPart<EnhancementGlowQuartz>().AppliedBonus);
                 Assert.AreEqual(takeover ? 0 : 2, screen.GetPart<LightSourcePart>().Radius);
                 Assert.AreEqual(!takeover, InventorySystem.IsEquipped(f.Actor, screen));
+                Assert.AreEqual(takeover, InventorySystem.IsEquipped(f.Actor, successor));
+                Assert.AreEqual(takeover ? 1 : 0, f.Inventory.Objects.Count(item => ReferenceEquals(item, screen)));
+                Assert.AreEqual(takeover ? 0 : 1, f.Inventory.Objects.Count(item => ReferenceEquals(item, successor)));
                 Assert.IsNull(f.Zone.GetEntityCell(screen), "The rolled-back throw must not leave a second world owner.");
+                Assert.IsNull(f.Zone.GetEntityCell(successor));
                 if (takeover)
                 {
-                    f.Detached(screen); Assert.IsTrue(f.Inventory.Objects.Contains(screen));
-                    Assert.AreSame(f.Actor, screen.GetPart<PhysicsPart>().InInventory);
+                    f.Detached(screen);
+                    Assert.AreSame(f.Actor, screenPhysics.InInventory);
+                    Assert.AreSame(f.Actor, successorPhysics.Equipped);
+                    Assert.IsNull(successorPhysics.InInventory);
                 }
-                else Assert.IsTrue(f.Inventory.Objects.Contains(successor));
+                else
+                {
+                    f.Detached(successor);
+                    Assert.AreSame(f.Actor, successorPhysics.InInventory);
+                    Assert.AreSame(f.Actor, screenPhysics.Equipped);
+                    Assert.IsNull(screenPhysics.InInventory);
+                }
             }
         }
     }

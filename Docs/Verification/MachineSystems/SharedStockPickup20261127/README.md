@@ -33,8 +33,10 @@ landed item and bait state after a late callback. The current command
 seals on launch, so those controls need separate prelaunch rejection
 and committed-partial assertions. The other two use a Groundwire
 Screen without the required throwable handling data, so their
-AfterUnequip hook never runs. Those fixtures are due for an isolated
-correction. Strict I–R name reconciliation and a whole-process
+AfterUnequip hook never runs. The later
+[test-only follow-up](../CurrentNativeRegression69AE7EE85/README.md#historical-throw-and-equipment-follow-up)
+checks the correct prelaunch and postlaunch behavior.
+Strict I–R name reconciliation and a whole-process
 regression on the final runtime are still open.
 [Pinned wider comparison](../CurrentNativeRegression69AE7EE85/README.md)
 and [exact test receipts](receipts.json).

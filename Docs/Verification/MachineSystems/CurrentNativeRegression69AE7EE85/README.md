@@ -154,3 +154,31 @@ I–R name membership, the separate whole-process verdict, and regression
 on the final current runtime remain open.
 
 [Case counts and receipts](coverage.json)
+
+## Historical throw and equipment follow-up
+
+November 26, 2026, America/Chicago. Five historical failures
+reproduced in the later pickup regression controls. All five pass in
+the current targeted run after three test-fixture corrections. Unity
+passed 234 cases across nine related fixtures with zero compiler
+errors, failures, skips or inconclusive results.
+
+- The split-identity test keeps ordinary reversible equip and drop
+  cases. Its throw branch now checks a paid partial success when an
+  outer callback fails after launch. The same source stack retains
+  two units and one distinct unit lands with the launch receipt.
+- The predator cases check that either transaction cleanup path
+  leaves landed meat available after launch. Two new prelaunch
+  controls keep the original singleton or stack and create no bait.
+- Both displacement cases now supply test-only throwable handling.
+  Their real unequip observer frees the slot and may equip the
+  successor, then moves the actor before launch. The tests prove
+  that refusal preserves the independent move and the correct
+  equipment owner, resistance and light contribution.
+
+The five historical mappings and new prelaunch controls are in the
+[targeted receipt](throw-equipment-followup.json). Production
+runtime is unchanged in this follow-up. A separate callback
+exception during forced unequip remains a source-review hypothesis.
+The pinned partition totals above and the open full current-runtime
+regression remain as recorded.

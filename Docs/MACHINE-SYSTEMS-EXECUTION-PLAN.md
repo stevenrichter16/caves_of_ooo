@@ -1,3 +1,12 @@
+**Five historical throw controls now verify the launch boundary — November 26, 2026, America/Chicago.**
+The old split and predator tests expected to undo a paid throw.
+They now check one exact landed item and preserve the separate
+prelaunch no-bait controls. The two equipment cases now reach
+AfterUnequip before refusal and verify exact ownership and bonuses.
+All 234 native checks passed. Only tests changed. The source
+hypothesis about a callback that throws during unequip remains open.
+[Regression evidence](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md#historical-throw-and-equipment-follow-up)
+
 **Stump fishable water has a visible activity cue — November 26, 2026, America/Chicago.**
 Small rings and exact-cell Look text show a usable basin before a kit
 is deployed. Thin supply looks faint. Spent water and fog suppress the

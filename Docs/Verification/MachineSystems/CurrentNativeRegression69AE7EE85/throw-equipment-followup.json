@@ -1,0 +1,73 @@
+{
+  "runtime": "7dbca3dd10d78f71a3d8f88f51027681dd8060e0",
+  "type": "test fixture corrections only",
+  "before": {
+    "counts": {
+      "total": 15,
+      "passed": 10,
+      "failed": 5,
+      "inconclusive": 0,
+      "skipped": 0
+    },
+    "pins": {
+      "/Users/steven/coo-verification/results/shared_stock_and_historical_controls_20261127.xml": "c5fa05df0013a279251b622f2fb71a1fd08fedec5a10b221d33953bc66cfb256",
+      "/Users/steven/coo-verification/results/shared_stock_and_historical_controls_20261127.log": "04e6564676288bb715bc4a73402a71b2c51da6d2f9e9f9bc244bce39bfc3424f"
+    },
+    "compilerErrors": 0
+  },
+  "current": {
+    "counts": {
+      "total": 234,
+      "passed": 234,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0
+    },
+    "pins": {
+      "/Users/steven/coo-verification/results/throw_equipment_fixture_current_20261127.xml": "e508c6223da7a000e44c7be3ce1e2ac9ec03d6b30cc001a973d4776165db4b15",
+      "/Users/steven/coo-verification/results/throw_equipment_fixture_current_20261127.log": "e26aa2563f253b2cc20fb0eb9e39e64249c621b5cbf73493531b66b9908b3c7b"
+    },
+    "compilerErrors": 0
+  },
+  "reconciled": [
+    {
+      "before": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(False,True)",
+      "beforeResult": "Failed",
+      "after": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(False,True)",
+      "afterResult": "Passed"
+    },
+    {
+      "before": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(True,True)",
+      "beforeResult": "Failed",
+      "after": "CavesOfOoo.Tests.EquipmentDiscoveryDisplacementTests.UnequipRollbackCannotRestoreOldBonusesWhenAnIndependentItemTakesItsSlot(True,True)",
+      "afterResult": "Passed"
+    },
+    {
+      "before": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.OuterFailureRestoresExactSourceWithoutLeavingReachableClone(\"throw\",True)",
+      "beforeResult": "Failed",
+      "after": "CavesOfOoo.Tests.GameAuditSplitIdentityAdversarialTests.LaunchedSplitKeepsExactSourceAndOneLandedUnitAfterOuterFailure(True)",
+      "afterResult": "Passed"
+    },
+    {
+      "before": "CavesOfOoo.Tests.PredatorMeatDiversionTests.RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(1,False)",
+      "beforeResult": "Failed",
+      "after": "CavesOfOoo.Tests.PredatorMeatDiversionTests.LaunchedSingletonOrSplitRemainsBaitAfterRollbackRequest(1,True)",
+      "afterResult": "Passed"
+    },
+    {
+      "before": "CavesOfOoo.Tests.PredatorMeatDiversionTests.RealThrownSingletonOrSplitIsNotBaitUntilCompletedCommand(3,False)",
+      "beforeResult": "Failed",
+      "after": "CavesOfOoo.Tests.PredatorMeatDiversionTests.LaunchedSingletonOrSplitRemainsBaitAfterRollbackRequest(3,True)",
+      "afterResult": "Passed"
+    }
+  ],
+  "newPrelaunchControls": [
+    "CavesOfOoo.Tests.PredatorMeatDiversionTests.ThrowRefusedBeforeLaunchKeepsExactMeatAndOffersNoBait(1)",
+    "CavesOfOoo.Tests.PredatorMeatDiversionTests.ThrowRefusedBeforeLaunchKeepsExactMeatAndOffersNoBait(3)"
+  ],
+  "testSourcePins": {
+    "Assets/Tests/EditMode/Gameplay/AI/PredatorMeatDiversionAdversarialTests.cs": "5b52cc525c3c036743bdeef5cb434d2255da76cf13bc70e5d330cf35ad2d5dc4",
+    "Assets/Tests/EditMode/Gameplay/Anatomy/EquipmentDiscoveryDisplacementTests.cs": "506f096ae345b600e5ebdacc2b51f94eefb8fb42cb2c7f4d05ce72a46a34908d",
+    "Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityAdversarialTests.cs": "5b6c0f1a0f9842181089ba5d75905c05c03fdccfb36a2813686ad08f7b26067e"
+  }
+}

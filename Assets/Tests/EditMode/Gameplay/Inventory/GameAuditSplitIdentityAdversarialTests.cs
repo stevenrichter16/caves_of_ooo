@@ -50,15 +50,12 @@ namespace CavesOfOoo.Tests
 
         [TestCase("equip", false)] [TestCase("equip", true)]
         [TestCase("drop", false)] [TestCase("drop", true)]
-        [TestCase("throw", false)] [TestCase("throw", true)]
         public void OuterFailureRestoresExactSourceWithoutLeavingReachableClone(string action, bool rollback)
         {
             var actor = Crafter(); var source = Units(actor, "Dagger", 3);
             var inv = actor.GetPart<InventoryPart>(); var before = inv.Objects.ToArray(); string id = source.ID;
             var zone = new Zone("IdentityRollback"); Assert.IsTrue(zone.AddEntity(actor, 10, 10));
-            IInventoryCommand command = action == "equip" ? new EquipCommand(source)
-                : action == "drop" ? new DropPartialCommand(source, 1)
-                : new ThrowItemCommand(source, 12, 10, new Random(1));
+            IInventoryCommand command = action == "equip" ? new EquipCommand(source) : new DropPartialCommand(source, 1);
             if (rollback) command = new FailAfter(command);
             var result = InventorySystem.ExecuteCommand(command, actor, zone);
             Assert.AreEqual(!rollback, result.Success); Assert.AreEqual(id, source.ID);
@@ -68,6 +65,47 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(rollback ? 0 : 1, published.Length);
             if (rollback) CollectionAssert.AreEqual(before, inv.Objects);
             else Fresh(published.Single(), source);
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void LaunchedSplitKeepsExactSourceAndOneLandedUnitAfterOuterFailure(bool outerFailure)
+        {
+            var actor = Crafter();
+            var source = Units(actor, "Dagger", 3);
+            string originalId = source.ID;
+            var inv = actor.GetPart<InventoryPart>();
+            var before = inv.Objects.ToArray();
+            var zone = new Zone("IdentityThrow");
+            Assert.IsTrue(zone.AddEntity(actor, 10, 10));
+            int serialBefore = actor.GetPart<ThrowingStatePart>()?.ThrowSerial ?? 0;
+            IInventoryCommand command = new ThrowItemCommand(source, 12, 10, new Random(1));
+            if (outerFailure) command = new FailAfter(command);
+
+            var result = InventorySystem.ExecuteCommand(command, actor, zone);
+
+            Assert.IsTrue(result.Success);
+            Assert.IsTrue(result.ActionCommitted);
+            Assert.AreEqual(outerFailure ? InventoryCommandState.CommittedPartial : InventoryCommandState.Completed, result.State);
+            if (outerFailure) Assert.AreEqual("outer-command", result.FailurePhase);
+            CollectionAssert.AreEqual(before, inv.Objects);
+            Assert.AreEqual(originalId, source.ID);
+            Assert.AreEqual(2, Quantity(source));
+            Assert.AreSame(actor, source.GetPart<PhysicsPart>().InInventory);
+            Assert.IsNull(zone.GetEntityCell(source));
+            Assert.IsEmpty(inv.GetAllEquipped());
+
+            var landed = zone.GetAllEntities().Single(e => e.BlueprintName == "Dagger");
+            Assert.AreNotSame(source, landed);
+            Fresh(landed, source);
+            Assert.AreEqual(1, Quantity(landed));
+            Assert.AreEqual((12, 10), zone.GetEntityPosition(landed));
+            Assert.IsNull(landed.GetPart<PhysicsPart>().InInventory);
+            Assert.IsNull(landed.GetPart<PhysicsPart>().Equipped);
+            var receipt = landed.GetPart<ThrownRecoveryPart>();
+            Assert.NotNull(receipt);
+            Assert.AreEqual(serialBefore + 1, actor.GetPart<ThrowingStatePart>().ThrowSerial);
+            Assert.AreEqual((actor.ID, landed.ID, "Dagger", zone.ZoneID, 12, 10, serialBefore + 1),
+                (receipt.ThrowerId, receipt.ItemId, receipt.Blueprint, receipt.ZoneId, receipt.X, receipt.Y, receipt.Serial));
         }
 
         [TestCase(false)] [TestCase(true)]
