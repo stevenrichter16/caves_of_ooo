@@ -46,3 +46,17 @@ Silicon. The portable quote was presented here, with payment exercised by
 native tests. The worn tool and one spike were controlled setup.
 
 [Recorded observations](observations.json) · [Native and save receipts](receipt.json)
+
+## Current Mac package
+
+`/Users/steven/coo-verification/builds/mac-038258912-20261127/CavesOfOoo.app`
+contains the bench and cargo changes. The build used 32,254 verified
+inputs and took 26.53 seconds with zero errors and five reported warnings.
+Six binaries contain both Apple Silicon and Intel slices. The current
+and previous apps each matched all 186 files.
+
+The app started on Apple M5 and initialized a world with 2,685 entities.
+Both normal save roots retained all 876 quick-save files. Nine preferences
+changed during startup and were restored. The player stopped.
+Packaged gameplay and physical Intel testing remain open.
+[Mac startup receipt](mac-startup-verification.json)

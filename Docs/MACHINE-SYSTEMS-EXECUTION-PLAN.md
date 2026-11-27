@@ -7,6 +7,9 @@ fuel alongside 14 strikes on the same tool. The test branch wore down the
 recovered striker and supplied one spike. All 247 targeted cases passed and
 both independent reviews cleared.
 [Evidence](Verification/MachineSystems/BenchStriker20261127/README.md)
+The universal Mac package for `038258912` includes bench service and the
+one-board crate action. Startup reached the world on Apple M5.
+[Package receipt](Verification/MachineSystems/BenchStriker20261127/mac-startup-verification.json)
 
 **Sumphold's public crate supports one-board withdrawal — November 27, 2026, America/Chicago.**
 The released crate offers one pound of eligible salvaged timber. Its
