@@ -477,7 +477,9 @@ namespace CavesOfOoo.Core
             if (state == null)
                 return;
 
+            bool lampChanged = condition == QuillholdDeskLighting.Condition && state.HasCondition(condition) != enabled;
             state.SetCondition(condition, enabled);
+            if (lampChanged) QuillholdDeskLighting.InvalidateActive(this, settlementId);
         }
 
         public List<string> ConsumePendingMessages(string settlementId)

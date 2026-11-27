@@ -1,3 +1,11 @@
+**The paid copy-room lamps illuminate both desk bays — November 27, 2026, America/Chicago.**
+In a retained ordinary seed-65 save, a watering grimoire and 28 drams
+bought three oils from Yevven in Sill. Nerrit accepted all three at the
+original desks. The nearby floors brightened at unchanged ambient and
+the ordinary desk reader named the lamp's state. The concern awarded
+the existing ink payment. All 330 targeted cases passed.
+[Playtest and receipts](Verification/MachineSystems/QuillholdDeskLamps20261127/README.md)
+
 **A settling tray shows its present opportunity — November 27, 2026, America/Chicago.**
 One supplied tray beside natural connected steam vents showed its first
 possible catch after 600 ticks. Gathering used one of four shared catches.

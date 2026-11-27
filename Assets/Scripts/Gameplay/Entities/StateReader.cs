@@ -58,6 +58,8 @@ namespace CavesOfOoo.Core
             Func<Part, bool> include = null)
         {
             if (owner == null || into == null) return;
+            string deskLamp = QuillholdDeskLighting.Describe(owner, zone ?? owner.SpatialZone);
+            if (deskLamp != null && !into.Contains(deskLamp)) into.Add(deskLamp);
             var parts = owner.Parts; int found = 0;
             for (int i = 0; i < parts.Count; i++) if (parts[i] is IDescribeState) found++;
             if (found == 0) return;

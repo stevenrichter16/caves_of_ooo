@@ -268,6 +268,24 @@ Quillhold has an existing finite project with a direct workmanship connection:
 the Dark Copy-Desks concern consumes three actual LampOil items and persists
 Quillhold.DesksLit. Its alternate collation sets ReportCollated, not DesksLit.
 
+**The copy-room lamps and the nearby work space.**
+Either existing oil handover lights the two grounded copy desks in
+Quillhold's public hall. The copyists keep the lamps supplied once the room
+returns to evening use. The player makes the existing one-time contribution.
+The nearby writing floors gain ordinary warm light through the same light
+map as lanterns. Examine explains the desk's present state. Other rooms
+keep their existing lamps and ambient light. Collating the report completes
+its own version of the concern and leaves the desk lamps out.
+
+Derive the light from the saved supply condition and the exact healthy
+owner at each planned desk cell, including the reflected hall layout. Read
+existing conditions without creating settlement or fuel records. Existing
+saves with a supplied copy room get the light on entry. Missing furniture
+stays absent and duplicate or displaced furniture cannot expand the light.
+Compare the same ordinary nearby floor at matched ambient light before
+and after the oil handover, and again after Continue. Keep the price and
+next-consignment benefit under their existing rules.
+
 Opt in only a genuine ScribeStock declaration in authored Quillhold, retaining
 other scribes' behavior and all old shelves. Dependable baseline: one InkVial,
 one GrimoireCopy and one Codex04. A blank grimoire copy is a material for existing

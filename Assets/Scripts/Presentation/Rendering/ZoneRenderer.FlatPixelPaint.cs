@@ -9,6 +9,12 @@ namespace CavesOfOoo.Rendering
         internal Color ApplyFlatLighting(Color color, int x, int y)
             => _lightMap == null ? color : _lightMap.ApplyToColor(color, x, y);
 
+        internal Color ResolveFlatGroundColor(Color color, int x, int y, bool authoredGround, bool remembered)
+        {
+            bool useLight = QuillholdDeskLighting.IsWorkFloor(CurrentZone, x, y) ? !remembered : !authoredGround;
+            return useLight ? ApplyFlatLighting(color, x, y) : color;
+        }
+
         // Runs before legacy CP437 lookup. The environment pass uses the same
         // validated owner and this exact Render-event result when claiming it.
         private void RenderFlatCellCore(int x, int y, Vector3Int position, Cell cell)
@@ -47,7 +53,8 @@ namespace CavesOfOoo.Rendering
             {
                 _bgTilemap.SetTile(position, flat.GroundTile);
                 _bgTilemap.SetTileFlags(position, TileFlags.None);
-                _bgTilemap.SetColor(position, flat.LocalGround || flat.AmbientBackdrop ? flat.GroundColor : ApplyFlatLighting(flat.GroundColor, x, y));
+                _bgTilemap.SetColor(position, ResolveFlatGroundColor(flat.GroundColor, x, y,
+                    flat.LocalGround || flat.AmbientBackdrop, flat.Remembered));
                 _bgTilemap.SetTransformMatrix(position, Matrix4x4.identity);
             }
         }

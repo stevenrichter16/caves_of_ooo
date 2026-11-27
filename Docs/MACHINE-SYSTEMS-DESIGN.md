@@ -1,3 +1,10 @@
+**Quillhold's existing oil delivery lights its two desks.**
+Either oil payment sets the saved supply condition that powers ordinary
+task light at the original work bays. An Editor run bought three bottles
+in Sill, delivered them to Quillhold and read the lit desk. The nearby
+copy-room floors and saved concern reflect the same outcome.
+[Playtest and receipts](Verification/MachineSystems/QuillholdDeskLamps20261127/README.md)
+
 **A deployed settling tray shows a gatherable catch.**
 The visible pan distinguishes possible work from material already held.
 The same saved vent stock serves a tray, scraper and condenser. Actual

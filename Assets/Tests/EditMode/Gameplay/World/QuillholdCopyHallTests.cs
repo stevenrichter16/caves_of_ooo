@@ -1,9 +1,13 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
 using NUnit.Framework;
+using Color = UnityEngine.Color;
+using GameObject = UnityEngine.GameObject;
 
 namespace CavesOfOoo.Tests
 {
@@ -12,6 +16,160 @@ namespace CavesOfOoo.Tests
         const string Id="Overworld.14.9.0";
         [SetUp] public void Setup()=>CinderholdCompositionTests.LoadLoot();
         [TearDown] public void Cleanup()=>LootTableRegistry.ResetForTests();
+
+        const int CopyHallSeed = 224401440;
+        const string DesksLit = "Quillhold.DesksLit";
+
+        static Entity DeskAt(Zone zone, int x) => zone.GetCell(x, 20).Objects.Single(e => e.BlueprintName == "QuillholdCopyDesk");
+
+        static List<string> DeskState(Zone zone, Entity desk, bool full)
+        {
+            var lines = new List<string>();
+            StateReader.Collect(desk, full, zone, zone.GetEntityCell(desk), CinderholdCompositionTests.Player(), lines);
+            return lines;
+        }
+
+        [Test]
+        public void SupplyingDeskLampsChangesBothBaysOnTheSameLightMapWithoutMoving()
+        {
+            var world = new OverworldZoneManager(QuillholdCompositionTests.Factory(), CopyHallSeed);
+            world.SetActiveZone(Id);
+            var zone = world.ActiveZone;
+            var left = DeskAt(zone, 13);
+            var right = DeskAt(zone, 24);
+            zone.AmbientLevel = 0.1f;
+            var light = new LightMap();
+            light.Compute(zone);
+            float before = light.GetBrightness(13, 19);
+            var tint = light.GetTint(13, 19);
+            Assert.AreEqual(zone.AmbientLevel, before, 0.0001f);
+            Assert.AreEqual(before, light.GetBrightness(24, 21), 0.0001f);
+
+            var previousZone = SettlementRuntime.ActiveZone;
+            var previousDirty = SettlementRuntime.ZoneDirtyCallback;
+            int dirty = 0;
+            try
+            {
+                SettlementRuntime.ActiveZone = zone;
+                SettlementRuntime.ZoneDirtyCallback = () => dirty++;
+                world.SettlementManager.SetCondition(Id, DesksLit, true);
+                Assert.AreEqual(1, dirty);
+                light.Compute(zone);
+                Assert.AreEqual(before + 0.65f * 0.75f, light.GetBrightness(13, 19), 0.0001f);
+                Assert.AreEqual(before + 0.65f * 0.75f, light.GetBrightness(24, 21), 0.0001f);
+                Assert.Greater(light.GetBrightness(16, 20), before);
+                Assert.AreEqual(before, light.GetBrightness(17, 20), 0.0001f);
+                Assert.AreNotEqual(tint, light.GetTint(13, 19));
+                Assert.Greater(light.GetTint(13, 19).r, light.GetTint(13, 19).b);
+                Assert.Contains("The desk lamp is lit.", DeskState(zone, left, false));
+                Assert.Contains("The desk lamp is lit.", DeskState(zone, right, true));
+                Assert.AreSame(left, DeskAt(zone, 13));
+                Assert.AreSame(right, DeskAt(zone, 24));
+                world.SettlementManager.SetCondition(Id, DesksLit, true);
+                Assert.AreEqual(1, dirty, "Repeating the existing condition needs no redraw.");
+                world.SettlementManager.SetCondition(Id, DesksLit, false);
+                light.Compute(zone);
+                Assert.AreEqual(before, light.GetBrightness(13, 19), 0.0001f);
+                Assert.AreEqual(before, light.GetBrightness(24, 21), 0.0001f);
+            }
+            finally
+            {
+                SettlementRuntime.ActiveZone = previousZone;
+                SettlementRuntime.ZoneDirtyCallback = previousDirty;
+            }
+        }
+
+        [Test]
+        public void FlatAuthoredWorkFloorsShowTheDeskLightAndKeepDistantAndRememberedColors()
+        {
+            var world = new OverworldZoneManager(QuillholdCompositionTests.Factory(), CopyHallSeed);
+            world.SetActiveZone(Id);
+            var zone = world.ActiveZone;
+            foreach (var cell in new[] { zone.GetCell(13, 19), zone.GetCell(24, 21), zone.GetCell(17, 20) })
+                cell.IsVisible = cell.Explored = true;
+            var light = new LightMap();
+            light.Compute(zone);
+            var root = new GameObject("Copy Hall floor color fixture");
+            root.SetActive(false);
+            try
+            {
+                var renderer = root.AddComponent<ZoneRenderer>();
+                const BindingFlags instance = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+                typeof(ZoneRenderer).GetProperty("CurrentZone", instance).SetValue(renderer, zone);
+                typeof(ZoneRenderer).GetField("_lightMap", instance).SetValue(renderer, light);
+                var resolve = typeof(ZoneRenderer).GetMethod("ResolveFlatGroundColor", instance);
+                Assert.NotNull(resolve);
+                var authored = new Color(0.75f, 0.65f, 0.55f, 1f);
+                Color FloorColor(int x, int y, bool remembered = false, bool authoredGround = true) =>
+                    (Color)resolve.Invoke(renderer, new object[] { authored, x, y, authoredGround, remembered });
+
+                var dark = FloorColor(13, 19);
+                Assert.AreEqual(light.ApplyToColor(authored, 13, 19), dark);
+                world.SettlementManager.SetCondition(Id, DesksLit, true);
+                light.Compute(zone);
+                var bright = FloorColor(13, 19);
+                Assert.Greater(bright.r, dark.r);
+                Assert.AreEqual(light.ApplyToColor(authored, 13, 19), bright);
+                Assert.AreEqual(light.ApplyToColor(authored, 24, 21), FloorColor(24, 21));
+                Assert.AreEqual(authored, FloorColor(17, 20));
+                Assert.AreEqual(authored, FloorColor(13, 19, remembered: true));
+                Assert.AreEqual(authored, FloorColor(13, 19, remembered: true, authoredGround: false));
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void ACollatedReportLeavesTheDesksDark()
+        {
+            var world = new OverworldZoneManager(QuillholdCompositionTests.Factory(), CopyHallSeed);
+            var zone = world.GetZone(Id);
+            world.SettlementManager.SetCondition(Id, "Quillhold.ReportCollated", true);
+            var light = new LightMap();
+            light.Compute(zone);
+            Assert.AreEqual(zone.AmbientLevel, light.GetBrightness(13, 19), 0.0001f);
+            Assert.AreEqual(zone.AmbientLevel, light.GetBrightness(24, 21), 0.0001f);
+            Assert.Contains("The desk lamp is out.", DeskState(zone, DeskAt(zone, 13), true));
+        }
+
+        [TestCase("destroyed")] [TestCase("moved")] [TestCase("duplicate")]
+        public void AnInvalidDeskDoesNotLightItsBayOrDisableTheOther(string alteration)
+        {
+            var factory = QuillholdCompositionTests.Factory();
+            var world = new OverworldZoneManager(factory, CopyHallSeed);
+            var zone = world.GetZone(Id);
+            var desk = DeskAt(zone, 13);
+            if (alteration == "destroyed") Assert.AreEqual(DestroyVerdict.Destroyed, DestructionSystem.Destroy(desk, null, zone, "test"));
+            if (alteration == "moved") Assert.True(zone.MoveEntity(desk, 14, 20));
+            if (alteration == "duplicate") Assert.True(zone.AddEntity(factory.CreateEntity("QuillholdCopyDesk"), 13, 20));
+            world.SettlementManager.SetCondition(Id, DesksLit, true);
+            var light = new LightMap();
+            light.Compute(zone);
+            Assert.AreEqual(zone.AmbientLevel, light.GetBrightness(13, 19), 0.0001f);
+            Assert.Greater(light.GetBrightness(24, 21), zone.AmbientLevel);
+        }
+
+        [Test]
+        public void ASecondWorldWithTheSameQuillholdAddressDoesNotBorrowSuppliedLamps()
+        {
+            var factory = QuillholdCompositionTests.Factory();
+            var supplied = new OverworldZoneManager(factory, CopyHallSeed);
+            supplied.SetActiveZone(Id);
+            supplied.SettlementManager.SetCondition(Id, DesksLit, true);
+            Assert.True(supplied.SettlementManager.HasExistingCondition(Id, DesksLit));
+
+            var other = OverworldZoneManager.CreateDetached(factory, CopyHallSeed);
+            var zone = other.GetZone(Id);
+            Assert.AreSame(other, WorldLocationContext.For(zone));
+            Assert.NotNull(DeskAt(zone, 13));
+            var light = new LightMap();
+            light.Compute(zone);
+            Assert.AreEqual(zone.AmbientLevel, light.GetBrightness(13, 19), 0.0001f);
+            Assert.AreEqual(zone.AmbientLevel, light.GetBrightness(24, 21), 0.0001f);
+            Assert.IsFalse(other.SettlementManager.HasExistingCondition(Id, DesksLit));
+        }
 
         [TestCase(13,19)] [TestCase(13,21)] [TestCase(24,21)]
         public void FreshCopyHallProvidesPairedSeatsAtDisclosedDesks(int x,int y)

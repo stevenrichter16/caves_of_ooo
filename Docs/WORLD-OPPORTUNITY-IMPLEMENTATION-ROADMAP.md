@@ -86,6 +86,12 @@ spent the final shared measure and closed the waiting choice. Real shop
 acquisition and a separate Sodden route remain open.
 [Shared vent and proofing playtest](Verification/MachineSystems/SettlingTrayCue20261127/README.md)
 
+For #18 and #20, the existing copy-room supply also has a visible local
+result. The same saved oil condition lights the two Quillhold work bays.
+A real purchase in Sill and the existing handover in Quillhold reached
+the light and the ordinary ink reward. Collation retains its own outcome.
+[Copy-room payment and lighting](Verification/MachineSystems/QuillholdDeskLamps20261127/README.md)
+
 For #15–17, a singular flask in an adjacent own installed box can now
 feed an installed hearth directly. The same empty flask survived stored
 custody through Continue, was retrieved, and received two water from a

@@ -1167,7 +1167,11 @@ namespace CavesOfOoo.Rendering
                         && _flatActorObserver?.Invoke(zone, flat.Owner, x, zoneY) == true;
                     if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, FlatForegroundTint(zone, x, zoneY, flat));
                     else ClaimMainCellWithoutOverlay(pos);
-                    PaintBackgroundClaim(pos, flat.GroundTile, flat.LocalGround || flat.AmbientBackdrop ? flat.GroundColor : FlatLight(zone, flat.GroundColor, x, zoneY));
+                    var groundColor = _flatStateOwner != null && _flatStateOwner.CurrentZone == zone
+                        ? _flatStateOwner.ResolveFlatGroundColor(flat.GroundColor, x, zoneY,
+                            flat.LocalGround || flat.AmbientBackdrop, flat.Remembered)
+                        : flat.GroundColor;
+                    PaintBackgroundClaim(pos, flat.GroundTile, groundColor);
                     PaintFlatWallShadow(zone, x, zoneY, pos, flat);
                     if (flat.GroundDecorationTile != null && _flatGroundDecorationTilemap != null)
                     {

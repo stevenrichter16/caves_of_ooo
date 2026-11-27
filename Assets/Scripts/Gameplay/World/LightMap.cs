@@ -32,6 +32,7 @@ namespace CavesOfOoo.Core
         //       zone shared 0.4; a showstopper the moment it doesn't.
         private Zone _lastZone;
         private string _lastMorrowfastDoors;
+        private (Cell Left, Cell Right) _lastDeskLamps;
         private float _lastAmbientLevel = float.NaN;
         private Color _lastAmbientTint;
 
@@ -62,6 +63,7 @@ namespace CavesOfOoo.Core
         {
             int currentEquipmentVersion = EquipmentChangeBus.GlobalVersion;
             string currentDoors = zone.ZoneID == MorrowfastSceneRuntime.ZoneID ? MorrowfastSceneRuntime.GetState(zone)?.OpenDoorIds : null;
+            var deskLamps = QuillholdDeskLighting.Sources(zone);
             // Compare the ambient inputs by VALUE, not by bumping a
             // version — the day-cycle would otherwise force a full
             // recompute every turn whether or not the light changed.
@@ -71,6 +73,7 @@ namespace CavesOfOoo.Core
                 && zone.DoorOcclusionVersion == _lastDoorOcclusionVersion
                 && currentEquipmentVersion == _lastEquipmentVersion
                 && currentDoors == _lastMorrowfastDoors
+                && deskLamps.Equals(_lastDeskLamps)
                 && zone.AmbientLevel == _lastAmbientLevel
                 && zone.AmbientTint == _lastAmbientTint)
                 return;
@@ -80,6 +83,7 @@ namespace CavesOfOoo.Core
             _lastDoorOcclusionVersion = zone.DoorOcclusionVersion;
             _lastEquipmentVersion = currentEquipmentVersion;
             _lastMorrowfastDoors = currentDoors;
+            _lastDeskLamps = deskLamps;
             _lastAmbientLevel = zone.AmbientLevel;
             _lastAmbientTint = zone.AmbientTint;
             AmbientLevel = zone.AmbientLevel;
@@ -94,6 +98,9 @@ namespace CavesOfOoo.Core
                     _tint[x, y] = baseTint;
                 }
             }
+
+            AddDeskLamp(zone, deskLamps.Left);
+            AddDeskLamp(zone, deskLamps.Right);
 
             // Accumulate light from each source — iterate _entityCells.Keys directly
             // via the zone's entity collection to avoid allocating a temporary list.
@@ -169,6 +176,13 @@ namespace CavesOfOoo.Core
         /// </summary>
         private readonly System.Collections.Generic.HashSet<Entity> _equipDedupe
             = new System.Collections.Generic.HashSet<Entity>();
+
+        private void AddDeskLamp(Zone zone, Cell cell)
+        {
+            if (cell == null) return;
+            AddLight(zone, cell.X, cell.Y, QuillholdDeskLighting.Radius, QuillholdDeskLighting.Intensity,
+                QudColorParser.Parse("&Y"));
+        }
 
         private void AddLight(Zone zone, int srcX, int srcY, int radius, float intensity, Color color)
         {
