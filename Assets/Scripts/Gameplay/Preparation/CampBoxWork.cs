@@ -61,6 +61,13 @@ namespace CavesOfOoo.Core
             if(stack!=null && (stack.StackCount<1 || stack.StackCount>stack.MaxStack))return false;
             return !ListedOutsideBox(item);
         }
+        internal bool HasStoredOutput(Entity item)
+            => Box.GetPart<ContainerPart>() == Container && Container.ParentEntity == Box
+                && Container.Contents.Count(entry => entry == item) == 1
+                && Container.Contents.Count(entry => entry?.ID == item.ID) == 1
+                && item.SpatialZone == null && item.GetPart<PhysicsPart>() is PhysicsPart physics
+                && physics.ParentEntity == item && physics.InInventory == Box && physics.Equipped == null
+                && !ListedOutsideBox(item);
         bool ListedOutsideBox(Entity item)
         {
             var pack = actor.GetPart<InventoryPart>();
@@ -137,31 +144,42 @@ namespace CavesOfOoo.Core
                     foreach (var plan in plans)
                     {
                         if (plan == null) continue;
+                        AddChoice(plan, false);
+                        if (plan.CanKeepGritInStock()) AddChoice(plan, true);
+                    }
+
+                    void AddChoice(MaterialProcessPlan plan, bool keepGrit)
+                    {
                         var definition = plan.Definition;
                         var actions = e.GetParameter<InventoryActionList>("Actions");
                         bool screening = definition.Id == SiftableStockPart.ProcessId;
-                        string label = screening ? $"screen {Label(factory, definition.SourceBlueprint)} from box" : "";
-                        if (screening && !plan.RoomForStoredScreening())
+                        string label = keepGrit ? $"sieve {Label(factory, definition.SourceBlueprint)} (leave grit in box)"
+                            : screening ? $"screen {Label(factory, definition.SourceBlueprint)} from box" : "";
+                        int weight = plan.StoredScreeningPackWeight(keepGrit);
+                        if (screening && !plan.RoomForStoredScreening(keepGrit))
                         {
                             actions?.AddDisabled("box-work", label, "box-screening-pack-full",
-                                $"Make room for {plan.StoredScreeningWeight} lb of screened material.", '\0', 19);
-                            continue;
+                                $"Make room for {weight} lb of screened material.", '\0', 19);
+                            return;
                         }
                         // F1 regathers these rows. Reuse a token only while
                         // its source, definition and access still agree.
                         var retained = menu.Quotes.FirstOrDefault(p => p.Value.Plan.Actor == actor && p.Value.Plan.Zone == zone
                             && p.Value.Plan.Stock?.Box == box && p.Value.Plan.Source == input
+                            && p.Value.KeepGritInStock == keepGrit
                             && p.Value.Plan.SameDefinition(plan) && p.Value.Current());
-                        var quote = retained.Value ?? MaterialProcessService.TryQuote(plan);
-                        if (quote == null) continue;
+                        var quote = retained.Value ?? MaterialProcessService.TryQuote(plan, keepGritInStock: keepGrit);
+                        if (quote == null) return;
                         string token = retained.Key ?? Guid.NewGuid().ToString("N");
                         offered[token] = quote;
                         string outputs = MaterialProcessActions.Outputs(factory, definition);
                         if (screening)
                         {
-                            actions?.AddActionWithHint("box-work", label + $" ({plan.StoredScreeningWeight} lb to pack)",
-                                Prefix + token, "One action. Makes " + outputs + ". Keep the sieve.", '\0', 19, false, ActionTime.OneAction);
-                            continue;
+                            string hint = "One action. Makes " + outputs + ". Keep the sieve.";
+                            if (keepGrit) hint += " The fine material goes to your pack and the grit stays here.";
+                            actions?.AddActionWithHint("box-work", label + $" ({weight} lb to pack)",
+                                Prefix + token, hint, '\0', 19, false, ActionTime.OneAction);
+                            return;
                         }
                         string inputs = definition.InputCount + " " + Label(factory, definition.SourceBlueprint)
                             + string.Concat(definition.AdditionalInputBlueprints.Select((bp, i) => " + " + definition.AdditionalInputCounts[i] + " " + Label(factory, bp)));

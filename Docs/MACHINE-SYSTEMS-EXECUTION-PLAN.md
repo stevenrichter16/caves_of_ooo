@@ -1,3 +1,13 @@
+**A two-pound sieve option keeps the grit in camp storage — November 27, 2026, America/Chicago.**
+Ordinary harvest at the western Morrowfast allotment supplied one dry
+spoil packet. At a camp one map cell north, the two-pound choice kept
+exact grit in the box and sent two clay to the pack. In one action it
+fit the controlled 28/30 lb pack. The player returned to patch the
+original catch-well and drank from it. Fresh Continue and travel back
+preserved both the working well and the same grit. One box and the
+hard pack limit were controlled. All 374 targeted native cases passed.
+[Evidence](Verification/MachineSystems/StoredScreeningGrit20261127/README.md)
+
 **A ready camp bench services a worn flint striker — November 27, 2026, America/Chicago.**
 One spike restores up to 15 strikes at an accessible ready cold-work station.
 The same spike restores up to 10 by hand. Actual private camp play showed

@@ -164,9 +164,15 @@ namespace CavesOfOoo.Core
             => Stock==null && input!=Source && input.BlueprintName=="FireClay" && input.HasPart<ConnectedClayOriginPart>();
         internal int StoredScreeningWeight => Stock != null && sizeStock != null
             ? SiftableStockPart.Weight(Factory, Definition.SourceBlueprint) : 0;
-        internal bool RoomForStoredScreening()
+        internal int StoredScreeningPackWeight(bool keepGrit)
+            => StoredScreeningWeight - (keepGrit ? SiftableStockPart.SingleCoarseGritWeight(this) : 0);
+        internal bool CanKeepGritInStock()
+            => Stock != null && SiftableStockPart.SingleCoarseGritWeight(this) > 0
+                && Source.GetPart<StackerPart>()?.StackCount == 1
+                && (Stock.Container.MaxItems < 0 || Stock.Container.Contents.Count <= Stock.Container.MaxItems);
+        internal bool RoomForStoredScreening(bool keepGrit = false)
             => Stock == null || sizeStock == null || pack.MaxWeight < 0
-                || (long)pack.GetCarriedWeight() + StoredScreeningWeight <= pack.MaxWeight;
+                || (long)pack.GetCarriedWeight() + StoredScreeningPackWeight(keepGrit) <= pack.MaxWeight;
         internal bool Consume(Entity input,CavesOfOoo.Core.Inventory.InventoryTransaction tx,Func<bool> refundAllowed=null)
         {
             if (Stock != null) return Stock.Consume(input,tx,input!=Source && input.BlueprintName=="FireClay",refundAllowed);

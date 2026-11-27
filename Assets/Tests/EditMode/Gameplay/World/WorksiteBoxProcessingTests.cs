@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 using NUnit.Framework;
 using UnityEngine;
@@ -33,6 +34,221 @@ namespace CavesOfOoo.Tests
         private static bool IsBoxScreeningRow(InventoryAction row) => !row.IsDisabled
             && row.Command?.StartsWith(Prefix, StringComparison.Ordinal) == true
             && row.Display?.IndexOf("screen", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        private static bool IsKeepBoxGritRow(InventoryAction row) => !row.IsDisabled
+            && row.Command?.StartsWith(Prefix, StringComparison.Ordinal) == true
+            && row.Display?.StartsWith("sieve", StringComparison.OrdinalIgnoreCase) == true
+            && row.Display.IndexOf("leave grit in box", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        InventoryAction KeepBoxGritChoice()
+        {
+            var choices = CellMenu(11, 10).Where(IsKeepBoxGritRow).ToArray();
+            Assert.That(choices, Has.Length.EqualTo(1), "An installed box can keep the coarse fraction while the pack takes clay.");
+            return choices[0];
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void KeepBoxGritRollbackDropsTheExactPacketWhenItsOriginalSlotCannotBeRestored(bool replaceList)
+        {
+            var box = Box();
+            var container = box.GetPart<ContainerPart>();
+            container.MaxItems = 2;
+            var resident = Stock(box, "CoarseGrit", 2);
+            var packet = Stock(box, "DryClaySpoil");
+            var cell = Zone.GetEntityCell(box);
+            var originalList = container.Contents;
+            Carry("HandSieve");
+            var row = KeepBoxGritChoice();
+            Actor.AddPart(new After { Callback = () =>
+            {
+                container.Locked = true;
+                if (replaceList) container.Contents = originalList.ToList();
+                else container.MaxItems = 1;
+            } });
+
+            Assert.False(Act(box, row.Command));
+            Assert.True(container.Locked);
+            Assert.That(ReferenceEquals(container.Contents, originalList), Is.EqualTo(!replaceList));
+            Assert.That(container.Contents.Single(), Is.SameAs(resident));
+            Assert.AreEqual(2, resident.GetPart<StackerPart>().StackCount);
+            Assert.That(Zone.GetEntityCell(packet), Is.SameAs(cell));
+            Assert.That(packet.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.Zero(Count("FireClay"));
+        }
+
+        [Test]
+        public void KeepBoxGritReplacesOnePacketInAFullBoxWithTwoPoundsOfPackRoom()
+        {
+            var box = Box();
+            var container = box.GetPart<ContainerPart>();
+            container.MaxItems = 1;
+            var packet = Stock(box, "DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            int weight = Pack.GetCarriedWeight();
+            int turn = Clock.TickCount;
+            Pack.MaxWeight = weight + 1;
+            Assert.False(CellMenu(11, 10).Any(IsKeepBoxGritRow));
+            Assert.That(container.Contents.Single(), Is.SameAs(packet));
+            Assert.AreEqual(turn, Clock.TickCount);
+
+            Pack.MaxWeight = weight + 3;
+            var menu = CellMenu(11, 10);
+            var split = KeepBoxGritChoice();
+            var allToPack = menu.Single(IsBoxScreeningRow);
+            Assert.That(split.Command, Is.Not.EqualTo(allToPack.Command));
+            Assert.That(split.Display, Does.Not.Contain("screen").IgnoreCase);
+            Assert.That(split.Time, Is.EqualTo(ActionTime.OneAction));
+
+            Pack.MaxWeight = weight + 2;
+            Assert.False(Act(box, allToPack.Command));
+            Assert.False(CellMenu(11, 10).Any(IsBoxScreeningRow));
+            Assert.True(ChooseRow(KeepBoxGritChoice(), 11, 10));
+            var grit = container.Contents.Single();
+            Assert.AreEqual("CoarseGrit", grit.BlueprintName);
+            Assert.That(grit.ID, Is.Not.EqualTo(packet.ID));
+            Assert.That(grit.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.AreEqual(1, grit.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(1, InventoryPart.GetItemWeight(grit));
+            Assert.That(packet.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.AreEqual(2, Count("FireClay"));
+            Assert.Zero(Count("CoarseGrit"));
+            Assert.AreEqual(weight + 2, Pack.GetCarriedWeight());
+            Assert.That(Pack.Objects, Does.Contain(sieve));
+            Assert.False(Act(box, split.Command));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void KeepBoxGritMergesOnlyWithACompatibleExistingBoxStack(bool labelled)
+        {
+            var box = Box();
+            var container = box.GetPart<ContainerPart>();
+            container.MaxItems = 2;
+            var existing = Stock(box, "CoarseGrit", 2);
+            var packet = Stock(box, "DryClaySpoil");
+            StorageLabelPart label = null;
+            if (labelled)
+            {
+                label = new StorageLabelPart { Mode = (int)StorageLabelMode.Text, ColorIndex = 2, Text = "step repairs" };
+                existing.AddPart(label);
+            }
+            Carry("HandSieve");
+            Pack.MaxWeight = Pack.GetCarriedWeight() + 2;
+
+            Assert.True(ChooseRow(KeepBoxGritChoice(), 11, 10));
+            Assert.That(container.Contents.Contains(packet), Is.False);
+            Assert.That(container.Contents, Does.Contain(existing));
+            Assert.That(existing.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.AreEqual(labelled ? 2 : 3, existing.GetPart<StackerPart>().StackCount);
+            if (labelled)
+            {
+                var fresh = container.Contents.Single(item => item != existing);
+                Assert.AreEqual("CoarseGrit", fresh.BlueprintName);
+                Assert.That(fresh.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+                Assert.AreEqual(1, fresh.GetPart<StackerPart>().StackCount);
+                Assert.IsNull(fresh.GetPart<StorageLabelPart>());
+                Assert.That(existing.GetPart<StorageLabelPart>(), Is.SameAs(label));
+                Assert.AreEqual("step repairs", label.Text);
+                Assert.AreEqual(2, label.ColorIndex);
+            }
+            else Assert.That(container.Contents.Single(), Is.SameAs(existing));
+            Assert.AreEqual(2, Count("FireClay"));
+            Assert.Zero(Count("CoarseGrit"));
+        }
+
+        [TestCase("lock")]
+        [TestCase("lock after merge")]
+        [TestCase("changed grit")]
+        [TestCase("moved grit")]
+        public void KeepBoxGritRollbackRefundsThePacketOnlyAfterRetractingItsOutputs(string change)
+        {
+            var box = Box();
+            var container = box.GetPart<ContainerPart>();
+            bool merging = change == "lock after merge";
+            bool locking = change == "lock" || merging;
+            container.MaxItems = merging ? 2 : 1;
+            var resident = merging ? Stock(box, "CoarseGrit", 2) : null;
+            var packet = Stock(box, "DryClaySpoil");
+            var sieve = Carry("HandSieve");
+            int weight = Pack.GetCarriedWeight();
+            Pack.MaxWeight = weight + 2;
+            var row = KeepBoxGritChoice();
+            var tx = new InventoryTransaction();
+            var action = GameEvent.New("InventoryAction");
+            var drop = Zone.GetCell(10, 12);
+            Entity grit = null;
+            try
+            {
+                action.SetParameter("Actor", (object)Actor);
+                action.SetParameter("Zone", (object)Zone);
+                action.SetParameter("Command", row.Command);
+                action.SetParameter("InventoryTransaction", (object)tx);
+                box.FireEvent(action);
+                Assert.True(action.Handled);
+                Assert.AreEqual(2, Count("FireClay"));
+                Assert.That(packet.GetPart<PhysicsPart>().InInventory, Is.Null);
+                grit = container.Contents.Single();
+                Assert.AreEqual("CoarseGrit", grit.BlueprintName);
+                Assert.AreEqual(merging ? 3 : 1, grit.GetPart<StackerPart>().StackCount);
+                if (merging) Assert.That(grit, Is.SameAs(resident));
+
+                if (locking) container.Locked = true;
+                else if (change == "changed grit") grit.GetPart<PhysicsPart>().Weight = 2;
+                else
+                {
+                    Assert.True(container.RemoveItem(grit));
+                    Assert.True(Zone.AddEntity(grit, drop.X, drop.Y));
+                }
+                Assert.Throws<InvalidOperationException>(tx.Commit);
+                Assert.False(tx.ActionCommitted);
+            }
+            finally
+            {
+                action.Release();
+                tx.Rollback();
+            }
+
+            Assert.True(tx.IsRolledBack);
+            Assert.AreEqual(locking, container.IsLocked);
+            Assert.Zero(Count("FireClay"));
+            Assert.AreEqual(weight, Pack.GetCarriedWeight());
+            Assert.That(Pack.Objects, Does.Contain(sieve));
+            if (locking)
+            {
+                Assert.That(container.Contents, Does.Contain(packet));
+                Assert.That(packet.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+                Assert.AreEqual(1, packet.GetPart<StackerPart>().StackCount);
+                Assert.AreEqual(merging ? 2 : 1, container.Contents.Count);
+                if (merging)
+                {
+                    Assert.That(container.Contents, Does.Contain(resident));
+                    Assert.That(resident.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+                    Assert.AreEqual(2, resident.GetPart<StackerPart>().StackCount);
+                }
+                else Assert.That(grit.GetPart<PhysicsPart>().InInventory, Is.Null);
+            }
+            else
+            {
+                Assert.That(container.Contents.Contains(packet), Is.False);
+                Assert.That(packet.GetPart<PhysicsPart>().InInventory, Is.Null);
+                Assert.That(Zone.GetEntityCell(packet), Is.Null);
+                Assert.Zero(Count("DryClaySpoil"));
+                if (change == "changed grit")
+                {
+                    Assert.That(container.Contents.Single(), Is.SameAs(grit));
+                    Assert.That(grit.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+                    Assert.AreEqual(2, grit.GetPart<PhysicsPart>().Weight);
+                }
+                else
+                {
+                    Assert.That(container.Contents, Is.Empty);
+                    Assert.That(Zone.GetEntityCell(grit), Is.SameAs(drop));
+                    Assert.That(grit.GetPart<PhysicsPart>().InInventory, Is.Null);
+                }
+                Assert.AreEqual(1, grit.GetPart<StackerPart>().StackCount);
+            }
+        }
 
         [Test]
         public void InstalledBoxScreensOnlyItsExactStoredPacketAndRetainsTheHeldSieve()

@@ -76,6 +76,15 @@ alternatives. This controlled supplied-camp trial extends the connection;
 it does not close #40 ordinary acquisition or comparison across layouts.
 [Stored oil trial](Verification/MachineSystems/StoredHearthOil20261127/README.md)
 
+For #14–17 and #39, the same stored dry clay packet and carried sieve
+can now supply the pack with two fine measures and leave the grit in
+camp. The three-pound withdrawal and ordinary portable routes remain.
+Actual travel from an earned Morrowfast allotment packet to eligible
+Stump camp ground and back used the exact clay to repair the catch-well.
+The well and boxed grit persisted through Continue. The box and pack cap
+were controlled for this comparison.
+[Camp screening and well repair](Verification/MachineSystems/StoredScreeningGrit20261127/README.md)
+
 At the western Morrowfast allotment, #32 has one visible rain-exposed
 deposit with four appearances and an actual material loop. The same
 clay working supplies an ordinary loose dry heap and bank as alternatives.

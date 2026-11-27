@@ -1,3 +1,14 @@
+**Pack the fine fraction and leave grit in camp storage.**
+An adjacent own camp box can already feed its exact dry spoil packet to
+a carried sieve. The new choice fits two pounds of fire clay into
+the pack and puts one grit back into the same box. A full box can reuse
+the singleton packet's entry. The other three-pound and portable routes
+remain. The shared receipt rechecks both capacities and retracts its
+exact grit output before a refund. In play the loose allotment packet
+supplied the neighboring Stump camp, then its clay repaired the
+original catch-well. Continue preserved the repaired well and boxed grit.
+[Native and world evidence](Verification/MachineSystems/StoredScreeningGrit20261127/README.md)
+
 **A cold-work fixture renews a worn striker.**
 One iron spike gives up to 15 strikes at a ready, accessible cold-work
 fixture and up to 10 by hand. Both use the same striker capacity. A camp

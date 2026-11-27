@@ -71,13 +71,18 @@ namespace CavesOfOoo.Core
             {if(!int.TryParse(overrideRaw,NumberStyles.Integer,CultureInfo.InvariantCulture,out int overrideWeight))return -1;if(overrideWeight>0)weight=overrideWeight;}
             return weight;
         }
-        internal static Cell GritDestination(MaterialProcessPlan plan)
+        internal static int SingleCoarseGritWeight(MaterialProcessPlan plan)
         {
             var result = plan.Definition;
             if (result.Id != ProcessId || result.OutputBlueprints.Count != 2 || result.OutputCounts[1] != 1
                 || !plan.Factory.Blueprints.TryGetValue(result.OutputBlueprints[1], out var coarse)
-                || !coarse.Parts.ContainsKey("GritMaterial") || Weight(plan.Factory, coarse.Name) <= 0) return null;
+                || !coarse.Parts.ContainsKey("GritMaterial")) return 0;
+            return Math.Max(0, Weight(plan.Factory, coarse.Name));
+        }
 
+        internal static Cell GritDestination(MaterialProcessPlan plan)
+        {
+            if (SingleCoarseGritWeight(plan) == 0) return null;
             var cell = plan.Zone.GetEntityCell(plan.Actor);
             if (!RouteWorkMenu.Visible(cell) || cell.ParentZone != plan.Zone || cell.BlocksMovement(plan.Actor)
                 || cell.Objects.Any(item => item.GetPart<LiquidPoolPart>() is { Volume: > 0 })

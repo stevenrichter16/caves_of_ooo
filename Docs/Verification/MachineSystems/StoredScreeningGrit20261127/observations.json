@@ -1,0 +1,518 @@
+{
+  "start": {
+    "zone": "Overworld.2.6.0",
+    "x": 61,
+    "y": 10,
+    "tick": 14900,
+    "mode": "Normal",
+    "hp": 40,
+    "weight": 28,
+    "limit": 150,
+    "ground": [
+      {
+        "ID": "7184",
+        "BlueprintName": "RepairLinedWell",
+        "name": "clay-lined catch well",
+        "x": 58,
+        "y": 9,
+        "count": null,
+        "harvested": null,
+        "repaired": false,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "7197",
+        "BlueprintName": "DryClaySpoilHeap",
+        "name": "dry clay sorting heap",
+        "x": 58,
+        "y": 11,
+        "count": null,
+        "harvested": false,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ]
+  },
+  "supplied": {
+    "box": "9286",
+    "placement": "DisallowedBiome",
+    "options": []
+  },
+  "harvested": {
+    "zone": "Overworld.2.6.0",
+    "x": 59,
+    "y": 11,
+    "tick": 14940,
+    "mode": "Normal",
+    "hp": 40,
+    "weight": 43,
+    "limit": 150,
+    "ground": [
+      {
+        "ID": "7184",
+        "BlueprintName": "RepairLinedWell",
+        "name": "clay-lined catch well",
+        "x": 58,
+        "y": 9,
+        "count": null,
+        "harvested": null,
+        "repaired": false,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "9286",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": []
+      },
+      {
+        "ID": "9287",
+        "BlueprintName": "DryClaySpoil",
+        "name": "dry clay spoil",
+        "x": null,
+        "y": null,
+        "count": 1,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ]
+  },
+  "controlledPack": {
+    "weight": 28,
+    "limit": 30
+  },
+  "menu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "CampBox",
+    "cell": [
+      44,
+      13
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "o",
+        "Display": "open",
+        "Command": "OpenContainer",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "take up",
+        "Command": "Disabled:overweight-load",
+        "IsDisabled": true,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "screen dry clay spoil from box",
+        "Command": "Disabled:box-screening-pack-full",
+        "IsDisabled": true,
+        "Hint": ""
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "sieve dry clay spoil (leave grit in box) (2 lb to pack)",
+        "Command": "CampBoxWork|e6d89275c3794b1a936658da3605b09d",
+        "IsDisabled": false,
+        "Hint": "One action. Makes 2 fire clay + 1 coarse grit. Keep the sieve. The fine material goes to your pack and the grit stays here."
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "break",
+        "Command": "Break",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 5,
+        "key": "e",
+        "Display": "hand over (you can no longer take it up)",
+        "Command": "HandOver|Overworld.2.5.0|9286",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 6,
+        "key": "m",
+        "Display": "move",
+        "Command": "Disabled:overweight-load",
+        "IsDisabled": true,
+        "Hint": ""
+      },
+      {
+        "i": 7,
+        "key": "f",
+        "Display": "name this camp: Home",
+        "Command": "NameCamp|Overworld.2.5.0|9286",
+        "IsDisabled": false,
+        "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name."
+      },
+      {
+        "i": 8,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 9,
+        "key": "g",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "split": {
+    "zone": "Overworld.2.5.0",
+    "x": 43,
+    "y": 13,
+    "tick": 15060,
+    "mode": "Normal",
+    "hp": 40,
+    "weight": 30,
+    "limit": 30,
+    "ground": [
+      {
+        "ID": "9286",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 44,
+        "y": 13,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "11852",
+            "BlueprintName": "CoarseGrit",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "11850",
+        "BlueprintName": "FireClay",
+        "name": "fire clay (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ]
+  },
+  "repairMenu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "RepairLinedWell",
+    "cell": [
+      58,
+      9
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "r",
+        "Display": "patch the well lining (2 measures)",
+        "Command": "RepairObject",
+        "IsDisabled": false,
+        "Hint": "Uses 2 measures of fire clay or prepared lining clay, in any mix."
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": "Uses 2 measures of fire clay or prepared lining clay, in any mix."
+  },
+  "repaired": {
+    "zone": "Overworld.2.6.0",
+    "x": 58,
+    "y": 10,
+    "tick": 15330,
+    "mode": "Normal",
+    "hp": 40,
+    "weight": 28,
+    "limit": 30,
+    "ground": [
+      {
+        "ID": "7184",
+        "BlueprintName": "RepairLinedWell",
+        "name": "clay-lined catch well",
+        "x": 58,
+        "y": 9,
+        "count": null,
+        "harvested": null,
+        "repaired": true,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ]
+  },
+  "workingWell": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "RepairLinedWell",
+    "cell": [
+      58,
+      9
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "w",
+        "Display": "draw water",
+        "Command": "DrawWaterAtWell",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "drink": {
+    "tick": 15330,
+    "stock": -1,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You drink. The well water is cool.",
+      "Game saved."
+    ]
+  },
+  "continued": {
+    "zone": "Overworld.2.6.0",
+    "x": 58,
+    "y": 10,
+    "tick": 15330,
+    "mode": "Normal",
+    "hp": 40,
+    "weight": 28,
+    "limit": 30,
+    "ground": [
+      {
+        "ID": "7184",
+        "BlueprintName": "RepairLinedWell",
+        "name": "clay-lined catch well",
+        "x": 58,
+        "y": 9,
+        "count": null,
+        "harvested": null,
+        "repaired": true,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ]
+  },
+  "continuedWellMenu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "RepairLinedWell",
+    "cell": [
+      58,
+      9
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "w",
+        "Display": "draw water",
+        "Command": "DrawWaterAtWell",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "a",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "continuedCamp": {
+    "zone": "Overworld.2.5.0",
+    "x": 39,
+    "y": 11,
+    "tick": 15370,
+    "mode": "Normal",
+    "hp": 40,
+    "weight": 28,
+    "limit": 30,
+    "ground": [
+      {
+        "ID": "9286",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 44,
+        "y": 13,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "11852",
+            "BlueprintName": "CoarseGrit",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "7203",
+        "BlueprintName": "HandSieve",
+        "name": "hand sieve",
+        "x": null,
+        "y": null,
+        "count": null,
+        "harvested": null,
+        "repaired": null,
+        "installed": null,
+        "contents": null
+      }
+    ]
+  },
+  "editorRestored": {
+    "playing": false,
+    "transition": false,
+    "isolated": false,
+    "root": null,
+    "keyboards": [
+      "Keyboard"
+    ]
+  }
+}

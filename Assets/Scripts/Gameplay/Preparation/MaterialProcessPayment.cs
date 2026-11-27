@@ -43,12 +43,13 @@ namespace CavesOfOoo.Core
                 // A forced listener may already have placed the removed identity
                 // back in the list without updating Physics. Never insert it twice.
                 if(list.Any(e=>e==item || e?.ID==id)){Refused(actor,item,"input_already_listed");return;}
-                bool same=pack!=null?holder.GetPart<InventoryPart>()==pack && pack.ParentEntity==holder
-                    :holder.GetPart<ContainerPart>()==container && container.ParentEntity==holder;
+                bool same=pack!=null?holder.GetPart<InventoryPart>()==pack && pack.ParentEntity==holder && ReferenceEquals(pack.Objects,list)
+                    :holder.GetPart<ContainerPart>()==container && container.ParentEntity==holder && ReferenceEquals(container.Contents,list);
                 bool died=CombatSystem.IsDeathHandled(holder) || holder.GetStat("Hitpoints")!=null && holder.GetStatValue("Hitpoints")<=0;
                 same &= holder.GetPart<DestructiblePart>()?.Gone!=true && holder.GetPart<DestructiblePart>()?.HP<=0!=true
                     && !died;
-                if(same && holder.SpatialZone==zone)
+                bool hasSlot = pack != null || container.MaxItems < 0 || list.Count < container.MaxItems;
+                if(same && hasSlot && holder.SpatialZone==zone)
                 {
                     list.Insert(Math.Min(index,list.Count),item);physics.InInventory=holder;
                     if(clayPaymentCurrent!=null)origin.Restore(item);
