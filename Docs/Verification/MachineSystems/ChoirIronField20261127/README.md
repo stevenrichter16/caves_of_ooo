@@ -46,6 +46,13 @@ new guide, receipts, exact save bodies and same-strike damage events.
 All 876 checked normal save files and 87 existing tracked edits
 matched after the Editor playtest.
 
+The universal Mac package for `9dae6a99c` built from 32,282 checked
+source inputs with zero errors and four warnings. Startup reached
+GameBootstrap on Apple M5. Verification checked six universal binaries,
+all 186 app files in each of the current and prior packages, and all
+876 normal save files. The ore and combat playtests ran in the Editor.
+[Mac startup receipt](mac-startup-verification.json)
+
 [Ore harvest](01-harvested-choir-iron.png) ·
 [Forge guide](02-forge-infusion-guide.png) ·
 [Infusion receipt](03-infused-dagger.png) ·

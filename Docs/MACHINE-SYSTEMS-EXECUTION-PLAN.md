@@ -10,6 +10,8 @@ point of damage to a natural rotling. The equipped test dagger was
 supplied in that archived encounter. The seeded surface search found
 the generation floor keeps tier-one rotlings out of Grovelands rolls.
 [Ore, forge and combat evidence](Verification/MachineSystems/ChoirIronField20261127/README.md)
+The universal Mac package for `9dae6a99c` passed Apple M5 startup.
+[Mac startup receipt](Verification/MachineSystems/ChoirIronField20261127/mac-startup-verification.json)
 
 **Cutbank route readers distinguish the watched boards — November 27, 2026, America/Chicago.**
 The west notice explains that the north boards cross watched ground
