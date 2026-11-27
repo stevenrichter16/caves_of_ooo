@@ -36,6 +36,13 @@ archive pins and XML. All 876 ordinary quick files and 87 earlier tracked
 changes matched their pre-play hashes. The Editor returned to Edit Mode
 with the private save root cleared. Full current regression remains open.
 
+The universal Mac package for `e9ad1bf11` built in 24.89 seconds from
+32,266 pinned inputs with zero errors and five warnings. Apple M5 startup
+loaded the world. Each of the 186 files in the new and previous packages
+matched its hash and all six binaries contain both architectures. Startup
+preserved 876 normal quick saves and restored nine changed preferences.
+Packaged gameplay and physical Intel remain open. [Mac receipt](mac-startup-verification.json)
+
 [Packet reader](01-packet-sieve-clue.png) ·
 [Orrit's quote](02-orrit-sieve-quote.png) ·
 [Screening choice](03-screen-the-dried-packet.png) ·

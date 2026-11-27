@@ -6,6 +6,8 @@ watchkeepers reacted to its call. Fresh Continue kept the completed job,
 same sieve, quiet bell, remaining clay and grit, and Orrit's sold-out slot.
 All 182 connected cases passed.
 [Playtest and receipts](Verification/MachineSystems/MorrowfastHandSieve20261127/README.md)
+The universal Mac package for `e9ad1bf11` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/MorrowfastHandSieve20261127/mac-startup-verification.json)
 
 **Gantry's repaired guest-cloth dries damp gear in a shower — November 27, 2026, America/Chicago.**
 The ordinary seed-65 traveler gathered a rainy seam packet at western
