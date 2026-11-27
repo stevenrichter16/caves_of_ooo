@@ -7,6 +7,38 @@ the §5.3 verification sweep, then EC1.
 system. Start from existing design documents if there are any; otherwise brainstorm a system
 that fits the game.
 
+## Material banks and local credit
+
+Proposed direction, approved in conversation November 26, 2026. The player
+can store materials at banks and receive more of the same material over
+game time. Different branches reflect the work and supply of their
+communities. Farm branches might take seed or grain, while workshop
+branches take clay, timber or metal. A restored trade route or useful
+installation can expand a branch's supported materials and deposit sizes.
+This extends the existing direction for lasting projects and merchant supply.
+
+Offer exact safekeeping for equipment, unusual finds and individually
+labeled belongings. A material deposit accepts compatible ordinary stock
+with an explicit grade and quality. The quoted return uses that same grade
+and material. The offer states the deposited amount, withdrawal rules,
+promised extra amount, due date and branch collecting it. Any colored
+label, treatment, contents or component state needs an explicit custody
+rule before a unique object can enter a material deposit.
+
+Reserve the promised return from a finite branch supply when accepting the
+deposit. That supply comes from paid work, trade or actual deliveries.
+Receipts, physically committed reserves and the existing saved game clock
+govern payment. Opening a menu, travelling and reloading grant no extra
+credit. A completed deposit can be withdrawn once. Renewing it requires
+a new quote and available supply. Exact returns and rates remain tuning
+proposals pending comparison with gathering, local prices and job rewards.
+
+Make the town's participation visible. A porter can bring clay for the
+kiln, the branch can offer a larger clay deposit, and the player can use
+the return on a workshop project. Such connections need real consumers
+and shared finite stock. Branch storage and credit are future systems,
+with implementation and actual-play acceptance still open.
+
 ## Job and mission rewards
 
 November 26, 2026. Size rewards by what they let the player do after payment.
