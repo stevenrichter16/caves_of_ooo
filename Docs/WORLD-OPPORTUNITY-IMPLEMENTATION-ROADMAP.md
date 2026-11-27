@@ -86,6 +86,14 @@ supplied-camp branches. Fresh Continue kept the nozzle result. The
 ordinary gear acquisition and natural-ice route stay open.
 [Nozzle cue and heat alternatives](Verification/MachineSystems/HearthNozzleIceCue20261127/README.md)
 
+For #14, #19, #36 and #40, the fixed Sill still gives a practical
+alternative to buying a camp still. An ordinary purchase and natural
+brine haul reached both batch choices with the same loose torch.
+The still names the actual missing requirement. One branch gave two
+water. The other kept crust and applied it to the original buckler,
+with the result preserved through Continue.
+[Public-still purchase and proofing](Verification/MachineSystems/BrineBatchReadiness20261127/README.md)
+
 For #14, #16 and #40, a visible deployed settling tray now shows when
 the same finite stock allows a gather. A retained supplied tray used a
 natural steam vent to make one garment heat coat. A competing scraper

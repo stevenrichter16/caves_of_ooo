@@ -9,8 +9,8 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Settling at a still (Docs/MACHINE-INVENTED-USES.md, "fractionating still"). A flask of bog-mire is the difficult local feed; at a standing still, beside a lit fire that spends a
     /// fixed measure of its own fuel, it settles to either clean water or oil, four units to one, chosen at the still. The two outputs compete for the same feed, the dregs are spent,
-    /// and nothing is created: output times four never exceeds the feed. Brine is deliberately not settled (a free salt source would inflate the Beating's money), and every other
-    /// liquid is left to the shipped transfers. The still is the same station whether communal or a set-down camp kit; a carried kit offers nothing.
+    /// and nothing is created: output times four never exceeds the feed. Brine uses the separate heat-paid distillation batch. The still is the same
+    /// station whether communal or a set-down camp kit; a carried kit offers nothing.
     /// <para>Fire is coupled, not assumed: the batch burns <see cref="FuelPerBatch"/> from a burning fire within <see cref="FireReach"/> of the still that can spare it, and refuses up front
     /// with the numbers otherwise.</para>
     /// </summary>
@@ -151,8 +151,7 @@ namespace CavesOfOoo.Core
             guide.How.Add("With a flask of bog-mire in your pack, press C beside it and choose settle (to clean water or to oil), or bake to boil mire down to fire clay.");
             guide.Needs.Add("to settle: a flask with at least " + Ratio + " units of bog-mire, and either a burning fire within " + FireReach + " cells that can spare " + FuelPerBatch + " fuel a flask or a steam vent or ash bed within " + FireReach + " cells");
             guide.Needs.Add("to bake clay: a flask with at least " + ClayRatio + " units, and a burning fire within " + FireReach + " cells that can spare " + ClayFuel + " fuel (a vent is not hot enough)");
-            guide.Limits.Add("Settling gives 1 water or oil for every " + Ratio + " mire and baking 1 fire clay for every " + ClayRatio + "; the dregs are spent and nothing is made from nothing. Brine is not settled.");
-            guide.WhyNot = "you carry no bog-mire";
+            guide.Limits.Add("Settling gives 1 water or oil for every " + Ratio + " mire. Baking gives 1 fire clay for every " + ClayRatio + " mire. Both spend the dregs.");
         }
 
         // ── rows ──

@@ -1,3 +1,12 @@
+**A bought torch powers the public still — November 27, 2026, America/Chicago.**
+The still's menu and Examine explain the missing brine, flask, heat or
+dry work cell. In ordinary seed-65 play, 26 drams bought one lit torch
+and one flask from Yevven. Natural brine from (15,8) went to Sill's
+fixed still. Both batch choices used the same exact loose torch in
+separate native branches. The recovered crust coated the original
+buckler and fresh Continue kept the result. All 218 targeted cases passed.
+[Playtest and receipts](Verification/MachineSystems/BrineBatchReadiness20261127/README.md)
+
 **The hearth nozzle names visible ice — November 27, 2026, America/Chicago.**
 The world and pack quotes share one paid heat action and reject an ice
 change before payment commits. A supplied camp used one existing water

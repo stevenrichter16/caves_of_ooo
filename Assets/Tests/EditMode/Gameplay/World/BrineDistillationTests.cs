@@ -38,6 +38,65 @@ namespace CavesOfOoo.Tests
 
         Entity[] Crust(Zone zone) => zone.GetReadOnlyEntities().Where(e => e.BlueprintName == "BrineCrust").ToArray();
 
+        string LiveUseGuide() => UseGuides.SectionText(still, Zone, Zone.GetEntityCell(still), Actor)
+            .Split('\n').Single(line => line.StartsWith("Right now", StringComparison.Ordinal));
+
+        [TestCase("brine", "4 brine in one flask", "hot fire within 2 cells")]
+        [TestCase("receiver", "separate empty single flask", "hot fire within 2 cells")]
+        [TestCase("fire", "hot fire within 2 cells", "separate empty single flask")]
+        public void TheMenuAndLiveReaderNameTheActualBatchBlocker(string blocker, string required, string unrelated)
+        {
+            ShowDryWorkCell();
+            if (blocker == "brine")
+            {
+                V(source).Volume = 3;
+                var second = Flask(3, "brine");
+                Assert.That(V(second).Volume, Is.EqualTo(3), "Six carried measures spread across two flasks are not one batch.");
+            }
+            if (blocker == "receiver") Assert.True(Pack.RemoveObject(receiver));
+            if (blocker == "fire") fire.GetPart<ThermalPart>().Temperature = 25;
+
+            var rows = Actions(still).Where(row => row.Name == "DistillBrine" || row.Name == KeepCrust).ToArray();
+            Assert.That(rows.All(row => row.IsDisabled), Is.True);
+            var blocked = rows.Single(row => row.Name == "DistillBrine");
+            Assert.That(blocked.DisabledReason, Does.Contain(required).IgnoreCase);
+            Assert.That(blocked.Hint, Is.EqualTo(blocked.DisabledReason), "The menu must show the reason before selecting the row.");
+            Assert.That(blocked.DisabledReason, Does.Not.Contain(unrelated).IgnoreCase);
+            if (blocker == "fire") Assert.That(blocked.DisabledReason, Does.Contain("5 fuel").IgnoreCase);
+            Assert.That(LiveUseGuide(), Does.Contain(blocked.DisabledReason.TrimEnd('.')));
+            Assert.That(V(source).Volume, Is.EqualTo(blocker == "brine" ? 3 : 8));
+            Assert.That(V(receiver).Volume, Is.Zero);
+            Assert.That(fire.GetPart<FuelPart>().FuelMass, Is.EqualTo(25));
+        }
+
+        [TestCase("wet")]
+        [TestCase("occupied")]
+        public void AOneUnitReceiverStillReportsTheCrustGroundBlocker(string obstruction)
+        {
+            ShowDryWorkCell();
+            V(receiver).Capacity = 1;
+            Entity item = null;
+            if (obstruction == "wet") Zone.TileState.WriteCoating(10, 10, "water", 5);
+            else item = Place("FireClay", 10, 10);
+
+            var rows = Actions(still);
+            Assert.False(rows.Any(row => row.Name == "DistillBrine" && !row.IsDisabled));
+            var blocked = rows.Single(row => row.Name == KeepCrust);
+            Assert.True(blocked.IsDisabled);
+            Assert.That(blocked.DisabledReason, Does.Contain("clear, dry ground").IgnoreCase);
+            Assert.That(blocked.Hint, Is.EqualTo(blocked.DisabledReason));
+            Assert.That(LiveUseGuide(), Does.Contain(blocked.DisabledReason.TrimEnd('.')));
+
+            V(receiver).Capacity = 2;
+            Assert.That(Row(), Does.StartWith("DistillBrine|"), "Ordinary water needs no loose solid output cell.");
+            V(receiver).Capacity = 1;
+            if (item != null) Assert.True(Zone.RemoveEntity(item));
+            else Assert.True(Zone.TileState.RemoveCoating(10, 10, "water"));
+            Assert.True(Act(still, KeepRow(receiver).Command));
+            Assert.That(V(receiver).Volume, Is.EqualTo(1));
+            Assert.That(Crust(Zone).Length, Is.EqualTo(1));
+        }
+
         [Test]
         public void KeepingCrustUsesOneWaterInsteadOfTwoAndKeepsTheExactGroundOutputOnLoad()
         {

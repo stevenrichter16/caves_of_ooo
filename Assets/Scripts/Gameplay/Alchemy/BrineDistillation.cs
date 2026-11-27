@@ -162,18 +162,18 @@ namespace CavesOfOoo.Core
             && still.ParentEntity.GetPart<LiquidSettlingPart>() == still && still.DistillationStanding
             && WorldResourceActions.Ground(still.ParentEntity, zone) && WorldResourceActions.Nearby(actor, still.ParentEntity, zone);
         static bool Vessel(Entity actor, Entity item) => WorldResourceActions.Carried(actor, item, true)
+            && item.ID != actor.ID
             && item.Parts.Count(p => p is LiquidVesselPart) == 1 && item.GetPart<LiquidVesselPart>()?.ParentEntity == item
             && item.GetPart<LiquidVesselPart>().Capacity > 0 && !item.HasTag("Creature") && !item.HasTag("Terrain");
+        static bool BatchFeed(LiquidVesselPart part) => part.LiquidId == "brine" && part.Volume >= Feed && part.Volume <= part.Capacity;
+        static bool EmptyReceiver(LiquidVesselPart part, int yield) =>
+            part.LiquidId == "" && part.Volume == 0 && part.Capacity >= yield;
+
         static Plan Make(Entity actor, LiquidSettlingPart still, Zone zone, Entity source, Entity receiver, Entity fire, bool keepCrust)
         {
             if (!Context(actor, still, zone) || source == receiver || !Vessel(actor, source) || !Vessel(actor, receiver)
-                || source.ID == receiver.ID || source.ID == actor.ID || receiver.ID == actor.ID
-                || actor.GetPart<InventoryPart>().Objects.Count(e => e?.ID == source.ID) != 1
-                || actor.GetPart<InventoryPart>().Objects.Count(e => e?.ID == receiver.ID) != 1
-                || source.GetPart<LiquidVesselPart>().LiquidId != "brine" || source.GetPart<LiquidVesselPart>().Volume < Feed
-                || source.GetPart<LiquidVesselPart>().Volume > source.GetPart<LiquidVesselPart>().Capacity
-                || receiver.GetPart<LiquidVesselPart>().Volume != 0 || receiver.GetPart<LiquidVesselPart>().LiquidId != ""
-                || receiver.GetPart<LiquidVesselPart>().Capacity < (keepCrust ? CrustWater : Water)
+                || source.ID == receiver.ID || !BatchFeed(source.GetPart<LiquidVesselPart>())
+                || !EmptyReceiver(receiver.GetPart<LiquidVesselPart>(), keepCrust ? CrustWater : Water)
                 || !still.DistillationFireReady(zone, fire, Fuel)) return null;
             var factory = keepCrust ? AlchemyStillPart.Factory : null;
             var template = keepCrust ? QualifiedCrust(factory) : null;
@@ -185,10 +185,10 @@ namespace CavesOfOoo.Core
         {
             if (actions == null || !Context(actor, still, zone)) return;
             var items = actor.GetPart<InventoryPart>().Objects.Where(e => Vessel(actor, e)).OrderBy(e => e.ID, StringComparer.Ordinal).ToArray();
-            var fire = still.DistillationFire(zone);
+            var sources = items.Where(e => BatchFeed(e.GetPart<LiquidVesselPart>())).ToArray();
+            var receivers = items.Where(e => EmptyReceiver(e.GetPart<LiquidVesselPart>(), CrustWater)).ToArray();
+            var fire = sources.Length > 0 && receivers.Length > 0 ? still.DistillationFire(zone) : null;
             bool anyWater = false, anyCrust = false;
-            var sources = items.Where(e => e.GetPart<LiquidVesselPart>().LiquidId == "brine").ToArray();
-            var receivers = items.Where(e => e.GetPart<LiquidVesselPart>().Volume == 0).ToArray();
             foreach (var source in sources)
                 foreach (var receiver in receivers)
                 {
@@ -216,11 +216,29 @@ namespace CavesOfOoo.Core
                             '\0', 7, false, ActionTime.OneAction);
                     }
                 }
-            if (!anyWater) actions.AddDisabled(WaterAction, "distill brine into water", "needs-distillation-inputs",
-                "Needs 4 carried brine, a separate empty single flask, and a hot fire within 2 cells with 5 fuel. Makes 2 water; concentrate is discarded.", '\0', 7);
-            if (anyWater && !anyCrust && !ClearCrustGround(actor, zone, zone.GetEntityCell(actor)))
-                actions.AddDisabled(CrustAction, "keep brine crust", "needs-clear-ground",
-                    "Stand on clear, dry ground beside the still to keep one pound of crust in place of one water.", '\0', 7);
+            if (!anyWater) AddBlocked(WaterAction, "distill brine into water", Water);
+            if (!anyCrust && sources.Length > 0) AddBlocked(CrustAction, "keep brine crust", CrustWater, keepCrust: true);
+
+            void AddBlocked(string action, string label, int waterYield, bool keepCrust = false)
+            {
+                string reason, code = "needs-distillation-inputs";
+                if (sources.Length == 0)
+                    reason = $"Carry at least {Feed} brine in one flask.";
+                else if (!receivers.Any(e => EmptyReceiver(e.GetPart<LiquidVesselPart>(), waterYield)))
+                    reason = $"Carry a separate empty single flask that holds {waterYield} water.";
+                else if (fire == null)
+                    reason = $"Needs a hot fire within {LiquidSettlingPart.FireReach} cells of the still that can spare {Fuel} fuel.";
+                else if (keepCrust && QualifiedCrust(AlchemyStillPart.Factory) == null)
+                    reason = "This still cannot retain crust in its current state.";
+                else if (keepCrust && !ClearCrustGround(actor, zone, zone.GetEntityCell(actor)))
+                {
+                    code = "needs-clear-ground";
+                    reason = "Stand on clear, dry ground beside the still to keep one pound of crust in place of one water.";
+                }
+                else
+                    reason = "The selected flasks or fire cannot supply this batch.";
+                actions.AddDisabled(action, label, code, reason, '\0', 7).Hint = reason;
+            }
         }
         internal static bool TryAct(Entity actor, LiquidSettlingPart still, Zone zone, string command, InventoryTransaction tx)
         {
