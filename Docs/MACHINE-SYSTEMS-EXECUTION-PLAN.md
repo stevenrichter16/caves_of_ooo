@@ -8,6 +8,8 @@ mire made three oil. The vent could not bake clay, and the playtest
 spent no fire fuel. Fresh Continue kept the empty repaired case,
 installed kit, depleted pool and oil. The still packed up normally.
 All 223 focused tests passed. [Case recovery and vent playtest](Verification/MachineSystems/PeatWorksStillRecovery20261127/README.md)
+The universal Mac package for `e42085c1b` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/PeatWorksStillRecovery20261127/mac-startup-verification.json)
 Keep the next comparison grounded in one useful destination for the
 portable yield. The existing Slip report is a proven alternate buyer
 of three oil. Check whether the route to another useful field service

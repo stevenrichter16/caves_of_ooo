@@ -51,3 +51,13 @@ jammed case, and the native menus. The main Editor left Play Mode and
 all 876 normal Quick files and 87 pre-existing tracked edits matched.
 
 [Native play states and checkpoint hashes](observations.json)
+
+## Mac package
+
+The universal Mac package for `e42085c1b` built from 32,274 checked inputs
+with zero errors and five warnings. GameBootstrap ran on Apple M5.
+Both the current and previous app matched their 186-file records.
+All 876 normal Quick files matched again and changed preferences were
+restored. Gameplay was verified in the Editor.
+
+[Startup receipt](mac-startup-verification.json)
