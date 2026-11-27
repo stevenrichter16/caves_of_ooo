@@ -82,6 +82,13 @@ chose a dry deployment spot by a natural vent and settled finite
 mire into oil. Fresh Continue preserved the exact installed still
 and exhausted case. [Case recovery and vent playtest](Verification/MachineSystems/PeatWorksStillRecovery20261127/README.md)
 
+For #18, #19, #34 and #36, the recovered portable still supplied
+clean water to the existing dry sumpsieve. One paid measure and one
+shower or two paid measures in fair weather gave the same exact
+harvest. The wet return left one extra carried water. Real wounds
+and interruptions came from regional wildlife in both branches.
+[Portable water and crop evidence](Verification/MachineSystems/PortableStillCrop20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry

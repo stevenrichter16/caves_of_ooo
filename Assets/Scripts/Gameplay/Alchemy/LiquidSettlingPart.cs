@@ -420,7 +420,9 @@ namespace CavesOfOoo.Core
                 var owner = ParentEntity;
                 tx.AfterCommit(() =>
                 {
-                    MessageLog.Add("You settle " + volume + " mire " + (vent ? "on the vent's heat" : "over the fire") + ": " + yield + " " + target + " runs into the flask. The dregs stay in the pot.");
+                    MessageLog.Add("You settle " + volume + " mire " + (vent ? "on the vent's heat" : "over the fire")
+                        + ": " + yield + " " + target + " runs into the flask. "
+                        + (volume - yield) + " measures of mire are discarded as dregs.");
                     Diag.Record("liquid", "Settled", actor, owner, new { from = Feed, to = target, units = volume, yield, fuel = spend, heat = vent ? "vent" : "fire" });
                 });
                 if (own) tx.Commit();
@@ -444,7 +446,7 @@ namespace CavesOfOoo.Core
             try
             {
                 if (!transaction.TryClaim(actor, actor, command) || !transaction.TryClaim(ParentEntity, actor, command)) return Reject(actor, "in_progress", "The still is already being worked.");
-                string target = f[1]; int batches = 0, produced = 0; var owner = ParentEntity; bool vent = FindVent(zone) != null;
+                string target = f[1]; int batches = 0, produced = 0; long discarded = 0; var owner = ParentEntity; bool vent = FindVent(zone) != null;
                 foreach (var flask in flasks)
                 {
                     var fire = vent ? null : FindFire(zone, out _); if (!vent && fire == null) break;
@@ -452,7 +454,9 @@ namespace CavesOfOoo.Core
                     var vessel = flask.GetPart<LiquidVesselPart>(); var fuel = fire?.GetPart<FuelPart>(); float fuelBefore = fuel != null ? fuel.FuelMass : 0f; int volume = vessel.Volume, yield = volume / Ratio; float spend = fuel != null ? FuelPerBatch : 0f;
                     transaction.Do(() => { vessel.LiquidId = target; vessel.Volume = yield; if (fuel != null) fuel.FuelMass = fuelBefore - FuelPerBatch; }, () => { vessel.LiquidId = Feed; vessel.Volume = volume; if (fuel != null) fuel.FuelMass = fuelBefore; });
                     transaction.AfterCommit(() => Diag.Record("liquid", "Settled", actor, owner, new { from = Feed, to = target, units = volume, yield, fuel = spend, heat = vent ? "vent" : "fire" }));
-                    batches++; produced += yield;
+                    batches++;
+                    produced += yield;
+                    discarded += volume - yield;
                 }
                 if (batches == 0)
                 {
@@ -460,7 +464,9 @@ namespace CavesOfOoo.Core
                     return Reject(actor, offer.Code ?? "fuel_short", offer.Reason ?? "No fire here can spare fuel for another batch.");
                 }
                 int done = batches, total = flasks.Length, made = produced;
-                transaction.AfterCommit(() => MessageLog.Add("You settle " + done + (done == total ? " flasks" : " of " + total + " flasks") + " of mire " + (vent ? "on the vent's heat" : "over the fire") + ": " + made + " " + target + ". The dregs stay in the pot."));
+                transaction.AfterCommit(() => MessageLog.Add("You settle " + done + (done == total ? " flasks" : " of " + total + " flasks")
+                    + " of mire " + (vent ? "on the vent's heat" : "over the fire") + ": " + made + " " + target
+                    + ". " + discarded + " measures of mire are discarded as dregs."));
                 if (own) transaction.Commit();
                 return true;
             }

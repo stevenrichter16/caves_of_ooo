@@ -1,3 +1,17 @@
+**The portable still supplies Sella’s dry bed — November 27, 2026, America/Chicago.**
+The same earned still settled 12 mire into three water on natural
+steam. Single and batch receipts now count the discarded mire.
+Native play used one measure on the dry bed and returned through two
+matched branches. In a shower the local rain completed the crop and
+saved one flask measure. In fair weather a second flask measure
+completed the same crop. Both earned two pads and a seed, preserved
+the neighboring ripe plant and passed fresh Continue. All 164 focused
+tests passed. [Portable water and crop evidence](Verification/MachineSystems/PortableStillCrop20261127/README.md)
+Next, use the earned pads in a useful field or town service, or
+qualify a smaller recovery opportunity from the same region. Check
+whether the real occupied-bed refusals reflect live sleepers or stale
+state before considering any change.
+
 **Peat Works yields a portable still — November 27, 2026, America/Chicago.**
 One fixed case in newly generated Peat Works contains an ordinary
 18 lb camp still. The bent catch takes either one iron spike or one
@@ -10,12 +24,6 @@ installed kit, depleted pool and oil. The still packed up normally.
 All 223 focused tests passed. [Case recovery and vent playtest](Verification/MachineSystems/PeatWorksStillRecovery20261127/README.md)
 The universal Mac package for `e42085c1b` passed Apple M5 startup.
 [Package receipt](Verification/MachineSystems/PeatWorksStillRecovery20261127/mac-startup-verification.json)
-Keep the next comparison grounded in one useful destination for the
-portable yield. The existing Slip report is a proven alternate buyer
-of three oil. Check whether the route to another useful field service
-or repeat setup makes home and portable work meaningfully different.
-The current still log describes retained dregs without a physical
-dregs owner. Verify or correct that wording before expanding waste.
 
 **Oil for Slip lights the east road — November 27, 2026, America/Chicago.**
 Two fixed lamps on dry grass use the same saved supply condition

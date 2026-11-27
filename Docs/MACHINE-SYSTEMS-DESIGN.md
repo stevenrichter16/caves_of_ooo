@@ -2505,6 +2505,13 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The November 27 field-water trial connected the recovered still to
+ordinary crop watering. One portable measure and local rain or two
+portable measures in fair weather ripened the same Sodden crop.
+Both routes yielded equal pads and seed. Rain saved one unit for
+later work. The settling receipt now reports the count discarded
+without keeping a waste item. [Portable water and crop evidence](Verification/MachineSystems/PortableStillCrop20261127/README.md)
+
 The November 27 Peat Works trial adds a physical route to the
 fractionating still's portable kit. A fixed repairable case takes
 one spike or one cord, then opens to reveal one existing still.

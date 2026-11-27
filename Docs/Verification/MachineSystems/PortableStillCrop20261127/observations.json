@@ -1,0 +1,2390 @@
+{
+  "sourceArchive": "/Users/steven/coo-verification/checkpoints/PeatWorksStillRecovery20261127/SettledOil3700/c6079358f8fc4e4d83fd8416612932e3",
+  "specificSource": "Backup save body and paired metadata, tick 3420",
+  "states": {
+    "ColdContinue": {
+      "playing": true,
+      "ready": true,
+      "zone": "Overworld.16.8.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3420,
+      "hp": 41,
+      "mode": "Normal",
+      "world": false,
+      "pause": false,
+      "job": true,
+      "completed": -1,
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "name": "liquid flask",
+          "liquid": "bog-mire",
+          "volume": 12,
+          "fuel": null,
+          "temperature": null,
+          "count": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "name": "liquid flask",
+          "liquid": "brine",
+          "volume": 12,
+          "fuel": null,
+          "temperature": null,
+          "count": null
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "liquid": null,
+          "volume": null,
+          "fuel": 42.0000076,
+          "temperature": 441.5,
+          "count": 1
+        }
+      ],
+      "near": [
+        {
+          "ID": "16706",
+          "BlueprintName": "MirePool",
+          "xy": "(39, 14)",
+          "fuel": null,
+          "temperature": 10,
+          "liquid": "bog-mire",
+          "volume": 60
+        },
+        {
+          "ID": "16708",
+          "BlueprintName": "MirePool",
+          "xy": "(40, 14)",
+          "fuel": null,
+          "temperature": 10,
+          "liquid": "bog-mire",
+          "volume": 60
+        },
+        {
+          "ID": "16710",
+          "BlueprintName": "MirePool",
+          "xy": "(41, 14)",
+          "fuel": null,
+          "temperature": 10,
+          "liquid": "bog-mire",
+          "volume": 60
+        },
+        {
+          "ID": "16712",
+          "BlueprintName": "MirePool",
+          "xy": "(42, 14)",
+          "fuel": null,
+          "temperature": 10,
+          "liquid": "bog-mire",
+          "volume": 60
+        },
+        {
+          "ID": "17800",
+          "BlueprintName": "SteamVent",
+          "xy": "(58, 14)",
+          "fuel": null,
+          "temperature": 95,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "17799",
+          "BlueprintName": "SteamVent",
+          "xy": "(59, 14)",
+          "fuel": null,
+          "temperature": 95,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "log": [
+        "The shock coat on your buckler has worn off.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You fill the flask with bog mire. (12/12)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word."
+      ]
+    },
+    "WaterStillMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "take up",
+          "Command": "TakeUp|Overworld.16.8.0|15138",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "b",
+          "Display": "brew the mix",
+          "Command": "BrewMix",
+          "Hint": "Brews one of the mix and uses up the picked reagents. Pick reagents below first.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "c",
+          "Display": "brew a full batch",
+          "Command": "BrewMixBatch",
+          "Hint": "Brews as many as the picked reagents allow, in one go.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "d",
+          "Display": "settle 12 mire to 3 water",
+          "Command": "SettleLiquid|water|9873|12",
+          "Hint": "Settles bog-mire into clean water, 4 mire to 1. The still can use steady heat from steam vent right now.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 4,
+          "key": "e",
+          "Display": "settle 12 mire to 3 oil",
+          "Command": "SettleLiquid|oil|9873|12",
+          "Hint": "Settles bog-mire into clean oil, 4 mire to 1. The still can use steady heat from steam vent right now.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 5,
+          "key": "f",
+          "Display": "bake 8 of the 12 mire to 1 fire clay",
+          "Command": "Disabled:no_fire",
+          "Hint": "",
+          "IsDisabled": true,
+          "DisabledReason": "The vent is not hot enough to bake clay. Baking needs a lit fire beside the still.",
+          "via": null
+        },
+        {
+          "i": 6,
+          "key": "g",
+          "Display": "distill brine into water",
+          "Command": "Disabled:needs-distillation-inputs",
+          "Hint": "Carry a separate empty single flask that holds 2 water.",
+          "IsDisabled": true,
+          "DisabledReason": "Carry a separate empty single flask that holds 2 water.",
+          "via": null
+        },
+        {
+          "i": 7,
+          "key": "h",
+          "Display": "keep brine crust",
+          "Command": "Disabled:needs-distillation-inputs",
+          "Hint": "Carry a separate empty single flask that holds 1 water.",
+          "IsDisabled": true,
+          "DisabledReason": "Carry a separate empty single flask that holds 1 water.",
+          "via": null
+        },
+        {
+          "i": 8,
+          "key": "i",
+          "Display": "hand over (you can no longer take it up)",
+          "Command": "HandOver|Overworld.16.8.0|15138",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 9,
+          "key": "m",
+          "Display": "move",
+          "Command": "MovePick|Overworld.16.8.0|15138",
+          "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 10,
+          "key": "l",
+          "Display": "name this camp: Home",
+          "Command": "NameCamp|Overworld.16.8.0|15138",
+          "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 11,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 12,
+          "key": "n",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 13,
+          "key": "o",
+          "Display": "scatter grit southeast (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.16.8.0|60|13|61|14|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 14,
+          "key": "p",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "WaterSettled": {
+      "tick": 3690,
+      "hp": 37,
+      "kit": "15138",
+      "site": "(61, 14)",
+      "LiquidId": "water",
+      "Volume": 3,
+      "pool": 48,
+      "torch": 42.0000076,
+      "log": [
+        "You set camp still down.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "You (Rejoinder) CRITICALLY hit sari-snake in the body for 8 damage! (6 HP remaining)",
+        "sari-snake is bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You settle 12 mire on the vent's heat: 3 water runs into the flask. 9 measures of mire are discarded as dregs.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake takes 2 bleed damage.",
+        "sari-snake hits you in the handwear for 2 damage! (38 HP remaining)",
+        "You are bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 1 bleed damage."
+      ]
+    },
+    "WaterKitPacked": {
+      "pos": "(60, 13)",
+      "tick": 3700,
+      "hp": 34,
+      "packed": true,
+      "around": [
+        {
+          "BlueprintName": "SariSnake",
+          "xy": "(59, 12)",
+          "hp": 3
+        }
+      ],
+      "log": [
+        "You take 1 bleed damage.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You take up camp still.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage."
+      ]
+    },
+    "WaterOnMap": {
+      "zone": "WorldMap",
+      "at": "(46, 11)",
+      "tick": 3720,
+      "hp": 34,
+      "job": false,
+      "n": 3,
+      "log": [
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "WaterArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/PortableStillCrop20261127/Water3720/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "c7841a46990ccf4f3ab8c28e0fa56e005a96aad5c50121a6990a360d0d91ba89",
+        "Quick.json.bak": "2a078244d99ee95fed757188def731a3185f286e647fee46c349b82567c3ced9",
+        "Quick.sav.gz": "91b0c165d0151200b780a5e426d937a3236c14b6600c235867f651e4ea77b8ed",
+        "Quick.sav.gz.bak": "f78cb1f42ff6e522f76759d59dd18a55fd852d0e4ec048d8a6d9fbdaaaf56a8e"
+      }
+    },
+    "FairWait": {
+      "zone": "WorldMap",
+      "at": "(46, 11)",
+      "tick": 4200,
+      "hp": 34,
+      "job": false,
+      "n": 480,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "ShelterInitial": {
+      "ready": true,
+      "at": "(40, 12)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 4230,
+      "hp": 34,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 7,
+        "UntilTick": 4800
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 0,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 3,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "DryFooting": {
+      "ready": true,
+      "at": "(50, 10)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 4330,
+      "hp": 16,
+      "mode": "Normal",
+      "paused": false,
+      "job": true,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 7,
+        "UntilTick": 4800
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 0,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 3,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [
+        {
+          "ID": "urqu:-1:s0",
+          "BlueprintName": "SariSnake",
+          "pos": "(49, 11)",
+          "hp": 14
+        },
+        {
+          "ID": "urqu:-1:s1",
+          "BlueprintName": "SariSnake",
+          "pos": "(49, 10)",
+          "hp": 14
+        }
+      ],
+      "log": [
+        "sari-snake hits you in the body for 2 damage! (24 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 1 bleed damage."
+      ]
+    },
+    "DryBedMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "water with liquid flask (1 of 3)",
+          "Command": "WaterCrop|9873",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "b",
+          "Display": "clear young crop (no yield)",
+          "Command": "ClearCrop",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "c",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 4,
+          "key": "d",
+          "Display": "scatter grit north (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.15.7.0|50|10|50|9|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 5,
+          "key": "e",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "FirstDoseRetreat": {
+      "ready": true,
+      "at": "(45, 10)",
+      "ZoneID": "WorldMap",
+      "tick": 4350,
+      "hp": 15,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": false,
+        "Raining": false,
+        "Window": 0,
+        "UntilTick": 0
+      },
+      "crops": [],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 1 bleed damage.",
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "FirstDoseCrop": {
+      "tick": 4350,
+      "hp": 15,
+      "GrowthStage": 0,
+      "TicksInStage": 1,
+      "MoistureTicks": 39,
+      "LastNaturalRainWorldTick": -1,
+      "known": [
+        {
+          "DisplayName": "Shank",
+          "Command": "CommandShank"
+        },
+        {
+          "DisplayName": "Flurry",
+          "Command": "CommandFlurry"
+        }
+      ],
+      "goods": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed"
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat"
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask"
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask"
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch"
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent"
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill"
+        }
+      ],
+      "log": [
+        "You water the sumpsieve with the liquid flask. (2 water remain)",
+        "You stop bleeding."
+      ]
+    },
+    "SumpholdArrival": {
+      "zone": "Overworld.15.6.0",
+      "at": "(39, 11)",
+      "tick": 4380,
+      "hp": 15,
+      "job": true,
+      "n": 2,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "SumpholdBeds": {
+      "zone": "Overworld.15.6.0",
+      "at": "(39, 11)",
+      "tick": 4380,
+      "hp": 15,
+      "beds": [
+        {
+          "ID": "20911",
+          "x": 11,
+          "y": 4,
+          "Owner": "",
+          "Occupied": false,
+          "interior": true,
+          "pass": true,
+          "vis": false
+        },
+        {
+          "ID": "23279",
+          "x": 20,
+          "y": 6,
+          "Owner": "",
+          "Occupied": false,
+          "interior": true,
+          "pass": true,
+          "vis": false
+        }
+      ],
+      "danger": [
+        {
+          "BlueprintName": "SariSnake",
+          "xy": "(35, 8)"
+        },
+        {
+          "BlueprintName": "SariSnake",
+          "xy": "(34, 8)"
+        }
+      ]
+    },
+    "SumpholdRestApproach": {
+      "zone": "Overworld.15.6.0",
+      "at": "(35, 14)",
+      "tick": 4470,
+      "hp": 5,
+      "job": false,
+      "n": 8,
+      "log": [
+        "Your reputation with the Villagers improves.",
+        "Nerrel Wethand, scribe looks shaken.",
+        "You (Rejoinder) hit sari-snake in the body for 5 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage."
+      ]
+    },
+    "BackAtSumphold": {
+      "zone": "Overworld.15.6.0",
+      "at": "(39, 11)",
+      "tick": 4370,
+      "hp": 15,
+      "job": true,
+      "n": 1,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "Game loaded."
+      ]
+    },
+    "BrineCampArrival": {
+      "zone": "Overworld.15.8.0",
+      "at": "(40, 12)",
+      "tick": 4430,
+      "hp": 15,
+      "job": false,
+      "n": 4,
+      "log": [
+        "Game loaded.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "RestFootingExact": {
+      "zone": "Overworld.15.8.0",
+      "at": "(14, 11)",
+      "tick": 4740,
+      "hp": 15,
+      "job": false,
+      "n": 31,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The mire-soaked coating wears off gin frog.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The campfire crackles warmly.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "RestRestored": {
+      "zone": "Overworld.15.8.0",
+      "at": "(14, 11)",
+      "tick": 4740,
+      "hp": 15,
+      "job": false,
+      "n": 1,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The campfire crackles warmly.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "That bed is in use, or you must stand up first."
+      ]
+    },
+    "HomeRestTravel": {
+      "zone": "Overworld.2.6.0",
+      "at": "(40, 12)",
+      "tick": 5020,
+      "hp": 15,
+      "job": false,
+      "n": 15,
+      "log": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "SettledHomeRest": {
+      "zone": "Overworld.2.6.0",
+      "at": "(42, 20)",
+      "tick": 5120,
+      "hp": 15,
+      "job": false,
+      "n": 13,
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "mosshulk brushes through the wine-leaf sundew.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You can't rest — sari-snake is nearby."
+      ]
+    },
+    "RestDanger": {
+      "at": "(42, 20)",
+      "tick": 5120,
+      "hp": 15,
+      "near": [
+        {
+          "ID": "urqu:-1:s0",
+          "BlueprintName": "SariSnake",
+          "pos": "(42, 18)",
+          "hp": 14,
+          "vis": true
+        },
+        {
+          "ID": "urqu:-1:s1",
+          "BlueprintName": "SariSnake",
+          "pos": "(42, 17)",
+          "hp": 14,
+          "vis": true
+        }
+      ],
+      "bindings": [
+        {
+          "DisplayName": "Shank",
+          "Range": 1,
+          "target": "AdjacentCell",
+          "slot": 1
+        },
+        {
+          "DisplayName": "Flurry",
+          "Range": 1,
+          "target": "AdjacentCell",
+          "slot": 2
+        }
+      ]
+    },
+    "GuardedBedWait": {
+      "tick": 5130,
+      "hp": 15,
+      "snakes": [
+        {
+          "ID": "urqu:-1:s0",
+          "pos": "(42, 19)",
+          "hp": 14
+        },
+        {
+          "ID": "urqu:-1:s1",
+          "pos": "(42, 18)",
+          "hp": 14
+        }
+      ],
+      "log": [
+        "mosshulk brushes through the wine-leaf sundew.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You can't rest — sari-snake is nearby.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "RestThreatFlurry": {
+      "tick": 5140,
+      "hp": 15,
+      "snakes": [
+        {
+          "ID": "urqu:-1:s1",
+          "pos": "(42, 19)",
+          "hp": 14
+        }
+      ],
+      "log": [
+        "Flurry - choose a direction.",
+        "You (Flurry) hit sari-snake in the body for 11 damage! (3 HP remaining)",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You (Flurry) hit sari-snake in the body for 3 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "RestThreatShank": {
+      "tick": 5150,
+      "hp": 14,
+      "snakes": [
+        {
+          "ID": "urqu:-1:s1",
+          "pos": "(42, 19)",
+          "hp": 8
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Shank - choose a direction.",
+        "You (Shank) hit sari-snake in the body for 5 damage! (9 HP remaining)",
+        "sari-snake is bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake hits you in the left arm for 1 damage! (14 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "HealReason": {
+      "at": "(42, 20)",
+      "tick": 5160,
+      "hp": 42,
+      "level": 3,
+      "state": "AnnouncementOpen",
+      "pause": false,
+      "air": [
+        {
+          "start": 4200,
+          "rain": false
+        },
+        {
+          "start": 4800,
+          "rain": false
+        },
+        {
+          "start": 5400,
+          "rain": true
+        },
+        {
+          "start": 6000,
+          "rain": false
+        },
+        {
+          "start": 6600,
+          "rain": false
+        },
+        {
+          "start": 7200,
+          "rain": true
+        }
+      ],
+      "log": [
+        "sari-snake is bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake takes 1 bleed damage.",
+        "sari-snake hits you in the left arm for 1 damage! (14 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "You advance to level 3!",
+        "sari-snake stops bleeding.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You [left hand: dagger] hit sari-snake in the body for 8 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "WeatherForkMap": {
+      "zone": "WorldMap",
+      "at": "(45, 10)",
+      "tick": 5430,
+      "hp": 42,
+      "job": false,
+      "n": 16,
+      "log": [
+        "You [left hand: dagger] hit sari-snake in the body for 8 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved."
+      ]
+    },
+    "ForkArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/PortableStillCrop20261127/Fork5430/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "5473e2b2a8c5378145a2b495a74a555bc383392999bc598353e019c04f7c6785",
+        "Quick.json.bak": "3cbc5c3cd1e2109258768734e10c9509cea98adafff24a792371b4d5de667c62",
+        "Quick.sav.gz": "b1eb2214b9e9368927c14bcf572953dcf7b070c385253f4d077007368d713ba6",
+        "Quick.sav.gz.bak": "52db4e05da0b662473084952759fe58ccc05e80490ab9e8baef11b4648f3ef8d"
+      }
+    },
+    "ShowerReturn": {
+      "ready": true,
+      "at": "(40, 12)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 5440,
+      "hp": 42,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": true,
+        "Window": 9,
+        "UntilTick": 6000
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 17,
+          "moist": 9,
+          "wetTick": 5430,
+          "bg": "^w"
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You [left hand: dagger] hit sari-snake in the body for 8 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "ShowerCropRipe": {
+      "ready": true,
+      "at": "(47, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 5530,
+      "hp": 22,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": true,
+        "Window": 9,
+        "UntilTick": 6000
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": 5430,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [
+        {
+          "ID": "urqu:-1:s2",
+          "BlueprintName": "SariSnake",
+          "pos": "(46, 8)",
+          "hp": 5
+        },
+        {
+          "ID": "urqu:-1:s0",
+          "BlueprintName": "SariSnake",
+          "pos": "(47, 9)",
+          "hp": 5
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the right arm for 10 damage! (30 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the body for 5 damage! (25 HP remaining)",
+        "You are bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage."
+      ]
+    },
+    "ShowerFightWest": {
+      "ready": true,
+      "at": "(47, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 5540,
+      "hp": 14,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": true,
+        "Window": 9,
+        "UntilTick": 6000
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": 5430,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [
+        {
+          "ID": "urqu:-1:s0",
+          "BlueprintName": "SariSnake",
+          "pos": "(47, 9)",
+          "hp": 5
+        }
+      ],
+      "log": [
+        "You gain 42 XP.",
+        "sari-snake stops bleeding.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You [left hand: dagger] hit sari-snake in the body for 5 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the body for 5 damage! (17 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage."
+      ]
+    },
+    "ShowerFightSouth": {
+      "ready": true,
+      "at": "(47, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 5550,
+      "hp": 14,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": true,
+        "Window": 9,
+        "UntilTick": 6000
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": 5430,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "You take 3 bleed damage.",
+        "Shank - choose a direction.",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You (Shank) hit sari-snake in the body for 5 damage!",
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "ShowerHarvestMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "h",
+          "Display": "harvest",
+          "Command": "HarvestCultivatedCrop",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "a",
+          "Display": "gather into pack",
+          "Command": "GatherCrop",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "b",
+          "Display": "harvest: 3x seeds, no produce",
+          "Command": "HarvestCropSeeds",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 4,
+          "key": "c",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 5,
+          "key": "d",
+          "Display": "scatter grit southeast (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.15.7.0|49|8|50|9|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 6,
+          "key": "e",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "ShowerHarvested": {
+      "ready": true,
+      "at": "(49, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 5580,
+      "hp": 14,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": true,
+        "Window": 9,
+        "UntilTick": 6000
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "units": 2,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You (Shank) hit sari-snake in the body for 5 damage!",
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You gather sumpsieve: 3 packed, 0 left here.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved."
+      ]
+    },
+    "ShowerArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/PortableStillCrop20261127/Shower5580/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "2dd8eb96d30918308429dca562f594e0a93cb87d88691b857118915102f8010b",
+        "Quick.json.bak": "19769d50065d9a9c82c7ca82b9effdf5ad49b4df7c9b48c27176103ced61e533",
+        "Quick.sav.gz": "45c9b886a01d98ccbe55ce4e2fe7fcfa7afc150c195550900e2e5d43fe470790",
+        "Quick.sav.gz.bak": "8fd0d64db22fa4c5c696bd7fe5ad28f6c8a8ce560550af9ec57133bc2e530e60"
+      }
+    },
+    "ForkFreshContinue": {
+      "zone": "WorldMap",
+      "at": "(45, 10)",
+      "tick": 5430,
+      "hp": 42,
+      "job": true,
+      "n": 2,
+      "log": [
+        "Your reputation with the Villagers improves.",
+        "You [left hand: dagger] hit sari-snake in the body for 8 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairForkWait": {
+      "zone": "WorldMap",
+      "at": "(45, 10)",
+      "tick": 6000,
+      "hp": 42,
+      "job": false,
+      "n": 570,
+      "log": [
+        "You [left hand: dagger] hit sari-snake in the body for 8 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairReturn": {
+      "ready": true,
+      "at": "(40, 12)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6010,
+      "hp": 42,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 16,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "sari-snake stops bleeding.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You [left hand: dagger] hit sari-snake in the body for 8 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "FairNorthApproach": {
+      "ready": true,
+      "at": "(44, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6050,
+      "hp": 42,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 16,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [
+        {
+          "ID": "urqu:-1:s2",
+          "BlueprintName": "SariSnake",
+          "pos": "(44, 9)",
+          "hp": 14
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake sees you again.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake sees you again.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairFightFirst": {
+      "ready": true,
+      "at": "(44, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6060,
+      "hp": 42,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 16,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "You (Flurry) hit sari-snake in the body for 3 damage! (5 HP remaining)",
+        "sari-snake is bleeding!",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "sari-snake stops bleeding.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You (Flurry) hit sari-snake in the body for 5 damage!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairMiddleApproach": {
+      "ready": true,
+      "at": "(46, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6090,
+      "hp": 23,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 16,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [
+        {
+          "ID": "urqu:-1:s0",
+          "BlueprintName": "SariSnake",
+          "pos": "(47, 9)",
+          "hp": 14
+        }
+      ],
+      "log": [
+        "You gain 42 XP.",
+        "sari-snake stops bleeding.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 2 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the head for 6 damage! (25 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 bleed damage."
+      ]
+    },
+    "FairFightLast": {
+      "ready": true,
+      "at": "(46, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6110,
+      "hp": 20,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 16,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "sari-snake stops bleeding.",
+        "sari-snake is no longer confused.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairSecondDoseMenu": {
+      "open": true,
+      "selected": 0,
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "water with liquid flask (1 of 2)",
+          "Command": "WaterCrop|9873",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 1,
+          "key": "b",
+          "Display": "clear young crop (no yield)",
+          "Command": "ClearCrop",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 2,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 3,
+          "key": "c",
+          "Display": "pour out a liquid here (4) >>",
+          "Command": "ToolGroup|pour out a liquid here",
+          "Hint": "Choose from: liquid flask.",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        },
+        {
+          "i": 4,
+          "key": "d",
+          "Display": "scatter grit southeast (1 item) [silver sand]",
+          "Command": "ScatterGrit|Overworld.15.7.0|49|8|50|9|1",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": "10241"
+        },
+        {
+          "i": 5,
+          "key": "e",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "Hint": "",
+          "IsDisabled": false,
+          "DisabledReason": "",
+          "via": null
+        }
+      ]
+    },
+    "FairSecondDose": {
+      "ready": true,
+      "at": "(49, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6150,
+      "hp": 20,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 1,
+          "progress": 17,
+          "moist": 39,
+          "wetTick": -1,
+          "bg": "^w"
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 1,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "sari-snake stops bleeding.",
+        "sari-snake is no longer confused.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You water the sumpsieve with the liquid flask. (1 water remain)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairRipe": {
+      "ready": true,
+      "at": "(49, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6220,
+      "hp": 20,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        },
+        {
+          "id": "18823",
+          "pos": "(50, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 32,
+          "wetTick": -1,
+          "bg": "^w"
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 1,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "sari-snake stops bleeding.",
+        "sari-snake is no longer confused.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You water the sumpsieve with the liquid flask. (1 water remain)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "FairHarvested": {
+      "ready": true,
+      "at": "(49, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6230,
+      "hp": 20,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 1,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "units": 2,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You water the sumpsieve with the liquid flask. (1 water remain)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You gather sumpsieve: 3 packed, 0 left here.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved."
+      ]
+    },
+    "FairArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/PortableStillCrop20261127/Fair6230/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "07866f1bff01248435c36dd593cbd5f79bb8a8324230f640473bbd7dd20ab3c8",
+        "Quick.json.bak": "e4011dd2e8931a8c878833a7e066157aca8230e84b66c54685e9646a16afb251",
+        "Quick.sav.gz": "209e455d30c260d89dfc7c859e9663607414b45c2e6fd36317f08695c491d8ba",
+        "Quick.sav.gz.bak": "cc04814be7d805b2c8d3bcbfb728ff30cc216dda99d901cfc0439e0e978c854a"
+      }
+    },
+    "FairFresh": {
+      "ready": true,
+      "at": "(49, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 6230,
+      "hp": 20,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": false,
+        "Window": 10,
+        "UntilTick": 6600
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 1,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "units": 2,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You water the sumpsieve with the liquid flask. (1 water remain)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You gather sumpsieve: 3 packed, 0 left here.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "ShowerFresh": {
+      "ready": true,
+      "at": "(49, 8)",
+      "ZoneID": "Overworld.15.7.0",
+      "tick": 5580,
+      "hp": 14,
+      "mode": "Normal",
+      "paused": false,
+      "job": false,
+      "weather": {
+        "Valid": true,
+        "Raining": true,
+        "Window": 9,
+        "UntilTick": 6000
+      },
+      "crops": [
+        {
+          "id": "18819",
+          "pos": "(47, 9)",
+          "visible": true,
+          "stage": 2,
+          "progress": 0,
+          "moist": 0,
+          "wetTick": -1,
+          "bg": ""
+        }
+      ],
+      "pack": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 2,
+          "liquid": "water"
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "units": 1,
+          "vol": 12,
+          "liquid": "brine"
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "units": 2,
+          "vol": null,
+          "liquid": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "units": 1,
+          "vol": null,
+          "liquid": null
+        }
+      ],
+      "around": [],
+      "log": [
+        "You gain 42 XP.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You (Shank) hit sari-snake in the body for 5 damage!",
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You gather sumpsieve: 3 packed, 0 left here.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    }
+  },
+  "tests": {
+    "red": {
+      "total": 2,
+      "failed": 2
+    },
+    "final": {
+      "total": 164,
+      "passed": 164,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "notes": {
+    "waterArchiveLabel": "Water3720 is capture time; primary saved metadata tick3710.",
+    "sourcePool": "Peat Works pool was already drawn to 48 at the 3420 source. Settling made no second draw.",
+    "sourceReview": "Loss uses actual staged input minus yield and is published after commit, including a fuel-limited batch.",
+    "gameplayReview": "Independently checked the paired 3420 source, exact liquids, 16 checkpoint hashes, saved neighbor and both harvest results."
+  }
+}

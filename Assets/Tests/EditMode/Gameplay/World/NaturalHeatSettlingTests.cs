@@ -77,6 +77,65 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(3, DiagQuery.Apply(new DiagQuery.Filter { Category = "liquid", Kind = "Settled", Limit = 9 }).Records.Count);
         }
 
+        [TestCase(false, 9)]
+        [TestCase(true, 12)]
+        public void ASettlingReceiptNamesTheActualDiscardedMire(bool batch, int discarded)
+        {
+            var still = Still();
+            Vent();
+            var fire = Fire(10, 25f);
+            var first = Flask(12, "bog-mire");
+            var second = batch ? Flask(4, "bog-mire") : null;
+            var firstVessel = Vessel(first);
+            var secondVessel = second == null ? null : Vessel(second);
+            string command = batch
+                ? AllRows(still).Single(row => !row.IsDisabled && row.Command == "SettleAll|water").Command
+                : Row(still, "water");
+
+            Assert.True(Act(still, command));
+            Assert.AreSame(firstVessel, Vessel(first));
+            Assert.AreSame(Actor, first.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual("water", firstVessel.LiquidId);
+            Assert.AreEqual(3, firstVessel.Volume);
+            if (batch)
+            {
+                Assert.AreSame(secondVessel, Vessel(second));
+                Assert.AreSame(Actor, second.GetPart<PhysicsPart>().InInventory);
+                Assert.AreEqual("water", secondVessel.LiquidId);
+                Assert.AreEqual(1, secondVessel.Volume);
+            }
+            Assert.AreEqual(25f, Fuel(fire), 0.001f);
+            string receipt = string.Join(" ", MessageLog.GetRecent(4));
+            StringAssert.Contains(discarded + " measures of mire are discarded as dregs.", receipt);
+            StringAssert.DoesNotContain("The dregs stay in the pot", receipt);
+        }
+
+        [Test]
+        public void APartialSettlingReceiptCountsOnlyTheFlaskTheFireCouldPayFor()
+        {
+            var still = Still();
+            var fire = Fire(fuel: 5f);
+            var flasks = new[] { Flask(4, "bog-mire"), Flask(11, "bog-mire") };
+            var ordered = flasks.OrderBy(flask => flask.ID, StringComparer.Ordinal).ToArray();
+            var first = Vessel(ordered[0]);
+            var second = Vessel(ordered[1]);
+            first.Volume = 11;
+            second.Volume = 4;
+            var row = AllRows(still).Single(action => !action.IsDisabled && action.Command == "SettleAll|water");
+
+            Assert.True(Act(still, row.Command));
+            Assert.AreEqual("water", first.LiquidId);
+            Assert.AreEqual(2, first.Volume);
+            Assert.AreEqual("bog-mire", second.LiquidId);
+            Assert.AreEqual(4, second.Volume);
+            Assert.AreSame(first, Vessel(ordered[0]));
+            Assert.AreSame(second, Vessel(ordered[1]));
+            Assert.AreEqual(0f, Fuel(fire));
+            string receipt = string.Join(" ", MessageLog.GetRecent(4));
+            StringAssert.Contains("You settle 1 of 2 flasks of mire over the fire: 2 water.", receipt);
+            StringAssert.Contains("9 measures of mire are discarded as dregs.", receipt);
+        }
+
         [Test] public void AVentIsNotAKilnSoBakingClayStillNeedsAFireAndSaysWhy()
         {
             var still = Still(); Vent(); var flask = Flask(12, "bog-mire"); var row = Bakes(still).Single(); Assert.True(row.IsDisabled); StringAssert.Contains("not hot enough", row.DisabledReason);
