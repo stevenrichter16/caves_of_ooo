@@ -1,3 +1,11 @@
+**Frost lichen can freeze water now or wait in a spring trap.**
+From the same dry shoulder the earned lichen made ice either by direct
+application or after a loaded frame was crossed. The delayed choice
+also spent the frame and froze the creature that triggered it in the
+live player trial. The guide now names that risk. The armed device,
+spent state and remaining water each survived the relevant Continue.
+[Compared playtests](Verification/MachineSystems/FrostSpringTrap20261127/README.md)
+
 **The Drowned Ledger can use its spare willow for a temporary line.**
 The original retained line holds a finite pair of spare stakes. The
 ordinary harvest keeps the exact structure and accounts for overflow.

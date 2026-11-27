@@ -1,0 +1,2529 @@
+{
+  "scope": "Native Flat Editor, normal seed65 acquisition and step actions; patched guide confirmed after the same gameplay. Matched branches fork at ShoulderBefore. The water coating value 2147483647 is a duration sentinel, while each physical puddle volume is one.",
+  "play": {
+    "ledger-job-start": {
+      "zone": "Overworld.17.5.0",
+      "x": 40,
+      "y": 14,
+      "tick": 2310,
+      "hp": 31,
+      "effects": [],
+      "contents": [
+        {
+          "id": "13937",
+          "bp": "Floor",
+          "name": "floor"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a copying desk.\nThe desk lamp is lit.\n\nA low desk with a sloped folio board and an ink groove. The village scribe makes copies here; the original stays with its bearer.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Quest complete: The Dark Copy-Desks.",
+        "You gain 50 XP.",
+        "You receive 3 ink.",
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest survey line (out of line): 2 x WillowHaftComponent.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You set willow where the worst stakes walked. It is straight today.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "survey-read": {
+      "zone": "Overworld.17.5.0",
+      "x": 38,
+      "y": 12,
+      "tick": 2620,
+      "hp": 20,
+      "effects": [],
+      "contents": [
+        {
+          "id": "13760",
+          "bp": "Floor",
+          "name": "floor"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "AnnouncementOpen",
+      "log": [
+        "sari-snake hits you in the feet for 1 damage! (20 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "You (Rejoinder) hit sari-snake in the body for 11 damage! (3 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "You [left hand: dagger] hit sari-snake in the body for 3 damage!",
+        "sari-snake is confused!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Quest accepted: Between the Lines.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Bed survey, Recension the Tenth\n\nSurvey of the bed, Recension the Tenth, as entered. Stakes from the old tree-line, east to west.\n\nStake 8. An adult, hands crossed, facing the tree-line.\nStake 9. An adult, one hand open. Reading: leaf-light; a name spoken.\nStake 10. Here the survey does not say. The hand changes.\nStake 11. A child, curled, facing the tree-line.\nStake 12. Peat only. Entered as peat.\n\nMargin, in the eleventh hand: stake 10 kept as the tenth left it, blank. At 11 our reading diverges from the tenth's; we read the child as turned toward 9. The two readings are kept side by side, and both are initialled."
+      ]
+    },
+    "ledger-reward-field": {
+      "zone": "Overworld.17.5.0",
+      "x": 26,
+      "y": 15,
+      "tick": 2760,
+      "hp": 43,
+      "effects": [
+        {
+          "type": "BleedingEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "14021",
+          "bp": "Floor",
+          "name": "floor"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "AnnouncementOpen",
+      "log": [
+        "You take 3 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake is killed by you!",
+        "You gain 42 XP.",
+        "You advance to level 2!",
+        "sari-snake is no longer confused.",
+        "sari-snake stops bleeding.",
+        "Your reputation with the wild beasts worsens.",
+        "Your reputation with the Villagers improves.",
+        "sari-snake takes 2 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 bleed damage.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Quest complete: Between the Lines.",
+        "You gain 1500 XP.",
+        "You advance to level 3!",
+        "You advance to level 4!",
+        "You receive 25 drams."
+      ]
+    },
+    "after-ledger-reward": {
+      "zone": "Overworld.17.5.0",
+      "x": 26,
+      "y": 15,
+      "drams": 28,
+      "pack": [
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "count": 4,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 3
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "count": 2,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 5
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 15
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "count": 2,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 7
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "name": "liquid flask",
+          "count": 1,
+          "weight": 0,
+          "liquid": "water",
+          "vol": 12,
+          "value": 8
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "name": "silver sand",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 1
+        }
+      ],
+      "relevant": [
+        {
+          "ID": "15190",
+          "BlueprintName": "CurationSorter",
+          "name": "Nereth Tammet, Curation sorter",
+          "x": 26,
+          "y": 14,
+          "stock": null
+        },
+        {
+          "ID": "urqu:-1:s2",
+          "BlueprintName": "SariSnake",
+          "name": "sari-snake",
+          "x": 33,
+          "y": 5,
+          "stock": null
+        },
+        {
+          "ID": "concern:ledger.stakes:tenth",
+          "BlueprintName": "LedgerSurveySheet",
+          "name": "survey sheet",
+          "x": 39,
+          "y": 11,
+          "stock": null
+        },
+        {
+          "ID": "15310",
+          "BlueprintName": "Scribe",
+          "name": "scribe",
+          "x": 40,
+          "y": 3,
+          "stock": [
+            {
+              "ID": "15311",
+              "BlueprintName": "PalimpsestSealTrinket",
+              "name": "palimpsest seal",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 45
+            },
+            {
+              "ID": "15312",
+              "BlueprintName": "InkVial",
+              "name": "vial of ink",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 10
+            },
+            {
+              "ID": "15313",
+              "BlueprintName": "GrimoireCopy",
+              "name": "grimoire copy",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 20
+            },
+            {
+              "ID": "15314",
+              "BlueprintName": "Codex04",
+              "name": "copy of The oath of the cloth",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ID": "15290",
+          "BlueprintName": "Elder",
+          "name": "elder",
+          "x": 40,
+          "y": 4,
+          "stock": [
+            {
+              "ID": "15291",
+              "BlueprintName": "HealingTonic",
+              "name": "healing tonic",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 15
+            },
+            {
+              "ID": "15292",
+              "BlueprintName": "Codex12",
+              "name": "copy of How they tell it in Sill",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ID": "15274",
+          "BlueprintName": "Villager",
+          "name": "Orriel Ollit, villager",
+          "x": 41,
+          "y": 3,
+          "stock": [
+            {
+              "ID": "15275",
+              "BlueprintName": "DriedMeat",
+              "name": "dried meat (x2)",
+              "count": 2,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 7
+            },
+            {
+              "ID": "15277",
+              "BlueprintName": "WildBerries",
+              "name": "wild berries",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 2
+            }
+          ]
+        },
+        {
+          "ID": "15214",
+          "BlueprintName": "Merchant",
+          "name": "Nerrit Senn, merchant",
+          "x": 25,
+          "y": 7,
+          "stock": [
+            {
+              "ID": "15215",
+              "BlueprintName": "HealingTonic",
+              "name": "healing tonic (x3)",
+              "count": 3,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 15
+            },
+            {
+              "ID": "15217",
+              "BlueprintName": "SpeedTonic",
+              "name": "speed tonic",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 20
+            },
+            {
+              "ID": "15218",
+              "BlueprintName": "DriedMeat",
+              "name": "dried meat (x2)",
+              "count": 2,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 7
+            },
+            {
+              "ID": "15220",
+              "BlueprintName": "Dagger",
+              "name": "dagger",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 10
+            },
+            {
+              "ID": "15221",
+              "BlueprintName": "Torch",
+              "name": "torch",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 3
+            },
+            {
+              "ID": "15222",
+              "BlueprintName": "FrostLichen",
+              "name": "frost lichen",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 6
+            },
+            {
+              "ID": "15223",
+              "BlueprintName": "SpareIronKey",
+              "name": "spare iron key",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 5
+            },
+            {
+              "ID": "15226",
+              "BlueprintName": "SilverSand",
+              "name": "silver sand",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 1
+            },
+            {
+              "ID": "15227",
+              "BlueprintName": "FireClay",
+              "name": "fire clay",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 1
+            },
+            {
+              "ID": "15228",
+              "BlueprintName": "WardOil",
+              "name": "ward oil",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 5
+            },
+            {
+              "ID": "15229",
+              "BlueprintName": "Antidote",
+              "name": "antidote",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 30
+            },
+            {
+              "ID": "15230",
+              "BlueprintName": "BurnSalve",
+              "name": "burn salve",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 25
+            }
+          ]
+        },
+        {
+          "ID": "15232",
+          "BlueprintName": "Quartermaster",
+          "name": "Nerrit Vell, quartermaster",
+          "x": 43,
+          "y": 4,
+          "stock": [
+            {
+              "ID": "15233",
+              "BlueprintName": "LongSword",
+              "name": "long sword",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 25
+            },
+            {
+              "ID": "15234",
+              "BlueprintName": "IronHelmet",
+              "name": "iron helmet",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 25
+            },
+            {
+              "ID": "15235",
+              "BlueprintName": "HealingTonic",
+              "name": "healing tonic",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 15
+            },
+            {
+              "ID": "15236",
+              "BlueprintName": "Buckler",
+              "name": "buckler",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 20
+            },
+            {
+              "ID": "15240",
+              "BlueprintName": "LoanerDagger",
+              "name": "loaner dagger",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 30
+            },
+            {
+              "ID": "15241",
+              "BlueprintName": "LoanerSpear",
+              "name": "loaner spear",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 55
+            },
+            {
+              "ID": "15242",
+              "BlueprintName": "LoanerLongsword",
+              "name": "loaner longsword",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 120
+            }
+          ]
+        },
+        {
+          "ID": "15295",
+          "BlueprintName": "Villager",
+          "name": "villager",
+          "x": 64,
+          "y": 5,
+          "stock": [
+            {
+              "ID": "15296",
+              "BlueprintName": "DriedMeat",
+              "name": "dried meat (x2)",
+              "count": 2,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 7
+            },
+            {
+              "ID": "15298",
+              "BlueprintName": "WildBerries",
+              "name": "wild berries",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 2
+            },
+            {
+              "ID": "15299",
+              "BlueprintName": "Mushroom",
+              "name": "mushroom",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 3
+            },
+            {
+              "ID": "15300",
+              "BlueprintName": "LeatherCap",
+              "name": "leather cap",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ID": "15249",
+          "BlueprintName": "Warden",
+          "name": "Esset Ollit, warden",
+          "x": 44,
+          "y": 5,
+          "stock": [
+            {
+              "ID": "15250",
+              "BlueprintName": "SlingersWishboneTrinket",
+              "name": "slinger's wishbone",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 25
+            },
+            {
+              "ID": "15251",
+              "BlueprintName": "Spear",
+              "name": "spear",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 18
+            },
+            {
+              "ID": "15252",
+              "BlueprintName": "Torch",
+              "name": "torch",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 3
+            }
+          ]
+        },
+        {
+          "ID": "15272",
+          "BlueprintName": "Villager",
+          "name": "Esset Tern, villager",
+          "x": 52,
+          "y": 9,
+          "stock": [
+            {
+              "ID": "15273",
+              "BlueprintName": "DriedMeat",
+              "name": "dried meat",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 7
+            }
+          ]
+        },
+        {
+          "ID": "15267",
+          "BlueprintName": "Innkeeper",
+          "name": "Calven Tern, innkeeper",
+          "x": 49,
+          "y": 6,
+          "stock": [
+            {
+              "ID": "15268",
+              "BlueprintName": "CookedMeat",
+              "name": "cooked meat (x3)",
+              "count": 3,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ID": "15208",
+          "BlueprintName": "Elder",
+          "name": "Vessil Tern, elder",
+          "x": 49,
+          "y": 7,
+          "stock": [
+            {
+              "ID": "15209",
+              "BlueprintName": "HealingTonic",
+              "name": "healing tonic",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 15
+            },
+            {
+              "ID": "15210",
+              "BlueprintName": "GrimoireCopy",
+              "name": "grimoire copy",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 20
+            },
+            {
+              "ID": "15211",
+              "BlueprintName": "Codex12",
+              "name": "copy of How they tell it in Sill",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ID": "15243",
+          "BlueprintName": "Tinker",
+          "name": "Vessil Vesk, tinker",
+          "x": 71,
+          "y": 5,
+          "stock": [
+            {
+              "ID": "15244",
+              "BlueprintName": "IronSpikeComponent",
+              "name": "iron spike",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            },
+            {
+              "ID": "15245",
+              "BlueprintName": "CampBench",
+              "name": "camp bench",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 120
+            },
+            {
+              "ID": "15246",
+              "BlueprintName": "SpringTrap",
+              "name": "spring trap",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 16
+            }
+          ]
+        },
+        {
+          "ID": "15301",
+          "BlueprintName": "Merchant",
+          "name": "merchant",
+          "x": 67,
+          "y": 6,
+          "stock": [
+            {
+              "ID": "15302",
+              "BlueprintName": "HealingTonic",
+              "name": "healing tonic (x2)",
+              "count": 2,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 15
+            },
+            {
+              "ID": "15304",
+              "BlueprintName": "DriedMeat",
+              "name": "dried meat (x2)",
+              "count": 2,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 7
+            },
+            {
+              "ID": "15306",
+              "BlueprintName": "Dagger",
+              "name": "dagger",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 10
+            },
+            {
+              "ID": "15307",
+              "BlueprintName": "BogSap",
+              "name": "bog sap",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 6
+            }
+          ]
+        },
+        {
+          "ID": "15278",
+          "BlueprintName": "Villager",
+          "name": "Tovren Ollit, villager",
+          "x": 68,
+          "y": 4,
+          "stock": [
+            {
+              "ID": "15279",
+              "BlueprintName": "DriedMeat",
+              "name": "dried meat",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 7
+            },
+            {
+              "ID": "15280",
+              "BlueprintName": "WildBerries",
+              "name": "wild berries",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 2
+            },
+            {
+              "ID": "15281",
+              "BlueprintName": "Mushroom",
+              "name": "mushroom",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 3
+            },
+            {
+              "ID": "15282",
+              "BlueprintName": "LeatherCap",
+              "name": "leather cap",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        },
+        {
+          "ID": "15256",
+          "BlueprintName": "Scribe",
+          "name": "Tovren Halm, scribe",
+          "x": 72,
+          "y": 4,
+          "stock": [
+            {
+              "ID": "15257",
+              "BlueprintName": "PalimpsestSealTrinket",
+              "name": "palimpsest seal",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 45
+            },
+            {
+              "ID": "15258",
+              "BlueprintName": "InkVial",
+              "name": "vial of ink (x4)",
+              "count": 4,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 10
+            },
+            {
+              "ID": "15260",
+              "BlueprintName": "GrimoireCopy",
+              "name": "grimoire copy",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 20
+            },
+            {
+              "ID": "15261",
+              "BlueprintName": "RenderedSteamGrimoire",
+              "name": "Rite of Rendered Steam",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 20
+            },
+            {
+              "ID": "15262",
+              "BlueprintName": "Codex04",
+              "name": "copy of The oath of the cloth",
+              "count": 1,
+              "weight": 0,
+              "liquid": null,
+              "vol": null,
+              "value": 8
+            }
+          ]
+        }
+      ]
+    },
+    "trap-quote": {
+      "panel": 1,
+      "left": 2,
+      "right": 3,
+      "shop": [
+        {
+          "i": 0,
+          "ID": "15244",
+          "BlueprintName": "IronSpikeComponent",
+          "name": "iron spike",
+          "count": 1
+        },
+        {
+          "i": 1,
+          "ID": "15245",
+          "BlueprintName": "CampBench",
+          "name": "camp bench",
+          "count": 1
+        },
+        {
+          "i": 2,
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "name": "spring trap",
+          "count": 1
+        }
+      ],
+      "pack": [
+        {
+          "i": 0,
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "count": 4
+        },
+        {
+          "i": 1,
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "count": 2
+        },
+        {
+          "i": 2,
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic",
+          "count": 1
+        },
+        {
+          "i": 3,
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)",
+          "count": 2
+        },
+        {
+          "i": 4,
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "name": "liquid flask",
+          "count": 1
+        },
+        {
+          "i": 5,
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "name": "silver sand",
+          "count": 1
+        }
+      ],
+      "deal": true,
+      "confirm": false,
+      "drams": 28,
+      "summary": "Give 11   Take 39   You pay 28 drams.",
+      "status": null
+    },
+    "trap-bought": {
+      "panel": 1,
+      "left": 2,
+      "right": 3,
+      "shop": [
+        {
+          "i": 0,
+          "ID": "15244",
+          "BlueprintName": "IronSpikeComponent",
+          "name": "iron spike",
+          "count": 1
+        },
+        {
+          "i": 1,
+          "ID": "15245",
+          "BlueprintName": "CampBench",
+          "name": "camp bench",
+          "count": 1
+        },
+        {
+          "i": 2,
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)",
+          "count": 4
+        },
+        {
+          "i": 3,
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)",
+          "count": 2
+        },
+        {
+          "i": 4,
+          "ID": "da6b636235f64d499638a0ee6e3acc6f",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat",
+          "count": 1
+        }
+      ],
+      "pack": [
+        {
+          "i": 0,
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic",
+          "count": 1
+        },
+        {
+          "i": 1,
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat",
+          "count": 1
+        },
+        {
+          "i": 2,
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "name": "liquid flask",
+          "count": 1
+        },
+        {
+          "i": 3,
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "name": "silver sand",
+          "count": 1
+        },
+        {
+          "i": 4,
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "name": "spring trap",
+          "count": 1
+        }
+      ],
+      "deal": true,
+      "confirm": false,
+      "drams": 0,
+      "summary": "Give 0   Take 0   Mark goods on either side.",
+      "status": null
+    },
+    "bought-trap-ready": {
+      "zone": "Overworld.17.5.0",
+      "x": 70,
+      "y": 5,
+      "tick": 3200,
+      "hp": 29,
+      "effects": [],
+      "contents": [
+        {
+          "id": "13168",
+          "bp": "StoneFloor",
+          "name": "stone floor"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "You take 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 2 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You take 3 bleed damage.",
+        "You stop bleeding.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The willow stakes at the Drowned Ledger have bent with the peat. The line is out again.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You trade 4 gladroot seed (x4), 2 emberwheat seed (x2), 1 dried meat (x2) for spring trap. You pay 28 drams."
+      ]
+    },
+    "lichen-before-retreat": {
+      "zone": "Overworld.11.9.0",
+      "x": 70,
+      "y": 18,
+      "tick": 3750,
+      "hp": 29,
+      "effects": [],
+      "contents": [
+        {
+          "id": "16956",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "17557",
+          "bp": "RoadStone",
+          "name": "packed road"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "wayfaring merchant is bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "wayfaring merchant takes 1 bleed damage.",
+        "wayfaring merchant [left hand: short sword] misses sari-snake!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits wayfaring merchant in the body for 11 damage! (1 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "wayfaring merchant is killed by sari-snake!",
+        "wayfaring merchant's short sword falls to the ground!",
+        "wayfaring merchant's leather boots falls to the ground!",
+        "wayfaring merchant stops bleeding.",
+        "wayfaring merchant takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "deep-lichen-retreated-gather": {
+      "zone": "Overworld.11.9.0",
+      "x": 70,
+      "y": 18,
+      "drams": 0,
+      "pack": [
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 15
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 7
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "name": "liquid flask",
+          "count": 1,
+          "weight": 0,
+          "liquid": "water",
+          "vol": 12,
+          "value": 8
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "name": "silver sand",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 1
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "name": "spring trap",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 16
+        },
+        {
+          "ID": "17584",
+          "BlueprintName": "FrostLichen",
+          "name": "frost lichen",
+          "count": 1,
+          "weight": 0,
+          "liquid": null,
+          "vol": null,
+          "value": 6
+        }
+      ],
+      "relevant": [
+        {
+          "ID": "17538",
+          "BlueprintName": "MarlbackPatchbearer",
+          "name": "marlback patchbearer",
+          "x": 76,
+          "y": 17,
+          "stock": null
+        },
+        {
+          "ID": "17570",
+          "BlueprintName": "FrostLichenPatch",
+          "name": "shallow frost lichen crust",
+          "x": 43,
+          "y": 9,
+          "stock": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "name": "you",
+          "x": 70,
+          "y": 18,
+          "stock": null
+        },
+        {
+          "ID": "urqu:-1:s0",
+          "BlueprintName": "SariSnake",
+          "name": "sari-snake",
+          "x": 41,
+          "y": 7,
+          "stock": null
+        },
+        {
+          "ID": "urqu:-1:s1",
+          "BlueprintName": "SariSnake",
+          "name": "sari-snake",
+          "x": 42,
+          "y": 7,
+          "stock": null
+        },
+        {
+          "ID": "urqu:-1:s2",
+          "BlueprintName": "SariSnake",
+          "name": "sari-snake",
+          "x": 41,
+          "y": 5,
+          "stock": null
+        }
+      ]
+    },
+    "left-patchbearer": {
+      "zone": "WorldMap",
+      "x": 41,
+      "y": 12,
+      "tick": 3760,
+      "hp": 29,
+      "effects": [],
+      "contents": [
+        {
+          "id": "51a48612155241d7bd5264eb93798d27",
+          "bp": "WorldMapCell",
+          "name": "the Spread"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "wayfaring merchant takes 1 bleed damage.",
+        "wayfaring merchant [left hand: short sword] misses sari-snake!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits wayfaring merchant in the body for 11 damage! (1 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "wayfaring merchant is killed by sari-snake!",
+        "wayfaring merchant's short sword falls to the ground!",
+        "wayfaring merchant's leather boots falls to the ground!",
+        "wayfaring merchant stops bleeding.",
+        "wayfaring merchant takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "east-shelf-arrival": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3790,
+      "hp": 29,
+      "effects": [],
+      "contents": [
+        {
+          "id": "18706",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "wayfaring merchant is killed by sari-snake!",
+        "wayfaring merchant's short sword falls to the ground!",
+        "wayfaring merchant's leather boots falls to the ground!",
+        "wayfaring merchant stops bleeding.",
+        "wayfaring merchant takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "dry-target": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3790,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 12,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "",
+          "kind": ""
+        },
+        {
+          "ID": "17584",
+          "BlueprintName": "FrostLichen",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "wayfaring merchant's short sword falls to the ground!",
+        "wayfaring merchant's leather boots falls to the ground!",
+        "wayfaring merchant stops bleeding.",
+        "wayfaring merchant takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "dry-target-world-actions": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "examine",
+      "rows": [
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine"
+        },
+        {
+          "Display": "pour water east (12) [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourLiquidVessel|water|12|Overworld.12.9.0|41|12"
+        },
+        {
+          "Display": "scatter grit east (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.12.9.0|40|12|41|12|1"
+        },
+        {
+          "Display": "pour one water east [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourOneLiquidVessel|water|12|Overworld.12.9.0|41|12"
+        }
+      ]
+    },
+    "paired-fresh": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3790,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 12,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "",
+          "kind": ""
+        },
+        {
+          "ID": "17584",
+          "BlueprintName": "FrostLichen",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "wayfaring merchant stops bleeding.",
+        "wayfaring merchant takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved."
+      ]
+    },
+    "poured-water": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3800,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 2147483647,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19789",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "",
+          "kind": ""
+        },
+        {
+          "ID": "17584",
+          "BlueprintName": "FrostLichen",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of water onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "immediate-freeze": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3810,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 3,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19789",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "",
+          "kind": ""
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of water onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "The wet ground freezes. Ice can catch allies and trip anyone crossing it.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "direct-fresh": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3810,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 3,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19789",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "",
+          "kind": ""
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of water onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "The wet ground freezes. Ice can catch allies and trip anyone crossing it.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "packed-loaded": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3800,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 12,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "FrostLichen",
+          "kind": "cold"
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "You load the spring trap with frost lichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "trap-branch-poured": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3810,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 2147483647,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19787",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        },
+        {
+          "ID": "15246",
+          "BlueprintName": "SpringTrap",
+          "count": 1,
+          "volume": null,
+          "liquid": null,
+          "loaded": "FrostLichen",
+          "kind": "cold"
+        }
+      ],
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "You load the spring trap with frost lichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of water onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "cold-trap-place-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "examine",
+      "rows": [
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine"
+        },
+        {
+          "Display": "fill with water (41,12) [liquid flask]",
+          "key": "\u0000",
+          "Command": "FillLiquidVessel|19787|water"
+        },
+        {
+          "Display": "pour water east (11) [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourLiquidVessel|water|11|Overworld.12.9.0|41|12"
+        },
+        {
+          "Display": "scatter grit east (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.12.9.0|40|12|41|12|1"
+        },
+        {
+          "Display": "lay the frost lichen trap east [spring trap]",
+          "key": "\u0000",
+          "Command": "LaySpringTrap|Overworld.12.9.0|40|12|41|12"
+        },
+        {
+          "Display": "pour one water east [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourOneLiquidVessel|water|11|Overworld.12.9.0|41|12"
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell"
+        }
+      ]
+    },
+    "armed-over-water": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3820,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 2147483647,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19787",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19788",
+            "BlueprintName": "SpringTrapLaid",
+            "name": "spring trap",
+            "liquid": null,
+            "volume": null,
+            "armed": true,
+            "kind": "cold"
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "You load the spring trap with frost lichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of water onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the frost lichen trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "armed-fresh": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3820,
+      "hp": 29,
+      "mode": "Normal",
+      "effects": [],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 0,
+        "water": 2147483647,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19787",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19788",
+            "BlueprintName": "SpringTrapLaid",
+            "name": "spring trap",
+            "liquid": null,
+            "volume": null,
+            "armed": true,
+            "kind": "cold"
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved.",
+        "You load the spring trap with frost lichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 1 of water onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You lay the frost lichen trap. It springs on the next thing to step there, you included.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "sprung-on-step": {
+      "zone": "Overworld.12.9.0",
+      "x": 41,
+      "y": 12,
+      "tick": 3840,
+      "hp": 22,
+      "mode": "Normal",
+      "effects": [
+        {
+          "type": "WetEffect",
+          "Duration": -1
+        },
+        {
+          "type": "FrozenEffect",
+          "Duration": -1
+        }
+      ],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 3,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19787",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "2699",
+            "BlueprintName": "Player",
+            "name": "you",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "You are covered in wet.",
+        "You are drenched.",
+        "You are frozen!",
+        "A spring trap goes off under you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the right hand for 4 damage! (25 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You are frozen and cannot act!",
+        "The wet coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the body for 3 damage! (22 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the body but fails to penetrate!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "spent-fresh": {
+      "zone": "Overworld.12.9.0",
+      "x": 41,
+      "y": 12,
+      "tick": 3840,
+      "hp": 22,
+      "mode": "Normal",
+      "effects": [
+        {
+          "type": "WetEffect",
+          "Duration": -1
+        },
+        {
+          "type": "FrozenEffect",
+          "Duration": -1
+        }
+      ],
+      "target": {
+        "x": 41,
+        "y": 12,
+        "visible": true,
+        "passable": true,
+        "ice": 3,
+        "water": 0,
+        "contents": [
+          {
+            "ID": "18707",
+            "BlueprintName": "Grass",
+            "name": "grass",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "19787",
+            "BlueprintName": "PouredLiquidPool",
+            "name": "water puddle",
+            "liquid": "water",
+            "volume": 1,
+            "armed": null,
+            "kind": null
+          },
+          {
+            "ID": "2699",
+            "BlueprintName": "Player",
+            "name": "you",
+            "liquid": null,
+            "volume": null,
+            "armed": null,
+            "kind": null
+          }
+        ]
+      },
+      "load": [
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": 1,
+          "volume": 11,
+          "liquid": "water",
+          "loaded": null,
+          "kind": null
+        }
+      ],
+      "log": [
+        "You are covered in wet.",
+        "You are drenched.",
+        "You are frozen!",
+        "A spring trap goes off under you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the right hand for 4 damage! (25 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake misses you!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You are frozen and cannot act!",
+        "The wet coating wears off you.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the body for 3 damage! (22 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits you in the body but fails to penetrate!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "new-spring-trap-guide": {
+      "open": true,
+      "title": "spring trap",
+      "blueprint": "SpringTrap",
+      "lines": [
+        "DECISION DETAILS",
+        "",
+        "You see a spring trap.",
+        "Not loaded.",
+        "How to use: From the pack choose load the spring",
+        "trap and pick what to load it with. Then press C on",
+        "an open cell beside you and choose lay the trap",
+        "there (or choose it from the pack). Whoever next",
+        "steps on the cell springs it. Oil under fire moss",
+        "burns, and water or brine under spark root shocks.",
+        "Bare ground is only marked. On water, a frost",
+        "lichen trap makes ice and can freeze whoever",
+        "springs it. Before a laid trap springs, stand",
+        "beside it and choose recover the loaded spring",
+        "trap. The recovered frame keeps its load for",
+        "another position.",
+        "Needs: one fire moss, frost lichen or spark root in",
+        "your pack, to load it with.",
+        "Cost and limits: Loading spends the cartridge and",
+        "springing spends the trap. It does not know who"
+      ],
+      "sections": [
+        {
+          "Heading": "Decision details",
+          "Text": "You see a spring trap.\nNot loaded.\nHow to use: From the pack choose load the spring trap and pick what to load it with. Then press C on an open cell beside you and choose lay the trap there (or choose it from the pack). Whoever next steps on the cell springs it. Oil under fire moss burns, and water or brine under spark root shocks. Bare ground is only marked. On water, a frost lichen trap makes ice and can freeze whoever springs it. Before a laid trap springs, stand beside it and choose recover the loaded spring trap. The recovered frame keeps its load for another position.\nNeeds: one fire moss, frost lichen or spark root in your pack, to load it with.\nCost and limits: Loading spends the cartridge and springing spends the trap. It does not know who laid it: you spring it too. Fire is not laid on the Choir's ground.\nRight now you can: load the spring trap with frost lichen.\n\nA frame of seasoned wood and a sprung blade on a catch.\n1 unit. Weight per unit: 3. Total weight: 3.\nLift Strength: 3; yours: 16.\nYou can carry this item.\nGrip: one hand.\nspring trap cannot be thrown.\nPack weight: 21; with this item: 21. Burden threshold: 240."
+        }
+      ]
+    },
+    "reader-no-time": {
+      "zone": "Overworld.12.9.0",
+      "x": 40,
+      "y": 12,
+      "tick": 3790,
+      "hp": 29,
+      "effects": [],
+      "contents": [
+        {
+          "id": "18706",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "wayfaring merchant's short sword falls to the ground!",
+        "wayfaring merchant's leather boots falls to the ground!",
+        "wayfaring merchant stops bleeding.",
+        "wayfaring merchant takes 1 bleed damage.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer loses sight of you and searches its last position.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You harvest frost lichen crust: 1 x FrostLichen.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The air here says sari, sari, and does not finish the word.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Game saved."
+      ]
+    },
+    "restored-editor": {
+      "playing": false,
+      "changing": false,
+      "saveRoot": null,
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices"
+    },
+    "final-reader-editor": {
+      "playing": false,
+      "changing": false,
+      "saveRoot": null,
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices"
+    }
+  },
+  "checkpoints": {
+    "BoughtTrap": {
+      "folder": "/Users/steven/coo-verification/checkpoints/FrostSpringTrap20261127/BoughtTrap/c6079358f8fc4e4d83fd8416612932e3",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 4,
+        "ActiveZoneID": "Overworld.17.5.0",
+        "ActiveZoneDisplayLabel": "Overworld.17.5.0",
+        "Turn": 3200,
+        "SaveTimestampUtc": "2026-11-27T20:01:06.0980860Z",
+        "HPSummary": "29/43",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "a923c07564257b56a40f02ed3c462c8059195b9a25c33c7a044d25a8876fb9b1",
+        "Quick.json.bak": "6ac4e5c366c2dd1e05f266fc370f86683eaa40b65e7134b8612e4a2607656e2c",
+        "Quick.sav.gz": "0b4eb7b4e72ccce56dc197be266b43c8703af04f74433595df099af87dc5be0e",
+        "Quick.sav.gz.bak": "707510885faa8d9f8d7d451ab9cbfc81b8b43ae1a8b3d8c845d5eb2ec1e8d128"
+      }
+    },
+    "LichenOnAtlas": {
+      "folder": "/Users/steven/coo-verification/checkpoints/FrostSpringTrap20261127/LichenOnAtlas/c6079358f8fc4e4d83fd8416612932e3",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 4,
+        "ActiveZoneID": "WorldMap",
+        "ActiveZoneDisplayLabel": "WorldMap",
+        "Turn": 3760,
+        "SaveTimestampUtc": "2026-11-27T20:04:51.6050820Z",
+        "HPSummary": "29/43",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "cb64337dd43a53aa7150ee916ab69857e7673328651db0ab1d4c7efdec9132fc",
+        "Quick.json.bak": "bdbbb17785ad228c812a1dc31b40a0fee114337f366ddfd2d2b383504417dd41",
+        "Quick.sav.gz": "00f9433bec8fb6ae392f806a9360139e4174b6958e21dce6f652c1b7aea92e6d",
+        "Quick.sav.gz.bak": "6675192516c3ab4c384a9642a29cb49f4e07334cb25cca2b2b96ea2b1400e0ed"
+      }
+    },
+    "ShoulderBefore": {
+      "folder": "/Users/steven/coo-verification/checkpoints/FrostSpringTrap20261127/ShoulderBefore/c6079358f8fc4e4d83fd8416612932e3",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 4,
+        "ActiveZoneID": "Overworld.12.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.9.0",
+        "Turn": 3790,
+        "SaveTimestampUtc": "2026-11-27T20:05:24.2431150Z",
+        "HPSummary": "29/43",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "d44e19db55c4b0b1d7c123042b49e7ef60c6bcb94bbf9002151cf78103cd501f",
+        "Quick.json.bak": "99b794a86135e57a39feaf68109ba3c74205cc8643709c68a5955f3fd7d10b98",
+        "Quick.sav.gz": "a77042f12a5318af16f3079a03a21c63b37f25b7de23e60f5db2ed29e8001743",
+        "Quick.sav.gz.bak": "420a57173be1bd58fb67b2cae8563548e3681932e2a6c2f7b5604555ef1594fa"
+      }
+    },
+    "DirectIce": {
+      "folder": "/Users/steven/coo-verification/checkpoints/FrostSpringTrap20261127/DirectIce/c6079358f8fc4e4d83fd8416612932e3",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 4,
+        "ActiveZoneID": "Overworld.12.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.9.0",
+        "Turn": 3810,
+        "SaveTimestampUtc": "2026-11-27T20:05:42.6492490Z",
+        "HPSummary": "29/43",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "d6bc1e46f902f2452ee636a0edd50de3b8bc188bb03aadc384ffe2bc1fb7c388",
+        "Quick.json.bak": "d44e19db55c4b0b1d7c123042b49e7ef60c6bcb94bbf9002151cf78103cd501f",
+        "Quick.sav.gz": "15b0273d6bc8fa1331bb8dd1b6050a70ab3566bdebcf5daf2133bc5a1c5aaff1",
+        "Quick.sav.gz.bak": "a77042f12a5318af16f3079a03a21c63b37f25b7de23e60f5db2ed29e8001743"
+      }
+    },
+    "ArmedWater": {
+      "folder": "/Users/steven/coo-verification/checkpoints/FrostSpringTrap20261127/ArmedWater/c6079358f8fc4e4d83fd8416612932e3",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 4,
+        "ActiveZoneID": "Overworld.12.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.9.0",
+        "Turn": 3820,
+        "SaveTimestampUtc": "2026-11-27T20:06:47.6969510Z",
+        "HPSummary": "29/43",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "07cef82ff45695f81cd619bdbed04f13650a30a8fe907bc6e68a96f571413065",
+        "Quick.json.bak": "d44e19db55c4b0b1d7c123042b49e7ef60c6bcb94bbf9002151cf78103cd501f",
+        "Quick.sav.gz": "f1bf22e907932d9f924dc6a9213d2d42be666a70534b01a7af9448bbe8821ca1",
+        "Quick.sav.gz.bak": "a77042f12a5318af16f3079a03a21c63b37f25b7de23e60f5db2ed29e8001743"
+      }
+    },
+    "SpentWater": {
+      "folder": "/Users/steven/coo-verification/checkpoints/FrostSpringTrap20261127/SpentWater/c6079358f8fc4e4d83fd8416612932e3",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 4,
+        "ActiveZoneID": "Overworld.12.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.9.0",
+        "Turn": 3840,
+        "SaveTimestampUtc": "2026-11-27T20:07:12.2878620Z",
+        "HPSummary": "22/43",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "692aab3ae768c6a3756b3ef7a6113ce2c5d54ccbf4227b7c4aae243401fcdd71",
+        "Quick.json.bak": "07cef82ff45695f81cd619bdbed04f13650a30a8fe907bc6e68a96f571413065",
+        "Quick.sav.gz": "ed9939acde2df860ec9da46584a343b3e3476733a7b28dea4c6332c9c2e05274",
+        "Quick.sav.gz.bak": "f1bf22e907932d9f924dc6a9213d2d42be666a70534b01a7af9448bbe8821ca1"
+      }
+    }
+  },
+  "native": {
+    "red": {
+      "results": "/Users/steven/coo-verification/results/frost-trap-reader-red-20261127.xml",
+      "counts": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "inconclusive": 0,
+        "skipped": 0
+      },
+      "compilerErrors": 0
+    },
+    "green": {
+      "results": "/Users/steven/coo-verification/results/frost-trap-reader-green-20261127.xml",
+      "counts": {
+        "total": 120,
+        "passed": 120,
+        "failed": 0,
+        "inconclusive": 0,
+        "skipped": 0
+      },
+      "compilerErrors": 0
+    }
+  },
+  "preservation": {
+    "quick": {
+      "count": 876,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  }
+}

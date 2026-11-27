@@ -1,3 +1,14 @@
+**A frost trap can freeze the traveler who springs it — November 27, 2026, America/Chicago.**
+The spring trap guide now names both the ice and the risk to whoever
+steps onto it. An ordinary traveler used a Ledger survey reward and
+bartered goods to buy the exact frame, then harvested frost lichen at
+North Works. At the same wet shoulder, direct lichen made ice from
+beside the puddle. The laid trap waited through Continue, froze the
+traveler when crossed, and stayed spent through another Continue.
+Both branches retained one water in their puddle and eleven in the
+same flask. The lost turn in the trap branch exposed the traveler to
+sari-snake attacks. [Ordinary comparison](Verification/MachineSystems/FrostSpringTrap20261127/README.md)
+
 **Still baking guide regression cleared — November 27, 2026, America/Chicago.**
 The native reader test now checks the single eight-mire bake and the
 remainder kept in the flask. The earlier assertion failed on unchanged

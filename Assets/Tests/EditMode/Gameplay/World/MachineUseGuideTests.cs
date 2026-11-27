@@ -113,6 +113,7 @@ namespace CavesOfOoo.Tests
         {
             var trap = Carry("SpringTrap"); var lines = Guide(trap, true);
             StringAssert.Contains("load the spring trap", Line(lines, "How to use")); StringAssert.Contains("Oil under fire moss burns", Line(lines, "How to use"));
+            StringAssert.Contains("On water, a frost lichen trap makes ice and can freeze whoever springs it", Line(lines, "How to use"));
             StringAssert.Contains("fire moss, frost lichen or spark root", Line(lines, "Needs")); StringAssert.Contains("you spring it too", Line(lines, "Cost and limits"));
             StringAssert.Contains("You carry none", Line(lines, "Right now you cannot"));
             Carry("FireMoss"); StringAssert.Contains("load the spring trap with fire moss", Line(Guide(trap, true), "Right now you can"));

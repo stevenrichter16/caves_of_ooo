@@ -43,7 +43,8 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             guide.How.Add("From the pack choose load the spring trap and pick what to load it with. Then press C on an open cell beside you and choose lay the trap there (or choose it from the pack).");
-            guide.How.Add("Whoever next steps on the cell springs it: the load goes into the ground and whatever lies there reacts. Oil under fire moss burns, water under frost lichen freezes, water or brine under spark root shocks; bare ground is only marked.");
+            guide.How.Add("Whoever next steps on the cell springs it. Oil under fire moss burns, and water or brine under spark root shocks. Bare ground is only marked.");
+            guide.How.Add("On water, a frost lichen trap makes ice and can freeze whoever springs it.");
             if (Loaded.Length == 0) guide.Needs.Add("one fire moss, frost lichen or spark root in your pack, to load it with");
             else guide.Needs.Add("an empty, passable cell beside you to lay it on, ideally one with oil or water on it (it is loaded with " + WordFor(Kind) + ")");
             guide.Limits.Add("Loading spends the cartridge and springing spends the trap. It does not know who laid it: you spring it too. Fire is not laid on the Choir's ground.");

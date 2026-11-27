@@ -864,6 +864,13 @@ the test calendar. The freeze kept the finite puddle and remaining flask
 volume. The field comparison supplied the flask.
 [Evidence](Verification/MachineSystems/NorthSeasonalLichen20261126/README.md)
 
+The ordinary deep North Works patch furnished a second field-use
+comparison in seed 65. A paid spring trap can postpone the same
+water-to-ice result until a crossing, while direct lichen is immediate
+and leaves the frame unspent. The spring trap consumes its frame and
+can freeze the traveler who sets it off. The follow-up reader makes
+that risk explicit. [Matched comparison](Verification/MachineSystems/FrostSpringTrap20261127/README.md)
+
 Requirements 31–33 have one local candidate. An admitted fresh Morrowfast
 allotment has one late knotflax bundle, a shared frame process and an ordinary
 prepared-bed consumer. Editor play used the same frame for rain collection
