@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using CavesOfOoo.Core.Inventory;
@@ -15,9 +16,9 @@ namespace CavesOfOoo.Core
     /// heat through <see cref="ZoneTileStateSystem.ApplyFireToTile"/>, the routine every fire ability uses, so an oil slick burns by the shared reactions and whatever the world already does for those fires happens here too. No law, damage or spread
     /// rule is written or bypassed in this class.</item>
     /// </list>
-    /// Strikes are finite and are renewed only by spending an iron spike (<see cref="KnapStrikes"/> strikes per spike). Wet or frozen, it will not spark.
+    /// Strikes are finite and renewed by spending an iron spike. Wet or frozen, it will not spark.
     /// </summary>
-    public sealed class FlintStrikerPart : Part, IDescribeState, IDescribeUse
+    public sealed class FlintStrikerPart : Part, IDescribeState, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "FlintStriker";
 
@@ -28,6 +29,8 @@ namespace CavesOfOoo.Core
 
         public const string SparkPrefix = "StrikeSpark|", KnapPrefix = "KnapStriker|", KnapBlueprint = "IronSpikeComponent";
         public const int KnapStrikes = 10;
+        const int BenchStrikes = 15;
+        const string Service = "ServiceStriker", ColdWork = "cold-work";
         const float WetLimit = 0.35f;
 
         static readonly (int x, int y, string label)[] Directions =
@@ -83,6 +86,7 @@ namespace CavesOfOoo.Core
             guide.How.Add("Press C on a cell beside you that is coated with oil or another liquid that burns and choose light it with the flint striker (or choose strike a spark from the pack).");
             guide.How.Add("It also lights a torch or a camp hearth when no fire is near: use their light row and the striker gives the flame.");
             guide.How.Add("When the flint is worn, choose knap an edge with an iron spike in your pack.");
+            guide.How.Add("An accessible cold-work bench or forge can restore up to " + BenchStrikes + " strikes from the same spike.");
             guide.Needs.Add("a strike left (" + Math.Max(0, Strikes) + " of " + MaxStrikes + ")");
             guide.Needs.Add("a dry flint (it will not spark wet or frozen)");
             guide.Needs.Add("a cell beside you coated with oil or another liquid that burns");
@@ -96,19 +100,109 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
-                AddActions(e.GetParameter<Entity>("Actor"), e.GetParameter<InventoryActionList>("Actions"));
+                var actor = e.GetParameter<Entity>("Actor");
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                AddActions(actor, actions);
+                var zone = PreparationActions.ZoneFor(e, actor);
+                if (ParentEntity != null) RouteWorkMenu.Rows(ParentEntity, actor, zone, actions, BenchChoices(actor, zone), true);
                 return true;
             }
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
                 if (command == null) return true;
+                if (OwnsInventoryReceipt(command))
+                {
+                    e.Handled = RouteWorkMenu.Act(ParentEntity, e);
+                    return !e.Handled;
+                }
                 bool spark = command.StartsWith(SparkPrefix, StringComparison.Ordinal), knap = command.StartsWith(KnapPrefix, StringComparison.Ordinal);
                 if (!spark && !knap) return true;
                 var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone"); var tx = e.GetParameter<InventoryTransaction>("InventoryTransaction");
                 if (spark ? TrySpark(actor, zone, command, tx) : TryKnap(actor, zone, command, tx)) { e.Handled = true; return false; }
             }
             return true;
+        }
+
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<FlintStrikerPart>() == this
+            && command?.StartsWith(Service + "|", StringComparison.Ordinal) == true;
+
+        IEnumerable<RouteWorkMenu.Entry> BenchChoices(Entity actor, Zone zone)
+        {
+            int before = Strikes, maximum = MaxStrikes;
+            int worn = Math.Max(0, before);
+            if (maximum <= worn || maximum - worn <= KnapStrikes || !PreparationActions.CurrentActor(actor, zone)) yield break;
+            var striker = ParentEntity;
+            if (!WorldResourceActions.Carried(actor, striker) || !PreparationActions.Carried(actor, striker)
+                || LocalPorterReservationPart.Blocks(striker)) yield break;
+            var candidates = new List<StationCandidate>();
+            StationQuery.Collect(actor, zone, ColdWork, candidates);
+            var manager = WorldLocationContext.For(zone);
+            bool Ready(Entity station) => WorldResourceActions.Ground(station, zone) && (manager == null || manager.ActiveZone == zone)
+                && RouteWorkMenu.Visible(zone.GetEntityCell(station))
+                && StationQuery.Near(actor, station, zone, ColdWork)
+                && StationAccess.Allowed(actor, station, zone, ColdWork, Service, out _, out _);
+            var bench = candidates.FirstOrDefault(candidate => candidate.Ready && Ready(candidate.Station)).Station;
+            if (bench == null) yield break;
+            var pack = actor.GetPart<InventoryPart>();
+            var factory = manager?.Factory ?? HarvestablePart.Factory;
+            var template = MaterialProcessTemplate.Capture(factory, KnapBlueprint);
+            if (template == null) yield break;
+            var spike = pack.Objects.FirstOrDefault(item => item?.BlueprintName == KnapBlueprint
+                && PreparationActions.Carried(actor, item) && !LocalPorterReservationPart.Blocks(item) && template.Matches(item));
+            if (spike == null || new[] { actor.ID, striker.ID, spike.ID, bench.ID }.Distinct().Count() != 4
+                || template.Snapshot(spike) is not { } spikePayload) yield break;
+
+            var from = zone.GetEntityCell(actor);
+            var at = zone.GetEntityCell(bench);
+            var strikerIdentity = RouteWorkMenu.Identity(striker);
+            var stationIdentity = RouteWorkMenu.Identity(bench);
+            var spikeStack = spike.GetPart<StackerPart>();
+            var spikePhysics = spike.GetPart<PhysicsPart>();
+            string strikerId = striker.ID, strikerBlueprint = striker.BlueprintName;
+            int spikeCount = spikeStack?.StackCount ?? 1;
+            int gain = Math.Min(BenchStrikes, maximum - worn);
+            int restored = worn + gain;
+            string stationName = bench.GetPart<PackableFixturePart>()?.Kind == CampKinds.Bench ? "bench" : bench.GetDisplayName();
+
+            bool OwnsStriker() => ParentEntity == striker && strikerIdentity() && striker.GetPart<FlintStrikerPart>() == this;
+            bool Context() => OwnsStriker() && MaxStrikes == maximum && stationIdentity() && Ready(bench)
+                && zone.GetEntityCell(actor) == from && zone.GetEntityCell(bench) == at && actor.GetPart<InventoryPart>() == pack
+                && PreparationActions.CurrentActor(actor, zone) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
+                && PreparationActions.Carried(actor, striker) && !LocalPorterReservationPart.Blocks(striker)
+                && !LocalPorterReservationPart.Blocks(spike) && spikePayload.Matches()
+                && !zone.GetReadOnlyEntities().Any(item => item.ID == strikerId || item.ID == spike.ID);
+            bool Before() => Context() && Strikes == before && PreparationActions.Carried(actor, spike)
+                && (spikeStack?.StackCount ?? 1) == spikeCount;
+            bool After() => Context() && Strikes == restored && (spikeCount > 1
+                ? PreparationActions.Carried(actor, spike) && spikeStack.StackCount == spikeCount - 1
+                : spike.SpatialZone == null && spikePhysics.InInventory == null && spikePhysics.Equipped == null
+                    && !pack.Objects.Concat(pack.EquippedItems.Values).Any(item => item?.ID == spike.ID));
+
+            yield return new RouteWorkMenu.Entry
+            {
+                Actor = actor, Zone = zone, Cell = at, Key = Service, Claims = new[] { bench, spike },
+                Label = $"service striker at {stationName} (1 spike, +{gain} strikes)",
+                Hint = $"Use the cold-work fixture to restore {gain} strikes. Spends one iron spike and keeps the striker.",
+                Before = Before, After = After,
+                Apply = tx =>
+                {
+                    bool creditReversed = true;
+                    if (StationReceipt.Begin(actor, zone, tx, Service, ColdWork, bench) == null || !Before()
+                        || !MaterialProcessService.ReserveInput(spike, tx)
+                        || !MaterialProcessPayment.Spend(actor, spike, actor, zone, tx, spikePayload.Matches,
+                            refundAllowed: () => creditReversed)) return false;
+                    tx.Do(() => { creditReversed = false; Strikes = restored; }, () =>
+                    {
+                        if (ParentEntity != striker || striker.ID != strikerId || striker.BlueprintName != strikerBlueprint
+                            || striker.GetPart<FlintStrikerPart>() != this || Strikes != restored) return;
+                        Strikes = before;
+                        creditReversed = true;
+                    });
+                    return true;
+                },
+                Publish = () => MessageLog.Add($"You service the striker and restore {gain} strikes.")
+            };
         }
 
         void AddActions(Entity actor, InventoryActionList actions)

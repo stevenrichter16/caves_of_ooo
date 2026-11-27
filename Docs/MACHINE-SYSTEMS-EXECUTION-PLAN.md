@@ -1,3 +1,13 @@
+**A ready camp bench services a worn flint striker — November 27, 2026, America/Chicago.**
+One spike restores up to 15 strikes at an accessible ready cold-work station.
+The same spike restores up to 10 by hand. Actual private camp play showed
+both quotes. One action spent the spike for 15 strikes, then the existing
+hearth relight spent one. Fresh Continue kept the lit hearth and its 9.75
+fuel alongside 14 strikes on the same tool. The test branch wore down the
+recovered striker and supplied one spike. All 247 targeted cases passed and
+both independent reviews cleared.
+[Evidence](Verification/MachineSystems/BenchStriker20261127/README.md)
+
 **Sumphold's public crate supports one-board withdrawal — November 27, 2026, America/Chicago.**
 The released crate offers one pound of eligible salvaged timber. Its
 original stack and other goods stay in place. In actual play a controlled

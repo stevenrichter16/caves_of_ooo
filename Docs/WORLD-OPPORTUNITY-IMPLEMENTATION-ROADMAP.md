@@ -212,6 +212,12 @@ haft work. The original crate kept its remaining board and weighed one
 pound less through Continue.
 [One-board playtest](Verification/MachineSystems/CargoOneBoard20261127/README.md)
 
+For #14 and #19, the same flint striker and iron spike support portable
+knapping or more effective service at a ready cold-work fixture. The
+ordinary hearth relight spends one of those strikes. The same fixture
+can also serve other cold-work jobs.
+[Bench and hearth playtest](Verification/MachineSystems/BenchStriker20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual

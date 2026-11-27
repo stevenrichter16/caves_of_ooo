@@ -1,0 +1,445 @@
+{
+  "setup": {
+    "striker": "2297",
+    "originalStrikes": 19,
+    "controlledStrikes": 0,
+    "spikeSupplied": "2732"
+  },
+  "comparison": {
+    "mode": "InventoryOpen",
+    "panel": 1,
+    "query": "flint striker",
+    "item": "2297",
+    "rows": [
+      {
+        "label": "service striker at bench (1 spike, +15 strikes)",
+        "command": "ServiceStriker|cd5e23ec0383498ab1be2abc71394c86"
+      },
+      {
+        "label": "knap an edge (1 spike, +10 strikes)",
+        "command": "KnapStriker|2297"
+      },
+      {
+        "label": "examine",
+        "command": "Examine"
+      },
+      {
+        "label": "Put in camp box",
+        "command": "put_container"
+      },
+      {
+        "label": "Label item",
+        "command": "edit_storage_label"
+      },
+      {
+        "label": "Drop",
+        "command": "drop"
+      }
+    ],
+    "busy": false
+  },
+  "afterService": {
+    "ground": [
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "x": 41,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": null,
+        "temperature": null,
+        "lit": null
+      }
+    ],
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "inside": false,
+    "tick": 2710,
+    "hp": 343,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You pick up flint striker [19].",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You service the striker and restore 15 strikes.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2167",
+        "BlueprintName": "PitchpodResin",
+        "name": "pitchpod resin (x5)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2267",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x13)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2287",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x10)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [15]",
+        "strikes": 15,
+        "volume": null
+      }
+    ]
+  },
+  "afterPlacement": {
+    "ground": [
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": 0,
+        "temperature": 25,
+        "lit": false
+      },
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "x": 41,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": null,
+        "temperature": null,
+        "lit": null
+      }
+    ],
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "inside": false,
+    "tick": 2720,
+    "hp": 343,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "You service the striker and restore 15 strikes.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You set camp hearth down.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2167",
+        "BlueprintName": "PitchpodResin",
+        "name": "pitchpod resin (x5)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2267",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x13)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2287",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x10)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [15]",
+        "strikes": 15,
+        "volume": null
+      }
+    ]
+  },
+  "afterFeed": {
+    "ground": [
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": 10,
+        "temperature": 25,
+        "lit": false
+      },
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "x": 41,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": null,
+        "temperature": null,
+        "lit": null
+      }
+    ],
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "inside": false,
+    "tick": 2730,
+    "hp": 343,
+    "mode": "AwaitingTalkDirection",
+    "invincible": false,
+    "busy": true,
+    "recent": [
+      "You set camp hearth down.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You feed one salvaged timber to the coals. The fuel still needs flame.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot."
+    ],
+    "pack": [
+      {
+        "ID": "2167",
+        "BlueprintName": "PitchpodResin",
+        "name": "pitchpod resin (x5)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2267",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x12)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2287",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x10)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [15]",
+        "strikes": 15,
+        "volume": null
+      }
+    ]
+  },
+  "relightRow": {
+    "i": 5,
+    "key": "l",
+    "Display": "relight coals from flame (1 strike, 15 left)",
+    "Command": "RelightCookingFire",
+    "IsDisabled": false,
+    "Hint": "Lights the coals from a flame you carry or stand beside. Spends 1 strike."
+  },
+  "afterRelight": {
+    "ground": [
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": 9.75,
+        "temperature": 441.5,
+        "lit": true
+      },
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "x": 41,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": null,
+        "temperature": null,
+        "lit": null
+      }
+    ],
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "inside": false,
+    "tick": 2740,
+    "hp": 343,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You strike the flint.",
+      "You relight the cooking coals from the flame.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Game saved."
+    ],
+    "pack": [
+      {
+        "ID": "2167",
+        "BlueprintName": "PitchpodResin",
+        "name": "pitchpod resin (x5)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2267",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x12)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2287",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x10)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [14]",
+        "strikes": 14,
+        "volume": null
+      }
+    ]
+  },
+  "afterContinue": {
+    "ground": [
+      {
+        "ID": "2149",
+        "BlueprintName": "CampBench",
+        "x": 41,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": null,
+        "temperature": null,
+        "lit": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "x": 42,
+        "y": 9,
+        "strikes": null,
+        "installed": "Installed",
+        "fuel": 9.75,
+        "temperature": 441.5,
+        "lit": true
+      }
+    ],
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "inside": false,
+    "tick": 2740,
+    "hp": 343,
+    "mode": "Normal",
+    "invincible": false,
+    "busy": false,
+    "recent": [
+      "You feed one salvaged timber to the coals. The fuel still needs flame.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+      "Interact — choose a direction, or . for underfoot.",
+      "You strike the flint.",
+      "You relight the cooking coals from the flame.",
+      "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "pack": [
+      {
+        "ID": "2167",
+        "BlueprintName": "PitchpodResin",
+        "name": "pitchpod resin (x5)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2267",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x12)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2287",
+        "BlueprintName": "SalvagedTimber",
+        "name": "salvaged timber (x10)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "strikes": null,
+        "volume": null
+      },
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [14]",
+        "strikes": 14,
+        "volume": null
+      }
+    ]
+  }
+}

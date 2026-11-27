@@ -1,3 +1,10 @@
+**A cold-work fixture renews a worn striker.**
+One iron spike gives up to 15 strikes at a ready, accessible cold-work
+fixture and up to 10 by hand. Both use the same striker capacity. A camp
+bench can now trade setup and access for a more useful edge. Existing
+hearth ignition used one of those restored strikes in play.
+[Native and camp evidence](Verification/MachineSystems/BenchStriker20261127/README.md)
+
 **Loose materials repaint when their wet effect ends.**
 Ordinary waiting now shows a dropped item's existing dry appearance
 without moving or opening a menu. A controlled clay-and-grit packet

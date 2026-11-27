@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 using NUnit.Framework;
@@ -19,6 +20,7 @@ namespace CavesOfOoo.Tests
     public sealed class FlintStrikerTests : FiftyWorldFixture
     {
         const string Oil = "oil";
+        const string Spike = "IronSpikeComponent";
 
         [SetUp] public void SetupStriker()
         {
@@ -179,6 +181,193 @@ namespace CavesOfOoo.Tests
         {
             var s = Striker(5); Carry("IronSpikeComponent"); string row = Actions(s).Single(a => a.Name == "KnapStriker").Command; FailAfter();
             Assert.False(Act(s, row)); Assert.AreEqual(5, Strikes(s)); Assert.AreEqual(1, Count("IronSpikeComponent"));
+        }
+
+        void EnterOpenBenchGround()
+        {
+            var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
+            string id = Enumerable.Range(0, WorldMap.Width * WorldMap.Height)
+                .Select(i => WorldMap.ToZoneID(i % WorldMap.Width, i / WorldMap.Width, 0))
+                .First(candidate => HeldPlaceZones.Classify(manager, candidate) == HeldPlaceZoneClass.WildSurface);
+            Assert.True(Zone.RemoveEntity(Actor));
+            Zone = new Zone(id);
+            for (int x = 8; x <= 13; x++)
+                for (int y = 8; y <= 13; y++)
+                {
+                    Place("Grass", x, y);
+                    var cell = Zone.GetCell(x, y);
+                    cell.IsVisible = cell.Explored = true;
+                }
+            Assert.True(Zone.AddEntity(Actor, 10, 10));
+            manager.ReplaceLoadedState(new Dictionary<string, Zone> { [id] = Zone }, id,
+                new Dictionary<string, List<ZoneConnection>>());
+            SettlementRuntime.ActiveZone = Zone;
+        }
+
+        void SetDownBench(Entity bench)
+        {
+            var row = Actions(bench).Single(a => a.Name == "SetDownFixture" && a.Display == "set down east");
+            Assert.True(Act(bench, row.Command));
+            var cell = Zone.GetEntityCell(bench);
+            Assert.NotNull(cell);
+            cell.IsVisible = cell.Explored = true;
+            Assert.True(ForgePart.IsNearForge(Actor, Zone));
+        }
+
+        static bool BenchServiceRow(InventoryAction row) => !row.IsDisabled
+            && row.Display.IndexOf("service striker at bench", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        InventoryAction BenchServiceChoice(Entity striker)
+        {
+            var rows = Actions(striker).Where(BenchServiceRow).ToArray();
+            Assert.That(rows, Has.Length.EqualTo(1), "An installed cold bench should offer a separate striker service.");
+            return rows[0];
+        }
+
+        [TestCase(0, 15)]
+        [TestCase(8, 20)]
+        public void BenchStrikerServiceImprovesOneExactToolAndKeepsPortableKnapping(int before, int after)
+        {
+            EnterOpenBenchGround();
+            var bench = Carry("CampBench");
+            var striker = Striker(before);
+            var spareStriker = Striker(4);
+            var spike = Carry(Spike);
+            var spareSpike = Carry(Spike);
+            Assert.False(ForgePart.IsNearForge(Actor, Zone));
+            Assert.False(Actions(striker).Any(BenchServiceRow));
+
+            SetDownBench(bench);
+            var portable = Actions(striker).Single(a => a.Name == "KnapStriker" && !a.IsDisabled);
+            Assert.That(portable.Display, Does.Contain("+10"));
+            var service = BenchServiceChoice(striker);
+            Assert.That(service.Display + " " + service.Hint, Does.Contain("+" + (after - before)));
+            Assert.True(Act(striker, service.Command));
+            Assert.AreEqual(after, Strikes(striker));
+            Assert.AreEqual(4, Strikes(spareStriker));
+            Assert.AreEqual(1, new[] { spike, spareSpike }.Count(Pack.Contains));
+            Assert.AreEqual(1, Count(Spike));
+            Assert.That(Pack.Objects, Does.Contain(striker));
+            Assert.That(Zone.GetEntityCell(bench), Is.SameAs(Zone.GetCell(11, 10)));
+            Assert.False(Act(striker, service.Command));
+            Assert.AreEqual(1, Count(Spike));
+        }
+
+        [TestCase(10)]
+        [TestCase(12)]
+        public void BenchStrikerServiceIsOfferedOnlyForMoreThanThePortableGain(int before)
+        {
+            EnterOpenBenchGround();
+            SetDownBench(Carry("CampBench"));
+            var striker = Striker(before);
+            Carry(Spike);
+
+            var rows = Actions(striker);
+            Assert.False(rows.Any(BenchServiceRow));
+            var portable = rows.Single(a => a.Name == "KnapStriker" && !a.IsDisabled);
+            Assert.True(Act(striker, portable.Command));
+            Assert.AreEqual(20, Strikes(striker));
+            Assert.Zero(Count(Spike));
+        }
+
+        [TestCase("packed")]
+        [TestCase("moved")]
+        [TestCase("spike replaced")]
+        [TestCase("bench fault")]
+        public void BenchStrikerServiceRefusesAChangedChoiceWithoutSpending(string change)
+        {
+            EnterOpenBenchGround();
+            var bench = Carry("CampBench");
+            SetDownBench(bench);
+            var striker = Striker(3);
+            var spike = Carry(Spike);
+            var row = BenchServiceChoice(striker);
+            var currentSpike = spike;
+            switch (change)
+            {
+                case "packed":
+                    Assert.True(Act(bench, "TakeUp|" + Uri.EscapeDataString(Zone.ZoneID) + "|" + bench.ID));
+                    Assert.That(Pack.Objects, Does.Contain(bench));
+                    Assert.False(ForgePart.IsNearForge(Actor, Zone));
+                    break;
+                case "moved":
+                    Assert.True(Zone.MoveEntity(bench, 10, 11));
+                    break;
+                case "spike replaced":
+                    Assert.True(Pack.RemoveObject(spike));
+                    Assert.True(Zone.AddEntity(spike, 9, 10));
+                    currentSpike = Carry(Spike);
+                    break;
+                case "bench fault":
+                    bench.AddPart(new RepairablePart { Repaired = false });
+                    Assert.False(ForgePart.IsNearForge(Actor, Zone));
+                    break;
+            }
+            int tick = Clock.TickCount;
+
+            Assert.False(Act(striker, row.Command));
+            Assert.AreEqual(3, Strikes(striker));
+            Assert.That(Pack.Objects, Does.Contain(currentSpike));
+            Assert.AreEqual(tick, Clock.TickCount);
+            Assert.True(Actions(striker).Any(a => a.Name == "KnapStriker" && !a.IsDisabled));
+            if (change == "packed" || change == "bench fault") Assert.False(Actions(striker).Any(BenchServiceRow));
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void BenchStrikerServiceRollsBackTheExactToolAndSpikeAfterALateChange(bool labelChange)
+        {
+            EnterOpenBenchGround();
+            var bench = Carry("CampBench");
+            SetDownBench(bench);
+            var striker = Striker(3);
+            var toolState = striker.GetPart<FlintStrikerPart>();
+            var otherStriker = Striker(6);
+            var spike = Carry(Spike);
+            var spikePhysics = spike.GetPart<PhysicsPart>();
+            var row = BenchServiceChoice(striker);
+            var fault = new RepairablePart { Repaired = false };
+            var label = new StorageLabelPart { Mode = (int)StorageLabelMode.ColorMark, ColorIndex = 2 };
+            string lastMessage = MessageLog.GetLast();
+            var tx = new InventoryTransaction();
+            var action = GameEvent.New("InventoryAction");
+            try
+            {
+                action.SetParameter("Actor", (object)Actor);
+                action.SetParameter("Zone", (object)Zone);
+                action.SetParameter("Command", row.Command);
+                action.SetParameter("InventoryTransaction", (object)tx);
+                striker.FireEvent(action);
+                Assert.True(action.Handled);
+                Assert.AreEqual(18, Strikes(striker));
+                Assert.False(Pack.Contains(spike));
+                Assert.IsNull(spikePhysics.InInventory);
+                Assert.AreEqual(lastMessage, MessageLog.GetLast());
+
+                if (labelChange) striker.AddPart(label);
+                else
+                {
+                    bench.AddPart(fault);
+                    Assert.False(ForgePart.IsNearForge(Actor, Zone));
+                }
+                Assert.Throws<InvalidOperationException>(tx.Commit);
+                Assert.False(tx.ActionCommitted);
+            }
+            finally
+            {
+                action.Release();
+                tx.Rollback();
+            }
+
+            Assert.True(tx.IsRolledBack);
+            if (labelChange) Assert.That(striker.GetPart<StorageLabelPart>(), Is.SameAs(label));
+            else Assert.That(bench.GetPart<RepairablePart>(), Is.SameAs(fault));
+            Assert.That(striker.GetPart<FlintStrikerPart>(), Is.SameAs(toolState));
+            Assert.AreEqual(3, Strikes(striker));
+            Assert.AreEqual(6, Strikes(otherStriker));
+            Assert.That(Pack.Objects.Single(item => item.BlueprintName == Spike), Is.SameAs(spike));
+            Assert.That(spike.GetPart<PhysicsPart>(), Is.SameAs(spikePhysics));
+            Assert.That(spikePhysics.InInventory, Is.SameAs(Actor));
+            Assert.AreEqual(lastMessage, MessageLog.GetLast());
         }
 
         // ── state, reader, save, stock, diagnostics ──

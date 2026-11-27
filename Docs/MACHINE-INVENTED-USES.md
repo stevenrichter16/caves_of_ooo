@@ -35,6 +35,14 @@ Rules the inventions below follow: attach to an existing rule or loop; add a pat
 
 ## 3. The first build: the flint striker (spark)
 
+A separate cold-work service can give a worn edge more life. With access to
+a ready bench or equivalent fixture, one iron spike restores up to 15
+strikes in one action. Hand knapping still gives up to 10. Show the fixture
+option only when it improves that gain. Both respect the striker's own
+capacity, and neither restores fuel or supplies a flame. An interrupted
+fixture operation should leave the same spike and edge unless an independent
+change has already kept the restored edge.
+
 **The gap.** `TorchLightPart` lights "at nearby fire" and the camp hearth relights "from flame". A player with no flame, no mutation and a dead torch had no way to make fire. The hearth kit's "carry a flame from a village fire" was a deliberate consequence, kept: a striker does not erase it, it gives a second approach with its own cost (finite strikes, a spike to renew).
 
 **What it is.** `FlintStrikerPart` and the `FlintStriker` blueprint (20 strikes, weight 1, sold by the Tinker). It is not a fire, a stack or a light source.
