@@ -268,6 +268,11 @@ namespace CavesOfOoo.Core
             if (actor.GetPart<InventoryPart>() == null)
                 return 0;
 
+            if (containerPart.RepairAccessFailure(actor, actor.SpatialZone) is string repairFailure)
+            {
+                MessageLog.Add(repairFailure);
+                return 0;
+            }
             if (containerPart.IsLocked)
             {
                 MessageLog.Add($"The {container.GetDisplayName()} is locked.");

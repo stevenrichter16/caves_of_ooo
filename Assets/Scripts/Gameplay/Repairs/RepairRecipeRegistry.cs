@@ -82,7 +82,7 @@ namespace CavesOfOoo.Core
         {
             if (string.IsNullOrEmpty(row.SubstituteBlueprint)) return string.IsNullOrEmpty(row.SubstituteName);
             // One substitute can fill the last position of an otherwise exact bill.
-            return row.Quantity > 1 && string.IsNullOrEmpty(row.MaterialGrade)
+            return string.IsNullOrEmpty(row.MaterialGrade)
                 && Token(row.SubstituteBlueprint) && row.SubstituteBlueprint != row.MaterialBlueprint
                 && !string.IsNullOrWhiteSpace(row.SubstituteName);
         }

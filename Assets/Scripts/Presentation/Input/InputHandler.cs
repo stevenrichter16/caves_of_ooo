@@ -1965,6 +1965,11 @@ namespace CavesOfOoo.Rendering
             var containerPart = container.GetPart<ContainerPart>();
             if (containerPart == null)
                 return false;
+            if (containerPart.RepairAccessFailure(PlayerEntity, CurrentZone) is string repairFailure)
+            {
+                MessageLog.Add(repairFailure);
+                return false;
+            }
             if (containerPart.Contents.Count == 0)
             {
                 MessageLog.Add($"The {container.GetDisplayName()} is empty.");
@@ -3615,7 +3620,8 @@ namespace CavesOfOoo.Rendering
             if (action.Command == "OpenContainer")
             {
                 var containerPart = target.GetPart<ContainerPart>();
-                if (containerPart != null && !containerPart.IsLocked && containerPart.AllowsCleanAccess && containerPart.Contents.Count > 0)
+                if (containerPart != null && !containerPart.IsLocked && containerPart.AllowsCleanAccess
+                    && containerPart.RepairAccessFailure(PlayerEntity, CurrentZone) == null && containerPart.Contents.Count > 0)
                 {
                     OpenContainerLoot(target, containerPart);
                     return;

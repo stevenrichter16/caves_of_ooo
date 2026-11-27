@@ -1254,6 +1254,7 @@ namespace CavesOfOoo.Core
                     WaysideShipmentSite.TryInstall(zone, this);
                 ConnectedSpreadSatellite.AddSideParkingGuide(this, zone);
                 if (soddenAccepted) SoddenWorksDrainage.TryInstall(zone, this);
+                if (soddenAccepted) PeatWorksStillRecovery.TryInstall(zone, this);
                 CausewaySteamSeam.Install(this, zone);
                 SillSettlingPocket.Install(this, zone);
                 SlipEastLighting.Install(this, zone);

@@ -21,13 +21,31 @@ namespace CavesOfOoo.Core
         /// <summary>If true, container is locked and must be unlocked to open.</summary>
         public bool Locked = false;
 
-        /// <summary>Live access authority. Legacy saved locks and the key-based
-        /// LockPart can each deny access; clearing either never clears the other.
+        /// <summary>Live access authority. A legacy lock, key lock or structural
+        /// fault can each deny access; clearing one never clears the others.
         /// Computed from current state so stale menus cannot bypass a relock.
         /// Generation may still stock a locked container through AddItem.</summary>
-        public bool IsLocked => Locked || ParentEntity?.GetPart<LockPart>()?.IsLocked == true;
+        public bool IsLocked => Locked || ParentEntity?.GetPart<LockPart>()?.IsLocked == true || NeedsRepair;
 
-        public bool AllowsCleanAccess => !LocalPorterReservationPart.Blocks(ParentEntity)
+        public bool NeedsRepair => RepairablePart.BlocksFunction(ParentEntity);
+        internal RepairablePart AccessRepair => ParentEntity?.GetPart<RepairablePart>() is { PortableEquipment: false } repair ? repair : null;
+        internal const string RepairAccessMessage = "It needs repair before you can get at the contents.";
+
+        internal string RepairAccessFailure(Entity actor, Zone zone)
+        {
+            if (AccessRepair == null) return null;
+            if (!PreparationActions.CurrentActor(actor, zone) || !WorldResourceActions.Nearby(actor, ParentEntity, zone)
+                || WorldLocationContext.For(zone) is OverworldZoneManager manager && manager.ActiveZone != zone
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true)
+                return "Stand beside the container to reach its contents.";
+            return NeedsRepair ? RepairAccessMessage : null;
+        }
+
+        internal bool RepairTransferCurrent(Entity actor, Zone zone, RepairablePart repair, List<Entity> contents)
+            => ParentEntity?.GetPart<ContainerPart>() == this && AccessRepair == repair && Contents == contents
+                && !IsLocked && RepairAccessFailure(actor, zone) == null;
+
+        public bool AllowsCleanAccess => !NeedsRepair && !LocalPorterReservationPart.Blocks(ParentEntity)
             && (ParentEntity?.GetPart<ContainedLiquidSourcePart>()?.AllowsCleanAccess ?? true);
 
         /// <summary>Max items allowed. -1 = unlimited.</summary>
@@ -113,7 +131,9 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
-                    if (IsLocked)
+                    if (NeedsRepair)
+                        actions.AddDisabled("Open", "open", "container-needs-repair", RepairAccessMessage, 'o', 30);
+                    else if (IsLocked)
                     {
                         // The key-based lock contributes its own Unlock action.
                         if (ParentEntity?.GetPart<LockPart>()?.IsLocked != true)
@@ -133,6 +153,11 @@ namespace CavesOfOoo.Core
                     var actor = e.GetParameter<Entity>("Actor");
                     if (actor == null) return true;
 
+                    if (RepairAccessFailure(actor, e.GetParameter<Zone>("Zone") ?? actor.SpatialZone) is string failure)
+                    {
+                        MessageLog.Add(failure);
+                        return true;
+                    }
                     if (!AllowsCleanAccess) return true;
                     if (IsLocked)
                     {

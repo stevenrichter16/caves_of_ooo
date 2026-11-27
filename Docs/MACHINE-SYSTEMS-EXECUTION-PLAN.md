@@ -1,3 +1,20 @@
+**Peat Works yields a portable still — November 27, 2026, America/Chicago.**
+One fixed case in newly generated Peat Works contains an ordinary
+18 lb camp still. The bent catch takes either one iron spike or one
+knotflax cord. The adjacent locker continues its original stock.
+Native play used one of two cords from the locker and carried the
+same recovered still to a dry cell by a natural steam vent. Twelve
+mire made three oil. The vent could not bake clay, and the playtest
+spent no fire fuel. Fresh Continue kept the empty repaired case,
+installed kit, depleted pool and oil. The still packed up normally.
+All 223 focused tests passed. [Case recovery and vent playtest](Verification/MachineSystems/PeatWorksStillRecovery20261127/README.md)
+Keep the next comparison grounded in one useful destination for the
+portable yield. The existing Slip report is a proven alternate buyer
+of three oil. Check whether the route to another useful field service
+or repeat setup makes home and portable work meaningfully different.
+The current still log describes retained dregs without a physical
+dregs owner. Verify or correct that wording before expanding waste.
+
 **Oil for Slip lights the east road — November 27, 2026, America/Chicago.**
 Two fixed lamps on dry grass use the same saved supply condition
 for light, appearance and Examine. An ordinary traveler paid three
@@ -9,18 +26,6 @@ lamps on entry. All 213 focused tests passed.
 [Road comparison and reloads](Verification/MachineSystems/SlipEastLamps20261127/README.md)
 The universal Mac package for `7c8c0705c` passed Apple M5 startup.
 [Package receipt](Verification/MachineSystems/SlipEastLamps20261127/mac-startup-verification.json)
-Next scoped work compares the public still with ordinary access to
-the portable still around Peat Works. Verify the existing locker,
-its custody and the kit's trade value before choosing a finite source.
-Follow a real local heat route without supplied tools.
-The existing locker at (61,6) is retained with the Peat Works map.
-The commercial still weighs 18 lb and has a base value of 110 drams.
-Investigate whether a once-recoverable damaged body and real repair
-cost can give the player a practical second route to an ordinary kit.
-The generic material output policy currently has no contract for
-an entire packable still. A repairable case holding one existing
-packed kit is another candidate. Check its exact custody and access
-before deciding which recovery can reuse current rules.
 
 **Slip takes settled oil and returns the player's flask — November 27, 2026, America/Chicago.**
 The existing east-lamp job takes three measures from one carried

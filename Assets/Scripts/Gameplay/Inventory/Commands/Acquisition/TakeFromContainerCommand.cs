@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace CavesOfOoo.Core.Inventory.Commands
 {
     public sealed class TakeFromContainerCommand : IInventoryCommand
@@ -47,12 +49,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container is null.");
             }
 
-            if (_container.GetPart<ContainerPart>() == null)
+            var source = _container.GetPart<ContainerPart>();
+            if (source == null)
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
                     "Entity is not a container.");
             }
+
+            if (source.RepairAccessFailure(context.Actor, context.Zone ?? context.Actor.SpatialZone) is string failure)
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, failure);
 
             if (_item == null)
             {
@@ -121,13 +127,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return Refuse(context, "public_cargo_changed", "The cargo is no longer available in that crate.");
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
+            var repair = containerPart?.AccessRepair;
             bool storageVessel = CarriedStorage.UsesCarriedContents(_item);
             System.Action containedCleanup = null, containedGuard = null;
             var contained = _container.GetPart<ContainedLiquidSourcePart>();
             if (contained != null && !contained.PrepareTake(context.Actor, _item, context.Zone ?? context.Actor.SpatialZone, transaction, _wetRecovery, out containedCleanup, out containedGuard))
                 return Refuse(context, "contained_recovery_refused", "Drain the tray first, or explicitly recover through the liquid.");
             var delivery = _container.GetPart<DeliveryStoragePart>();
-            if ((delivery != null || storageVessel || _cargo != null) && !transaction.TryClaim(_container, context.Actor, Name))
+            if ((delivery != null || storageVessel || _cargo != null || repair != null) && !transaction.TryClaim(_container, context.Actor, Name))
                 return Refuse(context, "delivery_storage_busy", "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
@@ -138,6 +145,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container transfer prerequisites are missing.");
             }
 
+            var zone = context.Zone ?? context.Actor.SpatialZone;
+            if (containerPart.RepairAccessFailure(context.Actor, zone) is string failure)
+                return Refuse(context, "repair_access", failure);
+
             if (containerPart.IsLocked)
             {
                 MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
@@ -147,6 +158,17 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             var physics = _item.GetPart<PhysicsPart>();
+            if (repair != null)
+            {
+                if (!ExactContainedSource(containerPart, inventory, physics)
+                    || inventory.Objects.Exists(other => other?.ID == _item.ID)
+                    || inventory.EquippedItems.Values.Any(other => other?.ID == _item.ID))
+                    return Refuse(context, "invalid_container_source", "The contents are no longer available in that container.");
+                var contents = containerPart.Contents;
+                var pack = inventory.Objects;
+                transaction.BeforeCommit(() => containerPart.RepairTransferCurrent(context.Actor, zone, repair, contents)
+                    && context.Actor.GetPart<InventoryPart>() == inventory && inventory.Objects == pack);
+            }
             if (storageVessel && (!StorageSourceCurrent(context, containerPart, physics)
                 || physics?.Takeable != true || !HandlingService.IsCarryable(_item)))
                 return Refuse(context, "invalid_container_source", "That storage is no longer available in the nearby container.");
@@ -212,7 +234,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 }
                 if (!destination.ClaimChanges(transaction, context.Actor, Name))
                     return Refuse(context, "destination_in_progress", "A destination stack is already being transferred.");
-                if (_cargo != null) destination.WatchChangedOwners(transaction);
+                if (_cargo != null || repair != null) destination.WatchChangedOwners(transaction);
                 if (storageVessel)
                     transaction.BeforeCommit(() => StorageContainerCurrent(context, containerPart)
                         && _item.GetPart<PhysicsPart>() == physics && !containerPart.Contents.Contains(_item)
@@ -228,7 +250,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             containedGuard?.Invoke();
             if (delivery != null)
                 delivery.RecordWithdrawal(transaction);
-            if (delivery != null || storageVessel || _cargo != null)
+            if (delivery != null || storageVessel || _cargo != null || repair != null)
                 transaction.AfterCommit(Announce);
             else Announce();
             LocalGatheringClaims.RecordTake(gathering, transaction);

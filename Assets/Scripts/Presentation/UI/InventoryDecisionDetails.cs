@@ -113,6 +113,7 @@ namespace CavesOfOoo.Rendering
             if (!Owned(actor, item) || !Near(actor, zone, containerOwner)) return null;
             var box = containerOwner.GetPart<ContainerPart>();
             if (box == null || box.ParentEntity != containerOwner) return null;
+            if (box.RepairAccessFailure(actor, zone) is string repairFailure) return repairFailure;
             if (box.IsLocked) return containerOwner.GetDisplayName() + " is locked. Contents are unavailable.";
             string header = containerOwner.GetDisplayName() + " - entries: " + box.Contents.Count + "/" + (box.MaxItems < 0 ? "unlimited" : box.MaxItems.ToString()) + ".\n" + Weight(item);
             bool full = box.MaxItems >= 0 && box.Contents.Count >= box.MaxItems;

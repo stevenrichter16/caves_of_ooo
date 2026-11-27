@@ -46,6 +46,7 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(recipe.MaterialGrade))
                 return quantity + " measures of fire clay or prepared lining clay, in any mix";
             if (string.IsNullOrEmpty(recipe.SubstituteBlueprint)) return original;
+            if (recipe.Quantity == 1) return original + " or 1 " + recipe.SubstituteName;
             return original + " or " + (recipe.Quantity - 1).ToString(CultureInfo.InvariantCulture)
                 + " " + recipe.MaterialName + " plus 1 " + recipe.SubstituteName;
         }

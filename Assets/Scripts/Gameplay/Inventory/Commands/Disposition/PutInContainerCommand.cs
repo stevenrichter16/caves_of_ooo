@@ -43,12 +43,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container is null.");
             }
 
-            if (_container.GetPart<ContainerPart>() == null)
+            var destination = _container.GetPart<ContainerPart>();
+            if (destination == null)
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
                     "Entity is not a container.");
             }
+
+            if (destination.RepairAccessFailure(context.Actor, context.Zone ?? context.Actor.SpatialZone) is string failure)
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, failure);
 
             if (_item == null)
             {
@@ -87,7 +91,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
             var delivery = _container.GetPart<DeliveryStoragePart>();
-            if ((delivery != null || _cargo != null) && !transaction.TryClaim(_container, context.Actor, Name))
+            var repair = containerPart?.AccessRepair;
+            if ((delivery != null || _cargo != null || repair != null) && !transaction.TryClaim(_container, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "That storage is already in use.");
             if (!transaction.TryClaim(_item, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
@@ -98,12 +103,24 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container transfer prerequisites are missing.");
             }
 
+            var zone = context.Zone ?? context.Actor.SpatialZone;
+            if (containerPart.RepairAccessFailure(context.Actor, zone) is string failure)
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, failure);
+
             if (containerPart.IsLocked)
             {
                 if (CanNarrate(context)) MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Container is locked.");
+            }
+
+            if (repair != null)
+            {
+                var contents = containerPart.Contents;
+                var pack = inventory.Objects;
+                transaction.BeforeCommit(() => containerPart.RepairTransferCurrent(context.Actor, zone, repair, contents)
+                    && context.Actor.GetPart<InventoryPart>() == inventory && inventory.Objects == pack);
             }
 
             var equippedState = UnequipCommand.CaptureEquippedState(context, _item);
@@ -146,8 +163,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (!destination.ClaimChanges(transaction, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
-            if (_cargo != null) destination.WatchChangedOwners(transaction);
-            if (delivery != null || _cargo != null) transaction.AfterCommit(Announce);
+            if (_cargo != null || repair != null) destination.WatchChangedOwners(transaction);
+            if (delivery != null || _cargo != null || repair != null) transaction.AfterCommit(Announce);
             else Announce();
             return InventoryCommandResult.Ok();
 

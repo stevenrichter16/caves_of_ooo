@@ -74,6 +74,14 @@ supplied tools. One clay gave the watch bell a quiet call and the two
 watchkeepers reacted. Fresh Continue kept the chosen outcome and sold stock.
 [Ordinary purchase and use](Verification/MachineSystems/MorrowfastHandSieve20261127/README.md)
 
+For #12, #14, #19, #36 and #40, Peat Works offers one ordinary
+portable still as recoverable equipment. The shared repair recognizes
+two suitable payments and the case uses common container access.
+Local cord paid for the same 18 lb kit in ordinary play. The player
+chose a dry deployment spot by a natural vent and settled finite
+mire into oil. Fresh Continue preserved the exact installed still
+and exhausted case. [Case recovery and vent playtest](Verification/MachineSystems/PeatWorksStillRecovery20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry

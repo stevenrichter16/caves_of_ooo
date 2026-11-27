@@ -232,7 +232,9 @@ namespace CavesOfOoo.Rendering
 
                     string name = container.GetDisplayName();
                     var containerPart = container.GetPart<ContainerPart>();
-                    if (containerPart != null)
+                    if (containerPart?.NeedsRepair == true)
+                        name += " (needs repair)";
+                    else if (containerPart != null)
                         name += " (" + containerPart.Contents.Count + " item" + (containerPart.Contents.Count == 1 ? "" : "s") + ")";
 
                     int maxNameLen = POPUP_W - 9;

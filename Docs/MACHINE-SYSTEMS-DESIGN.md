@@ -2505,6 +2505,16 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The November 27 Peat Works trial adds a physical route to the
+fractionating still's portable kit. A fixed repairable case takes
+one spike or one cord, then opens to reveal one existing still.
+Ordinary carrying, installation, natural steam, finite mire and
+saved custody powered the field batch. The purchased kit and Sill's
+public service give distinct entry points. Existing visited layouts
+are preserved. This verifies one portable use under natural heat.
+Full fractionation, physical waste, and the whole machine gate remain
+open. [Case recovery and vent playtest](Verification/MachineSystems/PeatWorksStillRecovery20261127/README.md)
+
 Slip's oil bill now has a physical receiving service. An ordinary
 handover lit two fixed road lamps through the saved condition.
 The condition binding reuses the environmental light map and local
