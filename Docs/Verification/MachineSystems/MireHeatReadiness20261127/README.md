@@ -60,6 +60,7 @@ tracked files and 876 normal Quick save files matched their prior
 hashes.
 
 - [Playtest state, menu rows and save pins](observations.json)
+- [Universal Mac startup receipt](mac-startup-verification.json)
 - [Draw at the natural pool](captures/01-natural-mire.png)
 - [Cold still Examine](captures/02-cold-still.png)
 - [Paid still Examine](captures/03-paid-still-examine.png)

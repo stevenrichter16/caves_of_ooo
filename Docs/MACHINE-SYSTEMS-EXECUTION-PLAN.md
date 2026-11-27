@@ -6,10 +6,14 @@ still baked one clay, and the four remaining mire made one oil. That
 oil refilled the same recovered torch. Both branches survived fresh
 Continue. The final focused run passed 174 cases.
 [Mire heat and reuse playtest](Verification/MachineSystems/MireHeatReadiness20261127/README.md)
+The universal Mac package for `8174782d3` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/MireHeatReadiness20261127/mac-startup-verification.json)
 The next scoped processing trial is Slip's lamp-supply concern.
 Check whether one flask of three settled oil can satisfy the same
 existing demand as bottled lamp oil and preserve the emptied flask
 and the separate report. Exterior lighting remains a separate gate.
+The matched `SettledOil3000` branch earned all three measures in
+flask 9873 and is available as the starting checkpoint.
 
 **Spare willow can patch the Drowned Ledger's survey line — November 27, 2026, America/Chicago.**
 The original line supplied two physical stakes and kept its spent state.
