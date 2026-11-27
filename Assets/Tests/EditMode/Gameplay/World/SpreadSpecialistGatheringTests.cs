@@ -163,8 +163,12 @@ namespace CavesOfOoo.Tests
             zone = manager.GetZone("Overworld.11.9.0");
             Assert.NotNull(zone);
             Assert.AreEqual(2, manager.Exploration.DispositionFor(zone.ZoneID), "Actual north field alembic committed.");
-            var patch = zone.GetReadOnlyEntities().Single(e => e.BlueprintName == source);
-            Assert.True(patch.Properties.ContainsKey("SpreadWorksite.Role"));
+            string role = source == "FrostLichenPatch" ? "cold-forage" : "binding-forage";
+            var patch = zone.GetReadOnlyEntities().Single(e => e.BlueprintName == source
+                && e.GetProperty(SpreadExplorationWorksites.RoleKey) == role);
+            Assert.That(patch.GetPart<HarvestablePart>().GetType(), Is.EqualTo(typeof(HarvestablePart)));
+            var shallow = zone.GetReadOnlyEntities().SingleOrDefault(e => e.BlueprintName == "FrostLichenPatch"
+                && e.GetProperty(SpreadExplorationWorksites.RoleKey) == "seasonal-cold-forage");
             var at = zone.GetEntityCell(patch);
             var approach = new[] { (at.X - 1, at.Y), (at.X + 1, at.Y), (at.X, at.Y - 1), (at.X, at.Y + 1) }
                 .Select(p => zone.GetCell(p.Item1, p.Item2)).FirstOrDefault(c => c != null
@@ -199,6 +203,12 @@ namespace CavesOfOoo.Tests
             loaded.ZoneManager.UnloadZone(zone.ZoneID);
             Assert.AreSame(returned, loaded.ZoneManager.GetZone(zone.ZoneID));
             Assert.False(returned.GetReadOnlyEntities().Any(e => e.ID == sourceId), "Loading and accessing do not refill the patch.");
+            if (shallow != null)
+            {
+                var stillSeasonal = returned.GetReadOnlyEntities().Single(e => e.ID == shallow.ID);
+                Assert.False(stillSeasonal.GetPart<SeasonalHarvestPart>().Harvested);
+                Assert.That(returned.GetEntityPosition(stillSeasonal), Is.EqualTo(zone.GetEntityPosition(shallow)));
+            }
         }
     }
 }

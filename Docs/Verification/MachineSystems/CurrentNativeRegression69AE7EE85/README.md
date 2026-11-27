@@ -88,6 +88,19 @@ That exact file and the Rim Forest input were restored from the original
 commit for a separate rerun. All 21 missing-input failures and an adjacent
 control passed. The original partition receipts remain intact.
 
-The remaining Spread filter has started. Two other filters, strict I–R
-membership and the separate whole-process verdict remain open.
+The remaining Spread filter matched all 2,269 names. It recorded 2,263
+passes and six failures with zero skips or compiler errors. Three
+historical presentation checks failed again. Two compare different
+mesh references with the same approved model names, and the Posy
+authority fixture still sees the generic villager model. The three
+additional failures concerned an older armor readout label and two
+ordinary lichen tests that selected by blueprint alone. The new shallow
+seasonal owner now shares that blueprint with the exact ordinary patch.
+All three original failures passed in a separate 28-case run on the
+corrected fixtures. The gathering tests now check the exact ordinary
+source and confirm that the shallow seasonal patch remains unspent
+after loading. The cap test checks the armor readout's current label.
+
+The T filter has started with 1,150 expected names. The last filter,
+strict I–R membership and the separate whole-process verdict remain open.
 [Case counts and receipts](coverage.json)

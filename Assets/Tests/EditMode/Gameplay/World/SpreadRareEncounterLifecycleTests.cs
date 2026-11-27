@@ -62,7 +62,7 @@ namespace CavesOfOoo.Tests
             zone.MoveEntity(player,10,10);
             Assert.IsTrue(InventorySystem.Pickup(player,cap,zone));
             Assert.IsTrue(EquipmentComparisonService.TryDescribe(player,cap,out var description,out _));
-            StringAssert.Contains("AV: +1",description);
+            StringAssert.Contains("Armor value (AV): +1.",description);
             // Ordinary pickup auto-equips into the free head slot (Qud parity);
             // since ade908f62 an explicit re-equip of worn gear is refused.
             Assert.AreSame(player,cap.GetPart<PhysicsPart>().Equipped,"pickup wears the spilled cap");
