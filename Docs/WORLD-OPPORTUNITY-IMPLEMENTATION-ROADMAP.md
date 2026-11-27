@@ -186,7 +186,8 @@ For #34 and #36, each clean public seed frame shows when its dry
 mesh can save chaff. At the Morrowfast allotment, one ordinary wait
 after a shower changed both cues. The exact same earned bundle
 could be winnowed immediately for seed or after the shower for
-seed and chaff. The chosen output survived Continue.
+seed and chaff. The player planted that exact seed in a vacated
+tilled bed and kept its companion chaff through Continue.
 [Weather and frame playtest](Verification/MachineSystems/SeedFrameCue20261127/README.md)
 
 The cooked perch now has a second use for #14/#19. An earned meal paid

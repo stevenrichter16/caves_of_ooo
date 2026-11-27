@@ -188,6 +188,8 @@ The fair mesh mark, Examine and actual processing quote share the
 site's ability to retain chaff. Wet ground or rain suppresses the dry
 mark. A visible change after the shower lets the player choose whether
 to wait for the optional fuel fraction. The seed work always remains.
+The earned seed was planted in an existing tilled bed and the crop
+survived Continue.
 [Evidence](Verification/MachineSystems/SeedFrameCue20261127/README.md)
 
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**

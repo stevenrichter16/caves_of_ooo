@@ -4,8 +4,14 @@ water cue. Actual fresh v31 seed 65 travel, a controlled advance to
 the ripe season, one native gather and one native wait showed the
 change in look and exact output quote. Winnowing one earned bundle
 kept one seed and one chaff through fresh Continue, with no rain
-debit. All 181 targeted native cases passed.
+debit. The new seed made a saved crop in the existing tilled bed.
+The exact chaff remained for future use. All 181 targeted native
+cases passed.
 [Evidence](Verification/MachineSystems/SeedFrameCue20261127/README.md)
+The universal Mac package at runtime `e7f5dc2d9` includes both
+the pond and seed frame cues. It completed startup on Apple M5 and
+preserved both normal save roots and the previous package.
+[Package receipt](Verification/MachineSystems/SeedFrameCue20261127/mac-startup-verification.json)
 
 **Five historical throw controls now verify the launch boundary — November 26, 2026, America/Chicago.**
 The old split and predator tests expected to undo a paid throw.

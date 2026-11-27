@@ -38,9 +38,18 @@ frame.
   unspent. No items, weather, or health were supplied in this playtest.
   [Reloaded pack](04-seed-and-chaff-reloaded.png)
 
-Earlier live branches exercised [planting the resulting seed](../SeasonalSeedFrame20261125/README.md)
-and [burning the resulting chaff](../FairWeatherChaff20261125/README.md).
-This run used the same products and stopped with both in the pack.
+## Planting the earned seed
+
+A separate Continue from 14410 used the exact new seed. Four steps
+reached the cultivated beds. A normal harvest cleared hearthbulb 7191
+from 62,11, leaving its produce and seed on the ground. The native
+planting menu offered the carried knotflax seed beside the other
+seed types. Planting spent seed 7203 on that bed. At 14470 fresh Continue
+kept knotflax crop 7208 on the same tilled cell, chaff 7204 in the pack,
+and 40 HP. Examine identified the crop as a dry seed awaiting water.
+This branch kept the chaff for a future fire.
+[Planted crop](05-planted-knotflax.png) ·
+[Earlier use of this chaff type as fuel](../FairWeatherChaff20261125/README.md)
 
 ## Verification
 
@@ -57,4 +66,24 @@ modes and broader acquisition remain open. All 876 normal quick saves
 and 87 pre-existing modified tracked files matched. The isolated
 session closed and the earlier seed and build choice settings resumed.
 
-[Play observations](observations-live.json) · [Tests, saves and image hashes](receipt.json)
+[Frame observations](observations-live.json) ·
+[Planting observations](planting-observations.json) ·
+[Tests, saves and image hashes](receipt.json)
+
+## Current Mac package
+
+The universal app at
+`/Users/steven/coo-verification/builds/mac-e7f5dc2d9-20261126/CavesOfOoo.app`
+contains runtime `e7f5dc2d9dad1b3196a99308dd571f0cf15c0d75`,
+including the Stump pond and Morrowfast frame cues. The build matched
+32,252 committed inputs, completed in 33.05 seconds with zero errors
+and one warning, and preserved the previous app. Both packages
+matched their 186 file hashes. All six native binaries include
+Apple Silicon and Intel slices.
+
+The new package completed startup on Apple M5 with 2,707 entities.
+Both normal save roots matched across all 876 quick-save files. The
+nine preferences changed during startup were logically restored.
+The test player was stopped. Packaged interaction play and testing on
+physical Intel remain open.
+[Mac startup receipt](mac-startup-verification.json)

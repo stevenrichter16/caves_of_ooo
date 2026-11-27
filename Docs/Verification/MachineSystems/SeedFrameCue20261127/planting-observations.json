@@ -1,0 +1,233 @@
+{
+  "mode": "Native downstream play from the saved winnowing result",
+  "observations": {
+    "seedBeforePlant": {
+      "tick": 14410,
+      "X": 59,
+      "Y": 8,
+      "hp": 40,
+      "crop": {
+        "ID": "7191",
+        "BlueprintName": "HearthbulbCrop"
+      },
+      "tilled": true,
+      "seed": true,
+      "chaff": true
+    },
+    "seedBedHarvestMenu": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "HearthbulbCrop",
+      "cell": [
+        62,
+        11
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "h",
+          "Display": "harvest",
+          "Command": "HarvestCultivatedCrop",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "a",
+          "Display": "gather into pack",
+          "Command": "GatherCrop",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "b",
+          "Display": "harvest: 3x seeds, no produce",
+          "Command": "HarvestCropSeeds",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 3,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 4,
+          "key": "c",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "seedBedPlantMenu": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "HearthbulbSeed",
+      "cell": [
+        62,
+        11
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "g",
+          "Display": "take items (3)",
+          "Command": "ViewPile",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "a",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 3,
+          "key": "b",
+          "Display": "plant a seed here (3) >>",
+          "Command": "ToolGroup|plant a seed here",
+          "IsDisabled": false,
+          "Hint": "Choose from: emberwheat seed, gladroot seed, knotflax seed."
+        }
+      ],
+      "hint": ""
+    },
+    "seedBedExactMenu": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "HearthbulbSeed",
+      "cell": [
+        62,
+        11
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "plant prepared bed (62,11) [emberwheat seed]",
+          "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "b",
+          "Display": "plant prepared bed (62,11) [gladroot seed]",
+          "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "c",
+          "Display": "plant prepared bed (62,11) [knotflax seed]",
+          "Command": "PlantSeedAt|Overworld.2.6.0|62|11",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 3,
+          "key": "d",
+          "Display": "<< back",
+          "Command": "ToolGroupBack|plant a seed here",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "seedPlanted": {
+      "tick": 14470,
+      "X": 61,
+      "Y": 10,
+      "hp": 40,
+      "crop": {
+        "ID": "7208",
+        "BlueprintName": "KnotflaxCrop"
+      },
+      "tilled": true,
+      "seed": false,
+      "chaff": true
+    },
+    "seedPlantedArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/SeedFrameCue20261127/Planted14470/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "88055aaeaf0bf2050d71c9fbb37ed1508377e805c080b2916534473e76cb2957",
+        "Quick.json.bak": "853f5ee19643fa8ac191ec4dc803afc3ff78253934e91891cb30b0f1224711b8",
+        "Quick.sav.gz": "12b6b054a5a8d8870d46accdc005d4bab81bd943fc0b1021ffad8d67be6b7308",
+        "Quick.sav.gz.bak": "515a615c849bf09fe648d9ccbb625b4f294827488bb3cfbf1eb7b99870083c17"
+      }
+    },
+    "seedFreshPlant": {
+      "tick": 14470,
+      "X": 61,
+      "Y": 10,
+      "hp": 40,
+      "crop": {
+        "ID": "7208",
+        "BlueprintName": "KnotflaxCrop"
+      },
+      "tilled": true,
+      "seed": false,
+      "chaff": true
+    },
+    "seedCropMenu": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "KnotflaxCrop",
+      "cell": [
+        62,
+        11
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "clear young crop (no yield)",
+          "Command": "ClearCrop",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "b",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "seedCropExamine": [
+      "Interact — choose a direction, or . for underfoot.",
+      "You see a knotflax crop.\nGrowth: seed. Soil is dry; growth is paused. Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. At maturity, Harvest by hand; produce and saved seed remain here to pick up. Growth follows passing world time while the soil is moist.\n\nBlue-green stalks swell at regular knots. Strip and twist the ripe stems while harvesting to make useful cord."
+    ]
+  }
+}
