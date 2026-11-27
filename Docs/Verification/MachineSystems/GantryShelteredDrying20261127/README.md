@@ -40,6 +40,13 @@ their original hashes. The private save root cleared and the main Editor
 returned to Edit Mode. The full current regression and physical Intel
 execution remain open. [Recorded states](observations.json)
 
+The universal Mac package for `a31bf0e6b` used 32,266 pinned inputs. It
+built in 23.82 seconds with zero errors and five warnings. Apple M5
+startup loaded the world. All six binaries contain both architectures.
+Each of the 186 files in the new and previous apps matched its recorded
+hash. Startup preserved all 876 normal quick saves and restored the nine
+changed preferences. [Package receipt](mac-startup-verification.json)
+
 [Rain seam](01-natural-clay-seam.png) ·
 [Drying quote](02-cloth-moisture-quote.png) ·
 [Examine](03-cloth-examine.png) ·

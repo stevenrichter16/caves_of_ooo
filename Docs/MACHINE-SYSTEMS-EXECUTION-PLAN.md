@@ -6,6 +6,11 @@ identity through Continue. A separate downstream run used one supplied
 sieve to make two fire clay and one coarse grit. The same grit made firm
 footing which survived Continue. All 336 targeted cases passed.
 [Playtest and receipts](Verification/MachineSystems/GantryShelteredDrying20261127/README.md)
+The universal Mac package for `a31bf0e6b` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/GantryShelteredDrying20261127/mac-startup-verification.json)
+The next small follow-through is ordinary sieve access. Review Orrit's
+one-time shop allocation and the existing forge route, then use the dry
+packet from the ordinary checkpoint to compare them.
 
 **A flask commits a finite draw from its exact pool — November 27, 2026, America/Chicago.**
 Open-pool fills recheck both owners. Refusal reverses only the matching
