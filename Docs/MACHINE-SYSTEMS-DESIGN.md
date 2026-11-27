@@ -2523,9 +2523,14 @@ ordinary Brine Camp play. The same torch used for light ignited
 existing mire, which exposed the player to gas through normal
 terrain contact. The pad removed the gas effect after retreat.
 Both the treatment and wait branches still ended charred. Fresh
-Continue kept the spent pad and the cured state. An untreated
+Continue kept the spent pad and the cured state. An earlier untreated
 Continue kept the effect and its damage but lost its source ID.
 [Gas and Continue playtest](Verification/MachineSystems/SumpsieveGasPad20261127/README.md)
+Lingering gas poison now saves its source separately from the patient.
+The source reuses the ordinary entity graph and resolves to the same
+cached-zone pool after retreat and Continue. Older saves retain the
+original damage and duration with no source to recover.
+[Source identity and live checks](Verification/MachineSystems/GasSourceContinue20261127/README.md)
 
 The Brine Camp recovery comparison confirmed that an empty bed's
 saved reservation can block ordinary rest after an NPC's arrival

@@ -63,7 +63,7 @@ namespace CavesOfOoo.Core
                 Duration = duration,
                 DamagePerTurn = damage,
                 GasTypeKey = BaseGas.GasType,
-                Owner = BaseGas.Creator,
+                DamageSource = BaseGas.Creator,
             };
             target.ApplyEffect(fx, BaseGas.Creator, zone);
 

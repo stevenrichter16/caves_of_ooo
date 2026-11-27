@@ -24,7 +24,8 @@ Fresh Continue of the untreated save kept the gas type, damage,
 duration, location and pad. It lost the effect’s source ID for
 the mire. Source review found that the effect uses a second
 field named `Owner` for the gas creator and the save filter
-excludes fields with that name. This remains open.
+excludes fields with that name. The loss was fixed and replayed
+in the [source persistence follow-up](../GasSourceContinue20261127/README.md).
 
 [Gas exposure](01-marsh-gas-exposure.png) · [Apply](02-apply-sumpsieve-pad.png) ·
 [After treatment](03-poison-cleared.png) · [Observed state and save hashes](observations.json)

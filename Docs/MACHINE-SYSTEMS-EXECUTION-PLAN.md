@@ -1,12 +1,20 @@
+**Marsh-gas source survives Continue — November 27, 2026, America/Chicago.**
+Lingering gas poison now stores its damage source separately from
+the patient. GameBootstrap restored the exact Brine Camp mire in
+its cached zone after the player saved on the world map. The
+pre-fix poisoned save still loaded with the original remaining
+damage and duration and no saved source. All 250 focused native
+cases passed. [Source identity and live checks](Verification/MachineSystems/GasSourceContinue20261127/README.md)
+
 **The field-grown sumpsieve pad clears Brine Camp marsh gas — November 27, 2026, America/Chicago.**
 The traveler touched the carried torch to an existing mire pool,
 entered the resulting gas cloud, and retreated to the world map.
 At 11 HP, applying the exact spare pad spent one dose and held at
 11 HP. Waiting from the same saved injury cost two HP and left
 eight poison turns. Fresh Continue kept the cure, spent pad, lit
-torch and separate charred status. Untreated Continue kept damage
-and duration but lost the mire's source attribution. Record this
-as a separate save bug. [Gas and Continue playtest](Verification/MachineSystems/SumpsieveGasPad20261127/README.md)
+torch and separate charred status. The original untreated Continue
+exposed the source attribution loss addressed above.
+[Gas and Continue playtest](Verification/MachineSystems/SumpsieveGasPad20261127/README.md)
 
 **Sella’s field dressing treats a real Sodden wound — November 27, 2026, America/Chicago.**
 The shared self and companion rule admits only active ordinary poison

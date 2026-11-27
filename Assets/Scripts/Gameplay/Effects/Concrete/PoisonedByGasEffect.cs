@@ -34,9 +34,8 @@ namespace CavesOfOoo.Core
         /// dose covers damage there).</summary>
         public string GasTypeKey = "Poison";
 
-        /// <summary>The gas's <see cref="GasPoolPart.Creator"/>, for
-        /// damage-credit attribution when the lingering tick kills.</summary>
-        public Entity Owner;
+        /// <summary>The saved gas creator for lingering damage credit. Owner is the patient.</summary>
+        public Entity DamageSource;
 
         public override void OnApply(Entity target)
         {
@@ -61,16 +60,16 @@ namespace CavesOfOoo.Core
             if (zone != null && IsInMatchingGasCell(target, zone))
             {
                 if (Diag.IsChannelEnabled("gas"))
-                    Diag.Record("gas", "PoisonTickSkipped", Owner, target,
+                    Diag.Record("gas", "PoisonTickSkipped", DamageSource, target,
                         new { reason = "InMatchingGasCell", gasTypeKey = GasTypeKey });
                 return;
             }
 
             var dmg = new Damage(DamagePerTurn);
             dmg.AddAttribute("Poison");
-            CombatSystem.ApplyDamage(target, dmg, Owner, zone);
+            CombatSystem.ApplyDamage(target, dmg, DamageSource, zone);
             if (Diag.IsChannelEnabled("gas"))
-                Diag.Record("gas", "PoisonTick", Owner, target,
+                Diag.Record("gas", "PoisonTick", DamageSource, target,
                     new { damage = DamagePerTurn, gasTypeKey = GasTypeKey });
         }
 
@@ -84,7 +83,7 @@ namespace CavesOfOoo.Core
             {
                 if (other.Duration > Duration) Duration = other.Duration;
                 if (other.DamagePerTurn > DamagePerTurn) DamagePerTurn = other.DamagePerTurn;
-                if (Owner == null) Owner = other.Owner;
+                if (DamageSource == null) DamageSource = other.DamageSource;
                 return true;
             }
             return false;

@@ -107,6 +107,12 @@ through Continue. A separate exposed application cleared the old
 bleed before a fresh bite started another.
 [Live treatment comparison](Verification/MachineSystems/SoddenDressingActive20261127/README.md)
 
+The remaining field-grown pad treated marsh gas from a Brine Camp mire
+pool. A follow-up fixed Continue so a traveler still carrying the
+effect retains the exact gas source after leaving the site.
+[Portable gas treatment](Verification/MachineSystems/SumpsieveGasPad20261127/README.md) ·
+[Cross-zone source persistence](Verification/MachineSystems/GasSourceContinue20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry

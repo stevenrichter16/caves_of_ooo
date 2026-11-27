@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
@@ -34,6 +36,7 @@ namespace CavesOfOoo.Tests
             GasRegistry.ResetForTests();
             GasPoisonPart.TestRng = null;
             SettlementRuntime.Reset();
+            SettlementManager.ResetCurrent();
         }
 
         private static Entity MakeCreature(Zone zone, int x, int y, int hpMax = 200)
@@ -327,6 +330,85 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual(hp0 - 10, target.GetStatValue("Hitpoints"),
                 "outside the cloud, the effect deals the 10-damage tick");
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Effect_AfterCrossZoneContinue_PreservesDamageSourceOrItsAbsence(bool hasCreator)
+        {
+            var exposureZone = new Zone("Overworld.15.8.0");
+            var safeZone = new Zone("Overworld.16.8.0");
+            var creator = new Entity { ID = "gas-creator", BlueprintName = "TestGasSource" };
+            Assert.IsTrue(exposureZone.AddEntity(creator, 4, 5));
+            Entity gas = GasFactory.SpawnGas(exposureZone, 5, 5, "poison-vapor", level: 2,
+                creator: hasCreator ? creator : null);
+            Entity patient = MakeCreature(exposureZone, 5, 5);
+            Assert.IsTrue(gas.GetPart<GasPoisonPart>().ApplyGas(patient, exposureZone));
+
+            Effect originalEffect = patient.GetEffect<PoisonedByGasEffect>();
+            Assert.IsNotNull(originalEffect);
+            Assert.AreSame(patient, originalEffect.Owner);
+            Assert.IsTrue(exposureZone.RemoveEntity(patient));
+            Assert.IsTrue(safeZone.AddEntity(patient, 6, 5));
+            int savedHealth = patient.GetStatValue("Hitpoints");
+
+            var manager = OverworldZoneManager.CreateDetached(null, 65);
+            manager.ReplaceLoadedState(
+                new Dictionary<string, Zone>
+                {
+                    { exposureZone.ZoneID, exposureZone },
+                    { safeZone.ZoneID, safeZone }
+                },
+                safeZone.ZoneID,
+                new Dictionary<string, List<ZoneConnection>>());
+            var state = GameSessionState.Capture("gas-cross-zone", "test", manager, null, patient);
+            using var stream = new MemoryStream();
+            state.Save(new SaveWriter(stream));
+            stream.Position = 0;
+            GameSessionState loaded = GameSessionState.Load(new SaveReader(stream, null));
+
+            Zone loadedSafeZone = loaded.ZoneManager.ActiveZone;
+            Assert.AreEqual(safeZone.ZoneID, loadedSafeZone.ZoneID);
+            Assert.Contains(loaded.Player, loadedSafeZone.GetCell(6, 5).Objects);
+            Entity loadedCreator = loaded.ZoneManager.CachedZones[exposureZone.ZoneID].GetCell(4, 5).Objects[0];
+            Assert.AreEqual(creator.ID, loadedCreator.ID);
+            Assert.AreNotSame(creator, loadedCreator);
+
+            var loadedEffect = loaded.Player.GetEffect<PoisonedByGasEffect>();
+            Assert.IsNotNull(loadedEffect);
+            Assert.AreSame(loaded.Player, ((Effect)loadedEffect).Owner);
+            Assert.AreEqual(originalEffect.Duration, loadedEffect.Duration);
+            Assert.AreEqual("Poison", loadedEffect.GasTypeKey);
+            Assert.AreEqual(4, loadedEffect.DamagePerTurn);
+            Assert.AreEqual(savedHealth, loaded.Player.GetStatValue("Hitpoints"));
+
+            var damageProbe = new GasDamageSourceProbe();
+            loaded.Player.AddPart(damageProbe);
+            var turn = GameEvent.New("BeginTakeAction");
+            turn.SetParameter("Zone", (object)loadedSafeZone);
+            loaded.Player.FireEventAndRelease(turn);
+
+            Assert.AreEqual(savedHealth - 4, loaded.Player.GetStatValue("Hitpoints"));
+            Assert.AreEqual(1, damageProbe.DamageEvents);
+            Assert.AreSame(hasCreator ? loadedCreator : null, damageProbe.Source,
+                "Lingering damage must credit the exact saved creator, or remain unattributed when there was none.");
+        }
+
+        private sealed class GasDamageSourceProbe : Part
+        {
+            public override string Name => nameof(GasDamageSourceProbe);
+            public int DamageEvents { get; private set; }
+            public Entity Source { get; private set; }
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "TakeDamage")
+                {
+                    DamageEvents++;
+                    Source = e.GetParameter<Entity>("Source");
+                }
+                return true;
+            }
         }
 
         [Test]
