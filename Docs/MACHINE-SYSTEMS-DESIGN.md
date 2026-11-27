@@ -667,6 +667,15 @@ stock boundary. Each keeps its separate bill, pricing and story effects.
 Paid purchase and ordinary food use form the downstream trial.
 [Evidence](Verification/MachineSystems/TineWeirStock20261125/README.md)
 
+Tine’s Concord contract now reserves the site for one saved game day.
+Booking spends 45 drams once. The broken or patched weir reflects its
+current state until the agreed work ends. Existing patch expiry and hand
+repair before booking give the player separate timing and material choices.
+At completion the real weir supports the same perch supply as hand work,
+with the contract’s stated tithe and its existing price difference. The
+stored deadline uses the ordinary game clock through travel and Continue.
+[Ordinary paid playtest](Verification/MachineSystems/TineWeirContractDay20261127/README.md)
+
 **An installed own box supports hand screening — November 25 UTC, 2026.**
 The same carried sieve can process a known packet stored directly in an
 adjacent installed camp box. The quoted three pounds belong to the real

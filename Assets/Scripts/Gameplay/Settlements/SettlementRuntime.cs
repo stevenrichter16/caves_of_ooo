@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core
         {
             if (zone == null || clock == null || clock != TurnManager.Active) return;
             var manager = WorldLocationContext.For(zone);
-            if (manager?.ActiveZone == zone && manager.SettlementManager.AdvanceActiveStructurePatches(zone.ZoneID, clock.TickCount))
+            if (manager?.ActiveZone == zone && manager.SettlementManager.AdvanceActiveStructureWork(zone.ZoneID, clock.TickCount))
                 MarkZoneDirty();
         }
 

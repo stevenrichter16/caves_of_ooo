@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Reflection;
@@ -1509,6 +1510,10 @@ namespace CavesOfOoo.Core
             return manager;
         }
 
+        // Reserve an entry in the existing settlement string section. Earlier
+        // saves have no entry, and the binary layout and framing stay the same.
+        private const string WeirContractDuePrefix = "@TineWeirContractDue:";
+
         private static void SaveSettlementState(SettlementState state, SaveWriter writer)
         {
             writer.WriteString(state.SettlementId);
@@ -1523,6 +1528,8 @@ namespace CavesOfOoo.Core
             }
 
             List<string> conditions = state.GetConditionsSnapshot();
+            if (state.WeirContractDueTick is int due)
+                conditions.Add(WeirContractDuePrefix + due.ToString(CultureInfo.InvariantCulture));
             writer.Write(conditions.Count);
             for (int i = 0; i < conditions.Count; i++)
                 writer.WriteString(conditions[i]);
@@ -1550,7 +1557,17 @@ namespace CavesOfOoo.Core
             int conditionCount = reader.ReadInt();
             var conditions = new List<string>(conditionCount);
             for (int i = 0; i < conditionCount; i++)
-                conditions.Add(reader.ReadString());
+            {
+                string entry = reader.ReadString();
+                if (state.SettlementId == TineCompositionPlan.ZoneID && entry != null
+                    && entry.StartsWith(WeirContractDuePrefix, StringComparison.Ordinal))
+                {
+                    if (int.TryParse(entry.Substring(WeirContractDuePrefix.Length), NumberStyles.None,
+                        CultureInfo.InvariantCulture, out int due)) state.WeirContractDueTick = due;
+                    continue;
+                }
+                conditions.Add(entry);
+            }
 
             int pendingCount = reader.ReadInt();
             var pending = new List<string>(pendingCount);

@@ -78,6 +78,8 @@ namespace CavesOfOoo.Tests
         // ════════════════ Tine ════════════════
 
         private const string TinePerchStamp = "PlaceStock:RebuiltByHand.Weir:LakePerch";
+        private const string TineWeirConcern = "tine.weir";
+        private const string TineWeirContract = "Tine:Weir:45";
 
         private (Zone zone, OverworldZoneManager manager, Entity elder, Entity merchant) ActiveTineForWeirStock()
         {
@@ -103,14 +105,179 @@ namespace CavesOfOoo.Tests
 
         private void FinishNativeTineWeir(Entity elder, bool contract)
         {
-            Assert.That(ConcernConversation.Accept(elder, player, "tine.weir"), Is.Null);
-            Take(elder, Status(elder, "tine.weir"), contract ? "Pay the Concord to rebuild the weir" : "Repair the fishing weir");
+            int resolvedAt = turn + (contract ? WorldClock.DayLengthTicks : 0);
+            Assert.That(ConcernConversation.Accept(elder, player, TineWeirConcern), Is.Null);
+            Take(elder, Status(elder, TineWeirConcern), contract ? "Book Concord" : "Repair the fishing weir");
+            if (contract)
+            {
+                turn = resolvedAt;
+                SettlementManager.Current.AdvanceSettlement(TineZone, turn);
+            }
             Tick();
-            Assert.That(Approach("tine.weir"), Is.EqualTo(contract ? 2 : 1));
+            Assert.That(Approach(TineWeirConcern), Is.EqualTo(contract ? 2 : 1));
             var weir = PlaceSites.Site("Tine", "Weir");
             Assert.That(weir.Stage, Is.EqualTo(RepairStage.StableRepair));
             Assert.That(weir.ResolvedByMethod, Is.EqualTo(contract ? RepairMethodId.Contracted : RepairMethodId.ManualRepair));
+            Assert.That(weir.ResolvedAtTurn, Is.EqualTo(resolvedAt));
             Assert.That(weir.RelapseAtTurn, Is.Null);
+        }
+
+        private sealed class TineDebitObserver : Part
+        {
+            internal Action Reenter;
+            internal int Debits;
+
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "IntPropertyChanged" && e.GetStringParameter("Name") == TradeSystem.CURRENCY_PROP
+                    && e.GetIntParameter("OldValue") - e.GetIntParameter("NewValue") == 45)
+                {
+                    Debits++;
+                    var reenter = Reenter;
+                    Reenter = null;
+                    reenter?.Invoke();
+                }
+                return true;
+            }
+        }
+
+        [Test]
+        public void TheTineContractIsPendingBeforePaymentObserversCanBookItAgain()
+        {
+            var (_, _, elder, _) = ActiveTineForWeirStock();
+            int openingPurse = TradeSystem.GetDrams(player);
+            string nested = null;
+            var observer = new TineDebitObserver
+            {
+                Reenter = () => nested = ConversationActions.ExecuteRequired("ContractPlaceRepair", elder, player, TineWeirContract)
+            };
+            player.AddPart(observer);
+
+            Assert.IsNull(ConversationActions.ExecuteRequired("ContractPlaceRepair", elder, player, TineWeirContract));
+            Assert.AreEqual("contract_pending", nested);
+            Assert.AreEqual(1, observer.Debits);
+            Assert.AreEqual(openingPurse - 45, TradeSystem.GetDrams(player));
+            Assert.AreEqual(RepairStage.Fouled, PlaceSites.Site("Tine", "Weir").Stage);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ABookedTineContractPreservesTheWeirUntilThePaidDayCompletes(bool startWithPatch)
+        {
+            var (tine, manager, elder, merchant) = ActiveTineForWeirStock();
+            Give("SalvagedTimber", startWithPatch ? 3 : 2);
+            Give("OakHaftComponent", 2);
+            Give("Hatchet", 1);
+            var weir = PlaceSites.Site("Tine", "Weir");
+            if (startWithPatch)
+                Assert.IsNull(ConversationActions.ExecuteRequired("RepairPlaceSite", elder, player, "Tine:Weir:Patch"));
+            var originalStage = startWithPatch ? RepairStage.TemporarilyPurified : RepairStage.Fouled;
+            var originalMethod = startWithPatch ? RepairMethodId.PatchedRepair : RepairMethodId.None;
+            int? expiry = weir.RelapseAtTurn;
+            int due = turn + WorldClock.DayLengthTicks;
+            int drams = TradeSystem.GetDrams(player);
+            int xp = player.GetStat("Experience").BaseValue;
+            Assert.IsNull(ConcernConversation.Accept(elder, player, TineWeirConcern));
+            Take(elder, Status(elder, TineWeirConcern), "Book Concord");
+            Tick();
+
+            Assert.AreEqual(originalStage, weir.Stage);
+            Assert.AreEqual(originalMethod, weir.ResolvedByMethod);
+            Assert.AreEqual(expiry, weir.RelapseAtTurn);
+            Assert.AreEqual(drams - 45, TradeSystem.GetDrams(player));
+            Assert.AreEqual("contract_pending", ConversationActions.ExecuteRequired("ContractPlaceRepair", elder, player, TineWeirContract));
+            Assert.AreEqual("contract_pending", ConversationActions.ExecuteRequired("RepairPlaceSite", elder, player, "Tine:Weir:Lasting"));
+            Assert.AreEqual("contract_pending", ConversationActions.ExecuteRequired("RepairPlaceSite", elder, player, "Tine:Weir:Patch"));
+            Assert.AreEqual(2, ConcernItems.CountCarried(player, "SalvagedTimber"));
+            Assert.AreEqual(2, ConcernItems.CountCarried(player, "OakHaftComponent"));
+
+            if (startWithPatch)
+            {
+                Assert.That(expiry, Is.Not.Null.And.LessThan(due));
+                turn = expiry.Value;
+                Assert.False(manager.SettlementManager.AdvanceSettlement(TineZone, turn), "A booked weir patch can fail without invalidating the town cache.");
+                Assert.AreEqual(RepairStage.Fouled, weir.Stage);
+                Assert.AreEqual("contract_pending", ConversationActions.ExecuteRequired("ContractPlaceRepair", elder, player, TineWeirContract));
+            }
+            turn = due - 1;
+            Assert.False(manager.SettlementManager.AdvanceSettlement(TineZone, turn));
+            Tick();
+            Assert.AreEqual(RepairStage.Fouled, weir.Stage);
+            Assert.AreEqual(RepairMethodId.None, weir.ResolvedByMethod);
+            Assert.AreEqual(0, Approach(TineWeirConcern));
+            Assert.False(Holds(TineZone, "ConcordContract.Weir"));
+            Assert.AreEqual(1.0, PlaceConsequences.PriceModifier(merchant), 1e-9);
+            Assert.AreEqual("not_reportable", ConcernConversation.Report(elder, player, TineWeirConcern));
+            Assert.AreEqual(drams - 45, TradeSystem.GetDrams(player));
+            Assert.AreEqual(xp, player.GetStat("Experience").BaseValue);
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.AreEqual(0, TinePerchCount(merchant));
+            Assert.AreEqual(-1, merchant.GetIntProperty(TinePerchStamp, -1));
+
+            turn = due;
+            Assert.False(manager.SettlementManager.AdvanceSettlement(TineZone, turn));
+            Tick();
+            Assert.AreEqual(RepairStage.StableRepair, weir.Stage);
+            Assert.AreEqual(RepairMethodId.Contracted, weir.ResolvedByMethod);
+            Assert.AreEqual(due, weir.ResolvedAtTurn);
+            Assert.IsNull(weir.RelapseAtTurn);
+            Assert.AreEqual(2, Approach(TineWeirConcern));
+            Assert.True(Holds(TineZone, "ConcordContract.Weir"));
+            Assert.AreEqual(1.04, PlaceConsequences.PriceModifier(merchant), 1e-9);
+            Assert.AreEqual(0, TinePerchCount(merchant));
+            Assert.AreEqual(drams - 45, TradeSystem.GetDrams(player));
+            Assert.IsNull(ConcernConversation.Report(elder, player, TineWeirConcern));
+            Assert.AreEqual("not_reportable", ConcernConversation.Report(elder, player, TineWeirConcern));
+            Assert.AreEqual(drams - 45 + 15, TradeSystem.GetDrams(player));
+            Assert.AreEqual(xp + 60, player.GetStat("Experience").BaseValue);
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.AreEqual(4, TinePerchCount(merchant));
+        }
+
+        [Test]
+        public void PendingTineContractSurvivesContinueAndKeepsTheOriginalDueTick()
+        {
+            var (_, manager, elder, _) = ActiveTineForWeirStock();
+            int due = turn + WorldClock.DayLengthTicks;
+            Assert.IsNull(ConcernConversation.Accept(elder, player, TineWeirConcern));
+            Take(elder, Status(elder, TineWeirConcern), "Book Concord");
+            int paidPurse = TradeSystem.GetDrams(player);
+            turn = due - 1;
+            var world = new Entity { ID = "tine-pending-contract-test-world", BlueprintName = "World" };
+            world.AddPart(storylets);
+            world.AddPart(NarrativeStatePart.Current);
+            using var stream = new MemoryStream();
+            GameSessionState.Capture("tine-pending-contract", "native-receipt", manager, null, player, world: world).Save(new SaveWriter(stream));
+            stream.Position = 0;
+            var loaded = GameSessionState.Load(new SaveReader(stream, factory));
+            loaded.ZoneManager.SetTurnProvider(() => turn);
+            player = loaded.Player;
+            StoryletPart.LocalPlayer = player;
+            StoryletPart.Current = storylets = loaded.World.GetPart<StoryletPart>();
+            NarrativeStatePart.Current = loaded.World.GetPart<NarrativeStatePart>();
+            var tine = loaded.ZoneManager.ActiveZone;
+            elder = Who(tine, "Elder");
+            var merchant = Who(tine, "Merchant");
+            var weir = PlaceSites.Site("Tine", "Weir");
+
+            Assert.False(loaded.ZoneManager.SettlementManager.AdvanceSettlement(TineZone, turn));
+            Tick();
+            Assert.AreEqual(RepairStage.Fouled, weir.Stage);
+            Assert.AreEqual(0, Approach(TineWeirConcern));
+            Assert.AreEqual("contract_pending", ConversationActions.ExecuteRequired("ContractPlaceRepair", elder, player, TineWeirContract));
+            Assert.AreEqual(paidPurse, TradeSystem.GetDrams(player));
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.AreEqual(0, TinePerchCount(merchant));
+
+            turn = due + 30;
+            Assert.False(loaded.ZoneManager.SettlementManager.AdvanceSettlement(TineZone, turn));
+            Tick();
+            Assert.AreEqual(RepairMethodId.Contracted, weir.ResolvedByMethod);
+            Assert.AreEqual(due, weir.ResolvedAtTurn);
+            Assert.AreEqual(2, Approach(TineWeirConcern));
+            Assert.AreEqual(paidPurse, TradeSystem.GetDrams(player));
+            PlaceConsequences.OnZoneEntered(player, tine, arriving: true);
+            Assert.AreEqual(4, TinePerchCount(merchant));
         }
 
         [TestCase(false)]
@@ -165,7 +332,7 @@ namespace CavesOfOoo.Tests
             {
                 Assert.That(ConcernConversation.Accept(elder, player, "tine.weir"), Is.Null);
                 TradeSystem.SetDrams(player, 44);
-                var offer = Choice(Status(elder, "tine.weir"), "Pay the Concord to rebuild the weir");
+                var offer = Choice(Status(elder, "tine.weir"), "Book Concord");
                 Assert.That(ConversationActions.TryExecuteAll(offer.Actions, elder, player), Is.False);
                 Assert.That(TradeSystem.GetDrams(player), Is.EqualTo(44));
                 Assert.That(PlaceSites.Site("Tine", "Weir").Stage, Is.EqualTo(RepairStage.Fouled));

@@ -196,6 +196,13 @@ namespace CavesOfOoo.Concerns
 
         static NodeData StatusNode(ConcernData c, Entity speaker, Entity listener)
         {
+            if (c.Id == "tine.weir" && SettlementManager.Current?.WeirContractStatus(TineCompositionPlan.ZoneID,
+                SettlementManager.WeirSiteId) is string booked)
+            {
+                var waiting = Node("status|" + c.Id, booked + " The Concord will take its tithe once the weir is working.");
+                waiting.Choices.Add(Back());
+                return waiting;
+            }
             var text = new StringBuilder("\"Any word on it?\"\n");
             var quest = StoryletPart.Current?.GetQuestState(ConcernRegistry.QuestIdFor(c.Id));
             foreach (var a in c.Approaches)

@@ -7,7 +7,7 @@
       "Faction": "Villagers",
       "Tier": 1,
       "Title": "The Gapped Weir",
-      "Pitch": "The weir's gone at the waterline. The stakes rotted, and the perch go round it now, straight past the nets. It wants new stakes, timber worked in between, and somebody with a hatchet who isn't seventy. Or there's the Concord. They'll build it for coin and take a tithe on the catch after.",
+      "Pitch": "The weir's gone at the waterline. The stakes rotted, and the perch go round it now, straight past the nets. It wants new stakes, timber worked in between, and somebody with a hatchet who isn't seventy. Or there's the Concord. Give them a day to rebuild it, and they'll take a tithe on the catch after.",
       "Thanks": "Perch in the nets by the second morning. The old men are insufferable about it.",
       "Requires": [
         {
@@ -34,8 +34,8 @@
         {
           "Id": "contract",
           "Kind": "Settle",
-          "Label": "Pay the Concord to rebuild it (45 drams); the catch will owe them after.",
-          "Objective": "Pay the Concord to rebuild the weir",
+          "Label": "Book the Concord for 45 drams. Leave the weir to them for a day and they'll take a tithe on the catch.",
+          "Objective": "Wait for the Concord to rebuild the weir",
           "Triggers": [
             {
               "Key": "IfPlaceSiteMethod",
@@ -48,7 +48,7 @@
               "Value": "Tine:Weir:45"
             }
           ],
-          "OfferText": "Pay the Concord to rebuild the weir: 45 drams"
+          "OfferText": "Book Concord (45 drams, one day)"
         }
       ],
       "Refusal": {

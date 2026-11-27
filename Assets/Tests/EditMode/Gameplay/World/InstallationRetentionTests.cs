@@ -50,6 +50,19 @@ namespace CavesOfOoo.Tests
             turn = 20;
         }
 
+        Zone SillWithoutSettlingDeposit(OverworldZoneManager manager)
+        {
+            var zone = manager.GetZone(Sill);
+            Assert.NotNull(zone);
+            // This finite source independently keeps Sill cached after a well renewal.
+            var deposits = zone.GetReadOnlyEntitiesWithPart<SillSettlingDepositPart>();
+            Assert.AreEqual(1, deposits.Count);
+            Assert.True(zone.RemoveEntity(deposits[0]));
+            Assert.IsEmpty(zone.GetReadOnlyEntitiesWithPart<SillSettlingDepositPart>());
+            Assert.False(InstallationMarkerPart.Retain(manager, Sill));
+            return zone;
+        }
+
         Entity Install(Zone zone, string blueprint, bool retain, string origin = "Generated", int x = 2, int y = 2)
         {
             var entity = scope.Factory.CreateEntity(blueprint); Assert.NotNull(entity, blueprint);
@@ -68,8 +81,8 @@ namespace CavesOfOoo.Tests
 
         [Test] public void WellKeeperRenewalRegeneratesUnmarkedVillage_Control()
         {
-            var manager = NewManager(); var first = manager.GetZone(Sill); Assert.NotNull(first);
-            manager.GetZone(Tine); // the starting village is only inactive while another village is the active zone
+            var manager = NewManager(); var first = SillWithoutSettlingDeposit(manager);
+            manager.SetActiveZone(Tine);
             DueToWellKeeperRenewal(manager); var second = manager.GetZone(Sill);
             Assert.AreNotSame(first, second, "the second hazard: a renewal also unloads the inactive village");
             Assert.True(manager.SettlementManager.GetSite(Sill, SettlementSiteDefinitions.MainWellSiteId).RelapseAtTurn > 20, "the renewal ran (this is the renewal source, not the relapse)");
@@ -77,8 +90,10 @@ namespace CavesOfOoo.Tests
 
         [Test] public void WellKeeperRenewalDoesNotUnloadAMarkedVillage()
         {
-            var manager = NewManager(); var first = manager.GetZone(Sill); var machine = Install(first, "TinkersForge", retain: true);
-            manager.GetZone(Tine);
+            var manager = NewManager(); var first = SillWithoutSettlingDeposit(manager);
+            var machine = Install(first, "TinkersForge", retain: true);
+            Assert.True(InstallationMarkerPart.Retain(manager, Sill));
+            manager.SetActiveZone(Tine);
             DueToWellKeeperRenewal(manager); var second = manager.GetZone(Sill);
             Assert.AreSame(first, second); Assert.NotNull(second.GetCell(2, 2).Objects.FirstOrDefault(e => e == machine));
             Assert.True(manager.SettlementManager.GetSite(Sill, SettlementSiteDefinitions.MainWellSiteId).RelapseAtTurn > 20, "the renewal ran and the zone was still kept");

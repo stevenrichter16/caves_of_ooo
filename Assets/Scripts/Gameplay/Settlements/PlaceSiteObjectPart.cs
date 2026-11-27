@@ -41,6 +41,7 @@ namespace CavesOfOoo.Core
             }
         }
         RepairableSiteState Site => Data == null || _zoneId == null || SettlementManager.Current == null ? null : SettlementManager.Current.GetSite(_zoneId, SiteId);
+        string ContractStatus => SettlementManager.Current?.WeirContractStatus(_zoneId, SiteId);
 
         public static bool IsCommand(string command) => command != null && command.StartsWith(RepairPrefix, StringComparison.Ordinal);
 
@@ -68,6 +69,7 @@ namespace CavesOfOoo.Core
         {
             var data = Data; var site = Site; if (data == null || site == null) return null;
             if (site.Stage >= RepairStage.StableRepair) return "Mended, and working.";
+            if (ContractStatus is string booked) return booked;
             if (site.Stage == RepairStage.TemporarilyPurified) { string left = Remaining(site); return "Patched for now" + (left == "" ? "." : ": it holds " + left + ", then fails.") + (context.Full ? " " + Advice(data, site, context.Viewer) : ""); }
             return data.Broken + (context.Full ? " " + Advice(data, site, context.Viewer) : "");
         }
@@ -80,7 +82,7 @@ namespace CavesOfOoo.Core
             if (data == null || zone?.ZoneID != _zoneId || world == null
                 || !world.CachedZones.TryGetValue(_zoneId, out var current) || current != zone
                 || !world.SettlementManager.TryGetExistingSite(_zoneId, SiteId, out var site)
-                || site.Stage >= RepairStage.StableRepair) return null;
+                || site.Stage >= RepairStage.StableRepair || ContractStatus != null) return null;
 
             string left = Remaining(site);
             var lines = new List<string>
@@ -111,6 +113,7 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
             var data = Data; var site = Site; if (data == null || site == null) return;
+            if (ContractStatus != null) return;
             if (site.Stage >= RepairStage.StableRepair)
             {
                 if (!data.OffersShelteredRest) guide.Limits.Add("It is mended and working; there is nothing more to do to it.");
@@ -136,6 +139,7 @@ namespace CavesOfOoo.Core
         public void AppendMenuStatus(DescribeContext context, List<string> lines)
         {
             var data = Data; var site = Site; if (data == null || site == null || context.Viewer == null) return;
+            if (ContractStatus is string booked) { lines.Add(booked); return; }
             string left = Remaining(site);
             lines.Add("The " + data.Name + (Plural ? " are " : " is ") + StateWord(site) + (left == "" ? "." : " (" + left + ")."));
             if (site.Stage >= RepairStage.StableRepair) return;
@@ -190,7 +194,7 @@ namespace CavesOfOoo.Core
         {
             var data = Data; var site = Site; var owner = ParentEntity;
             if (actions == null || actor == null || zone == null || data == null || site == null || owner == null || !WorldResourceActions.Nearby(actor, owner, zone)) return;
-            if (site.Stage >= RepairStage.StableRepair) return;
+            if (site.Stage >= RepairStage.StableRepair || SettlementManager.Current?.PendingWeirContract(_zoneId, SiteId).HasValue == true) return;
             AddRow(actions, actor, data, site, true, "PlaceSiteMend", "mend the " + data.Name + " for good", 'm', 20,
                 "Uses up the materials and keeps any tool. The repair lasts.");
             if (data.HasPatch && site.Stage == RepairStage.Fouled)
@@ -214,6 +218,7 @@ namespace CavesOfOoo.Core
             var data = Data; var site = Site; var owner = ParentEntity; string[] f = command.Split('|');
             if (actor == null || zone == null || data == null || site == null || owner == null || f.Length != 2 || (f[1] != LastingToken && f[1] != PatchToken) || !WorldResourceActions.Nearby(actor, owner, zone))
                 return Reject(actor, "invalid_context", "You cannot work on that right now.");
+            if (ContractStatus is string booked) return Reject(actor, SettlementManager.ContractPending, booked);
             bool lasting = f[1] == LastingToken; string refusal = PlaceSiteRepairs.Check(data, site, lasting, actor);
             if (refusal != null) return Reject(actor, refusal, refusal == PlaceSiteRepairs.MissingMaterials || refusal == PlaceSiteRepairs.MissingTool
                 ? PlaceSiteRepairs.Missing(lasting ? data.Lasting : data.Patch, actor) : refusal == PlaceSiteRepairs.AlreadyRepaired ? "The " + data.Name + " is already properly repaired." : "That cannot be done right now.");

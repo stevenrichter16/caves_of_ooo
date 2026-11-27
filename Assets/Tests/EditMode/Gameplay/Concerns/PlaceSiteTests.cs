@@ -53,6 +53,7 @@ namespace CavesOfOoo.Tests
         }
         [SetUp] public void Setup()
         {
+            turn = 5;
             PlaceSiteCatalog.LoadFromJson(Sites);
             StoryletRegistry.Reset(); ConcernRegistry.Reset(); ConcernRegistry.LoadFromJson(Concern, "probe");
             MessageLog.Clear(); Diag.ResetAll(); ConversationActions.Factory = factory;
@@ -126,8 +127,18 @@ namespace CavesOfOoo.Tests
 
         [Test] public void TheConcordContractsADataSiteToo()
         {
+            int due = turn + WorldClock.DayLengthTicks;
             Assert.IsNull(ConversationActions.ExecuteRequired("ContractPlaceRepair", keeper, player, "Tine:Weir:40"));
-            Assert.AreEqual(RepairStage.StableRepair, Weir.Stage); Assert.AreEqual(60, TradeSystem.GetDrams(player));
+            Assert.AreEqual(RepairStage.Fouled, Weir.Stage);
+            Assert.AreEqual(RepairMethodId.None, Weir.ResolvedByMethod);
+            Assert.AreEqual(60, TradeSystem.GetDrams(player));
+
+            turn = due;
+            SettlementManager.Current.AdvanceSettlement(TineZone, turn);
+            Assert.AreEqual(RepairStage.StableRepair, Weir.Stage);
+            Assert.AreEqual(RepairMethodId.Contracted, Weir.ResolvedByMethod);
+            Assert.AreEqual(due, Weir.ResolvedAtTurn);
+            Assert.AreEqual(60, TradeSystem.GetDrams(player));
         }
 
         [TestCase("Tine:Weir")] [TestCase("Tine:Weir:Forever")] [TestCase("Tine:NoSuchSite:Lasting")] [TestCase("Atlantis:Weir:Lasting")] [TestCase(null)]

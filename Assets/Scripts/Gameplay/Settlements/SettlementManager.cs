@@ -14,6 +14,9 @@ namespace CavesOfOoo.Core
 
         public event Action<string, RepairableSiteState> SiteStateChanged;
 
+        internal const string WeirSiteId = "Weir";
+        internal const string ContractPending = "contract_pending";
+
         public SettlementManager(Func<int> currentTurnProvider = null, Func<string, PointOfInterest> poiResolver = null)
             : this(currentTurnProvider, poiResolver, activate: true) { }
 
@@ -98,12 +101,81 @@ namespace CavesOfOoo.Core
         {
             PointOfInterest poi = ResolvePoi(settlementId);
             SettlementState state = GetOrCreateSettlement(settlementId, poi);
-            return state != null && AdvancePatches(state, currentTurn, whilePresent: false);
+            if (state == null) return false;
+            // A finished contract changes the weir in place. Returning true
+            // here would unload the cached village and change its inventory.
+            CompleteWeirContract(state, currentTurn, whilePresent: false);
+            return AdvancePatches(state, currentTurn, whilePresent: false);
         }
 
-        internal bool AdvanceActiveStructurePatches(string settlementId, int currentTurn)
-            => _settlements.TryGetValue(settlementId, out var state) && state?.SettlementId == settlementId
-                && AdvancePatches(state, currentTurn, whilePresent: true);
+        internal bool AdvanceActiveStructureWork(string settlementId, int currentTurn)
+        {
+            var state = ExistingSettlement(settlementId);
+            if (state == null) return false;
+            bool completed = CompleteWeirContract(state, currentTurn, whilePresent: true);
+            return AdvancePatches(state, currentTurn, whilePresent: true) || completed;
+        }
+
+        internal static bool IsWeirContract(string settlementId, string siteId)
+            => settlementId == TineCompositionPlan.ZoneID && siteId == WeirSiteId;
+
+        internal int? PendingWeirContract(string settlementId, string siteId)
+            => IsWeirContract(settlementId, siteId) ? ExistingSettlement(settlementId)?.WeirContractDueTick : null;
+
+        internal string WeirContractStatus(string settlementId, string siteId)
+        {
+            if (!(PendingWeirContract(settlementId, siteId) is int due)) return null;
+            int day = due / WorldClock.DayLengthTicks + 1;
+            string band = WorldClock.BandName(WorldClock.GetBand(due), 0);
+            return $"Concord repair booked. Due on day {day} at {band}.";
+        }
+
+        internal string BookWeirContract(string settlementId, string siteId, Entity player, int fee)
+        {
+            var state = ExistingSettlement(settlementId);
+            var site = state?.GetSite(siteId);
+            if (!IsWeirContract(settlementId, siteId) || site == null) return "unknown_site";
+            if (site.Stage >= RepairStage.StableRepair) return "already_repaired";
+            if (state.WeirContractDueTick.HasValue)
+            {
+                MessageLog.Add(WeirContractStatus(settlementId, siteId));
+                return ContractPending;
+            }
+            int now = GetCurrentTurn();
+            if (now < 0 || now > int.MaxValue - WorldClock.DayLengthTicks) return "repair_refused";
+            var payment = new InventoryTransaction();
+            if (fee > 0 && !Ledger.StageDebit(player, fee, "concord-repair-contract", payment)) return "insufficient_drams";
+            try
+            {
+                payment.Do(() => state.WeirContractDueTick = now + WorldClock.DayLengthTicks,
+                    () => state.WeirContractDueTick = null);
+                payment.Commit();
+            }
+            finally { payment.Rollback(); }
+            MessageLog.Add(WeirContractStatus(settlementId, siteId));
+            return null;
+        }
+
+        private bool CompleteWeirContract(SettlementState state, int currentTurn, bool whilePresent)
+        {
+            if (state.SettlementId != TineCompositionPlan.ZoneID
+                || !(state.WeirContractDueTick is int due) || currentTurn < due) return false;
+            var site = state.GetSite(WeirSiteId);
+            if (site == null) return false;
+            state.WeirContractDueTick = null;
+            if (site.Stage >= RepairStage.StableRepair) return false;
+            site.Stage = RepairStage.StableRepair;
+            site.OutcomeTier = RepairOutcomeTier.Stable;
+            site.ResolvedByMethod = RepairMethodId.Contracted;
+            site.ResolvedAtTurn = due;
+            site.RelapseAtTurn = null;
+            state.SetCondition(ContractCondition(WeirSiteId), true);
+            const string finished = "The Concord has finished Tine's weir. The new stakes hold.";
+            if (whilePresent) MessageLog.Add(finished);
+            else state.AddPendingMessage(finished);
+            RaiseSiteChanged(state.SettlementId, site);
+            return true;
+        }
 
         bool AdvancePatches(SettlementState state, int currentTurn, bool whilePresent)
         {
@@ -144,7 +216,10 @@ namespace CavesOfOoo.Core
                         relapseMsg = "The village well has gone bitter again while you were away.";
                     if (whilePresent) MessageLog.Add(relapseMsg);
                     else state.AddPendingMessage(relapseMsg);
-                    changed = true;
+                    // A booked weir can lose its temporary patch without
+                    // discarding Tine's cached occupants and finite stock.
+                    if (whilePresent || !IsWeirContract(settlementId, site.SiteId) || !state.WeirContractDueTick.HasValue)
+                        changed = true;
                     RaiseSiteChanged(settlementId, site);
                 }
             }
@@ -351,6 +426,7 @@ namespace CavesOfOoo.Core
 
                 case RepairMethodId.Contracted:
                     // C1: payment is taken by the ContractPlaceRepair action before this runs.
+                    if (IsWeirContract(settlementId, siteId)) return false;
                     if (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker)
                     {
                         MessageLog.Add("That is already properly repaired.");
@@ -393,6 +469,11 @@ namespace CavesOfOoo.Core
             SettlementState state = GetOrCreateSettlement(settlementId, poi);
             RepairableSiteState site = state?.GetSite(siteId);
             if (site == null) return "unknown_site";
+            if (PendingWeirContract(settlementId, siteId).HasValue)
+            {
+                MessageLog.Add(WeirContractStatus(settlementId, siteId));
+                return ContractPending;
+            }
             // One rule for "could this repair be made": the same check a world object for the site reads (PlaceSiteRepairs). Only the messages differ.
             string refusal = PlaceSiteRepairs.Check(data, site, lasting, player);
             if (refusal != null)

@@ -1070,6 +1070,15 @@ strength and creator. [Bellows evidence](Verification/MachineSystems/BellowsMars
     for #20, #37 and #40.
     [Evidence](Verification/MachineSystems/TineOrdinaryWeir20261126/README.md)
 
+    The paid alternative now takes its promised game day. A fresh seed 2
+    booking survived Continue and an early return. One ordinary wait at
+    the deadline changed the same physical weir, and the next eligible
+    arrival stocked its two existing merchants. The traveler collected the
+    one-time report, bought one perch and retained it across Continue.
+    This adds one observable time-and-cost consequence to #20, #37 and
+    #40. Hand repair still gives an immediate result before booking.
+    [Current paid evidence](Verification/MachineSystems/TineWeirContractDay20261127/README.md)
+
     The earlier ordinary Gleaners' sign route now continues to a mature
     drawgourd and a second usable water vessel. From the same dry crop,
     one carried water or Conjure Rain reached the same harvest. The

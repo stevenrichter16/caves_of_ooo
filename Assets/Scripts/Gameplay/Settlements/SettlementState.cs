@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
 
         public IReadOnlyDictionary<string, RepairableSiteState> Sites => _sites;
         internal long ConditionVersion { get; private set; }
+        internal int? WeirContractDueTick { get; set; }
 
         public RepairableSiteState GetSite(string siteId)
         {

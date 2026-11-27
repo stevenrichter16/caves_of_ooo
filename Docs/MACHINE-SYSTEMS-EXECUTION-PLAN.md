@@ -1,3 +1,19 @@
+**Tine’s Concord work follows its promised day — November 27, 2026, America/Chicago.**
+Ordinary seed 2 reached the broken weir and paid the elder’s 45-dram
+contract at tick 600. Continue and an early return kept the booked work,
+broken state, purse and empty perch shelf. One ordinary wait at tick 1790
+made the same weir working at 1800. At the next arrival both original
+merchants offered four perch. The report awarded 15 drams and 60
+experience. Buying one perch and continuing again kept the closed report,
+the exact fish and the merchant’s three remaining. The hand route remains
+an immediate materials-and-tool choice before booking. Independent review
+checked both save archives and the live deadline and trade receipts.
+All 123 focused cases passed. The same run cleared Sill’s well-renewal
+controls after their private test worlds isolated the installation marker
+from the independently retained settling deposit. The verified Mac app
+is still `2c4931acc`, with about 1 GiB available on the build volume.
+[Playtest and screenshots](Verification/MachineSystems/TineWeirContractDay20261127/README.md)
+
 **Hand bellows explain a visible cloud's refusal — November 27, 2026, America/Chicago.**
 The same rows name a thick, fixed or obstructed cloud, with no action
 spent on refusal. A live density-60 marsh cloud retained its heat context

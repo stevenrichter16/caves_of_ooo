@@ -271,8 +271,8 @@ namespace CavesOfOoo.Core
             });
 
             // C1 (Docs/PLACE-WORK-AND-PROGRESSION.md): buy a place's repair from the
-            // Concord. arg "Place:SiteId:Drams". Atomic: drams are returned if the
-            // repair is refused; on success the Concord's standing rises.
+            // Concord. arg "Place:SiteId:Drams". Tine books a workday;
+            // other sites still use their existing immediate repair.
             RegisterRequired("ContractPlaceRepair", (speaker, listener, arg) =>
             {
                 if (listener == null) return "missing_participant";
@@ -280,17 +280,31 @@ namespace CavesOfOoo.Core
                 if (parts == null || parts.Length != 3 || !int.TryParse(parts[2], out int cost) || cost < 0) return "invalid_argument";
                 string zoneId = CavesOfOoo.Concerns.PlaceSites.ZoneIdOf(parts[0]);
                 if (zoneId == null) return "unknown_place";
-                if (SettlementManager.Current == null) return "missing_settlement_manager";
-                var site = SettlementManager.Current.GetSite(zoneId, parts[1]);
+                var manager = SettlementManager.Current;
+                if (manager == null) return "missing_settlement_manager";
+                var site = manager.GetSite(zoneId, parts[1]);
                 if (site == null) return "unknown_site";
                 if (site.Stage >= RepairStage.StableRepair) { MessageLog.Add("That is already properly repaired."); return "already_repaired"; }
+                if (manager.PendingWeirContract(zoneId, parts[1]).HasValue)
+                {
+                    MessageLog.Add(manager.WeirContractStatus(zoneId, parts[1]));
+                    return SettlementManager.ContractPending;
+                }
                 int drams = TradeSystem.GetDrams(listener);
                 if (drams < cost) { MessageLog.Add($"The Concord's price is {cost} drams; you have {drams}."); return "insufficient_drams"; }
-                if (cost > 0 && !Ledger.TryDebit(listener, cost, "concord-repair-contract", out _)) return "insufficient_drams";
-                if (!SettlementManager.Current.ApplyRepairMethod(zoneId, parts[1], RepairMethodId.Contracted, listener))
-                { if (cost > 0) Ledger.TryCredit(listener, cost, "concord-repair-refund", out _); return "repair_refused"; }
+                if (SettlementManager.IsWeirContract(zoneId, parts[1]))
+                {
+                    var refusal = manager.BookWeirContract(zoneId, parts[1], listener, cost);
+                    if (refusal != null) return refusal;
+                }
+                else
+                {
+                    if (cost > 0 && !Ledger.TryDebit(listener, cost, "concord-repair-contract", out _)) return "insufficient_drams";
+                    if (!manager.ApplyRepairMethod(zoneId, parts[1], RepairMethodId.Contracted, listener))
+                    { if (cost > 0) Ledger.TryCredit(listener, cost, "concord-repair-refund", out _); return "repair_refused"; }
+                }
                 PlayerReputation.Modify("SaccharineConcord", 5);
-                SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
+                manager.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
                 SettlementRuntime.MarkZoneDirty();
                 return null;
             });
