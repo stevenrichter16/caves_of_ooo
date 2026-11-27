@@ -30,8 +30,7 @@ namespace CavesOfOoo.Core
                     || (chair.Occupant == null && !target.HasTag("Player"))))
                 { chair.Occupied = false; chair.Occupant = null; }
 
-                var bed = Furniture.GetPart<BedPart>();
-                if (bed != null) bed.Occupied = false;
+                Furniture.GetPart<BedPart>()?.Release(this);
             }
         }
 

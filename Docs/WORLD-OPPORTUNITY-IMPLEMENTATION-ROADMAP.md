@@ -89,6 +89,12 @@ harvest. The wet return left one extra carried water. Real wounds
 and interruptions came from regional wildlife in both branches.
 [Portable water and crop evidence](Verification/MachineSystems/PortableStillCrop20261127/README.md)
 
+The field-water run revealed a recovery interruption. An empty Brine
+Camp bedroll kept a stale NPC claim through Continue. It now releases
+an orphaned reservation and retains a real sleeper. The available
+bedroll and neighboring campfire gave the same 22 HP and 60-tick result
+from the same ordinary starting save. [Bedroll recovery and campfire comparison](Verification/MachineSystems/BedReservationLoad20261127/README.md)
+
 For #9, #18, #19, #32 and #36, the Drowned Ledger's original line offers
 two visible spare willow stakes. The same line takes them for a temporary
 patch and shows when it fails. Ordinary local waiting demonstrated expiry

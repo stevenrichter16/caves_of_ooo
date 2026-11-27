@@ -2505,6 +2505,13 @@ The user prioritizes reclamation of damaged finds and regional raw materials int
 
 ## Dependency matrix for the twelve machines
 
+The Brine Camp recovery comparison confirmed that an empty bed's
+saved reservation can block ordinary rest after an NPC's arrival
+callback is lost. Reservations now restore from the actual sleeper.
+The ordinary bedroll and adjacent campfire both restored the same
+traveler at the expected time cost. This makes the existing recovery
+choices on expedition routes reliable. [Bedroll recovery and campfire comparison](Verification/MachineSystems/BedReservationLoad20261127/README.md)
+
 The November 27 field-water trial connected the recovered still to
 ordinary crop watering. One portable measure and local rain or two
 portable measures in fair weather ripened the same Sodden crop.

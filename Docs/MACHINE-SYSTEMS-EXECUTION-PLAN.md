@@ -1,3 +1,17 @@
+**Brine Camp’s empty bedroll is available after Continue — November 27, 2026, America/Chicago.**
+Continue now drops abandoned bed claims and preserves living sleepers
+on the exact bed. Canceling an NPC idle offer underfoot now releases
+beds and chairs before the actor sits. On the same ordinary save, empty
+bedroll 12536 refused sleep before the fix. After Continue the player
+rested there, recovering 22 HP over 60 ticks. The campfire one tile away
+gave the same recovery in a separate branch. Fresh Continue kept the
+recovered player, exact bedroll and harvested supplies. All 173 focused
+tests passed. [Bedroll recovery and campfire comparison](Verification/MachineSystems/BedReservationLoad20261127/README.md)
+Next, qualify the current earned pads at Sella's existing dressing
+bench. The Peat Works drying frame still holds four recoverable timber.
+Two can brace the bench, then one earned pad, the remaining cord and
+two drams can buy a dressing alongside the portable pad alternative.
+
 **The portable still supplies Sella’s dry bed — November 27, 2026, America/Chicago.**
 The same earned still settled 12 mire into three water on natural
 steam. Single and batch receipts now count the discarded mire.
@@ -9,10 +23,6 @@ the neighboring ripe plant and passed fresh Continue. All 164 focused
 tests passed. [Portable water and crop evidence](Verification/MachineSystems/PortableStillCrop20261127/README.md)
 The universal Mac package for `fd1e80a83` passed Apple M5 startup.
 [Package receipt](Verification/MachineSystems/PortableStillCrop20261127/mac-startup-verification.json)
-Next, use the earned pads in a useful field or town service, or
-qualify a smaller recovery opportunity from the same region. Check
-whether the real occupied-bed refusals reflect live sleepers or stale
-state before considering any change.
 
 **Peat Works yields a portable still — November 27, 2026, America/Chicago.**
 One fixed case in newly generated Peat Works contains an ordinary

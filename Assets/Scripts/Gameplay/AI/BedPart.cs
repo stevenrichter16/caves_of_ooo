@@ -16,6 +16,39 @@ namespace CavesOfOoo.Core
 
         public string Owner = "";
         public bool Occupied;
+        private SittingEffect _reservation;
+
+        public override void FinalizeLoad(SaveReader reader)
+        {
+            var bed = ParentEntity;
+            var zone = bed?.SpatialZone;
+            if (bed?.GetPart<BedPart>() != this || !WorldResourceActions.Ground(bed, zone)
+                || bed.GetPart<PhysicsPart>().Takeable) return;
+
+            // Arrival callbacks don't survive a save. Only the physical sleeper
+            // can carry a reservation across Continue.
+            _reservation = null;
+            var cell = zone.GetEntityCell(bed);
+            foreach (var occupant in cell.Objects)
+            {
+                if (!occupant.HasTag("Creature") || !WorldResourceActions.Ground(occupant, zone)
+                    || zone.GetEntityCell(occupant) != cell || CombatSystem.IsDeathHandled(occupant)
+                    || occupant.GetStatValue("Hitpoints") <= 0) continue;
+
+                var sitting = occupant.GetEffect<SittingEffect>();
+                if (sitting == null || sitting.Owner != occupant || sitting.Furniture != bed || sitting.Duration == 0) continue;
+                _reservation = sitting;
+                break;
+            }
+            Occupied = _reservation != null;
+        }
+
+        internal void Release(SittingEffect reservation)
+        {
+            if (reservation == null || _reservation != reservation || ParentEntity?.GetPart<BedPart>() != this) return;
+            _reservation = null;
+            Occupied = false;
+        }
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -59,23 +92,48 @@ namespace CavesOfOoo.Core
             var bedCell = querierBrain.CurrentZone.GetEntityCell(ParentEntity);
             if (bedCell == null) return true;
 
-            // Reserve the bed synchronously to prevent double-booking
+            // Keep the exact receipt through both arrival and cancellation.
+            var reservation = new SittingEffect(ParentEntity);
+            _reservation = reservation;
             Occupied = true;
 
-            var bedEntity = ParentEntity;
             e.SetParameter("TargetX", bedCell.X);
             e.SetParameter("TargetY", bedCell.Y);
-            e.SetParameter("Action", (object)(Action<GoalHandler>)(goal =>
+            e.SetParameter("Action", (object)(Action<GoalHandler>)(goal => CompleteOffer(goal, querier, reservation)));
+            e.SetParameter("Cleanup", (object)(Action<GoalHandler>)(_ =>
             {
-                goal.ParentBrain?.ParentEntity?.ApplyEffect(new SittingEffect(bedEntity));
-            }));
-            e.SetParameter("Cleanup", (object)(Action<GoalHandler>)(goal =>
-            {
-                var bedPart = bedEntity.GetPart<BedPart>();
-                if (bedPart != null) bedPart.Occupied = false;
+                if (querier.GetEffect<SittingEffect>() != reservation) Release(reservation);
             }));
             e.Handled = true;
             return false;
+        }
+
+        private void CompleteOffer(GoalHandler goal, Entity querier, SittingEffect reservation)
+        {
+            if (_reservation != reservation) return;
+            var bed = reservation.Furniture;
+            var brain = goal?.ParentBrain;
+            var zone = brain?.CurrentZone;
+            var cell = zone?.GetEntityCell(bed);
+            bool Current() => _reservation == reservation && bed == ParentEntity && bed?.GetPart<BedPart>() == this
+                && reservation.Furniture == bed && cell != null && brain.ParentEntity == querier
+                && zone.GetEntityCell(bed) == cell && zone.GetEntityCell(querier) == cell;
+
+            if (!Current())
+            {
+                Release(reservation);
+                return;
+            }
+
+            try { querier.ApplyEffect(reservation); }
+            finally
+            {
+                if (!Current() || reservation.Owner != querier || querier.GetEffect<SittingEffect>() != reservation)
+                {
+                    Release(reservation);
+                    querier.GetPart<StatusEffectsPart>()?.RemoveEffect(reservation);
+                }
+            }
         }
     }
 }

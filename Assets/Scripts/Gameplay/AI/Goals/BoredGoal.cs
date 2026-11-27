@@ -148,23 +148,10 @@ namespace CavesOfOoo.Core
                 if (offer != null)
                 {
                     var pos = CurrentZone.GetEntityPosition(ParentEntity);
-                    if (pos.x == offer.TargetX && pos.y == offer.TargetY)
-                    {
-                        // Already at furniture — execute immediately (no gate needed, we're here)
-                        PushChildGoal(new DelegateGoal(offer.Action));
-                    }
-                    else
-                    {
-                        // Push position-gated delegate first (lower), then MoveToGoal on top.
-                        // MoveToGoal runs first; when it finishes, DelegateGoal checks position.
-                        // If MoveToGoal failed, DelegateGoal runs Cleanup instead (rollback).
-                        PushChildGoal(new DelegateGoal(
-                            offer.Action,
-                            offer.Cleanup,
-                            offer.TargetX,
-                            offer.TargetY));
+                    // An abandoned offer needs cleanup even when no walk was needed.
+                    PushChildGoal(new DelegateGoal(offer.Action, offer.Cleanup, offer.TargetX, offer.TargetY));
+                    if (pos.x != offer.TargetX || pos.y != offer.TargetY)
                         PushChildGoal(new MoveToGoal(offer.TargetX, offer.TargetY, 50));
-                    }
                     return;
                 }
             }
