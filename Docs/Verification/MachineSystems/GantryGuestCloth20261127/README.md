@@ -35,6 +35,13 @@ All 876 normal quick saves and 87 pre-existing tracked changes matched
 their starting hashes. The main Editor returned to Edit Mode with the
 private root cleared. Packaged gameplay and physical Intel remain open.
 
+The universal Mac package for `0a8e2aa1f` built from 32,258 pinned inputs
+in 20.91 seconds with zero errors and five warnings. Startup loaded the
+world on Apple M5. Both architectures are present in all six binaries.
+All 186 package files and the previous package's 186 files matched
+their hashes. Startup preserved 876 normal saves and restored the nine
+preferences it changed. [Mac receipt](mac-startup-verification.json)
+
 [Torn cloth and bill](01-torn-and-missing-cloak.png) ·
 [Danger refusal](03-danger-blocks-rest.png) ·
 [Ready to rest](04-free-rest-ready.png) ·

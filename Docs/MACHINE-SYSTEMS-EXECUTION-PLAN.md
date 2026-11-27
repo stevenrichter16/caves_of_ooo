@@ -7,6 +7,8 @@ the hung cloth, lasting repair, 40 HP and 31 drams. Native checks passed
 all twelve new cases. The matched prior and current suites both hit the
 same existing Tine weir lookup failure.
 [Gameplay, native and save evidence](Verification/MachineSystems/GantryGuestCloth20261127/README.md)
+The universal Mac package for `0a8e2aa1f` passed startup on Apple M5.
+[Package receipt](Verification/MachineSystems/GantryGuestCloth20261127/mac-startup-verification.json)
 
 **One measure by porter and one on foot repair the Gleaners' well — November 27, 2026, America/Chicago.**
 Seed 65 supplied four fire clay through an ordinary allotment harvest.
