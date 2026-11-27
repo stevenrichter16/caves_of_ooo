@@ -7,17 +7,18 @@
       "Faction": "Villagers",
       "Tier": 1,
       "Title": "East of the Well",
-      "Pitch": "Sit down a minute. You'll have heard the saying; the children skip to it. Don't go east-of-the-well after dark, you might not come back you. Well, the lamps out east of the well have gone dark, every one, and nobody's walked over to fill them. Three flasks of lamp oil would do it, and somebody's legs. Then there's the wall. People chalk their names there so the east knows who they are, and somebody ought to read them out loud, every name. I won't. The lamp-man won't. The lamp-man's wife won't, and she isn't afraid of anything: not geese, not him, not the dark.",
+      "Pitch": "Sit down a minute. You'll have heard the saying; the children skip to it. Don't go east-of-the-well after dark, you might not come back you. Well, the lamps out east of the well have gone dark, every one, and nobody's walked over to fill them. Three flasks of lamp oil would do it, or three measures of settled oil in one flask. And somebody's legs. Then there's the wall. People chalk their names there so the east knows who they are, and somebody ought to read them out loud, every name. I won't. The lamp-man won't. The lamp-man's wife won't, and she isn't afraid of anything: not geese, not him, not the dark.",
       "Thanks": "There. That's done. Don't tell me about it. Thank you. I'll not ask how.",
       "Approaches": [
         {
           "Id": "lamps",
           "Kind": "Supply",
-          "Label": "Bring three flasks of lamp oil for the lamps east of the well.",
-          "Objective": "Bring Slip's warden three flasks of lamp oil",
+          "Label": "Bring three flasks of lamp oil or three measures of settled oil from one flask for the east lamps.",
+          "Objective": "Bring Slip's warden three flasks of lamp oil or three measures from one settled oil flask",
           "Supply": {
             "Blueprint": "LampOil",
-            "Count": 3
+            "Count": 3,
+            "MeasuredLiquid": "oil"
           },
           "Outcome": [
             {

@@ -479,8 +479,8 @@ namespace CavesOfOoo.Concerns
                 LiquidSupplyQuotes.GetOrCreateValue(node).Add(token, quote);
                 node.Choices.Add(new ChoiceData
                 {
-                    Text = "[Pour " + quote.Count + " measures of " + liquid.DisplayName + " from flask " + (i + 1)
-                        + " (" + quote.Volume + "/" + quote.Capacity + "). Keep the flask.]",
+                    Text = "[Pour " + quote.Count + " " + liquid.DisplayName + " (flask " + (i + 1)
+                        + ", " + quote.Volume + "/" + quote.Capacity + "). Keep flask.]",
                     Target = "",
                     Actions = new List<ConversationParam> { new ConversationParam { Key = LiquidSupplyAction, Value = token } }
                 });

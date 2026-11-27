@@ -604,6 +604,128 @@ namespace CavesOfOoo.Tests
             Assert.True(Holds(SumpZone, "Sumphold.EastCutCleared"));
         }
 
+        const string SlipEast = "slip.east", SlipLamps = "Slip.EastLampsLit", SlipNames = "Slip.NamesSaid";
+
+        private (Zone zone, Entity warden) SlipLampTown()
+        {
+            var zone = Place(SlipZone, "Warden");
+            var warden = Who(zone, "Warden");
+            Assert.True(zone.MoveEntity(player, 11, 10));
+            foreach (var cell in new[] { zone.GetEntityCell(player), zone.GetEntityCell(warden) })
+                cell.IsVisible = cell.Explored = true;
+            return (zone, warden);
+        }
+
+        private void OpenSlipLampStatus(Entity warden)
+        {
+            Assert.IsNull(ConcernConversation.Accept(warden, player, SlipEast));
+            Assert.True(ConversationManager.StartConversation(warden, player));
+            Assert.IsNull(ConcernConversation.Open(warden, player, "status|" + SlipEast));
+            ConversationManager.RefreshVisibleChoices();
+        }
+
+        private Entity SettleSlipLampOil(Zone zone)
+        {
+            var still = factory.CreateEntity("AlchemyStill");
+            Assert.True(zone.AddEntity(still, 11, 11));
+            Assert.True(zone.AddEntity(factory.CreateEntity("SteamVent"), 9, 11));
+            var flask = SupplyFlask("bog-mire", 12);
+            var settle = InventorySystem.GetActions(player, still).Single(row => !row.IsDisabled
+                && row.Command.StartsWith("SettleLiquid|oil|", StringComparison.Ordinal));
+            Assert.True(InventorySystem.PerformAction(player, still, settle.Command, zone));
+            Assert.AreEqual("oil", flask.GetPart<LiquidVesselPart>().LiquidId);
+            Assert.AreEqual(3, flask.GetPart<LiquidVesselPart>().Volume);
+            return flask;
+        }
+
+        [TestCase(true, 3)] [TestCase(true, 5)] [TestCase(false, 5)]
+        public void SlipsEastLampsUseMeasuredOilOrThreeLampOilItemsAndPayOnlyOnReport(bool measured, int volume)
+        {
+            using var liquids = new CopyDeskLiquidScope();
+            var (zone, warden) = SlipLampTown();
+            var flask = measured && volume == 3 ? SettleSlipLampOil(zone) : SupplyFlask("oil", volume);
+            var contents = flask.GetPart<LiquidVesselPart>();
+            Give("LampOil", 3);
+            OpenSlipLampStatus(warden);
+            string action = measured ? HandLiquidSupply : ConcernConversation.SupplyAction;
+            var choice = ConversationManager.VisibleChoices.Single(row => row.GetAction(action) != null);
+            if (measured) Assert.That(choice.Text, Is.EqualTo("[Pour 3 oil (flask 1, " + volume + "/12). Keep flask.]"));
+            Assert.True(ConversationManager.VisibleChoices.Any(row => row.GetAction(ConcernConversation.SupplyAction) != null));
+            int drams = TradeSystem.GetDrams(player);
+            int xp = player.GetStat("Experience").BaseValue;
+
+            Assert.True(ConversationManager.SelectChoice(ConversationManager.VisibleChoices.ToList().IndexOf(choice)));
+            Assert.AreSame(contents, flask.GetPart<LiquidVesselPart>());
+            Assert.AreSame(player, flask.GetPart<PhysicsPart>().InInventory);
+            Assert.True(player.GetPart<InventoryPart>().Contains(flask));
+            int remaining = measured ? volume - 3 : volume;
+            Assert.AreEqual(remaining, contents.Volume);
+            Assert.AreEqual(remaining == 0 ? "" : "oil", contents.LiquidId);
+            Assert.AreEqual(measured ? 3 : 0, ConcernItems.CountCarried(player, "LampOil"));
+            Assert.AreEqual(1, NarrativeStatePart.Current.GetFact(ConcernRegistry.DoneFact(SlipEast, "lamps")));
+            Assert.False(Holds(SlipZone, SlipLamps));
+            Assert.False(ConversationActions.TryExecuteAll(choice.Actions, warden, player));
+
+            Tick();
+            Assert.AreEqual(1, Approach(SlipEast));
+            Assert.True(Holds(SlipZone, SlipLamps));
+            Assert.False(Holds(SlipZone, SlipNames));
+            Assert.AreEqual(drams, TradeSystem.GetDrams(player));
+            Assert.AreEqual(xp, player.GetStat("Experience").BaseValue);
+            Assert.IsNull(ConcernConversation.Open(warden, player, "report|" + SlipEast));
+            ConversationManager.RefreshVisibleChoices();
+            var report = ConversationManager.VisibleChoices.Single(row => row.GetAction(ConcernConversation.ReportAction) != null);
+            Assert.True(ConversationManager.SelectChoice(ConversationManager.VisibleChoices.ToList().IndexOf(report)));
+            Assert.False(ConversationActions.TryExecuteAll(report.Actions, warden, player));
+            Assert.AreEqual(drams + 10, TradeSystem.GetDrams(player));
+            Assert.AreEqual(xp + 60, player.GetStat("Experience").BaseValue);
+        }
+
+        [TestCase(true)] [TestCase(false)]
+        public void SlipsEastLampsRefuseSplitMeasuresAndTheWrongLiquid(bool split)
+        {
+            using var liquids = new CopyDeskLiquidScope();
+            var (_, warden) = SlipLampTown();
+            var flasks = split ? new[] { SupplyFlask("oil", 2), SupplyFlask("oil", 2) }
+                : new[] { SupplyFlask("water", 5) };
+            OpenSlipLampStatus(warden);
+
+            Assert.False(ConversationManager.VisibleChoices.Any(row => row.GetAction(HandLiquidSupply) != null));
+            Assert.That(flasks.All(flask => flask.GetPart<LiquidVesselPart>().Volume == (split ? 2 : 5)), Is.True);
+            Assert.AreEqual(0, NarrativeStatePart.Current.GetFact(ConcernRegistry.DoneFact(SlipEast, "lamps")));
+        }
+
+        [Test]
+        public void SlipsEastLampsRejectAnOilFlaskChangedAfterTheWardenQuotesIt()
+        {
+            using var liquids = new CopyDeskLiquidScope();
+            var (_, warden) = SlipLampTown();
+            var flask = SupplyFlask("oil", 5);
+            OpenSlipLampStatus(warden);
+            var quote = ConversationManager.VisibleChoices.Single(row => row.GetAction(HandLiquidSupply) != null);
+            int index = ConversationManager.VisibleChoices.ToList().IndexOf(quote);
+            int drams = TradeSystem.GetDrams(player);
+            int xp = player.GetStat("Experience").BaseValue;
+            var status = ConversationManager.CurrentNode;
+            flask.GetPart<LiquidVesselPart>().Volume = 4;
+
+            Assert.True(ConversationManager.SelectChoice(index), "a refused handover keeps the conversation open");
+            Assert.AreNotSame(status, ConversationManager.CurrentNode, "a stale flask refreshes the available quotes");
+            Assert.AreEqual(status.ID, ConversationManager.CurrentNode.ID);
+            var refreshed = ConversationManager.VisibleChoices.Single(row => row.GetAction(HandLiquidSupply) != null);
+            Assert.That(refreshed.Text, Does.Contain("4/12"));
+            Tick();
+            Assert.AreEqual(4, flask.GetPart<LiquidVesselPart>().Volume);
+            Assert.AreEqual("oil", flask.GetPart<LiquidVesselPart>().LiquidId);
+            Assert.AreSame(player, flask.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(0, NarrativeStatePart.Current.GetFact(ConcernRegistry.DoneFact(SlipEast, "lamps")));
+            Assert.AreEqual(0, Approach(SlipEast));
+            Assert.False(Holds(SlipZone, SlipLamps));
+            Assert.False(Holds(SlipZone, SlipNames));
+            Assert.AreEqual(drams, TradeSystem.GetDrams(player));
+            Assert.AreEqual(xp, player.GetStat("Experience").BaseValue);
+        }
+
         [Test] public void SlipsEastWallIsReadAloud()
         {
             var slip = Place(SlipZone, "Warden"); var warden = Who(slip, "Warden");
@@ -611,6 +733,7 @@ namespace CavesOfOoo.Tests
             ReadPlaced(slip, "slip-eastwall");
             Tick(); Assert.AreEqual(2, Approach("slip.east"));
             Assert.True(Holds(SlipZone, "Slip.NamesSaid"));
+            Assert.False(Holds(SlipZone, SlipLamps));
             StringAssert.Contains("read out every name", PlaceConsequences.LineFor(SumpZone));
         }
     }

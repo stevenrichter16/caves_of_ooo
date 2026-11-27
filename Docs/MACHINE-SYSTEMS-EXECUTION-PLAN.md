@@ -1,3 +1,17 @@
+**Slip takes settled oil and returns the player's flask — November 27, 2026, America/Chicago.**
+The existing east-lamp job takes three measures from one carried
+flask or three bottles of lamp oil. An ordinary Sill mire batch
+supplied the measured route. A separate bought-stock branch used
+three bottles. Both reached the same lamp condition, kept the
+names condition separate and paid 10 drams and 60 XP once on report.
+Both survived fresh Continue. The bottled branch also heard
+Brinna's ordinary lamp remark. All 178 connected native cases passed.
+[Two Slip handovers](Verification/MachineSystems/SlipSettledOil20261127/README.md)
+Next work is the visible east-lamp result. Define two local fixed
+fixtures east of the main well and keep the saved supply condition
+authoritative. Reuse ordinary light and occlusion. Preserve the
+generic watch lantern, the names approach and the Hush.
+
 **Sill's still names the heat and shares its mire preview — November 27, 2026, America/Chicago.**
 The public still's Examine and interaction menu agree on available
 heat, portions and refusal. Twelve finite mire from the natural Peat
