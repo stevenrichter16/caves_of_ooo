@@ -6,6 +6,8 @@ The matched 610 screenshots show the wet-soil difference. Fresh Continue
 kept exact moisture and normal waiting spent the dose once. All 136
 targeted cases passed, including a roof and ordinary watering.
 [Gameplay and save evidence](Verification/MachineSystems/NaturalCropRain20261127/README.md)
+The universal Mac package for `d90a01796` passed Apple M5 startup.
+[Package receipt](Verification/MachineSystems/NaturalCropRain20261127/mac-startup-verification.json)
 
 **Gantry's repaired guest-cloth opens free public rest — November 27, 2026, America/Chicago.**
 An ordinary rough haft from reclaimed Sumphold timber pegged the existing

@@ -36,6 +36,12 @@ All 12 archived save files were pinned. The 876 normal quick saves
 and 87 pre-existing tracked files matched their starting hashes.
 The Editor returned to Edit Mode and cleared the private save root.
 
+The universal Mac package for `d90a01796` built from 32,262 pinned inputs
+in 21.32 seconds with zero errors and five warnings. Startup loaded the
+world on Apple M5 and preserved the same 876 normal saves. Each of the
+six binaries includes both architectures. Packaged gameplay and
+physical Intel testing remain open. [Mac receipt](mac-startup-verification.json)
+
 [Examine after rain](02-shower-fed-the-new-emberwheat.png) ·
 [Wet at 610](03-same-plant-on-wet-soil.png) ·
 [Same bed planted in fair weather at 610](05-same-bed-planted-after-the-shower.png) ·
