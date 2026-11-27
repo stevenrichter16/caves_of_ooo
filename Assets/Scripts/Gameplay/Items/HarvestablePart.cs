@@ -40,6 +40,7 @@ namespace CavesOfOoo.Core
         internal virtual bool RetainsFixedSource => false;
         internal virtual bool CanGatherFixedSource(Entity actor, Zone zone) => true;
         internal virtual Func<bool> CaptureFixedGathering(Entity actor, Zone zone, Cell cell) => null;
+        internal virtual bool BeginFixedGathering(Entity actor, Zone zone, InventoryTransaction transaction) => true;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -160,6 +161,8 @@ namespace CavesOfOoo.Core
             {
                 if (!transaction.TryClaim(actor, actor, "Harvest") || !transaction.TryClaim(source, actor, "Harvest"))
                     return Reject(actor, "in-progress");
+                if (!BeginFixedGathering(actor, zone, transaction))
+                    return Reject(actor, "fixed-tool-unavailable");
                 if (FieldWorkRigRules.IsRig(source) && !FieldWorkRigRules.BeginChange(actor, source, zone, transaction, true)) return Reject(actor, "rig-unavailable");
                 var audio=WorldAudioWork.Harvest(actor,this,zone);
                 // Claim before factory/weight callbacks. Rollback restores this flag;

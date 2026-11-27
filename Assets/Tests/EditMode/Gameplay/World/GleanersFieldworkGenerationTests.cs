@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
 using NUnit.Framework;
 
@@ -15,6 +16,137 @@ namespace CavesOfOoo.Tests
         HaulingContentScope content;
         [SetUp] public void Setup() { content = new HaulingContentScope(); content.Seed(64); }
         [TearDown] public void Cleanup() { content.Dispose(); }
+
+        const string DryBranch = "GleanersDryBranch";
+        const string Timber = "SalvagedTimber";
+
+        [Test]
+        public void GleanersDryBranchFreshFieldworkKeepsOneFixedOwnerAndOneOrdinaryYield()
+        {
+            WithDryBranch((manager, zone, actor, branch, clock) =>
+            {
+                var site = zone.GetCell(43, 8);
+                Assert.That(zone.GetEntityCell(branch), Is.SameAs(site));
+                Assert.False(site.IsInterior);
+                Assert.False(branch.GetPart<PhysicsPart>().Takeable);
+                Assert.False(branch.GetPart<PhysicsPart>().Solid);
+                Assert.That(manager.GetZone(GleanersDistrict.SurfaceID), Is.SameAs(zone));
+                Assert.That(zone.GetReadOnlyEntities().Where(owner => owner.BlueprintName == DryBranch).Single(), Is.SameAs(branch));
+
+                clock.AdvanceClock(BranchWeatherTick(zone, season: 0, raining: false));
+                var hatchet = content.Factory.CreateEntity("Hatchet");
+                var pack = actor.GetPart<InventoryPart>();
+                Assert.True(pack.AddObject(hatchet));
+                var row = OpenBranchHarvestRows(zone, actor).Single();
+                var before = BranchReader(branch, zone, actor);
+                Assert.That(before, Is.Not.Empty);
+                Assert.True(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(row.Via ?? branch, row.Command), actor, zone).Success);
+
+                var timber = pack.Objects.Single(owner => owner.BlueprintName == Timber);
+                Assert.That(timber.GetPart<PhysicsPart>().InInventory, Is.SameAs(actor));
+                Assert.False(timber.HasEffect<WetEffect>());
+                Assert.That(timber.GetPart<StackerPart>()?.StackCount ?? 1, Is.EqualTo(1));
+                Assert.That(pack.Objects, Does.Contain(hatchet));
+                Assert.That(zone.GetEntityCell(branch), Is.SameAs(site));
+                Assert.True(branch.GetPart<HarvestablePart>().Harvested);
+                Assert.That(BranchReader(branch, zone, actor), Is.Not.EqualTo(before));
+                Assert.That(OpenBranchHarvestRows(zone, actor), Is.Empty);
+                Assert.False(InventorySystem.PerformAction(actor, branch, "Harvest", zone));
+                Assert.That(pack.Objects.Count(owner => owner.BlueprintName == Timber), Is.EqualTo(1));
+            });
+        }
+
+        [TestCase("none", 0, false)]
+        [TestCase("Dagger", 0, false)]
+        [TestCase("Hatchet", 0, true)]
+        [TestCase("Hatchet", 1, false)]
+        public void GleanersDryBranchNeedsTheDrySeasonAndARealWoodTool(string tool, int season, bool raining)
+        {
+            WithDryBranch((_, zone, actor, branch, clock) =>
+            {
+                clock.AdvanceClock(BranchWeatherTick(zone, season, raining));
+                var pack = actor.GetPart<InventoryPart>();
+                if (tool != "none") Assert.True(pack.AddObject(content.Factory.CreateEntity(tool)));
+                int tick = clock.TickCount;
+                Assert.That(OpenBranchHarvestRows(zone, actor), Is.Empty);
+                Assert.False(InventorySystem.PerformAction(actor, branch, "Harvest", zone));
+                Assert.False(branch.GetPart<HarvestablePart>().Harvested);
+                Assert.That(pack.Objects.Any(owner => owner.BlueprintName == Timber), Is.False);
+                Assert.That(clock.TickCount, Is.EqualTo(tick));
+            });
+        }
+
+        [Test] public void GleanersDryBranchUsesLocalDryFootingAsWellAsRegionalWeather()
+        {
+            WithDryBranch((_, zone, actor, branch, clock) =>
+            {
+                clock.AdvanceClock(BranchWeatherTick(zone, 0, false));
+                Assert.True(actor.GetPart<InventoryPart>().AddObject(content.Factory.CreateEntity("Hatchet")));
+                Assert.That(OpenBranchHarvestRows(zone, actor), Has.Length.EqualTo(1));
+                var ready = BranchReader(branch, zone, actor);
+                zone.TileState.WriteCoating(43, 8, "water", 10);
+                Assert.That(OpenBranchHarvestRows(zone, actor), Is.Empty);
+                Assert.That(BranchReader(branch, zone, actor), Is.Not.EqualTo(ready));
+                Assert.False(InventorySystem.PerformAction(actor, branch, "Harvest", zone));
+                Assert.False(branch.GetPart<HarvestablePart>().Harvested);
+                Assert.True(zone.TileState.RemoveCoating(43, 8, "water"));
+                Assert.That(OpenBranchHarvestRows(zone, actor), Has.Length.EqualTo(1));
+            });
+        }
+
+        void WithDryBranch(Action<OverworldZoneManager, Zone, Entity, Entity, TurnManager> use)
+        {
+            var previousClock = TurnManager.Active;
+            var previousFactory = HarvestablePart.Factory;
+            var previousActiveZone = SettlementRuntime.ActiveZone;
+            try
+            {
+                var manager = OverworldZoneManager.CreateDetached(content.Factory, 64, true);
+                var zone = manager.GetZone(GleanersDistrict.SurfaceID);
+                var branch = zone.GetReadOnlyEntities().SingleOrDefault(owner => owner.BlueprintName == DryBranch);
+                Assert.NotNull(branch, "The normal freshly generated Gleaners fieldwork should contain its optional branch.");
+                manager.SetActiveZone(zone);
+                SettlementRuntime.ActiveZone = zone;
+                var actor = content.Factory.CreateEntity("Player");
+                Assert.True(zone.AddEntity(actor, 43, 9));
+                foreach (var cell in new[] { zone.GetCell(43, 8), zone.GetCell(43, 9) })
+                {
+                    cell.IsVisible = true;
+                    cell.Explored = true;
+                }
+                HarvestablePart.Factory = content.Factory;
+                use(manager, zone, actor, branch, new TurnManager());
+            }
+            finally
+            {
+                HarvestablePart.Factory = previousFactory;
+                SettlementRuntime.ActiveZone = previousActiveZone;
+                typeof(TurnManager).GetField("<Active>k__BackingField", All).SetValue(null, previousClock);
+            }
+        }
+
+        static int BranchWeatherTick(Zone zone, int season, bool raining)
+            => Enumerable.Range(0, RegionalWeather.CycleWindows).Select(window => window * RegionalWeather.WindowTicks)
+                .First(tick =>
+                {
+                    var weather = RegionalWeather.Current(zone, tick, RegionalWeather.PolicyVersion);
+                    return weather.Valid && weather.Season == season && weather.Raining == raining;
+                });
+
+        static InventoryAction[] OpenBranchHarvestRows(Zone zone, Entity actor)
+        {
+            var site = zone.GetCell(43, 8);
+            var target = WorldInteractionSystem.ResolveTarget(site, actor);
+            return WorldInteractionSystem.GatherCellActions(target, site, actor)
+                .Where(row => !row.IsDisabled && row.Command == "Harvest").ToArray();
+        }
+
+        static string[] BranchReader(Entity branch, Zone zone, Entity actor)
+        {
+            var lines = new List<string>();
+            StateReader.Collect(branch, true, zone, zone.GetEntityCell(branch), actor, lines);
+            return lines.ToArray();
+        }
 
         bool BuildGlade(Zone zone, bool fieldwork, int seed = 64)
         {

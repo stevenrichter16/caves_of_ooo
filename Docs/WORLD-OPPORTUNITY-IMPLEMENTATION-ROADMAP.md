@@ -379,6 +379,15 @@ ordinary hearth relight spends one of those strikes. The same fixture
 can also serve other cold-work jobs.
 [Bench and hearth playtest](Verification/MachineSystems/BenchStriker20261127/README.md)
 
+For #31–33, early dry weather exposes one length of fallen wood near
+the Gleaners' fire in a newly generated glade. The same branch's
+appearance and cut action depend on current weather and local footing.
+The traveler bought Tine's hatchet through ordinary trade and cut
+one board, then shaped it into a field haft. Continue kept the scar
+and the exact tool and haft. Trade and pallet salvage offer other
+ways to acquire that material.
+[Seasonal timber playtest](Verification/MachineSystems/GleanersDryBranch20261127/README.md)
+
 For #14, #19, #36 and #37, an equipped Lampvein fan previews how much
 gas will remain in the selected visible cloud immediately after use.
 The player can wait for ordinary dispersal, reduce a cloud with the

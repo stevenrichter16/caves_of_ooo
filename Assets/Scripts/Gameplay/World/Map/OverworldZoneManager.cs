@@ -1347,6 +1347,7 @@ namespace CavesOfOoo.Core
                 if (GleanersReceivingSite.TryInstall(zone, this))
                     GleanersReceivingSite.TryInstallPorter(zone, this);
                 GleanersReceivingSite.TryInstallLooseStorage(zone, this);
+                DryBranchSite.TryInstall(zone, this);
             }
 
             if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null

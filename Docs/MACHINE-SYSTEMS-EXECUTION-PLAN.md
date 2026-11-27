@@ -1,3 +1,15 @@
+**Early dry weather exposes fresh Gleaners timber — November 27, 2026, America/Chicago.**
+One finite branch uses the saved early-season forecast and dry
+ground. Fresh Gleaners generation admits one spot by the fire and
+preserves existing routes. An explicitly wood-capable hatchet can
+cut one ordinary salvaged timber. Tine sold the starting traveler
+one hatchet for 28 drams. Normal movement and waits compared fair
+conditions, rain and fair weather again. One cut at tick 1810 made
+the board, and the existing Shape haft action spent it at 1820.
+Continue kept the original scar and hatchet and the exact haft.
+All 99 focused cases passed.
+[Seasonal timber playtest](Verification/MachineSystems/GleanersDryBranch20261127/README.md)
+
 **The Lampvein fan previews the next action on a cloud — November 27, 2026, America/Chicago.**
 The existing held fan shows clear at density 1–5 or how much remains
 immediately after it removes five. The equipment and world rows share

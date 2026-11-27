@@ -75,13 +75,19 @@ namespace CavesOfOoo.Tests
             var knife = Carry("Dagger"); ForgePart.Factory = null;
             Assert.That(Guide(knife), Does.Not.Contain(" -> "));
         }
-        [Test] public void ACombatHatchetDoesNotAcquireFlexibleStockInstructions()
-        { Assert.Null(UseGuides.SectionText(Carry("Hatchet"), Zone, null, Actor)); }
+        [Test] public void AWoodHatchetDescribesItsActualUseAndKeepsFlexibleStockSeparate()
+        {
+            string text = UseGuides.SectionText(Carry("Hatchet"), Zone, null, Actor);
+            StringAssert.Contains("dry, exposed fallen branch", text);
+            StringAssert.DoesNotContain("prepared material", text);
+        }
         [Test] public void AuthoredShortSwordCutsOneBindingWithNoOtherFlexibleStockTool()
         {
             var hatchet = Carry("Hatchet");
             var offcut = Carry("CuredLeatherOffcut");
-            Assert.Null(hatchet.GetPart<CuttingToolPart>());
+            Assert.That(hatchet.GetPart<CuttingToolPart>(), Is.Not.Null);
+            Assert.That(hatchet.GetPart<CuttingToolPart>().WoodStock, Is.True);
+            Assert.That(hatchet.GetPart<CuttingToolPart>().FlexibleStock, Is.False);
             Assert.False(Actions(offcut).Any(action => action.Name == "cut_binding" && !action.IsDisabled));
             Assert.AreEqual(0, PackCount("LeatherBindingComponent"));
 
@@ -111,18 +117,20 @@ namespace CavesOfOoo.Tests
             knife = Pack.Objects.Single(e => e.ID == id);
             Assert.AreEqual(before, Guide(knife)); Assert.AreEqual(1, knife.Parts.Count(p => p is CuttingToolPart));
         }
-        [TestCase(false)]
-        [TestCase(true)]
-        public void LoadedShortSwordHonorsWhetherItHasAlreadySeenTheCuttingDefinition(bool known)
+        [TestCase("ShortSword", false)]
+        [TestCase("ShortSword", true)]
+        [TestCase("Hatchet", false)]
+        [TestCase("Hatchet", true)]
+        public void LoadedToolHonorsWhetherItHasAlreadySeenTheCuttingDefinition(string blueprint, bool known)
         {
-            var sword = Carry("ShortSword");
-            string id = sword.ID;
-            Assert.True(sword.RemovePart(sword.GetPart<CuttingToolPart>()));
-            if (!known) sword.IntProperties.Remove("CuttingToolDefinitionSeen");
+            var tool = Carry(blueprint);
+            string id = tool.ID;
+            Assert.True(tool.RemovePart(tool.GetPart<CuttingToolPart>()));
+            if (!known) tool.IntProperties.Remove("CuttingToolDefinitionSeen");
             using (var stream = new MemoryStream())
             {
                 var writer = new SaveWriter(stream);
-                writer.WriteEntityReference(sword);
+                writer.WriteEntityReference(tool);
                 writer.WriteQueuedEntityBodies();
                 stream.Position = 0;
                 var reader = new SaveReader(stream, Factory);
@@ -130,6 +138,11 @@ namespace CavesOfOoo.Tests
                 reader.ReadEntityBodies();
                 Assert.AreEqual(id, loaded.ID);
                 Assert.That(loaded.Parts.Count(p => p is CuttingToolPart), Is.EqualTo(known ? 0 : 1));
+                if (!known)
+                {
+                    Assert.AreEqual(blueprint == "Hatchet", loaded.GetPart<CuttingToolPart>().WoodStock);
+                    Assert.AreEqual(blueprint == "ShortSword", loaded.GetPart<CuttingToolPart>().FlexibleStock);
+                }
             }
         }
     }

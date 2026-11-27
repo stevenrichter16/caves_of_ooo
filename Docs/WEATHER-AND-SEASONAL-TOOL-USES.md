@@ -134,6 +134,17 @@ The original shower work covers catchment and the proposed crop moisture
 benefit. Other opportunities qualify as separate material or work loops.
 Each needs a complete process contract before it changes the world.
 
+### An early dry window exposes fallen wood
+
+Near the Gleaners' fire, a newly generated glade can contain a fallen
+branch with one usable length. In fair weather early in the growing
+cycle, the dry end becomes visible and the nearby action offers one
+ordinary salvaged timber. The action uses a sound carried or equipped
+wood-cutting tool. The hatchet has that explicit capability. The
+cut leaves a visible scar and the same branch stays spent through
+later weather. The local footing, world clock and exact tool govern
+the action. Merchants and the cellar pallet still supply timber year-round.
+
 ### Weather exposes a workable seam
 
 Rain can give a player a reason to change their plans. At an eligible clay

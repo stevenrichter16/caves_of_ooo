@@ -1,0 +1,435 @@
+{
+  "seedControl": 2,
+  "acquisition": "Ordinary merchant purchase and travel",
+  "states": {
+    "fresh-glade": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 40,
+      "y": 12,
+      "tick": 10,
+      "hp": 40,
+      "drams": 50,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 0,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": false,
+        "description": [
+          "One dry length protrudes from the fallen branch. Use a sound wood-cutting tool to take one salvaged timber."
+        ],
+        "ground": "684"
+      },
+      "items": []
+    },
+    "hatchet-bought": {
+      "zone": "Overworld.13.7.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 60,
+      "y": 18,
+      "tick": 380,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 0,
+      "source": null,
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    },
+    "dry-first": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 43,
+      "y": 9,
+      "tick": 530,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 0,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": false,
+        "description": [
+          "One dry length protrudes from the fallen branch. Use a sound wood-cutting tool to take one salvaged timber."
+        ],
+        "ground": "684"
+      },
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    },
+    "shower": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 43,
+      "y": 9,
+      "tick": 1200,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": true,
+      "Season": 0,
+      "Window": 2,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": false,
+        "description": [
+          "The fallen branch needs dry ground and fair weather early in the growing cycle."
+        ],
+        "ground": "684"
+      },
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    },
+    "ready-again": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 43,
+      "y": 9,
+      "tick": 1800,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 3,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": false,
+        "description": [
+          "One dry length protrudes from the fallen branch. Use a sound wood-cutting tool to take one salvaged timber."
+        ],
+        "ground": "684"
+      },
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    },
+    "cut": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 43,
+      "y": 9,
+      "tick": 1810,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 3,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": true,
+        "description": [
+          "A trimmed end marks where the usable length was cut."
+        ],
+        "ground": "684"
+      },
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        },
+        {
+          "ID": "7518",
+          "BlueprintName": "SalvagedTimber",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    },
+    "shaped": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 43,
+      "y": 9,
+      "tick": 1820,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 3,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": true,
+        "description": [
+          "A trimmed end marks where the usable length was cut."
+        ],
+        "ground": "684"
+      },
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        },
+        {
+          "ID": "7519",
+          "BlueprintName": "FieldHaftComponent",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    },
+    "shaped-fresh": {
+      "zone": "Overworld.11.10.0",
+      "seed": 2,
+      "actor": "2716",
+      "x": 43,
+      "y": 9,
+      "tick": 1820,
+      "hp": 40,
+      "drams": 22,
+      "mode": "Normal",
+      "Valid": true,
+      "Raining": false,
+      "Season": 0,
+      "Window": 3,
+      "source": {
+        "ID": "2715",
+        "x": 43,
+        "y": 8,
+        "visible": true,
+        "explored": true,
+        "spent": true,
+        "description": [
+          "A trimmed end marks where the usable length was cut."
+        ],
+        "ground": "684"
+      },
+      "items": [
+        {
+          "ID": "7420",
+          "BlueprintName": "Hatchet",
+          "qty": 1,
+          "holder": "2716"
+        },
+        {
+          "ID": "7519",
+          "BlueprintName": "FieldHaftComponent",
+          "qty": 1,
+          "holder": "2716"
+        }
+      ]
+    }
+  },
+  "offers": {
+    "first-dry-menu": [
+      {
+        "Display": "cut one salvaged timber",
+        "key": "h",
+        "Command": "Harvest",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ],
+    "shower-menu": [
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ],
+    "dry-preparation-menu": [
+      {
+        "Display": "cut one salvaged timber",
+        "key": "h",
+        "Command": "Harvest",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ]
+  },
+  "archives": {
+    "InboundTine": {
+      "game": "c864550dcaa84202befdb13ec862055d",
+      "files": {
+        "Quick.json": "ee5c2928b21325ad4c4f8c16f796e0a194b4b02a0a3a57e05bdcc26cd11770f9",
+        "Quick.sav.gz": "28ff56765bfae3694985631b96b8ab7271c5df643009aa5ed93c4cfbb34a05e0",
+        "Quick.json.bak": "259764c7035232f446864c8d27000f819a8d9430a5f65640cbef901c6fef69b2",
+        "Quick.sav.gz.bak": "1d2751c460a96bf2b317bd0c5155c25950f3ed3b00786fc57e5ab95eda68ef0f"
+      }
+    },
+    "BoughtHatchet": {
+      "game": "c864550dcaa84202befdb13ec862055d",
+      "files": {
+        "Quick.json": "5ba2b49d0ca90e20d162e156c9a3c4c8a42543c4935aea5400b5bd859871036b",
+        "Quick.sav.gz": "6c5e25ade56b54a13487a97120206c9802c21b021ef00cad7c8a89884d013889",
+        "Quick.json.bak": "ee5c2928b21325ad4c4f8c16f796e0a194b4b02a0a3a57e05bdcc26cd11770f9",
+        "Quick.sav.gz.bak": "28ff56765bfae3694985631b96b8ab7271c5df643009aa5ed93c4cfbb34a05e0"
+      }
+    },
+    "Cut": {
+      "game": "c864550dcaa84202befdb13ec862055d",
+      "files": {
+        "Quick.json": "0e70ba7aaa49f59de6d04cd57aea2e69b1e6a7076570aceb8f6c114d502ffe17",
+        "Quick.sav.gz": "8f6d50cfac2f00963ef02a54e887d8990b476cb2e42df9ae6a09ddefc47a4445",
+        "Quick.json.bak": "8c1d024034936ce937f17c18af322828bc67a0807d02a1767c1bf0d0d0e40b01",
+        "Quick.sav.gz.bak": "ac962a56d339edaa83da4803c82f2e9c7eaec9700da3958ac158b1de9a41223e"
+      }
+    },
+    "Shaped": {
+      "game": "c864550dcaa84202befdb13ec862055d",
+      "files": {
+        "Quick.json": "995b6876535c1040395b154574f4dbe4c322bfdff60d5866e68883238e09b46f",
+        "Quick.sav.gz": "cbb7654349c0f22c062f5c7a3b10685b75732531f8e8f33bd4e8dcf6adc08aaf",
+        "Quick.json.bak": "0e70ba7aaa49f59de6d04cd57aea2e69b1e6a7076570aceb8f6c114d502ffe17",
+        "Quick.sav.gz.bak": "8f6d50cfac2f00963ef02a54e887d8990b476cb2e42df9ae6a09ddefc47a4445"
+      }
+    }
+  },
+  "preservation": {
+    "quick": {
+      "count": 876,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "editorRestored": {
+    "playing": false,
+    "changing": false,
+    "sceneDirty": false,
+    "saveRoot": null,
+    "seed": 0,
+    "buildChoice": false,
+    "lastScenario": null,
+    "pendingScenario": false,
+    "updateMode": "ProcessEventsInDynamicUpdate",
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices",
+    "ownedKeyboard": false
+  },
+  "paint": {
+    "visual-dry-boundary-paint": {
+      "visible": true,
+      "glyph": "=",
+      "color": "&Y",
+      "source": "2715",
+      "x": 43,
+      "y": 8,
+      "tick": 1190
+    },
+    "visual-rain-paint": {
+      "visible": true,
+      "glyph": "_",
+      "color": "&y",
+      "source": "2715",
+      "x": 43,
+      "y": 8,
+      "tick": 1200
+    }
+  },
+  "nativeCases": {
+    "firstBaseline": {
+      "passed": 10,
+      "failed": 5
+    },
+    "footingBaseline": {
+      "passed": 0,
+      "failed": 1
+    },
+    "final": {
+      "passed": 99,
+      "failed": 0
+    }
+  }
+}

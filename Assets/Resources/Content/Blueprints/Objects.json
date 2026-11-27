@@ -1,6 +1,17 @@
 {
   "Objects": [
     {
+      "Name": "GleanersDryBranch",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "fallen branch" },{ "Key": "RenderString", "Value": "_" },{ "Key": "ColorString", "Value": "&y" },{ "Key": "RenderLayer", "Value": "2" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "false" },{ "Key": "Solid", "Value": "false" }] },
+        { "Name": "DryBranchStock", "Params": [{ "Key": "YieldBlueprint", "Value": "SalvagedTimber" },{ "Key": "ActionText", "Value": "cut one salvaged timber" }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "RainClaySpoil",
       "Inherits": "Item",
       "Parts": [
@@ -11551,6 +11562,7 @@
       "Name": "Hatchet",
       "Inherits": "MeleeWeapon",
       "Parts": [
+        { "Name": "CuttingTool", "Params": [{ "Key": "FlexibleStock", "Value": "false" },{ "Key": "WoodStock", "Value": "true" }] },
         {
           "Name": "Render",
           "Params": [

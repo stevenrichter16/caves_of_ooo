@@ -871,10 +871,20 @@ namespace CavesOfOoo.Rendering
             var zone = CurrentZone;
             bool allotment = zone?.ZoneID == RepairCultivationSite.ZoneID;
             bool posy = zone?.ZoneID == BiomeCropPlacement.PosyOutskirts;
-            if (!allotment && !posy && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
+            bool gleaners = zone?.ZoneID == GleanersDistrict.SurfaceID;
+            if (!allotment && !posy && !gleaners && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
             int tick = WorldClock.CurrentTick;
-            if (tick == _fieldOpportunityPaintTick) return;
+            int previousTick = _fieldOpportunityPaintTick;
+            if (tick == previousTick) return;
             _fieldOpportunityPaintTick = tick;
+            if (gleaners)
+            {
+                if (previousTick < 0 || previousTick / RegionalWeather.WindowTicks != tick / RegionalWeather.WindowTicks)
+                    foreach (var owner in zone.GetReadOnlyEntitiesWithPart<DryBranchStockPart>())
+                        if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
+                            MarkCellDirty(cell, "Fallen branch appearance");
+                return;
+            }
             if (allotment)
             {
                 foreach (var owner in zone.GetReadOnlyEntitiesWithPart<RainSeamHarvestPart>())

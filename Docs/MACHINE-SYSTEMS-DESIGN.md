@@ -1,3 +1,11 @@
+**A dry spell exposes one usable length of fallen wood.**
+A fresh Gleaners' Glade can offer one ordinary salvaged timber beside
+the existing fire. Early-season fair weather and dry ground make the
+branch's cut visible and available. The cut takes one action, and
+the wood-cutting tool stays with the player. The spent branch keeps its mark
+as weather changes. The cellar and trade still supply ordinary timber.
+[Seasonal work](WEATHER-AND-SEASONAL-TOOL-USES.md)
+
 **A held Lampvein fan can clear one cloud or make it thinner.**
 The equipment and nearby interaction menus show the immediate result
 for the same visible cloud. Ordinary dispersal and active sources keep
