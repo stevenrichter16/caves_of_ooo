@@ -1206,6 +1206,13 @@ pool that the player sees. Compare both approaches in motion and
 check the edge in rain and fair weather. Add runoff or a real change
 in height only where a supported interaction needs it.
 
+Cutbank Crossing is the first candidate. Its west bank has a solid
+face at (26,10), an opening at (26,12), and a dry duckboard route
+around the mire. Walk both routes in the existing layout and check
+the appearance and reader at the face and opening. The west shore
+also gives ordinary flask access to the finite mire pool. If the
+existing paths already read clearly, reuse the layout as a reference.
+
 ## Improvement pass after all 45 are verified
 
 Revisit all 45 requirements and the systems that implement them after the

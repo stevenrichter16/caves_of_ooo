@@ -5,6 +5,8 @@ its cached zone after the player saved on the world map. The
 pre-fix poisoned save still loaded with the original remaining
 damage and duration and no saved source. All 250 focused native
 cases passed. [Source identity and live checks](Verification/MachineSystems/GasSourceContinue20261127/README.md)
+The universal Mac package for `1404a6c8d` passed Apple M5 startup.
+[Mac startup receipt](Verification/MachineSystems/GasSourceContinue20261127/mac-startup-verification.json)
 
 **The field-grown sumpsieve pad clears Brine Camp marsh gas — November 27, 2026, America/Chicago.**
 The traveler touched the carried torch to an existing mire pool,

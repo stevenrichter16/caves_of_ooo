@@ -48,3 +48,13 @@ earlier hashes.
 
 [New exposure](01-new-marsh-gas.png) · [Wait after Continue](02-reloaded-poison-tick.png) ·
 [Apply after Continue](03-pad-after-reload.png) · [Observed state and save hashes](observations.json)
+
+## Mac startup
+
+The universal package for `1404a6c8d` built from 32,282 checked
+inputs with zero errors and four warnings. GameBootstrap reached
+the world on Apple M5. All six executable binaries support both
+architectures. The current and previous apps each matched 186
+file hashes. Both normal save roots and startup preferences were
+preserved. The gas playtest ran in the Editor.
+[Startup receipt](mac-startup-verification.json)
