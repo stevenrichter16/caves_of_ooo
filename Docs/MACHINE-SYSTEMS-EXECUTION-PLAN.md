@@ -1,3 +1,14 @@
+**Stored oil connects the camp box, hearth and still — November 26, 2026, America/Chicago.**
+The new menu feeds up to three oil directly from one exact stored flask
+beside an installed hearth. Native play kept the empty flask in the box
+through Continue, retrieved it and reused it for two water from the
+ordinary four-brine, five-fuel batch. Resin and moss supplied the other
+fuel and separate ignition. Both fresh comparisons matched exact selected
+owners and quantities. Three oil, one resin, one moss and four brine were
+finite; 343 health stayed unchanged. The controlled retained camp needed
+one supplied box. Ordinary acquisition and all twelve whole-machine
+gates remain open. [Evidence](Verification/MachineSystems/StoredHearthOil20261127/README.md)
+
 **The pinned regression partitions are accounted for — November 26, 2026, America/Chicago.**
 The fifteen original receipts contain 42,389 rows: 42,226 passes,
 146 failures, nine inconclusive cases and eight skips. The single rounded

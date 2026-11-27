@@ -8,9 +8,12 @@ namespace CavesOfOoo.Core
     internal static class LiquidHearthFuel
     {
         const string Prefix = "FeedHearthOil|";
+        const string StoredPrefix = "FeedStoredHearthOil|";
         const int MaximumOilPerAction = 3;
 
-        internal static bool IsCommand(string command) => command?.StartsWith(Prefix, StringComparison.Ordinal) == true;
+        internal static bool IsStoredCommand(string command) => command?.StartsWith(StoredPrefix, StringComparison.Ordinal) == true;
+        internal static bool IsCommand(string command) => command?.StartsWith(Prefix, StringComparison.Ordinal) == true
+            || IsStoredCommand(command);
 
         static bool Ready(Entity actor, CampfirePart fire, Zone zone, out FuelPart fuel)
         {
@@ -23,6 +26,50 @@ namespace CavesOfOoo.Core
                 && hearth.Parts.Count(part => part is ThermalPart) == 1 && hearth.Parts.Count(part => part is PhysicsPart) == 1
                 && WorldResourceActions.Finite(fuel.BurnRate) && fuel.BurnRate > 0
                 && WorldResourceActions.ExactGround(zone, Uri.EscapeDataString(hearth.ID)) == hearth;
+        }
+
+        static bool BoxBesideHearth(Entity box, Entity hearth, Zone zone)
+        {
+            var install = hearth.GetPart<InstallablePart>();
+            var a = zone.GetEntityCell(hearth);
+            var b = zone.GetEntityCell(box);
+            return install?.ParentEntity == hearth && install.State == InstallablePart.Installed
+                && hearth.Parts.Count(part => part is InstallablePart) == 1
+                && box != hearth && a != null && b != null && a != b
+                && a.ParentZone == zone && b.ParentZone == zone
+                && zone.GetCell(a.X, a.Y) == a && zone.GetCell(b.X, b.Y) == b
+                && Math.Max(Math.Abs(a.X - b.X), Math.Abs(a.Y - b.Y)) <= 1;
+        }
+
+        static bool StoredFlask(MaterialProcessStock stock, Entity flask, Entity hearth, Zone zone, bool allowEmpty)
+        {
+            if (!stock.Contains(flask) || !BoxBesideHearth(stock.Box, hearth, zone)
+                || flask.GetPart<LiquidVesselPart>() is not { } vessel || vessel.ParentEntity != flask
+                || flask.Parts.Count(part => part is LiquidVesselPart) != 1
+                || flask.Parts.Count(part => part is PhysicsPart) != 1
+                || flask.Parts.Count(part => part is StackerPart) > 1
+                || flask.GetPart<StackerPart>() is { } stack && (stack.ParentEntity != flask || stack.StackCount != 1)
+                || flask.HasPart<WaterskinPart>() || flask.HasPart<ContainerPart>()
+                || vessel.Capacity <= 0 || vessel.Volume < (allowEmpty ? 0 : 1) || vessel.Volume > vessel.Capacity
+                || vessel.LiquidId != (vessel.Volume == 0 ? "" : "oil")
+                || !LiquidRegistry.IsInitialized || LiquidRegistry.Get("oil") == null) return false;
+
+            // No competing direct listing of this physical ID in another box.
+            return !zone.GetReadOnlyEntitiesWithPart<ContainerPart>().Any(owner => owner != stock.Box
+                && owner.GetPart<ContainerPart>()?.Contents.Any(item => item == flask || item?.ID == flask.ID) == true);
+        }
+
+        static IEnumerable<(Entity flask, MaterialProcessStock stock)> Sources(Entity actor, Entity hearth, Zone zone, InventoryPart pack)
+        {
+            foreach (var flask in pack.Objects)
+                yield return (flask, null);
+            foreach (var box in InventorySystem.GetDepositContainers(actor, zone))
+            {
+                if (!BoxBesideHearth(box, hearth, zone) || MaterialProcessStock.Resolve(actor, box, zone) is not { } stock)
+                    continue;
+                foreach (var flask in stock.Container.Contents)
+                    yield return (flask, stock);
+            }
         }
 
         internal static IEnumerable<RouteWorkMenu.Entry> Choices(Entity actor, CampfirePart fire, Zone zone)
@@ -40,9 +87,12 @@ namespace CavesOfOoo.Core
             var sameHearth = RouteWorkMenu.Identity(hearth);
             var oil = LiquidRegistry.Get("oil");
 
-            foreach (var flask in pack.Objects)
+            foreach (var (flask, stock) in Sources(actor, hearth, zone, pack))
             {
-                if (!LiquidVesselPart.HasCarriedOil(actor, flask) || zone.GetReadOnlyEntities().Any(entity => entity.ID == flask.ID)) continue;
+                bool SourceCurrent(bool allowEmpty) => stock == null
+                    ? LiquidVesselPart.HasCarriedOil(actor, flask, allowEmpty) && !zone.GetReadOnlyEntities().Any(entity => entity.ID == flask.ID)
+                    : StoredFlask(stock, flask, hearth, zone, allowEmpty);
+                if (!SourceCurrent(false)) continue;
                 var vessel = flask.GetPart<LiquidVesselPart>();
                 int volume = vessel.Volume, capacity = vessel.Capacity;
                 int spent = Math.Min(room, volume), remaining = volume - spent;
@@ -50,26 +100,32 @@ namespace CavesOfOoo.Core
                 double gain = (double)filled - before;
                 if (Math.Abs(gain - spent) > .00001 || filled > maximum) continue;
                 var sameFlask = RouteWorkMenu.Identity(flask);
+                var box = stock?.Box;
+                var boxCell = box == null ? null : zone.GetEntityCell(box);
+                string flaskId = Uri.EscapeDataString(flask.ID);
+                string key = box == null ? Prefix + flaskId : StoredPrefix + Uri.EscapeDataString(box.ID) + "|" + flaskId;
 
                 bool Current(float expectedFuel, int expectedOil)
                     => Ready(actor, fire, zone, out var currentFuel) && sameHearth() && sameFlask()
                         && zone.GetEntityCell(actor) == actorCell && zone.GetEntityCell(hearth) == hearthCell
                         && actor.GetPart<InventoryPart>() == pack && currentFuel == fuel && fuel.MaxFuel == maximum
                         && fuel.FuelMass == expectedFuel && fuel.BurnRate == burnRate && heat.Temperature == temperature
-                        && LiquidVesselPart.HasCarriedOil(actor, flask, true) && vessel.Capacity == capacity && vessel.Volume == expectedOil
-                        && LiquidRegistry.Get("oil") == oil && !zone.GetReadOnlyEntities().Any(entity => entity.ID == flask.ID);
+                        && SourceCurrent(true) && vessel.Capacity == capacity && vessel.Volume == expectedOil
+                        && LiquidRegistry.Get("oil") == oil;
 
                 yield return new RouteWorkMenu.Entry
                 {
-                    Actor = actor, Zone = zone, Cell = hearthCell, Claims = new[] { flask },
-                    Key = Prefix + Uri.EscapeDataString(flask.ID),
-                    Label = "feed coals (" + spent + " oil, +" + spent + " fuel)",
+                    Actor = actor, Zone = zone, Cell = hearthCell, Claims = box == null ? new[] { flask } : new[] { box, flask },
+                    Key = key,
+                    Label = (box == null ? "feed coals" : "feed oil from camp box at " + boxCell.X + "," + boxCell.Y)
+                        + " (" + spent + " oil, +" + spent + " fuel)",
                     Hint = "Uses " + spent + " of " + volume + " oil in " + InventoryPart.GetUnitDisplayName(flask)
-                        + ". One action. Cold coals stay cold.",
+                        + (box == null ? "." : ". The flask stays in the box.") + " One action. Cold coals stay cold.",
                     Before = () => Current(before, volume),
                     After = () => Current(filled, remaining),
                     Apply = tx =>
                     {
+                        if (stock != null && !stock.Begin(flask, tx, key)) return false;
                         tx.Do(() =>
                         {
                             vessel.Volume = remaining;
@@ -94,8 +150,9 @@ namespace CavesOfOoo.Core
                     Publish = () =>
                     {
                         ZoneRenderHooks.MarkCellDirty(hearthCell, "HearthOilFed");
-                        MessageLog.Add("You feed " + spent + " oil from the flask to the coals (+" + spent + " fuel).");
-                        Diag.Record("event", "HearthOilFed", actor, hearth, new { source = flask.ID, oil = spent, fuel = filled });
+                        string source = box == null ? "the flask" : "the flask in the camp box";
+                        MessageLog.Add("You feed " + spent + " oil from " + source + " to the coals (+" + spent + " fuel).");
+                        Diag.Record("event", "HearthOilFed", actor, hearth, new { source = flask.ID, box = box?.ID, oil = spent, fuel = filled });
                     }
                 };
             }

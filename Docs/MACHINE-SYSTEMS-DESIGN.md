@@ -157,6 +157,18 @@ own result. The shared storylet applies the existing lasting lamp
 condition. The merchant uses it on the next consignment boundary.
 [Evidence](Verification/MachineSystems/QuillholdMeasuredOil20261126/README.md)
 
+**Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
+An installed hearth can draw up to three whole oil units from one flask
+in an adjacent installed own camp box, while the actor can reach both.
+Each oil adds one finite fuel. The exact flask stays in the box and can
+be retrieved empty for another use. Native play fed three oil, added one
+resin, lit the fuel with one moss, then used the same empty flask to
+receive two water from a four-brine, five-fuel still batch. Both stored
+empty custody and the resulting water survived separate fresh Continues.
+The retained supplied camp needed one supplied box; ordinary acquisition
+and broad run comparison remain open. Other fuel approaches retain their
+existing rules. [Evidence](Verification/MachineSystems/StoredHearthOil20261127/README.md)
+
 **An installed camp box can supply the hearth directly — November 26 UTC, 2026.**
 Within reach of both fixtures, the player can feed one exact stored
 timber into the existing finite fuel capacity. Carrying timber and

@@ -62,6 +62,14 @@ check-in provides continued work across runs.
 | Contrasting generated opportunities and seasons | 26–30 have two local alternatives, sorting or imported clay and ordinary hoist or a finite haulable timber pallet. Both pallet methods cleared passage in Editor play. The boards repaired the garden wicket. The public frame gives the existing rain collector a second use and connects optional seasonal knotflax to ordinary planting and watering. 35 has a bounded ordinary harvest with a live shower offer left unused. Broader road, load and seasonal variation remain open. |
 | Readers, transactions and comparisons | 36–39 have bounded action, material, delivery and kitchen receipt checks. 40 has guided wayside meals, portable and prepared treatment, ordinary quarry processing and distinct Peat Works approaches. At the Causeway, one supplied scraper supports both garment protection and an ordinary brew with a physical effect on the local brine. The next comparisons still need varied current layouts and discovery without navigation guidance. |
 
+For #15–17, a singular flask in an adjacent own installed box can now
+feed an installed hearth directly. The same empty flask survived stored
+custody through Continue, was retrieved, and received two water from a
+finite brine batch using that hearth. Carried oil, timber and resin are
+alternatives. This controlled supplied-camp trial extends the connection;
+it does not close #40 ordinary acquisition or comparison across layouts.
+[Stored oil trial](Verification/MachineSystems/StoredHearthOil20261127/README.md)
+
 At the western Morrowfast allotment, #32 has one visible rain-exposed
 deposit with four appearances and an actual material loop. The same
 clay working supplies an ordinary loose dry heap and bank as alternatives.

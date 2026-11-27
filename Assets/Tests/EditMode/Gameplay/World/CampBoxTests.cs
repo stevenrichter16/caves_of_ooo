@@ -112,6 +112,208 @@ namespace CavesOfOoo.Tests
         InventoryAction[] StoredTimberRows() => CellMenu(AX - 1, AY).Where(row => !row.IsDisabled
             && row.Command.StartsWith("FeedStoredTimber|", StringComparison.Ordinal)).ToArray();
 
+        const string StoredOilPrefix = "FeedStoredHearthOil|";
+
+        (Entity hearth, Entity box, Entity flask) OilAndHearth(float fuel = 4, int oil = 3)
+        {
+            for (int x = AX - 1; x <= AX + 1; x++)
+                for (int y = AY - 1; y <= AY + 1; y++)
+                    wild.GetCell(x, y).IsVisible = wild.GetCell(x, y).Explored = true;
+
+            var box = Carry("CampBox");
+            Assert.True(Act(box, SetDownRow(box)));
+            var hearth = Carry("CampHearth");
+            Assert.True(Act(hearth, SetDownRow(hearth, "north")));
+            hearth.GetPart<FuelPart>().FuelMass = fuel;
+            hearth.GetPart<ThermalPart>().Temperature = 25f;
+            hearth.GetPart<LightSourcePart>().Enabled = false;
+            var flask = Flask(oil, "oil");
+            Assert.True(InventorySystem.PutInContainer(Actor, box, flask));
+            return (hearth, box, flask);
+        }
+
+        InventoryAction[] OilRows(Entity hearth, string prefix = StoredOilPrefix)
+        {
+            var cell = wild.GetEntityCell(hearth);
+            return CellMenu(cell.X, cell.Y).Where(row => !row.IsDisabled
+                && row.Command.StartsWith(prefix, StringComparison.Ordinal)).ToArray();
+        }
+
+        [TestCase(4f, 3, 7f, 0)]
+        [TestCase(4f, 7, 7f, 4)]
+        [TestCase(28.25f, 7, 29.25f, 6)]
+        public void StoredOilCreditsOnlyWholeUnitsAndLeavesItsFlaskInTheBox(float before, int oil, float after, int remaining)
+        {
+            var (hearth, box, flask) = OilAndHearth(before, oil);
+            var packed = Flask(2, "oil");
+            var row = OilRows(hearth).Single();
+            StringAssert.Contains($"{oil - remaining} oil", row.Display);
+            StringAssert.Contains("camp box", row.Display);
+            Assert.That(row.Time, Is.EqualTo(ActionTime.OneAction));
+            Assert.That(OilRows(hearth, "FeedHearthOil|"), Has.Length.EqualTo(1));
+            Assert.True(ChooseRow(row, AX, AY - 1));
+
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(after));
+            Assert.That(hearth.GetPart<ThermalPart>().Temperature, Is.EqualTo(25f));
+            Assert.False(hearth.GetPart<LightSourcePart>().Enabled);
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(flask));
+            Assert.That(flask.GetPart<PhysicsPart>().InInventory, Is.SameAs(box));
+            Assert.That(Units(flask), Is.EqualTo(remaining));
+            Assert.That(flask.GetPart<LiquidVesselPart>().LiquidId, Is.EqualTo(remaining == 0 ? "" : "oil"));
+            Assert.That(Units(packed), Is.EqualTo(2));
+            Assert.False(ChooseRow(row, AX, AY - 1));
+        }
+
+        [TestCase("fill")]
+        [TestCase("withdraw")]
+        [TestCase("hidden")]
+        [TestCase("foreign")]
+        [TestCase("far")]
+        [TestCase("full")]
+        public void AStaleStoredOilQuoteCannotUseACarriedFlaskOrMovedStock(string change)
+        {
+            var (hearth, box, flask) = OilAndHearth();
+            var alternative = Flask(2, "oil");
+            var row = OilRows(hearth).Single();
+            if (change == "fill") flask.GetPart<LiquidVesselPart>().Volume++;
+            if (change == "withdraw") Assert.True(InventorySystem.TakeFromContainer(Actor, box, flask));
+            if (change == "hidden") wild.GetEntityCell(box).IsVisible = false;
+            if (change == "foreign") box.GetPart<InstallationMarkerPart>().Origin = "Generated";
+            if (change == "far") Assert.True(wild.MoveEntity(box, AX + 1, AY + 1));
+            if (change == "full") hearth.GetPart<FuelPart>().FuelMass = 29.25f;
+
+            Assert.False(ChooseRow(row, AX, AY - 1));
+            Assert.That(Units(flask), Is.EqualTo(change == "fill" ? 4 : 3));
+            Assert.That(Units(alternative), Is.EqualTo(2));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(change == "full" ? 29.25f : 4));
+            if (change != "fill") Assert.That(OilRows(hearth), Is.Empty);
+            if (change == "withdraw")
+            {
+                var carried = OilRows(hearth, "FeedHearthOil|").Single(candidate => candidate.Display.Contains("3 oil"));
+                Assert.True(ChooseRow(carried, AX, AY - 1));
+                Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(7));
+                Assert.That(Units(flask), Is.Zero);
+                Assert.That(Units(alternative), Is.EqualTo(2));
+            }
+        }
+
+        [TestCase("nested")]
+        [TestCase("pack-alias")]
+        [TestCase("locked")]
+        public void UnavailableOrAmbiguousStoredOilOffersNoRoute(string change)
+        {
+            var (hearth, box, flask) = OilAndHearth();
+            var contents = box.GetPart<ContainerPart>();
+            if (change == "nested")
+            {
+                Assert.True(contents.RemoveItem(flask));
+                var inner = Factory.CreateEntity("CampBox");
+                Assert.True(inner.GetPart<ContainerPart>().AddItem(flask));
+                Assert.True(contents.AddItem(inner));
+            }
+            if (change == "pack-alias") Flask(2, "oil").ID = flask.ID;
+            if (change == "locked") contents.Locked = true;
+
+            Assert.That(OilRows(hearth), Is.Empty);
+            Assert.That(Units(flask), Is.EqualTo(3));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(4));
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void ReplacingAQuotedFixtureCellCannotSpendStoredOil(bool replaceHearth)
+        {
+            var (hearth, box, flask) = OilAndHearth();
+            var selected = OilRows(hearth).Single();
+            var movedOutsideGraph = replaceHearth ? hearth : box;
+            var staleCell = wild.GetEntityCell(movedOutsideGraph);
+            wild.Cells[staleCell.X, staleCell.Y] = new Cell(staleCell.X, staleCell.Y, wild)
+            {
+                IsVisible = true,
+                Explored = true
+            };
+            // The stale spatial index still points to the old owner and cell.
+            Assert.That(wild.GetEntityCell(movedOutsideGraph), Is.SameAs(staleCell));
+            Assert.False(Act(hearth, selected.Command));
+            Assert.False(Actions(hearth).Any(row => row.Command.StartsWith(StoredOilPrefix, StringComparison.Ordinal)));
+            Assert.That(Units(flask), Is.EqualTo(3));
+            Assert.That(hearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(4));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(flask));
+        }
+
+        [Test]
+        public void LateStoredOilInterruptionPreservesIndependentChanges()
+        {
+            var (hearth, box, flask) = OilAndHearth(4, 5);
+            var fuel = hearth.GetPart<FuelPart>();
+            var vessel = flask.GetPart<LiquidVesselPart>();
+            int originalHp = Actor.GetStatValue("Hitpoints");
+            bool sawStaged = false;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                sawStaged = fuel.FuelMass == 7 && vessel.Volume == 2;
+                fuel.FuelMass += 2;
+                vessel.Volume++;
+                Actor.GetStat("Hitpoints").Penalty += 2;
+            } });
+
+            Assert.False(ChooseRow(OilRows(hearth).Single(), AX, AY - 1));
+            Assert.True(sawStaged);
+            Assert.That(fuel.FuelMass, Is.EqualTo(6));
+            Assert.That(vessel.Volume, Is.EqualTo(6));
+            Assert.That(box.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(flask));
+            Assert.That(Actor.GetStatValue("Hitpoints"), Is.EqualTo(originalHp - 2));
+        }
+
+        [Test]
+        public void DestroyingTheBoxDuringFeedLeavesTheRefundedFlaskOnTheGround()
+        {
+            var (hearth, box, flask) = OilAndHearth();
+            var boxCell = wild.GetEntityCell(box);
+            var selected = OilRows(hearth).Single();
+            var fuel = hearth.GetPart<FuelPart>();
+            var verdict = DestroyVerdict.NoTarget;
+            bool sawStaged = false;
+            Actor.AddPart(new RouteWorkAfterProbe { Run = () =>
+            {
+                sawStaged = Units(flask) == 0 && fuel.FuelMass == 7
+                    && flask.GetPart<PhysicsPart>().InInventory == box;
+                verdict = DestructionSystem.Destroy(box, null, wild, "stored-oil-interruption");
+            } });
+
+            Assert.False(ChooseRow(selected, AX, AY - 1));
+            Assert.True(sawStaged);
+            Assert.That(verdict, Is.EqualTo(DestroyVerdict.Destroyed));
+            Assert.That(wild.GetEntityCell(box), Is.Null);
+            Assert.That(wild.GetEntityCell(flask), Is.SameAs(boxCell));
+            Assert.That(flask.GetPart<PhysicsPart>().InInventory, Is.Null);
+            Assert.That(wild.GetReadOnlyEntities().Single(item => item.ID == flask.ID), Is.SameAs(flask));
+            Assert.That(Units(flask), Is.EqualTo(3));
+            Assert.That(flask.GetPart<LiquidVesselPart>().LiquidId, Is.EqualTo("oil"));
+            Assert.That(fuel.FuelMass, Is.EqualTo(4));
+        }
+
+        [Test]
+        public void EmptyStoredFlaskAndCreditedFuelKeepTheirExactSavedOwners()
+        {
+            var (hearth, box, flask) = OilAndHearth();
+            Assert.True(ChooseRow(OilRows(hearth).Single(), AX, AY - 1));
+            var loaded = HotbarSaveFixture.RoundTrip(GameSessionState.Capture("stored-oil", "test", manager, Clock, Actor));
+            var savedZone = loaded.ZoneManager.GetZone(wildId);
+            var savedHearth = savedZone.GetReadOnlyEntities().Single(entity => entity.ID == hearth.ID);
+            var savedBox = savedZone.GetReadOnlyEntities().Single(entity => entity.ID == box.ID);
+            var savedFlask = savedBox.GetPart<ContainerPart>().Contents.Single();
+
+            Assert.That(savedHearth.GetPart<FuelPart>().FuelMass, Is.EqualTo(7));
+            Assert.That(savedHearth.GetPart<ThermalPart>().Temperature, Is.EqualTo(25f));
+            Assert.That(savedFlask.ID, Is.EqualTo(flask.ID));
+            Assert.That(savedFlask.GetPart<PhysicsPart>().InInventory, Is.SameAs(savedBox));
+            Assert.That(savedFlask.GetPart<LiquidVesselPart>().LiquidId, Is.Empty);
+            Assert.That(Units(savedFlask), Is.Zero);
+            Assert.False(loaded.Player.GetPart<InventoryPart>().Objects.Any(entity => entity.ID == flask.ID));
+            Assert.False(savedZone.GetReadOnlyEntities().Any(entity => entity.ID == flask.ID));
+        }
+
         [TestCase(5f, 15f, false)]
         [TestCase(27f, 30f, true)]
         public void TheFireTakesOneExactStoredTimberAndLeavesItUnlit(float before, float after, bool packedAlternative)

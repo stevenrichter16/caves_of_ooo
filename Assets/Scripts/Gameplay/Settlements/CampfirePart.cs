@@ -31,11 +31,12 @@ namespace CavesOfOoo.Core
             {
                 guide.How.Add("Press C beside it. Feed coals with salvaged timber (or feed to full); light it with relight coals, or stoke to feed and light in one action. Once it burns, dry wet gear on it.");
                 guide.How.Add("You can feed one timber straight from your installed camp box when both fixtures are beside you.");
+                guide.How.Add("At an installed camp hearth, keep your installed camp box beside it and stand within reach of both. Choose feed oil from camp box; the flask stays in the box.");
                 guide.How.Add("Cook raw food by choosing cook this stack beside a fire from the food in your pack.");
             }
             guide.Needs.Add("to feed it: salvaged timber (each timber is 10 fuel" + (fuel != null && fuel.MaxFuel > 0 ? "; it holds up to " + fuel.MaxFuel.ToString("G5", System.Globalization.CultureInfo.InvariantCulture) : "") + ")");
             guide.Needs.Add("optional fuel: one dry, stable combustible reagent; pitchpod resin gives " + ReagentFireFuel.FuelPerTier + " fuel, lamp-oil gives " + 3 * ReagentFireFuel.FuelPerTier + ", up to capacity. Feeding does not light it; volatile mixtures are unsuitable");
-            guide.Needs.Add("optional fuel: up to three whole units from a carried oil flask, one fuel each. Cold coals stay cold");
+            guide.Needs.Add("optional fuel: up to three whole units from one oil flask, one fuel each. Carry it, or keep it in your adjacent camp box beside an installed camp hearth. Cold coals stay cold");
             guide.Needs.Add("to light it: a flame to light it from (a burning fire beside you, a lit torch in your hand, or a flint striker)");
             guide.Limits.Add("It burns its fuel while it is lit and goes out when the fuel does. Taking it up puts it out.");
             guide.WhyNot = "you are not beside it";
