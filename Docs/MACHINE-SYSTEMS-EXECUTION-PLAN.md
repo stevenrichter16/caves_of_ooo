@@ -1,3 +1,12 @@
+**A flask commits a finite draw from its exact pool — November 27, 2026, America/Chicago.**
+Open-pool fills recheck both owners. Refusal reverses only the matching
+transferred measures and preserves independent changes. The ordinary
+return to (15,8) reused the bought flask, moved eight brine to twelve
+and lowered the same pool from 78 to 74. Fresh Continue kept those
+counts, the other pools, recovered torch, injury and worn coat.
+All 461 targeted cases passed.
+[Playtest and receipts](Verification/MachineSystems/FiniteFlaskPoolReceipt20261127/README.md)
+
 **A bought torch powers the public still — November 27, 2026, America/Chicago.**
 The still's menu and Examine explain the missing brine, flask, heat or
 dry work cell. In ordinary seed-65 play, 26 drams bought one lit torch

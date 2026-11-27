@@ -36,6 +36,7 @@ namespace CavesOfOoo.Core
             if (actions == null || Validate(actor, vessel, zone, out var part) != null) return;
             if (part.Volume < part.Capacity)
             {
+                bool canDrawPool = PoolRecipient(actor, vessel, zone, part);
                 foreach (var source in zone.GetReadOnlyEntities())
                 {
                     if(source.HasPart<WellPart>())
@@ -50,7 +51,7 @@ namespace CavesOfOoo.Core
                         continue;
                     }
                     var pool = source.GetPart<LiquidPoolPart>();
-                    if (ValidSource(zone, actor, source, pool, part) != null) continue;
+                    if (!canDrawPool || ValidSource(zone, actor, source, pool, part) != null) continue;
                     string name = LiquidRegistry.Get(pool.LiquidId).DisplayName ?? pool.LiquidId;
                     var at = zone.GetEntityPosition(source);
                     actions.AddAction("FillLiquid", "fill with " + name + " (" + at.x + "," + at.y + ")",
@@ -115,26 +116,61 @@ namespace CavesOfOoo.Core
             if(source.HasPart<WellPart>())return Reject(actor,vessel,command,"well-quote-required");
             var contained = source.GetPart<ContainedLiquidSourcePart>();
             if (contained != null) return FillContained(actor, vessel, part, zone, source, contained, expectedLiquid, command, transaction, own);
+            if (!PoolRecipient(actor, vessel, zone, part)) return Reject(actor, vessel, command, "invalid-participant");
             string invalid = ValidSource(zone, actor, source, pool, part);
             if (invalid != null) return Reject(actor, vessel, command, invalid);
             if (pool.LiquidId != expectedLiquid) return Reject(actor, vessel, command, "source-liquid-changed");
             if (part.Volume == part.Capacity) return Reject(actor, vessel, command, "full");
-            if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source-in-use");
+            if (!transaction.TryClaimAction(actor) || !transaction.TryClaim(source, actor, command))
+                return Reject(actor, vessel, command, "source-in-use");
+            var pack = actor.GetPart<InventoryPart>();
+            var actorCell = zone.GetEntityCell(actor);
             var sourceCell = zone.GetEntityCell(source);
-            int before = part.Volume, oldPool = pool.Volume;
-            string oldId = part.LiquidId, liquidId = pool.LiquidId;
-            int amount = Math.Min(part.Capacity - before, oldPool);
-            transaction.Do(null, () => { part.Volume = before; part.LiquidId = oldId; pool.Volume = oldPool; });
+            var sourcePhysics = source.GetPart<PhysicsPart>();
+            var vesselPhysics = vessel.GetPart<PhysicsPart>();
+            var actorPhysics = actor.GetPart<PhysicsPart>();
+            string actorId = actor.ID, vesselId = vessel.ID, liquidId = pool.LiquidId;
+            int before = part.Volume, oldPool = pool.Volume, capacity = part.Capacity;
+            int amount = Math.Min(capacity - before, oldPool);
+
+            transaction.OwnItemActionRollback(vessel, command);
+            transaction.Do(null, () =>
+            {
+                // A moved flask still holds its credit, but a replacement or
+                // changed liquid cannot prove any matching credit was recovered.
+                int recovered = 0;
+                if (vessel.GetPart<LiquidVesselPart>() == part && part.ParentEntity == vessel
+                    && part.LiquidId == liquidId && part.Volume > 0)
+                {
+                    recovered = Math.Min(part.Volume, amount);
+                    part.Volume -= recovered;
+                    if (part.Volume == 0) part.LiquidId = "";
+                }
+                if (recovered > 0 && source.GetPart<LiquidPoolPart>() == pool && pool.ParentEntity == source
+                    && pool.LiquidId == liquidId && pool.Volume >= 0)
+                    pool.Volume = WaterQuantityUndo.Restore(pool.Volume, -recovered);
+            });
             part.Volume += amount; part.LiquidId = liquidId; pool.Volume -= amount;
-            int capacity=part.Capacity;
-            var audio=liquidId=="water"?WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterFill,source,false,
-                ()=>vessel.GetPart<LiquidVesselPart>()==part&&part.ParentEntity==vessel&&part.Capacity==capacity&&part.Volume==before+amount&&part.LiquidId=="water"
-                    &&source.GetPart<LiquidPoolPart>()==pool&&pool.ParentEntity==source&&pool.Volume==oldPool-amount&&pool.LiquidId=="water"):null;
+
+            bool Current() => PoolRecipient(actor, vessel, zone, part)
+                && actor.ID == actorId && vessel.ID == vesselId && source.ID == id
+                && actor.GetPart<InventoryPart>() == pack && actor.GetPart<PhysicsPart>() == actorPhysics
+                && vessel.GetPart<PhysicsPart>() == vesselPhysics && source.GetPart<PhysicsPart>() == sourcePhysics
+                && zone.GetEntityCell(actor) == actorCell && zone.GetEntityCell(source) == sourceCell
+                && zone.GetCell(actorCell.X, actorCell.Y) == actorCell && zone.GetCell(sourceCell.X, sourceCell.Y) == sourceCell
+                && zone.GetReadOnlyEntities().Count(entity => entity.ID == id) == 1
+                && part.Capacity == capacity && part.Volume == before + amount && part.LiquidId == liquidId
+                && pool.Volume == oldPool - amount && pool.LiquidId == liquidId
+                && ValidSource(zone, actor, source, pool, part, requireVolume: false) == null;
+            transaction.BeforeCommit(Current);
+            var audio = liquidId == "water"
+                ? WorldAudioUtility.Take(actor, vessel, zone, WorldAudioCue.WaterFill, source, false, Current)
+                : null;
             transaction.AfterCommit(()=>audio?.Publish());
             transaction.AfterCommit(() => PublishCommittedPoolDraw(zone, source, pool, sourceCell));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselFilled", actor, vessel,
                 new { source = source.ID, liquidId, amount, remaining = oldPool - amount }));
-            transaction.AfterCommit(() => MessageLog.Add("You fill the flask with " + LiquidName(liquidId) + ". (" + (before + amount) + "/" + part.Capacity + ")"));
+            transaction.AfterCommit(() => MessageLog.Add("You fill the flask with " + LiquidName(liquidId) + ". (" + (before + amount) + "/" + capacity + ")"));
             if (own) transaction.Commit();
             return true;
         }
@@ -351,16 +387,25 @@ namespace CavesOfOoo.Core
             if (!LiquidRegistry.IsInitialized || (part.Volume > 0 && LiquidRegistry.Get(part.LiquidId) == null)) return "unknown-liquid";
             return null;
         }
-        static string ValidSource(Zone zone, Entity actor, Entity source, LiquidPoolPart pool, LiquidVesselPart vessel)
+        static bool PoolRecipient(Entity actor, Entity vessel, Zone zone, LiquidVesselPart part)
+            => WorldResourceActions.ActorCurrent(actor, zone) && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true
+                && WorldResourceActions.Carried(actor, vessel) && part.ParentEntity == vessel
+                && vessel.GetPart<LiquidVesselPart>() == part && vessel.Parts.Count(candidate => candidate is LiquidVesselPart) == 1;
+
+        static string ValidSource(Zone zone, Entity actor, Entity source, LiquidPoolPart pool, LiquidVesselPart vessel,
+            bool requireVolume = true)
         {
-            if (pool == null || pool.Volume <= 0 || source.HasPart<FiniteLiquidFilmPart>() || source.HasTag("Creature")
-                || source.GetPart<PhysicsPart>()?.Takeable == true || source.GetPart<PhysicsPart>()?.InInventory != null
-                || source.GetPart<PhysicsPart>()?.Equipped != null || SpatialQuery.Distance(zone, actor, source) > 1) return "source-unavailable";
+            if (pool == null || pool.ParentEntity != source || source.GetPart<LiquidPoolPart>() != pool
+                || source.Parts.Count(candidate => candidate is LiquidPoolPart) != 1
+                || pool.Volume < 0 || (requireVolume && pool.Volume == 0)
+                || source.HasPart<FiniteLiquidFilmPart>() || source.HasPart<WellPart>() || source.HasPart<ContainedLiquidSourcePart>()
+                || source.HasTag("Creature") || source.GetPart<PhysicsPart>()?.Takeable != false
+                || !WorldResourceActions.Nearby(actor, source, zone)) return "source-unavailable";
             if (LiquidRegistry.Get(pool.LiquidId) == null) return "unknown-liquid";
             if ((pool.LiquidId == "water" || LiquidRegistry.Get(pool.LiquidId)?.GroundReactionFamily == "water")
                 && !LiquidSourcePhase.CanDrawWater(zone, source)) return "frozen-water";
             if (vessel.Volume > 0 && vessel.LiquidId != pool.LiquidId) return "unlike-liquids";
-            if (!LiquidSourceSafety.IsUnmixedPool(zone, source)) return "mixed-source";
+            if (!LiquidSourceSafety.IsUnmixedSource(zone, source, pool.LiquidId)) return "mixed-source";
             return null;
         }
         static string ValidDestination(Zone zone, Entity actor, string liquidId, int x, int y, out Entity pool)

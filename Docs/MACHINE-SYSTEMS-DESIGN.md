@@ -334,6 +334,13 @@ public-still trial preserved the one-water-and-crust or two-water
 choice, and the recovered crust coated the original buckler.
 [Public-still playtest](Verification/MachineSystems/BrineBatchReadiness20261127/README.md)
 
+The open-pool flask action checks both physical owners through commit.
+Rollback retracts matching received measures first and refunds only
+that amount to the original source. A repeat ordinary route reused
+the same torch and flasks, moving four more brine out of the original
+pool without changing its three neighbors.
+[Partial refill playtest](Verification/MachineSystems/FiniteFlaskPoolReceipt20261127/README.md)
+
 **Reclaimed timber can become a hand bellows grip — November 26 UTC, 2026.**
 A rough field haft can replace oak in one explicit forge bill. Both bills
 consume one iron spike, one prepared grip and one leather binding. They

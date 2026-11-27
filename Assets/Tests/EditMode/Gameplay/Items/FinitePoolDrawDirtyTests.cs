@@ -58,6 +58,127 @@ namespace CavesOfOoo.Tests
             :LiquidVesselService.TryAct(actor,vessel,zone,"FillLiquidVessel|"+Uri.EscapeDataString(source.ID)+"|water",tx);
         int Carried(bool skin)=>skin?vessel.GetPart<WaterskinPart>().Charges:vessel.GetPart<LiquidVesselPart>().Volume;
         void OneSourceDirty(){Assert.AreEqual(1,dirty.Count);Assert.AreEqual((11,10),(dirty[0].x,dirty[0].y));}
+
+        string PrepareFlaskDraw(int initial = 2)
+        {
+            Vessel(false);
+            actor.SetTag("Player");
+            actor.Statistics["Hitpoints"] = new Stat { Owner = actor, Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
+            pool.Volume = 7;
+            var flask = vessel.GetPart<LiquidVesselPart>();
+            flask.Volume = initial;
+            flask.LiquidId = initial > 0 ? "water" : "";
+            string prefix = "FillLiquidVessel|" + Uri.EscapeDataString(source.ID) + "|";
+            return InventorySystem.GetActions(actor, vessel).Single(row => row.Command.StartsWith(prefix, StringComparison.Ordinal)).Command;
+        }
+
+        sealed class AfterFillProbe : Part
+        {
+            public Action Run;
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "AfterInventoryAction") Run();
+                return true;
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void LateIndependentDrawsAndInjurySurviveARefusedFiniteFlaskFill(bool veto)
+        {
+            string command = PrepareFlaskDraw();
+            var flask = vessel.GetPart<LiquidVesselPart>();
+            int calls = 0;
+            actor.AddPart(new AfterFillProbe { Run = () =>
+            {
+                calls++;
+                Assert.AreEqual(6, pool.Volume, "The fill already took one measure.");
+                Assert.AreEqual(3, flask.Volume, "The same measure already reached the flask.");
+                pool.Volume -= 2;
+                flask.Volume--;
+                actor.GetStat("Hitpoints").Penalty += 2;
+                if (veto) throw new InvalidOperationException("Independent draw vetoes the staged fill.");
+            } });
+
+            Assert.False(InventorySystem.PerformAction(actor, vessel, command, zone));
+            Assert.AreEqual(1, calls);
+            Assert.AreEqual(5, pool.Volume, "Seven less the independent draw of two.");
+            Assert.AreEqual(1, flask.Volume, "Two less the independent draw of one.");
+            Assert.AreEqual("water", flask.LiquidId);
+            Assert.AreEqual(18, actor.GetStatValue("Hitpoints"));
+            Assert.IsEmpty(dirty);
+        }
+
+        [Test]
+        public void SpendingStagedWaterLeavesOnlyTheRecoverableMeasuresToRefund()
+        {
+            string command = PrepareFlaskDraw(initial: 0);
+            var flask = vessel.GetPart<LiquidVesselPart>();
+            int calls = 0;
+            actor.AddPart(new AfterFillProbe { Run = () =>
+            {
+                calls++;
+                Assert.AreEqual(4, pool.Volume);
+                Assert.AreEqual(3, flask.Volume);
+                flask.Volume--;
+            } });
+
+            Assert.False(InventorySystem.PerformAction(actor, vessel, command, zone));
+            Assert.AreEqual(1, calls);
+            Assert.AreEqual(6, pool.Volume, "Only two staged measures were still recoverable.");
+            Assert.AreEqual(0, flask.Volume);
+            Assert.AreEqual("", flask.LiquidId);
+            Assert.IsEmpty(dirty);
+        }
+
+        [TestCase("moved-source")] [TestCase("new-pool-part")] [TestCase("new-flask-part")] [TestCase("dropped-flask")]
+        public void AFiniteFlaskFillRejectsLateMovementOrReplacementWithoutUndoingIt(string change)
+        {
+            string command = PrepareFlaskDraw();
+            var flask = vessel.GetPart<LiquidVesselPart>();
+            var pack = actor.GetPart<InventoryPart>();
+            var replacementPool = new LiquidPoolPart { LiquidId = "water", Volume = 4 };
+            var replacementFlask = new LiquidVesselPart { Capacity = 3, Volume = 1, LiquidId = "oil" };
+            int calls = 0;
+            actor.AddPart(new AfterFillProbe { Run = () =>
+            {
+                calls++;
+                Assert.AreEqual(6, pool.Volume);
+                Assert.AreEqual(3, flask.Volume);
+                switch (change)
+                {
+                    case "moved-source": Assert.True(zone.MoveEntity(source, 11, 11)); break;
+                    case "new-pool-part": Assert.True(source.RemovePart(pool)); source.AddPart(replacementPool); break;
+                    case "new-flask-part": Assert.True(vessel.RemovePart(flask)); vessel.AddPart(replacementFlask); break;
+                    case "dropped-flask": Assert.True(pack.RemoveObject(vessel)); Assert.True(zone.AddEntity(vessel, 10, 11)); break;
+                }
+                dirty.Clear();
+            } });
+
+            Assert.False(InventorySystem.PerformAction(actor, vessel, command, zone));
+            Assert.AreEqual(1, calls);
+            Assert.IsEmpty(dirty, "No draw was published after the independent mutation.");
+            if (change == "new-pool-part")
+            {
+                Assert.AreSame(replacementPool, source.GetPart<LiquidPoolPart>());
+                Assert.AreEqual(4, replacementPool.Volume);
+            }
+            else Assert.AreEqual(change == "new-flask-part" ? 6 : 7, pool.Volume);
+            if (change == "new-flask-part")
+            {
+                Assert.AreSame(replacementFlask, vessel.GetPart<LiquidVesselPart>());
+                Assert.AreEqual(1, replacementFlask.Volume);
+                Assert.AreEqual("oil", replacementFlask.LiquidId);
+            }
+            else Assert.AreEqual(2, flask.Volume);
+            if (change == "moved-source") Assert.AreSame(zone.GetCell(11, 11), zone.GetEntityCell(source));
+            if (change == "dropped-flask")
+            {
+                Assert.AreSame(zone.GetCell(10, 11), zone.GetEntityCell(vessel));
+                Assert.False(pack.Objects.Contains(vessel));
+                Assert.IsNull(vessel.GetPart<PhysicsPart>().InInventory);
+            }
+        }
+
         [TestCase(false,3)][TestCase(true,3)][TestCase(false,7)][TestCase(true,7)]
         public void CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(bool skin,int amount)
         {Vessel(skin);pool.Volume=amount;Assert.True(Fill(skin));Assert.AreEqual(3,Carried(skin));Assert.AreEqual(amount-3,pool.Volume);Assert.AreSame(source,zone.GetReadOnlyEntities().Single(e=>e.ID==source.ID));Assert.AreSame(pool,source.GetPart<LiquidPoolPart>());OneSourceDirty();}
@@ -81,15 +202,17 @@ namespace CavesOfOoo.Tests
                 else if(mutation=="moved"){Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));}
                 else{pool.ParentEntity=actor;Assert.AreNotSame(source,pool.ParentEntity);}
                 dirty.Clear();
-                if(skin){Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();Assert.AreEqual(3,pool.Volume);Assert.Zero(Carried(true));}
-                else tx.Commit();
+                Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();
+                if(skin || mutation=="moved")Assert.AreEqual(3,pool.Volume);
+                Assert.Zero(Carried(skin));
+                if(!skin)Assert.AreEqual("",vessel.GetPart<LiquidVesselPart>().LiquidId);
                 Assert.IsEmpty(dirty);
             }finally{tx.Rollback();}
         }
         [TestCase(false)][TestCase(true)] public void ExistingPouredPoolStillRetiresThroughItsExistingLifecycle(bool skin)
         {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;Assert.True(Fill(skin));Assert.Zero(pool.Volume);Assert.IsNull(zone.GetEntityCell(source));Assert.True(dirty.Any(d=>d.reason=="LiquidVessel.SourceExhausted"));}
         [TestCase(false)][TestCase(true)] public void MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(bool skin)
-        {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;var tx=new InventoryTransaction();try{Assert.True(Fill(skin,tx));Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));dirty.Clear();if(skin){Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();Assert.AreEqual(3,pool.Volume);Assert.Zero(Carried(true));}else tx.Commit();Assert.AreSame(zone.GetCell(12,10),zone.GetEntityCell(source));Assert.AreEqual((12,10),zone.GetEntityPosition(source));Assert.IsEmpty(dirty);}finally{tx.Rollback();}}
+        {Vessel(skin);source.BlueprintName=LiquidVesselService.PoolBlueprint;var tx=new InventoryTransaction();try{Assert.True(Fill(skin,tx));Assert.True(zone.MoveEntity(source,12,10));Assert.AreEqual((12,10),zone.GetEntityPosition(source));dirty.Clear();Assert.Throws<InvalidOperationException>(()=>tx.Commit());tx.Rollback();Assert.AreEqual(3,pool.Volume);Assert.Zero(Carried(skin));Assert.AreSame(zone.GetCell(12,10),zone.GetEntityCell(source));Assert.AreEqual((12,10),zone.GetEntityPosition(source));Assert.IsEmpty(dirty);}finally{tx.Rollback();}}
         [Test] public void InfiniteWellWithoutFinitePoolDoesNotEmitFiniteVolumeInvalidation()
         {Vessel(true);source.RemovePart(pool);source.AddPart(new WellPart());Assert.True(Fill(true));Assert.AreEqual(3,Carried(true));Assert.IsEmpty(dirty);}
 

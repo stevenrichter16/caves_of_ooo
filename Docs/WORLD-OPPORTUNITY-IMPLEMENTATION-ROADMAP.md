@@ -94,6 +94,12 @@ water. The other kept crust and applied it to the original buckler,
 with the result preserved through Continue.
 [Public-still purchase and proofing](Verification/MachineSystems/BrineBatchReadiness20261127/README.md)
 
+For #9, #38 and #39, the open-pool fill checks custody and finite volume
+through commit. Late changes preserve their own effects. Ordinary
+travel reused the bought flask at the same brine bank. An exact
+four-measure top-up and its pool balance persisted through Continue.
+[Finite pool refill and rollback](Verification/MachineSystems/FiniteFlaskPoolReceipt20261127/README.md)
+
 For #14, #16 and #40, a visible deployed settling tray now shows when
 the same finite stock allows a gather. A retained supplied tray used a
 natural steam vent to make one garment heat coat. A competing scraper

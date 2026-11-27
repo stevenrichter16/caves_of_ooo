@@ -21,7 +21,15 @@ namespace CavesOfOoo.Core.Inventory
         private List<Action> _committedObservers;
         private List<Func<bool>> _commitConditions;
         private List<CurrencyChange> _sealedCurrencyChanges;
+        private HashSet<(Entity Item, string Command)> _itemActionRollbacks;
         public bool ActionCommitted { get; private set; }
+
+        // Several sources can share a menu command. An exact native branch
+        // authorizes its own undo only after selecting the actual source.
+        internal void OwnItemActionRollback(Entity item, string command)
+            => (_itemActionRollbacks ??= new HashSet<(Entity, string)>()).Add((item, command));
+        internal bool HasItemActionRollback(Entity item, string command)
+            => _itemActionRollbacks?.Contains((item, command)) == true;
 
         /// <summary>Recheck a captured target after inventory event callbacks,
         /// before any payment is committed. Predicates must be read-only. A false
@@ -148,6 +156,7 @@ namespace CavesOfOoo.Core.Inventory
             var changes = ActionCommitted ? _sealedCurrencyChanges : PrepareCommit();
             _sealedCurrencyChanges = null;
             _undoActions.Clear();
+            _itemActionRollbacks = null;
             ReleaseClaims();
             _completed = true;
             IsCommitted = true;
@@ -254,6 +263,7 @@ namespace CavesOfOoo.Core.Inventory
             }
 
             _undoActions.Clear();
+            _itemActionRollbacks = null;
             _currencyDeltas.Clear();
             _committedObservers = null;
             ReleaseClaims();

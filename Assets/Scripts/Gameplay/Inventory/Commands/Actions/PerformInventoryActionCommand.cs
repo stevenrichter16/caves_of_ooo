@@ -98,7 +98,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             {
                 transaction.Do(
                     apply: null,
-                    undo: () => RestoreSnapshot(context, snapshot));
+                    undo: () =>
+                    {
+                        if (!transaction.HasItemActionRollback(_item, _actionCommand))
+                            RestoreSnapshot(context, snapshot);
+                    });
             }
 
             // Fire BeforeInventoryAction on actor (can veto).
