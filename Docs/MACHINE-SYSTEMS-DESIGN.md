@@ -1,3 +1,11 @@
+**An ordinary shower can water an exposed planted bed.**
+Current regional rain supplies one modest moisture dose per exact
+prepared bed. Growth spends it normally, and the bed keeps its
+spent rain window through Continue or attempted eviction. In the
+western Morrowfast allotment, the same seed and bed showed wet
+soil and early growth only in the branch planted during rain.
+[Playtest and receipts](Verification/MachineSystems/NaturalCropRain20261127/README.md)
+
 **Gantry's restored guest-cloth provides ordinary rest.**
 A cloak and compatible peg secure the same lasting service through the
 original pole or the host. The pole shows its current state. A nearby

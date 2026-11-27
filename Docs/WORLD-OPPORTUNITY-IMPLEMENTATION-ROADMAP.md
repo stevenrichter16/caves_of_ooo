@@ -714,6 +714,13 @@ and other approved furnishings keep their existing services.
 
 ## Priority 7: add seasonal bonus work without making travel a chore
 
+A real local shower now moistens an exposed prepared crop bed once per
+rain window. An ordinary western Morrowfast sowing compared the same
+bed and seed during rain and afterward. The wet branch earned early
+growth and its saved dose ran out normally. The fair branch kept
+ordinary manual watering available.
+[Paired Editor playtest](Verification/MachineSystems/NaturalCropRain20261127/README.md)
+
 Fresh v31 North Works can offer one late-cycle lichen crust before the
 deeper yard. The ordinary patch continues to yield year-round. The new
 source uses the existing four-phase clock and yields one lichen once.

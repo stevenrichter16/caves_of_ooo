@@ -28,7 +28,7 @@ namespace CavesOfOoo.Core
             var actor = e.GetParameter<Entity>("Actor");
             if (actor != null && !actor.HasTag("Player")) return true;
             if (actor == null) CropSystem.OnTickEnd(SettlementRuntime.ActiveZone);
-            else CropTime.ReconcileZone(SettlementRuntime.ActiveZone, WorldClock.CurrentTick);
+            else CropTime.ReconcilePlayerTurn(actor, SettlementRuntime.ActiveZone, WorldClock.CurrentTick);
             return true;
         }
     }

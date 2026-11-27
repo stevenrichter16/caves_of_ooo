@@ -1,3 +1,12 @@
+**Natural showers give exposed crop beds a finite boost — November 27, 2026, America/Chicago.**
+Ordinary movement in a real shower at the western Morrowfast allotment
+moistened young crops. The same emberwheat seed and prepared bed showed
+early growth when planted during rain and stayed dry when planted after.
+The matched 610 screenshots show the wet-soil difference. Fresh Continue
+kept exact moisture and normal waiting spent the dose once. All 136
+targeted cases passed, including a roof and ordinary watering.
+[Gameplay and save evidence](Verification/MachineSystems/NaturalCropRain20261127/README.md)
+
 **Gantry's repaired guest-cloth opens free public rest — November 27, 2026, America/Chicago.**
 An ordinary rough haft from reclaimed Sumphold timber pegged the existing
 pole after a carried cloak covered it. Nearby danger initially blocked

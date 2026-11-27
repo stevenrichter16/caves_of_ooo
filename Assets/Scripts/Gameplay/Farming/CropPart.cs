@@ -64,6 +64,7 @@ namespace CavesOfOoo.Core
         /// <summary>Elapsed wet world ticks toward the next authored unit,
         /// 0..9. Preserved by wet top-ups; discarded when moisture expires.</summary>
         public int GrowthWetTickRemainder;
+        public int LastNaturalRainWorldTick = -1;
 
         /// <summary>CSV of one glyph per stage, e.g. ".,τ". Parsed
         /// leniently: whitespace-trimmed, first char of each entry.</summary>
@@ -156,6 +157,11 @@ namespace CavesOfOoo.Core
                 if (!CropTime.Reconcile(this, zone, WorldClock.CurrentTick)
                     || !CropTime.IsCurrentOwner(this, zone)) return;
             }
+            ApplyWater(ticks);
+        }
+
+        internal void ApplyWater(int ticks)
+        {
             if (ticks > MoistureTicks)
                 MoistureTicks = ticks;
 
@@ -238,7 +244,7 @@ namespace CavesOfOoo.Core
                 + " Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. "
                 + (HarvestAtMaturity ? "At maturity, Harvest by hand; produce and saved seed remain here to pick up."
                     : "At maturity, produce falls here to pick up.")
-                + " Growth follows passing world time while the soil is moist.";
+                + " Growth follows passing world time while the soil is moist." + CropRain.Examine(this, zone, cell);
         }
 
         private void MarkOwnCellDirty(string source)

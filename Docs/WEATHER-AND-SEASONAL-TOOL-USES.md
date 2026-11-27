@@ -1,8 +1,10 @@
 # Weather opportunities and seasonal tool uses
 
-Living design, November23,2026 (America/Chicago). Bounded W1a collection and
-manual watering are Editor accepted; automatic crop rain, distinct seasonal
-reuse and wholeW1 remain open. See the [W1a receipt](Verification/MachineSystems/WeatherCollection20261123/README.md). The governing user
+Living design, November23,2026 (America/Chicago). Bounded W1a collection,
+manual watering and local natural crop rain have Editor evidence.
+Distinct seasonal reuse and whole W1 remain open. See the
+[W1a receipt](Verification/MachineSystems/WeatherCollection20261123/README.md)
+and [natural crop rain comparison](Verification/MachineSystems/NaturalCropRain20261127/README.md). The governing user
 direction is that weather makes selected activities more rewarding; skipping an
 opportunity usually means missing a bonus while ordinary exploration remains
 comfortable. Some familiar tools should acquire different practical uses as
@@ -65,7 +67,7 @@ is not an actual-play claim for a new combination.
 | Existing foundation | Boundary for this design |
 | --- | --- |
 | WorldClock derives four 300-tick bands from TurnManager.TickCount; one day is 1200 ticks. | Derive weather and seasons from this saved game clock. There is no wall-clock progression. |
-| CropTime reconciles bounded elapsed growth/moisture; carried water can add 40 moisture; Conjure Rain is a spell. | Natural rain needs its own bounded watering adapter. Do not invoke the whole spell or create a second growth timer. |
+| CropTime reconciles bounded elapsed growth and moisture. Carried water can top up to 40, and Conjure Rain remains available. | Natural rain uses the same moisture meter and tops up to ten on a played local turn. |
 | LiquidFlask carries up to 12 units of one liquid through existing custody/transfer rules. | A flask does not create rainfall, capture from an arbitrary surface or purify runoff. A collector must declare a finite clean source. |
 | CampAwning declares Shade and PackableFixture. | Rain collection, a drying frame and a windscreen are additional capabilities, not existing awning functions. |
 | Dagger declares CuttingTool.FlexibleStock. Hatchet has combat cutting attributes but no CuttingTool Part. | Flexible-stock cutting does not imply wood splitting, seed separation or permission to cut living plants. Define those work contracts explicitly. |
@@ -73,6 +75,17 @@ is not an actual-play claim for a new combination.
 | NaturalHeat supports low-heat mire settling, not clay baking. | Sunshine is not kiln heat, free forge work or an implicit energy source for every process. |
 | Fish traps use place-bound fish stock and held capacity. | A future fishing bonus may change access or work within that stock; it must not manufacture catches. |
 | Merchant consignments retain exact lots and game-time refresh boundaries. | Seasonal eligibility applies to a later shipment. It cannot reroll current shelves or remove dependable essentials. |
+
+On a played local turn, a current shower can bring a young crop's
+moisture up to ten on an exact exposed prepared bed. The existing
+watering options carry stronger moisture. A bed records the regional
+rain window when its crop actually receives water, so clearing and
+replanting the same soil cannot collect that window again. Growth uses
+the usual saved moisture meter. A roof, a flooded bed or a mature crop
+leaves the credit unused. Arrival and Continue reconcile already-held
+moisture only. The map uses its wet-soil appearance, and Examine names
+rainfall when it reached the crop.
+[Ordinary shower and fair-weather comparison](Verification/MachineSystems/NaturalCropRain20261127/README.md)
 
 Relevant source: [WorldClock](../Assets/Scripts/Gameplay/Turns/WorldClock.cs),
 [CropTime](../Assets/Scripts/Gameplay/Farming/CropTime.cs),

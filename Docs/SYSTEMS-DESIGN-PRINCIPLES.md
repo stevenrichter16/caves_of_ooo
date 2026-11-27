@@ -97,7 +97,7 @@ Examine can explain the material and the available work. Verify that
 the visible change follows the same state as the actual opportunity.
 
 The [weather design](WEATHER-AND-SEASONAL-TOOL-USES.md) records concrete proposed
-uses, regional discovery, resource/timing policies and staged acceptance. These
-are design extensions except bounded W1a collection/manual watering, now
-Editor accepted. Automatic crop rain and distinct seasonal reuse remain open. Qualify both taking a bonus and comfortably ignoring it, and
-observe ordinary exploratory routes rather than only directed recipe tests.
+uses, regional discovery, resource and timing policies, and staged acceptance.
+Bounded W1a collection, manual watering and natural rain on exposed beds have
+Editor evidence. Wider seasonal reuse remains open. Observe both taking a
+bonus and comfortably ignoring it during ordinary exploration.

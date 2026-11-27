@@ -23,7 +23,18 @@ namespace CavesOfOoo.Core
         /// A pooled list keeps active turn work proportional to crop count.</summary>
         public static void ReconcileZone(Zone zone, int currentTick) => Visit(zone, currentTick, false);
 
-        static void Visit(Zone zone, int currentTick, bool legacyOnly)
+        // A player action can observe the current shower. Load and catch-up
+        // use ReconcileZone and never infer rain from today's exposure.
+        internal static void ReconcilePlayerTurn(Entity actor, Zone zone, int currentTick)
+        {
+            var weather = actor?.HasTag("Player") == true && LocalGatheringClaims.Alive(actor)
+                && WorldResourceActions.Ground(actor, zone)
+                && WorldLocationContext.For(zone)?.ActiveZone == zone
+                ? RegionalWeather.Current(zone, currentTick, RegionalWeather.PolicyVersion) : default;
+            Visit(zone, currentTick, false, weather);
+        }
+
+        static void Visit(Zone zone, int currentTick, bool legacyOnly, RegionalWeather.Observation weather = default)
         {
             if (zone == null || currentTick < 0) return;
             var owners = Scratch.Count == 0 ? new List<Entity>() : Scratch.Pop();
@@ -33,8 +44,9 @@ namespace CavesOfOoo.Core
                 foreach (var owner in owners)
                 {
                     var crop = owner.GetPart<CropPart>();
-                    if (crop != null && (!legacyOnly || crop.GrowthTimingVersion == 0))
-                        Reconcile(crop, zone, currentTick);
+                    if (crop != null && (!legacyOnly || crop.GrowthTimingVersion == 0)
+                        && Reconcile(crop, zone, currentTick) && weather.Raining)
+                        CropRain.Water(crop, zone, currentTick, weather.Window);
                 }
             }
             finally { owners.Clear(); Scratch.Push(owners); }
