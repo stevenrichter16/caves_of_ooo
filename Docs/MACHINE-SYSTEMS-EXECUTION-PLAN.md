@@ -7,6 +7,9 @@ exact board into a rough field haft. Fresh Continue kept the haft and
 the original board left in the crate. All 344 targeted checks passed.
 Both reviews cleared. Existing Open, Haul and whole-machine status remain.
 [Evidence](Verification/MachineSystems/CargoOneBoard20261127/README.md)
+The universal Mac package for `321acf424` includes the one-board action
+and completed startup on Apple M5. Packaged interaction remains open.
+[Package receipt](Verification/MachineSystems/CargoOneBoard20261127/mac-startup-verification.json)
 
 **Sheltered winnowing connects the sieve, bellows and allotment — November 26, 2026, America/Chicago.**
 A gathered bundle yields one seed and one chaff with a carried sound

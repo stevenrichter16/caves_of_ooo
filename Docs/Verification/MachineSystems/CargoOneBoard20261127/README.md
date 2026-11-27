@@ -52,3 +52,18 @@ The Editor returned to Edit Mode with its ordinary keyboard and save root.
 This is one Flat Editor route on Apple Silicon with a controlled pack limit.
 
 [Recorded observations](observations.json) · [Native and save receipts](receipt.json)
+
+## Current Mac package
+
+The universal app at
+`/Users/steven/coo-verification/builds/mac-321acf424-20261127/CavesOfOoo.app`
+contains the one-board action at runtime `321acf424d9399c42d9b086d0416e3e604427276`.
+The build checked 32,254 committed inputs and finished in 25.48 seconds with
+zero errors and five reported warnings. Both packages matched all 186 files.
+Six native binaries contain Apple Silicon and Intel slices.
+
+Startup completed on Apple M5 with 2,665 entities. All 876 normal quick-save
+files matched their hashes again. Nine preferences changed during startup and
+were restored. The test player stopped. Packaged gameplay and physical Intel
+testing remain open.
+[Mac startup receipt](mac-startup-verification.json)
