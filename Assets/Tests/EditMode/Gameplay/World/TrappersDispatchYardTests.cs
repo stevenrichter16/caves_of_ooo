@@ -223,10 +223,21 @@ namespace CavesOfOoo.Tests
             using (var f = new Fixture())
             {
                 Assert.True(f.Place());
-                string trap = f.Role("trap").GetPart<ExaminablePart>().Text.ToLowerInvariant();
+                var trap = f.Role("trap");
+                var cell = f.Zone.GetEntityCell(trap);
+                cell.Explored = cell.IsVisible = true;
+                var document = ExamineDocumentBuilder.BuildWorld(trap, f.Zone, cell);
+                Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+                Assert.That(document.Title, Is.EqualTo(trap.GetDisplayName()));
+                string reader = document.ToPlainText().ToLowerInvariant();
+                StringAssert.Contains("1 salvaged timber or 1 sound rough field haft", reader);
+                StringAssert.Contains("timber is used first", reader);
+                StringAssert.Contains("one action spends the wedge", reader);
+
+                string trapText = trap.GetPart<ExaminablePart>().Text.ToLowerInvariant();
                 string beam = f.Role("haul-bypass").GetPart<ExaminablePart>().Text.ToLowerInvariant();
-                StringAssert.Contains("timber", trap); StringAssert.Contains("beam", trap);
-                StringAssert.DoesNotContain("open gap leads around", trap);
+                StringAssert.Contains("beam blocks the service opening", trapText);
+                StringAssert.DoesNotContain("open gap leads around", trapText);
                 StringAssert.Contains("haul", beam); StringAssert.Contains("opening", beam);
             }
         }

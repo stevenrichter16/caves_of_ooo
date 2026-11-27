@@ -57,8 +57,24 @@
     }
   },
   "commit": "69ae7ee85fc0ddca9b6681b0b501ba5c2049c77f",
+  "currentDiscoveryFormerPath": "/private/tmp/coo-native-discovery-69ae7ee85/cases.json",
+  "currentDiscoveryAvailable": false,
   "currentDiscoverySHA256": "9bdfcc8f28ed198577b4fa090d9d8cce7b3424fdfafe3bd4d50fb12fcffec3a9",
   "currentCount": 42389,
+  "originalPartitionTotals": {
+    "completedBands": 9,
+    "nativeReceipts": 15,
+    "rows": 42389,
+    "distinctNames": 42388,
+    "passed": 42226,
+    "failed": 146,
+    "skipped": 8,
+    "inconclusive": 9,
+    "strictIToRMembership": "open",
+    "wholeProcessVerdict": "open",
+    "finalCurrentRuntimeVerdict": "open",
+    "includesFocusedCorrections": false
+  },
   "addedComparedToPrior": 2041,
   "absentComparedToPrior": 28,
   "firstNativeBand": {
@@ -158,7 +174,10 @@
     "distinctNames": 7624,
     "exactExpectedMembership": false,
     "duplicateName": "CavesOfOoo.Tests.ReagentFuelTests.UnrepresentableOrRoundedUpFuelGainsNeverSpendAReagent(1.342177E+08f)",
-    "duplicatePassedRunnerIds": ["29204", "29205"],
+    "duplicatePassedRunnerIds": [
+      "29204",
+      "29205"
+    ],
     "matchingBaselineFailures": 11,
     "additionalProvisionerFailures": 25,
     "additionalFixtureFailures": 2,
@@ -184,8 +203,6 @@
     "additionalMissingRimForestInput": 20,
     "additionalAllotmentRendererChecks": 3,
     "additionalCustodyIndexCheck": 1,
-    "nextFilter": "^CavesOfOoo\\.Tests\\.Spread[A-G]",
-    "nextExpected": 1385,
     "xml": "/Users/steven/coo-verification/results/current_partition_s_except_spread_69ae7ee85_20261126.xml",
     "sha256": "1866186406df0d14362bf1ff5324d59069bbce1ff2256da5d58715ac3a44f7a0",
     "logSHA256": "4493062a08ce2b153e20e2079c3b69cdb5cb0300123b7e5370c33e8d6b42a38e",
@@ -211,8 +228,6 @@
     "matchingBaselineFailures": 1,
     "previousBaselineFailuresNowPassing": 2,
     "additionalMissingCreatureRequirementInput": 1,
-    "nextFilter": "^CavesOfOoo\\.Tests\\.Spread(?![A-G])",
-    "nextExpected": 2269,
     "xml": "/Users/steven/coo-verification/results/current_partition_spread_a_to_g_69ae7ee85_20261126.xml",
     "sha256": "54fbdfd619d9f8ef49cee2aae9b234d82c69f9bf7cebcd2aa03f86c814d7da3d",
     "logSHA256": "4bcfb3c972c3893d38c565984a867c10dcfee3682f32081c39d62cef2785935a"
@@ -277,6 +292,49 @@
       "xml": "/Users/steven/coo-verification/results/current_partition_t_testsupport_69ae7ee85_20261127.xml",
       "sha256": "063d77f06a105ef5a68649e6a8a7dcdfb6d6919f966c8bbbfe900cb9e5b7c77e",
       "logSHA256": "d03f42736b4dec5a35b0f4f8435b964bf89d7d97c441a88db03558124ba81799"
+    },
+    {
+      "scope": "trade-and-tinkering",
+      "total": 79,
+      "passed": 79,
+      "failed": 0,
+      "reference": "historical case names and unchanged pinned source; original full discovery manifest absent",
+      "xml": "/Users/steven/coo-verification/results/current_partition_t_trade_tinker_69ae7ee85_20261127.xml",
+      "sha256": "d082cb52f84c268da26c11f6137974172167ce52b79eba5f620c251109386175",
+      "logSHA256": "74fdf486c5e1d3f5987c349dc37803204e6b6e300d22562803cb71394a8d0fd5"
+    },
+    {
+      "scope": "tick-tile-and-turn",
+      "total": 76,
+      "passed": 76,
+      "failed": 0,
+      "reference": "historical case names and unchanged pinned source; original full discovery manifest absent",
+      "xml": "/Users/steven/coo-verification/results/current_partition_t_tick_tile_turn_69ae7ee85_20261127.xml",
+      "sha256": "b6dddf9f3139fb4091bec07bb73ad48aac519a8683a898ae28f45449fbe39d19",
+      "logSHA256": "8458ef4c816591a8fa80850b77b45eee4392e23a01d4e4af3945a1417eb8f7d0"
+    },
+    {
+      "scope": "trap-actions-and-parts",
+      "total": 117,
+      "passed": 117,
+      "failed": 0,
+      "reference": "historical case names and unchanged pinned source; original full discovery manifest absent",
+      "xml": "/Users/steven/coo-verification/results/current_partition_t_traps_69ae7ee85_20261127.xml",
+      "sha256": "3343ff512aef18682c04b0521eb20cdfe99af0bf290d5b30b7b3db1b01ef9d71",
+      "logSHA256": "3799879d7a7d8711199c4ce8e18e65d5ef4cee07ef8102be8bce341b7cbd11f1"
+    },
+    {
+      "scope": "remaining-t",
+      "total": 712,
+      "passed": 711,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0,
+      "compilerErrors": 0,
+      "reference": "710 exact historical names plus two pinned WanderStep tests, disjoint from six earlier subsets; original discovery file absent",
+      "xml": "/Users/steven/coo-verification/results/current_partition_t_remainder_69ae7ee85_20261127.xml",
+      "sha256": "009e35b101503197396cfda072ea97bd8849d5c35659146f8ef929cd4e6bc07c",
+      "logSHA256": "d8f5a904935682f15fd7c895d21bf074dcf86124abdb3c35f8c3effdc6a6a841"
     }
   ],
   "seventhNativeBand": {
@@ -291,8 +349,6 @@
     "matchingBaselineFailures": 3,
     "additionalArmorLabelCheck": 1,
     "additionalOrdinaryLichenFixtureChecks": 2,
-    "nextFilter": "^CavesOfOoo\\.Tests\\.T",
-    "nextExpected": 1150,
     "xml": "/Users/steven/coo-verification/results/current_partition_spread_remaining_69ae7ee85_20261126.xml",
     "sha256": "d49caaacdfd6960f4398377ea52c51b2121c653151c8774feb5b7d09290022fa",
     "logSHA256": "0db533739585d24e27e208e84b8d1c3d4eb1946acc394f13562e92aaffb95687",
@@ -304,6 +360,77 @@
       "xml": "/Users/steven/coo-verification/results/spread_harvest_and_armor_fixtures_20261127.xml",
       "sha256": "1ec4a885e5cee8b04a1ad81a7be1283fa0bec7bae40017d00f8914b6cf61e4b7",
       "logSHA256": "5fd6b6dff9a4d0b2f4e14ec8f1804aa9c378d27ff19582df16eab7f7ac4ce150"
+    }
+  },
+  "tCoverage": {
+    "total": 1150,
+    "distinctNames": 1150,
+    "passed": 1148,
+    "failed": 2,
+    "historicalTerrainFailure": 1,
+    "additionalTrapReaderFixture": 1,
+    "wholeProcessVerdict": "open",
+    "targetedFixtureCorrection": {
+      "filter": "^CavesOfOoo\\.Tests\\.(TrappersDispatchYardTests|TrapJammingTests|TrapJammingFieldHaftTests)",
+      "total": 59,
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "compilerErrors": 0,
+      "originalFailureCovered": "CavesOfOoo.Tests.TrappersDispatchYardTests.VisibleDescriptionsExplainTheBlockedServiceOpeningAndFiniteMaterialChoice",
+      "singleFixtureSourceOverlay": "Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs",
+      "correctedFixtureSHA256": "bb1f75ca940e89f45147923617746f7b696b9b0b03f0a4e819acf9c9ea9142b9",
+      "xml": "/Users/steven/coo-verification/results/trap_reader_fixture_green_20261127.xml",
+      "sha256": "36c9f2b68b5400a247d005e87b09dd8e571488a26c70d69e6699f2b99c7fdfdb",
+      "logSHA256": "241025f3f153cd76a7e07077149ef46f6706f5022cffb3a5bb9a053874f7da2a"
+    }
+  },
+  "ninthNativeBand": {
+    "scope": "u-to-z-and-other",
+    "total": 3321,
+    "distinctInFilterNames": 3321,
+    "passed": 3306,
+    "failed": 15,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compilerErrors": 0,
+    "membershipReconciliation": {
+      "reference": "preserved historical case names and pinned source; original discovery file absent",
+      "historicalReceipt": "/Users/steven/coo-verification/results/machine_full_a9de3d3d9_20261122.xml",
+      "historicalBandNames": 3082,
+      "removedOrRenamed": 2,
+      "added": 241,
+      "contributingFixtureFilesMatchingPinnedSource": 12
+    },
+    "matchingBaselineFailures": 13,
+    "historicalVoxelPresentationConstructorFailures": 10,
+    "historicalCinderholdModelCensusFailures": 3,
+    "additionalMissingToolkitPinInput": 1,
+    "additionalMovedActorAudioFixture": 1,
+    "xml": "/Users/steven/coo-verification/results/current_partition_u_to_z_other_69ae7ee85_20261127.xml",
+    "sha256": "e81d6c100fedcf9d3fff7078f2b850a5a8b4f9eb495eb6e18adf3038f2e3b8b0",
+    "logSHA256": "018568511ce48871300f1cf7393540b78a26a62a8ac751b5ccf303112f85fd2b",
+    "targetedFixtureCorrectionAndPinnedInputRerun": {
+      "filter": "^CavesOfOoo\\.Tests\\.(WorldAudioWorkAdversarialTests|WorldAudioWorkTests|VoxelWorldImportedArtTests\\.CorrectedToolkitRegenerationKeepsTheCapturedThirtyEightAssetGuids)",
+      "total": 41,
+      "passed": 41,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "compilerErrors": 0,
+      "originalFailuresCovered": [
+        "CavesOfOoo.Tests.VoxelWorldImportedArtTests.CorrectedToolkitRegenerationKeepsTheCapturedThirtyEightAssetGuids",
+        "CavesOfOoo.Tests.WorldAudioWorkAdversarialTests.SuccessfulPhysicalWorkDoesNotGrantUnperceivedSoundAuthority(\"moved-actor\")"
+      ],
+      "restoredInput": "Docs/Verification/VoxelWorld/toolkit-guid-pin.json",
+      "restoredInputGitBlob": "14017278763049b655608c308ca5456878d68261",
+      "restoredInputSHA256": "e6875ed02b223cd200f1833180faedc59859ef823f86576313e38ff4bf9188b1",
+      "singleFixtureSourceOverlay": "Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorkAdversarialTests.cs",
+      "correctedFixtureSHA256": "549947a95608f15fa61b029a13ebe14baf55eab23c6cb4126de1405d8c058c2e",
+      "xml": "/Users/steven/coo-verification/results/u_to_z_fixture_followup_20261127.xml",
+      "sha256": "71413bf5d16fa9e7ac22eb60577f7eb324a46489ea21d8350faebe2d0443c8fe",
+      "logSHA256": "03cda5fa8167d404eca88bf259d3169eda4c498a98af5b98bc644a1e36e43352"
     }
   }
 }

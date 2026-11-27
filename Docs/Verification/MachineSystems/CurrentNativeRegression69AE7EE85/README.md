@@ -1,10 +1,18 @@
 # Current native regression in shorter runs
 
 Unity discovered 42,389 current EditMode case names for runtime
-`69ae7ee85`. The nine planned filters cover those names exactly once
-and preserve the earlier complete-run results. The immutable discovery
-list is at `/private/tmp/coo-native-discovery-69ae7ee85/cases.json`.
-Use the pinned scratch clone at
+`69ae7ee85`. The nine planned filters assigned those names once. All nine
+bands now have native receipts, including seven smaller runs for T.
+The original partition reports contain 42,389 rows with 42,226 passes,
+146 failures, nine inconclusive results and eight skips. They have
+42,388 distinct names because I–R has one duplicate display name.
+These counts reflect the pinned runtime. Focused follow-ups are recorded
+separately from the original partition reports.
+
+External storage cleanup removed the temporary discovery list at
+`/private/tmp/coo-native-discovery-69ae7ee85/cases.json`. The later T
+subsets and U–Z use historical case names and pinned source for their
+membership reconciliation. The native runs used the pinned scratch clone at
 `/Users/steven/coo-verification/clone-native-69ae7ee85`.
 
 The first filter produced exactly its 527 expected names. Two
@@ -102,16 +110,47 @@ source and confirm that the shallow seasonal patch remains unspent
 after loading. The cap test checks the armor readout's current label.
 
 The 1,150-name T filter terminated before writing XML. Its first
-541-name retry also ended with signal 9 and no XML. Keep both logs.
-The logs establish the interruption and contain no compiler error
-report. The underlying cause is still open. T membership, the last
-filter, strict I–R membership and the separate whole-process verdict
-remain open.
+541-name retry also ended with signal 9 and no XML. Both logs preserve
+the interruptions. Each has zero reported compiler errors. The cause
+of the interruptions remains open.
 
-Smaller T filters recovered 166 exact names. Both Tally fixtures passed
-all 37 cases. Terrain and tender passed 42 of 43. The same historical
-terrain census again reports the cloth screen, caustic film and laid
-hush strip as glyph-only owners without ground-material assignments.
-Test support passed all 86. The three receipts cover disjoint parts
-of T. An additional 984 expected T names are still open.
+Seven disjoint subsets completed all 1,150 T rows with 1,148 passes and
+two failures. Tally passed 37, test support passed 86, trade and
+tinkering passed 79, tick, tile and turn behavior passed 76, trap
+actions passed 117, and the final subset passed 711 of 712. Terrain and
+tender passed 42 of 43. Its historical census still reports the cloth
+screen, caustic film and laid hush strip as glyph-only owners without
+ground-material assignments. The earlier throwing timeout passed.
+
+The additional T failure expected a material cost in static trap prose.
+The corrected fixture checks the actual Examine document for both
+wedge materials and their action cost, keeps the prose and finite
+material checks, and retains the rough field haft alternative. All 59
+trap cases in the focused follow-up passed, including the original
+failure, with zero skips or compiler errors. The historical terrain
+census stays open.
+
+U–Z and other prefixes completed 3,321 distinct in-filter names, with
+3,306 passes, 15 failures and zero skips or compiler errors. The 13
+historical failures cover ten voxel presentation constructor tests and
+three Cinderhold model census cases. Its 3,321 names reconcile against
+the later preserved 3,082-case baseline with two intentional name
+removals or replacements and 241 pinned-source additions. The renamed
+popup case and the remaining mixed-pool case both passed.
+
+The two additional failures came from the toolkit GUID pin missing in
+the scratch clone and the moved-actor audio fixture using a graded clay
+repair that correctly rolls back when the actor moves before commit.
+Restoring the tracked toolkit pin from the pinned commit and using the
+plain-bill rope-well repair for the moved-actor case isolated both
+issues. The audio fixture checks that the repair succeeds after the
+actor moves and that no audio receipt or sound is produced. All 41
+selected cases passed in the focused follow-up with zero skips or
+compiler errors.
+
+The 59-case and 41-case runs used the pinned runtime with targeted test
+fixture overlays. The follow-ups did not rerun the full bands. Strict
+I–R name membership, the separate whole-process verdict, and regression
+on the final current runtime remain open.
+
 [Case counts and receipts](coverage.json)

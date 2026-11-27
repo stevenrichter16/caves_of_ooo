@@ -21,7 +21,9 @@ namespace CavesOfOoo.Tests
         [TestCase("unexplored")][TestCase("hidden-cell")][TestCase("hidden-render")][TestCase("moved-actor")][TestCase("other-zone")][TestCase("muted")]
         public void SuccessfulPhysicalWorkDoesNotGrantUnperceivedSoundAuthority(string hidden)
         {
-            var target = RepairTarget(); PayRepair(target);
+            // A graded clay repair rolls back if the actor moves before commit.
+            var target = RepairTarget(hidden == "moved-actor" ? "RepairRopeWell" : "RepairLinedWell");
+            PayRepair(target);
             if (hidden == "unexplored") Zone.GetCell(11,10).Explored = false;
             if (hidden == "hidden-cell") Zone.GetCell(11,10).IsVisible = false;
             if (hidden == "hidden-render") target.GetPart<RenderPart>().Visible = false;
@@ -29,6 +31,11 @@ namespace CavesOfOoo.Tests
             if (hidden == "other-zone") Router.SetWorld(new Zone("replacement-work-world"), Actor, true);
             if (hidden == "muted") CavesOfOoo.Rendering.WorldAudioSettings.SfxVolume = 0;
             Assert.True(Repair(target)); Assert.True(target.GetPart<RepairablePart>().Repaired);
+            if (hidden == "moved-actor")
+            {
+                Assert.AreSame(Zone.GetCell(20, 10), Zone.GetEntityCell(Actor));
+                Assert.IsEmpty(Receipts);
+            }
             Assert.IsEmpty(Assigned()); Assert.AreEqual(0, Audio.AcceptedSoundCount);
         }
         [Test] public void OwnActionMenuMayFinishFeedbackWhileTheWorldIsTemporarilyHidden()

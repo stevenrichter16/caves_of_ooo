@@ -1,3 +1,14 @@
+**The pinned regression partitions are accounted for — November 26, 2026, America/Chicago.**
+The fifteen original receipts contain 42,389 rows: 42,226 passes,
+146 failures, nine inconclusive cases and eight skips. The single rounded
+reagent name leaves 42,388 distinct names. Both final additional failures
+were fixture or scratch-input issues: the trap now reads its live Examine
+document, and moved-actor audio uses the legitimate plain rope repair.
+Focused follow-ups passed 59/59 and 41/41. Historical failures, strict
+I–R membership, whole-process behavior and final-runtime regression remain
+open. The deleted standalone discovery file is not claimed available.
+[Results and limits](Verification/MachineSystems/CurrentNativeRegression69AE7EE85/README.md)
+
 **The environmental-cue Mac package completed startup — November 26, 2026, America/Chicago.**
 Runtime 0ab67c515 contains the recent source cues and the loose-material
 drying fix. The isolated universal build passed with zero errors and
