@@ -202,23 +202,32 @@ namespace CavesOfOoo.Core
                 && recipe.OutputBlueprints.Count == 1 && recipe.OutputBlueprints[0] == SeasonalSeedSite.Output
                 && recipe.OutputCounts[0] == 1;
 
+        /// <summary>Whether this fixed public frame can keep dry chaff at the
+        /// current site and time. A work quote separately checks its batch.</summary>
+        internal bool CanRetainChaffAt(Zone zone)
+        {
+            var station = ParentEntity;
+            if (TurnManager.Active == null || station?.GetPart<SeedFramePart>() != this || zone == null
+                || WorldLocationContext.For(zone)?.ActiveZone != zone) return false;
+            var collector = station.GetPart<RainCollectorPart>();
+            var catchment = collector?.Anchor?.GetPart<RainCatchmentPart>();
+            if (collector?.Clean != true || catchment == null) return false;
+            var weather = RegionalWeather.Current(zone, WorldClock.CurrentTick, catchment.PolicyVersion);
+            if (!weather.Valid || weather.Raining || !StationReadiness.Evaluate(station, zone, Kind, out _)) return false;
+            var cell = zone.GetEntityCell(station);
+            return !cell.IsInterior
+                && zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) != true
+                && !cell.Objects.Any(item => item.GetPart<LiquidPoolPart>() is { Volume: > 0 });
+        }
+
         internal static MaterialProcessTemplate RetainedChaff(MaterialProcessPlan plan)
         {
             if (plan.StationKind != Kind || !IsKnotflaxWork(plan.Definition)
-                || TurnManager.Active == null || HandlingService.GetWeight(plan.Source) != 1
+                || HandlingService.GetWeight(plan.Source) != 1
                 || !plan.Factory.Blueprints.TryGetValue(SeasonalSeedSite.Output, out var seed)
                 || seed.Parts.ContainsKey("Handling") || !seed.Parts["Physics"].TryGetValue("Weight", out var seedWeight)
-                || seedWeight != "0") return null;
-
-            var cell = plan.Zone.GetEntityCell(plan.Station);
-            var collector = plan.Station.GetPart<RainCollectorPart>();
-            var catchment = collector?.Anchor?.GetPart<RainCatchmentPart>();
-            if (WorldLocationContext.For(plan.Zone)?.ActiveZone != plan.Zone || cell == null
-                || catchment == null || collector?.Clean != true || cell.IsInterior
-                || plan.Zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) == true
-                || cell.Objects.Any(item => item.GetPart<LiquidPoolPart>() is { Volume: > 0 })) return null;
-            var weather = RegionalWeather.Current(plan.Zone, WorldClock.CurrentTick, catchment.PolicyVersion);
-            if (!weather.Valid || weather.Raining) return null;
+                || seedWeight != "0"
+                || plan.Station.GetPart<SeedFramePart>()?.CanRetainChaffAt(plan.Zone) != true) return null;
 
             var template = MaterialProcessTemplate.Capture(plan.Factory, Chaff, true);
             return template != null && plan.Actor.GetPart<InventoryPart>().Objects

@@ -1,3 +1,12 @@
+**The Morrowfast seed frames show the fair-weather bonus — November 26, 2026, America/Chicago.**
+Both mark their dry mesh before selection. Rain preserves the shared
+water cue. Actual fresh v31 seed 65 travel, a controlled advance to
+the ripe season, one native gather and one native wait showed the
+change in look and exact output quote. Winnowing one earned bundle
+kept one seed and one chaff through fresh Continue, with no rain
+debit. All 181 targeted native cases passed.
+[Evidence](Verification/MachineSystems/SeedFrameCue20261127/README.md)
+
 **Five historical throw controls now verify the launch boundary — November 26, 2026, America/Chicago.**
 The old split and predator tests expected to undo a paid throw.
 They now check one exact landed item and preserve the separate

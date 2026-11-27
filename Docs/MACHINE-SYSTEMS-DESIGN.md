@@ -183,6 +183,13 @@ The ordinary Stump branch saw two basins, while the existing paid-trap
 branch produced one meal and one durable pond debit.
 [Evidence](Verification/MachineSystems/FishActivityCue20261127/README.md)
 
+**A public seed frame shows dry work — November 26, 2026, America/Chicago.**
+The fair mesh mark, Examine and actual processing quote share the
+site's ability to retain chaff. Wet ground or rain suppresses the dry
+mark. A visible change after the shower lets the player choose whether
+to wait for the optional fuel fraction. The seed work always remains.
+[Evidence](Verification/MachineSystems/SeedFrameCue20261127/README.md)
+
 **Stored oil joins the camp fuel and water loop — November 26, 2026, America/Chicago.**
 An installed hearth can draw up to three whole oil units from one flask
 in an adjacent installed own camp box, while the actor can reach both.

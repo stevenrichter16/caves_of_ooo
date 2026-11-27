@@ -1,0 +1,538 @@
+{
+  "mode": "Apple Silicon Flat 16×24 GameBootstrap with native input and owned isolated saves",
+  "baseline": "23c5f0bd251f3dbf6326d07093cab453e67c0205",
+  "controls": "Isolated new game seeded 65 before Play. Public game clock advanced from 520 to 14380 while the actor remained at the allotment. All movement, gathering, waiting across the weather boundary, inspection, processing, saving and Continue used normal inputs. No items, weather or health supplied.",
+  "observations": {
+    "seedNewGame": {
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "tick": 10,
+      "hp": 40,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "Choose how you begin.",
+        "You equip dagger.",
+        "You equip buckler.",
+        "You equip cloak.",
+        "You begin as The Duelist.",
+        "Initial checkpoint saved."
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        }
+      ]
+    },
+    "seedArrival": {
+      "tick": 290,
+      "zone": "Overworld.2.6.0",
+      "X": 40,
+      "Y": 12,
+      "hp": 40,
+      "mode": "Normal",
+      "seed": 65,
+      "version": 31,
+      "Valid": true,
+      "Raining": true,
+      "Window": 0,
+      "Season": 0,
+      "frames": [
+        {
+          "ID": "7198",
+          "X": 60,
+          "Y": 8,
+          "IsVisible": false,
+          "Explored": false,
+          "has": false,
+          "glyph": "\u0000",
+          "color": null,
+          "clean": true
+        },
+        {
+          "ID": "7199",
+          "X": 64,
+          "Y": 8,
+          "IsVisible": false,
+          "Explored": false,
+          "has": false,
+          "glyph": "\u0000",
+          "color": null,
+          "clean": true
+        }
+      ],
+      "stands": [
+        {
+          "ID": "7200",
+          "X": 60,
+          "Y": 7,
+          "Harvested": false
+        }
+      ]
+    },
+    "seedPath": "UUUURRRRRRRRRRRRRRRRRRR",
+    "seedNear": {
+      "tick": 520,
+      "zone": "Overworld.2.6.0",
+      "X": 59,
+      "Y": 8,
+      "hp": 40,
+      "mode": "Normal",
+      "seed": 65,
+      "version": 31,
+      "Valid": true,
+      "Raining": true,
+      "Window": 0,
+      "Season": 0,
+      "frames": [
+        {
+          "ID": "7198",
+          "X": 60,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "v",
+          "color": "&C",
+          "clean": true
+        },
+        {
+          "ID": "7199",
+          "X": 64,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "v",
+          "color": "&C",
+          "clean": true
+        }
+      ],
+      "stands": [
+        {
+          "ID": "7200",
+          "X": 60,
+          "Y": 7,
+          "Harvested": false
+        }
+      ]
+    },
+    "seedInitialArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/SeedFrameCue20261127/AtAllotment520/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "5edf82186face1e60738cb93d83d04387e5a8290d3b0d02f0105fe4911334f9f",
+        "Quick.json.bak": "5a75fdb22be48488800d09d81c36187a26828b3b6aa0e782987d2a45507327a2",
+        "Quick.sav.gz": "b226afe4d2a5f5593e53c22dd90b4370e587a0265e9f497d4ab59346c217d4d1",
+        "Quick.sav.gz.bak": "5ce82e22896e7cc9689a3a88bbf31c1760a4e08520c901e5935fe2374de02551"
+      }
+    },
+    "seedControlledTime": {
+      "tick": 14380,
+      "Raining": true,
+      "Season": 1
+    },
+    "seedHarvestMenu": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "LateKnotflaxStand",
+      "cell": [
+        60,
+        7
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "h",
+          "Display": "gather ripe seed heads (1 bundle)",
+          "Command": "Harvest",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "a",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "seedRain": {
+      "tick": 14390,
+      "zone": "Overworld.2.6.0",
+      "X": 59,
+      "Y": 8,
+      "hp": 40,
+      "mode": "Normal",
+      "seed": 65,
+      "version": 31,
+      "Valid": true,
+      "Raining": true,
+      "Window": 23,
+      "Season": 1,
+      "frames": [
+        {
+          "ID": "7198",
+          "X": 60,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "v",
+          "color": "&C",
+          "clean": true
+        },
+        {
+          "ID": "7199",
+          "X": 64,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "v",
+          "color": "&C",
+          "clean": true
+        }
+      ],
+      "stands": []
+    },
+    "seedRainQuote": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "CampAwning",
+      "cell": [
+        60,
+        8
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "catch rain",
+          "Command": "Disabled:receiver",
+          "IsDisabled": true,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "b",
+          "Display": "winnow 1 knotflax seed-head bundle",
+          "Command": "MaterialProcess|winnow_knotflax_seed|7198|b3969bb4b02642e0a86062ccc9b84aed",
+          "IsDisabled": false,
+          "Hint": "Makes 1 knotflax seed. discard dry chaff. One action. Products go into your pack."
+        },
+        {
+          "i": 3,
+          "key": "c",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "seedFair": {
+      "tick": 14400,
+      "zone": "Overworld.2.6.0",
+      "X": 59,
+      "Y": 8,
+      "hp": 40,
+      "mode": "Normal",
+      "seed": 65,
+      "version": 31,
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "Season": 1,
+      "frames": [
+        {
+          "ID": "7198",
+          "X": 60,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "=",
+          "color": "&Y",
+          "clean": true
+        },
+        {
+          "ID": "7199",
+          "X": 64,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "=",
+          "color": "&Y",
+          "clean": true
+        }
+      ],
+      "stands": []
+    },
+    "seedExamine": {
+      "zone": "Overworld.2.6.0",
+      "x": 59,
+      "y": 8,
+      "tick": 14400,
+      "hp": 40,
+      "mode": "AnnouncementOpen",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "You harvest late knotflax stand: 1 x KnotflaxSeedHeads.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a public catch-cloth frame.\nIt shades the ground under it and the cells around it from the glare, for whoever stands there.\nFair weather; the edge collects during mild showers. Shared catchment: 3/3 water available this interval. The frames share one allowance; missed rain is not stored. The dry mesh can save chaff from a knotflax bundle.\nHow to use: Stand under it: it shades its own cell and the cells within 1 of it. During mild showers, stand beside the frame, press C and choose catch rain, then the exact carried flask or waterskin. Bring a knotflax seed-head bundle to the frame and winnow one plantable seed.\nNeeds: a compatible carried water vessel with room, and the intact public collecting edge; one gathered bundle and the intact public frame.\nCost and limits: It only matters where the sun does: in the Beating at the Height of the day, bareheaded in the open you gain a stack of Parched every 10 turns, and under shade the count does not run. A hat or a roof does the same. Carried or taken up, it shades nothing. Both frames share three water per shower interval. This is optional water for existing uses; fair weather costs nothing. In fair weather on dry ground, the frame can save the chaff for a fire. Otherwise the chaff is discarded. Winnowing takes one action, in any season, and uses no rainwater.\nRight now you cannot: catch rain (There are no mild showers now. Ordinary water sources still work).\n\nWaxed cloth on a fixed public frame gathers a little clean rainwater. Both frames share the allotment's catchment. During mild showers, press C here and choose a carried flask or waterskin. Ordinary water sources remain useful in fair weather."
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "7202",
+          "BlueprintName": "KnotflaxSeedHeads",
+          "name": "knotflax seed-head bundle"
+        }
+      ]
+    },
+    "seedFairQuote": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "target": "CampAwning",
+      "cell": [
+        60,
+        8
+      ],
+      "rows": [
+        {
+          "i": 0,
+          "key": "a",
+          "Display": "catch rain",
+          "Command": "Disabled:fair",
+          "IsDisabled": true,
+          "Hint": ""
+        },
+        {
+          "i": 1,
+          "key": "x",
+          "Display": "examine",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "i": 2,
+          "key": "b",
+          "Display": "winnow 1 knotflax seed-head bundle",
+          "Command": "MaterialProcess|winnow_knotflax_seed|7198|ca6e3d54bbfa426b89ccee46e3da021a",
+          "IsDisabled": false,
+          "Hint": "Makes 1 knotflax seed + 1 dry knotflax chaff. retain dry chaff for fire fuel. One action. Products go into your pack."
+        },
+        {
+          "i": 3,
+          "key": "c",
+          "Display": "<< everything here",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ],
+      "hint": ""
+    },
+    "seedWinnowed": {
+      "zone": "Overworld.2.6.0",
+      "x": 59,
+      "y": 8,
+      "tick": 14410,
+      "hp": 40,
+      "mode": "Normal",
+      "invincible": false,
+      "busy": false,
+      "recent": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a public catch-cloth frame.\nIt shades the ground under it and the cells around it from the glare, for whoever stands there.\nFair weather; the edge collects during mild showers. Shared catchment: 3/3 water available this interval. The frames share one allowance; missed rain is not stored. The dry mesh can save chaff from a knotflax bundle.\nHow to use: Stand under it: it shades its own cell and the cells within 1 of it. During mild showers, stand beside the frame, press C and choose catch rain, then the exact carried flask or waterskin. Bring a knotflax seed-head bundle to the frame and winnow one plantable seed.\nNeeds: a compatible carried water vessel with room, and the intact public collecting edge; one gathered bundle and the intact public frame.\nCost and limits: It only matters where the sun does: in the Beating at the Height of the day, bareheaded in the open you gain a stack of Parched every 10 turns, and under shade the count does not run. A hat or a roof does the same. Carried or taken up, it shades nothing. Both frames share three water per shower interval. This is optional water for existing uses; fair weather costs nothing. In fair weather on dry ground, the frame can save the chaff for a fire. Otherwise the chaff is discarded. Winnowing takes one action, in any season, and uses no rainwater.\nRight now you cannot: catch rain (There are no mild showers now. Ordinary water sources still work).\n\nWaxed cloth on a fixed public frame gathers a little clean rainwater. Both frames share the allotment's catchment. During mild showers, press C here and choose a carried flask or waterskin. Ordinary water sources remain useful in fair weather.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You complete the quoted process work. The declared inputs are spent; the products are in your pack.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "name": "watering grimoire"
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "name": "gladroot seed (x4)"
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "name": "emberwheat seed (x2)"
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "name": "healing tonic (x2)"
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "name": "dried meat (x2)"
+        },
+        {
+          "ID": "7203",
+          "BlueprintName": "KnotflaxSeed",
+          "name": "knotflax seed"
+        },
+        {
+          "ID": "7204",
+          "BlueprintName": "DryKnotflaxChaff",
+          "name": "dry knotflax chaff"
+        }
+      ]
+    },
+    "seedWorkedArchive": {
+      "dst": "/Users/steven/coo-verification/checkpoints/SeedFrameCue20261127/Winnowed14410/c6079358f8fc4e4d83fd8416612932e3",
+      "pins": {
+        "Quick.json": "853f5ee19643fa8ac191ec4dc803afc3ff78253934e91891cb30b0f1224711b8",
+        "Quick.json.bak": "5edf82186face1e60738cb93d83d04387e5a8290d3b0d02f0105fe4911334f9f",
+        "Quick.sav.gz": "515a615c849bf09fe648d9ccbb625b4f294827488bb3cfbf1eb7b99870083c17",
+        "Quick.sav.gz.bak": "b226afe4d2a5f5593e53c22dd90b4370e587a0265e9f497d4ab59346c217d4d1"
+      }
+    },
+    "seedIdleBeforeContinue": {
+      "playing": false,
+      "root": null,
+      "seed": 0,
+      "choice": false
+    },
+    "seedFreshCue": {
+      "tick": 14410,
+      "zone": "Overworld.2.6.0",
+      "X": 59,
+      "Y": 8,
+      "hp": 40,
+      "mode": "Normal",
+      "seed": 65,
+      "version": 31,
+      "Valid": true,
+      "Raining": false,
+      "Window": 24,
+      "Season": 1,
+      "frames": [
+        {
+          "ID": "7198",
+          "X": 60,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "=",
+          "color": "&Y",
+          "clean": true
+        },
+        {
+          "ID": "7199",
+          "X": 64,
+          "Y": 8,
+          "IsVisible": true,
+          "Explored": true,
+          "has": true,
+          "glyph": "=",
+          "color": "&Y",
+          "clean": true
+        }
+      ],
+      "stands": []
+    },
+    "seedFreshProducts": {
+      "my": "2699",
+      "stock": "repair-cultivation:allotment-notice",
+      "Spent": 0,
+      "LastWindow": -1,
+      "products": [
+        {
+          "ID": "7203",
+          "BlueprintName": "KnotflaxSeed",
+          "count": 1
+        },
+        {
+          "ID": "7204",
+          "BlueprintName": "DryKnotflaxChaff",
+          "count": 1
+        }
+      ]
+    }
+  }
+}

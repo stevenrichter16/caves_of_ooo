@@ -89,9 +89,10 @@ namespace CavesOfOoo.Core
         {
             if (!IsPublicCloth || zone?.ZoneID != RepairCultivationSite.ZoneID
                 || WorldLocationContext.For(zone)?.ActiveZone != zone
-                || !Context(null, zone, out var claim, out var weather) || !weather.Raining)
+                || !Context(null, zone, out var claim, out var weather))
                 return default;
-            return claim.Remaining(weather.Window) > 0 ? ("v", "&C") : ("_", "&c");
+            if (weather.Raining) return claim.Remaining(weather.Window) > 0 ? ("v", "&C") : ("_", "&c");
+            return ParentEntity.GetPart<SeedFramePart>()?.CanRetainChaffAt(zone) == true ? ("=", "&Y") : default;
         }
 
         internal static void InvalidatePublicCloths(Zone zone, Entity anchor = null)
@@ -119,8 +120,11 @@ namespace CavesOfOoo.Core
         {
             var zone = context.Zone ?? ParentEntity?.SpatialZone;
             if (!Context(null, zone, out var claim, out var weather)) return "This collecting edge is unavailable; its fixed public catchment must remain intact.";
+            string dryWork = !weather.Raining && ParentEntity.GetPart<SeedFramePart>()?.CanRetainChaffAt(zone) == true
+                ? " The dry mesh can save chaff from a knotflax bundle." : "";
             return (weather.Raining ? "Mild showers." : "Fair weather; the edge collects during mild showers.")
-                + " Shared catchment: " + claim.Remaining(weather.Window) + "/3 water available this interval. The frames share one allowance; missed rain is not stored.";
+                + " Shared catchment: " + claim.Remaining(weather.Window) + "/3 water available this interval. The frames share one allowance; missed rain is not stored."
+                + dryWork;
         }
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {

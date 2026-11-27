@@ -872,6 +872,82 @@ namespace CavesOfOoo.Tests
             Assert.Null(Zone.GetEntityCell(source));
         }
 
+        (bool Visible, char Glyph, string Color) FrameCue(Entity frame)
+        {
+            var appearance = typeof(FlatPixelFallbackCatalog).Assembly.GetType("CavesOfOoo.Rendering.FieldOpportunityAppearance");
+            var method = appearance?.GetMethod("TryGet", BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.NotNull(method);
+            var args = new object[] { Zone, frame, default(char), null };
+            bool visible = (bool)method.Invoke(null, args);
+            return (visible, (char)args[2], (string)args[3]);
+        }
+
+        [Test]
+        public void FairDrySeedFrameCueTracksLocalDrynessAndExactVisibleWork()
+        {
+            EnterAllotment();
+            Clock.AdvanceClock(FirstFairWindowBeforeRain() * RegionalWeather.WindowTicks);
+            var frames = Zone.GetReadOnlyEntities().Where(e => e.HasPart<SeedFramePart>()).ToArray();
+            Assert.That(frames.Length, Is.EqualTo(2));
+            var frame = frames[0];
+            var other = frames[1];
+            var cell = Zone.GetEntityCell(frame);
+            var catchment = frame.GetPart<RainCollectorPart>().Anchor.GetPart<RainCatchmentPart>();
+            var packet = Carry(Bundle);
+            StandBeside(frame);
+            var stamp = (Clock.TickCount, catchment.LastWindow, catchment.Spent);
+
+            Assert.That(FrameCue(frame), Is.EqualTo((true, '=', "&Y")));
+            Assert.That(FrameCue(other), Is.EqualTo((true, '=', "&Y")));
+            Assert.That(CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work)).Hint,
+                Does.Contain("retain dry chaff"));
+
+            Zone.TileState.WriteCoating(cell.X, cell.Y, "water", 1);
+            Assert.False(FrameCue(frame).Visible);
+            Assert.That(FrameCue(other), Is.EqualTo((true, '=', "&Y")));
+            Assert.That(CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith(Work)).Hint,
+                Does.Contain("discard dry chaff"));
+            Assert.That(Zone.TileState.Clear(cell.X, cell.Y), Is.EqualTo(1));
+            Assert.That(FrameCue(frame), Is.EqualTo((true, '=', "&Y")));
+
+            cell.IsVisible = false;
+            Assert.False(FrameCue(frame).Visible);
+            cell.IsVisible = true;
+            Assert.True(frame.RemovePart(frame.GetPart<SeedFramePart>()));
+            Assert.False(FrameCue(frame).Visible, "A public catch-cloth without a seed frame keeps its fair appearance.");
+            Assert.That(FrameCue(other), Is.EqualTo((true, '=', "&Y")));
+            Assert.That((Clock.TickCount, catchment.LastWindow, catchment.Spent), Is.EqualTo(stamp));
+            Assert.That(Pack.Objects, Does.Contain(packet));
+            Assert.That(Count("KnotflaxSeed"), Is.Zero);
+            Assert.That(Count(Chaff), Is.Zero);
+        }
+
+        [Test]
+        public void FairDrySeedFrameCuePreservesRainPriorityAndSharedBudget()
+        {
+            EnterAllotment();
+            Clock.AdvanceClock((FirstFairWindowBeforeRain() + 1) * RegionalWeather.WindowTicks);
+            var frames = Zone.GetReadOnlyEntities().Where(e => e.HasPart<SeedFramePart>()).ToArray();
+            Assert.That(frames.Length, Is.EqualTo(2));
+            var frame = frames[0];
+            var other = frames[1];
+            StandBeside(frame);
+            var cell = Zone.GetEntityCell(frame);
+            var catchment = frame.GetPart<RainCollectorPart>().Anchor.GetPart<RainCatchmentPart>();
+            Zone.TileState.WriteCoating(cell.X, cell.Y, "water", 1);
+            Assert.That(FrameCue(frame), Is.EqualTo((true, 'v', "&C")));
+            Assert.That(FrameCue(other), Is.EqualTo((true, 'v', "&C")));
+            Assert.That(catchment.Spent, Is.Zero);
+
+            var bottle = Flask(0);
+            var row = CellMenu(cell.X, cell.Y).Single(a => a.Command.StartsWith("CollectRain|", StringComparison.Ordinal));
+            Assert.True(ChooseRow(row, cell.X, cell.Y));
+            Assert.That(Units(bottle), Is.EqualTo(3));
+            Assert.That(catchment.Spent, Is.EqualTo(3));
+            Assert.That(FrameCue(frame), Is.EqualTo((true, '_', "&c")));
+            Assert.That(FrameCue(other), Is.EqualTo((true, '_', "&c")));
+        }
+
         [TestCase(false, false)]
         [TestCase(false, true)]
         [TestCase(true, false)]

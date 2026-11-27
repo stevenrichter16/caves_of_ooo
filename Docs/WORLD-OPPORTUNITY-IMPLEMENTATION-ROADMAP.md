@@ -182,6 +182,13 @@ Quiet and recovering water read from the same finite stock. Actual
 play connected one marked basin to a trap catch, retreat and meal.
 [Fish activity and catch](Verification/MachineSystems/FishActivityCue20261127/README.md)
 
+For #34 and #36, each clean public seed frame shows when its dry
+mesh can save chaff. At the Morrowfast allotment, one ordinary wait
+after a shower changed both cues. The exact same earned bundle
+could be winnowed immediately for seed or after the shower for
+seed and chaff. The chosen output survived Continue.
+[Weather and frame playtest](Verification/MachineSystems/SeedFrameCue20261127/README.md)
+
 The cooked perch now has a second use for #14/#19. An earned meal paid
 one portion to heal a recruited, injured warden. The other option is
 self Eat. The selected Share reader supports #36 by naming the actual
