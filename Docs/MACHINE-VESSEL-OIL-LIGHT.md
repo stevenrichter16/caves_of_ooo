@@ -1,5 +1,23 @@
 # Vessel oil as portable torch fuel
 
+## Camp storage extension
+
+An adjacent installed camp box can already supply liquid oil to a nearby
+hearth. Put the same directly stored flask to work on a carried unlit
+torch, through a separate row on the box. The row names the source and
+torch and quotes one oil and the actual capped fuel gain. The flask
+stays put even when empty. Relighting remains a separate action.
+
+Use the same accepted stored-flask custody and the ordinary torch
+refill payment. The quote pins the four physical participants through
+commit. If a late interruption leaves the fuel on the original torch
+but prevents a complete retraction, the action cannot refund a second
+use of the oil. Ready stock, taking the flask into the pack, and the
+existing lamp-oil measure give distinct practical choices.
+[Native camp and path-light evidence](Verification/MachineSystems/BoxedTorchOil20261127/README.md)
+
+## Original carried-flask route
+
 Bounded implementation, November23,2026. Native and actual evidence is in the
 [receipt](Verification/MachineSystems/VesselOilTorch20261123/README.md); final
 independent source/gameplay-evidence/artifact review0P1/P2 supports bounded

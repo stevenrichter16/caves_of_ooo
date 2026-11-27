@@ -68,6 +68,17 @@ namespace CavesOfOoo.Core
                 && item.SpatialZone == null && item.GetPart<PhysicsPart>() is PhysicsPart physics
                 && physics.ParentEntity == item && physics.InInventory == Box && physics.Equipped == null
                 && !ListedOutsideBox(item);
+        internal bool ContainsOilFlask(Entity flask, bool allowEmpty)
+        {
+            if (!Contains(flask) || !LiquidVesselPart.HasOilContents(flask, allowEmpty) || flask.HasPart<ContainerPart>()
+                || LocalPorterReservationPart.Blocks(flask)
+                || flask.GetPart<StackerPart>() is { } stack && (stack.ParentEntity != flask || stack.StackCount != 1))
+                return false;
+            return !ListedInGroundedContainer(zone, flask, Box);
+        }
+        internal static bool ListedInGroundedContainer(Zone zone, Entity item, Entity permitted = null)
+            => zone.GetReadOnlyEntitiesWithPart<ContainerPart>().Any(owner => owner != permitted
+                && owner.GetPart<ContainerPart>()?.Contents.Any(entry => entry == item || entry?.ID == item.ID) == true);
         bool ListedOutsideBox(Entity item)
         {
             var pack = actor.GetPart<InventoryPart>();

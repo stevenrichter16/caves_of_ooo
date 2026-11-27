@@ -1,0 +1,1083 @@
+{
+  "Start": {
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "tick": 2330,
+    "mode": "Normal",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 0.466666669,
+    "light45": 0.533333361,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x4)",
+        "x": null,
+        "y": null,
+        "count": 4,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2231",
+        "BlueprintName": "LiquidFlask",
+        "name": "liquid flask",
+        "x": null,
+        "y": null,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": 3,
+        "liquid": "oil",
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [
+      {
+        "slot": "340",
+        "item": {
+          "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "count": 1,
+          "fuel": 0,
+          "lit": false,
+          "volume": null,
+          "liquid": null,
+          "installed": null,
+          "contents": null
+        }
+      }
+    ],
+    "last": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+  },
+  "Setup": {
+    "box": "2731"
+  },
+  "EquippedControl": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "CampBox",
+    "cell": [
+      40,
+      9
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "o",
+        "Display": "open",
+        "Command": "OpenContainer",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "take up",
+        "Command": "TakeUp|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "pack up camp (5 things)",
+        "Command": "PackUp|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": "Takes up every kit of yours within 4 cells in one action. All or nothing; a burning fire goes out."
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "break",
+        "Command": "Break",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "hand over (you can no longer take it up)",
+        "Command": "HandOver|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 5,
+        "key": "m",
+        "Display": "move",
+        "Command": "MovePick|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out."
+      },
+      {
+        "i": 6,
+        "key": "e",
+        "Display": "name this camp: Home",
+        "Command": "NameCamp|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name."
+      },
+      {
+        "i": 7,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 8,
+        "key": "f",
+        "Display": "kindle camp box (1 item) [fire-moss]",
+        "Command": "MaterialField|Kindle|Overworld.10.11.0|41|9|40|9|2731|4|",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 9,
+        "key": "g",
+        "Display": "pour out a liquid here (6) >>",
+        "Command": "ToolGroup|pour out a liquid here",
+        "IsDisabled": false,
+        "Hint": "Choose from: liquid flask."
+      },
+      {
+        "i": 10,
+        "key": "h",
+        "Display": "spread brine west (1 item) [glimmer-brine]",
+        "Command": "MaterialField|Film|Overworld.10.11.0|41|9|40|9||7|brine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 11,
+        "key": "i",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "PackedTorch": {
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "tick": 2340,
+    "mode": "InventoryOpen",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 0.466666669,
+    "light45": 0.533333361,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      },
+      {
+        "ID": "2731",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 40,
+        "y": 9,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "2231",
+            "BlueprintName": "LiquidFlask",
+            "volume": 3,
+            "liquid": "oil"
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x4)",
+        "x": null,
+        "y": null,
+        "count": 4,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch",
+        "name": "torch",
+        "x": null,
+        "y": null,
+        "count": 1,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [],
+    "last": "You unequip torch."
+  },
+  "RefillMenu": {
+    "mode": "WorldActionMenuOpen",
+    "open": true,
+    "target": "CampBox",
+    "cell": [
+      40,
+      9
+    ],
+    "rows": [
+      {
+        "i": 0,
+        "key": "o",
+        "Display": "open",
+        "Command": "OpenContainer",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 1,
+        "key": "a",
+        "Display": "take up",
+        "Command": "TakeUp|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 2,
+        "key": "b",
+        "Display": "pack up camp (5 things)",
+        "Command": "PackUp|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": "Takes up every kit of yours within 4 cells in one action. All or nothing; a burning fire goes out."
+      },
+      {
+        "i": 3,
+        "key": "c",
+        "Display": "refuel torch from liquid flask (1 oil, 0\u219225/50 fuel)",
+        "Command": "RefuelStoredVesselTorch|2231|9be07b23c7a24a079adb7aeb10f66c7b|bafe7897dc644ee486b33aa9a5e5dfb8",
+        "IsDisabled": false,
+        "Hint": "Uses one of 3 oil units. The flask stays in the box and the torch stays out. Any fuel above capacity is lost."
+      },
+      {
+        "i": 4,
+        "key": "d",
+        "Display": "break",
+        "Command": "Break",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 5,
+        "key": "e",
+        "Display": "hand over (you can no longer take it up)",
+        "Command": "HandOver|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 6,
+        "key": "m",
+        "Display": "move",
+        "Command": "MovePick|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": "Pick a cell with the arrow keys: green fits, red does not. It keeps its fuel; a burning fire goes out."
+      },
+      {
+        "i": 7,
+        "key": "f",
+        "Display": "name this camp: Home",
+        "Command": "NameCamp|Overworld.10.11.0|2731",
+        "IsDisabled": false,
+        "Hint": "Names this camp in the notes of where you keep things. Choose again for the next name."
+      },
+      {
+        "i": 8,
+        "key": "x",
+        "Display": "examine",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 9,
+        "key": "g",
+        "Display": "kindle camp box (1 item) [fire-moss]",
+        "Command": "MaterialField|Kindle|Overworld.10.11.0|41|9|40|9|2731|4|",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 10,
+        "key": "h",
+        "Display": "pour out a liquid here (6) >>",
+        "Command": "ToolGroup|pour out a liquid here",
+        "IsDisabled": false,
+        "Hint": "Choose from: liquid flask."
+      },
+      {
+        "i": 11,
+        "key": "i",
+        "Display": "spread brine west (1 item) [glimmer-brine]",
+        "Command": "MaterialField|Film|Overworld.10.11.0|41|9|40|9||7|brine",
+        "IsDisabled": false,
+        "Hint": ""
+      },
+      {
+        "i": 12,
+        "key": "l",
+        "Display": "<< everything here",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "Hint": ""
+      }
+    ],
+    "hint": ""
+  },
+  "Cancelled": {
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "tick": 2340,
+    "mode": "WorldActionMenuOpen",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 0.466666669,
+    "light45": 0.533333361,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      },
+      {
+        "ID": "2731",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 40,
+        "y": 9,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "2231",
+            "BlueprintName": "LiquidFlask",
+            "volume": 3,
+            "liquid": "oil"
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x4)",
+        "x": null,
+        "y": null,
+        "count": 4,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch",
+        "name": "torch",
+        "x": null,
+        "y": null,
+        "count": 1,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [],
+    "last": "Interact \u2014 choose a direction, or . for underfoot."
+  },
+  "Filled": {
+    "zone": "Overworld.10.11.0",
+    "x": 41,
+    "y": 9,
+    "tick": 2350,
+    "mode": "Normal",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 0.466666669,
+    "light45": 0.533333361,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      },
+      {
+        "ID": "2731",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 40,
+        "y": 9,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "2231",
+            "BlueprintName": "LiquidFlask",
+            "volume": 2,
+            "liquid": "oil"
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x4)",
+        "x": null,
+        "y": null,
+        "count": 4,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch",
+        "name": "torch",
+        "x": null,
+        "y": null,
+        "count": 1,
+        "fuel": 25,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [],
+    "last": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+  },
+  "Dark": {
+    "zone": "Overworld.10.11.0",
+    "x": 44,
+    "y": 9,
+    "tick": 2380,
+    "mode": "Normal",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 0.6666667,
+    "light45": 0.733333349,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      },
+      {
+        "ID": "2731",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 40,
+        "y": 9,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "2231",
+            "BlueprintName": "LiquidFlask",
+            "volume": 2,
+            "liquid": "oil"
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x4)",
+        "x": null,
+        "y": null,
+        "count": 4,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [
+      {
+        "slot": "340",
+        "item": {
+          "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "count": 1,
+          "fuel": 25,
+          "lit": false,
+          "volume": null,
+          "liquid": null,
+          "installed": null,
+          "contents": null
+        }
+      }
+    ],
+    "last": "You equip torch."
+  },
+  "LightMenu": {
+    "mode": "InventoryOpen",
+    "panel": 1,
+    "query": "torch",
+    "item": "9be07b23c7a24a079adb7aeb10f66c7b",
+    "rows": [
+      {
+        "label": "Examine",
+        "command": "examine_item"
+      },
+      {
+        "label": "Compare equipment",
+        "command": "compare_equipment"
+      },
+      {
+        "label": "Unequip",
+        "command": "unequip"
+      },
+      {
+        "label": "light torch (1 fire-moss)",
+        "command": "KindleFuel|Overworld.10.11.0|44|9|9be07b23c7a24a079adb7aeb10f66c7b|2151|4|torch%3A25%3A25%3A50%3A0.3%3A300%3A450"
+      },
+      {
+        "label": "light torch at nearby fire",
+        "command": "LightTorch"
+      },
+      {
+        "label": "Label item",
+        "command": "edit_storage_label"
+      },
+      {
+        "label": "Drop",
+        "command": "drop"
+      }
+    ],
+    "busy": false
+  },
+  "Lit": {
+    "zone": "Overworld.10.11.0",
+    "x": 44,
+    "y": 9,
+    "tick": 2390,
+    "mode": "Normal",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 1,
+    "light45": 1,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      },
+      {
+        "ID": "2731",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 40,
+        "y": 9,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "2231",
+            "BlueprintName": "LiquidFlask",
+            "volume": 2,
+            "liquid": "oil"
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x3)",
+        "x": null,
+        "y": null,
+        "count": 3,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [
+      {
+        "slot": "340",
+        "item": {
+          "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "count": 1,
+          "fuel": 24.7,
+          "lit": true,
+          "volume": null,
+          "liquid": null,
+          "installed": null,
+          "contents": null
+        }
+      }
+    ],
+    "last": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+  },
+  "Fresh": {
+    "zone": "Overworld.10.11.0",
+    "x": 44,
+    "y": 9,
+    "tick": 2390,
+    "mode": "Normal",
+    "hp": 343,
+    "ambient": 0.4,
+    "light46": 1,
+    "light45": 1,
+    "ground": [
+      {
+        "ID": "2297",
+        "BlueprintName": "FlintStriker",
+        "name": "flint striker [19]",
+        "x": 39,
+        "y": 10,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2147",
+        "BlueprintName": "CampHearth",
+        "name": "camp hearth",
+        "x": 40,
+        "y": 8,
+        "count": null,
+        "fuel": 0,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": null
+      },
+      {
+        "ID": "2731",
+        "BlueprintName": "CampBox",
+        "name": "camp box",
+        "x": 40,
+        "y": 9,
+        "count": null,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": "Installed",
+        "contents": [
+          {
+            "ID": "2231",
+            "BlueprintName": "LiquidFlask",
+            "volume": 2,
+            "liquid": "oil"
+          }
+        ]
+      }
+    ],
+    "pack": [
+      {
+        "ID": "2151",
+        "BlueprintName": "FireMoss",
+        "name": "fire-moss (x3)",
+        "x": null,
+        "y": null,
+        "count": 3,
+        "fuel": null,
+        "lit": null,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      },
+      {
+        "ID": "2298",
+        "BlueprintName": "Torch",
+        "name": "torch (x2)",
+        "x": null,
+        "y": null,
+        "count": 2,
+        "fuel": 50,
+        "lit": true,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    ],
+    "equipped": [
+      {
+        "slot": "340",
+        "item": {
+          "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "count": 1,
+          "fuel": 24.7,
+          "lit": true,
+          "volume": null,
+          "liquid": null,
+          "installed": null,
+          "contents": null
+        }
+      }
+    ],
+    "last": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+  },
+  "editorRestored": {
+    "playing": false,
+    "transition": false,
+    "isolated": false,
+    "root": null,
+    "keyboards": [
+      "Keyboard"
+    ]
+  },
+  "finalPreview": {
+    "row": {
+      "i": 3,
+      "key": "c",
+      "Display": "refuel torch from liquid flask (1 oil, 25 to 50/50 fuel)",
+      "Command": "RefuelStoredVesselTorch|2231|9be07b23c7a24a079adb7aeb10f66c7b|85eddc18739740a4ae5e001882d676d8",
+      "IsDisabled": false,
+      "Hint": "Uses one of 2 oil units. The flask stays in the box and the torch stays out. Any fuel above capacity is lost."
+    },
+    "afterCancel": {
+      "tick": 2350,
+      "box": [
+        {
+          "ID": "2231",
+          "BlueprintName": "LiquidFlask",
+          "volume": 2,
+          "liquid": "oil"
+        }
+      ],
+      "torch": {
+        "ID": "9be07b23c7a24a079adb7aeb10f66c7b",
+        "BlueprintName": "Torch",
+        "name": "torch",
+        "x": null,
+        "y": null,
+        "count": 1,
+        "fuel": 25,
+        "lit": false,
+        "volume": null,
+        "liquid": null,
+        "installed": null,
+        "contents": null
+      }
+    }
+  },
+  "editorTransitionBeforeRelease": {
+    "playing": false,
+    "isolated": true,
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/5d6071e50a1e47e9a75b4d6a40bc1da0",
+    "keyboards": [
+      "Keyboard"
+    ]
+  }
+}

@@ -1,3 +1,12 @@
+**A camp box can supply a carried torch — November 27, 2026, America/Chicago.**
+One directly stored oil unit brought the original dark torch from zero
+to 25 fuel. Normal travel and one fire-moss lit it east of camp. Two
+rendered path cells reached full light, and fresh Continue kept the
+lit torch at 24.7 fuel, two oil in the original boxed flask, and three
+moss. The private comparison supplied one box on the retained camp.
+All 555 targeted checks passed. Both independent reviews cleared.
+[Evidence](Verification/MachineSystems/BoxedTorchOil20261127/README.md)
+
 **A two-pound sieve option keeps the grit in camp storage — November 27, 2026, America/Chicago.**
 Ordinary harvest at the western Morrowfast allotment supplied one dry
 spoil packet. At a camp one map cell north, the two-pound choice kept

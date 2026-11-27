@@ -32,7 +32,8 @@ namespace CavesOfOoo.Core
 
         /// <summary>Max items allowed. -1 = unlimited.</summary>
         public int MaxItems = -1;
-        public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<ContainerPart>()==this && CampBoxWork.IsCommand(command);
+        public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<ContainerPart>()==this
+            && (CampBoxWork.IsCommand(command) || VesselTorchRefueling.IsStoredCommand(command) && ParentEntity.BlueprintName=="CampBox");
 
         /// <summary>
         /// Add an item to this container. Returns false if full.
@@ -106,6 +107,7 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if(!CampBoxWork.Handle(ParentEntity,e))return false;
+            if(!VesselTorchRefueling.HandleStored(ParentEntity,e))return false;
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");

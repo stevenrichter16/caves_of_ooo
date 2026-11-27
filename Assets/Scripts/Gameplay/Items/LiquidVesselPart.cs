@@ -14,10 +14,13 @@ namespace CavesOfOoo.Core
         public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<LiquidVesselPart>() == this && AcidRinseActions.IsCommand(command);
 
         internal static bool HasCarriedOil(Entity actor, Entity flask, bool allowEmpty = false)
+            => PreparationActions.Carried(actor, flask) && WorldResourceActions.Carried(actor, flask)
+                && HasOilContents(flask, allowEmpty);
+
+        internal static bool HasOilContents(Entity flask, bool allowEmpty)
         {
             var liquid = flask?.GetPart<LiquidVesselPart>();
-            return PreparationActions.Carried(actor, flask) && WorldResourceActions.Carried(actor, flask)
-                && liquid?.ParentEntity == flask && flask.Parts.Count(part => part is LiquidVesselPart) == 1
+            return liquid != null && liquid.ParentEntity == flask && flask.Parts.Count(part => part is LiquidVesselPart) == 1
                 && flask.Parts.Count(part => part is PhysicsPart) == 1 && flask.Parts.Count(part => part is StackerPart) <= 1
                 && !flask.HasPart<WaterskinPart>() && liquid.Capacity > 0
                 && liquid.Volume >= (allowEmpty ? 0 : 1) && liquid.Volume <= liquid.Capacity

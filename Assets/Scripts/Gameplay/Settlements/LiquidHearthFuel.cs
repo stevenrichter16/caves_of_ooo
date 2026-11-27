@@ -41,24 +41,6 @@ namespace CavesOfOoo.Core
                 && Math.Max(Math.Abs(a.X - b.X), Math.Abs(a.Y - b.Y)) <= 1;
         }
 
-        static bool StoredFlask(MaterialProcessStock stock, Entity flask, Entity hearth, Zone zone, bool allowEmpty)
-        {
-            if (!stock.Contains(flask) || !BoxBesideHearth(stock.Box, hearth, zone)
-                || flask.GetPart<LiquidVesselPart>() is not { } vessel || vessel.ParentEntity != flask
-                || flask.Parts.Count(part => part is LiquidVesselPart) != 1
-                || flask.Parts.Count(part => part is PhysicsPart) != 1
-                || flask.Parts.Count(part => part is StackerPart) > 1
-                || flask.GetPart<StackerPart>() is { } stack && (stack.ParentEntity != flask || stack.StackCount != 1)
-                || flask.HasPart<WaterskinPart>() || flask.HasPart<ContainerPart>()
-                || vessel.Capacity <= 0 || vessel.Volume < (allowEmpty ? 0 : 1) || vessel.Volume > vessel.Capacity
-                || vessel.LiquidId != (vessel.Volume == 0 ? "" : "oil")
-                || !LiquidRegistry.IsInitialized || LiquidRegistry.Get("oil") == null) return false;
-
-            // No competing direct listing of this physical ID in another box.
-            return !zone.GetReadOnlyEntitiesWithPart<ContainerPart>().Any(owner => owner != stock.Box
-                && owner.GetPart<ContainerPart>()?.Contents.Any(item => item == flask || item?.ID == flask.ID) == true);
-        }
-
         static IEnumerable<(Entity flask, MaterialProcessStock stock)> Sources(Entity actor, Entity hearth, Zone zone, InventoryPart pack)
         {
             foreach (var flask in pack.Objects)
@@ -91,7 +73,7 @@ namespace CavesOfOoo.Core
             {
                 bool SourceCurrent(bool allowEmpty) => stock == null
                     ? LiquidVesselPart.HasCarriedOil(actor, flask, allowEmpty) && !zone.GetReadOnlyEntities().Any(entity => entity.ID == flask.ID)
-                    : StoredFlask(stock, flask, hearth, zone, allowEmpty);
+                    : BoxBesideHearth(stock.Box, hearth, zone) && stock.ContainsOilFlask(flask, allowEmpty);
                 if (!SourceCurrent(false)) continue;
                 var vessel = flask.GetPart<LiquidVesselPart>();
                 int volume = vessel.Volume, capacity = vessel.Capacity;

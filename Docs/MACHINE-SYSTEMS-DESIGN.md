@@ -1,3 +1,11 @@
+**Camp storage can fuel portable light.**
+A directly stored oil flask can refill an unlit carried torch from
+beside a ready own camp box. One oil buys up to 25 fuel and the flask
+keeps its custody. The same oil remains suitable for the hearth.
+Relighting is separate. Actual ordinary ignition away from the box
+increased measured path light, and Continue kept the flame and oil.
+[Playtest and receipts](Verification/MachineSystems/BoxedTorchOil20261127/README.md)
+
 **Pack the fine fraction and leave grit in camp storage.**
 An adjacent own camp box can already feed its exact dry spoil packet to
 a carried sieve. The new choice fits two pounds of fire clay into

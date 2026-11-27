@@ -76,6 +76,13 @@ alternatives. This controlled supplied-camp trial extends the connection;
 it does not close #40 ordinary acquisition or comparison across layouts.
 [Stored oil trial](Verification/MachineSystems/StoredHearthOil20261127/README.md)
 
+For #15–17, #36 and #39, the same direct camp stock can refill a carried
+dark torch. The menu quotes one oil and the exact fuel change. Ordinary
+ignition after walking away made the resulting light visible in the
+world. The separately measured oil and moss expenses and saved custody
+remain part of the comparison.
+[Camp storage to path light](Verification/MachineSystems/BoxedTorchOil20261127/README.md)
+
 For #14–17 and #39, the same stored dry clay packet and carried sieve
 can now supply the pack with two fine measures and leave the grit in
 camp. The three-pound withdrawal and ordinary portable routes remain.
