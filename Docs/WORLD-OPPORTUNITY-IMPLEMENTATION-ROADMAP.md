@@ -79,6 +79,13 @@ exhausted and packed views were checked alongside native authority and
 countercases. This improves comprehension without changing the work.
 [Compact fire readers](Verification/MachineSystems/CompactFireReader20261127/README.md)
 
+For #14, #16 and #40, a visible deployed settling tray now shows when
+the same finite stock allows a gather. A retained supplied tray used a
+natural steam vent to make one garment heat coat. A competing scraper
+spent the final shared measure and closed the waiting choice. Real shop
+acquisition and a separate Sodden route remain open.
+[Shared vent and proofing playtest](Verification/MachineSystems/SettlingTrayCue20261127/README.md)
+
 For #15–17, a singular flask in an adjacent own installed box can now
 feed an installed hearth directly. The same empty flask survived stored
 custody through Continue, was retrieved, and received two water from a

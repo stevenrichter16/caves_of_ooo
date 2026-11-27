@@ -25,6 +25,33 @@ namespace CavesOfOoo.Core
 
         bool Standing(Zone zone) => zone != null && ParentEntity?.SpatialZone == zone && !PackableFixturePart.IsInertKit(ParentEntity);
 
+        int CatchStart => Math.Max(LastTick, ParentEntity.GetPart<PackableFixturePart>()?.SetTick ?? -1);
+
+        static bool InView(Zone zone, Entity owner) => WorldResourceActions.Ground(owner, zone)
+            && owner.GetPart<RenderPart>() is { Visible: true } render && render.ParentEntity == owner
+            && zone.GetEntityCell(owner) is { Explored: true, IsVisible: true };
+
+        internal (string Glyph, string Color) Appearance(Zone zone)
+        {
+            var tray = ParentEntity;
+            if (!Standing(zone) || tray.GetPart<SettlingTrayPart>() != this || !InView(zone, tray)) return default;
+            if (Held > 0) return ("U", "&Y");
+
+            int now = WorldClock.CurrentTick, from = CatchStart;
+            if (from < 0 || now <= from || (long)Progress + now - from < CatchTicks) return default;
+            var forecast = Project(zone, now);
+            return forecast.Taken > 0 && InView(zone, forecast.Near) && InView(zone, forecast.Holder)
+                ? ("u", "&Y") : default;
+        }
+
+        internal static void InvalidateVisibleTrays(Zone zone)
+        {
+            if (zone == null) return;
+            foreach (var tray in zone.GetReadOnlyEntitiesWithPart<SettlingTrayPart>())
+                if (tray.GetPart<SettlingTrayPart>()?.Standing(zone) == true && InView(zone, tray))
+                    ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(tray), "Settling tray catch");
+        }
+
         /// <summary>The pure projection of the tray at <paramref name="now"/>: what it would hold, how far into the next catch it would be, and the source it draws from. Changes nothing.</summary>
         readonly struct Projection
         {
@@ -36,7 +63,7 @@ namespace CavesOfOoo.Core
         Projection Project(Zone zone, int now)
         {
             if (!Standing(zone)) return new Projection(Held, Progress, 0, false, false, null, null, null, 0, 0);
-            int from = Math.Max(LastTick, ParentEntity.GetPart<PackableFixturePart>()?.SetTick ?? -1);
+            int from = CatchStart;
             var at = zone.GetEntityCell(ParentEntity);
             var near = ProofingSources.Find(zone, at, out var kind);
             if (near == null) return new Projection(Held, 0, 0, false, false, null, null, null, 0, 0);
@@ -65,7 +92,9 @@ namespace CavesOfOoo.Core
         {
             if (!Standing(zone)) return 0;
             var p = Project(zone, now);
-            return ApplyProjection(p, p.Taken > 0 ? SourceStockPart.For(zone, p.Holder, now) : null, now);
+            int taken = ApplyProjection(p, p.Taken > 0 ? SourceStockPart.For(zone, p.Holder, now) : null, now);
+            if (taken > 0) InvalidateVisibleTrays(zone);
+            return taken;
         }
 
         int ApplyProjection(Projection p, SourceStockPart stock, int now)
@@ -110,7 +139,8 @@ namespace CavesOfOoo.Core
                 else { stock.Available = available; stock.LastTick = stockLast; }
             });
             if (holder != null) stock = SourceStockPart.For(zone, holder, now);
-            ApplyProjection(p, stock, now);
+            if (ApplyProjection(p, stock, now) > 0)
+                tx.AfterCommit(() => InvalidateVisibleTrays(zone));
             return true;
         }
 
@@ -138,9 +168,11 @@ namespace CavesOfOoo.Core
             if (!p.Source) return "There is nothing near enough to settle from." + heldNote;
             string name = ReagentName(p.Kind), source = p.Near.GetDisplayName();
             if (p.Mixed) return "It holds " + Held + " " + ReagentName(held) + ", and the " + source + " beside it gives off something else. It settles nothing more until you empty it.";
-            string look = SourceStockPart.Look(p.StockLeft, p.Capacity);
-            string next = p.Held >= MaxHeld ? " It is full: it settles no more until you empty it." : NextCatch(now, p, " The next is ");
-            return "Settling " + name + " from the " + source + ". Holds " + p.Held + " (it takes " + MaxHeld + "). The source looks " + look + "." + next;
+            string look = SourceStockPart.Look(p.StockLeft + p.Taken, p.Capacity);
+            string amount = p.Taken == 0 ? "Holds " + Held
+                : (Held > 0 ? "Holds " + Held + ". " : "") + "Ready to gather " + p.Held;
+            string next = Held >= MaxHeld ? " It is full: it settles no more until you empty it." : NextCatch(now, p, " The next is ");
+            return "Settling " + name + " from the " + source + ". " + amount + " (it takes " + MaxHeld + "). The source looks " + look + "." + next;
         }
 
         /// <summary>How to use the tray, what it needs and what it gives, from the live constants (the owner, 2026-11-21). The "right now" line is built from <see cref="AddRows"/>'s rows.</summary>
@@ -232,6 +264,7 @@ namespace CavesOfOoo.Core
                 var owner = ParentEntity; string label = ReagentName(kind);
                 tx.AfterCommit(() =>
                 {
+                    ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(owner), "Settling tray emptied");
                     MessageLog.Add("You lift the pan and take " + give + " " + label + "." + (after.Held > give ? " " + (after.Held - give) + " stay in the tray: your pack is full." : ""));
                     Diag.Record("furniture", "TrayGathered", actor, owner, new { taken = give, left = after.Held - give, element = kind.Id });
                 });

@@ -193,7 +193,11 @@ namespace CavesOfOoo.Core
                                     if(holder.GetPart<SourceStockPart>()==paidStock && paidStock.ParentEntity==holder && paidStock.Capacity==capacity && paidStock.Available>=0 && paidStock.Available<capacity)
                                     {paidStock.Available++;if(stock==null && paidStock.Available==capacity && paidStock.LastTick==now)holder.RemovePart(paidStock);}
                                 });return true;
-                            },()=>MessageLog.Add("You catch one water in the "+name+". The vent's catch supply is reduced."),initialCharge);
+                            },()=>
+                            {
+                                SettlingTrayPart.InvalidateVisibleTrays(zone);
+                                MessageLog.Add("You catch one water in the "+name+". The vent's catch supply is reduced.");
+                            },initialCharge);
                     }
                 }
             }

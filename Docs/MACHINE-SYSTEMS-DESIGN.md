@@ -1,3 +1,10 @@
+**A deployed settling tray shows a gatherable catch.**
+The visible pan distinguishes possible work from material already held.
+The same saved vent stock serves a tray, scraper and condenser. Actual
+gathering provided one scale for a cloak heat coat. A competing scrape
+spent the last unit and cleared the tray's cue. The trial used a supplied kit.
+[Playtest and receipts](Verification/MachineSystems/SettlingTrayCue20261127/README.md)
+
 **Rain-exposed sealbark and ordinary salvage share a repair bill.**
 One finite outdoor slat can surface near the western Morrowfast allotment.
 It trims into ordinary salvaged timber. One slat-derived board and one

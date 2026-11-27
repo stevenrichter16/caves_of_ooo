@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Rendering;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -64,6 +66,132 @@ namespace CavesOfOoo.Tests
         string Read(Entity e) { var l = new List<string>(); StateReader.Collect(e, true, wild, wild.GetEntityCell(e), Actor, l); return string.Join(" ", l); }
         static string BandAt(int tick) => WorldClock.BandName(WorldClock.GetBand(tick), 0);
         static readonly string[] Collected = { "VentScale", "RimeFlake", "BrineCrust", "AcidCrust" };
+
+        Cell Reveal(Entity owner)
+        {
+            var cell = wild.GetEntityCell(owner);
+            cell.IsVisible = cell.Explored = true;
+            return cell;
+        }
+
+        (bool shown, char glyph, string color) TrayCue(Entity tray)
+        {
+            var get = typeof(FlatPixelFallbackCatalog).Assembly.GetType("CavesOfOoo.Rendering.FieldOpportunityAppearance")
+                ?.GetMethod("TryGet", BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.NotNull(get);
+            object[] args = { wild, tray, '\0', null };
+            return ((bool)get.Invoke(null, args), (char)args[2], (string)args[3]);
+        }
+
+        [Test]
+        public void TrayCueProjectsOnlyWithTheExactSourceAndStockHolderInViewWithoutCreatingStock()
+        {
+            var nearest = Source("BrinePool", SX, SY, rich: false);
+            var holder = Source("BrinePool", SX + 1, SY - 1, rich: false);
+            var tray = SetTray();
+            var trayCell = Reveal(tray);
+            var nearCell = Reveal(nearest);
+            var holderCell = Reveal(holder);
+            Assert.That(ProofingSources.Find(wild, trayCell, out var kind), Is.SameAs(nearest));
+            Assert.That(ProofingSources.StockHolder(wild, nearest, kind), Is.SameAs(holder));
+            Assert.False(TrayCue(tray).shown);
+            Assert.AreEqual("=", tray.GetPart<RenderPart>().RenderString);
+
+            Days(0.6);
+            var part = Part(tray);
+            var checkpoint = (part.Held, part.Progress, part.LastTick, part.Element, Clock.TickCount);
+            Assert.AreEqual(1, part.HeldNow(wild, Clock.TickCount));
+            Assert.That(TrayCue(tray), Is.EqualTo((true, 'u', "&Y")));
+            foreach (var cell in new[] { nearCell, holderCell, trayCell })
+            {
+                cell.IsVisible = false;
+                Assert.False(TrayCue(tray).shown);
+                cell.IsVisible = true;
+                cell.Explored = false;
+                Assert.False(TrayCue(tray).shown);
+                cell.Explored = true;
+                Assert.That(TrayCue(tray), Is.EqualTo((true, 'u', "&Y")));
+            }
+            foreach (var owner in new[] { nearest, holder })
+            {
+                var render = owner.GetPart<RenderPart>();
+                Assert.True(render.Visible);
+                render.Visible = false;
+                Assert.False(TrayCue(tray).shown);
+                render.Visible = true;
+                Assert.That(TrayCue(tray), Is.EqualTo((true, 'u', "&Y")));
+            }
+            Assert.AreEqual(checkpoint, (part.Held, part.Progress, part.LastTick, part.Element, Clock.TickCount));
+            Assert.IsNull(nearest.GetPart<SourceStockPart>());
+            Assert.IsNull(holder.GetPart<SourceStockPart>());
+            Assert.AreEqual(0, Got("BrineCrust"));
+            Assert.AreEqual("=", tray.GetPart<RenderPart>().RenderString);
+        }
+
+        [Test]
+        public void TrayCueForecastDisappearsWhenARivalGathersTheLastUnitInTheSameTick()
+        {
+            var source = Source();
+            var stock = source.GetPart<SourceStockPart>();
+            stock.Available = 1;
+            var tray = SetTray();
+            var rival = SetTray(AX, AY + 2);
+            Reveal(source);
+            var trayCell = Reveal(tray);
+            Reveal(rival);
+            Days(0.6);
+            int tick = Clock.TickCount;
+            Assert.That(TrayCue(tray), Is.EqualTo((true, 'u', "&Y")));
+            Assert.That(TrayCue(rival), Is.EqualTo((true, 'u', "&Y")));
+            Assert.AreEqual(1, stock.Available);
+            Assert.AreEqual(0, Part(tray).Held);
+
+            var gather = TakeRow(rival);
+            var dirtyAt = new List<int>();
+            var priorCellDirty = ZoneRenderHooks.CellDirtyCallback;
+            try
+            {
+                ZoneRenderHooks.CellDirtyCallback = (x, y, _) =>
+                {
+                    if (x == trayCell.X && y == trayCell.Y) dirtyAt.Add(Clock.TickCount);
+                };
+                Assert.True(Act(rival, gather.Command));
+            }
+            finally
+            {
+                ZoneRenderHooks.CellDirtyCallback = priorCellDirty;
+            }
+            Assert.AreEqual(tick, Clock.TickCount);
+            CollectionAssert.Contains(dirtyAt, tick, "Gathering invalidates the other tray's cell in the same turn.");
+            Assert.AreEqual(0, stock.Available);
+            Assert.AreEqual(1, Got("VentScale"));
+            Assert.AreEqual(0, Part(tray).Held);
+            Assert.False(TrayCue(tray).shown);
+            Assert.False(TrayCue(rival).shown);
+        }
+
+        [Test]
+        public void TrayCueShowsActualHeldCatchAfterItLosesTheSourceAndOnlyWhileStandingInView()
+        {
+            var source = Source();
+            var tray = SetTray();
+            var trayCell = Reveal(tray);
+            var sourceCell = Reveal(source);
+            Days(0.6);
+            Assert.AreEqual(1, Part(tray).Reconcile(wild, Clock.TickCount));
+            Assert.That(TrayCue(tray), Is.EqualTo((true, 'U', "&Y")));
+            sourceCell.IsVisible = false;
+            sourceCell.Explored = false;
+            Assert.That(TrayCue(tray), Is.EqualTo((true, 'U', "&Y")));
+            Assert.True(wild.RemoveEntity(source));
+            Assert.That(TrayCue(tray), Is.EqualTo((true, 'U', "&Y")));
+            trayCell.IsVisible = false;
+            Assert.False(TrayCue(tray).shown);
+            trayCell.IsVisible = true;
+            Assert.True(Act(tray, World(tray).Single(row => row.Name == "TakeUpFixture").Command));
+            Assert.AreEqual(1, Part(tray).Held);
+            Assert.False(TrayCue(tray).shown);
+        }
 
         // ── the data: four elements, four reagents, one kit ──
 
@@ -601,7 +729,7 @@ namespace CavesOfOoo.Tests
         [Test] public void TheReaderNamesWhatItSettlesFromWhatAndHowTheSourceLooks_NeverACount()
         {
             Source(); var tray = SetTray(); string fresh = Read(tray); StringAssert.Contains("Settling vent scale from the", fresh); StringAssert.Contains("Holds 0 (it takes 4)", fresh); StringAssert.Contains("plentiful", fresh);
-            Days(1.1); string line = Read(tray); StringAssert.Contains("Holds 2 (it takes 4)", line); StringAssert.Contains("well drawn but not spent", line, "what it would have drawn by now is already out of the source");
+            Days(1.1); string line = Read(tray); StringAssert.Contains("Ready to gather 2", line); StringAssert.DoesNotContain("Holds 2", line); StringAssert.Contains("plentiful", line, "The forecast has not drawn from the physical source.");
             Assert.False(System.Text.RegularExpressions.Regex.IsMatch(line, @"\b\d+ of \d+\b"), "no source arithmetic is shown"); Assert.AreEqual(0, Part(tray).Held, "reading changes nothing");
         }
 
@@ -615,7 +743,10 @@ namespace CavesOfOoo.Tests
 
         [Test] public void AFullTraySaysItIsFullAndPromisesNothingFurther_Counter()
         {
-            Source(); var tray = SetTray(); Days(2.5); string line = Read(tray); StringAssert.Contains("Holds 4", line); StringAssert.Contains("It is full: it settles no more until you empty it", line); StringAssert.DoesNotContain("due", line);
+            Source(); var tray = SetTray(); Days(2.5); string preview = Read(tray);
+            StringAssert.Contains("Ready to gather 4", preview); StringAssert.DoesNotContain("Holds 4", preview); StringAssert.DoesNotContain("due", preview);
+            Assert.AreEqual(4, Part(tray).Reconcile(wild, WorldClock.CurrentTick));
+            string held = Read(tray); StringAssert.Contains("Holds 4", held); StringAssert.Contains("It is full: it settles no more until you empty it", held); StringAssert.DoesNotContain("due", held);
         }
 
         [Test] public void TheDisabledGatherRowOfAnEmptyTraySaysWhenToComeBack()

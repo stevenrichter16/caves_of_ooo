@@ -1,3 +1,12 @@
+**A settling tray shows its present opportunity — November 27, 2026, America/Chicago.**
+One supplied tray beside natural connected steam vents showed its first
+possible catch after 600 ticks. Gathering used one of four shared catches.
+The scale became one heat coat on a cloak, and Continue kept the coat,
+empty flask and three remaining catches. In a separate branch one scraper
+emptied the same source, clearing the cue and the tray's gather choice.
+All 326 targeted cases passed. Ordinary Tinker acquisition remains open.
+[Playtest and receipts](Verification/MachineSystems/SettlingTrayCue20261127/README.md)
+
 **A shower exposes one fallen sealbark slat — November 27, 2026, America/Chicago.**
 The player walked into an unvisited west Morrowfast allotment during the
 ordinary rain in a retained version-17 save. The new source yielded one slat.

@@ -148,6 +148,7 @@ namespace CavesOfOoo.Core
                 string label = SettlingTrayPart.ReagentName(kind), source = near.GetDisplayName(); string element = kind.Id;
                 tx.AfterCommit(() =>
                 {
+                    SettlingTrayPart.InvalidateVisibleTrays(zone);
                     Noise.Mark(actor);   // the strike is heard, whatever follows
                     MessageLog.Add("You scrape " + label + " from the " + source + ". It rings.");
                     Diag.Record("furniture", "SourceScraped", actor, near, new { element, left = stock.Available });

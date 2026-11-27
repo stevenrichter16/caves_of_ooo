@@ -631,6 +631,7 @@ namespace CavesOfOoo.Rendering
             ClearWorldAffordance();
             CurrentZone = zone;
             _fieldOpportunityPaintTick = int.MinValue;
+            _settlingTrayPaintTick = int.MinValue;
             _fieldOpportunityPaintSeason = -1;
             _catchClothPaintWindow = -1;
             _fishMarks.Clear();
@@ -836,6 +837,7 @@ namespace CavesOfOoo.Rendering
         internal bool OwnsEnvironmentRenderer(EnvironmentSpriteRenderer renderer) => _envSpriteRenderer == renderer;
 
         private int _fieldOpportunityPaintTick = int.MinValue;
+        private int _settlingTrayPaintTick = int.MinValue;
         private int _fieldOpportunityPaintSeason = -1;
         private int _catchClothPaintWindow = -1;
         private int _fishPaintTick = int.MinValue;
@@ -899,6 +901,14 @@ namespace CavesOfOoo.Rendering
                     })
                     && zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
                     MarkCellDirty(cell, "Seasonal growth appearance");
+        }
+
+        private void InvalidateSettlingTrayPaint()
+        {
+            int tick = WorldClock.CurrentTick;
+            if (tick == _settlingTrayPaintTick) return;
+            _settlingTrayPaintTick = tick;
+            SettlingTrayPart.InvalidateVisibleTrays(CurrentZone);
         }
 
         private void LateUpdate()
@@ -998,6 +1008,7 @@ namespace CavesOfOoo.Rendering
 
                 // FX ticks only while the world is actually on screen.
                 InvalidateFieldOpportunityPaint();
+                InvalidateSettlingTrayPaint();
                 SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
                 _entityVisualRenderer?.SetPresentationVisible(

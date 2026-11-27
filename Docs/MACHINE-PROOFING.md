@@ -128,6 +128,31 @@ The post and the range only place objects and call creatures through the ordinar
 
 ## 8. Reassessment, and the settling tray (2026-11-20)
 
+**A deployed tray shows when it can be worked.**
+
+The open pan has a visible mark when a catch can be gathered. A separate
+mark shows material already held, including a previously packed catch set
+down elsewhere. The forecast uses the same elapsed time and finite supply
+as Gather. It is visible when the tray, nearby source and stock-bearing
+part of the source are visible. It conveys neither stock count nor the
+locations of unseen vents. An empty, waiting or hidden tray keeps its
+ordinary appearance. Examine distinguishes gathered availability from
+material already held.
+
+A successful scrape, condensation or tray catch can take the last
+available measure before another tray gathers it. The affected visible
+trays repaint after the committed draw. Reading and repainting leave
+the same stock, tray and clock untouched. The portable scraper still
+offers immediate collection. A tray trades installation and half a
+game day for a catch while the player does other work. The catch uses
+the existing garment-proofing action and shares the same no-trade rule.
+
+The Editor trial set down a retained supplied tray beside two natural
+vents, gathered a projected catch, and used it on one cloak. A separate
+branch scraped the shared source dry and cleared the tray's cue. Buying
+this kit from a Tinker remains open.
+[Playtest and receipts](Verification/MachineSystems/SettlingTrayCue20261127/README.md)
+
 **What the first build left.** Read against the brief ("worth it" and "accessible enough that someone uses it when they know they are about to meet an element"), the system holds up, with these holes:
 
 - **Reagents are all bought, grown or looted.** Every unit of proofing comes from a trader, a crop or a caster's pack. A player who knows the hazard ahead (a vent field, a brine flat, a bog of acid) has nothing to do *there*: the place itself gives nothing. That is the reverse of the design intent (the place that threatens you should also be where you prepare).
