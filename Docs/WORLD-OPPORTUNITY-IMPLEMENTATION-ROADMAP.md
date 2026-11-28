@@ -65,7 +65,7 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
-**Design follow-up for #21–27 and #41–45.** A secured field machine gives a physical collection route a recurring purpose. A buyer reaches the actual loading point and takes a paid lot to a real receiver. Improved footing, access or scheduling can help that trip and other compatible trips through the same cells. Current porter and ground work provide the first comparison. [Secure field sites and collection routes](SECURE-FIELD-SITES-AND-COLLECTION.md)
+**Design follow-up for #21–27 and #41–45.** A secured field machine gives a physical collection route a recurring purpose. Gleaners’ existing public loading point, lined well and real wall crossing give us a matched first route to compare for a proposed clay buyer. Existing freight proves the detour, the shortcut and hostile interruption. The new buyer still needs an actual funded contract and both walking legs. Improved footing, access or scheduling can help that trip and other eligible trips through the same cells. [Secure field sites and collection routes](SECURE-FIELD-SITES-AND-COLLECTION.md)
 
 **Second pass across #13–14 and #36–40.** Below Tine, a steam vent
 behind solid rock was within the scraper’s former pack range. The
