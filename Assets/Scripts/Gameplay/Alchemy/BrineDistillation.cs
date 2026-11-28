@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core
         internal const int Feed = 4, Water = 2, Fuel = 5;
         const int CrustWater = 1;
         const string WaterAction = "DistillBrine", CrustAction = "DistillBrineKeepCrust";
-        const string CrustBlueprint = "BrineCrust";
+        internal const string CrustBlueprint = "BrineCrust";
         static readonly (string Name, Type Type)[] CrustParts =
         {
             ("Render", typeof(RenderPart)), ("Physics", typeof(PhysicsPart)), ("Examinable", typeof(ExaminablePart)),
@@ -29,7 +29,7 @@ namespace CavesOfOoo.Core
             || command?.StartsWith(WaterAction + "|", StringComparison.Ordinal) == true;
         static bool IsCrustCommand(string command) => command?.StartsWith(CrustAction + "|", StringComparison.Ordinal) == true;
 
-        static Blueprint QualifiedCrust(EntityFactory factory)
+        internal static Blueprint QualifiedCrust(EntityFactory factory)
         {
             if (factory?.Blueprints.TryGetValue(CrustBlueprint, out var blueprint) != true || blueprint == null
                 || blueprint.Name != CrustBlueprint || !MaterialProcessRegistry.Portable(factory, CrustBlueprint)
@@ -51,14 +51,18 @@ namespace CavesOfOoo.Core
                     && (!item.HasTag("Terrain") || item.GetPart<LiquidPoolPart>() is { Volume: > 0 }))
                 && zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) != true;
 
-        static bool CanonicalCrust(Entity crust)
+        internal static bool CanonicalCrust(Entity crust)
+            => CrustPayload(crust) && crust.GetPart<PhysicsPart>() is { InInventory: null, Equipped: null }
+                && crust.GetPart<StackerPart>()?.StackCount == 1;
+
+        internal static bool CrustPayload(Entity crust)
             => crust?.BlueprintName == CrustBlueprint && !string.IsNullOrEmpty(crust.ID)
                 && crust.HasTag("Item") && crust.HasTag("NoTrade") && !crust.HasTag("Barren")
                 && !crust.HasTag("Creature") && !crust.HasTag("Terrain") && !crust.HasTag("Solid")
                 && crust.Parts.Count == CrustParts.Length && crust.Parts.All(part => part.ParentEntity == crust)
                 && CrustParts.All(part => crust.Parts.Count(actual => actual.GetType() == part.Type) == 1)
-                && crust.GetPart<PhysicsPart>() is { Weight: 1, Takeable: true, Solid: false, InInventory: null, Equipped: null }
-                && crust.GetPart<StackerPart>()?.StackCount == 1 && crust.GetPart<CommercePart>()?.Value == 0
+                && crust.GetPart<PhysicsPart>() is { Weight: 1, Takeable: true, Solid: false }
+                && crust.GetPart<CommercePart>()?.Value == 0
                 && crust.GetPart<ReagentPart>()?.PropertiesRaw == "conductive:1";
 
         sealed class Owner

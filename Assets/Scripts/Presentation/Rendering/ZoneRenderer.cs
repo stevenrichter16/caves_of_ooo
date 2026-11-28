@@ -872,11 +872,19 @@ namespace CavesOfOoo.Rendering
             bool allotment = zone?.ZoneID == RepairCultivationSite.ZoneID;
             bool posy = zone?.ZoneID == BiomeCropPlacement.PosyOutskirts;
             bool gleaners = zone?.ZoneID == GleanersDistrict.SurfaceID;
-            if (!allotment && !posy && !gleaners && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
+            bool brineRim = zone?.ZoneID == BrineRimStockPart.Site;
+            if (!allotment && !posy && !gleaners && !brineRim && zone?.ZoneID != SpreadExplorationWorksites.NorthWorksZoneID) return;
             int tick = WorldClock.CurrentTick;
             int previousTick = _fieldOpportunityPaintTick;
             if (tick == previousTick) return;
             _fieldOpportunityPaintTick = tick;
+            if (brineRim)
+            {
+                foreach (var owner in zone.GetReadOnlyEntitiesWithPart<BrineRimStockPart>())
+                    if (zone.GetEntityCell(owner) is { Explored: true, IsVisible: true } cell)
+                        MarkCellDirty(cell, "Dry brine rim appearance");
+                return;
+            }
             if (gleaners)
             {
                 if (previousTick < 0 || previousTick / RegionalWeather.WindowTicks != tick / RegionalWeather.WindowTicks)

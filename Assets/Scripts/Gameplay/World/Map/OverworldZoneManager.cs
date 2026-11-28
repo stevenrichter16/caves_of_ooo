@@ -1257,6 +1257,7 @@ namespace CavesOfOoo.Core
                 if (soddenAccepted) PeatWorksStillRecovery.TryInstall(zone, this);
                 CausewaySteamSeam.Install(this, zone);
                 SillSettlingPocket.Install(this, zone);
+                BrineRimStockPart.TryInstall(zone, this);
                 SlipEastLighting.Install(this, zone);
                 sumphold?.InstallCargo(zone);
             }
@@ -1271,6 +1272,8 @@ namespace CavesOfOoo.Core
             && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID)
             && !InstallationMarkerPart.Retain(this,zoneID) && !CausewaySteamSeam.Retain(this,zoneID)
             && !SillSettlingPocket.Retain(this,zoneID) && !CropRain.Retain(this,zoneID)
+            && !(zoneID == BrineRimStockPart.Site && CachedZones.TryGetValue(zoneID, out var brineRim)
+                 && brineRim.GetReadOnlyEntitiesWithPart<BrineRimStockPart>().Count > 0)
             && !(zoneID == SlipEastLighting.ZoneId && CachedZones.TryGetValue(zoneID, out var slip)
                  && slip.GetReadOnlyEntitiesWithPart<PlaceConditionLightPart>().Count > 0)
             && !SumpholdFurnishingBuilder.RetainsCargoSite(this,zoneID);

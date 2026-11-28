@@ -1,0 +1,2864 @@
+{
+  "source": {
+    "checkpoint": "/Users/steven/coo-verification/checkpoints/BrineBatchReadiness20261127/Ready2220/c6079358f8fc4e4d83fd8416612932e3",
+    "sha": {
+      "Quick.json": "000c323ef1287b9dd07c51f7832b2caf4d9312c62f0873c66f4a7186285e569b",
+      "Quick.json.bak": "752148b2eb94954032dff7257d894a8b8565f47bffb24ccf9a2992d2de87a5da",
+      "Quick.sav.gz": "c433439d4d45838f90e31be78d6881dad26b33bb2b09615c7039cb7ddd30fbdf",
+      "Quick.sav.gz.bak": "b8f1c9bb62cdfa5aeafb22d8f587ae5c83c541297c8fd3283781de238d9dd608"
+    }
+  },
+  "oldBaseline": {
+    "zone": "Overworld.17.13.0",
+    "position": [
+      40,
+      13
+    ],
+    "tick": 2390,
+    "hp": 40,
+    "rain": true,
+    "valid": true,
+    "Window": 3,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": ""
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine"
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger"
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler"
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak"
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "13941",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14031",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null
+          },
+          {
+            "ID": "2699",
+            "BlueprintName": "Player",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "ActivatedAbilities",
+              "Skills",
+              "LightSource",
+              "ShortBladesSkill",
+              "ShortBlades_Puncture",
+              "ShortBlades_Bloodletter",
+              "ShortBlades_Rejoinder",
+              "ShortBlades_Shank",
+              "ShortBlades_Flurry",
+              "WorldMap",
+              "WorldMapTravelCost"
+            ],
+            "volume": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14113",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null
+          },
+          {
+            "ID": "14114",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14202",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null
+          },
+          {
+            "ID": "14203",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90
+          }
+        ]
+      }
+    ]
+  },
+  "fixture": {
+    "ID": "12616",
+    "BlueprintName": "Scraper",
+    "tick": 2220,
+    "didSupply": true
+  },
+  "rain": {
+    "zone": "Overworld.17.13.0",
+    "position": [
+      40,
+      13
+    ],
+    "tick": 2390,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": true,
+    "valid": true,
+    "Window": 3,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "2699",
+            "BlueprintName": "Player",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "ActivatedAbilities",
+              "Skills",
+              "LightSource",
+              "ShortBladesSkill",
+              "ShortBlades_Puncture",
+              "ShortBlades_Bloodletter",
+              "ShortBlades_Rejoinder",
+              "ShortBlades_Shank",
+              "ShortBlades_Flurry",
+              "WorldMap",
+              "WorldMapTravelCost"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": false
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "wetReader": {
+    "open": true,
+    "title": "salt crust",
+    "blueprint": "SaltCrust",
+    "lines": [
+      "CURRENT STATE",
+      "",
+      "A dark streak follows the rim. Fair weather and dry",
+      "footing will expose one loose brine crust.",
+      "",
+      "The pan cracked into plates as it dried. The ridges",
+      "are sharp enough to read by.",
+      "",
+      "Type: Terrain"
+    ],
+    "sections": [
+      {
+        "Heading": "Current state",
+        "Text": "A dark streak follows the rim. Fair weather and dry footing will expose one loose brine crust."
+      },
+      {
+        "Heading": "Description",
+        "Text": "The pan cracked into plates as it dried. The ridges are sharp enough to read by."
+      }
+    ]
+  },
+  "wetMenu": {
+    "mode": "WorldActionMenuOpen",
+    "selected": "examine",
+    "rows": [
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "pour brine south (12) [liquid flask]",
+        "key": "\u0000",
+        "Command": "PourLiquidVessel|brine|12|Overworld.17.13.0|40|14",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "scatter grit south (1 item) [silver sand]",
+        "key": "\u0000",
+        "Command": "ScatterGrit|Overworld.17.13.0|40|13|40|14|1",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "pour one brine south [liquid flask]",
+        "key": "\u0000",
+        "Command": "PourOneLiquidVessel|brine|12|Overworld.17.13.0|40|14",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "key": "\u0000",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ]
+  },
+  "fair": {
+    "zone": "Overworld.17.13.0",
+    "position": [
+      41,
+      14
+    ],
+    "tick": 2410,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": false
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "visibleWetControl": {
+    "zone": "Overworld.17.13.0",
+    "position": [
+      40,
+      13
+    ],
+    "tick": 2390,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": true,
+    "valid": true,
+    "Window": 3,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "13941",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14031",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "2699",
+            "BlueprintName": "Player",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "ActivatedAbilities",
+              "Skills",
+              "LightSource",
+              "ShortBladesSkill",
+              "ShortBlades_Puncture",
+              "ShortBlades_Bloodletter",
+              "ShortBlades_Rejoinder",
+              "ShortBlades_Shank",
+              "ShortBlades_Flurry",
+              "WorldMap",
+              "WorldMapTravelCost"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14113",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14114",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": false
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14202",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14203",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "visibleDryControl": {
+    "zone": "Overworld.17.13.0",
+    "position": [
+      41,
+      14
+    ],
+    "tick": 2410,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "13941",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14031",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14113",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14114",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": false
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14202",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14203",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "fairMenu": {
+    "mode": "WorldActionMenuOpen",
+    "selected": "Scrape dry brine crust",
+    "rows": [
+      {
+        "Display": "Scrape dry brine crust",
+        "key": "\u0000",
+        "Command": "ScrapeDryBrineCrust|14115|642a9a33f44e442e946d2991f9d259e7",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": "One action for one flake from the rim. Leaves the pool untouched."
+      },
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "pour brine west (12) [liquid flask]",
+        "key": "\u0000",
+        "Command": "PourLiquidVessel|brine|12|Overworld.17.13.0|40|14",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "scatter grit west (1 item) [silver sand]",
+        "key": "\u0000",
+        "Command": "ScatterGrit|Overworld.17.13.0|41|14|40|14|1",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "pour one brine west [liquid flask]",
+        "key": "\u0000",
+        "Command": "PourOneLiquidVessel|brine|12|Overworld.17.13.0|40|14",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "key": "\u0000",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ]
+  },
+  "scraped": {
+    "zone": "Overworld.17.13.0",
+    "position": [
+      41,
+      14
+    ],
+    "tick": 2420,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "15109",
+        "BlueprintName": "BrineCrust",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:s0",
+            "BlueprintName": "SariSnake",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:sky",
+            "BlueprintName": "SkySari",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon",
+              "Stoop"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": true
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "sillBeforePress": {
+    "zone": "Overworld.10.10.0",
+    "position": [
+      39,
+      11
+    ],
+    "tick": 2580,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "15109",
+        "BlueprintName": "BrineCrust",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:s0",
+            "BlueprintName": "SariSnake",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:sky",
+            "BlueprintName": "SkySari",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon",
+              "Stoop"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": true
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "recipe": {
+    "panel": 4,
+    "subtab": "Recipes",
+    "labels": [
+      "PACK & EQUIPMENT",
+      "Weight 26/240 lb   Drams 5   Ink 50",
+      "Equipment",
+      "Inventory",
+      "Tinkering",
+      "Abilities",
+      "Crafting",
+      "Loadouts",
+      "FORGE",
+      "BREW",
+      "RECIPES",
+      "FROM YOUR PACK",
+      "STATUS",
+      "Alchemy supplies",
+      "Shock-proofing",
+      "+35 shock resist (coat)",
+      "Available",
+      "1-2 of 2",
+      "SELECTED RECIPE",
+      "Shock-proofing",
+      "Press into liquid flask (shock-proofing, 1 coat;\n0->1/12)\n\nCarried input: brine crust\n\nSpends one brine crust. Each coat later proofs one\ngarment against shock: +35 shock resistance for 100\nworn turns, and it blunts shock stun. No fire or\nworkbench needed.",
+      "MAKE",
+      "Arrows: browse   Enter: make   F/B/P: subtab   Tab: next panel   F1: details   Esc: close"
+    ],
+    "cursor": 1,
+    "rows": [
+      {
+        "label": "Alchemy supplies",
+        "header": true,
+        "item": null,
+        "id": null,
+        "command": null,
+        "blocked": null,
+        "disabled": null,
+        "highlights": null,
+        "name": null,
+        "output": null
+      },
+      {
+        "label": "Shock-proofing",
+        "header": false,
+        "item": "BrineCrust",
+        "id": "15109",
+        "command": "PressProofing",
+        "blocked": "",
+        "disabled": false,
+        "highlights": [
+          "+35 shock resist (coat)"
+        ],
+        "name": "PressProofing",
+        "output": "shock-proofing"
+      }
+    ],
+    "tick": 2580,
+    "items": [
+      {
+        "bp": "WateringGrimoire",
+        "id": "2700",
+        "name": "watering grimoire",
+        "count": 1
+      },
+      {
+        "bp": "CandyCarrotSeed",
+        "id": "2701",
+        "name": "gladroot seed (x4)",
+        "count": 4
+      },
+      {
+        "bp": "EmberwheatSeed",
+        "id": "2702",
+        "name": "emberwheat seed (x2)",
+        "count": 2
+      },
+      {
+        "bp": "HealingTonic",
+        "id": "2706",
+        "name": "healing tonic (x2)",
+        "count": 2
+      },
+      {
+        "bp": "DriedMeat",
+        "id": "2707",
+        "name": "dried meat (x2)",
+        "count": 2
+      },
+      {
+        "bp": "LiquidFlask",
+        "id": "9873",
+        "name": "liquid flask",
+        "count": 1
+      },
+      {
+        "bp": "SilverSand",
+        "id": "10241",
+        "name": "silver sand",
+        "count": 1
+      },
+      {
+        "bp": "LiquidFlask",
+        "id": "10242",
+        "name": "liquid flask",
+        "count": 1
+      },
+      {
+        "bp": "Scraper",
+        "id": "12616",
+        "name": "scraper",
+        "count": 1
+      },
+      {
+        "bp": "BrineCrust",
+        "id": "15109",
+        "name": "brine crust",
+        "count": 1
+      }
+    ]
+  },
+  "pressed": {
+    "zone": "Overworld.10.10.0",
+    "position": [
+      39,
+      11
+    ],
+    "tick": 2590,
+    "coatDuration": null,
+    "hp": 40,
+    "shock": 0,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "shock-proofing",
+        "volume": 1
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": []
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:s0",
+            "BlueprintName": "SariSnake",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:sky",
+            "BlueprintName": "SkySari",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon",
+              "Stoop"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": true
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "coatMenu": {
+    "rows": [
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "2703",
+        "name": "dagger",
+        "bp": "Dagger"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "2704",
+        "name": "buckler",
+        "bp": "Buckler"
+      },
+      {
+        "id": "2705",
+        "name": "cloak",
+        "bp": "Cloak"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "2707",
+        "name": "dried meat (x2)",
+        "bp": "DriedMeat"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "2701",
+        "name": "gladroot seed (x4)",
+        "bp": "CandyCarrotSeed"
+      },
+      {
+        "id": "2702",
+        "name": "emberwheat seed (x2)",
+        "bp": "EmberwheatSeed"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "2706",
+        "name": "healing tonic (x2)",
+        "bp": "HealingTonic"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "10241",
+        "name": "silver sand",
+        "bp": "SilverSand"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "10242",
+        "name": "liquid flask",
+        "bp": "LiquidFlask"
+      },
+      {
+        "id": "9873",
+        "name": "liquid flask",
+        "bp": "LiquidFlask"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "12616",
+        "name": "scraper",
+        "bp": "Scraper"
+      },
+      {
+        "id": null,
+        "name": null,
+        "bp": null
+      },
+      {
+        "id": "2700",
+        "name": "watering grimoire",
+        "bp": "WateringGrimoire"
+      }
+    ],
+    "cursor": 16,
+    "panel": 1,
+    "popupCursor": 1,
+    "actions": [
+      {
+        "command": "examine_material",
+        "display": "Examine"
+      },
+      {
+        "command": "CoatGarment|2704",
+        "display": "coat buckler (worn)"
+      },
+      {
+        "command": "CoatGarment|2705",
+        "display": "coat cloak (worn)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|40|11",
+        "display": "pour shock-proofing east (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|39|11",
+        "display": "pour shock-proofing here (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|39|10",
+        "display": "pour shock-proofing north (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|40|10",
+        "display": "pour shock-proofing northeast (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|38|10",
+        "display": "pour shock-proofing northwest (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|39|12",
+        "display": "pour shock-proofing south (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|38|12",
+        "display": "pour shock-proofing southwest (1)"
+      },
+      {
+        "command": "PourLiquidVessel|shock-proofing|1|Overworld.10.10.0|38|11",
+        "display": "pour shock-proofing west (1)"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|40|11",
+        "display": "pour one shock-proofing east"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|39|11",
+        "display": "pour one shock-proofing here"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|39|10",
+        "display": "pour one shock-proofing north"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|40|10",
+        "display": "pour one shock-proofing northeast"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|38|10",
+        "display": "pour one shock-proofing northwest"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|39|12",
+        "display": "pour one shock-proofing south"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|38|12",
+        "display": "pour one shock-proofing southwest"
+      },
+      {
+        "command": "PourOneLiquidVessel|shock-proofing|1|Overworld.10.10.0|38|11",
+        "display": "pour one shock-proofing west"
+      },
+      {
+        "command": "throw",
+        "display": "Throw"
+      },
+      {
+        "command": "edit_storage_label",
+        "display": "Label item"
+      },
+      {
+        "command": "drop",
+        "display": "Drop"
+      }
+    ]
+  },
+  "coated": {
+    "zone": "Overworld.10.10.0",
+    "position": [
+      39,
+      11
+    ],
+    "tick": 2600,
+    "coatDuration": 100,
+    "hp": 40,
+    "shock": 35,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": [
+          {
+            "Kind": "electric",
+            "Amount": 35,
+            "TurnsLeft": 100,
+            "TurnsTotal": 100
+          }
+        ]
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:s0",
+            "BlueprintName": "SariSnake",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:sky",
+            "BlueprintName": "SkySari",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon",
+              "Stoop"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": true
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "continued": {
+    "zone": "Overworld.10.10.0",
+    "position": [
+      39,
+      11
+    ],
+    "tick": 2600,
+    "coatDuration": 100,
+    "hp": 40,
+    "shock": 35,
+    "rain": false,
+    "valid": true,
+    "Window": 4,
+    "pack": [
+      {
+        "ID": "2700",
+        "BlueprintName": "WateringGrimoire",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "CandyCarrotSeed",
+        "count": 4,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "EmberwheatSeed",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "HealingTonic",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "2707",
+        "BlueprintName": "DriedMeat",
+        "count": 2,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "9873",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "",
+        "volume": 0
+      },
+      {
+        "ID": "10241",
+        "BlueprintName": "SilverSand",
+        "count": 1,
+        "liquid": null,
+        "volume": null
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "LiquidFlask",
+        "count": null,
+        "liquid": "brine",
+        "volume": 12
+      },
+      {
+        "ID": "12616",
+        "BlueprintName": "Scraper",
+        "count": null,
+        "liquid": null,
+        "volume": null
+      }
+    ],
+    "worn": [
+      {
+        "ID": "2703",
+        "BlueprintName": "Dagger",
+        "display": "dagger",
+        "coat": []
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "Buckler",
+        "display": "buckler",
+        "coat": [
+          {
+            "Kind": "electric",
+            "Amount": 35,
+            "TurnsLeft": 100,
+            "TurnsTotal": 100
+          }
+        ]
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "Cloak",
+        "display": "cloak",
+        "coat": []
+      }
+    ],
+    "rim": [
+      {
+        "y": 12,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "13942",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:s0",
+            "BlueprintName": "SariSnake",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 13,
+        "interior": false,
+        "visible": true,
+        "blocked": true,
+        "actors": [
+          {
+            "ID": "14032",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "urqu:-1:sky",
+            "BlueprintName": "SkySari",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Body",
+              "Armor",
+              "Inventory",
+              "Brain",
+              "GivesRep",
+              "DamageFlash",
+              "Corpse",
+              "Material",
+              "Thermal",
+              "MeleeWeapon",
+              "Stoop"
+            ],
+            "volume": null,
+            "spent": null
+          }
+        ]
+      },
+      {
+        "y": 14,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14114",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14115",
+            "BlueprintName": "SaltCrust",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "BrineRimStock"
+            ],
+            "volume": null,
+            "spent": true
+          }
+        ]
+      },
+      {
+        "y": 15,
+        "interior": false,
+        "visible": true,
+        "blocked": false,
+        "actors": [
+          {
+            "ID": "14203",
+            "BlueprintName": "Sand",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable"
+            ],
+            "volume": null,
+            "spent": null
+          },
+          {
+            "ID": "14204",
+            "BlueprintName": "BrinePool",
+            "parts": [
+              "Render",
+              "Physics",
+              "Examinable",
+              "Material",
+              "LiquidPool",
+              "Thermal",
+              "TileStateSource"
+            ],
+            "volume": 90,
+            "spent": null
+          }
+        ]
+      }
+    ]
+  },
+  "archives": {
+    "ScrapedAtRim": {
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "1ad22f8c13c4a37311632d5af68586d4d0847fd206208d38cfa7146818b44d83",
+        "Quick.sav.gz": "4390e11f999143701d3af1fb524785764224b341960d3c78a30effa386f04700",
+        "Quick.json.bak": "c9260114b59169fbf92c050093a4fb195df571ce894498a2a4a305afbbf6f55f",
+        "Quick.sav.gz.bak": "720798ca3338386aee3cddc742e7f550a817a19bda880804d91dcd3646a4878c"
+      }
+    },
+    "CoatedAtRim": {
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "4484dab565f46c84908e0846e2105b459387626e39d3aa8979028b384bcb6713",
+        "Quick.sav.gz": "ea0e2f843a38ee0be2139a65dc37f08f00da4da429c2c3a7a6ec451c5aad1627",
+        "Quick.json.bak": "2a142fe7804cda004c730e1a68813aef8a6c7e59c102e71012b1f7dd81fff8fe",
+        "Quick.sav.gz.bak": "cfdf5458ee602c749172041ab5cba7a7eba3e432937f049a2a5ee5f033743130"
+      }
+    }
+  },
+  "nativeRedNoInstallHook": {
+    "total": 11,
+    "passed": 3,
+    "failed": 8,
+    "skipped": 0
+  },
+  "nativeEditMode": {
+    "total": 439,
+    "passed": 438,
+    "failed": 0,
+    "skipped": 1
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "interruptions": [
+    "You scrape one brine crust from the dry rim.",
+    "sky-sari drops out of the sky onto you!",
+    "You are killed by sky-sari!"
+  ],
+  "finalRimRecheck": {
+    "total": 11,
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0
+  }
+}

@@ -1,3 +1,13 @@
+**A dry brine rim gives the scraper another field use.**
+At one freshly generated Beating Brine Lens, a wet streak gives way to a
+white flake in fair weather. A carried sound scraper takes the one flake
+in one action. The same canonical crust goes into the ordinary flask
+proofing action and can coat worn gear. The flake is spent across rain,
+travel and saves. Pool volume and its separate scraper and settling-tray
+supply follow their ordinary rules. The installed stock belongs to the
+existing passable salt terrain. Older cached layouts are carried forward.
+[Field scrape and portable proofing](Verification/MachineSystems/BrineRimDryCrust20261128/README.md)
+
 **An ordinary camp awning gives a wayfarer somewhere to rest.**
 At the Height of the day in the Beating, a nearby bareheaded travelling
 merchant can move into safe cover when idle. A normal trade remains

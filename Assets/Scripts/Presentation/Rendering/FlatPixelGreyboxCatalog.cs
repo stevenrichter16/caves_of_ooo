@@ -1559,7 +1559,9 @@ namespace CavesOfOoo.Rendering
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                             && _openingArt.TryResolve(owner, x, y, out art));
-            if (!fallback.Remembered && FieldOpportunityAppearance.IsDormantNorthLichen(zone, owner))
+            if (!fallback.Remembered && (FieldOpportunityAppearance.IsDormantNorthLichen(zone, owner)
+                || beatingGroundOwner && owner.HasPart<BrineRimStockPart>()
+                    && FieldOpportunityAppearance.TryGet(zone, owner, out _, out _)))
             {
                 native = false;
                 foreground = fallback.ForegroundTile;

@@ -49,6 +49,15 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #18, #19, #31–#36 and #40, one natural Beating Brine Lens has a
+visible weather-dependent rim reserve. A shower hides the one loose
+flake. Fair weather opens a paid scraper action on dry ground. The
+scraped crust fits the same flask proofing already used for material
+from the still and the pool. Ordinary atlas travel carried it back to
+Sill for pressing and coating. The pool held the same 90 measures and
+the saved rim retained its scrape mark. This covers one local reserve.
+[Rain, scrape, and gear evidence](Verification/MachineSystems/BrineRimDryCrust20261128/README.md)
+
 **Gantry guest-cloth trial.** The existing lasting repair also opens a
 local rest at Gantry's physical pole. A carried cloak and sound wooden peg
 pay once. An oak haft and a sound rough field haft serve the same peg role.
