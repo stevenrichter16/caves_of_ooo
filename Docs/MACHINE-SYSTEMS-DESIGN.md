@@ -1,3 +1,12 @@
+**Visible poisonous gas has an air warning.**
+The Interact menu separates the gas and filter advice from the
+ground’s other conditions. The common readout follows the same
+visible active gas that applies the poison. The original Filter
+Hood from Peat Works halved intake in Brine Camp. Worn protection
+reduced both gas hits on the first step, and lingering poison still
+required recovery.
+[Brine Camp plume and Filter Hood](Verification/MachineSystems/FilterHoodGasContact20261128/README.md)
+
 **The Groundwire Screen names its intended discharge.**
 While the screen is held and the traveler can act, the grounding
 row names its one-turn cost and the maximum charge sent to the

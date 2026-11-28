@@ -49,6 +49,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #36–#40, the poisonous plume cues a practical carried option
+while the underlying mire remains readable. A normal route joined
+an earned Peat Works hood, Sill’s recovered torch and a Brine Camp
+source. Wearing the hood reduced the gas in the same first step.
+The player still acquired poison and the source identity survived
+Continue. This checks one player reaction to a disclosed hazard.
+[Matched Brine Camp touch and filter protection](Verification/MachineSystems/FilterHoodGasContact20261128/README.md)
+
 For #36–#40, the held Groundwire Screen explains its one-turn
 transfer and how wet or metal surfaces can carry charge. The
 ordinary route combined earned Sill brine crust, a portable brew,

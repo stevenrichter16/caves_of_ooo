@@ -1,3 +1,14 @@
+**Brine Camp shows poisonous air separately from mire — November 28, 2026, America/Chicago.**
+The recovered Sill torch lit exact mire 11384. The player at tick
+3000 inspected the first visible density-60 plume. Interact gives
+the gas and terrestrial mire two readable lines. Identical east
+steps with hood 15125 carried or worn halved intake and changed both
+gas hits from five to one. Acid and fire were measured separately.
+Lingering poison still acquired the same source and base damage.
+Fresh Continue retained the exact worn hood and active poison.
+Native 243 passed with one explicit helper skipped.
+[Earned gear, exact contact comparison and reader](Verification/MachineSystems/FilterHoodGasContact20261128/README.md)
+
 **Peat Works grounding shows where the charge goes — November 28, 2026, America/Chicago.**
 Ordinary pickup and brewing used loose Sill brine crust 12616.
 The exact screen 15122 came from the Peat Works locker. One clean

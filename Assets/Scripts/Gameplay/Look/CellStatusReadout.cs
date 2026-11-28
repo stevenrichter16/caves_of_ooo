@@ -20,6 +20,8 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class CellStatusReadout
     {
+        private const string PoisonGasAdvice = "poison gas (wear a filter)";
+
         /// <summary>
         /// Full detail line for look mode / FOCUS panel:
         /// "On the ground: water (5 turns), embers (3 turns), charged".
@@ -30,13 +32,16 @@ namespace CavesOfOoo.Core
         public static string GroundLine(Zone zone, Cell cell)
             => GroundLine(zone, cell, includeFishActivity: true);
 
-        internal static string GroundLine(Zone zone, Cell cell, bool includeFishActivity)
+        internal static string GroundLine(Zone zone, Cell cell, bool includeFishActivity, bool includePoisonGas = true)
         {
-            var parts = Collect(zone, cell, withCounts: true, includeFishActivity);
+            var parts = Collect(zone, cell, withCounts: true, includeFishActivity, includePoisonGas);
             if (parts == null || parts.Count == 0)
                 return null;
             return "On the ground: " + string.Join(", ", parts);
         }
+
+        internal static string PoisonGasLine(Zone zone, Cell cell)
+            => IsDisclosedCell(zone, cell) && HasDisclosedPoisonGas(zone, cell) ? "Air: " + PoisonGasAdvice : null;
 
         /// <summary>
         /// Compact fuel and flame lines for fires. Other fueled objects keep their
@@ -178,16 +183,21 @@ namespace CavesOfOoo.Core
         }
 
 
-        private static List<string> Collect(Zone zone, Cell cell, bool withCounts, bool includeFishActivity)
+        private static bool IsDisclosedCell(Zone zone, Cell cell)
         {
             if (zone == null || cell == null || !cell.Explored || !cell.IsVisible
                 || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell)
-                return null;
+                return false;
 
             var manager = WorldLocationContext.For(zone);
-            if (manager != null && (manager.ActiveZone != zone
-                || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current) || current != zone))
-                return null;
+            return manager == null || (manager.ActiveZone == zone
+                && manager.CachedZones.TryGetValue(zone.ZoneID, out var current) && current == zone);
+        }
+
+        private static List<string> Collect(Zone zone, Cell cell, bool withCounts, bool includeFishActivity,
+            bool includePoisonGas = true)
+        {
+            if (!IsDisclosedCell(zone, cell)) return null;
 
             // Coordinates come from the cell itself, read only after the
             // null guard: the free x,y that used to ride alongside could
@@ -195,6 +205,8 @@ namespace CavesOfOoo.Core
             // so the signature no longer offers a way to desync.
             var state = zone.TileState.Get(cell.X, cell.Y);
             bool preparedBed = HasDisclosedPreparedBed(zone, cell);
+            string poisonGas = includePoisonGas && HasDisclosedPoisonGas(zone, cell)
+                ? (withCounts ? PoisonGasAdvice : "poison gas") : null;
             var activity = includeFishActivity ? FishPond.VisibleActivity(zone, cell, WorldClock.CurrentTick) : FishPond.Activity.None;
             string fishActivity = activity switch
             {
@@ -205,14 +217,16 @@ namespace CavesOfOoo.Core
             };
             if (state == null)
             {
-                if (!preparedBed && fishActivity == null) return null;
+                if (!preparedBed && fishActivity == null && poisonGas == null) return null;
                 var visible = new List<string>();
+                if (poisonGas != null) visible.Add(poisonGas);
                 if (preparedBed) visible.Add("prepared planting bed");
                 if (fishActivity != null) visible.Add(fishActivity);
                 return visible;
             }
 
             var parts = new List<string>();
+            if (poisonGas != null) parts.Add(poisonGas);
             bool gritted = LiquidSlipSystem.HasGrit(zone, cell.X, cell.Y);
             for (int i = 0; i < state.Coatings.Count; i++)
             {
@@ -238,6 +252,20 @@ namespace CavesOfOoo.Core
             if (preparedBed) parts.Add("prepared planting bed");
             if (fishActivity != null) parts.Add(fishActivity);
             return parts;
+        }
+
+        private static bool HasDisclosedPoisonGas(Zone zone, Cell cell)
+        {
+            foreach (var owner in cell.Objects)
+            {
+                var pool = owner?.GetPart<GasPoolPart>();
+                if (pool == null || pool.ParentEntity != owner || pool.Density <= 0) continue;
+                var poison = owner.GetPart<GasPoisonPart>();
+                var render = owner.GetPart<RenderPart>();
+                if (poison?.ParentEntity == owner && render?.ParentEntity == owner && render.Visible
+                    && owner.SpatialZone == zone && zone.GetEntityCell(owner) == cell) return true;
+            }
+            return false;
         }
 
         private static bool HasDisclosedPreparedBed(Zone zone, Cell cell)

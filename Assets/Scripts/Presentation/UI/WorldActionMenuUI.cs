@@ -475,7 +475,10 @@ namespace CavesOfOoo.Rendering
 
             if (zone != null && cell != null)
             {
-                string ground = CellStatusReadout.GroundLine(zone, cell);
+                string air = CellStatusReadout.PoisonGasLine(zone, cell);
+                if (!string.IsNullOrEmpty(air))
+                    lines.Add(air);
+                string ground = CellStatusReadout.GroundLine(zone, cell, includeFishActivity: true, includePoisonGas: false);
                 if (!string.IsNullOrEmpty(ground))
                     lines.Add(ground);
             }
@@ -531,9 +534,9 @@ namespace CavesOfOoo.Rendering
                 int maxLineLen = _popupW - 4;
                 if (line.Length > maxLineLen)
                     line = line.Substring(0, maxLineLen - 1) + "~";
-                bool isGround = line.StartsWith("On the ground:");
+                bool isTerrainCondition = line.StartsWith("On the ground:") || line.StartsWith("Air:");
                 DrawText(2, 3 + si, line,
-                    isGround ? QudColorParser.BrightCyan : QudColorParser.Gray);
+                    isTerrainCondition ? QudColorParser.BrightCyan : QudColorParser.Gray);
             }
 
             int contentY = ContentY;
