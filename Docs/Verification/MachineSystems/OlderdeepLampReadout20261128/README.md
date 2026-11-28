@@ -49,3 +49,14 @@ The final run passed 228 tests and skipped the explicit save-contract
 regeneration helper. The live test ran in the Unity Editor on Apple M5.
 
 [Light levels, saved custody and test results](observations.json)
+
+## Mac standalone
+
+The package includes both the Tally quote and Olderdeep lamp updates.
+It compiled 32,306 pinned inputs with 0 errors
+and 4 warnings. All six native binaries include
+arm64 and x86_64. On an Apple M5, ordinary Continue and world Examine
+showed the updated mounted jar directions.
+
+[Mounted reader in the Mac game](mac-mounted-reader.png) ·
+[Build and preservation receipt](mac-package.json)

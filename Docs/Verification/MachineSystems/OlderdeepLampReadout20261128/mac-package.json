@@ -1,0 +1,102 @@
+{
+  "build": {
+    "project": "/Users/steven/coo-verification/mac-82f5cc2df-20261127/Assets",
+    "commit": "8f39a4663991a81e0e359e484917bfeee49d76c6",
+    "result": "Succeeded",
+    "output": "/Users/steven/coo-verification/builds/mac-8f39a4663-20261128/CavesOfOoo.app",
+    "errors": 0,
+    "warnings": 4,
+    "bytes": 365392973,
+    "seconds": 20.579575,
+    "messages": [
+      {
+        "type": "Log",
+        "content": "1 URP assets included in build\n- UniversalRP - Assets/Settings/UniversalRP.asset\n\t - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData\n\t - Village3DRenderer - Assets/Art3D/Village/Rendering/Village3DRenderer.asset - UnityEngine.Rendering.Universal.UniversalRendererData\n"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/CoatedInPlasmaEffect.cs(44,23): warning CS0108: 'CoatedInPlasmaEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs(552,25): warning CS0162: Unreachable code detected"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs(49,22): warning CS0414: The field 'ShortBlades_Backstab._isFlanked' is assigned but its value is never used"
+      },
+      {
+        "type": "Log",
+        "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+      },
+      {
+        "type": "Warning",
+        "content": "Access token is empty. Native symbols will not be uploaded for this build. Please make sure you are signed in to the Unity Cloud."
+      }
+    ]
+  },
+  "pinnedInputs": 32306,
+  "retainedApps": {
+    "/Users/steven/coo-verification/builds/mac-4102a2fb1-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-a6534b3a2-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-af2414486-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-7a13bf458-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2af18031c-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-fd6579219-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2e98519f4-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2c4931acc-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-9dae6a99c-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-17-machines-c600701d0-current/CavesOfOoo.app": 186
+  },
+  "binaryArchitectures": {
+    "Contents/Frameworks/UnityPlayer.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libMonoPosixHelper.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libmono-native.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libmonobdwgc-2.0.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/MacOS/caves-of-ooo": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/PlugIns/lib_burst_generated.bundle": [
+      "x86_64",
+      "arm64"
+    ]
+  },
+  "verifiedHardware": "Apple M5",
+  "savesAndPreferences": {
+    "normalSaveFiles": 862,
+    "normalSaveRoots": [
+      "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves",
+      "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP/Saves"
+    ],
+    "normalPrefsIdentical": {
+      "com.DefaultCompany.2D-URP": true,
+      "unity.DefaultCompany.caves-of-ooo": true
+    },
+    "pinnedNormalPreferenceFilesMatchBytes": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    },
+    "playerStopped": true,
+    "privateFixtureUnchanged": true,
+    "privateSlotAfter": {
+      "Quick.json": "56c3009888540351322e74c6936552f3db31293fb50495e9abd2ca81f2e41e35",
+      "Quick.json.bak": "ae4cc69bbd8492de9ba2129608ebf96bee68b785a75c64353ab6d9572153268e",
+      "Quick.sav.gz": "223dadbbeb9b7c6a4b8cf978dac3a92e9cfa2c7ef7fca3e0230af39424ccb691",
+      "Quick.sav.gz.bak": "96f0891f818718fd548038e5048032e414437764d41ae51370377de1bd27e553"
+    },
+    "publishedAppAndRetainedAppsExact": true
+  }
+}
