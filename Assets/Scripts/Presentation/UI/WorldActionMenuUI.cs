@@ -392,29 +392,14 @@ namespace CavesOfOoo.Rendering
         //     [Enter]select [Esc]cancel
 
         /// <summary>
-        /// The title bar: what the cell holds, plus how much health the
-        /// thing you are pointing at has left.
-        ///
-        /// <para>The readout is appended only for a single-target menu.
-        /// On a pile cell the description is "A pile of items,
-        /// including: …", and one member's hitpoints hanging off the end
-        /// of that would read as belonging to the list.</para>
-        ///
-        /// <para>Public and static rather than private so it can be tested
-        /// without a Tilemap — <see cref="Render"/> needs Unity objects
-        /// this string does not. (Tests are a separate assembly, so
-        /// <c>internal</c> would not be visible to them.)</para>
+        /// Names the selected entity and shows its health. A pile summary or
+        /// target picker instead describes the cell as a whole.
+        /// Status remains in its own section (see <see cref="BuildStatusLinesFor"/>).
         /// </summary>
-        /// <summary>Title stays short — name + [HP]. Status lives in
-        /// its own SECTION (see <see cref="BuildStatusLinesFor"/>): the
-        /// title-suffix experiment died on first contact with real
-        /// content, because "You see Rotwood Herbalist. [HP 14/20]" is
-        /// 38 of the 44-char title budget and the affliction group was
-        /// silently fit-dropped every time.</summary>
-        public static string BuildTitleFor(Cell cell, Entity target)
+        public static string BuildTitleFor(Cell cell, Entity target, bool summarizeCell = false)
         {
-            string title = WorldInteractionSystem.DescribeCell(cell);
-            if (cell != null && WorldInteractionSystem.IsPileCell(cell)) return title;
+            string title = summarizeCell ? null : WorldInteractionSystem.DescribeEntity(target);
+            if (title == null) return WorldInteractionSystem.DescribeCell(cell);
 
             string health = HealthReadout.Describe(target);
             return health.Length > 0 ? title + "  [" + health + "]" : title;
@@ -501,7 +486,7 @@ namespace CavesOfOoo.Rendering
             return lines;
         }
 
-        private string BuildTitle() => _titleOverride ?? BuildTitleFor(_cell, _target);
+        private string BuildTitle() => _titleOverride ?? BuildTitleFor(_cell, _target, _cellIsPile || IsTargetPicker);
 
         private void Render()
         {

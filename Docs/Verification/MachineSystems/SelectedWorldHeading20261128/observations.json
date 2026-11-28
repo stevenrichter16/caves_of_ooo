@@ -1,0 +1,663 @@
+{
+  "baseline": "84c9ccdb2b743fc26e170b09e235529e3bf4e543",
+  "save": [
+    "ExposedBank",
+    "c6079358f8fc4e4d83fd8416612932e3"
+  ],
+  "savePins": {
+    "Quick.json": "2ddfd13fda3912da01ab2aeee8e6c3988040813fa5fb37c511d544fd15679125",
+    "Quick.sav.gz": "80ea3c6622aa2376fb15597438c3ee7093cc6974aaff9f296a84da746621b8f0",
+    "Quick.json.bak": "86248f5c9f97842a39a4b2aef8e3ba1e797533cde11f0cb9afa72bfbc4a1af6e",
+    "Quick.sav.gz.bak": "c8892228ddccf3651629e440af58a6883146f2388c8e3a769a19d7d473740c3b"
+  },
+  "live": {
+    "before-menus": {
+      "zone": "Overworld.10.10.0",
+      "x": 42,
+      "y": 17,
+      "tick": 1520,
+      "hp": 32,
+      "purse": 1,
+      "deposit": {
+        "ID": "12284",
+        "x": 42,
+        "y": 18,
+        "spent": false,
+        "v": true,
+        "waters": [],
+        "yield": "SilverSand"
+      },
+      "stock": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "label": "watering grimoire",
+          "n": 1,
+          "vol": null,
+          "contents": null,
+          "weight": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "label": "gladroot seed (x4)",
+          "n": 4,
+          "vol": null,
+          "contents": null,
+          "weight": 0
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "label": "emberwheat seed (x2)",
+          "n": 2,
+          "vol": null,
+          "contents": null,
+          "weight": 0
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "label": "healing tonic (x2)",
+          "n": 2,
+          "vol": null,
+          "contents": null,
+          "weight": 1
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "label": "dried meat (x2)",
+          "n": 2,
+          "vol": null,
+          "contents": null,
+          "weight": 2
+        },
+        {
+          "ID": "9240",
+          "BlueprintName": "HandSieve",
+          "label": "hand sieve",
+          "n": 1,
+          "vol": null,
+          "contents": null,
+          "weight": 4
+        },
+        {
+          "ID": "9244",
+          "BlueprintName": "LiquidFlask",
+          "label": "liquid flask",
+          "n": 1,
+          "vol": 12,
+          "contents": null,
+          "weight": 1
+        }
+      ],
+      "local": [
+        {
+          "ID": "12130",
+          "BlueprintName": "WellKeeper",
+          "label": "Dovrin Reedfall, well-keeper",
+          "dialogue": "WellKeeper_1",
+          "x": 8,
+          "y": 19
+        },
+        {
+          "ID": "12257",
+          "BlueprintName": "Elder",
+          "label": "elder",
+          "dialogue": "Drama_Vex_DiminishedHead",
+          "x": 10,
+          "y": 20
+        },
+        {
+          "ID": "12057",
+          "BlueprintName": "Well",
+          "label": "fouled well (cracked ring)",
+          "dialogue": null,
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "12085",
+          "BlueprintName": "Elder",
+          "label": "elder",
+          "dialogue": "Elder_Well_1",
+          "x": 57,
+          "y": 15
+        },
+        {
+          "ID": "12155",
+          "BlueprintName": "Innkeeper",
+          "label": "Dovrin Mosswick, innkeeper",
+          "dialogue": "Innkeeper_1",
+          "x": 66,
+          "y": 11
+        },
+        {
+          "ID": "12161",
+          "BlueprintName": "Villager",
+          "label": "Dovrin Wethand, villager",
+          "dialogue": "Villager_1",
+          "x": 73,
+          "y": 13
+        },
+        {
+          "ID": "12138",
+          "BlueprintName": "Farmer",
+          "label": "Dovrin Ternfold, farmer",
+          "dialogue": "Farmer_1",
+          "x": 74,
+          "y": 10
+        }
+      ],
+      "grit": false,
+      "marks": [],
+      "well": {
+        "ID": "12057",
+        "stage": "Fouled",
+        "outcome": "None"
+      }
+    },
+    "tile-entry": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "title": "You see a soot gremlin.  [HP 15/15]",
+      "target": "12177",
+      "name": "soot gremlin",
+      "pile": false,
+      "picker": false,
+      "selected": "Examine",
+      "reader": null,
+      "rows": [
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour water south (12) [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourOneLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour one water south [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "target-picker": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "title": "You see a soot gremlin.",
+      "target": "12177",
+      "name": "soot gremlin",
+      "pile": false,
+      "picker": true,
+      "selected": "PickTarget:12177",
+      "reader": null,
+      "rows": [
+        {
+          "Command": "PickTarget:12177",
+          "Display": "soot gremlin",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickTarget:12284",
+          "Display": "settling pocket",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickTarget:10346",
+          "Display": "grass",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "selected-pocket": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "title": "You see the settling pocket.",
+      "target": "12284",
+      "name": "settling pocket",
+      "pile": false,
+      "picker": false,
+      "selected": "Harvest",
+      "reader": null,
+      "rows": [
+        {
+          "Command": "Harvest",
+          "Display": "gather exposed silver sand",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "GatherSillBankGravel",
+          "Display": "gather the whole bank gravel (2 lb)",
+          "IsDisabled": false,
+          "Hint": "The same deposit as the sand. A hand sieve separates one silver sand and one coarse grit."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour water south (12) [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourOneLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour one water south [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "details": {
+      "mode": "AnnouncementOpen",
+      "open": false,
+      "title": null,
+      "target": "12284",
+      "name": "settling pocket",
+      "pile": false,
+      "picker": false,
+      "selected": null,
+      "reader": "Selected action (reading only):\ngather the whole bank gravel (2 lb)\n\nYou see a settling pocket.\nThe water has cleared. Fine silver sand lies between the coarse stones. Pick the sand or take the whole loose gravel to sieve.",
+      "rows": [
+        {
+          "Command": "Harvest",
+          "Display": "gather exposed silver sand",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "GatherSillBankGravel",
+          "Display": "gather the whole bank gravel (2 lb)",
+          "IsDisabled": false,
+          "Hint": "The same deposit as the sand. A hand sieve separates one silver sand and one coarse grit."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour water south (12) [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourOneLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour one water south [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "returned-pocket": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "title": "You see the settling pocket.",
+      "target": "12284",
+      "name": "settling pocket",
+      "pile": false,
+      "picker": false,
+      "selected": "GatherSillBankGravel",
+      "reader": null,
+      "rows": [
+        {
+          "Command": "Harvest",
+          "Display": "gather exposed silver sand",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "GatherSillBankGravel",
+          "Display": "gather the whole bank gravel (2 lb)",
+          "IsDisabled": false,
+          "Hint": "The same deposit as the sand. A hand sieve separates one silver sand and one coarse grit."
+        },
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour water south (12) [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourOneLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour one water south [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "returned-picker": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "title": "You see a soot gremlin.",
+      "target": "12177",
+      "name": "soot gremlin",
+      "pile": false,
+      "picker": true,
+      "selected": "PickTarget:12177",
+      "reader": null,
+      "rows": [
+        {
+          "Command": "PickTarget:12177",
+          "Display": "soot gremlin",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickTarget:12284",
+          "Display": "settling pocket",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickTarget:10346",
+          "Display": "grass",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "selected-gremlin": {
+      "mode": "WorldActionMenuOpen",
+      "open": true,
+      "title": "You see a soot gremlin.  [HP 15/15]",
+      "target": "12177",
+      "name": "soot gremlin",
+      "pile": false,
+      "picker": false,
+      "selected": "Examine",
+      "reader": null,
+      "rows": [
+        {
+          "Command": "Examine",
+          "Display": "examine",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour water south (12) [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PourOneLiquidVessel|water|12|Overworld.10.10.0|42|18",
+          "Display": "pour one water south [liquid flask]",
+          "IsDisabled": false,
+          "Hint": ""
+        },
+        {
+          "Command": "PickCell",
+          "Display": "<< everything here",
+          "IsDisabled": false,
+          "Hint": ""
+        }
+      ]
+    },
+    "after-menus": {
+      "zone": "Overworld.10.10.0",
+      "x": 42,
+      "y": 17,
+      "tick": 1520,
+      "hp": 32,
+      "purse": 1,
+      "deposit": {
+        "ID": "12284",
+        "x": 42,
+        "y": 18,
+        "spent": false,
+        "v": true,
+        "waters": [],
+        "yield": "SilverSand"
+      },
+      "stock": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "label": "watering grimoire",
+          "n": 1,
+          "vol": null,
+          "contents": null,
+          "weight": 2
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "label": "gladroot seed (x4)",
+          "n": 4,
+          "vol": null,
+          "contents": null,
+          "weight": 0
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "label": "emberwheat seed (x2)",
+          "n": 2,
+          "vol": null,
+          "contents": null,
+          "weight": 0
+        },
+        {
+          "ID": "2706",
+          "BlueprintName": "HealingTonic",
+          "label": "healing tonic (x2)",
+          "n": 2,
+          "vol": null,
+          "contents": null,
+          "weight": 1
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "label": "dried meat (x2)",
+          "n": 2,
+          "vol": null,
+          "contents": null,
+          "weight": 2
+        },
+        {
+          "ID": "9240",
+          "BlueprintName": "HandSieve",
+          "label": "hand sieve",
+          "n": 1,
+          "vol": null,
+          "contents": null,
+          "weight": 4
+        },
+        {
+          "ID": "9244",
+          "BlueprintName": "LiquidFlask",
+          "label": "liquid flask",
+          "n": 1,
+          "vol": 12,
+          "contents": null,
+          "weight": 1
+        }
+      ],
+      "local": [
+        {
+          "ID": "12130",
+          "BlueprintName": "WellKeeper",
+          "label": "Dovrin Reedfall, well-keeper",
+          "dialogue": "WellKeeper_1",
+          "x": 8,
+          "y": 19
+        },
+        {
+          "ID": "12257",
+          "BlueprintName": "Elder",
+          "label": "elder",
+          "dialogue": "Drama_Vex_DiminishedHead",
+          "x": 10,
+          "y": 20
+        },
+        {
+          "ID": "12057",
+          "BlueprintName": "Well",
+          "label": "fouled well (cracked ring)",
+          "dialogue": null,
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "12085",
+          "BlueprintName": "Elder",
+          "label": "elder",
+          "dialogue": "Elder_Well_1",
+          "x": 57,
+          "y": 15
+        },
+        {
+          "ID": "12155",
+          "BlueprintName": "Innkeeper",
+          "label": "Dovrin Mosswick, innkeeper",
+          "dialogue": "Innkeeper_1",
+          "x": 66,
+          "y": 11
+        },
+        {
+          "ID": "12161",
+          "BlueprintName": "Villager",
+          "label": "Dovrin Wethand, villager",
+          "dialogue": "Villager_1",
+          "x": 73,
+          "y": 13
+        },
+        {
+          "ID": "12138",
+          "BlueprintName": "Farmer",
+          "label": "Dovrin Ternfold, farmer",
+          "dialogue": "Farmer_1",
+          "x": 74,
+          "y": 10
+        }
+      ],
+      "grit": false,
+      "marks": [],
+      "well": {
+        "ID": "12057",
+        "stage": "Fouled",
+        "outcome": "None"
+      }
+    }
+  },
+  "red": {
+    "counts": {
+      "total": 27,
+      "passed": 24,
+      "failed": 3,
+      "skipped": 0
+    },
+    "failedCases": [
+      {
+        "case": "ExactDepositMenuNamesTheDepositWhenACreatureSharesItsCell(False)",
+        "failure": "  Expected: String starting with \"You see the settling pocket.\"\n  But was:  \"You see a mole.             [Enter]ok [Esc]x\"\n"
+      },
+      {
+        "case": "ExactDepositMenuNamesTheDepositWhenACreatureSharesItsCell(True)",
+        "failure": "  Expected: String starting with \"You see the settling pocket.\"\n  But was:  \"A pile of items, including: dagger, mole.\"\n"
+      },
+      {
+        "case": "ExactObjectOnPlayerCellShowsItsOwnHealth",
+        "failure": "  Expected: String starting with \"You see a barrel.  [HP 4/9]\"\n  But was:  \"You see a barrel.           [Enter]ok [Esc]x\"\n"
+      }
+    ]
+  },
+  "duringDevelopment": {
+    "counts": {
+      "total": 208,
+      "passed": 207,
+      "failed": 1,
+      "skipped": 0
+    },
+    "failedCases": [
+      {
+        "case": "ReopeningWorldMenuAfterChoicesRestoresDefaultTitleStatusAndPileFlag",
+        "failure": "  Expected: String starting with \"You see a test actor.  [HP 6/10]\"\n  But was:  \"You see a test actor.          [A]ok [B]back\"\n"
+      }
+    ]
+  },
+  "guard": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "preferences": {
+    "unity.DefaultCompany.caves-of-ooo": {
+      "matched": true,
+      "ownedChangesRestored": [
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.session_id"
+      ]
+    },
+    "com.DefaultCompany.2D-URP": {
+      "matched": true,
+      "ownedChangesRestored": []
+    }
+  },
+  "imageHashes": {
+    "01-before-selected-pocket.png": "7b9955e74a84f2f585e116fdc278ba6a47d8e32924d64a4e92af7cc52ea0d518",
+    "02-selected-pocket.png": "022d3f75913632da0c6429f04ee5dd2b2acdb24f79e004752fc92b3f32c762bc",
+    "03-pocket-details.png": "011e3382f33d3c74bc826032af211af5b5a9aee8a5c30e3cb0bdeb122ed68804",
+    "04-selected-creature.png": "d80cc68adeed69fa1a71c4d08e13315932c92af4f98db3d312b881bb9e286943"
+  },
+  "finalNative": {
+    "titleAndAdjacent": 208,
+    "passed": 208,
+    "combined": 349
+  }
+}

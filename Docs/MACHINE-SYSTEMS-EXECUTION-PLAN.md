@@ -1,3 +1,11 @@
+**World actions name the object you selected — November 28, 2026, America/Chicago.**
+The Sill tile held a gremlin and the original settling pocket. Selecting
+the pocket now names the pocket. F1 describes it and returns to the
+highlighted gravel action. The picker still describes the tile and
+selecting the gremlin shows its health. Opening, reading and switching
+spent no turns and left the bank pocket untouched.
+[Matched Sill screenshots and checks](Verification/MachineSystems/SelectedWorldHeading20261128/README.md)
+
 **Sill gravel extends one finite source into two field uses — November 28, 2026, America/Chicago.**
 An ordinary traveler bought a sieve and flask, drained the bank pocket,
 and chose its whole gravel instead of hand-picking sand. The sieve gave

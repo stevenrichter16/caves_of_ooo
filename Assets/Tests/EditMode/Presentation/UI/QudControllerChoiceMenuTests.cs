@@ -91,7 +91,8 @@ namespace CavesOfOoo.Tests
             StringAssert.StartsWith("Wait", Row(1)); Assert.AreEqual(3, ContentY);
             menu.HideForReader();
             menu.Open(actor, actor, cell, actions, zone, true);
-            StringAssert.StartsWith(WorldActionMenuUI.BuildTitleFor(cell, actor), Row(1));
+            StringAssert.StartsWith(WorldInteractionSystem.DescribeCell(cell), Row(1));
+            StringAssert.DoesNotContain("HP", Row(1));
             Assert.Greater(ContentY, 3); Assert.IsTrue(menu.SelectedCellIsPile);
             StringAssert.Contains("[LT+RT]details", Footer);
         }

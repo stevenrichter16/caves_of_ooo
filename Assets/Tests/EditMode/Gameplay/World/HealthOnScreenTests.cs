@@ -170,7 +170,7 @@ namespace CavesOfOoo.Tests
             var cell = zone.GetCell(5, 5);
             Assert.IsTrue(WorldInteractionSystem.IsPileCell(cell), "precondition: a pile");
 
-            Assert.IsFalse(WorldActionMenuUI.BuildTitleFor(cell, barrel).Contains("HP"),
+            Assert.IsFalse(WorldActionMenuUI.BuildTitleFor(cell, barrel, summarizeCell: true).Contains("HP"),
                 "no health on a pile summary");
         }
 

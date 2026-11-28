@@ -44,6 +44,87 @@ namespace CavesOfOoo.Tests
         void Reopen(WorldActionMenuUI ui, params string[] labels) => ui.Open(Player, Player,
             Zone.GetCell(10,10), labels.Select((text,i) => new InventoryAction("Action" + i, text, "Command" + i)).ToList(), Zone);
 
+        static Entity Mole()
+        {
+            var mole = new Entity { ID = "title-test-mole", BlueprintName = "Mole" };
+            mole.SetTag("Creature");
+            mole.AddPart(new RenderPart { DisplayName = "mole", RenderLayer = 100 });
+            mole.Statistics["Hitpoints"] = new Stat { Owner = mole, Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
+            return mole;
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ExactDepositMenuNamesTheDepositWhenACreatureSharesItsCell(bool addLooseItem)
+        {
+            var deposit = Item("SillSettlingDeposit");
+            var mole = Mole();
+            Assert.IsTrue(Zone.AddEntity(deposit, 11, 10));
+            Assert.IsTrue(Zone.AddEntity(mole, 11, 10));
+            if (addLooseItem) Assert.IsTrue(Zone.AddEntity(Item("Dagger"), 11, 10));
+            var cell = Zone.GetCell(11, 10);
+            Assert.AreSame(mole, WorldInteractionSystem.ResolveTarget(cell, Player));
+            Assert.AreEqual(addLooseItem, WorldInteractionSystem.IsPileCell(cell, Player));
+
+            const string depositTitle = "You see the settling pocket.";
+            var ui = Open("examine");
+            ui.Open(Player, deposit, cell, WorldInteractionSystem.GatherCellActions(deposit, cell, Player), Zone);
+            StringAssert.StartsWith(depositTitle, Row(ui, 1, 2));
+            StringAssert.DoesNotContain("HP", Row(ui, 1, 2));
+            Assert.AreSame(deposit, ui.SelectedTarget);
+            Assert.AreEqual(depositTitle, WorldActionMenuUI.BuildTitleFor(cell, deposit));
+
+            ui.Open(Player, mole, cell, WorldInteractionSystem.GatherCellActions(mole, cell, Player), Zone);
+            StringAssert.StartsWith("You see a mole.  [HP 6/10]", Row(ui, 1, 2));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AggregateMenusRenderThePileWithoutTheDefaultTargetsHealth(bool isPileSummary)
+        {
+            var mole = Mole();
+            Assert.IsTrue(Zone.AddEntity(mole, 11, 10));
+            Assert.IsTrue(Zone.AddEntity(Item("Dagger"), 11, 10));
+            var cell = Zone.GetCell(11, 10);
+            var actions = isPileSummary
+                ? WorldInteractionSystem.BuildPileSummaryActions(cell, Player)
+                : WorldInteractionSystem.BuildTargetPickerActions(cell, Player);
+
+            var ui = Open("examine");
+            ui.Open(Player, mole, cell, actions, Zone, isPileSummary);
+            StringAssert.StartsWith(WorldInteractionSystem.DescribeCell(cell), Row(ui, 1, 2));
+            StringAssert.DoesNotContain("HP", Row(ui, 1, 2));
+            Assert.AreEqual(isPileSummary, ui.SelectedCellIsPile);
+            Assert.AreEqual(!isPileSummary, ui.IsTargetPicker);
+        }
+
+        [Test]
+        public void ExactObjectOnPlayerCellShowsItsOwnHealth()
+        {
+            var barrel = new Entity { ID = "title-test-barrel", BlueprintName = "Barrel" };
+            barrel.AddPart(new RenderPart { DisplayName = "barrel" });
+            barrel.AddPart(new DestructiblePart { HP = 4, MaxHP = 9 });
+            Assert.IsTrue(Zone.AddEntity(barrel, 10, 10));
+            var cell = Zone.GetCell(10, 10);
+            Assert.AreSame(barrel, WorldInteractionSystem.ResolveTarget(cell, Player));
+
+            var ui = Open("examine");
+            ui.Open(Player, barrel, cell, WorldInteractionSystem.GatherCellActions(barrel, cell, Player), Zone);
+            StringAssert.StartsWith("You see a barrel.  [HP 4/9]", Row(ui, 1, 2));
+        }
+
+        [Test]
+        public void DefaultTitleDescribesTerrainOrEmptyCellWithoutATarget()
+        {
+            Assert.AreEqual("You see nothing here.", WorldActionMenuUI.BuildTitleFor(null, null));
+            var cell = Zone.GetCell(11, 10);
+            Assert.AreEqual("You see nothing here.", WorldActionMenuUI.BuildTitleFor(cell, null));
+
+            var deposit = Item("SillSettlingDeposit");
+            Assert.IsTrue(Zone.AddEntity(deposit, 11, 10));
+            Assert.AreEqual("You see the settling pocket.", WorldActionMenuUI.BuildTitleFor(cell, null));
+        }
+
         [TestCase(Meal)]
         [TestCase("prepare dressing (2 claspbean, 1 salt, 1 oil, and 3 clean jars)")]
         [TestCase("prepare ink (2 soot, 1 water, 1 gum, and 2 clean bottles)")]

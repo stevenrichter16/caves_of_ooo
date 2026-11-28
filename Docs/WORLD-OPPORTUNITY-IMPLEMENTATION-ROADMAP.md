@@ -65,6 +65,12 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+**Second pass on #36.** Tile summaries keep their overview, and an
+action menu for one selected object names that object. In the Sill
+playtest, the settling pocket’s gravel row and details kept the same
+owner and highlight even while a gremlin shared the tile.
+[Matched selection and reader](Verification/MachineSystems/SelectedWorldHeading20261128/README.md)
+
 **Second pass across #13–14, #19 and #31–33.** At Sill, draining one
 visible finite pocket enables either hand-picking sand or carrying
 the whole gravel. The sieve freed sand and grit for separate ordinary

@@ -193,16 +193,17 @@ namespace CavesOfOoo.Core
                 return sb.ToString();
             }
 
-            if (nonTerrain.Count == 1)
-            {
-                string name = nonTerrain[0].GetDisplayName();
-                return $"You see {GetArticle(name)}{name}.";
-            }
+            return DescribeEntity(nonTerrain.Count == 1 ? nonTerrain[0] : topTerrain)
+                ?? "You see nothing here.";
+        }
 
-            if (topTerrain != null)
-                return $"You see the {topTerrain.GetDisplayName()}.";
+        internal static string DescribeEntity(Entity entity)
+        {
+            if (!IsQueryable(entity) || entity.HasTag("Player")) return null;
 
-            return "You see nothing here.";
+            string name = entity.GetDisplayName();
+            string article = IsTerrain(entity) ? "the " : GetArticle(name);
+            return $"You see {article}{name}.";
         }
 
         // =========================================================
