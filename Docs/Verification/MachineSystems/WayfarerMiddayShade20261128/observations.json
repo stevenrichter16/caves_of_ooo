@@ -1,0 +1,1424 @@
+{
+  "fixture": {
+    "source": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/beating-baseline-dune65",
+    "slot": "50e670c30b6d48feb82756df64bd1cbc",
+    "sha256": {
+      "Quick.json": "c748a344f8c61c4f6724602b70cb3390f7de779b5b1b5b4270394df97c3854c2",
+      "Quick.sav.gz": "35e462c68be10ed5564b70d10d9b38ec81792f7cd30c8e38bf2aa239999991b5"
+    }
+  },
+  "run": "/Users/steven/coo-verification/runs/WellmeetMiddayShade20261128",
+  "native": {
+    "baseline-wayfarer-2930": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2930,
+      "band": "Height",
+      "player": {
+        "x": 40,
+        "y": 14,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 14,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 40,
+          "y": 14,
+          "cover": false,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 44,
+          "y": 16,
+          "cover": false,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 72,
+          "y": 20,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": []
+    },
+    "isolated-awning-fixture": {
+      "kit": "42025",
+      "supplied": true,
+      "valid": true,
+      "Reasons": [],
+      "receipt": "TravellerSpawn:65:Overworld.19.14.0",
+      "playerPin": "traveller:65:Overworld.19.14.0",
+      "price": 70,
+      "home": "(44, 16)"
+    },
+    "placement-approach": {
+      "zone": "Overworld.19.14.0",
+      "x": 41,
+      "y": 15,
+      "tick": 2940,
+      "hp": 38,
+      "effects": null,
+      "contents": [
+        {
+          "id": "41019",
+          "bp": "Sand",
+          "name": "sand"
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "brittle hound is covered in oily.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "There is nothing here to pick up.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a sand.\n\nFine grains collect in the shallow hollows; the higher ridges have been swept nearly smooth.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a dune crest.\n\nSoft sand stacked steeper than it looks. Easier to go around than over.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "awning-inventory-commands": {
+      "mode": "InventoryOpen",
+      "panel": 1,
+      "equip": false,
+      "query": "awning",
+      "search": false,
+      "visible": [],
+      "actions": [
+        "Label=set down east | Command=SetDown|Overworld.19.14.0|41|15|42|15|42025 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=True | Time=OneAction | DisabledCode= | DisabledReason= | Hint=",
+        "Label=set down north | Command=SetDown|Overworld.19.14.0|41|15|41|14|42025 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=True | Time=OneAction | DisabledCode= | DisabledReason= | Hint=",
+        "Label=set down northeast | Command=SetDown|Overworld.19.14.0|41|15|42|14|42025 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=True | Time=OneAction | DisabledCode= | DisabledReason= | Hint=",
+        "Label=set down south | Command=SetDown|Overworld.19.14.0|41|15|41|16|42025 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=True | Time=OneAction | DisabledCode= | DisabledReason= | Hint=",
+        "Label=set down southeast | Command=SetDown|Overworld.19.14.0|41|15|42|16|42025 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=True | Time=OneAction | DisabledCode= | DisabledReason= | Hint=",
+        "Label=set down southwest | Command=SetDown|Overworld.19.14.0|41|15|40|16|42025 | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=True | Time=OneAction | DisabledCode= | DisabledReason= | Hint=",
+        "Label=examine | Command=Examine | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Unspecified | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Label item | Command=edit_storage_label | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint=",
+        "Label=Drop | Command=drop | Container= | CargoDeposit= | StorageContainer= | TimeDeclared=False | Time=Free | DisabledCode= | DisabledReason= | Hint="
+      ]
+    },
+    "baseline-installed-awning": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2950,
+      "band": "Height",
+      "player": {
+        "x": 41,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 3,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 41,
+          "y": 15,
+          "cover": true,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 44,
+          "y": 16,
+          "cover": false,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 72,
+          "y": 20,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": [
+        {
+          "id": "42025",
+          "bp": "CampAwning",
+          "x": 42,
+          "y": 16,
+          "standing": true
+        }
+      ]
+    },
+    "before-final-awning-2930": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2930,
+      "band": "Height",
+      "player": {
+        "x": 40,
+        "y": 14,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 14,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 40,
+          "y": 14,
+          "cover": false,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 44,
+          "y": 16,
+          "cover": false,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 72,
+          "y": 20,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": []
+    },
+    "final-supplied-awning": {
+      "kit": "42025",
+      "supplied": true,
+      "valid": true,
+      "Reasons": [],
+      "receipt": "TravellerSpawn:65:Overworld.19.14.0",
+      "playerPin": "traveller:65:Overworld.19.14.0",
+      "price": 70,
+      "home": "(44, 16)"
+    },
+    "approach-before-setting-down": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2940,
+      "band": "Height",
+      "player": {
+        "x": 41,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 41,
+          "y": 15,
+          "cover": false,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 44,
+          "y": 16,
+          "cover": false,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 72,
+          "y": 19,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": []
+    },
+    "new-awning-merchant-arrival": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2950,
+      "band": "Height",
+      "player": {
+        "x": 41,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 14,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 12,
+          "cover": false,
+          "visible": false,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 41,
+          "y": 15,
+          "cover": true,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 43,
+          "y": 16,
+          "cover": true,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 73,
+          "y": 18,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": [
+        {
+          "id": "42025",
+          "bp": "CampAwning",
+          "x": 42,
+          "y": 16,
+          "standing": true
+        }
+      ]
+    },
+    "next-turn-both-under-awning": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2960,
+      "band": "Height",
+      "player": {
+        "x": 42,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 12,
+          "cover": false,
+          "visible": false,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 42,
+          "y": 15,
+          "cover": true,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 43,
+          "y": 16,
+          "cover": true,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 73,
+          "y": 19,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": [
+        {
+          "id": "42025",
+          "bp": "CampAwning",
+          "x": 42,
+          "y": 16,
+          "standing": true
+        }
+      ]
+    },
+    "wayfarer-under-awning-reader": {
+      "open": true,
+      "title": "wayfaring merchant",
+      "blueprint": "Merchant",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "Resting in the shade until the glare eases.",
+        "",
+        "You see a wayfaring merchant.",
+        "",
+        "Type: Creature",
+        "Material: Flesh"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "Resting in the shade until the glare eases."
+        },
+        {
+          "Heading": "Description",
+          "Text": "You see a wayfaring merchant."
+        }
+      ]
+    },
+    "wayfarer-under-awning-dialogue": {
+      "open": true,
+      "state": "DialogueOpen",
+      "choices": [
+        "Where do you get your goods?",
+        "Any advice for a traveler?",
+        "Ever trade with anyone... unusual?",
+        "Farewell.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 2960,
+          "Serial": 395
+        },
+        {
+          "Text": "You see a wayfaring merchant.\nResting in the shade until the glare eases.",
+          "Tick": 2960,
+          "Serial": 396
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 2960,
+          "Serial": 397
+        }
+      ]
+    },
+    "wayfarer-under-awning-trade": {
+      "playing": true,
+      "mode": "TradeOpen",
+      "tick": 2960,
+      "zone": "Overworld.19.14.0",
+      "x": 42,
+      "y": 15,
+      "drams": 50,
+      "talk": false,
+      "trade": true,
+      "deal": false,
+      "status": null,
+      "summary": null,
+      "labels": [
+        "Trade",
+        "wayfaring merchant",
+        "Compose deal   [D]",
+        "Trade performance 35%",
+        "Buy from merchant",
+        "500 drams",
+        "Item",
+        "Qty",
+        "Drams",
+        "healing tonic",
+        "×1",
+        "41",
+        "dried meat",
+        "×2",
+        "38",
+        "copy of Standard contract of carriage (short…",
+        "×1",
+        "22",
+        "Sell from your pack",
+        "50 drams",
+        "Item",
+        "Qty",
+        "Drams",
+        "watering grimoire",
+        "×1",
+        "11",
+        "gladroot seed",
+        "×4",
+        "4",
+        "emberwheat seed",
+        "×2",
+        "3",
+        "healing tonic",
+        "×2",
+        "11",
+        "dried meat",
+        "×2",
+        "5",
+        "healing tonic",
+        "1 item   ·   1 lb total   ·   41 drams   ·   [F1] Item details",
+        "[Enter] Buy stack     [Tab] Switch side     [D] Compose deal     [Esc] Close"
+      ],
+      "tiles": 0,
+      "hp": 38,
+      "pack": [
+        {
+          "id": "2696",
+          "name": "watering grimoire",
+          "bp": "WateringGrimoire",
+          "qty": 1,
+          "drams": 0
+        },
+        {
+          "id": "2697",
+          "name": "gladroot seed (x4)",
+          "bp": "CandyCarrotSeed",
+          "qty": 4,
+          "drams": 0
+        },
+        {
+          "id": "2698",
+          "name": "emberwheat seed (x2)",
+          "bp": "EmberwheatSeed",
+          "qty": 2,
+          "drams": 0
+        },
+        {
+          "id": "2701",
+          "name": "healing tonic (x2)",
+          "bp": "HealingTonic",
+          "qty": 2,
+          "drams": 0
+        },
+        {
+          "id": "2702",
+          "name": "dried meat (x2)",
+          "bp": "DriedMeat",
+          "qty": 2,
+          "drams": 0
+        }
+      ],
+      "vendor": {
+        "id": "traveller:65:Overworld.19.14.0",
+        "name": "wayfaring merchant",
+        "bp": "Merchant",
+        "qty": 1,
+        "drams": 500
+      },
+      "stock": [
+        {
+          "id": "42019",
+          "name": "healing tonic",
+          "bp": "HealingTonic",
+          "qty": 1,
+          "drams": 0
+        },
+        {
+          "id": "42020",
+          "name": "dried meat (x2)",
+          "bp": "DriedMeat",
+          "qty": 2,
+          "drams": 0
+        },
+        {
+          "id": "42022",
+          "name": "copy of Standard contract of carriage (short form)",
+          "bp": "Codex06",
+          "qty": 1,
+          "drams": 0
+        }
+      ],
+      "log": [
+        {
+          "Text": "You set shade awning down.",
+          "Tick": 2940,
+          "Serial": 392
+        },
+        {
+          "Text": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Tick": 2940,
+          "Serial": 393
+        },
+        {
+          "Text": "Game saved.",
+          "Tick": 2960,
+          "Serial": 394
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 2960,
+          "Serial": 395
+        },
+        {
+          "Text": "You see a wayfaring merchant.\nResting in the shade until the glare eases.",
+          "Tick": 2960,
+          "Serial": 396
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 2960,
+          "Serial": 397
+        }
+      ]
+    },
+    "quiet-under-awning-before-save": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2960,
+      "band": "Height",
+      "player": {
+        "x": 42,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 12,
+          "cover": false,
+          "visible": false,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 42,
+          "y": 15,
+          "cover": true,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 43,
+          "y": 16,
+          "cover": true,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 73,
+          "y": 19,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": [
+        {
+          "id": "42025",
+          "bp": "CampAwning",
+          "x": 42,
+          "y": 16,
+          "standing": true
+        }
+      ]
+    },
+    "fresh-continue-under-awning": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2960,
+      "band": "Height",
+      "player": {
+        "x": 42,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 12,
+          "cover": false,
+          "visible": false,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 5,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 42,
+          "y": 15,
+          "cover": true,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 43,
+          "y": 16,
+          "cover": true,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 73,
+          "y": 19,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": [
+        {
+          "id": "42025",
+          "bp": "CampAwning",
+          "x": 42,
+          "y": 16,
+          "standing": true
+        }
+      ]
+    },
+    "after-awning-take-up": {
+      "zone": "Overworld.19.14.0",
+      "tick": 2970,
+      "band": "Height",
+      "player": {
+        "x": 42,
+        "y": 15,
+        "hp": 38
+      },
+      "creatures": [
+        {
+          "id": "41989",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 3,
+          "y": 12,
+          "cover": false,
+          "visible": false,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 14,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "41961",
+          "bp": "SkeletalSentry",
+          "name": "skeletal sentry",
+          "x": 4,
+          "y": 13,
+          "cover": false,
+          "visible": true,
+          "hp": 25,
+          "effects": null,
+          "hat": true,
+          "staying": false,
+          "homeX": 3,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you",
+          "x": 42,
+          "y": 15,
+          "cover": false,
+          "visible": true,
+          "hp": 38,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 40,
+          "homeY": 12,
+          "LastThought": null,
+          "goals": []
+        },
+        {
+          "id": "traveller:65:Overworld.19.14.0",
+          "bp": "Merchant",
+          "name": "wayfaring merchant",
+          "x": 44,
+          "y": 16,
+          "cover": false,
+          "visible": true,
+          "hp": 20,
+          "effects": null,
+          "hat": false,
+          "staying": true,
+          "homeX": 44,
+          "homeY": 16,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "MoveToGoal: to=(44,16) age=0/200"
+          ]
+        },
+        {
+          "id": "41999",
+          "bp": "Scorpion",
+          "name": "scorpion",
+          "x": 74,
+          "y": 20,
+          "cover": false,
+          "visible": true,
+          "hp": 10,
+          "effects": null,
+          "hat": false,
+          "staying": false,
+          "homeX": 74,
+          "homeY": 19,
+          "LastThought": null,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ]
+        }
+      ],
+      "wells": [],
+      "shade": []
+    },
+    "taken-up-exact-awning": [
+      "42025"
+    ]
+  },
+  "archives": {
+    "PackedAwning": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/1188cf48dab145478dbfa2f1e6027b48/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/WellmeetMiddayShade20261128/archives/PackedAwning/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "9d86e6159abf889fc0421e5356cb2d622271c4c5f950d000a70f0004ec209bd4",
+        "Quick.sav.gz": "eaff64b0f3579cca01b8ca20815c5cd3e264664f9648effe1107695c8ba5285c",
+        "Quick.json.bak": "4c24b182ebba4fa507f3c6127792b4d351f443a16476b23a173bfae0f2e69282",
+        "Quick.sav.gz.bak": "0f0df8dd0f90ac57d0fd0062d921091222fbf5e354b86dd81624de7ef99a61dc"
+      }
+    },
+    "ShadeBeforeInteraction": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/5becad65bb6c49b994f92e59097eac79/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/WellmeetMiddayShade20261128/archives/ShadeBeforeInteraction/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "3b0dbb18bee76f294108634dcb991b166f53fe4e33d8b75fa14dfbbe75f813ac",
+        "Quick.sav.gz": "df0c984055b9a4217ae9055c413b4ed1e62a69f9281dfd23e155e6d175debbad",
+        "Quick.json.bak": "c748a344f8c61c4f6724602b70cb3390f7de779b5b1b5b4270394df97c3854c2",
+        "Quick.sav.gz.bak": "35e462c68be10ed5564b70d10d9b38ec81792f7cd30c8e38bf2aa239999991b5"
+      }
+    },
+    "UnderAwning": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/5becad65bb6c49b994f92e59097eac79/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/WellmeetMiddayShade20261128/archives/UnderAwning/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "4c24b182ebba4fa507f3c6127792b4d351f443a16476b23a173bfae0f2e69282",
+        "Quick.sav.gz": "0f0df8dd0f90ac57d0fd0062d921091222fbf5e354b86dd81624de7ef99a61dc",
+        "Quick.json.bak": "3b0dbb18bee76f294108634dcb991b166f53fe4e33d8b75fa14dfbbe75f813ac",
+        "Quick.sav.gz.bak": "df0c984055b9a4217ae9055c413b4ed1e62a69f9281dfd23e155e6d175debbad"
+      }
+    }
+  },
+  "testSummary": {
+    "compiled-red": {
+      "result": "Failed(Child)",
+      "total": "10",
+      "passed": "0",
+      "failed": "10",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "green": {
+      "result": "Passed",
+      "total": "141",
+      "passed": "141",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0"
+    },
+    "final": {
+      "result": "Passed",
+      "total": "141",
+      "passed": "141",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0"
+    }
+  },
+  "editorAfter": {
+    "playing": false,
+    "changing": false,
+    "sceneDirty": false,
+    "saveRoot": null,
+    "seed": 0,
+    "buildChoice": false,
+    "lastScenario": null,
+    "pendingScenario": false,
+    "updateMode": "ProcessEventsInDynamicUpdate",
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices",
+    "ownedKeyboard": false
+  },
+  "filePreservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  }
+}

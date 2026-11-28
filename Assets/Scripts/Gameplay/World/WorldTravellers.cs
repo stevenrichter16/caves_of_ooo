@@ -30,6 +30,7 @@ namespace CavesOfOoo.Core
             var (x, y, depth) = WorldMap.FromZoneID(zone.ZoneID);
             if (!WorldMapAuthoring.InBounds(x, y) || depth != 0 || WorldMapAuthoring.TierAt(x, y) > 3
                 || manager.WorldMap.GetPOI(x, y) != null) return false;
+            RestoreMiddayShade(player, zone);
             string seed = manager.WorldSeed.ToString(CultureInfo.InvariantCulture);
             string canonical = WorldMap.ToZoneID(x, y, 0);
             string countKey = CountPrefix + seed, rollKey = RollPrefix + seed + ":" + canonical;
@@ -81,8 +82,34 @@ namespace CavesOfOoo.Core
             player.IntProperties[countKey] = count + 1;
             player.Properties[SpawnPrefix + seed + ":" + canonical] = id;
             exchange?.Complete(actor);
+            RestoreMiddayShade(player, zone);
             Record(player, zone, "placed", id);
             return true;
+        }
+
+        // Saved pre-feature actors keep their original stock and position.
+        // Restore only a wayfarer with the matching receipt in this actual zone.
+        internal static void RestoreMiddayShade(Entity player, Zone zone)
+        {
+            if (!BeatingGlareSystem.IsBeatingSurface(zone) || !WorldAmbience.IsPresentPlayer(player, zone)) return;
+            var manager = WorldLocationContext.For(zone);
+            if (manager == null || !ReferenceEquals(manager.ActiveZone, zone)
+                || !manager.CachedZones.TryGetValue(zone.ZoneID, out var owned) || !ReferenceEquals(owned, zone)) return;
+            var (x, y, _) = WorldMap.FromZoneID(zone.ZoneID);
+            if (zone.ZoneID != WorldMap.ToZoneID(x, y, 0) || WorldMapAuthoring.TierAt(x, y) > 3
+                || manager.WorldMap?.GetPOI(x, y) != null) return;
+
+            string suffix = manager.WorldSeed.ToString(CultureInfo.InvariantCulture) + ":" + zone.ZoneID;
+            string receipt = SpawnPrefix + suffix;
+            string actorId = "traveller:" + suffix;
+            if (player.GetProperty(receipt) != actorId || player.GetIntProperty(RollPrefix + suffix) != 1) return;
+            var actor = WorldResourceActions.ExactGround(zone, actorId);
+            if (actor?.BlueprintName == "Merchant" && actor.HasTag("Creature") && actor.GetProperty(ReceiptProperty) == receipt
+                && WorldResourceActions.Ground(actor, zone) && actor.GetStatValue("Hitpoints") > 0
+                && actor.GetPart<TraderPart>()?.ParentEntity == actor
+                && actor.GetPart<BrainPart>()?.ParentEntity == actor
+                && !actor.HasPart<AIMiddayShadePart>())
+                actor.AddPart(new AIMiddayShadePart { HomeZone = zone.ZoneID });
         }
 
         // Same saved-entry roll bytes for the live source and optional manifest admission.

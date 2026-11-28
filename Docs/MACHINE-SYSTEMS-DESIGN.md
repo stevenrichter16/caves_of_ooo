@@ -1,3 +1,11 @@
+**An ordinary camp awning gives a wayfarer somewhere to rest.**
+At the Height of the day in the Beating, a nearby bareheaded travelling
+merchant can move into safe cover when idle. A normal trade remains
+available there. The same footprint protects the traveler from the glare.
+Taking the kit up lets the merchant resume the usual routine. The ordinary
+tool now has an observed use with another actor in the world.
+[Wayfarer shade and trade](Verification/MachineSystems/WayfarerMiddayShade20261128/README.md)
+
 **A reopened trade route can supply regional processing.**
 The entered Gantry manifest admits one paid Wellmeet pale-salt for each
 due consignment at the existing exchange. It gives the player a route

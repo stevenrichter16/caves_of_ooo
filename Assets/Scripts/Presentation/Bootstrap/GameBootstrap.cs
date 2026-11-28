@@ -1027,6 +1027,7 @@ namespace CavesOfOoo
                 foreach (var savedZone in _zoneManager.CachedZones.Values)
                     CropTime.InitializeLegacyZone(savedZone, _turnManager.TickCount);
             RewireLoadedBrains();
+            WorldTravellers.RestoreMiddayShade(_player, _zone);
             SlipEastLighting.Install(_zoneManager, _zone);
             WirePresentationForLoadedGame();
             GetComponent<InputHandler>()?.RestoreHotbarSelection(state.SelectedHotbarSlot);

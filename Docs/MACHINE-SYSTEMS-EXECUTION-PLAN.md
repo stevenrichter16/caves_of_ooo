@@ -1,3 +1,12 @@
+**A wayfarer rests under the player’s awning — November 28, 2026, America/Chicago.**
+The ordinary Beating merchant moved one step into the shade on the turn
+the traveler set the awning down. Examine showed why he was there and
+trade offered his exact three existing goods. Continue kept both people
+under the same canopy. Taking up that exact kit returned the merchant to
+his usual spot. Both replays used the same earned encounter and one
+supplied authored awning. The broader exposure rollout remains open.
+[NPC shade playtest](Verification/MachineSystems/WayfarerMiddayShade20261128/README.md)
+
 **Gantry’s reopened route supplies a useful import — November 28, 2026, America/Chicago.**
 Entering the sixth crate adds one paid Wellmeet pale-salt to Vellin's
 next due consignment. Eleven ordinary shelf entries matched the control.

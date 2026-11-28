@@ -44,13 +44,7 @@ namespace CavesOfOoo.Core
         /// checks first; every early-out resets the streak.</summary>
         public static void OnPlayerTurnEnd(Entity player, Zone zone, int tick)
         {
-            if (player == null || zone == null) { _exposure = 0; return; }
-            if (WorldClock.GetBand(tick) != DayBand.Height) { _exposure = 0; return; }
-
-            var (wx, wy, wz) = WorldMap.FromZoneID(zone.ZoneID);
-            if (wx < 0 || wz != 0) { _exposure = 0; return; }
-            if (!WorldMapAuthoring.InBounds(wx, wy)
-                || WorldMapAuthoring.BiomeAt(wx, wy) != BiomeType.Beating)
+            if (player == null || !IsGlareHours(zone, tick))
             { _exposure = 0; return; }
 
             var cell = zone.GetEntityCell(player);
@@ -77,6 +71,16 @@ namespace CavesOfOoo.Core
                     threshold = ExposureTurnsPerStack,
                 });
             }
+        }
+
+        internal static bool IsGlareHours(Zone zone, int tick)
+            => WorldClock.GetBand(tick) == DayBand.Height && IsBeatingSurface(zone);
+
+        internal static bool IsBeatingSurface(Zone zone)
+        {
+            var (x, y, depth) = WorldMap.FromZoneID(zone?.ZoneID);
+            return depth == 0 && WorldMapAuthoring.InBounds(x, y)
+                && WorldMapAuthoring.BiomeAt(x, y) == BiomeType.Beating;
         }
 
         /// <summary>Anything worn on the head is shade. First head wins

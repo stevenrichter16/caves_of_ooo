@@ -1017,6 +1017,12 @@ guest bed to reach the weather window.
     storage. An older North Works save kept both of its ordinary shelves.
     [Evidence](Verification/MachineSystems/NorthFairWeatherDrying20261126/README.md)
 
+    At Height, a set-down awning gave one real wayfaring merchant a
+    closer shaded place to wait and trade. The same standing shade covered
+    the player and the merchant. Carrying the packed kit still leaves the
+    merchant's usual stop available.
+    [Evidence](Verification/MachineSystems/WayfarerMiddayShade20261128/README.md)
+
 ## Priority 8: explain choices and prove the combined experience
 
 One matched cave playtest connected the portable sounding rod's

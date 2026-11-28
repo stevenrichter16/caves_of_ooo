@@ -1,5 +1,17 @@
 # Shared Beating exposure: bounded proposed slice
 
+November 28, 2026. A wayfaring merchant in the Beating uses safe nearby
+shade while idle during Height. The same installed canopy shades the
+player, and the merchant still speaks and offers ordinary trade from the
+shaded cell. An older save can restore the routine from the existing
+encounter receipt. This step gives the merchant a protective choice
+without assigning exposure debt or spending water. Broader enrollment,
+finite hydration and the authorities described below still need their own
+verification. The recent Sill farmer visit now recognizes available wells
+and cisterns and stops when its destination runs dry.
+[Merchant shade trial](Verification/MachineSystems/WayfarerMiddayShade20261128/README.md) ·
+[Sill water visit](Verification/MachineSystems/FarmerUsableWater20261128/README.md)
+
 November22 [carried-water transaction follow-up](Verification/MachineSystems/WaterskinTransactions20261122/README.md)
 closes the bounded waterskin rollback/stat/custody/commit gap identified below:
 shared actual-relief/quantity receipts and exact participants, native288 GREEN
