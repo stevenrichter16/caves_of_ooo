@@ -29,8 +29,8 @@ selected effect and recipe requirements in both branches.
 Long equipment and combined output rows show the complete effects with
 output or component attribution in the right pane. The inline space
 shows whole summaries that fit. Independent review checked the display
-width, the effect conditions and the product attribution. Standalone
-packaging is pending.
+width, the effect conditions and the product attribution. The new
+preview is in the [current Mac app](../FarmerUsableWater20261128/README.md#standalone-mac-update).
 
 Three focused controls passed and three new assertions failed on the
 original presentation. The final focused Unity Edit Mode run passed all

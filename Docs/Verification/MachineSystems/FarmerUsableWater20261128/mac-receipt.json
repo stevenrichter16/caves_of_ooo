@@ -1,0 +1,92 @@
+{
+  "app": "/Users/steven/coo-verification/builds/mac-7a13bf458-20261128/CavesOfOoo.app",
+  "processor": "Apple M5",
+  "macOS": "26.0",
+  "build": {
+    "project": "/Users/steven/coo-verification/mac-82f5cc2df-20261127/Assets",
+    "commit": "7a13bf458619d93de47e4402627d4c85e32f167b",
+    "result": "Succeeded",
+    "output": "/Users/steven/coo-verification/builds/mac-7a13bf458-20261128/CavesOfOoo.app",
+    "errors": 0,
+    "warnings": 4,
+    "bytes": 365362061,
+    "seconds": 20.287087,
+    "messages": [
+      {
+        "type": "Log",
+        "content": "1 URP assets included in build\n- UniversalRP - Assets/Settings/UniversalRP.asset\n\t - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData\n\t - Village3DRenderer - Assets/Art3D/Village/Rendering/Village3DRenderer.asset - UnityEngine.Rendering.Universal.UniversalRendererData\n"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/CoatedInPlasmaEffect.cs(44,23): warning CS0108: 'CoatedInPlasmaEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs(552,25): warning CS0162: Unreachable code detected"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs(49,22): warning CS0414: The field 'ShortBlades_Backstab._isFlanked' is assigned but its value is never used"
+      },
+      {
+        "type": "Log",
+        "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+      },
+      {
+        "type": "Warning",
+        "content": "Access token is empty. Native symbols will not be uploaded for this build. Please make sure you are signed in to the Unity Cloud."
+      }
+    ]
+  },
+  "pinnedSourceFiles": 32290,
+  "appFiles": 186,
+  "retainedAppFileCounts": {
+    "/Users/steven/coo-verification/builds/mac-2af18031c-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-fd6579219-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2e98519f4-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2c4931acc-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-9dae6a99c-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-17-machines-c600701d0-current/CavesOfOoo.app": 186
+  },
+  "observed": "Earned GrainCarried Continue at turn 4190. Recipes highlighted toasted emberwheat effects. Enter displayed missing-fire refusal.",
+  "preferencesRestoration": {
+    "domain": "com.DefaultCompany.2D-URP",
+    "changedKeys": [
+      "Screenmanager Fullscreen mode",
+      "Screenmanager Resolution Height",
+      "Screenmanager Resolution Use Native",
+      "Screenmanager Resolution Width",
+      "Screenmanager Window Position Y",
+      "unity.player_session_count",
+      "unity.player_sessionid",
+      "unity_connect.mega_session_id",
+      "unity_connect.session_id"
+    ],
+    "logicalRestoration": true
+  },
+  "preservation": {
+    "normalSaveFiles": 862,
+    "normalSaveRoots": [
+      "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves",
+      "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP/Saves"
+    ],
+    "normalPrefsIdentical": {
+      "com.DefaultCompany.2D-URP": true,
+      "unity.DefaultCompany.caves-of-ooo": true
+    },
+    "pinnedNormalPreferenceFilesMatchBytes": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    },
+    "playerStopped": true,
+    "privateFixtureUnchanged": true,
+    "privateSlotAfter": {
+      "Quick.json": "1ec5d4e7ef6496dfc2ba118779b18a84b15c8e8368f120d413afcf010ff7506c",
+      "Quick.json.bak": "a63b7bc87917a732e51ecdc7020f671e7c42a5ee4b804ca99ae392361e65eae4",
+      "Quick.sav.gz": "a945dcd595ae88dc5925b7bd405656f392303cc48a184644b0ac9241183991ce",
+      "Quick.sav.gz.bak": "5927f09087b1a5a616db8aa8a8cab2762427cb2bc957961636047c06ad55823b"
+    },
+    "publishedAppAndRetainedAppsExact": true
+  },
+  "screenshotSha256": "73698260dcaf9038fc0a16aeea064e1112063346601e5a69cbfebdc5c7290125"
+}

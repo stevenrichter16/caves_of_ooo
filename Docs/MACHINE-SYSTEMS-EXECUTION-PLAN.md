@@ -1,3 +1,11 @@
+**Current Mac update — November 28, 2026, America/Chicago.**
+Universal runtime `7a13bf458` bundles the farmer water visit, recipe
+highlights and porter footing. A normal Continue on Apple M5 opened
+the new recipe preview and showed the missing-fire refusal through
+the standalone app. Six protected apps and the ordinary save and
+preference files matched their starting bytes.
+[Mac package and preview](Verification/MachineSystems/FarmerUsableWater20261128/README.md#standalone-mac-update)
+
 **A farmer looks for an available water source — November 28, 2026, America/Chicago.**
 The shared well rules now guide the farmer's existing occasional walk.
 In matched Sill copies, Dovrin used a stocked cistern in place of an
@@ -13,7 +21,7 @@ column, and the right pane gives the full effect and requirements.
 Two earned seed 65 Continue copies showed the rough haft, toasted
 emberwheat, serrated edge and bandage in the live ledger. The missing
 fire kept the same selection, inventory and turn after confirmation.
-All 679 focused cases passed. The standalone preview update is pending.
+All 679 focused cases passed. The current Mac app includes the preview.
 [In-game recipe previews](Verification/MachineSystems/PackRecipeHighlights20261128/README.md)
 
 **Firm footing reopens a paid porter route — November 28, 2026, America/Chicago.**

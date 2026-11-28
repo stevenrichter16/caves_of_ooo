@@ -37,3 +37,22 @@ hashes. This slice has no wider NPC exposure or hardware performance result.
 - [Dovrin beside the cistern](01-arrival.png)
 - [The last draw remains available](02-draw.png)
 - [The draw vanishes after depletion](03-empty.png)
+
+## Standalone Mac update
+
+The universal app at
+`/Users/steven/coo-verification/builds/mac-7a13bf458-20261128/CavesOfOoo.app`
+packages the farmer visit, recipe highlights and porter footing. Unity
+built the pinned source in the existing staging workspace with zero
+errors and four warnings. The app has six arm64 and x86_64 binaries.
+
+On Apple M5, the standalone app used Continue on the earned Gleaners'
+Glade save and opened Recipes with ordinary keyboard controls. Toasted
+emberwheat showed healing and heat resistance beside its name.
+Confirmation displayed the usual missing-fire refusal. The private
+slot and both normal save folders matched their starting hashes. All
+six retained apps and both normal preference files matched their
+starting bytes. Farmer travel, Continue and depletion were verified
+in Unity. Physical Intel testing remains open.
+
+[Standalone preview after the missing-fire refusal](04-standalone-recipes.png)
