@@ -14,6 +14,58 @@ namespace CavesOfOoo.Tests
     /// </summary>
     public class TileStateSourcePartTests
     {
+        [TestCase(true)]
+        [TestCase(false)]
+        public void RadiatingColdSourceReaderLinksFrozenWaterAndWornProofing(bool full)
+        {
+            var (owner, zone, cell) = PlaceColdSource(1, true);
+
+            string text = full
+                ? ExamineDocumentBuilder.BuildWorld(owner, zone, cell).ToPlainText()
+                : owner.GetPart<ExaminablePart>().BuildExamineLine();
+
+            StringAssert.Contains("Water that freezes beneath you can freeze you in place.", text);
+            StringAssert.Contains("Cold-proofed clothing can shorten the freeze.", text);
+            StringAssert.Contains("Breathes cold.", text);
+            Assert.AreEqual(0, zone.TileState.WrittenCount);
+        }
+
+        [TestCase(0, true)]
+        [TestCase(1, false)]
+        public void ColdReaderDoesNotDescribeInactiveOrNonRadiatingSources(int cold, bool radiates)
+        {
+            var (owner, zone, cell) = PlaceColdSource(cold, radiates);
+
+            string text = ExamineDocumentBuilder.BuildWorld(owner, zone, cell).ToPlainText();
+
+            StringAssert.DoesNotContain("Cold-proofed clothing", text);
+        }
+
+        [Test]
+        public void ColdSourceReaderDoesNotDescribeDetachedOwner()
+        {
+            var (owner, zone, _) = PlaceColdSource(1, true);
+            zone.RemoveEntity(owner);
+
+            string text = owner.GetPart<ExaminablePart>().BuildExamineLine();
+
+            StringAssert.DoesNotContain("Cold-proofed clothing", text);
+        }
+
+        static (Entity owner, Zone zone, Cell cell) PlaceColdSource(int cold, bool radiates)
+        {
+            var zone = new Zone();
+            var owner = new Entity { ID = "cold-bed", BlueprintName = "ColdBed" };
+            owner.AddPart(new RenderPart { DisplayName = "cold bed", RenderString = "^" });
+            owner.AddPart(new PhysicsPart());
+            owner.AddPart(new ExaminablePart { Text = "Breathes cold." });
+            owner.AddPart(new TileStateSourcePart { Cold = cold, RadiatesEnergy = radiates });
+            zone.AddEntity(owner, 5, 5);
+            var cell = zone.GetCell(5, 5);
+            cell.Explored = cell.IsVisible = true;
+            return (owner, zone, cell);
+        }
+
         [Test]
         public void Seed_WithResidueSet_WritesTheResidueLayer()
         {

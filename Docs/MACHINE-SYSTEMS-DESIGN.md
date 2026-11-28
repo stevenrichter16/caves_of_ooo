@@ -146,6 +146,15 @@ live player trial. The guide now names that risk. The armed device,
 spent state and remaining water each survived the relevant Continue.
 [Compared playtests](Verification/MachineSystems/FrostSpringTrap20261127/README.md)
 
+**A frost vent explains why wet footing calls for cold-proofing.**
+Its ordinary Examine links water freezing underfoot to being held in
+place. One naturally acquired lichen made two flask measures. A coat
+on the same worn cloak reduced the remaining thaw estimate from eight
+turns to five at the same vent. The nearby dry limestone shoulder
+let the traveler avoid the freeze altogether. The reader follows the
+existing radiating terrain source and works in retained saves.
+[Cold vent, cloak and dry-shoulder playtests](Verification/MachineSystems/FrostVentColdProof20261128/README.md)
+
 **The Drowned Ledger can use its spare willow for a temporary line.**
 The original retained line holds a finite pair of spare stakes. The
 ordinary harvest keeps the exact structure and accounts for overflow.

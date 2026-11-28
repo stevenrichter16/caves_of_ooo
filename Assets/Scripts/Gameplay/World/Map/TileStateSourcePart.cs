@@ -38,13 +38,24 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "TileStateSource";
 
-        // "What can I do here?": a steady heat is worth knowing about to someone who carries what could use it (Docs/MACHINE-INVENTED-USES.md, 3p). Shown only to a viewer who carries
-        // bog-mire or a camp still kit, and only where a still could actually stand within reach: a standing still is already there, or the zone takes a set-down kit (a vent in the
-        // Grovelands or underground would otherwise promise a use the zone refuses). An ordinary vent is described as before to everyone else. The viewer reaches a describer only through
-        // the Full reader, so this is Both and the tests read it through Full.
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 40;
         public string DescribeState(DescribeContext context)
+        {
+            string still = DescribeStillHeat(context);
+            var owner = ParentEntity;
+            if (Cold <= 0 || !RadiatesEnergy || owner == null || context?.Owner != owner
+                || context.Zone?.GetEntityCell(owner) == null)
+                return still;
+
+            const string cold = "Water that freezes beneath you can freeze you in place. "
+                + "Cold-proofed clothing can shorten the freeze.";
+            return still == null ? cold : cold + "\n" + still;
+        }
+
+        // Heat users get this line only when they carry suitable material or a still kit,
+        // and the site can actually accommodate a still within reach.
+        string DescribeStillHeat(DescribeContext context)
         {
             var viewer = context?.Viewer; if (viewer == null || !NaturalHeat.IsSource(ParentEntity)) return null;
             var pack = viewer.GetPart<InventoryPart>(); if (pack == null) return null;

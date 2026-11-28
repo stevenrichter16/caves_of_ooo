@@ -289,6 +289,14 @@ calendar comparison and ordinary Continue in one seed. This extends
 #32 to native art and a separate regional material.
 [North Works playtest](Verification/MachineSystems/NorthLichenWorldCue20261127/README.md)
 
+The seed 65 cave route demonstrates two uses for the same regional
+lichen and a choice about exposure. One lichen from an ordinary crate
+became carried cold-proofing. At a natural vent, the coat shortened
+the remaining thaw estimate while water still froze on the ground.
+One diagonal step to dry limestone avoided the freeze. The vent's
+Examine gives the clue without requiring a particular tool or garment.
+[Cold-proofing and avoidance](Verification/MachineSystems/FrostVentColdProof20261128/README.md)
+
 The two public catch-cloths in Morrowfast now show #32’s water
 opportunity and its spent state on the map. One ordinary collection
 changed both frames. The second frame withheld collection and a fresh

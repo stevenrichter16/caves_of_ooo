@@ -1,3 +1,15 @@
+**Frost vents explain ice underfoot and worn proofing — November 28, 2026, America/Chicago.**
+Ordinary seed 65 stairs, crate and pack craft yielded two cold-proofing
+measures from one lichen. One coat on the original cloak gave +35 cold
+resistance. Both vent trials spent the same water at (62,13) and ended
+at tick 9850 with 27 HP and three ice turns. The remaining thaw estimate
+was eight turns in the plain branch and five in the coated branch.
+The nearby dry shoulder made no ice and left the traveler unfrozen.
+The shared reader links the hazard and protection. Fresh Continue kept
+the exact coated state. Native checks passed 325 cases with one
+explicit generator skipped. The previous Mac package remains current.
+[Live route, reader and matched saves](Verification/MachineSystems/FrostVentColdProof20261128/README.md)
+
 **Olderdeep’s descent jar names its current use — November 28, 2026, America/Chicago.**
 Five ordinary ledge steps reached the original jar. Unhooking put it
 in the pack and reduced the seat’s computed light from 1.0 to 0.586.

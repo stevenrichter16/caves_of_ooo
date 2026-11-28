@@ -1,0 +1,2455 @@
+{
+  "baseline": "f15c1e3cd0947b31fe1084cdc5650debe3aa7b59",
+  "seed": 65,
+  "sourceSave": {
+    "checkpoint": "/Users/steven/coo-verification/checkpoints/ChoirIronField20261127/Seed65Depth3/c6079358f8fc4e4d83fd8416612932e3",
+    "sha": {
+      "Quick.sav.gz": "2f88b34d0cbc522a1a289f13149a5b10998bc00c93135e2993eb6742bb9bbd99",
+      "Quick.sav.gz.bak": "aab6e1e9d15c994e64074955cc9a6de891b601d729536c2adf77727e6b79c497",
+      "Quick.json.bak": "df738122dbdf6bd6f13d27982cf1b1a613d967924085f98d65e5ce27dde7d9ef",
+      "Quick.json": "d9e352fc4afca0fea06a2360fc57cb7db4e3e713b5182e6f58f45c5ae0c4f9ea"
+    }
+  },
+  "route": {
+    "d1-crate-provenance": {
+      "open": true,
+      "cursor": 0,
+      "container": "64933",
+      "items": [
+        {
+          "ID": "64934",
+          "BlueprintName": "GoldCoin",
+          "name": "gold coin (x10)"
+        },
+        {
+          "ID": "64944",
+          "BlueprintName": "FrostLichen",
+          "name": "frost lichen"
+        }
+      ]
+    },
+    "d1-crate-after": {
+      "open": true,
+      "cursor": 0,
+      "container": "64933",
+      "items": [
+        {
+          "ID": "64934",
+          "BlueprintName": "GoldCoin",
+          "name": "gold coin (x10)"
+        }
+      ]
+    },
+    "cave-bear-road-interruption": {
+      "hp": 0,
+      "x": null,
+      "y": null,
+      "tick": 9480,
+      "zone": "Overworld.12.3.3",
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You press the frost lichen into the flask: 2 coats of cold-proofing.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "cave bear [left hand: claw] hits you in the feet for 18 damage! (9 HP remaining)",
+        "Your feet is severed!",
+        "You are killed by cave bear!",
+        "Your cloak falls to the ground!",
+        "Your choir-iron-edged dagger falls to the ground!",
+        "Your buckler falls to the ground!",
+        "cave bear [right hand: claw] hits you in the handwear for 9 damage!",
+        "You are bleeding!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You are dead. Press [L] to load last save, [R] to restart.",
+        "Controller: [A] load, [X] restart."
+      ],
+      "creatures": [
+        {
+          "ID": "72053",
+          "BlueprintName": "CaveBear",
+          "at": 49,
+          "ay": 13
+        }
+      ]
+    },
+    "d3-east-vent": {
+      "hp": 27,
+      "x": 62,
+      "y": 13,
+      "tick": 9820,
+      "zone": "Overworld.12.3.3",
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You open the wooden crate. It contains 2 item(s).",
+        "You take frost lichen from the wooden crate.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You pour 12 of brine onto the ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You press the frost lichen into the flask: 2 coats of cold-proofing.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ],
+      "creatures": [
+        {
+          "ID": "72053",
+          "BlueprintName": "CaveBear",
+          "at": 62,
+          "ay": 9
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "at": 62,
+          "ay": 13
+        }
+      ]
+    }
+  },
+  "oldReader": {
+    "open": true,
+    "title": "frost vent",
+    "blueprint": "FrostVent",
+    "lines": [
+      "CURRENT STATE",
+      "",
+      "On the ground: cold",
+      "",
+      "SURFACE DETAILS",
+      "",
+      "On the ground: cold",
+      "",
+      "Breathes cold. Standing water near it will not stay",
+      "liquid.",
+      "",
+      "Type: Terrain",
+      "Material: Rime"
+    ],
+    "sections": [
+      {
+        "Heading": "Current state",
+        "Text": "On the ground: cold"
+      },
+      {
+        "Heading": "Surface details",
+        "Text": "On the ground: cold"
+      },
+      {
+        "Heading": "Description",
+        "Text": "Breathes cold. Standing water near it will not stay liquid."
+      }
+    ]
+  },
+  "updatedReader": {
+    "open": true,
+    "title": "frost vent",
+    "blueprint": "FrostVent",
+    "lines": [
+      "CURRENT STATE",
+      "",
+      "On the ground: cold",
+      "Water that freezes beneath you can freeze you in",
+      "place. Cold-proofed clothing can shorten the freeze.",
+      "",
+      "SURFACE DETAILS",
+      "",
+      "On the ground: cold",
+      "",
+      "Breathes cold. Standing water near it will not stay",
+      "liquid.",
+      "",
+      "Type: Terrain",
+      "Material: Rime"
+    ],
+    "sections": [
+      {
+        "Heading": "Current state",
+        "Text": "On the ground: cold\nWater that freezes beneath you can freeze you in place. Cold-proofed clothing can shorten the freeze."
+      },
+      {
+        "Heading": "Surface details",
+        "Text": "On the ground: cold"
+      },
+      {
+        "Heading": "Description",
+        "Text": "Breathes cold. Standing water near it will not stay liquid."
+      }
+    ]
+  },
+  "state": {
+    "before-emptying-brine": {
+      "zone": "Overworld.12.3.1",
+      "x": 19,
+      "y": 10,
+      "tick": 9140,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": null,
+      "cellCold": 0,
+      "footing": [
+        {
+          "ID": "63685",
+          "BlueprintName": "SandstoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "water",
+          "volume": 1
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "brine",
+          "volume": 12
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "64944",
+          "BlueprintName": "FrostLichen",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "after-emptying-brine": {
+      "zone": "Overworld.12.3.1",
+      "x": 19,
+      "y": 10,
+      "tick": 9150,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": null,
+      "cellCold": 0,
+      "footing": [
+        {
+          "ID": "63685",
+          "BlueprintName": "SandstoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "water",
+          "volume": 1
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "64944",
+          "BlueprintName": "FrostLichen",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "after-pressing-lichen": {
+      "zone": "Overworld.12.3.1",
+      "x": 19,
+      "y": 10,
+      "tick": 9160,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": null,
+      "cellCold": 0,
+      "footing": [
+        {
+          "ID": "63685",
+          "BlueprintName": "SandstoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 0,
+          "owners": [
+            "SandstoneFloor"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "water",
+          "volume": 1
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 2
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "bare-start": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9820,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": null,
+      "cellCold": 1,
+      "layers": [],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "water",
+          "volume": 1
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 2
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "bare-after-pour": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9850,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": 0.795,
+      "thaw": 8,
+      "moisture": 0.99,
+      "cellCold": 1,
+      "layers": [
+        {
+          "Id": "ice",
+          "Turns": 3
+        }
+      ],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "72084",
+          "BlueprintName": "PouredLiquidPool",
+          "volume": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "PouredLiquidPool",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 2
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "coated-start": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9820,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": null,
+      "cellCold": 1,
+      "layers": [],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "water",
+          "volume": 1
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 2
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "coated-after-pour": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9850,
+      "hp": 27,
+      "coldResistance": 35,
+      "freeze": 0.480000019,
+      "thaw": 5,
+      "moisture": 0.99,
+      "cellCold": 1,
+      "layers": [
+        {
+          "Id": "ice",
+          "Turns": 3
+        }
+      ],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "72084",
+          "BlueprintName": "PouredLiquidPool",
+          "volume": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "PouredLiquidPool",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 1
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": [
+            {
+              "Kind": "cold",
+              "Amount": 35,
+              "TurnsLeft": 98
+            }
+          ]
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "dry-after-pour": {
+      "zone": "Overworld.12.3.3",
+      "x": 63,
+      "y": 14,
+      "tick": 9840,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": 1.0,
+      "cellCold": 0,
+      "layers": [
+        {
+          "Id": "water",
+          "Turns": 2147483647
+        }
+      ],
+      "footing": [
+        {
+          "ID": "71755",
+          "BlueprintName": "Rubble",
+          "volume": null
+        },
+        {
+          "ID": "72084",
+          "BlueprintName": "PouredLiquidPool",
+          "volume": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 2
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "updated-start": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9820,
+      "hp": 27,
+      "coldResistance": 0,
+      "freeze": null,
+      "thaw": null,
+      "moisture": null,
+      "cellCold": 1,
+      "layers": [],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "water",
+          "volume": 1
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 2
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": []
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "updated-after-pour": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9850,
+      "hp": 27,
+      "coldResistance": 35,
+      "freeze": 0.480000019,
+      "thaw": 5,
+      "moisture": 0.99,
+      "cellCold": 1,
+      "layers": [
+        {
+          "Id": "ice",
+          "Turns": 3
+        }
+      ],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "72084",
+          "BlueprintName": "PouredLiquidPool",
+          "volume": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "PouredLiquidPool",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 1
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": [
+            {
+              "Kind": "cold",
+              "Amount": 35,
+              "TurnsLeft": 98
+            }
+          ]
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    },
+    "fresh-updated-frozen": {
+      "zone": "Overworld.12.3.3",
+      "x": 62,
+      "y": 13,
+      "tick": 9850,
+      "hp": 27,
+      "coldResistance": 35,
+      "freeze": 0.480000019,
+      "thaw": 5,
+      "moisture": 0.99,
+      "cellCold": 1,
+      "layers": [
+        {
+          "Id": "ice",
+          "Turns": 3
+        }
+      ],
+      "footing": [
+        {
+          "ID": "71737",
+          "BlueprintName": "LimestoneFloor",
+          "volume": null
+        },
+        {
+          "ID": "72052",
+          "BlueprintName": "FrostVent",
+          "volume": null
+        },
+        {
+          "ID": "72084",
+          "BlueprintName": "PouredLiquidPool",
+          "volume": 1
+        },
+        {
+          "ID": "2699",
+          "BlueprintName": "Player",
+          "volume": null
+        }
+      ],
+      "nearVents": [
+        {
+          "x": 58,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 59,
+          "cold": 0,
+          "owners": [
+            "LimestoneFloor"
+          ]
+        },
+        {
+          "x": 60,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 61,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent"
+          ]
+        },
+        {
+          "x": 62,
+          "cold": 1,
+          "owners": [
+            "LimestoneFloor",
+            "FrostVent",
+            "PouredLiquidPool",
+            "Player"
+          ]
+        }
+      ],
+      "pack": [
+        {
+          "ID": "2700",
+          "BlueprintName": "WateringGrimoire",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2701",
+          "BlueprintName": "CandyCarrotSeed",
+          "count": 4,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2702",
+          "BlueprintName": "EmberwheatSeed",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "2707",
+          "BlueprintName": "DriedMeat",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "9873",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "",
+          "volume": 0
+        },
+        {
+          "ID": "10241",
+          "BlueprintName": "SilverSand",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "10242",
+          "BlueprintName": "LiquidFlask",
+          "count": null,
+          "liquid": "cold-proofing",
+          "volume": 1
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15129",
+          "BlueprintName": "PeatMalletHeadComponent",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15127",
+          "BlueprintName": "KnotflaxCord",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "15138",
+          "BlueprintName": "CampStill",
+          "count": null,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23316",
+          "BlueprintName": "SumpsievePad",
+          "count": 2,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "23318",
+          "BlueprintName": "SumpsieveSeed",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        },
+        {
+          "ID": "28404",
+          "BlueprintName": "ChoirIron",
+          "count": 1,
+          "liquid": null,
+          "volume": null
+        }
+      ],
+      "worn": [
+        {
+          "ID": "2704",
+          "BlueprintName": "Buckler",
+          "coat": []
+        },
+        {
+          "ID": "2705",
+          "BlueprintName": "Cloak",
+          "coat": [
+            {
+              "Kind": "cold",
+              "Amount": 35,
+              "TurnsLeft": 98
+            }
+          ]
+        },
+        {
+          "ID": "2703",
+          "BlueprintName": "Dagger",
+          "coat": []
+        }
+      ]
+    }
+  },
+  "saveFiles": [
+    {
+      "label": "EarnedLichen",
+      "archive": "/Users/steven/coo-verification/runs/FrostVentColdProof20261128/archives/EarnedLichen/c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "86e62f232444d5c18c35faeae45d829f5ac57b035a5c42c792367c6b65b10439",
+        "Quick.sav.gz": "209e3d658584003629592d659cf001a35facdb963f273680806cfe0f951025a1",
+        "Quick.json.bak": "0dc8d293c03d2fe91fc651cca5e77c9766fa155c1a0c9ec9e35ca4f6ccbd5090",
+        "Quick.sav.gz.bak": "747ace97b65a6fc25cf6a731631ad633ded5c58c1b76969cd715cb3cdff3a1ad"
+      }
+    },
+    {
+      "label": "PressedLichen",
+      "archive": "/Users/steven/coo-verification/runs/FrostVentColdProof20261128/archives/PressedLichen/c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "39de63d2112f5548f9ac42f494d4c5f31c6b76f1d50140816972bad76aa5b8cc",
+        "Quick.sav.gz": "439d638fdfb48a8ed5f6bbe70760d8c7c6e073255cbe44346a9b64248965f599",
+        "Quick.json.bak": "86e62f232444d5c18c35faeae45d829f5ac57b035a5c42c792367c6b65b10439",
+        "Quick.sav.gz.bak": "209e3d658584003629592d659cf001a35facdb963f273680806cfe0f951025a1"
+      }
+    },
+    {
+      "label": "ReadyAtEastVent",
+      "archive": "/Users/steven/coo-verification/runs/FrostVentColdProof20261128/archives/ReadyAtEastVent/c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "541c7b69ef6f69ab1a045ea9ab08b55ca789818ed323346bab4cc2d39c67d896",
+        "Quick.sav.gz": "8f12a753365ae400c434e74cb849cca96a8987fe47121dd16360a246e74028b8",
+        "Quick.json.bak": "7cf1a86677d53cb4d5fbddea45a24c11b8429ece8ef16f60d4ae4656c8b67270",
+        "Quick.sav.gz.bak": "414c8cf028519039dbbfbb4c11faad6ba5a1b5081fa81c85a1da0e13f37057fb"
+      }
+    },
+    {
+      "label": "BareFrozen",
+      "archive": "/Users/steven/coo-verification/runs/FrostVentColdProof20261128/archives/BareFrozen/c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "d3c08fafd6fd007606e10715378c268465f13b7d5ac97065acbbc9abe42285fb",
+        "Quick.sav.gz": "3abfb93b2d8bb594df01f42be701470e2a702c475e96bea6ba29bd2bc942a604",
+        "Quick.json.bak": "541c7b69ef6f69ab1a045ea9ab08b55ca789818ed323346bab4cc2d39c67d896",
+        "Quick.sav.gz.bak": "8f12a753365ae400c434e74cb849cca96a8987fe47121dd16360a246e74028b8"
+      }
+    },
+    {
+      "label": "CoatedFrozen",
+      "archive": "/Users/steven/coo-verification/runs/FrostVentColdProof20261128/archives/CoatedFrozen/c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "b9ee5cffe2bf10cb26dde83a3afa437dcb9c61ecde78a3af10224b75c7a0b92d",
+        "Quick.sav.gz": "8bba21d9ba8785eac01648b953a62fefddafb6504bf01dd7c436c20d80ec2158",
+        "Quick.json.bak": "541c7b69ef6f69ab1a045ea9ab08b55ca789818ed323346bab4cc2d39c67d896",
+        "Quick.sav.gz.bak": "8f12a753365ae400c434e74cb849cca96a8987fe47121dd16360a246e74028b8"
+      }
+    },
+    {
+      "label": "UpdatedFrozen",
+      "archive": "/Users/steven/coo-verification/runs/FrostVentColdProof20261128/archives/UpdatedFrozen/c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "81aa12ec3bb8b145c05c926a80290934f6773e9fd8762d7ac6dc745675ae2ec5",
+        "Quick.sav.gz": "3d48da268555a8597b39a032eb5f37530762919ad98377b80a5c037a6fac9c53",
+        "Quick.json.bak": "541c7b69ef6f69ab1a045ea9ab08b55ca789818ed323346bab4cc2d39c67d896",
+        "Quick.sav.gz.bak": "8f12a753365ae400c434e74cb849cca96a8987fe47121dd16360a246e74028b8"
+      }
+    }
+  ],
+  "freshComparedFields": [
+    "zone",
+    "x",
+    "y",
+    "tick",
+    "hp",
+    "coldResistance",
+    "freeze",
+    "thaw",
+    "moisture",
+    "pack",
+    "worn",
+    "cellCold",
+    "layers",
+    "footing",
+    "nearVents"
+  ],
+  "tests": {
+    "red.xml": {
+      "total": 10,
+      "passed": 6,
+      "failed": 4,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "red-corrected.xml": {
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "green.xml": {
+      "total": 326,
+      "passed": 325,
+      "failed": 0,
+      "skipped": 1,
+      "inconclusive": 0
+    }
+  },
+  "preservation": {
+    "files": {
+      "quick": {
+        "count": 880,
+        "changed": []
+      },
+      "tracked": {
+        "count": 87,
+        "changed": []
+      }
+    },
+    "preferences": {
+      "restoredOwnedRunKeys": [
+        "PT_Run",
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.session_id"
+      ],
+      "initialPreferenceFileBytesMatch": {
+        "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+        "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+      }
+    },
+    "editor": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    }
+  },
+  "scope": "Unity Editor on Apple M5. No supplied objects, forced climate, manual world edits or new standalone package. Native read-only instrumentation records the same normal player actions."
+}
