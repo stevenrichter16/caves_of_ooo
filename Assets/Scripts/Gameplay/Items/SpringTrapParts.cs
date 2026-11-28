@@ -81,10 +81,10 @@ namespace CavesOfOoo.Core
                 {
                     var item = FindCarried(pack, actor, c.blueprint); if (item == null) continue; any = true;
                     actions.AddActionWithHint("LoadSpringTrap", "load the spring trap with " + c.word, LoadPrefix + c.blueprint, "Spends one " + c.word + ". The trap is then " + c.kind + "-loaded and can be laid.", '\0', 18, false, ActionTime.OneAction)
-                        .AsRecipe(PackRecipeCategory.ToolsAndGear);
+                        .AsRecipe(PackRecipeCategory.ToolsAndGear, "spring trap (" + c.word + ")", "");
                 }
                 if (!any) actions.AddDisabled("LoadSpringTrap", "load the spring trap", "nothing-to-load", "It takes fire moss, frost lichen or spark root. You carry none.", 'l', 18)
-                    .AsRecipe(PackRecipeCategory.ToolsAndGear);
+                    .AsRecipe(PackRecipeCategory.ToolsAndGear, "spring trap", "");
                 return;
             }
             var origin = zone.GetEntityCell(actor); if (origin == null) return;

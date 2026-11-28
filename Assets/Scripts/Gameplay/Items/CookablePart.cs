@@ -45,15 +45,15 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions == null || actor?.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) != true) return true;
                 const string label = "cook this stack beside a fire";
-                string title = "Cook " + InventoryPart.GetUnitDisplayName(ParentEntity);
-                string result = MaterialProcessActions.Label(MaterialReactionResolver.Factory, Into);
+                string title = MaterialProcessActions.Label(MaterialReactionResolver.Factory, Into);
                 int count = ParentEntity.GetPart<StackerPart>()?.StackCount ?? 1;
-                if (count > 1) result = count + " " + result;
+                string result = count > 1 ? count + " " + title : title;
+                string effects = PackRecipeEffects.FromBlueprint(MaterialReactionResolver.Factory, Into);
                 var zone = actor.SpatialZone;
                 var stations = CookingService.StationsBeside(actor, zone);
                 if (stations.Count == 0)
                     actions.AddDisabled("Cook", label, "no_fire", CookingService.NoReadyFire, 'c', 19)
-                        .AsRecipe(PackRecipeCategory.Food, result, title);
+                        .AsRecipe(PackRecipeCategory.Food, title, result, effects);
                 else
                 {
                     InventoryAction authored = null;
@@ -63,15 +63,14 @@ namespace CavesOfOoo.Core
                         if (station.HasPart<CampfirePart>())
                         {
                             authored ??= actions.AddAction("Cook", label, "Cook", 'c', 19).InGroup(ToolGroups.Cook)
-                                .AsRecipe(PackRecipeCategory.Food, result, title);
+                                .AsRecipe(PackRecipeCategory.Food, title, result, effects);
                             authored.AtEntity(zone, station);
                             key = '\0';
                             continue;
                         }
                         var row = actions.AddAction("Cook", "cook this stack over " + station.GetDisplayName(),
                             CookingService.CookAt(zone, station), key, 18, time: ActionTime.OneAction)
-                            .InGroup(ToolGroups.Cook).AsRecipe(PackRecipeCategory.Food, result,
-                                title + " over " + station.GetDisplayName());
+                            .InGroup(ToolGroups.Cook).AsRecipe(PackRecipeCategory.Food, title, result, effects);
                         key = '\0';
                         foreach (var cell in zone.GetOccupiedCells(station))
                             if (CookingService.VisibleContact(actor, cell)) row.AtCell(cell.X, cell.Y);

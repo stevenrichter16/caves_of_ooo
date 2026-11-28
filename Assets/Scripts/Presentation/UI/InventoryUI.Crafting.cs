@@ -545,8 +545,12 @@ namespace CavesOfOoo.Rendering
                 else if (_craftingMode == CraftingMode.Recipes)
                 {
                     bool selected = i == _craftCursorIndex;
-                    DrawText(1, rowY, (selected ? "> " : "  ") + Truncate(row.Text, listWidth - 2),
+                    const int statusWidth = 11;
+                    DrawText(1, rowY, (selected ? "> " : "  ") + Truncate(row.Text, listWidth - statusWidth - 3),
                         selected ? QudColorParser.White : QudColorParser.Gray);
+                    bool available = row.RecipeAction is { IsDisabled: false };
+                    DrawText(1 + listWidth - statusWidth, rowY, available ? "Available" : "Unavailable",
+                        available ? QudColorParser.BrightGreen : QudColorParser.Gray);
                 }
                 else DrawPickRow(1, rowY, listWidth, row.Text, i == _craftCursorIndex, row.IsMarked, row.Count);
             }

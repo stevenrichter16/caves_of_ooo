@@ -12,17 +12,22 @@ subtab by the P shortcut. Both cases used the normal recipe confirmation.
 | Cinderhold missing material | Knotflax cord 15127 and no spurgrass spine, tick 7450 | The serrated edge recipe explained that it needed two spine. Attempting it kept the same selection and spent zero time and zero cord. |
 | Cinderhold medical supplies | The same knotflax cord also offered a plain binding | Making the bandage consumed cord 15127 and put bandage 28411 in the pack at tick 7460. |
 
-The captured game frames show the categorized rows, selected result
-and requirements. The pack view after shaping shows the resulting haft.
+The captured game frames show the categorized names and availability.
+The right pane shows the selected haft's Strength cap contribution and
+the bandage's bleeding treatment. Toasted emberwheat shows its 3d4 HP
+healing and +20 heat resistance for 100 turns, and explains why a fire
+is required. Opening the pack after shaping shows the resulting haft.
 
 - [Weapon parts](01-weapon-parts.png)
+- [Food effects and missing fire](02-food-effects.png)
 - [Haft in inventory](03-haft-in-inventory.png)
 - [Unavailable material work](04-missing-material.png)
 - [Medical supplies](05-medical-supplies.png)
 
-Unity Edit Mode passed all 554 focused cases. The set covers exact source
-ownership, repeated stale attempts, missing still requirements, one
-turn per committed preparation, controller subtab navigation, Forge
+Unity Edit Mode passed all 555 focused cases. The set covers exact source
+ownership, output-only names, right-pane effects, mineral infusion's
+resistance preview, repeated stale attempts, missing still requirements,
+one turn per committed preparation, controller subtab navigation, Forge
 and Brew, material processing, cooking, and proofing. Two existing
 renderer assertions now read the selected color from the shared ledger
 palette, which is where the shipping renderer reads it. Independent

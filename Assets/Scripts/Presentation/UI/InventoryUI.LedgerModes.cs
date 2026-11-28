@@ -133,7 +133,7 @@ namespace CavesOfOoo.Rendering
                         selected || readyNow ? LInk : LMuted, 18);
                     if (row.IsSelectable)
                         LSecondaryText(new Rect(578, bounds.y + 6, 114, 20),
-                            readyNow ? "Ready" : "Unavailable", readyNow ? LGreen : LMuted, 18);
+                            readyNow ? "Available" : "Unavailable", readyNow ? LGreen : LMuted, 18);
                 }
                 else
                 {
@@ -157,9 +157,13 @@ namespace CavesOfOoo.Rendering
             if (recipes)
             {
                 LLabel(new Rect(748, 152, 488, 22), "SELECTED RECIPE", LGold);
-                string details = SelectedPackRecipeDetails();
-                if (string.IsNullOrEmpty(details)) return;
-                LSecondaryText(new Rect(748, 194, 488, 426), details, LInk, 18);
+                if (SelectedPackRecipe.RecipeAction == null)
+                {
+                    LSecondaryText(new Rect(748, 194, 488, 64), PackRecipeDetailsBody(), LMuted, 18);
+                    return;
+                }
+                LSecondaryText(new Rect(748, 188, 488, 58), SelectedPackRecipe.Text, LInk, 24);
+                LSecondaryText(new Rect(748, 249, 488, 371), PackRecipeDetailsBody(), LInk, 18);
                 LSecondaryButton(new Rect(748, 658, 488, 32), PackRecipeCommitLabel.ToUpperInvariant(),
                     LedgerHitKind.CraftCommit, 0, false, PackRecipeReady);
                 return;

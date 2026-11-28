@@ -21,10 +21,11 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 if (CurrentInput(actor, actor?.GetPart<InventoryPart>()))
+                {
+                    string output = MaterialProcessActions.Label(SeedPart.Factory, OutputBlueprint);
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction(Command, ActionText, Command, 'p', 18)
-                        .AsRecipe(PackRecipeCategory.Materials,
-                            OutputCount + " " + MaterialProcessActions.Label(SeedPart.Factory, OutputBlueprint),
-                            "Prepare " + InventoryPart.GetUnitDisplayName(ParentEntity));
+                        .AsRecipe(PackRecipeCategory.Materials, output, OutputCount + " " + output);
+                }
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != Command) return true;

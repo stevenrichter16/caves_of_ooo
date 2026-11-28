@@ -26,7 +26,8 @@ namespace CavesOfOoo.Core
                 if (fieldQuote != null)
                     actions.AddActionWithHint("FieldHeadRecovery", "cut for head (lose haft, binding, mods)", fieldQuote.Command,
                         "One action. Lose the weapon, haft, binding and improvements. Keep your cutter. A working forge can also recover the haft.",
-                        '\0', 16, false, ActionTime.OneAction).AsRecipe(PackRecipeCategory.Reclamation);
+                        '\0', 16, false, ActionTime.OneAction).AsRecipe(PackRecipeCategory.Reclamation,
+                            RecoveryName(item.GetPart<WeaponAssemblyPart>()?.BladeBlueprint, "weapon head"));
                 return true;
             }
             if (e.ID != "InventoryAction") return true;
@@ -55,19 +56,21 @@ namespace CavesOfOoo.Core
         void AddForgeRecoveryRow(Entity actor, Zone zone, InventoryActionList actions)
         {
             if (actions == null || !PreparationActions.CurrentActor(actor, zone)
-                || !PreparationActions.Carried(actor, ParentEntity) || !ParentEntity.HasPart<WeaponAssemblyPart>()) return;
+                || !PreparationActions.Carried(actor, ParentEntity)
+                || ParentEntity.GetPart<WeaponAssemblyPart>() is not { } assembly) return;
 
             const string label = "forge: head+haft; lose binding/mods";
+            string title = RecoveryName(assembly.BladeBlueprint, "weapon head") + " + " + RecoveryName(assembly.HaftBlueprint, "haft");
             var station = ForgeWorkReceipt.Resolve(actor, zone);
             if (ForgeWorkReceipt.Near(actor, station, zone))
             {
                 if (StationAccess.Allowed(actor, station, zone, ForgeWorkReceipt.Kind, SalvageCommand, out string code, out string reason))
                     actions.AddAction(SalvageCommand, label, SalvageCommand, '\0', 17)
-                        .AsRecipe(PackRecipeCategory.Reclamation);
+                        .AsRecipe(PackRecipeCategory.Reclamation, title);
                 else
                     actions.AddDisabled(SalvageCommand, label, code ?? "forge-access",
                         string.IsNullOrWhiteSpace(reason) ? "This forge is unavailable for recovery." : reason, '\0', 5)
-                        .AsRecipe(PackRecipeCategory.Reclamation);
+                        .AsRecipe(PackRecipeCategory.Reclamation, title);
                 return;
             }
 
@@ -79,8 +82,11 @@ namespace CavesOfOoo.Core
             actions.AddDisabled(SalvageCommand, label, visibleFault ? "forge-needs-repair" : "forge-required",
                 visibleFault ? "The nearby forge or work rig needs repair. Repair it or use another working forge."
                     : "Stand beside a working forge or work rig to recover the head and haft.", '\0', 5)
-                .AsRecipe(PackRecipeCategory.Reclamation);
+                .AsRecipe(PackRecipeCategory.Reclamation, title);
         }
+
+        static string RecoveryName(string blueprint, string fallback)
+            => MaterialProcessActions.Label(ForgePart.Factory, blueprint) is { Length: > 0 } name ? name : fallback;
 
         bool Salvage(Entity actor, Zone zone, InventoryTransaction tx)
         {

@@ -135,13 +135,26 @@ namespace CavesOfOoo.Tests
         {
             var timber = Carry("SalvagedTimber");
             var cord = Carry("KnotflaxCord");
-            OpenRecipes();
+            var oldSeedFactory = SeedPart.Factory;
+            try
+            {
+                SeedPart.Factory = Factory;
+                OpenRecipes();
+            }
+            finally { SeedPart.Factory = oldSeedFactory; }
 
             var haft = FindRecipe(timber, Haft);
             var binding = FindRecipe(cord, Binding);
             var bandage = FindRecipe(cord, Bandage);
             Assert.AreEqual(haft.Category, binding.Category);
             Assert.AreNotEqual(binding.Category, bandage.Category);
+            Assert.That(haft.Text, Is.EqualTo("rough field haft").IgnoreCase);
+            Assert.That(binding.Text, Is.EqualTo("plain knotflax binding").IgnoreCase);
+            Assert.That(bandage.Text, Is.EqualTo("knotflax bandage").IgnoreCase);
+            Set("_craftCursorIndex", haft.Index);
+            Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Match(@"(?i)(?:str|strength) cap\s*:?\s*1"));
+            Set("_craftCursorIndex", bandage.Index);
+            Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Contain("stops bleeding").IgnoreCase);
             Assert.False(UI.ConsumePendingEverydayTurn());
         }
 
@@ -208,6 +221,23 @@ namespace CavesOfOoo.Tests
             Assert.Fail("The unavailable recipe must still explain the station requirement.");
         }
 
+        [Test]
+        public void AChoirIronInfusionNamesTheItemAndPreviewsItsResistance()
+        {
+            var mineral = Carry("ChoirIron");
+            var dagger = Item("Dagger");
+            Assert.True(Inventory.AddObject(dagger));
+            OpenRecipes();
+
+            var recipe = FindRecipe(mineral, "InfuseMineral|" + Uri.EscapeDataString(dagger.ID));
+            Assert.That(recipe.Text, Is.EqualTo("dagger").IgnoreCase);
+            Set("_craftCursorIndex", recipe.Index);
+            var details = (string)Call("SelectedPackRecipeDetails");
+            Assert.That(details, Does.Contain("+6").And.Contain("Fungal"));
+            Assert.Null(dagger.GetPart("EnhancementChoirIron"));
+            Assert.False(UI.ConsumePendingEverydayTurn());
+        }
+
         void OpenRecipes()
         {
             var mode = typeof(InventoryUI).GetNestedType("CraftingMode", BindingFlags.NonPublic);
@@ -215,7 +245,7 @@ namespace CavesOfOoo.Tests
             Call("SwitchCraftingMode", Enum.Parse(mode, "Recipes"));
         }
 
-        (int Index, string Category) FindRecipe(Entity source, string command)
+        (int Index, string Category, string Text) FindRecipe(Entity source, string command)
         {
             var original = InventorySystem.GetActions(Player, source).Single(action => action.Command == command);
             var rows = (IList)Get("_craftRows");
@@ -230,10 +260,10 @@ namespace CavesOfOoo.Tests
                 Assert.True((bool)Field(row, "IsSelectable"));
                 Assert.AreEqual(original.Display, action.Display);
                 Assert.AreEqual(original.Time, action.Time);
-                return (index, category);
+                return (index, category, (string)Field(row, "Text"));
             }
             Assert.Fail($"Missing pack recipe for {source.BlueprintName}: {command}");
-            return (-1, null);
+            return (-1, null, null);
         }
     }
 }

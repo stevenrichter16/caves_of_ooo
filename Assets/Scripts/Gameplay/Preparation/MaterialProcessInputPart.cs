@@ -64,6 +64,9 @@ namespace CavesOfOoo.Core
             => string.Join(" + ", definition.OutputBlueprints.Select((bp, i) =>
                 definition.OutputCounts[i].ToString(CultureInfo.InvariantCulture) + " " + Label(factory, bp)));
 
+        private static string OutputNames(CavesOfOoo.Data.EntityFactory factory, MaterialProcessDefinition definition)
+            => string.Join(" + ", definition.OutputBlueprints.Select(bp => Label(factory, bp)));
+
         private static InventoryAction AsRecipe(InventoryAction action, CavesOfOoo.Data.EntityFactory factory, MaterialProcessDefinition definition)
         {
             if (action == null || definition == null) return action;
@@ -76,7 +79,9 @@ namespace CavesOfOoo.Core
                     "HandCutting" => PackRecipeCategory.WeaponParts,
                     _ => AnvilPointWorkReceipt.Supports(definition) ? PackRecipeCategory.WeaponParts : PackRecipeCategory.Materials
                 };
-            return action.AsRecipe(category, Outputs(factory, definition));
+            string effects = string.Join("\n", definition.OutputBlueprints.Select(bp => PackRecipeEffects.FromBlueprint(factory, bp))
+                .Where(text => !string.IsNullOrEmpty(text)));
+            return action.AsRecipe(category, OutputNames(factory, definition), Outputs(factory, definition), effects);
         }
 
         // This describes material potential. The action checks the actual tool,
@@ -190,7 +195,7 @@ namespace CavesOfOoo.Core
                             $"One action. {fine} lb of {Label(plan.Factory, d.OutputBlueprints[0])} into your pack. "
                             + $"{coarse} lb of {Label(plan.Factory, d.OutputBlueprints[1])} at your feet. Keep the sieve.",
                             '\0',18,false,ActionTime.OneAction).AtCell(ground.X, ground.Y)
-                            .AsRecipe(PackRecipeCategory.Materials, outputs);
+                            .AsRecipe(PackRecipeCategory.Materials, OutputNames(plan.Factory, d), outputs);
                     }
                 }
                 return true;

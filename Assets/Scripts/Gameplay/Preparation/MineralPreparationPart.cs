@@ -95,7 +95,8 @@ namespace CavesOfOoo.Core
                 var row = atForge
                     ? rows.AddAction(name, label, "InfuseMineral|" + PreparationActions.Escaped(target), '\0', 17)
                     : rows.AddDisabled(name, label, "forge-required", "Stand beside a working forge.", '\0', 17);
-                row.AsRecipe(PackRecipeCategory.EquipmentWork);
+                row.AsRecipe(PackRecipeCategory.EquipmentWork, InventoryPart.GetUnitDisplayName(target), "",
+                    effects: modification.DescribeEnhancement());
             }
         }
 

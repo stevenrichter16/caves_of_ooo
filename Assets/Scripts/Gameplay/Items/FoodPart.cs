@@ -27,10 +27,13 @@ namespace CavesOfOoo.Core
         public int MealDuration = 100;
 
         public static string DescribeMeal(FoodPart food)
+            => food == null ? "" : DescribeMeal(food.MealStat, food.MealBonus, food.MealDuration);
+
+        internal static string DescribeMeal(string stat, int bonus, int duration)
         {
-            return food != null && PreparedMealEffect.Valid(food.MealStat, food.MealBonus, food.MealDuration)
-                ? "+" + food.MealBonus + " " + PreparedMealEffect.Label(food.MealStat) + " for "
-                    + food.MealDuration + " of your turns. Replaces your previous prepared meal."
+            return PreparedMealEffect.Valid(stat, bonus, duration)
+                ? "+" + bonus + " " + PreparedMealEffect.Label(stat) + " for "
+                    + duration + " of your turns. Replaces your previous prepared meal."
                 : "";
         }
 

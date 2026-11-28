@@ -107,7 +107,7 @@ namespace CavesOfOoo.Core
                     var quote=Create(actor,weapon,replacement,zone);if(quote==null)continue;
                     string token=Guid.NewGuid().ToString("N");menu.Quotes[token]=quote;
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("field-binding","replace binding with "+InventoryPart.GetUnitDisplayName(replacement)+"; old binding destroyed (1 action, cutter kept)",Prefix+token,'\0',19,false,ActionTime.OneAction)
-                        .AsRecipe(PackRecipeCategory.EquipmentWork);
+                        .AsRecipe(PackRecipeCategory.EquipmentWork, InventoryPart.GetUnitDisplayName(weapon), "");
                 }
                 return true;
             }

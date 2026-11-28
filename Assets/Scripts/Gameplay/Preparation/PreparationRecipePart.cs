@@ -38,7 +38,10 @@ namespace CavesOfOoo.Core
                 row = actions.AddDisabled(recipe.Id, recipe.Text, "still-required", "Stand beside a working alchemy still.", '\0', 18);
             else
                 row = actions.AddAction(recipe.Id, recipe.Text, "PrepareRecipe|" + recipe.Id, '\0', 18);
-            row.AsRecipe(recipe.Category, MaterialProcessActions.Label(SeedPart.Factory, recipe.Output));
+            string instructions = "Uses " + recipe.Units + " " + InventoryPart.GetUnitDisplayName(ParentEntity) + "."
+                + (recipe.Still && !row.IsDisabled ? " Work beside an alchemy still." : "");
+            row.AsRecipe(recipe.Category, MaterialProcessActions.Label(SeedPart.Factory, recipe.Output),
+                effects: PackRecipeEffects.FromBlueprint(SeedPart.Factory, recipe.Output), instructions: instructions);
         }
     }
     internal static class PreparationRecipeService

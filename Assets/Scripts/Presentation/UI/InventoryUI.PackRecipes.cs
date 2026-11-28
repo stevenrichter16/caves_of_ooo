@@ -17,11 +17,10 @@ namespace CavesOfOoo.Rendering
                 if (item.Actions == null) continue;
                 foreach (var action in item.Actions)
                 {
-                    if (action.RecipeCategory == PackRecipeCategory.None || string.IsNullOrEmpty(action.Display)) continue;
-                    string label = action.RecipeTitle ?? CapitalizeRecipeText(action.Display);
+                    if (action.RecipeCategory == PackRecipeCategory.None || string.IsNullOrEmpty(action.RecipeTitle)) continue;
                     recipes.Add(new CraftRow
                     {
-                        Text = label,
+                        Text = CapitalizeRecipeText(action.RecipeTitle),
                         Item = item.Item,
                         Count = item.StackCount,
                         IsSelectable = true,
@@ -34,7 +33,9 @@ namespace CavesOfOoo.Rendering
                 int category = a.RecipeAction.RecipeCategory.CompareTo(b.RecipeAction.RecipeCategory);
                 if (category != 0) return category;
                 int name = string.Compare(a.Text, b.Text, StringComparison.OrdinalIgnoreCase);
-                return name != 0 ? name : string.CompareOrdinal(a.Item.ID, b.Item.ID);
+                if (name != 0) return name;
+                int source = string.CompareOrdinal(a.Item.ID, b.Item.ID);
+                return source != 0 ? source : string.CompareOrdinal(a.RecipeAction.Display, b.RecipeAction.Display);
             });
 
             var previous = PackRecipeCategory.None;
@@ -71,16 +72,22 @@ namespace CavesOfOoo.Rendering
             ? "Cook stack" : "Make";
 
         private string SelectedPackRecipeDetails()
+            => SelectedPackRecipe.RecipeAction == null ? PackRecipeDetailsBody()
+                : SelectedPackRecipe.Text + "\n\n" + PackRecipeDetailsBody();
+
+        private string PackRecipeDetailsBody()
         {
             var row = SelectedPackRecipe;
             var action = row.RecipeAction;
             if (action == null) return "Carry materials to see their recipes.";
 
-            string source = row.Item.GetDisplayName();
-            string result = string.IsNullOrEmpty(action.RecipeResult) ? "" : "Makes " + action.RecipeResult + "\n\n";
+            string effects = string.IsNullOrEmpty(action.RecipeEffects) ? "" : action.RecipeEffects + "\n\n";
+            string result = string.IsNullOrEmpty(action.RecipeResult) || action.RecipeResult == action.RecipeTitle
+                ? "" : "Makes " + action.RecipeResult + "\n\n";
             string note = action.IsDisabled ? action.DisabledReason : action.Hint;
-            string instruction = CapitalizeRecipeText(action.Display);
-            return result + instruction + "\n\nCarried input: " + source
+            string instruction = action.RecipeInstructions ?? action.Display;
+            if (!string.IsNullOrEmpty(instruction)) instruction = CapitalizeRecipeText(instruction) + "\n\n";
+            return effects + result + instruction + "Carried input: " + row.Item.GetDisplayName()
                 + (string.IsNullOrEmpty(note) ? "" : "\n\n" + note);
         }
 

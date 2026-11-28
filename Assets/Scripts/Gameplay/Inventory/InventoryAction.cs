@@ -66,12 +66,17 @@ namespace CavesOfOoo.Core
         public PackRecipeCategory RecipeCategory { get; private set; }
         public string RecipeResult { get; private set; }
         public string RecipeTitle { get; private set; }
+        public string RecipeEffects { get; private set; }
+        public string RecipeInstructions { get; private set; }
 
-        public InventoryAction AsRecipe(PackRecipeCategory category, string result = null, string title = null)
+        public InventoryAction AsRecipe(PackRecipeCategory category, string title, string result = null,
+            string effects = null, string instructions = null)
         {
             RecipeCategory = category;
-            RecipeResult = result;
+            RecipeResult = result ?? title;
             RecipeTitle = title;
+            RecipeEffects = effects;
+            RecipeInstructions = instructions;
             return this;
         }
 

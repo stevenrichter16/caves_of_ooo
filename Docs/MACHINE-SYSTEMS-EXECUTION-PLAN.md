@@ -1,10 +1,12 @@
 **Pack crafting gains a categorized Recipes subtab — November 28, 2026, America/Chicago.**
 Inventory actions supply the exact input, result, requirements and
-command to Recipes alongside Forge and Brew. Ordinary GameBootstrap
+command to Recipes alongside Forge and Brew. The list contains crafted
+item names and availability. The right pane places the selected item's
+stat contributions and effects above its requirements. Ordinary GameBootstrap
 play shaped one earned Gleaners' timber into a haft and made a bandage
 from one Cinderhold cord. The same cord offered a different weapon part.
 A refused serrated kit kept its selection and spent no time or material.
-Both crafts cost one turn. All 554 focused cases and an independent
+Both crafts cost one turn. All 555 focused cases and an independent
 review of the source and gameplay footage passed.
 [Pack recipes and screenshots](Verification/MachineSystems/PackRecipes20261128/README.md)
 
