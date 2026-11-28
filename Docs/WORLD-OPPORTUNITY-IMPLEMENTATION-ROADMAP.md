@@ -397,6 +397,13 @@ from 45 to 40. A separate Brine Camp comparison records the exact
 native action, ordinary dispersal and further emissions.
 [Gas handling](Verification/MachineSystems/LampveinFanPreview20261127/README.md)
 
+For #14, #19, #36 and #40, the same raw-food recipe accepts a nearby
+burning prop. An ordinary Sill purchase supplied the raw meat and the
+torch. The torch lit a naturally generated overturned cart and the
+named cooking action made one meal in one turn. Water can end that
+opportunity by extinguishing the same fire.
+[Burning cart and dousing comparison](Verification/MachineSystems/BurningCartCooking20261127/README.md)
+
 For #14, #19 and #36, one perch bought after Tine's weir work traveled
 to the Gleaners' cooking fire and became one roasted perch. The pack's
 Cook row and item guide reflect the same finite fire readiness. The

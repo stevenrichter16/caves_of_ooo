@@ -4,16 +4,20 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>Authored inventory recipe; thermal ground recipes remain independent.</summary>
-    public sealed class CookablePart : Part, IDescribeUse
+    public sealed class CookablePart : Part, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "Cookable";
         public int Order => 30;
         public string Into = "";
 
+        public bool OwnsInventoryReceipt(string command)
+            => ParentEntity?.GetPart<CookablePart>() == this && CookingService.IsCookAt(command);
+
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
-            guide.How.Add("Stand beside a campfire, hearth or stove and choose Cook from this item in your pack.");
+            guide.How.Add("Stand beside a usable fire and choose Cook in your pack or from the fire's menu.");
             guide.Limits.Add("Cooking prepares the whole stack. Camp hearths and coals need heat and fuel.");
+            guide.Limits.Add("A burning object such as a cart can cook food while its flames last.");
             guide.WhyNot = UseGuides.PickUpFirst;
         }
 
@@ -47,15 +51,33 @@ namespace CavesOfOoo.Core
                     actions.AddDisabled("Cook", label, "no_fire", CookingService.NoReadyFire, 'c', 19);
                 else
                 {
-                    var row = actions.AddAction("Cook", label, "Cook", 'c', 19).InGroup(ToolGroups.Cook);
-                    foreach (var station in stations) row.AtEntity(zone, station);
+                    InventoryAction authored = null;
+                    char key = 'c';
+                    foreach (var station in stations)
+                    {
+                        if (station.HasPart<CampfirePart>())
+                        {
+                            authored ??= actions.AddAction("Cook", label, "Cook", 'c', 19).InGroup(ToolGroups.Cook);
+                            authored.AtEntity(zone, station);
+                            key = '\0';
+                            continue;
+                        }
+                        var row = actions.AddAction("Cook", "cook this stack over " + station.GetDisplayName(),
+                            CookingService.CookAt(zone, station), key, 18, time: ActionTime.OneAction)
+                            .InGroup(ToolGroups.Cook);
+                        key = '\0';
+                        foreach (var cell in zone.GetOccupiedCells(station))
+                            if (CookingService.VisibleContact(actor, cell)) row.AtCell(cell.X, cell.Y);
+                    }
                 }
                 return true;
             }
-            if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "Cook") return true;
+            if (e.ID != "InventoryAction") return true;
+            string command = e.GetStringParameter("Command");
+            if (command != "Cook" && !CookingService.IsCookAt(command)) return true;
             // Bootstrap already wires the real content factory for food transformations.
             if (!CookingService.TryCook(e.GetParameter<Entity>("Actor"), ParentEntity, e.GetParameter<Zone>("Zone"),
-                MaterialReactionResolver.Factory, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                MaterialReactionResolver.Factory, e.GetParameter<InventoryTransaction>("InventoryTransaction"), command)) return true;
             e.Handled = true;
             return false;
         }

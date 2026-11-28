@@ -92,6 +92,182 @@ namespace CavesOfOoo.Tests
             Assert.That(guide, Does.Contain(UseGuides.NowCannot).And.Contain(row.DisabledReason.TrimEnd('.')));
         }
 
+        private Entity Cart(bool burning)
+        {
+            var cart = factory.CreateEntity("OverturnedCart");
+            Assert.NotNull(cart.GetPart<ThermalPart>());
+            Assert.IsNull(cart.GetPart<FuelPart>());
+            Assert.IsNull(cart.GetPart<CampfirePart>());
+            Assert.True(zone.AddEntity(cart, 11, 10));
+            foreach (var cell in new[] { zone.GetEntityCell(actor), zone.GetEntityCell(cart) })
+                cell.IsVisible = cell.Explored = true;
+            if (burning) Assert.True(cart.ApplyEffect(new BurningEffect(1f, actor), actor, zone));
+            return cart;
+        }
+
+        private static bool IsExactCookRow(InventoryAction row)
+            => !row.IsDisabled && row.Command.StartsWith("CookAt|", StringComparison.Ordinal);
+
+        [Test]
+        public void BurningCartOffersTheSameNamedPaidCookingCommandInThePackAndWorld()
+        {
+            var cart = Cart(burning: true);
+            var raw = Perch(1);
+            var packRow = InventorySystem.GetActions(actor, raw).Single(IsExactCookRow);
+            var worldRow = WorldInteractionSystem.GatherCellActions(cart, zone.GetEntityCell(cart), actor)
+                .Single(IsExactCookRow);
+            StringAssert.Contains(cart.GetDisplayName(), packRow.Display);
+            Assert.AreEqual(ActionTime.OneAction, packRow.Time);
+            Assert.AreEqual(packRow.Time, worldRow.Time);
+            Assert.AreEqual(packRow.Command, worldRow.Command);
+            Assert.AreSame(raw, worldRow.Via);
+
+            var originalBurn = cart.GetEffect<BurningEffect>();
+            Assert.True(InventorySystem.PerformAction(actor, worldRow.Via, worldRow.Command, zone));
+            Assert.AreEqual(0, Units("LakePerch"));
+            Assert.AreEqual(1, Units("RoastedLakePerch"));
+            Assert.AreSame(originalBurn, cart.GetEffect<BurningEffect>());
+        }
+
+        [Test]
+        public void DirectCookCanUseAnAdjacentBurningCartWithoutAStation()
+        {
+            Cart(burning: true);
+            CookAndCheck(Raw(), true);
+        }
+
+        [TestCase("Hedge", true)]
+        [TestCase("WoodenBarrel", true)]
+        [TestCase("WoodenBarrel", false)]
+        public void ImprovisedCookingFollowsTheGroundObjectsOwnLiveFire(string blueprint, bool hasHeat)
+        {
+            var source = factory.CreateEntity(blueprint);
+            Assert.True(zone.AddEntity(source, 11, 10));
+            var cell = zone.GetEntityCell(source);
+            cell.IsVisible = cell.Explored = true;
+            Assert.True(source.ApplyEffect(new BurningEffect(1f, actor), actor, zone));
+            if (!hasHeat) source.GetPart<FuelPart>().FuelMass = 0;
+
+            var raw = Raw();
+            Assert.AreEqual(hasHeat, WorldCookingRows(source).Any(IsExactCookRow));
+            CookAndCheck(raw, hasHeat);
+        }
+
+        [Test]
+        public void BurningCreatureCannotBeAnImprovisedCookingSource()
+        {
+            var source = Cart(burning: true);
+            source.SetTag("Creature");
+            var raw = Raw();
+            Assert.False(WorldCookingRows(source).Any(IsExactCookRow));
+            CookAndCheck(raw, false);
+        }
+
+        [TestCase("cold")]
+        [TestCase("hot-without-fire")]
+        [TestCase("hidden")]
+        [TestCase("invalid-flame-threshold")]
+        public void CartCookingRequiresVisibleActiveFire(string condition)
+        {
+            var cart = Cart(burning: condition == "hidden" || condition == "invalid-flame-threshold");
+            var cell = zone.GetEntityCell(cart);
+            if (condition == "hot-without-fire")
+                cart.GetPart<ThermalPart>().Temperature = 500f;
+            if (condition == "hidden")
+                cell.IsVisible = false;
+            if (condition == "invalid-flame-threshold")
+                cart.GetPart<ThermalPart>().FlameTemperature = float.NegativeInfinity;
+            var raw = Perch(1);
+
+            Assert.False(InventorySystem.GetActions(actor, raw).Any(IsExactCookRow));
+            Assert.False(InventorySystem.PerformAction(actor, raw, "Cook", zone));
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(1, Units("LakePerch"));
+            Assert.AreEqual(0, Units("RoastedLakePerch"));
+        }
+
+        [Test]
+        public void ExtinguishedExactCartRowCannotFallBackToAReadyCampfire()
+        {
+            var cart = Cart(burning: true);
+            var raw = Perch(1);
+            var row = InventorySystem.GetActions(actor, raw).Single(IsExactCookRow);
+            var fallback = Station(finite: true, x: 10, y: 11);
+            Assert.That(CookingService.StationsBeside(actor, zone), Does.Contain(fallback));
+            Assert.True(cart.RemoveEffect<BurningEffect>());
+
+            Assert.False(InventorySystem.PerformAction(actor, raw, row.Command, zone));
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(1, Units("LakePerch"));
+            Assert.AreEqual(0, Units("RoastedLakePerch"));
+        }
+
+        [Test]
+        public void AnOldCampfireRowDoesNotFallBackToABurningCart()
+        {
+            var campfire = Station(finite: true, x: 10, y: 11);
+            var raw = Raw();
+            var row = WorldCookingRows(campfire).Single(r => r.Command == "Cook");
+            campfire.GetPart<FuelPart>().FuelMass = 0;
+            Cart(burning: true);
+
+            Assert.False(InventorySystem.PerformAction(actor, raw, row.Command, zone));
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(2, Units("RawMeat"));
+            Assert.AreEqual(0, Units("CookedMeat"));
+        }
+
+        [Test]
+        public void ExactCartCookingRollsBackIfTheCookedStackChangesBeforeCommit()
+        {
+            Cart(burning: true);
+            var raw = Raw();
+            var row = InventorySystem.GetActions(actor, raw).Single(IsExactCookRow);
+            int calls = 0;
+            actor.AddPart(new CookingInventoryProbe { Callback = () =>
+            {
+                calls++;
+                var cooked = actor.GetPart<InventoryPart>().Objects.Single(e => e.BlueprintName == "CookedMeat");
+                cooked.GetPart<StackerPart>().StackCount++;
+            } });
+
+            Assert.False(InventorySystem.PerformAction(actor, raw, row.Command, zone));
+            Assert.AreEqual(1, calls);
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(2, Units("RawMeat"));
+            Assert.AreEqual(0, Units("CookedMeat"));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void ExactCartCookingRefusesReplacementFireDuringTheTransaction(bool inventoryCallback)
+        {
+            var cart = Cart(burning: true);
+            var raw = Raw();
+            var row = InventorySystem.GetActions(actor, raw).Single(IsExactCookRow);
+            var first = cart.GetEffect<BurningEffect>();
+            var replacement = new BurningEffect(1f, actor);
+            int calls = 0;
+            void ReplaceFire()
+            {
+                calls++;
+                Assert.True(cart.RemoveEffect<BurningEffect>());
+                Assert.True(cart.ApplyEffect(replacement, actor, zone));
+            }
+            if (inventoryCallback)
+                actor.AddPart(new CookingInventoryProbe { Callback = ReplaceFire });
+            else
+                DuringOutput(ReplaceFire);
+
+            Assert.False(InventorySystem.PerformAction(actor, raw, row.Command, zone));
+            Assert.AreEqual(1, calls);
+            Assert.AreNotSame(first, cart.GetEffect<BurningEffect>());
+            Assert.AreSame(replacement, cart.GetEffect<BurningEffect>());
+            Assert.AreSame(actor, raw.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(2, Units("RawMeat"));
+            Assert.AreEqual(0, Units("CookedMeat"));
+        }
+
         [Test]
         public void UnheatedPerchExplainsOptionalCookingAndStillOffersRawEat()
         {
@@ -335,6 +511,17 @@ namespace CavesOfOoo.Tests
         {
             public static Action<Entity> Callback;public override string Name=>nameof(CookingOutputProbe);
             public override bool HandleEvent(GameEvent e){if(e.ID=="ObjectCreated"){var callback=Callback;Callback=null;callback?.Invoke(ParentEntity);}return true;}
+        }
+
+        private sealed class CookingInventoryProbe : Part
+        {
+            public Action Callback;
+            public override string Name => nameof(CookingInventoryProbe);
+            public override bool HandleEvent(GameEvent e)
+            {
+                if (e.ID == "AfterInventoryAction") Callback?.Invoke();
+                return true;
+            }
         }
     }
 }

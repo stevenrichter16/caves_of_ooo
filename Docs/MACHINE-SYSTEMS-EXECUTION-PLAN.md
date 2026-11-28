@@ -1,3 +1,14 @@
+**A burning overturned cart can cook a meal — November 27, 2026, America/Chicago.**
+Visible hot burning scenery offers the same named cooking choice in the
+pack and the nearby world menu. The transaction checks the selected
+site, active flame and inventory through payment. In seed 65 the traveler
+bought one raw meat and a lit torch in Sill for 14 drams, walked to the
+generated cart south of town and lit it. One action made the exact meal,
+and Continue kept it and the original cart's remaining flame. A matching
+branch doused the cart and the raw food remained. All 328 focused cases
+passed and 25 older reader failures matched unchanged source.
+[Burning cart cooking](Verification/MachineSystems/BurningCartCooking20261127/README.md)
+
 **Early dry weather exposes fresh Gleaners timber — November 27, 2026, America/Chicago.**
 One finite branch uses the saved early-season forecast and dry
 ground. Fresh Gleaners generation admits one spot by the fire and

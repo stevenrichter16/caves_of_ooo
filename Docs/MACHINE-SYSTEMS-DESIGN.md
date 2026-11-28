@@ -1,3 +1,11 @@
+**A burning object can serve as a cooking fire.**
+A nearby, visible combustible world object can cook from its own
+active flames while it has enough heat. The pack and world menus name
+the same source. The choice stays attached to that object while the
+recipe is paid. The original fire rules continue to govern how long the
+object burns and whether it spreads.
+[Burning cart playtest](Verification/MachineSystems/BurningCartCooking20261127/README.md)
+
 **A dry spell exposes one usable length of fallen wood.**
 A fresh Gleaners' Glade can offer one ordinary salvaged timber beside
 the existing fire. Early-season fair weather and dry ground make the

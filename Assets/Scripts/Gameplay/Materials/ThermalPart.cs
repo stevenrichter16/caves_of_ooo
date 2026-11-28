@@ -111,7 +111,7 @@ namespace CavesOfOoo.Core
         /// Oil, alcohol, and other volatile materials ignite at a lower temperature
         /// and start with a hotter BurningEffect.
         /// </summary>
-        private float GetEffectiveFlameTemperature()
+        internal float GetEffectiveFlameTemperature()
         {
             if (ParentEntity == null)
                 return FlameTemperature;
