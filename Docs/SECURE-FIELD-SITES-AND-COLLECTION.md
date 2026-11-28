@@ -43,9 +43,13 @@ The placement preview must separately identify independent dangers such as exist
 
 ### Attacks and loot
 
+**Player-approved rule, November 28.** Choose a site for its materials, access, and nearby customers. Loot from a stopped attack is an occasional find. A location that attracts more attacks should never be the best way to make a workshop pay. Safe, quiet sites must offer a rewarding loop through their actual production and trade.
+
 Give a finite pool of real, eligible local actors periodic chances to attempt an attack. A nearby hostile, passing animal, lawful visitor, or enemy pursuing the player is insufficient. Recognize the attack when the exact actor begins a valid action against the specific site. Use one saved incident identity tied to that attacker and site. Once a supported attack commits, a secure defense kills the committed attacker and the ordinary terminal death path supplies its eligible drops. Enemies that turn away before committing leave no loot. A resolved attacker supplies one result through leave, load, repeat visits, and every view of the incident.
 
 Keep the first encounter roster finite. A site does not spawn prey or yield an encounter bounty or player experience. The recovered goods come from the actual slain entity’s supported drops. Qualify a first attacker with one eligible recoverable drop. Keep it at a safe interception point, separate from the harvest bin and paybox. Checkout and encounter resolution do not depend on picking up earlier remains. An actor that already reached a terminal state cannot die or drop a second time. Offer a quiet summary such as **One attack stopped. Machine and stock intact. Remains by the east approach.**
+
+Before expanding the encounter roster, compare two similarly productive and accessible sites over the same game-time absence, one quiet and one exposed. Record output, paid pickups, and usable drops. The exposed site can yield a memorable find. If repeated drops make it the obvious economic choice, change which nearby threats commit to attacks or how they are replenished. Keep the zero-loss guarantee and the actual drops from enemies killed in committed attacks.
 
 ## The route is a separate player project
 
