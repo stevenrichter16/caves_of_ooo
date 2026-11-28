@@ -46,3 +46,14 @@ withdrawing a stack, moving a load, invalid weight and stale placement.
 The playtest used an isolated Unity Editor save on Apple M5.
 
 [Observed weights, contents, save pins and test totals](observations.json)
+
+## Mac package
+
+The updated universal Mac app includes the frost vent, Ginmere rope and
+locker changes. It compiled 32,306 committed inputs with four warnings
+and zero errors. Ordinary Continue on Apple M5 reached the moved locker
+and opened its 64 lb Examine readout. Eleven retained apps and the
+normal save and preference files matched their pinned contents.
+
+[Mac locker Examine](mac-locker-reader.png) ·
+[Mac package receipt](mac-package.json)

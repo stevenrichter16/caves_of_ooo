@@ -1,3 +1,11 @@
+**Current Mac package — November 28, 2026, America/Chicago.**
+Runtime 872128afc includes the frost vent, Ginmere rope and Peat Works
+locker changes. Apple M5 ordinary Continue and Examine displayed the
+64 lb locker at its moved location. The build used 32,306 committed
+inputs, zero errors and four warnings. Eleven retained apps, both
+normal save roots and both preferences matched.
+[Package and actual Examine](Verification/MachineSystems/PeatWorksLockerHaul20261128/README.md)
+
 **Peat Works shows the locker’s current haul weight — November 28, 2026, America/Chicago.**
 Examine shows 76 lb for the exact surviving locker and 64 lb after
 taking its 12 lb acidworker apron. One ordinary haul step moves the same
