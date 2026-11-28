@@ -1,3 +1,15 @@
+**Sill gravel extends one finite source into two field uses — November 28, 2026, America/Chicago.**
+An ordinary traveler bought a sieve and flask, drained the bank pocket,
+and chose its whole gravel instead of hand-picking sand. The sieve gave
+one silver sand and one coarse grit. The player crossed the gritted
+bank path and spent the sand on a separate exit mark. Fresh Continue
+kept the spent pocket, exact mark and remaining tools. All 152 focused
+checks passed. In an occupied cell, the action popup can name a creature
+after the player selects a different object from the pile. The harvest
+itself used the selected deposit. The 45-item roadmap now connects
+these field systems to distinct opportunities across the biomes.
+[Ordinary Sill play and checks](Verification/MachineSystems/SillGravelSieve20261128/README.md)
+
 **Slip’s tended road lamps can relight a traveler’s torch — November 28, 2026, America/Chicago.**
 The already paid east lamp lit the traveler’s exact loose torch after
 one action. The torch used its own fuel, and both lamps kept burning.

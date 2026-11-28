@@ -26,6 +26,20 @@
       "Tags": []
     },
     {
+      "Name": "SillBankGravel",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [{ "Key": "DisplayName", "Value": "bank gravel" },{ "Key": "RenderString", "Value": "%" },{ "Key": "ColorString", "Value": "&w" },{ "Key": "RenderLayer", "Value": "5" }] },
+        { "Name": "Physics", "Params": [{ "Key": "Takeable", "Value": "true" },{ "Key": "Solid", "Value": "false" },{ "Key": "Weight", "Value": "2" },{ "Key": "Category", "Value": "Materials" }] },
+        { "Name": "Stacker", "Params": [{ "Key": "StackCount", "Value": "1" },{ "Key": "MaxStack", "Value": "20" }] },
+        { "Name": "Commerce", "Params": [{ "Key": "Value", "Value": "3" }] },
+        { "Name": "SiftableStock", "Params": [{ "Key": "Contents", "Value": "SilverSand:1:0;CoarseGrit:1:2" }] },
+        { "Name": "Examinable", "Params": [{ "Key": "Description", "Value": "Fine silver sand runs between larger stones from the settling pocket. A hand sieve keeps the sand for well work or trail marks and the coarse grit for footing." }] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SillSettlingDeposit",
       "Inherits": "Terrain",
       "Parts": [

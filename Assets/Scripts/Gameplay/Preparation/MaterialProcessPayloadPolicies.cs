@@ -189,7 +189,7 @@ namespace CavesOfOoo.Core
     /// No outputs are created while validating this template.</summary>
     internal sealed class MaterialProcessTemplate
     {
-        readonly EntityFactory factory;readonly Blueprint blueprint;readonly string name;readonly bool requireCreationSafe;
+        readonly EntityFactory factory;readonly Blueprint blueprint;readonly string name;readonly bool requireCreationSafe, fixedHarvest;
         readonly Dictionary<string,string> tags,props;readonly Dictionary<string,int> ints;
         readonly Dictionary<string,(string Name,string Text,int Value,int Min,int Max,int Boost)> stats;
         static Dictionary<string,(string,string,int,int,int,int)> StatValues(Blueprint bp)=>bp.Stats.ToDictionary(p=>p.Key,p=>(p.Value.Name,p.Value.sValue,p.Value.Value,p.Value.Min,p.Value.Max,p.Value.Boost));
@@ -197,14 +197,30 @@ namespace CavesOfOoo.Core
         readonly Dictionary<string,Dictionary<string,string>> parameters;
         readonly Dictionary<string,(Type type,IMaterialProcessPartPolicy policy)> policies;
         MaterialProcessTemplate(EntityFactory factory,Blueprint blueprint,
-            Dictionary<string,(Type,IMaterialProcessPartPolicy)> policies,bool requireCreationSafe)
+            Dictionary<string,(Type,IMaterialProcessPartPolicy)> policies,bool requireCreationSafe,bool fixedHarvest)
         {
             this.requireCreationSafe=requireCreationSafe;
+            this.fixedHarvest=fixedHarvest;
             this.factory=factory;this.blueprint=blueprint;name=blueprint.Name;this.policies=policies;
             parameters=blueprint.Parts.ToDictionary(p=>p.Key,p=>new Dictionary<string,string>(p.Value));
             tags=new Dictionary<string,string>(blueprint.Tags);props=new Dictionary<string,string>(blueprint.Props);ints=new Dictionary<string,int>(blueprint.IntProps);stats=StatValues(blueprint);
         }
         internal static MaterialProcessTemplate Capture(EntityFactory factory,string name,bool requireCreationSafe=false)
+            => Capture(factory,name,requireCreationSafe,false);
+
+        // A fixed harvest reveals existing mixed stock. Recipe outputs still
+        // reject a SiftableStock Part and mixtures with nested packets.
+        internal static MaterialProcessTemplate CaptureFixedHarvest(EntityFactory factory,string name)
+            => Capture(factory,name,true,true);
+
+        static bool AllowsCreation(EntityFactory factory,string name,Type type,IMaterialProcessPartPolicy policy,
+            Dictionary<string,string> values,bool fixedHarvest)
+            => policy is IMaterialProcessCreationPartPolicy { AllowsCreation: true }
+                || fixedHarvest && type == typeof(SiftableStockPart)
+                && values.TryGetValue(nameof(SiftableStockPart.Contents),out var contents)
+                && SiftableStockPart.DeclaredDefinition(factory,name,contents)!=null;
+
+        static MaterialProcessTemplate Capture(EntityFactory factory,string name,bool requireCreationSafe,bool fixedHarvest)
         {
             if(factory?.Blueprints==null || !factory.Blueprints.TryGetValue(name,out var bp) || bp?.Parts==null || bp.Name!=name || bp.Tags==null || bp.Props==null || bp.IntProps==null || bp.Stats==null || bp.Stats.Values.Any(v=>v==null))return null;
             if (name == SeedFramePart.Chaff && (!ValidChaff(factory, bp) || !requireCreationSafe)) return null;
@@ -220,10 +236,11 @@ namespace CavesOfOoo.Core
                     || !bool.TryParse(requiresSoil,out bool required) || !required
                     || !factory.Blueprints.TryGetValue(crop,out var plant) || !plant.Parts.ContainsKey("Crop")))return null;
                 var policy=MaterialProcessPayloadPolicies.Get(type);
-                if(policy==null || !policy.ValidTemplate(row.Value) || requireCreationSafe && (policy is not IMaterialProcessCreationPartPolicy creation || !creation.AllowsCreation))return null;
+                if(policy==null || !policy.ValidTemplate(row.Value)
+                    || requireCreationSafe && !AllowsCreation(factory,name,type,policy,row.Value,fixedHarvest))return null;
                 policies.Add(row.Key,(type,policy));
             }
-            return new MaterialProcessTemplate(factory,bp,policies,requireCreationSafe);
+            return new MaterialProcessTemplate(factory,bp,policies,requireCreationSafe,fixedHarvest);
         }
         static bool ValidChaff(EntityFactory factory, Blueprint blueprint)
         {
@@ -247,7 +264,7 @@ namespace CavesOfOoo.Core
                 if(!now.Parts.TryGetValue(row.Key,out var p) || p==null || p.Count!=row.Value.Count || !row.Value.All(k=>p.TryGetValue(k.Key,out var v)&&v==k.Value)
                     || !factory.TryGetRegisteredPartType(row.Key,out var type) || type!=policies[row.Key].type
                     || MaterialProcessPayloadPolicies.Get(type)!=policies[row.Key].policy
-                    || requireCreationSafe && (policies[row.Key].policy is not IMaterialProcessCreationPartPolicy creation || !creation.AllowsCreation))return false;
+                    || requireCreationSafe && !AllowsCreation(factory,name,type,policies[row.Key].policy,p,fixedHarvest))return false;
             return true;
         }
         internal bool Matches(Entity owner,bool allowInstances=false,bool allowClayStamp=false)

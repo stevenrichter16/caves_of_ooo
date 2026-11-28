@@ -41,6 +41,7 @@ namespace CavesOfOoo.Core
         internal virtual bool CanGatherFixedSource(Entity actor, Zone zone) => true;
         internal virtual Func<bool> CaptureFixedGathering(Entity actor, Zone zone, Cell cell) => null;
         internal virtual bool BeginFixedGathering(Entity actor, Zone zone, InventoryTransaction transaction) => true;
+        internal virtual string AlternateFixedYield(string choice) => null;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -93,12 +94,15 @@ namespace CavesOfOoo.Core
         }
 
         internal bool DoHarvest(Entity actor, Zone zone, InventoryTransaction transaction, Random suppliedRandom = null,
-            (string Product, int Season)? seasonalYield = null)
+            (string Product, int Season)? seasonalYield = null, string fixedChoice = null)
         {
             // Retain this physical source even if a later callback detaches its Part.
             var source = ParentEntity;
             if (Harvested) return Reject(actor, "spent");
             if (seasonalYield.HasValue && this is not SeasonalHarvestPart) return Reject(actor, "invalid-seasonal-yield");
+            string fixedProduct = fixedChoice == null ? null : AlternateFixedYield(fixedChoice);
+            if (fixedChoice != null && (!RetainsFixedSource || seasonalYield.HasValue || fixedProduct == null))
+                return Reject(actor, "invalid-fixed-yield");
             string reason = Validate(actor, zone, seasonalYield?.Season, out bool carried, out var sourceCell, out var dropCell);
             if (reason != null) return Reject(actor, reason);
             var seasonalProof = (this as SeasonalHarvestPart)?.CaptureSeason(zone, sourceCell, seasonalYield?.Season);
@@ -107,7 +111,7 @@ namespace CavesOfOoo.Core
             if (RetainsFixedSource && fixedProof == null) return Reject(actor, "fixed-source-unavailable");
             string declaredProduct = YieldBlueprint;
             int declaredMin = YieldMin, declaredMax = YieldMax, declaredChance = YieldChance;
-            string product = seasonalYield?.Product ?? declaredProduct;
+            string product = seasonalYield?.Product ?? fixedProduct ?? declaredProduct;
             int min = seasonalYield.HasValue ? 1 : declaredMin;
             int max = seasonalYield.HasValue ? 1 : declaredMax;
             int chance = seasonalYield.HasValue ? 100 : declaredChance;
@@ -117,7 +121,8 @@ namespace CavesOfOoo.Core
             if (factory == null || string.IsNullOrEmpty(product) || !factory.Blueprints.ContainsKey(product))
                 return Reject(actor, "missing-yield");
             bool exactYield = seasonalYield.HasValue || RetainsFixedSource && rainSeam == null;
-            var outputTemplate = exactYield ? MaterialProcessTemplate.Capture(factory, product, true) : null;
+            var outputTemplate = fixedProduct != null ? MaterialProcessTemplate.CaptureFixedHarvest(factory, product)
+                : exactYield ? MaterialProcessTemplate.Capture(factory, product, true) : null;
             if (!CanCreateYield(factory, product) || exactYield && outputTemplate == null)
                 return Reject(actor, "invalid-product");
 
@@ -198,10 +203,11 @@ namespace CavesOfOoo.Core
                 reason = Validate(actor, zone, seasonalYield?.Season, out bool stillCarried, out var stillSource, out var stillDrop);
                 if (reason != null || stillCarried != carried || !ReferenceEquals(sourceCell, stillSource) || !ReferenceEquals(dropCell, stillDrop)
                     || actor.GetPart<InventoryPart>() != inventory || YieldBlueprint != declaredProduct || YieldMin != declaredMin
-                    || YieldMax != declaredMax || YieldChance != declaredChance)
+                    || YieldMax != declaredMax || YieldChance != declaredChance || fixedChoice != null && AlternateFixedYield(fixedChoice) != fixedProduct)
                     return Fail("source-changed");
 
                 receipt = inventory == null ? null : InventoryTransferSnapshot.Capture(inventory, products);
+                var fixedRecipients = fixedProduct == null ? null : new List<Entity>(products.Length);
                 int packed = 0;
                 bool Transfer()
                 {
@@ -224,13 +230,19 @@ namespace CavesOfOoo.Core
                     foreach (var item in products)
                     {
                         bool accepted = false;
+                        Entity recipient = null;
                         if (inventory != null)
                         {
                             var unit = InventoryTransferSnapshot.Capture(inventory, item);
-                            accepted = unit.Apply(() => inventory.AddCraftedUnitWithinCapacity(item, out _));
+                            accepted = unit.Apply(() => inventory.AddCraftedUnitWithinCapacity(item, out recipient));
                             if (!accepted) unit.Restore();
                         }
-                        if (accepted) { packed++; continue; }
+                        if (accepted)
+                        {
+                            fixedRecipients?.Add(recipient);
+                            packed++;
+                            continue;
+                        }
                         if (dropCell == null || !zone.AddEntity(item, dropCell.X, dropCell.Y)) return false;
                         droppedItems.Add(item);
                     }
@@ -243,12 +255,15 @@ namespace CavesOfOoo.Core
                 {
                     if (exactYield) receipt?.WatchChangedOwners(transaction);
                     transaction.BeforeCommit(() => fixedProof() && outputTemplate?.Current() != false
+                        && (fixedChoice == null || AlternateFixedYield(fixedChoice) == fixedProduct
+                            && fixedRecipients.All(item => outputTemplate.Matches(item)))
                         && (rainSeam == null || moistYield?.Invoke() == true)
                         && droppedItems.All(item => zone.GetEntityCell(item) == dropCell
                             && item.GetPart<PhysicsPart>() is { InInventory: null, Equipped: null }
                             && (outputTemplate == null || outputTemplate.Matches(item))));
                 }
                 int dropped = droppedItems.Count;
+                string yieldName = fixedProduct != null && count > 0 ? products[0].GetDisplayName() : product;
                 transaction.AfterCommit(()=>audio?.Publish());
                 transaction.AfterCommit(() =>
                 {
@@ -257,8 +272,8 @@ namespace CavesOfOoo.Core
                     if (Diag.IsChannelEnabled("loot")) Diag.Record("loot", "Harvested", actor, source,
                         new { source = source.BlueprintName, yield = product, count = packed, dropped, rollPassed });
                     MessageLog.Add(dropped > 0
-                        ? $"You harvest {sourceName}: {packed} x {product} packed, {dropped} left on the ground."
-                        : packed > 0 ? $"You harvest {sourceName}: {packed} x {product}."
+                        ? $"You harvest {sourceName}: {packed} x {yieldName} packed, {dropped} left on the ground."
+                        : packed > 0 ? $"You harvest {sourceName}: {packed} x {yieldName}."
                         : $"You harvest {sourceName}, but find nothing worth keeping.");
                 });
                 if (ownTransaction) transaction.Commit();

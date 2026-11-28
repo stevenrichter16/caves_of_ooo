@@ -248,19 +248,51 @@ namespace CavesOfOoo.Tests
     {
         const string Sill = "Overworld.10.10.0";
         const string Deposit = "SillSettlingDeposit";
+        const string Gravel = "SillBankGravel";
+        const string GatherGravel = "GatherSillBankGravel";
+        const string Harvest = "Harvest";
+        const string ClayAndGrit = "FireClay:1:0;CoarseGrit:1:2";
+        const int InletX = 42, InletY = 18;
 
-        [TestCase(false)] [TestCase(true)]
-        public void SettlingPocketDrainsThroughAnOrdinaryToolAndKeepsOneSpentDeposit(bool pumping)
+        OverworldZoneManager EnterSill()
         {
             var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
             Assert.True(Zone.RemoveEntity(Actor));
             Zone = manager.GetZone(Sill);
             manager.SetActiveZone(Zone);
             SettlementRuntime.ActiveZone = Zone;
-            Assert.True(Zone.AddEntity(Actor, 42, 17));
+            Assert.True(Zone.AddEntity(Actor, InletX, InletY - 1));
             foreach (var cell in Zone.Cells) { cell.IsVisible = true; cell.Explored = true; }
+            return manager;
+        }
 
-            var inlet = Zone.GetCell(42, 18);
+        Cell Inlet => Zone.GetCell(InletX, InletY);
+        Entity Pocket => Inlet.Occupants.Single(e => e.BlueprintName == Deposit);
+        InventoryAction[] HarvestRows() => CellMenu(InletX, InletY)
+            .Where(row => row.Command == Harvest || row.Command == GatherGravel).ToArray();
+
+        void DrainPocket(Entity flask)
+        {
+            var pool = Inlet.Occupants.Single(e => e.HasPart<LiquidPoolPart>());
+            Assert.True(Act(flask, Choice(flask, "FillLiquidVessel|" + Id(pool) + "|")));
+        }
+
+        void StageGravel(Entity deposit, InventoryTransaction transaction)
+        {
+            var attempt = GameEvent.New("InventoryAction");
+            attempt.SetParameter("Actor", Actor);
+            attempt.SetParameter("Zone", Zone);
+            attempt.SetParameter("Command", GatherGravel);
+            attempt.SetParameter("InventoryTransaction", transaction);
+            Assert.False(deposit.FireEventAndRelease(attempt));
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void SettlingPocketDrainsThroughAnOrdinaryToolAndKeepsOneSpentDeposit(bool pumping)
+        {
+            var manager = EnterSill();
+
+            var inlet = Inlet;
             var deposit = inlet.Occupants.SingleOrDefault(e => e.BlueprintName == Deposit);
             Assert.NotNull(deposit, "The fresh Sill pocket has a real deposit under the inlet.");
             var harvest = deposit.GetPart<HarvestablePart>();
@@ -268,7 +300,6 @@ namespace CavesOfOoo.Tests
             var liquid = source.GetPart<LiquidPoolPart>().LiquidId;
             var flask = Flask(0);
             var tool = pumping ? Carry("HandPump") : flask;
-            const string Harvest = "Harvest";
             Assert.False(CellMenu(42, 18).Any(a => a.Command == Harvest));
             Assert.False(Act(deposit, Harvest));
             Assert.AreEqual(12, PoolUnits(42, 18));
@@ -335,6 +366,199 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(12, oldInlet.Occupants.Single(e => e.HasPart<LiquidPoolPart>()).GetPart<LiquidPoolPart>().Volume);
             Assert.AreEqual(1, loaded.Player.GetPart<InventoryPart>().Objects.Where(e => e.BlueprintName == "SilverSand")
                 .Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
+        }
+
+        [TestCase(Harvest, "SilverSand")]
+        [TestCase(GatherGravel, Gravel)]
+        public void EitherNativeChoiceSpendsTheSameDepositAcrossSaveAndReload(string command, string product)
+        {
+            var manager = EnterSill();
+            var deposit = Pocket;
+            var stock = deposit.GetPart<HarvestablePart>();
+            Assert.That(HarvestRows(), Is.Empty);
+            DrainPocket(Flask(0));
+
+            var rows = HarvestRows();
+            Assert.That(rows.Select(row => row.Command), Is.EquivalentTo(new[] { Harvest, GatherGravel }));
+            var gravel = rows.Single(row => row.Command == GatherGravel);
+            Assert.That(gravel.Name, Is.EqualTo(GatherGravel));
+            Assert.That(gravel.Time, Is.EqualTo(ActionTime.OneAction));
+            Assert.False(gravel.IsDisabled);
+            Assert.True(ChooseRow(rows.Single(row => row.Command == command), InletX, InletY));
+            Assert.True(stock.Harvested);
+            Assert.That(stock.YieldBlueprint, Is.EqualTo("SilverSand"));
+            Assert.That(Zone.GetEntityCell(deposit), Is.SameAs(Inlet));
+            Assert.That(HarvestRows(), Is.Empty);
+            Assert.False(Act(deposit, Harvest));
+            Assert.False(Act(deposit, GatherGravel));
+            Assert.That(Count("SilverSand"), Is.EqualTo(product == "SilverSand" ? 1 : 0));
+            Assert.That(Count(Gravel), Is.EqualTo(product == Gravel ? 1 : 0));
+            Assert.That(Count("CoarseGrit"), Is.Zero);
+
+            var restored = HotbarSaveFixture.RoundTrip(GameSessionState.Capture("sill-settling", "choice", manager, Clock, Actor));
+            var restoredZone = restored.ZoneManager.GetZone(Sill);
+            var restoredDeposit = restoredZone.GetCell(InletX, InletY).Occupants.Single(e => e.ID == deposit.ID);
+            Assert.True(restoredDeposit.GetPart<HarvestablePart>().Harvested);
+            Assert.That(restored.Player.GetPart<InventoryPart>().Objects.Single(e => e.BlueprintName == product)
+                .GetPart<StackerPart>()?.StackCount ?? 1, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void DrainedPocketCanBeReadWithoutSpendingAndRefusesAStaleGravelRow()
+        {
+            EnterSill();
+            var deposit = Pocket;
+            var flask = Flask(0);
+            DrainPocket(flask);
+            var gravel = HarvestRows().Single(row => row.Command == GatherGravel);
+            int tick = Clock.TickCount;
+            var messages = MessageLog.GetMessages();
+            var contents = Pack.Objects.ToArray();
+            string surface = Zone.TileState.ToSaveString();
+
+            var read = ExamineDocumentBuilder.BuildWorld(deposit, Zone, Inlet, Actor);
+            Assert.NotNull(read);
+            Assert.That(read.ToPlainText(), Does.Contain("silver sand").IgnoreCase);
+            Assert.That(Clock.TickCount, Is.EqualTo(tick));
+            Assert.That(MessageLog.GetMessages(), Is.EqualTo(messages));
+            Assert.That(Pack.Objects, Is.EqualTo(contents));
+            Assert.That(Zone.TileState.ToSaveString(), Is.EqualTo(surface));
+
+            Inlet.IsVisible = false;
+            Assert.That(ExamineDocumentBuilder.BuildWorld(deposit, Zone, Inlet, Actor), Is.Null);
+            Assert.That(HarvestRows(), Is.Empty);
+            Assert.False(ChooseRow(gravel, InletX, InletY));
+            Inlet.IsVisible = true;
+            Assert.True(Zone.MoveEntity(Actor, 40, 11));
+            Assert.That(HarvestRows(), Is.Empty);
+            Assert.False(ChooseRow(gravel, InletX, InletY));
+            Assert.True(Zone.MoveEntity(Actor, InletX, InletY - 1));
+            Assert.True(Act(flask, Pour(flask, false, InletX, InletY)));
+            Assert.That(HarvestRows(), Is.Empty);
+            Assert.False(Act(deposit, gravel.Command));
+            Assert.That(PoolUnits(InletX, InletY), Is.EqualTo(12));
+            Assert.False(deposit.GetPart<HarvestablePart>().Harvested);
+            Assert.That(Count(Gravel) + Count("SilverSand"), Is.Zero);
+
+            DrainPocket(flask);
+            Assert.True(ChooseRow(HarvestRows().Single(row => row.Command == GatherGravel), InletX, InletY));
+            Assert.That(Count(Gravel), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GravelRollsBackIfRecoatedBeforeCommitAndNotifiesOnlyAfterSuccess()
+        {
+            EnterSill();
+            var deposit = Pocket;
+            var stock = deposit.GetPart<HarvestablePart>();
+            DrainPocket(Flask(0));
+            var gravel = HarvestRows().Single(row => row.Command == GatherGravel);
+
+            var interrupted = new InventoryTransaction();
+            try
+            {
+                StageGravel(deposit, interrupted);
+                Assert.True(stock.Harvested);
+                Assert.That(Count(Gravel), Is.EqualTo(1));
+                Zone.TileState.WriteCoating(InletX, InletY, "water", 3);
+                Assert.Throws<InvalidOperationException>(() => interrupted.Commit());
+            }
+            finally { interrupted.Rollback(); }
+
+            Assert.False(stock.Harvested);
+            Assert.That(Count(Gravel), Is.Zero);
+            Assert.True(Zone.TileState.HasCoating(InletX, InletY, "water"));
+            Assert.True(Zone.TileState.RemoveCoating(InletX, InletY, "water"));
+
+            int notifications = 0;
+            Actor.AddPart(new FiftyWorldEventProbe { Callback = e =>
+            {
+                if (e.ID != "AfterInventoryAction" || e.GetStringParameter("Command") != GatherGravel) return;
+                notifications++;
+                Zone.TileState.WriteCoating(InletX, InletY, "water", 3);
+                throw new InvalidOperationException("Gravel receipt observer");
+            } });
+            Assert.True(ChooseRow(gravel, InletX, InletY));
+            Assert.That(notifications, Is.EqualTo(1));
+            Assert.True(stock.Harvested);
+            Assert.That(Count(Gravel), Is.EqualTo(1));
+            Assert.True(Zone.TileState.HasCoating(InletX, InletY, "water"));
+        }
+
+        [Test]
+        public void ASubstitutedBlueprintManifestKeepsOnlyTheHandHarvestAvailable()
+        {
+            EnterSill();
+            var deposit = Pocket;
+            DrainPocket(Flask(0));
+            Assert.That(HarvestRows().Any(row => row.Command == GatherGravel), Is.True);
+
+            Factory.Blueprints[Gravel].Parts["SiftableStock"]["Contents"] = ClayAndGrit;
+            Assert.That(HarvestRows().Select(row => row.Command), Is.EqualTo(new[] { Harvest }));
+            Assert.False(Act(deposit, GatherGravel));
+            Assert.False(deposit.GetPart<HarvestablePart>().Harvested);
+            Assert.That(Count(Gravel), Is.Zero);
+            Assert.True(ChooseRow(HarvestRows().Single(), InletX, InletY));
+            Assert.That(Count("SilverSand"), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ASubstitutedPackedManifestRejectsTheStagedGravelHarvest()
+        {
+            EnterSill();
+            var deposit = Pocket;
+            DrainPocket(Flask(0));
+
+            var interrupted = new InventoryTransaction();
+            try
+            {
+                StageGravel(deposit, interrupted);
+                var packet = Pack.Objects.Single(item => item.BlueprintName == Gravel);
+                packet.GetPart<SiftableStockPart>().Contents = ClayAndGrit;
+                Assert.Throws<InvalidOperationException>(() => interrupted.Commit());
+            }
+            finally { interrupted.Rollback(); }
+
+            Assert.False(deposit.GetPart<HarvestablePart>().Harvested);
+            Assert.That(Count(Gravel), Is.Zero);
+            Assert.True(ChooseRow(HarvestRows().Single(row => row.Command == GatherGravel), InletX, InletY));
+            Assert.That(Count(Gravel), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GravelPacketScreensWithTheOrdinaryHandSieveAndKeepsBothFractions()
+        {
+            EnterSill();
+            DrainPocket(Flask(0));
+            Assert.True(ChooseRow(HarvestRows().Single(row => row.Command == GatherGravel), InletX, InletY));
+            var packet = Pack.Objects.Single(e => e.BlueprintName == Gravel);
+            Assert.NotNull(packet.GetPart<SiftableStockPart>());
+            Assert.That(HandlingService.GetWeight(packet), Is.EqualTo(2));
+
+            var oldForge = ForgePart.Factory;
+            try
+            {
+                ForgePart.Factory = Factory;
+                MaterialProcessRegistry.ResetForTests();
+                var read = ExamineDocumentBuilder.BuildInventory(packet, Actor);
+                Assert.NotNull(read);
+                Assert.That(read.ToPlainText(), Does.Contain("1 silver sand + 1 coarse grit").IgnoreCase);
+                Assert.False(Actions(packet).Any(row => !row.IsDisabled && row.Name == "screen_size_grades"));
+                var sieve = Carry("HandSieve");
+                int weight = Pack.GetCarriedWeight();
+                var screen = Choice(packet, "MaterialProcess|screen_size_grades|");
+                Assert.True(Act(packet, screen));
+                Assert.That(Count(Gravel), Is.Zero);
+                Assert.That(Count("SilverSand"), Is.EqualTo(1));
+                Assert.That(Count("CoarseGrit"), Is.EqualTo(1));
+                Assert.That(Pack.Objects, Does.Contain(sieve));
+                Assert.That(Pack.GetCarriedWeight(), Is.EqualTo(weight));
+            }
+            finally
+            {
+                ForgePart.Factory = oldForge;
+                MaterialProcessRegistry.ResetForTests();
+            }
         }
     }
 }

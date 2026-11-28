@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -10,6 +11,9 @@ namespace CavesOfOoo.Core
         public Entity Ground;
         public string WorldKey = "";
         public int SiteX = -1, SiteY = -1;
+        const string GatherGravel = "GatherSillBankGravel";
+        const string Gravel = "SillBankGravel";
+        const string GravelContents = "SilverSand:1:0;CoarseGrit:1:2";
 
         public ReaderScope Scope => ReaderScope.Both;
         public int Order => 38;
@@ -18,9 +22,42 @@ namespace CavesOfOoo.Core
         enum DepositState { Unavailable, Covered, Exposed, Spent }
 
         public bool OwnsInventoryReceipt(string command)
-            => command == "Harvest" && ParentEntity?.GetPart<HarvestablePart>() == this;
+            => (command == "Harvest" || command == GatherGravel) && ParentEntity?.GetPart<HarvestablePart>() == this;
 
         public bool NotifyAfterCommit(string command) => OwnsInventoryReceipt(command);
+
+        internal override string AlternateFixedYield(string choice)
+        {
+            if (choice != GatherGravel || Factory?.Blueprints == null || !Factory.Blueprints.TryGetValue(Gravel, out var packet)
+                || packet?.Parts == null || !packet.Parts.TryGetValue("SiftableStock", out var mixture)
+                || mixture == null || !mixture.TryGetValue(nameof(SiftableStockPart.Contents), out var contents)
+                || contents != GravelContents || SiftableStockPart.Weight(Factory, Gravel) != 2) return null;
+            return Gravel;
+        }
+
+        bool OffersGravel() => AlternateFixedYield(GatherGravel) != null
+            && MaterialProcessTemplate.CaptureFixedHarvest(Factory, Gravel) != null;
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions")
+            {
+                var actor = e.GetParameter<Entity>("Actor");
+                var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
+                if (!Harvested && CanGatherFixedSource(actor, zone) && OffersGravel())
+                    e.GetParameter<InventoryActionList>("Actions")?.AddActionWithHint(GatherGravel,
+                        "gather the whole bank gravel (2 lb)", GatherGravel,
+                        "The same deposit as the sand. A hand sieve separates one silver sand and one coarse grit.",
+                        '\0', 19, false, ActionTime.OneAction);
+            }
+            if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != GatherGravel)
+                return base.HandleEvent(e);
+            var harvester = e.GetParameter<Entity>("Actor");
+            if (!DoHarvest(harvester, e.GetParameter<Zone>("Zone") ?? harvester?.SpatialZone,
+                e.GetParameter<InventoryTransaction>("InventoryTransaction"), fixedChoice: GatherGravel)) return true;
+            e.Handled = true;
+            return false;
+        }
 
         DepositState State(Zone zone, bool showSpent = true)
         {
@@ -43,7 +80,9 @@ namespace CavesOfOoo.Core
         public string DescribeState(DescribeContext context) => State(context.Zone ?? ParentEntity?.SpatialZone) switch
         {
             DepositState.Covered => "A pale streak lies beneath the surface. Clear the shallow pocket to collect the sand.",
-            DepositState.Exposed => "The water has cleared. One measure of silver sand lies exposed.",
+            DepositState.Exposed => OffersGravel()
+                ? "The water has cleared. Fine silver sand lies between the coarse stones. Pick the sand or take the whole loose gravel to sieve."
+                : "The water has cleared. One measure of silver sand lies exposed.",
             DepositState.Spent => "A short scrape marks where the silver sand was gathered.",
             _ => null
         };

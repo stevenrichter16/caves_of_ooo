@@ -36,9 +36,13 @@ namespace CavesOfOoo.Core
         internal MaterialProcessDefinition Definition(EntityFactory factory)
         {
             var owner=ParentEntity;
-            if(owner?.GetPart<SiftableStockPart>()!=this || owner.Parts.Count(p=>p is SiftableStockPart)!=1
-                || string.IsNullOrEmpty(Contents) || Contents.Length>512 || !MaterialProcessRegistry.Portable(factory,owner.BlueprintName))return null;
-            var terms=Contents.Split(';');if(terms.Length<2 || terms.Length>4)return null;
+            return owner?.GetPart<SiftableStockPart>()==this && owner.Parts.Count(p=>p is SiftableStockPart)==1
+                ? DeclaredDefinition(factory,owner.BlueprintName,Contents) : null;
+        }
+        internal static MaterialProcessDefinition DeclaredDefinition(EntityFactory factory,string blueprint,string contents)
+        {
+            if(string.IsNullOrEmpty(contents) || contents.Length>512 || !MaterialProcessRegistry.Portable(factory,blueprint))return null;
+            var terms=contents.Split(';');if(terms.Length<2 || terms.Length>4)return null;
             var passing=new Dictionary<string,int>(StringComparer.Ordinal);var retained=new Dictionary<string,int>(StringComparer.Ordinal);
             int units=0;long mass=0;
             foreach(string term in terms)
@@ -48,15 +52,15 @@ namespace CavesOfOoo.Core
                     || !int.TryParse(fields[2],NumberStyles.None,CultureInfo.InvariantCulture,out int band)
                     || count<1 || count>64 || band<0 || band>2 || (units+=count)>64)return null;
                 string bp=fields[0];
-                if(bp==owner.BlueprintName || !MaterialProcessRegistry.Portable(factory,bp)
+                if(bp==blueprint || !MaterialProcessRegistry.Portable(factory,bp)
                     || factory.Blueprints[bp].Parts.ContainsKey("SiftableStock")
                     || MaterialProcessTemplate.Capture(factory,bp,true)==null)return null;
                 int weight=Weight(factory,bp);if(weight<0)return null;mass+=(long)weight*count;
                 var group=band<=1?passing:retained;group.TryGetValue(bp,out int previous);group[bp]=previous+count;
             }
             if(passing.Count!=1 || retained.Count!=1 || passing.Keys.Single()==retained.Keys.Single()
-                || mass!=Weight(factory,owner.BlueprintName))return null;
-            var row=new MaterialProcessRow{Id=ProcessId,SourceBlueprint=owner.BlueprintName,Mode="Process",WorkKind="Screening",InputCount=1,
+                || mass!=Weight(factory,blueprint))return null;
+            var row=new MaterialProcessRow{Id=ProcessId,SourceBlueprint=blueprint,Mode="Process",WorkKind="Screening",InputCount=1,
                 OutputBlueprints=new[]{passing.Keys.Single(),retained.Keys.Single()},OutputCounts=new[]{passing.Values.Single(),retained.Values.Single()},
                 ActionText="screen size grades",LossText="keep all material"};
             return MaterialProcessRegistry.Valid(row)?new MaterialProcessDefinition(row):null;

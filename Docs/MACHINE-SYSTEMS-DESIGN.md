@@ -170,6 +170,16 @@ The fixture provides a place to start the torch and does not supply
 replacement fuel. Flint, fire-moss and existing fires remain options.
 [Slip’s wick and portable light](Verification/MachineSystems/SlipRoadWick20261128/README.md)
 
+**Sill’s drained bank pocket offers whole gravel or hand-picked sand.**
+The exposed pocket holds both fine silver sand and coarse stones.
+Hand-picking gives one measure of sand and leaves the larger stones in
+the bank. Taking the two-pound packet spends the same reserve. A hand
+sieve separates the packet into one measure of silver sand and one of
+coarse grit. The sand fits ordinary well work or trail marking, and the
+grit can steady footing. The existing clear or covered terrain and
+spent scrape apply to both harvests.
+[Sill gravel, footing and trail marking](Verification/MachineSystems/SillGravelSieve20261128/README.md)
+
 **An ordinary camp awning gives a wayfarer somewhere to rest.**
 At the Height of the day in the Beating, a nearby bareheaded travelling
 merchant can move into safe cover when idle. A normal trade remains

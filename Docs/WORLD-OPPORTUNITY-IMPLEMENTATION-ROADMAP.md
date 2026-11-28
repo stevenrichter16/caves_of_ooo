@@ -65,6 +65,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+**Second pass across #13–14, #19 and #31–33.** At Sill, draining one
+visible finite pocket enables either hand-picking sand or carrying
+the whole gravel. The sieve freed sand and grit for separate ordinary
+uses. The player treated a slick bank step and crossed it, then used
+the sand for an exit mark that survived Continue. See
+[Sill gravel](Verification/MachineSystems/SillGravelSieve20261128/README.md)
+and [work suited to each environment](#work-suited-to-each-environment).
+
 For #5, #18–20 and #36–40, the existing oil delivery at Slip now
 also supports lighting a dry, fueled torch at a town lamp. Its
 reachable wick uses the same kindling receipt as other portable
@@ -1501,6 +1509,47 @@ Revisit the systems and their content in connected slices. Keep any
 remaining first-pass evidence gaps explicit. Check the actual player experience using
 contrasting routes, builds and regions. Record the concrete evidence behind
 each finding and implement the most valuable improvements in connected slices.
+
+### Work suited to each environment
+
+| Environment | A local use for the shared systems |
+| --- | --- |
+| **Spread riverbanks and farms** | Sill’s exposed gravel can give filtration sand and footing grit. A second use for the same grades would be a farm approach where the traveler can carry small loads by the dry path, scatter grit over a short slick, or arrange one heavier delivery once the same footing is safe. |
+| **Sodden peat and raised settlements** | At Peat Works a flask or pump can expose the short passage and a dry detour stays open. Follow the exact pumped mire into a flask for repair clay and torch oil. A raised loading point can make a nearby delivery worthwhile even while the lower approach is wet. |
+| **Beating salt and exposed routes** | A dry brine rim gives one useful flake independently of a nearby pool. A walker can skim loose crust from a natural pool or take brine to a still for two water or one water and crust. An awning that already gives a wayfarer shade could also shelter a dry place to sort and pack. A shaded route and smaller hand-carried batches remain practical. |
+| **Grovelands and tended growth** | A visibly ripe grove gives a finite choice. Carry fruit to a public still, bring a portable preparation route where it is permitted, or buy the finished preparation. Local harvesting permissions and the existing mending-tonic consequence make resupply feel different from taking rock or scrap. |
+| **Stump pools, spray and exposed shelves** | A visible shoreline ring points to food. Clearing a slick with prismreed pith, steadying a selected step with grit, or bracing at a real handhold can make a closer work spot practical. A dry detour and ordinary purchased food can serve the same trip. |
+| **Overwrit’s pilgrimage rim** | On an admitted ordinary approach outside the bleeds, record a walked junction with a personal sand mark beside a present-day landmark. A changed approach can invalidate an old route. Return accounts can describe the actual opening, blockage or draft one person observed. |
+| **Cold and flooded passages** | A visible frost deposit can produce rime for worn protection. Near a frozen threshold, use actual warmth to reopen the wet route or keep a dry detour. Shallow flooding can take several flask trips or one pump batch, with an explicit outlet. |
+| **Lampwell, Olderdeep and mining works** | Finite Glow-Quartz and existing portable lamps can light different stretches of one route. A safe receiving point makes a heavy load practical. In ordinary unprotected caves, a noisy portable sounding can suggest a rough direction. Walking the route earns the detail for a personal return note. In an ore workshop, screen loose sweepings or buy the grade a real repair or forge job accepts. |
+| **Road hubs, shores and archives** | Gantry and Tally give freight a customer with a shelf, schedule and expected arrival. Tine can use the same access rules for shore work. Quillhold shows how delivered supplies can alter an existing shared workroom. The service follows the actual route, stock or working fixture. |
+
+Use visible and finite opportunities at these sites. Local supplies and
+tools should create a reason to stop, and equivalent work should always
+reach the same supported physical outcome. Keep ordinary travel and
+services available. The Overwrit route report concerns witnessed terrain.
+It conveys no conclusion about the cause of a change.
+
+Local differences also change who does the work and what persists.
+The same parcel can be carried or sent with a porter to a dry receiving
+place, where its actual contents determine what a vendor or workshop
+can offer. A route can be useful because someone walked a safe detour,
+gritted a slick step, lowered the water, or prepared a dry landing.
+Weather can expose bonus work and shift which route or tool pays off.
+One finite parcel and its custody still matter when a recipient checks
+an overdue delivery or follows a witness’s lead. Show routes, goods and
+behavior changing where the player can see them.
+
+Across the 45, the suitability and repair rules (#1–10) give a Sill
+well and a Sodden rig their own real material needs. Work methods and
+installed benefits (#11–20) let a traveler use a portable kit or a town
+workshop, and justify useful receiving shelves and dry bays. Freight
+and overdue inquiries (#21–25 and #41–45) fit settlements with an actual
+sender, recipient and local route. Site and seasonal variation (#26–35)
+can choose between dry salt at a Beating rim, ripe growth in the
+Grovelands, or a newly accessible Sodden landing. Previews and play
+checks (#36–40) show and verify the real quantities, conditions and
+effects in each environment.
 
 - **Depth benchmark.** Use the Wayside porter playtest as a reference.
   The player reported a witnessed location, Orven checked the spot, and the
