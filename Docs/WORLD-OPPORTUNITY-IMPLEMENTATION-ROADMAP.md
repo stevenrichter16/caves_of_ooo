@@ -49,6 +49,12 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #19 and #36–#40, the original Olderdeep descent light explains
+the choice between leaving it mounted and taking it in hand. Normal
+unhooking, equipment and a step east changed the physical light map.
+Fresh Continue kept the same equipped jar and the held description.
+[Olderdeep lamp choice and continuation](Verification/MachineSystems/OlderdeepLampReadout20261128/README.md)
+
 For #19 and #36–#40, Tally’s existing quartermaster offers a priced
 alternative to carrying or buying every weapon. The same physical
 dagger leaves and returns to the rack. The borrower sees the exact Ink

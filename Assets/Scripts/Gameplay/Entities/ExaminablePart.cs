@@ -73,6 +73,9 @@ namespace CavesOfOoo.Core
             if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<KitchenBatchPart>() is KitchenBatchPart batch
                 && batch.ParentEntity == owner)
                 return batch.ResolveDescription(Text);
+            if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<RecoverableLampPart>() is RecoverableLampPart lamp
+                && lamp.ParentEntity == owner)
+                return lamp.ResolveDescription(Text);
             if (owner?.BlueprintName == "SoddenDressingBench" && owner.GetPart<ExaminablePart>() == this
                 && owner.GetPart<SoddenPreparationPart>()?.ParentEntity == owner)
                 return Text?.Replace(SoddenPreparationPart.LegacyBraceSentence, "");

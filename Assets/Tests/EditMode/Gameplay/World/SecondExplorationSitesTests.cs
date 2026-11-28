@@ -8,6 +8,9 @@ namespace CavesOfOoo.Tests
 {
     public sealed class SecondExplorationSitesTests : SecondExplorationFixture
     {
+        const string JarFlavor = "The rim is stained with black pitch.";
+        const string LegacyJarText = JarFlavor + "\nThis descent jar can be unhooked. The same lantern-beetles will light a hand-held jar, leaving this resting seat darker. It needs a real free hand to equip.";
+
         [TestCase(false)] [TestCase(true)]
         public void RecoverExactJarCreatesHandLightOrRefusesFullPack(bool full)
         {
@@ -18,6 +21,74 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(full, Zone.GetEntityCell(jar) != null); Assert.AreEqual(!full, Pack.Objects.Contains(jar));
             if (!full) { Assert.True(InventorySystem.Equip(Actor, jar)); Assert.NotNull(Pack.FindEquippedBodyPart(jar)); }
         }
+
+        [Test]
+        public void RecoverableLampDescriptionFollowsNativeRecoveryAndEquipment()
+        {
+            var jar = Place("BeetleJar");
+            jar.AddPart(new RecoverableLampPart());
+            var examine = jar.GetPart<ExaminablePart>();
+            examine.Text = LegacyJarText;
+
+            string mounted = examine.BuildWorldExamineLine(Zone, Zone.GetEntityCell(jar), Actor);
+            Assert.That(mounted, Does.Contain("mounted").IgnoreCase);
+            Assert.That(mounted, Does.Contain(JarFlavor));
+
+            Assert.True(Act(jar, "RecoverLamp"));
+            string packed = examine.BuildExamineLine();
+            Assert.That(packed, Does.Contain("packed").IgnoreCase);
+            Assert.That(packed, Does.Contain("light").IgnoreCase);
+            Assert.That(packed, Does.Not.Contain("can be unhooked"));
+            Assert.That(packed, Does.Contain(JarFlavor));
+
+            Assert.True(InventorySystem.Equip(Actor, jar));
+            string held = examine.BuildExamineLine();
+            Assert.That(held, Does.Contain("held").IgnoreCase);
+            Assert.That(held, Does.Contain("light").IgnoreCase);
+            Assert.That(held, Does.Not.Contain("can be unhooked"));
+            Assert.That(held, Does.Contain(JarFlavor));
+            Assert.That(examine.Text, Is.EqualTo(LegacyJarText));
+        }
+
+        [Test]
+        public void HeldLampDescriptionFollowsTheLightSwitchWithoutWritingSavedFlavor()
+        {
+            var jar = Place("BeetleJar");
+            jar.AddPart(new RecoverableLampPart());
+            var examine = jar.GetPart<ExaminablePart>();
+            examine.Text = LegacyJarText;
+            Assert.True(Act(jar, "RecoverLamp"));
+            Assert.True(InventorySystem.Equip(Actor, jar));
+
+            int tick = WorldClock.CurrentTick;
+            var light = jar.GetPart<LightSourcePart>();
+            light.Enabled = false;
+            string dark = examine.GetDescriptionText();
+            Assert.That(dark, Does.Contain("dark").IgnoreCase);
+            Assert.That(dark, Does.Contain(JarFlavor));
+            Assert.That(dark, Does.Not.Contain("can be unhooked"));
+            Assert.False(light.Enabled);
+            Assert.That(Pack.FindEquippedBodyPart(jar), Is.Not.Null);
+
+            light.Enabled = true;
+            Assert.That(examine.GetDescriptionText(), Does.Contain("held").IgnoreCase);
+            Assert.That(examine.GetDescriptionText(), Does.Not.Contain("dark").IgnoreCase);
+            Assert.That(examine.Text, Is.EqualTo(LegacyJarText));
+            Assert.That(WorldClock.CurrentTick, Is.EqualTo(tick));
+        }
+
+        [Test]
+        public void OrdinaryBeetleJarKeepsItsFlavorWithoutTheRecoveryPart()
+        {
+            var jar = Place("BeetleJar");
+            var examine = jar.GetPart<ExaminablePart>();
+            examine.Text = LegacyJarText;
+            jar.GetPart<LightSourcePart>().Enabled = false;
+
+            Assert.That(examine.GetDescriptionText(), Is.EqualTo(LegacyJarText));
+            Assert.That(examine.Text, Is.EqualTo(LegacyJarText));
+        }
+
         [TestCase(false)] [TestCase(true)]
         public void SalvageOnlyJammedSpikeMechanismOnce(bool armed)
         {

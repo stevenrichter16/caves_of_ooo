@@ -93,7 +93,7 @@ namespace CavesOfOoo.Core
             var jar = p.Before.Where(e => e.BlueprintName == "BeetleJar").OrderBy(e => p.Zone.GetEntityPosition(e).y).ThenBy(e => p.Zone.GetEntityPosition(e).x).FirstOrDefault();
             if (jar == null) throw new InvalidOperationException("missing-used-descent-jar");
             p.AddPart(jar, new RecoverableLampPart());
-            p.Explain(jar, "This descent jar can be unhooked. The same lantern-beetles will light a hand-held jar, leaving this resting seat darker. It needs a real free hand to equip.");
+            if (!jar.HasPart<ExaminablePart>()) p.AddPart(jar, new ExaminablePart());
         }
         static void RopeLanding(PacketPlan p)
         {

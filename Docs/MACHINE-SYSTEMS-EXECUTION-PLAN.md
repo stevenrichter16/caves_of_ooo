@@ -1,3 +1,12 @@
+**Olderdeep’s descent jar names its current use — November 28, 2026, America/Chicago.**
+Five ordinary ledge steps reached the original jar. Unhooking put it
+in the pack and reduced the seat’s computed light from 1.0 to 0.586.
+Holding the same jar raised the bearer’s reading from 0.68 to 1.0.
+One east step and fresh Continue kept the exact hand light at 40 HP.
+Mounted, packed and held Examine all showed the correct state.
+Native checks passed 228 cases with one explicit helper skipped.
+[Olderdeep live readers and light observations](Verification/MachineSystems/OlderdeepLampReadout20261128/README.md)
+
 **Tally shows the terms of a weapon loan — November 28, 2026, America/Chicago.**
 Darret’s ordinary rack showed 50 Ink and prices of 22, 40 and 86.
 An attempted longsword rental left 50 Ink and all stock in place. The

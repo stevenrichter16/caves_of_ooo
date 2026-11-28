@@ -1,0 +1,445 @@
+{
+  "native": {
+    "baseline": {
+      "total": 3,
+      "passed": 1,
+      "failed": 2,
+      "skipped": 0,
+      "failedCases": [
+        "HeldLampDescriptionFollowsTheLightSwitchWithoutWritingSavedFlavor",
+        "RecoverableLampDescriptionFollowsNativeRecoveryAndEquipment"
+      ]
+    },
+    "candidate": {
+      "total": 229,
+      "passed": 228,
+      "failed": 0,
+      "skipped": 1,
+      "failedCases": []
+    }
+  },
+  "observed": {
+    "baseline-on-ledge": {
+      "zone": "Overworld.4.6.1",
+      "x": 21,
+      "y": 6,
+      "hp": 40,
+      "tick": 2220,
+      "holder": null,
+      "wearer": null,
+      "ambient": 0.28,
+      "seat": 1.0,
+      "west": 0.864262164,
+      "actorLight": 0.9442978,
+      "lamp": {
+        "id": "26018",
+        "x": 20,
+        "y": 5,
+        "recovered": false,
+        "packed": false,
+        "worn": false,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles, hung at head height. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nThis descent jar can be unhooked. The same lantern-beetles will light a hand-held jar, leaving this resting seat darker. It needs a real free hand to equip."
+      }
+    },
+    "baseline-in-pack": {
+      "zone": "Overworld.4.6.1",
+      "x": 21,
+      "y": 6,
+      "hp": 40,
+      "tick": 2230,
+      "holder": "2678",
+      "wearer": null,
+      "ambient": 0.28,
+      "seat": 0.5857191,
+      "west": 0.53092885,
+      "actorLight": 0.68,
+      "lamp": {
+        "id": "26018",
+        "x": null,
+        "y": null,
+        "recovered": true,
+        "packed": true,
+        "worn": false,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles, hung at head height. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nThis descent jar can be unhooked. The same lantern-beetles will light a hand-held jar, leaving this resting seat darker. It needs a real free hand to equip."
+      }
+    },
+    "baseline-packed-reader": {
+      "open": true,
+      "title": "beetle-jar",
+      "blueprint": "BeetleJar",
+      "lines": [
+        "EQUIP SLOTS",
+        "",
+        "Equip slots: Hand.",
+        "",
+        "EQUIPMENT COMPARISON",
+        "",
+        "Auto equip: left hand.",
+        "  left hand now: empty; natural attack: fist.",
+        "  No equipped items displaced.",
+        "  Equipment contributions (other effects not",
+        "totaled):",
+        "  No attribute contribution change.",
+        "Manual equip: right hand.",
+        "  right hand now: empty; natural attack: fist.",
+        "  No equipped items displaced.",
+        "  Equipment contributions (other effects not",
+        "totaled):",
+        "  No attribute contribution change.",
+        "",
+        ""
+      ],
+      "sections": [
+        {
+          "Heading": "Equip slots",
+          "Text": "Equip slots: Hand."
+        },
+        {
+          "Heading": "Equipment comparison",
+          "Text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "Heading": "Current: fist",
+          "Text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "Heading": "Current: fist",
+          "Text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "Heading": "Reading these numbers",
+          "Text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "Heading": "Handling",
+          "Text": "1 unit. Weight per unit: 2. Total weight: 2.\nLift Strength: 2; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 18 cells. Throw Strength: 3.\nPack weight: 14; with this item: 14. Burden threshold: 270."
+        },
+        {
+          "Heading": "Disassembly",
+          "Text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "Heading": "About this item",
+          "Text": "A stoppered jar of lantern-beetles, hung at head height. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nThis descent jar can be unhooked. The same lantern-beetles will light a hand-held jar, leaving this resting seat darker. It needs a real free hand to equip."
+        }
+      ]
+    },
+    "mounted": {
+      "zone": "Overworld.4.6.1",
+      "x": 21,
+      "y": 6,
+      "hp": 40,
+      "tick": 2220,
+      "holder": null,
+      "wearer": null,
+      "ambient": 0.28,
+      "seat": 1.0,
+      "west": 0.864262164,
+      "actorLight": 0.9442978,
+      "lamp": {
+        "id": "26018",
+        "x": 20,
+        "y": 5,
+        "recovered": false,
+        "packed": false,
+        "worn": false,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles, hung at head height. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nMounted and lighting the ledge. Unhooking stows it and dims this spot. Hold it in a hand for light."
+      }
+    },
+    "mounted-description-reader": {
+      "open": true,
+      "title": "beetle-jar",
+      "blueprint": "BeetleJar",
+      "lines": [
+        "A stoppered jar of lantern-beetles, hung at head",
+        "height. They brighten when the room moves. Crush",
+        "one and every Warden in the village will know",
+        "inside a breath.",
+        "Mounted and lighting the ledge. Unhooking stows it",
+        "and dims this spot. Hold it in a hand for light.",
+        "",
+        "Type: Terrain"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "A stoppered jar of lantern-beetles, hung at head height. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nMounted and lighting the ledge. Unhooking stows it and dims this spot. Hold it in a hand for light."
+        }
+      ]
+    },
+    "in-pack": {
+      "zone": "Overworld.4.6.1",
+      "x": 21,
+      "y": 6,
+      "hp": 40,
+      "tick": 2230,
+      "holder": "2678",
+      "wearer": null,
+      "ambient": 0.28,
+      "seat": 0.5857191,
+      "west": 0.53092885,
+      "actorLight": 0.68,
+      "lamp": {
+        "id": "26018",
+        "x": null,
+        "y": null,
+        "recovered": true,
+        "packed": true,
+        "worn": false,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nPacked. Hold it in a hand to light your way."
+      }
+    },
+    "packed-description-reader": {
+      "open": true,
+      "title": "beetle-jar",
+      "blueprint": "BeetleJar",
+      "lines": [
+        "Throw range: 18 cells. Throw Strength: 3.",
+        "Pack weight: 14; with this item: 14. Burden",
+        "threshold: 270.",
+        "",
+        "DISASSEMBLY",
+        "",
+        "Disassembly unavailable: no current owned item or",
+        "tinkering access.",
+        "",
+        "ABOUT THIS ITEM",
+        "",
+        "A stoppered jar of lantern-beetles. They brighten",
+        "when the room moves. Crush one and every Warden in",
+        "the village will know inside a breath.",
+        "Packed. Hold it in a hand to light your way.",
+        "",
+        "Type: Terrain",
+        "Weight: 2 lb each"
+      ],
+      "sections": [
+        {
+          "Heading": "Equip slots",
+          "Text": "Equip slots: Hand."
+        },
+        {
+          "Heading": "Equipment comparison",
+          "Text": "Auto equip: left hand.\n  left hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change.\nManual equip: right hand.\n  right hand now: empty; natural attack: fist.\n  No equipped items displaced.\n  Equipment contributions (other effects not totaled):\n  No attribute contribution change."
+        },
+        {
+          "Heading": "Current: fist",
+          "Text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "Heading": "Current: fist",
+          "Text": "Damage: 1d2 per penetration.\nHit bonus: +0.\nPenetration bonus: +0.\nPenetration uses Strength modifier (cap 50).\nAttributes: Bludgeoning Unarmed.\nOn damaging hits, independent attempts (targets may resist):\n  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).\nWeight per item: 0."
+        },
+        {
+          "Heading": "Reading these numbers",
+          "Text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "Heading": "Handling",
+          "Text": "1 unit. Weight per unit: 2. Total weight: 2.\nLift Strength: 2; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 18 cells. Throw Strength: 3.\nPack weight: 14; with this item: 14. Burden threshold: 270."
+        },
+        {
+          "Heading": "Disassembly",
+          "Text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "Heading": "About this item",
+          "Text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nPacked. Hold it in a hand to light your way."
+        }
+      ]
+    },
+    "held-at-ledge": {
+      "zone": "Overworld.4.6.1",
+      "x": 21,
+      "y": 6,
+      "hp": 40,
+      "tick": 2230,
+      "holder": null,
+      "wearer": "2678",
+      "ambient": 0.28,
+      "seat": 0.850016832,
+      "west": 0.53092885,
+      "actorLight": 1.0,
+      "lamp": {
+        "id": "26018",
+        "x": null,
+        "y": null,
+        "recovered": true,
+        "packed": false,
+        "worn": true,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nHeld in hand. The light follows the bearer."
+      }
+    },
+    "held-moved": {
+      "zone": "Overworld.4.6.1",
+      "x": 22,
+      "y": 6,
+      "hp": 40,
+      "tick": 2240,
+      "holder": null,
+      "wearer": "2678",
+      "ambient": 0.28,
+      "seat": 0.53092885,
+      "west": 0.469181478,
+      "actorLight": 1.0,
+      "lamp": {
+        "id": "26018",
+        "x": null,
+        "y": null,
+        "recovered": true,
+        "packed": false,
+        "worn": true,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nHeld in hand. The light follows the bearer."
+      }
+    },
+    "held-after-continue": {
+      "zone": "Overworld.4.6.1",
+      "x": 22,
+      "y": 6,
+      "hp": 40,
+      "tick": 2240,
+      "holder": null,
+      "wearer": "2678",
+      "ambient": 0.28,
+      "seat": 0.53092885,
+      "west": 0.469181478,
+      "actorLight": 1.0,
+      "lamp": {
+        "id": "26018",
+        "x": null,
+        "y": null,
+        "recovered": true,
+        "packed": false,
+        "worn": true,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nHeld in hand. The light follows the bearer."
+      }
+    },
+    "held-description-reader": {
+      "open": true,
+      "title": "beetle-jar",
+      "blueprint": "BeetleJar",
+      "lines": [
+        "You can carry this item.",
+        "Grip: one hand.",
+        "Throw range: 18 cells. Throw Strength: 3.",
+        "Pack weight: 14; with this item: 14. Burden",
+        "threshold: 270.",
+        "",
+        "DISASSEMBLY",
+        "",
+        "Disassembly unavailable: no current owned item or",
+        "tinkering access.",
+        "",
+        "ABOUT THIS ITEM",
+        "",
+        "A stoppered jar of lantern-beetles. They brighten",
+        "when the room moves. Crush one and every Warden in",
+        "the village will know inside a breath.",
+        "Held in hand. The light follows the bearer.",
+        "",
+        "Type: Terrain",
+        "Weight: 2 lb each"
+      ],
+      "sections": [
+        {
+          "Heading": "Equip slots",
+          "Text": "Equip slots: Hand."
+        },
+        {
+          "Heading": "Equipment comparison",
+          "Text": "Currently equipped: left hand."
+        },
+        {
+          "Heading": "Reading these numbers",
+          "Text": "Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.\nInspection snapshot. Equipping rechecks current slots and restrictions."
+        },
+        {
+          "Heading": "Handling",
+          "Text": "1 unit. Weight per unit: 2. Total weight: 2.\nLift Strength: 2; yours: 18.\nYou can carry this item.\nGrip: one hand.\nThrow range: 18 cells. Throw Strength: 3.\nPack weight: 14; with this item: 14. Burden threshold: 270."
+        },
+        {
+          "Heading": "Disassembly",
+          "Text": "Disassembly unavailable: no current owned item or tinkering access."
+        },
+        {
+          "Heading": "About this item",
+          "Text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nHeld in hand. The light follows the bearer."
+        }
+      ]
+    },
+    "held-read-no-turn": {
+      "zone": "Overworld.4.6.1",
+      "x": 22,
+      "y": 6,
+      "hp": 40,
+      "tick": 2240,
+      "holder": null,
+      "wearer": "2678",
+      "ambient": 0.28,
+      "seat": 0.53092885,
+      "west": 0.469181478,
+      "actorLight": 1.0,
+      "lamp": {
+        "id": "26018",
+        "x": null,
+        "y": null,
+        "recovered": true,
+        "packed": false,
+        "worn": true,
+        "source": true,
+        "text": "A stoppered jar of lantern-beetles. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath.\nHeld in hand. The light follows the bearer."
+      }
+    },
+    "lamp-final-editor": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    }
+  },
+  "checkpointPins": {
+    "OlderdeepAdjacentLamp": {
+      "Quick.json": "56c3009888540351322e74c6936552f3db31293fb50495e9abd2ca81f2e41e35",
+      "Quick.sav.gz": "223dadbbeb9b7c6a4b8cf978dac3a92e9cfa2c7ef7fca3e0230af39424ccb691",
+      "Quick.json.bak": "ae4cc69bbd8492de9ba2129608ebf96bee68b785a75c64353ab6d9572153268e",
+      "Quick.sav.gz.bak": "96f0891f818718fd548038e5048032e414437764d41ae51370377de1bd27e553"
+    },
+    "OlderdeepOriginalRecovered": {
+      "Quick.json": "de6b1d297a81bad5aadb23e9a49c7645c51065a3b7b7c9da8ea8b49faa3a338e",
+      "Quick.sav.gz": "9d1599fb7a7ec7f86cf2342565f2a06dc91fa7154967a2cd8b9196bdc8c864fe",
+      "Quick.json.bak": "56c3009888540351322e74c6936552f3db31293fb50495e9abd2ca81f2e41e35",
+      "Quick.sav.gz.bak": "223dadbbeb9b7c6a4b8cf978dac3a92e9cfa2c7ef7fca3e0230af39424ccb691"
+    },
+    "OlderdeepHeldLamp": {
+      "Quick.json": "691adecf32570cf353925da14a2991cb0fb60f3b83a63c568846e808119a191b",
+      "Quick.sav.gz": "4cb92146d93a5ad2cafa256752798a8cd6cce6478b2ca864afdda6183094095b",
+      "Quick.json.bak": "56c3009888540351322e74c6936552f3db31293fb50495e9abd2ca81f2e41e35",
+      "Quick.sav.gz.bak": "223dadbbeb9b7c6a4b8cf978dac3a92e9cfa2c7ef7fca3e0230af39424ccb691"
+    }
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  }
+}

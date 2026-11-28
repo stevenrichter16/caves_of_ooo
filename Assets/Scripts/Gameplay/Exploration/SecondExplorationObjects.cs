@@ -6,10 +6,47 @@ namespace CavesOfOoo.Core
 {
     public sealed class RecoverableLampPart : SecondExplorationServicePart
     {
+        const string LegacyGuide = "This descent jar can be unhooked. The same lantern-beetles will light a hand-held jar, leaving this resting seat darker. It needs a real free hand to equip.";
+        const string MountedFlavor = "A stoppered jar of lantern-beetles, hung at head height.";
+
         public override string Name => "RecoverableLamp";
         protected override string[] Verbs => new[] { "RecoverLamp" };
         protected override bool Civilian => false;
         public bool Recovered;
+
+        internal string ResolveDescription(string text)
+        {
+            var owner = ParentEntity;
+            if (owner?.BlueprintName != "BeetleJar" || owner.GetPart<RecoverableLampPart>() != this) return text;
+
+            string flavor = text ?? "";
+            if (flavor == LegacyGuide) flavor = "";
+            else if (flavor.EndsWith("\n" + LegacyGuide, StringComparison.Ordinal))
+                flavor = flavor.Substring(0, flavor.Length - LegacyGuide.Length - 1);
+            if (Recovered && flavor.StartsWith(MountedFlavor, StringComparison.Ordinal))
+                flavor = "A stoppered jar of lantern-beetles." + flavor.Substring(MountedFlavor.Length);
+            var physical = owner.GetPart<PhysicsPart>();
+            var source = owner.GetPart<LightSourcePart>();
+            bool lit = source is { Enabled: true, Intensity: > 0, Radius: >= 0 };
+            bool onGround = WorldResourceActions.Ground(owner, owner.SpatialZone);
+            string state = null;
+            if (!Recovered && onGround && physical != null && Ready())
+            {
+                state = lit ? "Mounted and lighting the ledge. Unhooking stows it and dims this spot. Hold it in a hand for light."
+                    : "Mounted and dark. The jar can be unhooked.";
+            }
+            else if (Recovered && physical?.Equipped is Entity wearer && EquipmentUtilityActions.Equipped(wearer, owner, "Hand"))
+                state = lit ? "Held in hand. The light follows the bearer." : "Held in hand. The jar is dark.";
+            else if (Recovered && WorldResourceActions.Carried(physical?.InInventory, owner))
+                state = lit ? "Packed. Hold it in a hand to light your way." : "Packed. The jar is dark.";
+            else if (Recovered && physical?.InInventory?.GetPart<ContainerPart>()?.Contents.Contains(owner) == true)
+                state = lit ? "Stored. Hold it in a hand to light your way." : "Stored. The jar is dark.";
+            else if (Recovered && onGround)
+                state = lit ? "Set down. The jar lights the ground around it." : "Set down. The jar is dark.";
+
+            return state == null ? flavor : flavor.Length == 0 ? state : flavor + "\n" + state;
+        }
+
         bool Ready() => !Recovered && ParentEntity.BlueprintName == "BeetleJar" && ParentEntity.HasPart<LightSourcePart>()
             && !ParentEntity.HasPart<EquippablePart>() && !ParentEntity.GetPart<PhysicsPart>().Takeable;
         protected override void Choices(Entity actor, Zone zone, InventoryActionList a) { if (Ready()) Offer(a, "unhook lamp (takes light from seat)", "RecoverLamp"); }

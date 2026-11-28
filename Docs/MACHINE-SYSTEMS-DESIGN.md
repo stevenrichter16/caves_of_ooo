@@ -1,3 +1,10 @@
+**Olderdeep’s descent jar shows whether its light is mounted or portable.**
+Examine follows the original jar from the ledge to the pack and into
+a hand. The same light source follows the wearer under the existing
+lighting rules. The reader derives the current state from custody and
+the source’s switch. The saved item keeps its original lore.
+[Olderdeep lamp and live light levels](Verification/MachineSystems/OlderdeepLampReadout20261128/README.md)
+
 **Tally shows the cost of borrowing a weapon before it changes hands.**
 The quartermaster’s rack shows the borrower’s Ink, current price,
 refundable portion and whether each physical loaner is available.
