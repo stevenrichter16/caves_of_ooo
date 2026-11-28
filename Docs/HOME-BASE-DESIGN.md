@@ -2,6 +2,8 @@
 
 Status: design only. No project file, Unity, test, build or git command was changed or run. Written 2026-11-18 (UTC 2026-11-19 00:xx) against the on-disk working tree (HEAD plus 84 pre-existing tracked changes).
 
+**November 28 direction.** The portable camp design below remains the foundation for placement and retention. The new proposal adds opt-in security for explicitly enrolled belongings at homes and standalone field installations. A certified site keeps its equipment and stock safe during hostile attempts. Actual routes determine whether a buyer reaches the loading point and gets the goods to their destination. [Secure field sites and collection routes](SECURE-FIELD-SITES-AND-COLLECTION.md)
+
 Authority: canon is root `Lore/` only (`Docs/Lore/` unused). Governing user text: `Docs/SYSTEMS-DESIGN-PRINCIPLES.md`, `Docs/MACHINE-SYSTEMS-DESIGN.md:11,136`, `Docs/MACHINE-ROSTER-VISION.md` (home/base hooks).
 
 Evidence tags: **[V]** I read it in this pass at the cited `path:line`. **[P]** taken from the prior reports, the three proposals or the three judge reports, not re-read by me. **[I]** my inference or proposal. **[U]** unverified, with the check that settles it.

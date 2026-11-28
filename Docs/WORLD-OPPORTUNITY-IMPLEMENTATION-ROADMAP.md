@@ -65,6 +65,8 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+**Design follow-up for #21–27 and #41–45.** A secured field machine gives a physical collection route a recurring purpose. A buyer reaches the actual loading point and takes a paid lot to a real receiver. Improved footing, access or scheduling can help that trip and other compatible trips through the same cells. Current porter and ground work provide the first comparison. [Secure field sites and collection routes](SECURE-FIELD-SITES-AND-COLLECTION.md)
+
 **Second pass across #13–14 and #36–40.** Below Tine, a steam vent
 behind solid rock was within the scraper’s former pack range. The
 current rule makes sight, reach and the exact source part of the

@@ -1,3 +1,7 @@
+**Current design focus: secure field sites and real collection routes — November 28, 2026, America/Chicago.**
+The player wants a clear minimum defense that guarantees protection of enrolled machines and stock without upkeep. Named buyers can give a route lasting value by walking it to collect and carry a funded load. A blocked or dangerous route can delay a buyer while the protected site remains intact. Existing pump, footing and porter play show useful pieces of that loop. Qualify one legal same-zone loading stand, one buyer and actual consumer, and one route with a physical alternative. Gantry grain is a candidate for the paid pickup. The Stump cascade is a candidate for finite harvest. Defense, buyer pickup, and away resolution are design work at this checkpoint. The interrupted camp box and hearth layout trial stopped at native RED evidence and has no accepted gameplay or runtime change. The current Mac delivery is listed below.
+[Design, source audit and acceptance order](SECURE-FIELD-SITES-AND-COLLECTION.md)
+
 **Current Mac app includes the Tine scraper and Peat Works release — November 28, 2026, America/Chicago.**
 The universal Mac build from runtime `c216af284` replayed the Tine
 scraper through a native fight, movement, one scale and fresh Continue
