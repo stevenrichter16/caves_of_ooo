@@ -4,6 +4,7 @@ using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
@@ -21,10 +22,18 @@ namespace CavesOfOoo.Rendering
         public Camera PopupCamera;
         public Entity PlayerEntity;
         public Zone CurrentZone;
+        internal bool UseLedgerView;
 
         private const int POPUP_W = 46;
         private const int POPUP_MAX_VISIBLE = 20;
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
+        private const int LedgerWidth = 760;
+        private const int LedgerInset = 24;
+        private const int LedgerRowsTop = 68;
+        private const int LedgerRowHeight = 27;
+        private const int LedgerCounterHeight = 24;
+        private const int LedgerStatusHeight = 48;
+        private const int LedgerFooterHeight = 44;
 
         private bool _isOpen;
         private List<Entity> _items = new List<Entity>();
@@ -32,6 +41,8 @@ namespace CavesOfOoo.Rendering
         private int _scrollOffset;
         private bool _pickedUpAny;
         private string _statusMessage;
+        private LedgerModalView _ledgerView;
+        private Vector2 _lastLedgerPointer;
 
         /// <summary>
         /// When non-null, the popup is operating in "container loot" mode —
@@ -76,8 +87,19 @@ namespace CavesOfOoo.Rendering
             return string.IsNullOrEmpty(details) ? null : details
                 + (string.IsNullOrEmpty(_statusMessage) ? "" : "\n\nLast take result: " + _statusMessage);
         }
-        public void HideForDecisionReader() { ClearFgRegion(); ClearBgRegion(); }
-        public void RestoreAfterDecisionReader() { if (_isOpen) Render(); }
+        public void HideForDecisionReader()
+        {
+            _ledgerView?.Hide();
+            ClearFgRegion();
+            ClearBgRegion();
+        }
+
+        public void RestoreAfterDecisionReader()
+        {
+            if (!_isOpen) return;
+            if (UseLedgerView) _lastLedgerPointer = ReadLedgerPointer(out _);
+            Render();
+        }
 
         /// <summary>Actual letter used by the last handled selection; read on close to
         /// suppress held-key movement. Non-letter inputs and Open reset this to None.</summary>
@@ -104,16 +126,21 @@ namespace CavesOfOoo.Rendering
             _pickedUpAny = false;
             ClosingActivationKey = KeyCode.None;
             _statusMessage = null;
+            if (UseLedgerView) _lastLedgerPointer = ReadLedgerPointer(out _);
             Render();
         }
 
         public void Close()
         {
-            ClearFgRegion();
-            ClearBgRegion();
+            HideForDecisionReader();
             _isOpen = false;
             _items.Clear();
             _sourceContainer = null;
+        }
+
+        private void OnDisable()
+        {
+            if (_isOpen) Close();
         }
 
         public void HandleInput()
@@ -135,30 +162,31 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Mouse hover — update cursor to follow mouse
+            int pointerRow;
+            bool clicked;
+            if (UseLedgerView)
             {
-                int hoverRow = GetRowAtMouse();
-                if (hoverRow >= 0 && hoverRow != _cursorIndex)
-                {
-                    _cursorIndex = hoverRow;
-                    Render();
-                }
+                Vector2 pointer = ReadLedgerPointer(out clicked);
+                pointerRow = clicked || pointer != _lastLedgerPointer ? GetLedgerRow(pointer) : -1;
+                _lastLedgerPointer = pointer;
+            }
+            else
+            {
+                pointerRow = GetRowAtMouse();
+                clicked = Input.GetMouseButtonDown(0);
             }
 
-            // Mouse click
-            if (Input.GetMouseButtonDown(0))
+            if (pointerRow >= 0 && pointerRow != _cursorIndex)
             {
-                int clickedRow = GetRowAtMouse();
-                if (clickedRow >= 0 && clickedRow < _items.Count)
-                {
-                    PickupItem(clickedRow);
-                    return;
-                }
-                else if (clickedRow < 0)
-                {
-                    Close();
-                    return;
-                }
+                _cursorIndex = pointerRow;
+                Render();
+            }
+
+            if (clicked)
+            {
+                if (pointerRow >= 0) PickupItem(pointerRow);
+                else Close();
+                return;
             }
 
             // Up/Down navigation
@@ -293,6 +321,7 @@ namespace CavesOfOoo.Rendering
         {
             int visible = Mathf.Min(_items.Count, POPUP_MAX_VISIBLE);
             if (visible <= 0) return;
+            _scrollOffset = Mathf.Min(_scrollOffset, _items.Count - visible);
             if (_cursorIndex < _scrollOffset)
                 _scrollOffset = _cursorIndex;
             else if (_cursorIndex >= _scrollOffset + visible)
@@ -315,8 +344,6 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
-            if (Tilemap == null) return;
-
             // Erase the previous draw FIRST, using the rectangle we recorded
             // when we painted it. Re-computing the popup position below
             // updates _worldOriginX/_worldTopY/_popupH to the NEW values, so
@@ -324,6 +351,14 @@ namespace CavesOfOoo.Rendering
             // leaves stale border/action-bar tiles behind.
             ClearFgRegion();
             ClearBgRegion();
+            if (UseLedgerView)
+            {
+                RenderLedger();
+                return;
+            }
+
+            _ledgerView?.Hide();
+            if (Tilemap == null) return;
             ComputePopupPosition();
 
             int totalRows = _items.Count;
@@ -416,7 +451,64 @@ namespace CavesOfOoo.Rendering
             _fgDrawnTopY = _worldTopY;
         }
 
+        private void RenderLedger()
+        {
+            int count = _items.Count;
+            int visible = Mathf.Min(count, POPUP_MAX_VISIBLE);
+            int rowsEnd = LedgerRowsTop + visible * LedgerRowHeight;
+            int counterHeight = count > visible ? LedgerCounterHeight : 0;
+            _ledgerView ??= LedgerModalView.Create(transform, "PickupLedger");
+            _ledgerView.Begin(PopupCamera, LedgerWidth, rowsEnd + counterHeight + LedgerStatusHeight + LedgerFooterHeight);
+            bool controller = NativeGamepadInput.IsConnected;
+            _ledgerView.Card("Pick up (" + count + " item" + (count == 1 ? "" : "s") + ")", controller
+                ? "[A] Take   [Y] Take all   [LT+RT] Info   [B] Close"
+                : "[Enter] Take   [Tab] Take all   [F1] Info   [Esc/G] Close");
+
+            for (int i = 0; i < visible; i++)
+            {
+                int index = _scrollOffset + i;
+                if (index >= count) break;
+                Entity item = _items[index];
+                int units = item.GetPart<StackerPart>()?.StackCount ?? 1;
+                char key = MenuShortcutMap.Positional(index, closesWithG: true);
+                _ledgerView.Row(LedgerRowBounds(i), item.GetDisplayName(includeStackCount: false), index == _cursorIndex,
+                    key == '\0' ? null : key.ToString(), units > 1 ? "×" + units : null, icon: InventoryItemIcons.For(item));
+            }
+
+            if (counterHeight > 0)
+                _ledgerView.Label(new Rect(LedgerInset, rowsEnd, LedgerWidth - 2 * LedgerInset, counterHeight),
+                    $"{_scrollOffset + 1}–{_scrollOffset + visible} of {count}", LMuted, 16, TextAnchor.MiddleRight);
+            if (!string.IsNullOrEmpty(_statusMessage))
+                _ledgerView.Label(new Rect(LedgerInset, rowsEnd + counterHeight, LedgerWidth - 2 * LedgerInset, LedgerStatusHeight),
+                    _statusMessage, LRed, 18, wrap: true);
+            _ledgerView.End();
+        }
+
+        private static Rect LedgerRowBounds(int row)
+            => new Rect(LedgerInset, LedgerRowsTop + row * LedgerRowHeight, LedgerWidth - 2 * LedgerInset, LedgerRowHeight);
+
+        private int GetLedgerRow(Vector2 screen)
+        {
+            if (_ledgerView == null || !_ledgerView.TryPoint(screen, out var point)) return -1;
+            int row = Mathf.FloorToInt((point.y - LedgerRowsTop) / LedgerRowHeight);
+            int index = _scrollOffset + row;
+            return row >= 0 && row < POPUP_MAX_VISIBLE && index < _items.Count && LedgerRowBounds(row).Contains(point) ? index : -1;
+        }
+
         // ===== Mouse =====
+
+        private static Vector2 ReadLedgerPointer(out bool clicked)
+        {
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            if (mouse != null && mouse.enabled)
+            {
+                clicked = mouse.leftButton.wasPressedThisFrame;
+                return mouse.position.ReadValue();
+            }
+
+            clicked = Input.GetMouseButtonDown(0);
+            return Input.mousePosition;
+        }
 
         private int GetRowAtMouse()
         {

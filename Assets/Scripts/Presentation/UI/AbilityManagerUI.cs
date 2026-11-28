@@ -1,59 +1,21 @@
 using System;
 using CavesOfOoo.Core;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// WSP8.0 — Ability manager UI: a centered modal that lists every
-    /// activated ability the player owns, with hotkey-binding +
-    /// activation controls. Mirrors Qud's
-    /// <c>Qud.UI.AbilityManagerScreen</c> design (browse all abilities,
-    /// reorder slots, activate from the list).
-    ///
-    /// <para>Lifecycle mirrors <see cref="SkillsScreenUI"/>: GameBootstrap
-    /// adds the component, wires the FG + BG tilemaps + popup camera,
-    /// and hands the reference to <c>InputHandler</c>. <c>InputHandler</c>
-    /// gates KeyCode.M on InputState.Normal to call <see cref="Open"/>,
-    /// then dispatches per-frame <see cref="HandleInput"/> while open.
-    /// Closing returns control to the gameplay state machine.</para>
-    ///
-    /// <para>Visual layout:
-    /// <code>
-    ///   ┌──────────────────────────────────────────────────────────┐
-    ///   │ Abilities                                                │
-    ///   ├──────────────────────────────────────────────────────────┤
-    ///   │ &gt; [1] Slam                          50T  Skills          │
-    ///   │   [2] Conk                          ready Skills          │
-    ///   │   [-] Berserk                       100T Skills          │
-    ///   │ ...                                                      │
-    ///   ├──────────────────────────────────────────────────────────┤
-    ///   │ Knock back an adjacent enemy.                            │
-    ///   └──────────────────────────────────────────────────────────┘
-    ///   [Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close
-    /// </code>
-    /// </para>
-    ///
-    /// <para>Input behavior:
-    /// <list type="bullet">
-    ///   <item><b>↑/↓ or K/J</b> — navigate row cursor</item>
-    ///   <item><b>Enter</b> — close the manager, dispatch the selected
-    ///         ability via the supplied <c>onActivate</c> callback
-    ///         (InputHandler handles direction targeting)</item>
-    ///   <item><b>1-9, 0</b> — bind the selected ability to that slot
-    ///         (auto-clears the slot's prior binding via
-    ///         <see cref="ActivatedAbilitiesPart.AssignAbilityToSlot"/>'s
-    ///         existing swap-on-conflict semantics)</item>
-    ///   <item><b>R</b> — unbind the selected ability from its current slot</item>
-    ///   <item><b>M/Esc</b> — close the manager without activating</item>
-    /// </list></para>
+    /// Browse owned abilities, activate one, or manage its hotbar binding.
     /// </summary>
     public class AbilityManagerUI : MonoBehaviour
     {
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
         public Camera PopupCamera;
+        internal bool UseLedgerView;
 
         // Layout — narrower than container picker, wider than skills
         // screen. Each row: [hotkey] (4) + name (~30) + cooldown (~6) +
@@ -62,6 +24,14 @@ namespace CavesOfOoo.Rendering
         private const int POPUP_MAX_VISIBLE = 14;
         private const int DESC_ROWS = 1;
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
+        private const int LedgerWidth = 844;
+        private const int LedgerInset = 24;
+        private const int LedgerFirstRow = 103;
+        private const int LedgerRowStride = 32;
+        private LedgerModalView _ledger;
+        private bool _ledgerGamepad;
+        private Vector2 _lastLedgerPointer;
+        private Rect _activateBounds, _closeBounds;
 
         public Entity PlayerEntity { get; set; }
 
@@ -99,8 +69,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
             _readerSelection = SelectedAbilityID;
-            if (Tilemap != null) ClearRegion(0, 0, POPUP_W, _popupH);
-            ClearBgRegion();
+            ClearView();
         }
 
         /// <summary>Revalidate rows after a free reader and retain the selected identity when still present.</summary>
@@ -112,6 +81,7 @@ namespace CavesOfOoo.Rendering
                 if (_snapshot.Rows[i].AbilityID == _readerSelection) { _cursorIndex = i; break; }
             _cursorIndex = System.Math.Max(0, System.Math.Min(_cursorIndex, _snapshot.RowCount - 1));
             ScrollIntoView();
+            if (UseLedgerView) _lastLedgerPointer = ReadLedgerPointer(out _, out _);
             Render();
         }
 
@@ -129,6 +99,7 @@ namespace CavesOfOoo.Rendering
             if (_cursorIndex >= _snapshot.RowCount) _cursorIndex = 0;
             _scrollOffset = 0;
             ScrollIntoView();
+            if (UseLedgerView) _lastLedgerPointer = ReadLedgerPointer(out _, out _);
             Render();
         }
 
@@ -147,11 +118,19 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             if (!_isOpen) return;
-            ClearRegion(0, 0, POPUP_W, _popupH);
-            ClearBgRegion();
+            ClearView();
             _isOpen = false;
             PlayerEntity = null;
             OnActivateCallback = null;
+        }
+
+        private void OnDisable() => Close();
+
+        private void ClearView()
+        {
+            _ledger?.Hide();
+            if (Tilemap != null) ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearBgRegion();
         }
 
         /// <summary>Per-frame input dispatch. Returns void; check
@@ -167,6 +146,9 @@ namespace CavesOfOoo.Rendering
                 Close();
                 return;
             }
+
+            if (UseLedgerView && HandleLedgerPointer())
+                return;
 
             if (_snapshot.RowCount == 0)
                 return;
@@ -297,6 +279,11 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            if (UseLedgerView)
+            {
+                RenderLedger();
+                return;
+            }
             if (Tilemap == null) return;
 
             ClearRegion(0, 0, POPUP_W, _popupH);
@@ -399,6 +386,142 @@ namespace CavesOfOoo.Rendering
                 ? "[A]use [Y]bind/clear [LT+RT]details [B]close"
                 : "[Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close",
                 QudColorParser.Gray);
+        }
+
+        private void RenderLedger()
+        {
+            _ledger ??= LedgerModalView.Create(transform, "Abilities Ledger");
+            _ledgerGamepad = NativeGamepadInput.IsConnected;
+            int total = _snapshot.RowCount;
+            int visibleCount = Mathf.Clamp(total, 1, POPUP_MAX_VISIBLE);
+            _scrollOffset = Mathf.Clamp(_scrollOffset, 0, Mathf.Max(0, total - visibleCount));
+            int detailY = LedgerFirstRow + LedgerRowStride * visibleCount + 10;
+            string footer = _ledgerGamepad
+                ? "Y Bind / clear    ·    LT + RT Details"
+                : "D Details    ·    P Rite preview    ·    0–9 Bind    ·    R Clear binding";
+            _ledger.Begin(PopupCamera, LedgerWidth, detailY + (total > 0 ? 112 : 68));
+            _ledger.Card("Abilities", total > 0 ? footer : null);
+
+            if (total == 0)
+                _ledger.Row(LedgerRowBounds(0), "You know no activated abilities.", false, disabled: true);
+            else
+            {
+                string count = total > visibleCount
+                    ? $"{_scrollOffset + 1}–{_scrollOffset + visibleCount} of {total} known"
+                    : $"{total} known";
+                _ledger.Label(new Rect(624, 15, 196, 38), count, LMuted, 17, TextAnchor.MiddleRight);
+                DrawLedgerHeader();
+                for (int row = 0; row < visibleCount; row++)
+                    DrawLedgerAbilityRow(row);
+
+                AbilityManagerRow selected = _snapshot.Rows[_cursorIndex];
+                var detail = new Rect(LedgerInset, detailY, 518, 55);
+                _ledger.Frame(detail, LBorder, LPanel);
+                _ledger.Label(new Rect(detail.x + 12, detail.y + 3, detail.width - 24, 25),
+                    selected.DisplayName, LGold, 18, bold: true);
+                string description = _ledgerGamepad && selected.SlotIndex < 0 && selected.IsUsable
+                    ? "Unbound. Press Y to assign a slot."
+                    : AbilityManagerStateBuilder.BuildRowDescription(selected);
+                _ledger.Label(new Rect(detail.x + 12, detail.y + 27, detail.width - 24, 24),
+                    description, LMuted, 15);
+            }
+
+            _activateBounds = new Rect(558, detailY + 10, 128, 35);
+            _closeBounds = new Rect(694, detailY + 10, 126, 35);
+            if (total > 0)
+                DrawLedgerButton(_activateBounds, _ledgerGamepad ? "A  Activate" : "Enter  Activate",
+                    _snapshot.Rows[_cursorIndex].IsUsable, primary: true);
+            DrawLedgerButton(_closeBounds, _ledgerGamepad ? "B  Close" : "Esc  Close", true);
+            _ledger.End();
+        }
+
+        private void DrawLedgerHeader()
+        {
+            _ledger.Label(new Rect(30, 76, 46, 23), "Slot", LMuted, 15, TextAnchor.MiddleCenter);
+            _ledger.Label(new Rect(91, 76, 376, 23), "Ability", LMuted, 15);
+            _ledger.Label(new Rect(475, 76, 173, 23), "Source", LMuted, 15);
+            _ledger.Label(new Rect(655, 76, 147, 23), "Readiness", LMuted, 15, TextAnchor.MiddleRight);
+        }
+
+        private void DrawLedgerAbilityRow(int row)
+        {
+            int index = _scrollOffset + row;
+            AbilityManagerRow ability = _snapshot.Rows[index];
+            Rect bounds = LedgerRowBounds(row);
+            bool selected = index == _cursorIndex;
+            _ledger.Box(bounds, selected ? LSelected : LPanel);
+            if (selected) _ledger.Box(new Rect(bounds.x, bounds.y, 3, bounds.height), LGold);
+
+            var hotkey = new Rect(35, bounds.y + 3, 35, bounds.height - 6);
+            _ledger.Frame(hotkey, LBorder, LBackground);
+            _ledger.Label(hotkey, ability.SlotIndex >= 0 ? ability.Hotkey.ToString() : "–",
+                ability.SlotIndex >= 0 ? LGold : LMuted, 15, TextAnchor.MiddleCenter);
+            _ledger.Label(new Rect(91, bounds.y, 376, bounds.height), ability.DisplayName, LInk, 19);
+            _ledger.Label(new Rect(475, bounds.y, 173, bounds.height), ability.SourceClass, LMuted, 16);
+            string units = ability.CooldownRemaining == 1 ? "turn" : "turns";
+            string readiness = ability.IsUsable ? "Ready" : $"{ability.CooldownRemaining} {units}";
+            _ledger.Label(new Rect(655, bounds.y, 147, bounds.height), readiness,
+                ability.IsUsable ? LGreen : LGold, 16, TextAnchor.MiddleRight);
+        }
+
+        private void DrawLedgerButton(Rect bounds, string label, bool enabled, bool primary = false)
+        {
+            bool emphasized = enabled && primary;
+            _ledger.Frame(bounds, emphasized ? LGold : LBorder, emphasized ? LSelected : LPanel);
+            Color ink = emphasized ? LGold : enabled ? LInk : LMuted;
+            _ledger.Label(bounds, label, ink, 17, TextAnchor.MiddleCenter);
+        }
+
+        private static Rect LedgerRowBounds(int row)
+            => new Rect(LedgerInset, LedgerFirstRow + row * LedgerRowStride, LedgerWidth - 2 * LedgerInset, 28);
+
+        private bool HandleLedgerPointer()
+        {
+            if (_ledgerGamepad != NativeGamepadInput.IsConnected) Render();
+            Vector2 mouse = ReadLedgerPointer(out bool pressed, out float wheel);
+            bool moved = mouse != _lastLedgerPointer;
+            _lastLedgerPointer = mouse;
+            if ((!moved && !pressed && Mathf.Abs(wheel) < .01f) || _ledger == null
+                || !_ledger.TryPoint(mouse, out Vector2 point)) return false;
+
+            if (pressed && _closeBounds.Contains(point))
+            {
+                Close();
+                return true;
+            }
+            int total = _snapshot.RowCount;
+            if (total == 0) return false;
+            if (pressed && _activateBounds.Contains(point))
+            {
+                if (_snapshot.Rows[_cursorIndex].IsUsable) ActivateSelected();
+                return true;
+            }
+
+            int row = Mathf.FloorToInt((point.y - LedgerFirstRow) / LedgerRowStride);
+            int visibleCount = Mathf.Min(total, POPUP_MAX_VISIBLE);
+            if (row < 0 || row >= visibleCount || !LedgerRowBounds(row).Contains(point)) return false;
+            int next = Mathf.Abs(wheel) >= .01f
+                ? Mathf.Clamp(_cursorIndex + (wheel > 0 ? -1 : 1), 0, total - 1)
+                : _scrollOffset + row;
+            if (next == _cursorIndex) return pressed;
+            _cursorIndex = next;
+            ScrollIntoView();
+            Render();
+            return pressed || Mathf.Abs(wheel) >= .01f;
+        }
+
+        private static Vector2 ReadLedgerPointer(out bool pressed, out float wheel)
+        {
+            Mouse mouse = Mouse.current;
+            if (mouse != null && mouse.enabled)
+            {
+                pressed = mouse.leftButton.wasPressedThisFrame;
+                wheel = mouse.scroll.ReadValue().y;
+                return mouse.position.ReadValue();
+            }
+            pressed = Input.GetMouseButtonDown(0);
+            wheel = Input.mouseScrollDelta.y;
+            return Input.mousePosition;
         }
 
         // BuildDescription was moved to AbilityManagerStateBuilder.BuildRowDescription

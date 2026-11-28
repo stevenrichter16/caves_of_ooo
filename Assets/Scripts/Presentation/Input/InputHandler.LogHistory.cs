@@ -23,6 +23,7 @@ namespace CavesOfOoo.Rendering
             LogHistoryUI.Tilemap=foreground;
             LogHistoryUI.BgTilemap=AnnouncementUI?.BgTilemap??ZoneRenderer?.CenteredPopupBgTilemap;
             LogHistoryUI.PopupCamera=AnnouncementUI?.PopupCamera??CameraFollow?.PopupOverlayCamera;
+            LogHistoryUI.UseLedgerView=AnnouncementUI?.UseLedgerView==true;
             _logHistoryReturnState=_inputState;_logHistoryActor=PlayerEntity;_logHistoryZone=CurrentZone;_logHistoryTurns=TurnManager;
             _inputState=InputState.LogHistoryOpen;EnterCenteredPopupOverlayView();LogHistoryUI.Open();
         }

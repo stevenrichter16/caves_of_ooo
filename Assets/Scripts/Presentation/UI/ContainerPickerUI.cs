@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
@@ -14,15 +15,24 @@ namespace CavesOfOoo.Rendering
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
         public Camera PopupCamera;
+        internal bool UseLedgerView;
 
         private const int POPUP_W = 54;
         private const int POPUP_MAX_VISIBLE = 12;
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
+        private const int LedgerWidth = 760;
+        private const int LedgerInset = 24;
+        private const int LedgerRowsTop = 68;
+        private const int LedgerRowHeight = 38;
+        private const int LedgerCounterHeight = 24;
+        private const int LedgerFooterHeight = 44;
 
         private bool _isOpen;
         private readonly List<Entity> _containers = new List<Entity>();
         private int _cursorIndex;
         private int _scrollOffset;
+        private LedgerModalView _ledgerView;
+        private Vector2 _lastLedgerPointer;
 
         private bool _selectionMade;
         private Entity _selectedContainer;
@@ -30,6 +40,7 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _popupH;
+        private bool _fgDrawn;
         private bool _bgDrawn;
         private int _bgDrawnW;
         private int _bgDrawnH;
@@ -56,6 +67,7 @@ namespace CavesOfOoo.Rendering
             _selectionMade = false;
             _selectedContainer = null;
             SelectedActivationKey = KeyCode.None;
+            if (UseLedgerView) _lastLedgerPointer = ReadLedgerPointer(out _);
             Render();
         }
 
@@ -71,27 +83,31 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            int hoverRow = GetRowAtMouse();
-            if (hoverRow >= 0 && hoverRow != _cursorIndex)
+            int pointerRow;
+            bool clicked;
+            if (UseLedgerView)
             {
-                _cursorIndex = hoverRow;
+                Vector2 pointer = ReadLedgerPointer(out clicked);
+                pointerRow = clicked || pointer != _lastLedgerPointer ? GetLedgerRow(pointer) : -1;
+                _lastLedgerPointer = pointer;
+            }
+            else
+            {
+                pointerRow = GetRowAtMouse();
+                clicked = Input.GetMouseButtonDown(0);
+            }
+
+            if (pointerRow >= 0 && pointerRow != _cursorIndex)
+            {
+                _cursorIndex = pointerRow;
                 Render();
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (clicked)
             {
-                int clickedRow = GetRowAtMouse();
-                if (clickedRow >= 0 && clickedRow < _containers.Count)
-                {
-                    SelectContainer(clickedRow);
-                    return;
-                }
-
-                if (clickedRow < 0)
-                {
-                    Cancel();
-                    return;
-                }
+                if (pointerRow >= 0) SelectContainer(pointerRow);
+                else Cancel();
+                return;
             }
 
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
@@ -155,10 +171,16 @@ namespace CavesOfOoo.Rendering
 
         private void Close()
         {
-            ClearRegion(0, 0, POPUP_W, _popupH);
+            _ledgerView?.Hide();
+            ClearFgRegion();
             ClearBgRegion();
             _isOpen = false;
             _containers.Clear();
+        }
+
+        private void OnDisable()
+        {
+            if (_isOpen) Cancel();
         }
 
         private void ScrollIntoView()
@@ -184,10 +206,18 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            ClearFgRegion();
+            ClearBgRegion();
+            if (UseLedgerView)
+            {
+                RenderLedger();
+                return;
+            }
+
+            _ledgerView?.Hide();
             if (Tilemap == null)
                 return;
 
-            ClearBgRegion();
             ComputePopupPosition();
 
             int totalRows = _containers.Count;
@@ -251,6 +281,65 @@ namespace CavesOfOoo.Rendering
             }
 
             DrawText(0, borderH, " Select a container to take all contents.", QudColorParser.DarkGray);
+            _fgDrawn = true;
+        }
+
+        private void RenderLedger()
+        {
+            int count = _containers.Count;
+            int visible = Mathf.Min(count, POPUP_MAX_VISIBLE);
+            int rowsEnd = LedgerRowsTop + visible * LedgerRowHeight;
+            int counterHeight = count > visible ? LedgerCounterHeight : 0;
+            _ledgerView ??= LedgerModalView.Create(transform, "ContainerPickerLedger");
+            _ledgerView.Begin(PopupCamera, LedgerWidth, rowsEnd + counterHeight + LedgerFooterHeight);
+            _ledgerView.Card("Choose container (" + count + ")", NativeGamepadInput.IsConnected
+                ? "[A] Take all contents   [B] Cancel"
+                : "[Enter] Take all contents   [Esc/G] Cancel");
+
+            for (int i = 0; i < visible; i++)
+            {
+                int index = _scrollOffset + i;
+                if (index >= count) break;
+                Entity container = _containers[index];
+                ContainerPart contents = container.GetPart<ContainerPart>();
+                string aside = null;
+                if (contents?.NeedsRepair == true)
+                    aside = "Needs repair";
+                else if (contents != null)
+                    aside = contents.Contents.Count + (contents.Contents.Count == 1 ? " item" : " items");
+                char key = MenuShortcutMap.Positional(index, closesWithG: true);
+                _ledgerView.Row(LedgerRowBounds(i), container.GetDisplayName(), index == _cursorIndex,
+                    key == '\0' ? null : key.ToString(), aside, icon: InventoryItemIcons.For(container));
+            }
+
+            if (counterHeight > 0)
+                _ledgerView.Label(new Rect(LedgerInset, rowsEnd, LedgerWidth - 2 * LedgerInset, counterHeight),
+                    $"{_scrollOffset + 1}–{_scrollOffset + visible} of {count}", LMuted, 16, TextAnchor.MiddleRight);
+            _ledgerView.End();
+        }
+
+        private static Rect LedgerRowBounds(int row)
+            => new Rect(LedgerInset, LedgerRowsTop + row * LedgerRowHeight, LedgerWidth - 2 * LedgerInset, LedgerRowHeight);
+
+        private int GetLedgerRow(Vector2 screen)
+        {
+            if (_ledgerView == null || !_ledgerView.TryPoint(screen, out var point)) return -1;
+            int row = Mathf.FloorToInt((point.y - LedgerRowsTop) / LedgerRowHeight);
+            int index = _scrollOffset + row;
+            return row >= 0 && row < POPUP_MAX_VISIBLE && index < _containers.Count && LedgerRowBounds(row).Contains(point) ? index : -1;
+        }
+
+        private static Vector2 ReadLedgerPointer(out bool clicked)
+        {
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            if (mouse != null && mouse.enabled)
+            {
+                clicked = mouse.leftButton.wasPressedThisFrame;
+                return mouse.position.ReadValue();
+            }
+
+            clicked = Input.GetMouseButtonDown(0);
+            return Input.mousePosition;
         }
 
         private int GetRowAtMouse()
@@ -278,6 +367,7 @@ namespace CavesOfOoo.Rendering
 
         private void ClearRegion(int gx, int gy, int width, int height)
         {
+            if (Tilemap == null) return;
             for (int dy = 0; dy < height; dy++)
             {
                 for (int dx = 0; dx < width; dx++)
@@ -287,6 +377,13 @@ namespace CavesOfOoo.Rendering
                     Tilemap.SetTile(new Vector3Int(wx, wy, 0), null);
                 }
             }
+        }
+
+        private void ClearFgRegion()
+        {
+            if (!_fgDrawn) return;
+            ClearRegion(0, 0, POPUP_W, _popupH);
+            _fgDrawn = false;
         }
 
         private void DrawBgFill(int gx, int gy, int width, int height)

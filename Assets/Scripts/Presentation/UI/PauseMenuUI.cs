@@ -1,35 +1,29 @@
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Phase 4d — visual rendering for the pause menu modal. Pattern
-    /// mirrors <see cref="WorldActionMenuUI"/>: foreground-glyph
-    /// tilemap + background-fill tilemap + CP437 box characters,
-    /// centered via <see cref="CenteredPopupLayout"/>.
-    ///
-    /// <para><b>Roles split.</b> The pure dispatch logic (keyboard
-    /// navigation, save/load dispatch, lifecycle) lives in
-    /// <see cref="PauseMenuController"/> and is unit-tested. This
-    /// MonoBehaviour does ONLY rendering + mouse hit-testing,
-    /// delegating actual decisions to the controller.</para>
-    ///
-    /// <para><b>Lifecycle.</b> Always present on the GameBootstrap
-    /// GameObject. Tilemap refs wired by GameBootstrap. HandleInput
-    /// is called every frame from <see cref="InputHandler"/>; only
-    /// renders when controller's <c>IsOpen</c> is true.</para>
+    /// Draws the pause menu and forwards input to <see cref="PauseMenuController"/>.
     /// </summary>
     public class PauseMenuUI : MonoBehaviour
     {
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
         public Camera PopupCamera;
+        internal bool UseLedgerView;
 
-        // ---- Layout constants ----
         private const int POPUP_W = 28;
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
+        private const int LedgerWidth = 596;
+        private const int LedgerInset = 26;
+        private const int LedgerFirstRow = 87;
+        private const int LedgerRowHeight = 34;
+        private const int LedgerRowStride = 38;
+        private LedgerModalView _ledgerView;
+        private bool _ledgerGamepad;
 
         // The controller is owned externally (InputHandler creates one).
         // We accept a reference so this UI is testable independently
@@ -47,7 +41,7 @@ namespace CavesOfOoo.Rendering
         private int _renderedHeight;
         private bool _hasRenderedBounds;
         private bool _hasMousePosition;
-        private Vector3 _lastMousePosition;
+        private Vector2 _lastMousePosition;
 
         public bool IsOpen => Controller != null && Controller.IsOpen;
 
@@ -64,7 +58,9 @@ namespace CavesOfOoo.Rendering
             int prevSelected = Controller.SelectedIndex;
             bool wasOpen = Controller.IsOpen;
             int previousRevision = Controller.ViewRevision;
-            Vector3 mousePosition = UnityEngine.Input.mousePosition;
+            Vector2 mousePosition = default;
+            bool clicked = UseLedgerView ? LedgerModalView.ReadPointer(out mousePosition) : Input.GetMouseButtonDown(0);
+            if (!UseLedgerView) mousePosition = Input.mousePosition;
             bool mouseMoved = _hasMousePosition && mousePosition != _lastMousePosition;
             _lastMousePosition = mousePosition;
             _hasMousePosition = true;
@@ -72,28 +68,23 @@ namespace CavesOfOoo.Rendering
             // Mouse hover (only meaningful while open).
             if (Controller.IsOpen)
             {
-                int hoverRow = GetRowAtMouse();
+                Vector2 point = default;
+                bool inCard = UseLedgerView && (mouseMoved || clicked)
+                    && _ledgerView != null && _ledgerView.TryPoint(mousePosition, out point);
+                int hoverRow = UseLedgerView ? (inCard ? GetLedgerRow(point) : -1) : GetRowAtMouse(mousePosition);
                 // A stationary cursor must not undo a Dpad/keyboard selection.
                 if (mouseMoved && hoverRow >= 0 && hoverRow != Controller.SelectedIndex)
                     Controller.HoverSelect(hoverRow);
 
-                // Mouse click → confirm at clicked row, or close on outside-click.
-                if (UnityEngine.Input.GetMouseButtonDown(0))
+                if (clicked)
                 {
-                    int clickedRow = GetRowAtMouse();
-                    if (clickedRow >= 0)
-                    {
-                        Controller.ClickSelect(clickedRow, SaveLoadService, Log);
-                        OnControllerStateChanged(wasOpen);
-                        return true;
-                    }
-                    if (clickedRow < 0)
-                    {
-                        // Click outside the menu area dismisses (matches WorldActionMenuUI).
+                    if (hoverRow >= 0)
+                        Controller.ClickSelect(hoverRow, SaveLoadService, Log);
+                    else if (!inCard)
                         Controller.Close();
-                        OnControllerStateChanged(wasOpen);
-                        return true;
-                    }
+                    else return true;
+                    OnControllerStateChanged(wasOpen);
+                    return true;
                 }
             }
 
@@ -106,9 +97,9 @@ namespace CavesOfOoo.Rendering
             {
                 OnControllerStateChanged(wasOpen);
             }
-            else if (Controller.IsOpen && !_wasOpenLastFrame)
+            else if (Controller.IsOpen && (!_wasOpenLastFrame
+                || (UseLedgerView && _ledgerGamepad != NativeGamepadInput.IsConnected)))
             {
-                // First frame open after Open() was called externally.
                 Render();
             }
 
@@ -139,7 +130,13 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
-            if (Tilemap == null || Controller == null) return;
+            if (Controller == null) return;
+            if (UseLedgerView)
+            {
+                RenderLedger();
+                return;
+            }
+            if (Tilemap == null) return;
 
             // Erase the previous rectangle before changing page height/origin.
             // Otherwise returning from the taller graphics page leaves stale rows.
@@ -180,8 +177,48 @@ namespace CavesOfOoo.Rendering
             DrawText(0, borderHeight, hint, QudColorParser.Gray);
         }
 
+        private void RenderLedger()
+        {
+            _ledgerView ??= LedgerModalView.Create(transform, "Pause Ledger");
+            int rows = Controller.VisibleItemCount;
+            _ledgerGamepad = NativeGamepadInput.IsConnected;
+            bool graphics = Controller.IsGraphicsOpen;
+            bool audio = Controller.IsAudioOpen;
+            string confirm = _ledgerGamepad ? "A" : "Enter";
+            string back = _ledgerGamepad ? "B" : graphics || audio ? "Esc" : "Tab / Esc";
+            string footer = graphics || audio
+                ? $"← / → Adjust    ·    {confirm} Select    ·    {back} Back"
+                : $"↑ / ↓ Browse    ·    {confirm} Select    ·    {back} Close";
+
+            _ledgerView.Begin(PopupCamera, LedgerWidth, LedgerFirstRow + rows * LedgerRowStride + 60);
+            _ledgerView.Card(graphics ? "Graphics" : audio ? "Audio" : "Pause", footer);
+            for (int row = 0; row < rows; row++)
+            {
+                string label = Controller.GetItemLabel(row);
+                int separator = graphics || audio ? label.IndexOf(": ", System.StringComparison.Ordinal) : -1;
+                string value = null;
+                if (separator >= 0)
+                {
+                    value = label.Substring(separator + 2);
+                    label = label.Substring(0, separator);
+                }
+                _ledgerView.Row(LedgerRowBounds(row), label, row == Controller.SelectedIndex, aside: value);
+            }
+            _ledgerView.End();
+        }
+
+        private static Rect LedgerRowBounds(int row)
+            => new Rect(LedgerInset, LedgerFirstRow + LedgerRowStride * row, LedgerWidth - 2 * LedgerInset, LedgerRowHeight);
+
+        private void OnDisable()
+        {
+            ClearAll();
+            _wasOpenLastFrame = false;
+        }
+
         private void ClearAll()
         {
+            _ledgerView?.Hide();
             if (!_hasRenderedBounds || Tilemap == null) return;
             ClearRegion(0, 0, POPUP_W, _renderedHeight);
             ClearBgRegion(0, 0, POPUP_W, _renderedHeight);
@@ -194,11 +231,16 @@ namespace CavesOfOoo.Rendering
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(popupHeight);
         }
 
-        private int GetRowAtMouse()
+        private int GetLedgerRow(Vector2 point)
+        {
+            int row = Mathf.FloorToInt((point.y - LedgerFirstRow) / LedgerRowStride);
+            return row >= 0 && row < Controller.VisibleItemCount && LedgerRowBounds(row).Contains(point) ? row : -1;
+        }
+
+        private int GetRowAtMouse(Vector2 mousePosition)
         {
             if (PopupCamera == null || Tilemap == null) return -1;
-            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap,
-                    UnityEngine.Input.mousePosition, out int gridX, out int gridY))
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, mousePosition, out int gridX, out int gridY))
                 return -1;
 
             int gx = gridX - _worldOriginX;

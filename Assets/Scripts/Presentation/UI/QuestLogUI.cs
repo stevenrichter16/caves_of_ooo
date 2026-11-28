@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine.Tilemaps;
 using CavesOfOoo.Storylets;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Q1 (Docs/QUEST-LOG-UI.md) — full-screen ASCII quest log overlay,
-    /// opened by the 'q' key. Renders active quests with per-stage status
-    /// decoration (Qud-parity: √ done / ► current / · pending) plus a
-    /// completed-quests section, drawn on the shared CP437 tilemap.
+    /// Quest and field-note journal opened by the 'q' key. Shows quest
+    /// stages, objectives and closure history, plus the recorded field notes.
     ///
     /// <para>Mirrors <see cref="InventoryUI"/>'s draw + open/close shape.
     /// <see cref="InputHandler"/> drives open/close (it owns the
@@ -26,6 +25,8 @@ namespace CavesOfOoo.Rendering
         /// <summary>The shared CP437 tilemap (assigned by GameBootstrap,
         /// same instance InventoryUI draws to).</summary>
         public Tilemap Tilemap;
+        internal bool UseLedgerView;
+        internal Camera GameplayCamera;
 
         // Fullscreen UI grid — matches InventoryUI (W=80, H=45) and the
         // CameraFollow.SetUIView dimensions InputHandler applies on open.
@@ -33,6 +34,7 @@ namespace CavesOfOoo.Rendering
         private const int H = 45;
 
         private bool _isOpen;
+        private LedgerModalView _ledgerView;
         public bool IsOpen => _isOpen;
 
         private QuestLogSnapshot _snapshot;
@@ -90,10 +92,16 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            _ledgerView?.Hide();
             // Clear our glyphs (incl. rows 25-44 of the UI grid that the
             // zone re-render won't repaint); InputHandler.CloseQuestLog
             // restores the game camera view + un-pauses the renderer.
-            if (Tilemap != null) Tilemap.ClearAllTiles();
+            if (!UseLedgerView && Tilemap != null) Tilemap.ClearAllTiles();
+        }
+
+        private void OnDisable()
+        {
+            if (_isOpen) Close();
         }
 
         /// <summary>Rebuild the snapshot from the world StoryletPart.</summary>
@@ -153,6 +161,12 @@ namespace CavesOfOoo.Rendering
         private void Render()
         {
             if (!NotesVisible) BuildQuestRows();
+            if (UseLedgerView)
+            {
+                RenderLedger();
+                return;
+            }
+            _ledgerView?.Hide();
             if (Tilemap == null) return;
             Tilemap.ClearAllTiles();
             if(NotesVisible)
@@ -177,6 +191,68 @@ namespace CavesOfOoo.Rendering
             }
             DrawText(2, H - 4, "Quests: page " + (QuestPage + 1) + " / " + QuestPageCount, ColDim);
             DrawFooter();
+        }
+
+        private void RenderLedger()
+        {
+            const int width = 1024;
+            const int inset = 24;
+            const int innerWidth = width - inset * 2;
+            const int bodyTop = 113;
+            int page = NotesVisible ? NotesPage : QuestPage;
+            int pageCapacity = NotesVisible ? NotesLinesPerPage : QuestLinesPerPage;
+            int pageCount = NotesVisible ? Mathf.Max(1, (_noteLines.Count + pageCapacity - 1) / pageCapacity) : QuestPageCount;
+            int firstLine = page * pageCapacity;
+            int lineCount = Mathf.Min(pageCapacity, (NotesVisible ? _noteLines.Count : _questRows.Count) - firstLine);
+            int lineHeight = NotesVisible ? 21 : 19;
+            int height = bodyTop + Mathf.Max(7, lineCount) * lineHeight + 62;
+            if (_ledgerView == null) _ledgerView = LedgerModalView.Create(transform, "QuestJournalLedger");
+            _ledgerView.Begin(GameplayCamera, width, height);
+            _ledgerView.Card(NotesVisible ? "Field notes" : "Quest log", FooterHint());
+            string summary = NotesVisible ? "Requests and directions"
+                : $"Closure    {_snapshot.ClosureClosed} closed    {_snapshot.ClosureRefused} refused    {_snapshot.ClosureOpen} open";
+            _ledgerView.Label(new Rect(inset, 76, 670, 26), summary, LMuted, 17, bold: true);
+            _ledgerView.Label(new Rect(width - inset - 220, 76, 220, 26), $"Page {page + 1} / {pageCount}", LMuted, 16,
+                TextAnchor.MiddleRight);
+            _ledgerView.Box(new Rect(inset, 103, innerWidth, 1), LBorder);
+
+            if (NotesVisible)
+            {
+                if (lineCount == 0)
+                    _ledgerView.Label(new Rect(inset, bodyTop, innerWidth, lineHeight),
+                        "Ask a scribe or innkeeper for nearby destinations.", LMuted, 18);
+                for (int i = 0; i < lineCount; i++)
+                    _ledgerView.Label(new Rect(inset, bodyTop + i * lineHeight, innerWidth, lineHeight),
+                        _noteLines[firstLine + i], LInk, 18, fit: true);
+            }
+            else
+            {
+                for (int i = 0; i < lineCount; i++)
+                    DrawLedgerQuestRow(_questRows[firstLine + i], bodyTop + i * lineHeight, width, inset, lineHeight);
+            }
+            _ledgerView.End();
+        }
+
+        private void DrawLedgerQuestRow(JournalRow row, int y, int width, int inset, int lineHeight)
+        {
+            if (string.IsNullOrEmpty(row.Text)) return;
+            int x = inset + (row.X - 2) * 11;
+            bool section = row.Color == ColHeader;
+            bool current = row.Color == ColCurrent;
+            Color tone = section || current ? LGold : row.Color == ColDone ? LGreen
+                : row.Color == ColQuest ? LInk : LMuted;
+            if (section)
+                _ledgerView.Box(new Rect(x, y, width - inset - x, lineHeight), LPanel);
+            if (row.MarkerX >= 0)
+            {
+                int markerX = inset + (row.MarkerX - 2) * 11;
+                if (current) _ledgerView.Box(new Rect(markerX - 3, y, width - inset - markerX + 3, lineHeight), LSelected);
+                string marker = row.Marker == GLYPH_DONE ? "✓" : row.Marker == GLYPH_CURRENT ? "›" : "–";
+                _ledgerView.Label(new Rect(markerX, y, 18, lineHeight), marker, tone, 16, bold: true);
+            }
+            if (section) x += 6;
+            _ledgerView.Label(new Rect(x, y, width - inset - x, lineHeight), row.Text, tone,
+                section ? 15 : 17, bold: section || current || row.Color == ColQuest, fit: true);
         }
 
         // Build the entire presentation before selecting a page. Truncating
@@ -255,10 +331,15 @@ namespace CavesOfOoo.Rendering
 
         private void DrawFooter()
         {
+            DrawText(2, H - 2, FooterHint(), ColDim);
+        }
+
+        private string FooterHint()
+        {
             string hint = NativeGamepadInput.IsConnected
                 ? "[Y] quests / notes  [LB/RB] pages  [B] close"
                 : "[Tab] quests / notes  [PgUp/PgDn] pages  [Q/Esc] close";
-            DrawText(2, H - 2, (!NotesVisible && _snapshot.LostCount > 0 ? "[R] renounce lost  " : "") + hint, ColDim);
+            return (!NotesVisible && _snapshot.LostCount > 0 ? "[R] renounce lost  " : "") + hint;
         }
 
         private void DrawChar(int x, int y, char c, Color color)

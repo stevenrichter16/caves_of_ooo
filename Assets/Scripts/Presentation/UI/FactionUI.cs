@@ -2,23 +2,26 @@ using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Full-screen faction standings UI. Shows player reputation with all visible factions.
-    /// Follows the 80x45 tilemap grid pattern used by InventoryUI and TradeUI.
-    /// Opened with the F key.
+    /// Faction standings opened with the F key. Shows player reputation and
+    /// attitude for all visible factions.
     /// </summary>
     public class FactionUI : MonoBehaviour
     {
         public Tilemap Tilemap;
         public Entity PlayerEntity;
+        internal bool UseLedgerView;
+        internal Camera GameplayCamera;
 
         private const int W = 80;
         private const int H = 45;
 
         private bool _isOpen;
+        private LedgerModalView _ledgerView;
         public bool IsOpen => _isOpen;
 
         private int _cursor;
@@ -43,8 +46,14 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
-            if (Tilemap != null)
+            _ledgerView?.Hide();
+            if (!UseLedgerView && Tilemap != null)
                 Tilemap.ClearAllTiles();
+        }
+
+        private void OnDisable()
+        {
+            if (_isOpen) Close();
         }
 
         public void HandleInput()
@@ -103,6 +112,12 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            if (UseLedgerView)
+            {
+                RenderLedger();
+                return;
+            }
+            _ledgerView?.Hide();
             if (Tilemap == null) return;
             Tilemap.ClearAllTiles();
 
@@ -160,6 +175,80 @@ namespace CavesOfOoo.Rendering
             // Action bar
             DrawText(1, H - 2, "[Esc] close", QudColorParser.DarkGray);
             DrawText(1, H - 1, "Reputation range: -200 to +200", QudColorParser.DarkGray);
+        }
+
+        private void RenderLedger()
+        {
+            const int width = 848;
+            const int inset = 24;
+            const int contentWidth = width - inset * 2;
+            const int headerY = 77;
+            const int listY = 111;
+            const int rowHeight = 42;
+            const int maxRows = 12;
+            const int factionX = 40;
+            const int factionWidth = 316;
+            const int reputationX = 374;
+            const int reputationWidth = 62;
+            const int standingX = 480;
+            const int standingWidth = 176;
+            const int attitudeX = 701;
+            const int attitudeWidth = 105;
+
+            int visibleRows = Mathf.Min(maxRows, _rows.Count);
+            int first = Mathf.Clamp(_cursor - maxRows / 2, 0, _rows.Count - visibleRows);
+            int summaryY = listY + Mathf.Max(2, visibleRows) * rowHeight + 7;
+            int height = summaryY + 79;
+            if (_ledgerView == null) _ledgerView = LedgerModalView.Create(transform, "FactionStandingsLedger");
+            _ledgerView.Begin(GameplayCamera, width, height);
+            _ledgerView.Card("Faction standings", "[↑/↓ or J/K] navigate   [Esc / B] close");
+            _ledgerView.Label(new Rect(factionX, headerY, factionWidth, 25), "Faction", LMuted, 16, bold: true);
+            _ledgerView.Label(new Rect(reputationX, headerY, reputationWidth, 25), "Rep", LMuted, 16,
+                TextAnchor.MiddleRight, bold: true);
+            _ledgerView.Label(new Rect(standingX, headerY, standingWidth, 25), "Standing", LMuted, 16, bold: true);
+            _ledgerView.Label(new Rect(attitudeX, headerY, attitudeWidth, 25), "Status", LMuted, 16, bold: true);
+            _ledgerView.Box(new Rect(inset, 104, contentWidth, 1), LBorder);
+
+            if (visibleRows == 0)
+                _ledgerView.Label(new Rect(factionX, listY, factionWidth, rowHeight), "No known factions.", LMuted, 18);
+            for (int i = 0; i < visibleRows; i++)
+            {
+                int index = first + i;
+                var row = _rows[index];
+                bool selected = index == _cursor;
+                int y = listY + i * rowHeight;
+                Color color = row.Attitude switch
+                {
+                    PlayerReputation.Attitude.Hated => LRed,
+                    PlayerReputation.Attitude.Disliked => Color.Lerp(LInk, LRed, .7f),
+                    PlayerReputation.Attitude.Liked => Color.Lerp(LInk, LGreen, .7f),
+                    PlayerReputation.Attitude.Loved => LGreen,
+                    _ => LMuted
+                };
+                _ledgerView.Box(new Rect(inset, y, contentWidth, rowHeight - 3), selected ? LSelected : LPanel);
+                if (selected) _ledgerView.Box(new Rect(inset, y, 3, rowHeight - 3), LGold);
+                _ledgerView.Label(new Rect(factionX, y, factionWidth, rowHeight - 3), row.DisplayName, LInk, 19, bold: selected, fit: true);
+                _ledgerView.Label(new Rect(reputationX, y, reputationWidth, rowHeight - 3), row.Reputation.ToString(), color, 18,
+                    TextAnchor.MiddleRight);
+                _ledgerView.Label(new Rect(attitudeX, y, attitudeWidth, rowHeight - 3),
+                    PlayerReputation.GetAttitudeLabel(row.Attitude), color, 17);
+                DrawLedgerBar(new Rect(standingX, y + 16, standingWidth, 7), row.Reputation, color);
+            }
+
+            if (_rows.Count > maxRows)
+                _ledgerView.Label(new Rect(inset, summaryY, 252, 24), $"{first + 1}–{first + visibleRows} of {_rows.Count}", LMuted, 16);
+            _ledgerView.Label(new Rect(width - inset - 310, summaryY, 310, 24),
+                $"Reputation range: {PlayerReputation.MIN_REP} to +{PlayerReputation.MAX_REP}", LMuted, 16, TextAnchor.MiddleRight);
+            _ledgerView.End();
+        }
+
+        private void DrawLedgerBar(Rect bounds, int reputation, Color tone)
+        {
+            _ledgerView.Frame(bounds, LBorder, LBackground);
+            float filled = (bounds.width - 2) * Mathf.InverseLerp(PlayerReputation.MIN_REP, PlayerReputation.MAX_REP, reputation);
+            if (filled > 0)
+                _ledgerView.Box(new Rect(bounds.x + 1, bounds.y + 1, filled, bounds.height - 2), tone);
+            _ledgerView.Box(new Rect(bounds.center.x, bounds.y - 2, 1, bounds.height + 4), LMuted);
         }
 
         /// <summary>

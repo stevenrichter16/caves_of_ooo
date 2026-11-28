@@ -3,14 +3,14 @@ using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// Phase 4d of the World Action Menu feature. Renders a centered popup
     /// listing actions the player can take on the entity at a clicked cell
-    /// in look mode. Pattern mirrors <see cref="ContainerPickerUI"/>:
-    /// foreground-glyph tilemap + background-fill tilemap + CP437 box chars.
+    /// in look mode or through ordinary interaction.
     ///
     /// Lifecycle:
     ///   Open(actor, target, cell, actions)  — caller sets state, menu
@@ -37,6 +37,9 @@ namespace CavesOfOoo.Rendering
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
         public Camera PopupCamera;
+        internal bool UseLedgerView;
+        private LedgerModalView _ledger;
+        private readonly List<Rect> _ledgerRows = new List<Rect>();
 
         private const int MIN_POPUP_W = 48;
         private const int MAX_POPUP_W = CenteredPopupLayout.GridWidth - 2;
@@ -353,10 +356,16 @@ namespace CavesOfOoo.Rendering
 
         private void Close()
         {
+            _ledger?.Hide();
             ClearFgRegion();
             ClearBgRegion();
             _isOpen = false;
             // Actions kept for the caller; cleared on next Open.
+        }
+
+        private void OnDisable()
+        {
+            if (_isOpen) Cancel();
         }
 
         private void ScrollIntoView()
@@ -496,6 +505,7 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            if (UseLedgerView) { RenderLedger(); return; }
             if (Tilemap == null) return;
 
             ClearFgRegion();
@@ -596,6 +606,76 @@ namespace CavesOfOoo.Rendering
             _fgDrawnTopY = _worldTopY;
         }
 
+        private void RenderLedger()
+        {
+            const int width = 940, line = 34, step = 39;
+            int count = Mathf.Min(_actions.Count, POPUP_MAX_VISIBLE);
+            int statusHeight = _statusLines.Count == 0 ? 0 : _statusLines.Count * 20 + 18;
+            int hintLines = Mathf.Max(_hintRows, _actions.Exists(a => a?.IsDisabled == true) ? 2 : 0);
+            int hintHeight = hintLines == 0 ? 0 : 24 + hintLines * 23;
+            int rangeHeight = _actions.Count > count ? 24 : 0;
+            int height = 78 + statusHeight + Mathf.Max(1, count) * step + rangeHeight + hintHeight + 48;
+            _ledger ??= LedgerModalView.Create(transform, "WorldActionLedger");
+            _ledger.Begin(PopupCamera, width, height);
+            bool details = _titleOverride == null || ToolGroupHeading != null;
+            string footer = NativeGamepadInput.IsConnected ? "A Select    B Back" : "Enter Select    Esc Back";
+            if (details) footer += NativeGamepadInput.IsConnected ? "    LT + RT Details" : "    F1 Details";
+            _ledger.Card(BuildTitle(), footer);
+
+            int y = 74;
+            if (statusHeight > 0)
+            {
+                _ledger.Box(new Rect(24, y, width - 48, statusHeight - 7), LPanel);
+                y += 5;
+                foreach (string status in _statusLines)
+                {
+                    var color = status.StartsWith("On the ground:") || status.StartsWith("Air:") ? LGreen : LMuted;
+                    _ledger.Label(new Rect(36, y, width - 72, 20), status, color, 16, fit: true);
+                    y += 20;
+                }
+                y += 13;
+            }
+
+            _ledgerRows.Clear();
+            if (count == 0)
+            {
+                _ledger.Label(new Rect(28, y, width - 56, step), "No actions available", LMuted);
+                y += step;
+            }
+            for (int i = 0; i < count && _scrollOffset + i < _actions.Count; i++)
+            {
+                int index = _scrollOffset + i;
+                var action = _actions[index];
+                var row = new Rect(24, y, width - 48, line);
+                _ledgerRows.Add(row);
+                string key = _shortcuts[index] == '\0' || NativeGamepadInput.IsConnected ? null : _shortcuts[index].ToString();
+                bool disabled = action?.IsDisabled == true;
+                _ledger.Row(row, action?.Display ?? action?.Name, index == _cursorIndex,
+                    key, disabled ? "Unavailable" : null, disabled);
+                y += step;
+            }
+            if (rangeHeight > 0)
+            {
+                _ledger.Label(new Rect(24, y, width - 48, 20),
+                    $"{_scrollOffset + 1}–{Mathf.Min(_scrollOffset + count, _actions.Count)} of {_actions.Count}",
+                    LMuted, 15, TextAnchor.MiddleRight);
+                y += rangeHeight;
+            }
+            if (hintHeight > 0 && HighlightedAction is { } selected)
+            {
+                string hint = selected.IsDisabled ? selected.DisabledReason : selected.Hint;
+                if (!string.IsNullOrWhiteSpace(hint))
+                {
+                    _ledger.Box(new Rect(24, y + 2, width - 48, hintHeight - 3), LPanel);
+                    _ledger.Label(new Rect(36, y + 7, width - 72, 21),
+                        selected.IsDisabled ? "Unavailable" : "Action details", selected.IsDisabled ? LRed : LGold, 15, bold: true);
+                    _ledger.Label(new Rect(36, y + 30, width - 72, hintHeight - 30), hint,
+                        LInk, 18, TextAnchor.UpperLeft, wrap: true, fit: true);
+                }
+            }
+            _ledger.End();
+        }
+
         private void ComputePopupPosition()
         {
             int totalRows = _actions.Count;
@@ -623,6 +703,13 @@ namespace CavesOfOoo.Rendering
         private int GetRowAtMouse()
         {
             // HandleInput captures this pointer once before hover/click dispatch.
+            if (UseLedgerView)
+            {
+                if (_ledger == null || !_ledger.TryPoint(_lastMousePosition, out var point)) return -1;
+                for (int i = 0; i < _ledgerRows.Count; i++)
+                    if (_ledgerRows[i].Contains(point)) return _scrollOffset + i;
+                return -1;
+            }
             if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, _lastMousePosition,
                     out int gridX, out int gridY))
                 return -1;

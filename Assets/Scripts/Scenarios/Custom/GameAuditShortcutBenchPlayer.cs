@@ -13,6 +13,8 @@ using CavesOfOoo.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace CavesOfOoo.Scenarios.Custom
 {
@@ -127,8 +129,50 @@ namespace CavesOfOoo.Scenarios.Custom
             _bench.Check("native_release_clears_gate_"+key,(KeyCode)Read(input,"_worldActionKeyToRelease")==KeyCode.None&&_ctx.Zone.GetEntityPosition(_ctx.PlayerEntity)==before);
         }
         private static Key Letter(char c)=>(Key)((int)Key.A+c-'a');
-        private static char RowKey(object ui,UnityEngine.Tilemaps.Tilemap tiles,int row,int content)
-        {int x=(int)Read(ui,"_worldOriginX")+2,y=(int)Read(ui,"_worldTopY")-content-row;var tile=tiles.GetTile(new Vector3Int(x,y,0));for(char c='a';c<='z';c++)if(tile==CP437TilesetGenerator.GetUiTile(c))return c;return '\0';}
+        internal static char RowKey(Component ui, Tilemap tiles, int row, int content)
+        {
+            if (row < 0) return '\0';
+            if (Read(ui, "UseLedgerView") is true)
+                return LedgerRowKey(ui, row);
+            if (tiles == null) return '\0';
+
+            int x = (int)Read(ui, "_worldOriginX") + 2;
+            int y = (int)Read(ui, "_worldTopY") - content - row;
+            var tile = tiles.GetTile(new Vector3Int(x, y, 0));
+            for (char c = 'a'; c <= 'z'; c++)
+                if (tile == CP437TilesetGenerator.GetUiTile(c)) return c;
+            return '\0';
+        }
+
+        private static char LedgerRowKey(Component ui, int row)
+        {
+            var ledger = (Read(ui, "_ledger") ?? Read(ui, "_ledgerView")) as LedgerModalView;
+            if (ledger == null || !ledger.isActiveAndEnabled) return '\0';
+
+            Rect bounds;
+            if (Read(ui, "_ledgerRows") is List<Rect> paintedRows)
+            {
+                if (row >= paintedRows.Count) return '\0';
+                bounds = paintedRows[row];
+            }
+            else
+            {
+                const BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic;
+                var rowBounds = ui.GetType().GetMethod("LedgerRowBounds", flags);
+                if (!(rowBounds?.Invoke(null, new object[] { row }) is Rect visibleBounds)) return '\0';
+                bounds = visibleBounds;
+            }
+
+            foreach (var label in ledger.GetComponentsInChildren<Text>())
+            {
+                if (!label.isActiveAndEnabled || label.font == null || label.alignment != TextAnchor.MiddleCenter
+                    || label.text.Length != 1 || label.text[0] < 'a' || label.text[0] > 'z') continue;
+                var rect = label.rectTransform;
+                Vector2 screen = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center));
+                if (ledger.TryPoint(screen, out var point) && bounds.Contains(point)) return label.text[0];
+            }
+            return '\0';
+        }
         private IEnumerator Measure(InputHandler input)
         {
             var menu=input.WorldActionMenuUI;var actions=(List<InventoryAction>)Read(menu,"_actions");int examine=actions.FindIndex(a=>a.Command=="Examine");

@@ -245,7 +245,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Need(desired >= 0, "Exact dropped boots must appear in normal pickup choices.");
             int visible = desired - (int)Read(pickup, "_scrollOffset");
             Need(visible >= 0 && visible < 20, "Exact dropped boots must have a visible pickup shortcut.");
-            char shown = ShownPickupKey(pickup, visible);
+            char shown = GameAuditShortcutBenchPlayer.RowKey(pickup, pickup.Tilemap, visible, 3);
             Need(shown >= 'a' && shown <= 'z' && shown != 'g' && shown != 'j' && shown != 'k', "Actual displayed pickup label required.");
             yield return Tap((Key)((int)Key.A + shown - 'a'));
             if (pickup.IsOpen) yield return Tap(Key.Escape);
@@ -386,13 +386,6 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         private static string GrowthSignature(Entity actor) => actor.GetStatValue("Experience") + ":" + actor.GetStatValue("Level") + ":"
             + actor.GetStatValue("MP") + ":" + actor.GetStatValue("SP") + ":" + actor.GetStat("Hitpoints").Max;
-        private static char ShownPickupKey(PickupUI ui, int visibleRow)
-        {
-            int x = (int)Read(ui, "_worldOriginX") + 2, y = (int)Read(ui, "_worldTopY") - 3 - visibleRow;
-            var tile = ui.Tilemap.GetTile(new Vector3Int(x, y, 0));
-            for (char c = 'a'; c <= 'z'; c++) if (tile == CP437TilesetGenerator.GetUiTile(c)) return c;
-            return '\0';
-        }
         private static object Read(object owner, string field) => owner?.GetType().GetField(field, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetValue(owner);
         private static string State(InputHandler input) => Read(input, "_inputState")?.ToString();
         private static bool Dead(InputHandler input) => (Read(input, "_deathScreenController") as DeathScreenController)?.IsActive ?? false;

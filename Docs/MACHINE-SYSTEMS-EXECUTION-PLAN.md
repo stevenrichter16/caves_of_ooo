@@ -1,3 +1,11 @@
+**Remaining legacy menus use the shared styled card — November 28, 2026, America/Chicago.**
+World Actions, pickers, readers, log, journal, factions, abilities, pause
+settings, new build, spell effects and confirmations share the green
+and gold presentation. Actual World Actions preserved the highlighted
+Gather across a reader and paid one turn; ordinary Pickup restored exact
+carried tools. 445 focused tests passed.
+[Live menus and verification](Verification/MachineSystems/LegacyMenuPolish20261128/README.md)
+
 **The portable still makes the clay for the Peat Works rig — November 28, 2026, America/Chicago.**
 The original shed kit and a lit torch turned sixteen mire from the two
 finite north-shed pools into two clay. One did not repair the rig. Two

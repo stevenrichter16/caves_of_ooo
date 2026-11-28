@@ -172,7 +172,7 @@ namespace CavesOfOoo.Tests
             TradeSystem.SetDrams(actor, 1000);
             int price = buying ? TradeSystem.GetBuyPrice(item, TradeSystem.GetTradePerformance(actor), trader)
                 : TradeSystem.GetSellPrice(item, TradeSystem.GetTradePerformance(actor), trader);
-            string text = Detail("Trade", actor, trader, item, buying);
+            string text = Detail("Trade", actor, trader, item, buying, null);
             StringAssert.Contains("3 units", text); StringAssert.Contains("Total weight: 6", text);
             StringAssert.Contains("Drams after: " + (1000 + (buying ? -price : price)), text);
             Assert.AreEqual(1000, TradeSystem.GetDrams(actor)); Assert.AreEqual(3, item.GetPart<StackerPart>().StackCount);
@@ -217,9 +217,9 @@ namespace CavesOfOoo.Tests
         public void SurfaceDetailsExplainVisibleLiquidPropertiesWithoutResolvingThem(bool visible)
         {
             LiquidRegistry.Initialize("{\"Liquids\":[{\"Id\":\"clarity_ice\",\"DisplayName\":\"test ice\",\"Slippery\":true,\"SlipChance\":73}]}");
-            var cell = zone.GetCell(11, 10); cell.IsVisible = visible;
+            var cell = zone.GetCell(11, 10); cell.Explored = true; cell.IsVisible = visible;
             zone.TileState.WriteCoating(11, 10, "clarity_ice", 4);
-            string text = Detail("Surface", zone, cell) ?? "";
+            string text = Detail("Surface", zone, cell, actor) ?? "";
             if (visible) { StringAssert.Contains("73%", text); StringAssert.Contains("slip", text.ToLowerInvariant()); }
             else StringAssert.DoesNotContain("test ice", text);
             Assert.AreEqual(4, zone.TileState.Get(11, 10).Coatings[0].Turns);

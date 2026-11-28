@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
@@ -6,6 +7,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 namespace CavesOfOoo.Tests
 {
@@ -59,6 +61,32 @@ namespace CavesOfOoo.Tests
 
         void Reopen() => menu.Open(Player, Player, Zone.GetCell(10, 10), actions, Zone);
 
+        void OpenLedger(InventoryAction first = null)
+        {
+            menu = Component<WorldActionMenuUI>();
+            menu.PopupCamera = OutsideCamera();
+            menu.PopupCamera.enabled = false;
+            menu.PopupCamera.rect = new Rect(.08f, .18f, .66f, .72f);
+            Set(menu, "UseLedgerView", true);
+            actions = new List<InventoryAction> {
+                first ?? new InventoryAction("Meal", Meal, "PrepareMeal"),
+                new InventoryAction("Examine", "examine", "Examine"),
+                new InventoryAction("Back", "back", "Back")
+            };
+            Reopen();
+        }
+
+        Text LedgerLabel(string text) => menu.GetComponentsInChildren<Text>()
+            .Single(label => label.text == text);
+
+        Vector2 LedgerPoint(string text)
+        {
+            Canvas.ForceUpdateCanvases();
+            Call(Get(menu, "_ledger"), "LateUpdate");
+            RectTransform label = LedgerLabel(text).rectTransform;
+            return RectTransformUtility.WorldToScreenPoint(null, label.TransformPoint(label.rect.center));
+        }
+
         Vector2 Point(int x, int y, bool requirePaint = false)
         {
             var cell = new Vector3Int((int)Get(menu, "_worldOriginX") + x,
@@ -86,7 +114,106 @@ namespace CavesOfOoo.Tests
             Assert.True(menu.SelectionMade); Assert.False(menu.SelectionCancelled); Assert.False(menu.IsOpen);
             Assert.AreSame(actions[index], menu.SelectedAction);
             Assert.AreSame(Player, menu.SelectedTarget); Assert.AreSame(Zone.GetCell(10, 10), menu.SelectedCell);
-            Assert.AreEqual(KeyCode.None, menu.SelectedActivationKey, "Mouse selection must not invent a keyboard activation key.");
+            Assert.AreEqual(KeyCode.None, menu.SelectedActivationKey, "Mouse and confirm selection do not have a letter shortcut.");
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void LedgerRendersCompleteLabelsAndKeepsMouseAndKeyboardSelectionInSync(bool click)
+        {
+            OpenLedger();
+            var canvas = menu.GetComponentInChildren<Canvas>();
+            Assert.NotNull(canvas);
+            Assert.AreEqual(RenderMode.ScreenSpaceOverlay, canvas.renderMode);
+            Assert.IsTrue(LedgerLabel(Meal).font.dynamic);
+            Assert.IsNull(menu.Tilemap);
+
+            Vector2 point = LedgerPoint("examine");
+            Frame(point);
+            Assert.AreSame(actions[1], menu.HighlightedAction);
+            if (click)
+            {
+                Frame(point, left: true);
+                AssertSelected(1);
+            }
+            else
+            {
+                Press(Key.UpArrow, menu.HandleInput);
+                Assert.AreSame(actions[0], menu.HighlightedAction);
+                Press(Key.Enter, menu.HandleInput);
+                AssertSelected(0);
+            }
+
+            Assert.IsFalse(canvas.gameObject.activeSelf);
+            Reopen();
+            Assert.AreSame(canvas, menu.GetComponentInChildren<Canvas>());
+            menu.HideForReader();
+            Assert.IsFalse(canvas.gameObject.activeSelf);
+        }
+
+        [TestCase(Key.None)] [TestCase(Key.Enter)] [TestCase(Key.P)]
+        public void LedgerDisabledActionShowsAndReportsReasonWithoutSelectingOrSpendingATurn(Key key)
+        {
+            const string reason = "Repair the probe before using it.";
+            var locked = new InventoryAction("Probe", "probe the fixture", "ProbeDeclared", 'p', 30)
+                { DisabledReason = reason, DisabledCode = "faulted", Time = ActionTime.OneAction };
+            OpenLedger(locked);
+            Assert.AreSame(locked, menu.HighlightedAction);
+            Assert.That(LedgerLabel(reason).text, Is.EqualTo(reason));
+
+            var input = Component<InputHandler>();
+            input.PlayerEntity = Player;
+            input.CurrentZone = Zone;
+            input.WorldActionMenuUI = menu;
+            input.TurnManager = new TurnManager();
+            input.TurnManager.AddEntity(Player);
+            input.TurnManager.ProcessUntilPlayerTurn();
+            State(input, "_inputState", "WorldActionMenuOpen");
+            State(input, "_worldActionMenuReturnState", "Normal");
+            int before = input.TurnManager.TickCount;
+
+            if (key == Key.None)
+            {
+                Vector2 point = LedgerPoint(locked.Display);
+                Queue(point);
+                Queue(point, left: true);
+                Call(input, "HandleWorldActionMenuInput");
+            }
+            else Press(key, () => Call(input, "HandleWorldActionMenuInput"));
+
+            Assert.IsTrue(menu.IsOpen);
+            Assert.IsFalse(menu.SelectionMade);
+            Assert.IsFalse(menu.SelectionCancelled);
+            Assert.IsNull(menu.SelectedAction);
+            Assert.AreEqual(KeyCode.None, menu.SelectedActivationKey);
+            Assert.AreEqual("WorldActionMenuOpen", Get(input, "_inputState").ToString());
+            Assert.AreEqual(before, input.TurnManager.TickCount);
+            Assert.AreEqual(reason, MessageLog.GetLast());
+        }
+
+        [Test]
+        public void ItemSelectionLedgersKeepTheirExistingLetterShortcuts()
+        {
+            var pickup = Component<PickupUI>();
+            pickup.PlayerEntity = Player;
+            pickup.CurrentZone = Zone;
+            Set(pickup, "UseLedgerView", true);
+            var items = Drops(1);
+            pickup.Open(items);
+            Assert.NotNull(pickup.GetComponentInChildren<Canvas>());
+            Press(Key.A, pickup.HandleInput);
+            Assert.IsTrue(Inventory.Contains(items[0]));
+            Assert.AreEqual(KeyCode.A, pickup.ClosingActivationKey);
+            Assert.IsNull(pickup.GetComponentInChildren<Canvas>());
+
+            var picker = Component<ContainerPickerUI>();
+            Set(picker, "UseLedgerView", true);
+            var containers = new List<Entity> { Item("Chest"), Item("Sack") };
+            picker.Open(containers);
+            Assert.NotNull(picker.GetComponentInChildren<Canvas>());
+            Press(Key.B, picker.HandleInput);
+            Assert.AreSame(containers[1], picker.SelectedContainer);
+            Assert.AreEqual(KeyCode.B, picker.SelectedActivationKey);
+            Assert.IsNull(picker.GetComponentInChildren<Canvas>());
         }
 
         [TestCase(1280, 800, false)] [TestCase(1280, 800, true)]

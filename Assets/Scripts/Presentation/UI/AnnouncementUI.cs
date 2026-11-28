@@ -3,6 +3,7 @@ using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static CavesOfOoo.Rendering.LedgerPalette;
 
 namespace CavesOfOoo.Rendering
 {
@@ -17,6 +18,7 @@ namespace CavesOfOoo.Rendering
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
         public Camera PopupCamera;
+        internal bool UseLedgerView;
         /// <summary>Explicit current-world binding; portraits never find scene renderers.</summary>
         public ZoneRenderer WorldPresentation;
 
@@ -32,6 +34,13 @@ namespace CavesOfOoo.Rendering
         private static readonly Color RuleColor = new Color(.41f, .45f, .29f, 1f);
         private const int BodyTop = 8;
         private const float BodyLineAdvance = 1.25f;
+        private const int LedgerWidth = 860;
+        private const int LedgerInset = 24;
+        private const int LedgerLineHeight = 23;
+        private LedgerModalView _ledgerView;
+        private Rect _ledgerPrevious, _ledgerNext, _ledgerContinue, _ledgerBack;
+        private int _ledgerActionsY;
+        private bool _ledgerHasPortrait;
         private readonly List<LedgerLine> _ledgerLines = new List<LedgerLine>();
         private readonly List<string> _titleLines = new List<string>();
         public AnnouncementDocument Document { get; private set; }
@@ -39,9 +48,9 @@ namespace CavesOfOoo.Rendering
         public string FooterText => BuildFooter(NativeGamepadInput.IsConnected);
         private struct LedgerLine
         {
-            public string Text; public Color Color; public string Label;
-            public LedgerLine(string text, Color color, string label = null)
-            { Text = text; Color = color; Label = label; }
+            public string Text; public Color Color; public string Label; public bool Heading;
+            public LedgerLine(string text, Color color, string label = null, bool heading = false)
+            { Text = text; Color = color; Label = label; Heading = heading; }
         }
 
         private bool _isOpen;
@@ -135,7 +144,8 @@ namespace CavesOfOoo.Rendering
                         int remaining = PAGE_LINES - _ledgerLines.Count % PAGE_LINES;
                         if (keep <= PAGE_LINES && remaining < keep)
                             for (int i = 0; i < remaining; i++) AddLines("", Ivory);
-                        AddLines(section.Heading.ToUpperInvariant(), section.Tone == AnnouncementTone.Warning ? Amber : SeaGreen);
+                        AddLines(section.Heading.ToUpperInvariant(), section.Tone == AnnouncementTone.Warning ? Amber : SeaGreen,
+                            heading: true);
                         AddLines("", Ivory);
                     }
                     AddLines(section.Text, section.Tone == AnnouncementTone.Warning ? Amber : Ivory);
@@ -148,13 +158,13 @@ namespace CavesOfOoo.Rendering
                     {
                         string label = i == 0 ? fact.Label : "";
                         // Long labels are wrapped as ordinary text, never silently clipped.
-                        if (label.Length > 13) { AddLines(label, SeaGreen); label = ""; }
+                        if (label.Length > 13) { AddLines(label, SeaGreen, heading: true); label = ""; }
                         _ledgerLines.Add(new LedgerLine(values[i], Ivory, label));
                         _wrappedLines.Add((label.Length == 0 ? "" : label + ": ") + values[i]);
                     }
                 }
                 if (_ledgerLines.Count == 0) AddLines(message, Ivory);
-                if (_titleLines.Count > 2) { AddLines("Full name", SeaGreen); AddLines(document.Title, Ivory); }
+                if (_titleLines.Count > 2) { AddLines("Full name", SeaGreen, heading: true); AddLines(document.Title, Ivory); }
             }
             _portrait = default;
             if (Application.isPlaying) RefreshPortrait();
@@ -186,10 +196,10 @@ namespace CavesOfOoo.Rendering
             _portraitRenderer?.Clear();
         }
 
-        private void AddLines(string text, Color color)
+        private void AddLines(string text, Color color, bool heading = false)
         {
             var lines = new List<string>(); WrapText(text, MAX_TEXT_WIDTH, lines);
-            foreach (var line in lines) { _ledgerLines.Add(new LedgerLine(line, color)); _wrappedLines.Add(line); }
+            foreach (var line in lines) { _ledgerLines.Add(new LedgerLine(line, color, heading: heading)); _wrappedLines.Add(line); }
         }
 
         public void Close()
@@ -197,6 +207,7 @@ namespace CavesOfOoo.Rendering
             if (!_isOpen) return;
             ClearFgRegion();
             ClearBgRegion();
+            _ledgerView?.Hide();
             _isOpen = false;
             _documentAudio=null;
             Document=null;
@@ -224,15 +235,40 @@ namespace CavesOfOoo.Rendering
                 GoToPage(_pageIndex + 1);
                 return;
             }
-            if (Input.GetMouseButtonDown(0) && CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap,
+            if (UseLedgerView)
+            {
+                if (_ledgerView != null && LedgerModalView.ReadPointer(out var pointer)
+                    && _ledgerView.TryPoint(pointer, out var point))
+                {
+                    HandleLedgerPointer(point);
+                    return;
+                }
+            }
+            else if (Input.GetMouseButtonDown(0) && CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap,
                 Input.mousePosition, out int gx, out int gy))
-            { HandlePointerCell(gx,gy); return; }
+            {
+                HandlePointerCell(gx, gy);
+                return;
+            }
             if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space)
                 )
             {
-                if (!GoToPage(_pageIndex + 1)) Close();
+                AdvanceOrClose();
                 return;
             }
+        }
+
+        private void HandleLedgerPointer(Vector2 point)
+        {
+            if (_ledgerBack.Contains(point)) Close();
+            else if (_ledgerPrevious.Contains(point)) GoToPage(_pageIndex - 1);
+            else if (_ledgerNext.Contains(point)) GoToPage(_pageIndex + 1);
+            else if (_ledgerContinue.Contains(point) || point.y < _ledgerActionsY) AdvanceOrClose();
+        }
+
+        private void AdvanceOrClose()
+        {
+            if (!GoToPage(_pageIndex + 1)) Close();
         }
 
         private void HandlePointerCell(int gx,int gy)
@@ -249,12 +285,15 @@ namespace CavesOfOoo.Rendering
                 if(PageCount>1 && x>=next && x<confirm){GoToPage(_pageIndex+1);return;}
                 if(x<confirm)return;
             }
-            if(!GoToPage(_pageIndex+1))Close();
+            AdvanceOrClose();
         }
 
         private void Update()
         {
-            if(_isOpen && _controllerHints!=NativeGamepadInput.IsConnected)Render();
+            if (!_isOpen) return;
+            bool hadPortrait = UseLedgerView && _ledgerHasPortrait;
+            if (hadPortrait) ValidatePortrait();
+            if (_controllerHints != NativeGamepadInput.IsConnected || (hadPortrait && _portrait.Texture == null)) Render();
         }
         private void OnDestroy()
         {
@@ -264,7 +303,7 @@ namespace CavesOfOoo.Rendering
         private void OnDisable(){Close();}
         private void OnGUI()
         {
-            if(!_isOpen || Event.current.type!=EventType.Repaint)return;
+            if(!_isOpen || UseLedgerView || Event.current.type!=EventType.Repaint)return;
             ValidatePortrait();
             if(_portrait.Texture==null || PopupCamera==null || !PopupCamera.enabled || Tilemap==null)return;
             // Convert the header's tile rectangle through the same overlay camera.
@@ -354,9 +393,17 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            _controllerHints = NativeGamepadInput.IsConnected;
+            if (UseLedgerView)
+            {
+                ClearFgRegion();
+                ClearBgRegion();
+                RenderLedger();
+                return;
+            }
+            _ledgerView?.Hide();
             if (Tilemap == null) return;
             ClearFgRegion(); ClearBgRegion(); ComputePopupPosition();
-            _controllerHints=NativeGamepadInput.IsConnected;
             DrawBgFill(0, 0, POPUP_W, _popupH);
             for (int y = 1; y < _popupH - 1; y++)
             {
@@ -395,6 +442,70 @@ namespace CavesOfOoo.Rendering
             DrawText(POPUP_W - 2 - pages.Length, _popupH - 2, pages, SeaGreen);
             _fgDrawn = true; _fgDrawnW = POPUP_W; _fgDrawnH = _popupH;
             _fgDrawnOriginX = _worldOriginX; _fgDrawnTopY = _worldTopY;
+        }
+
+        private void RenderLedger()
+        {
+            ValidatePortrait();
+            if (_ledgerView == null) _ledgerView = LedgerModalView.Create(transform, "AnnouncementLedger", 110);
+            const int innerWidth = LedgerWidth - 2 * LedgerInset;
+            bool hasPortrait = _ledgerHasPortrait = _portrait.Texture != null;
+            int bodyTop = hasPortrait ? 166 : 112;
+            int bodyRows = Mathf.Clamp(_wrappedLines.Count, 3, PAGE_LINES);
+            int height = bodyTop + bodyRows * LedgerLineHeight + 103;
+            _ledgerActionsY = height - 87;
+            _ledgerView.Begin(PopupCamera, LedgerWidth, height);
+            string title = _titleLines.Count > 1 ? _titleLines[0] + " " + _titleLines[1] : _titleLines[0];
+            if (_titleLines.Count > 2) title += "…";
+            _ledgerView.Card(title, BuildFooter(_controllerHints));
+            _ledgerView.Label(new Rect(LedgerInset, 74, innerWidth - (hasPortrait ? 110 : 0), 24),
+                Document?.Kind ?? "NOTICE", LMuted, 16, bold: true);
+            if (hasPortrait)
+            {
+                var portraitFrame = new Rect(LedgerWidth - LedgerInset - 92, 73, 92, 78);
+                _ledgerView.Frame(portraitFrame, LBorder, LPanel);
+                _ledgerView.Portrait(MeasurePortraitRect(new Rect(portraitFrame.x + 5, portraitFrame.y + 5,
+                    portraitFrame.width - 10, portraitFrame.height - 10), _portrait), _portrait);
+            }
+            _ledgerView.Box(new Rect(LedgerInset, bodyTop - 8, innerWidth, 1), LBorder);
+
+            for (int i = 0; i < VisibleLineCount; i++)
+            {
+                var line = _ledgerLines[_pageIndex * PAGE_LINES + i];
+                int y = bodyTop + i * LedgerLineHeight;
+                Color color = line.Color == Amber ? LGold : line.Heading ? LGreen : LInk;
+                int textX = LedgerInset;
+                if (line.Label != null)
+                {
+                    _ledgerView.Label(new Rect(LedgerInset, y, 154, LedgerLineHeight), line.Label, LMuted, 17, bold: true);
+                    _ledgerView.Box(new Rect(LedgerInset + 158, y + 3, 1, LedgerLineHeight - 6), LBorder);
+                    textX += 170;
+                }
+                _ledgerView.Label(new Rect(textX, y, LedgerWidth - LedgerInset - textX, LedgerLineHeight),
+                    line.Text, color, line.Heading ? 17 : 20, bold: line.Heading, fit: true);
+            }
+
+            _ledgerPrevious = _ledgerNext = Rect.zero;
+            if (PageCount > 1)
+            {
+                _ledgerPrevious = new Rect(LedgerInset, _ledgerActionsY, 132, 31);
+                _ledgerNext = new Rect(_ledgerPrevious.xMax + 8, _ledgerActionsY, 132, 31);
+                DrawLedgerAction(_ledgerPrevious, "‹  Previous", _pageIndex > 0);
+                DrawLedgerAction(_ledgerNext, "Next page  ›", _pageIndex + 1 < PageCount);
+                _ledgerView.Label(new Rect(306, _ledgerActionsY, 248, 31), $"{_pageIndex + 1} / {PageCount}",
+                    LMuted, 16, TextAnchor.MiddleCenter);
+            }
+            _ledgerBack = new Rect(LedgerWidth - LedgerInset - 100, _ledgerActionsY, 100, 31);
+            _ledgerContinue = new Rect(_ledgerBack.xMin - 142, _ledgerActionsY, 134, 31);
+            DrawLedgerAction(_ledgerContinue, _pageIndex + 1 == PageCount ? "Close" : "Continue", true, true);
+            DrawLedgerAction(_ledgerBack, "Back", true);
+            _ledgerView.End();
+        }
+
+        private void DrawLedgerAction(Rect bounds, string text, bool enabled, bool primary = false)
+        {
+            _ledgerView.Frame(bounds, primary ? LGold : LBorder, enabled ? LSelected : LBackground);
+            _ledgerView.Label(bounds, text, enabled ? LInk : LMuted, 16, TextAnchor.MiddleCenter, bold: primary);
         }
 
         private void DrawRule(int y)

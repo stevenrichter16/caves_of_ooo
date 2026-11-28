@@ -3776,7 +3776,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (UseAuxiliaryLedger ? LedgerModalView.ReadPointer(out _) : Input.GetMouseButtonDown(0))
             {
                 int clickedRow = GetThrowPopupRowAtMouse();
                 if (clickedRow >= 0)
@@ -3867,6 +3867,7 @@ namespace CavesOfOoo.Rendering
 
         private void RenderThrowPopup()
         {
+            if (UseAuxiliaryLedger) { RenderLedgerThrowPopup(); return; }
             if (_throwPopup == null || ZoneRenderer?.CenteredPopupFgTilemap == null)
                 return;
 
@@ -3988,12 +3989,21 @@ namespace CavesOfOoo.Rendering
 
         private void ClearThrowPopupTiles()
         {
+            if (UseAuxiliaryLedger) { _throwLedger?.Hide(); return; }
             ZoneRenderer?.CenteredPopupFgTilemap?.ClearAllTiles();
             ZoneRenderer?.CenteredPopupBgTilemap?.ClearAllTiles();
         }
 
         private int GetThrowPopupRowAtMouse()
         {
+            if (UseAuxiliaryLedger)
+            {
+                LedgerModalView.ReadPointer(out var pointer);
+                if (_throwPopup == null || _throwLedger == null || !_throwLedger.TryPoint(pointer, out var point)) return -1;
+                for (int i = 0; i < _throwLedgerRows.Count; i++)
+                    if (_throwLedgerRows[i].Contains(point)) return _throwPopup.ScrollOffset + i;
+                return -1;
+            }
             if (_throwPopup == null ||
                 ZoneRenderer?.PopupOverlayCamera == null ||
                 ZoneRenderer.CenteredPopupFgTilemap == null ||
@@ -4210,8 +4220,8 @@ namespace CavesOfOoo.Rendering
         private void OpenQuestLog()
         {
             if (QuestLogUI == null) return;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+            if (ZoneRenderer != null && !QuestLogUI.UseLedgerView) ZoneRenderer.Paused = true;
+            if (CameraFollow != null && !QuestLogUI.UseLedgerView) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
             QuestLogUI.Open();
             _inputState = InputState.QuestLogOpen;
         }
@@ -4305,8 +4315,8 @@ namespace CavesOfOoo.Rendering
             // Fullscreen pages own the main canvas, including reused UI components.
             if (ZoneRenderer != null) FactionUI.Tilemap = ZoneRenderer.GetComponent<UnityEngine.Tilemaps.Tilemap>();
             FactionUI.PlayerEntity = PlayerEntity;
-            if (ZoneRenderer != null) ZoneRenderer.Paused = true;
-            if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+            if (ZoneRenderer != null && !FactionUI.UseLedgerView) ZoneRenderer.Paused = true;
+            if (CameraFollow != null && !FactionUI.UseLedgerView) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
             FactionUI.Open();
             _inputState = InputState.FactionOpen;
         }
@@ -4619,6 +4629,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleAttackConfirmInput()
         {
+            if (HandleLedgerAttackClick()) return;
             if (InputHelper.GetKeyDown(KeyCode.Y) || NativeGamepadInput.GetKeyDown(KeyCode.Return))
             {
                 ResolveAttackConfirmation(true);
@@ -4674,6 +4685,7 @@ namespace CavesOfOoo.Rendering
 
         private void RenderAttackConfirmation(Entity target)
         {
+            if (UseAuxiliaryLedger) { RenderLedgerAttackConfirmation(target); return; }
             if (DialogueUI == null || DialogueUI.Tilemap == null) return;
             var tilemap = DialogueUI.Tilemap;
             var bgTilemap = DialogueUI.BgTilemap;
@@ -4719,6 +4731,7 @@ namespace CavesOfOoo.Rendering
 
         private void ClearAttackConfirmation()
         {
+            if (UseAuxiliaryLedger) { _attackLedger?.Hide(); return; }
             if (DialogueUI == null || DialogueUI.Tilemap == null) return;
             var tilemap = DialogueUI.Tilemap;
             var bgTilemap = DialogueUI.BgTilemap;

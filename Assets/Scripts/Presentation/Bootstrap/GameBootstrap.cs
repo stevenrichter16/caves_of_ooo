@@ -591,6 +591,8 @@ namespace CavesOfOoo
                     var questLogUI = GetComponent<QuestLogUI>();
                     if (questLogUI == null)
                         questLogUI = gameObject.AddComponent<QuestLogUI>();
+                    questLogUI.UseLedgerView = true;
+                    questLogUI.GameplayCamera = cam;
                     if (ZoneRenderer != null)
                         questLogUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                     inputHandler.QuestLogUI = questLogUI;
@@ -604,6 +606,7 @@ namespace CavesOfOoo
                         pickupUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     pickupUI.PopupCamera = popupOverlayCamera;
+                    pickupUI.UseLedgerView = true;
                     inputHandler.PickupUI = pickupUI;
 
                     var containerPickerUI = GetComponent<ContainerPickerUI>();
@@ -615,6 +618,7 @@ namespace CavesOfOoo
                         containerPickerUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     containerPickerUI.PopupCamera = popupOverlayCamera;
+                    containerPickerUI.UseLedgerView = true;
                     inputHandler.ContainerPickerUI = containerPickerUI;
 
                     var worldActionMenuUI = GetComponent<WorldActionMenuUI>();
@@ -626,6 +630,7 @@ namespace CavesOfOoo
                         worldActionMenuUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     worldActionMenuUI.PopupCamera = popupOverlayCamera;
+                    worldActionMenuUI.UseLedgerView = true;
                     inputHandler.WorldActionMenuUI = worldActionMenuUI;
                     // DIAG [Phase4d] — confirm wiring took. Remove once verified.
                     UnityEngine.Debug.Log($"[ActionMenu:wire] component={worldActionMenuUI != null} " +
@@ -657,6 +662,8 @@ namespace CavesOfOoo
                     var factionUI = GetComponent<FactionUI>();
                     if (factionUI == null)
                         factionUI = gameObject.AddComponent<FactionUI>();
+                    factionUI.UseLedgerView = true;
+                    factionUI.GameplayCamera = cam;
                     if (ZoneRenderer != null)
                         factionUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                     inputHandler.FactionUI = factionUI;
@@ -670,6 +677,7 @@ namespace CavesOfOoo
                         announcementUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     announcementUI.PopupCamera = popupOverlayCamera;
+                    announcementUI.UseLedgerView = true;
                     announcementUI.WorldPresentation = ZoneRenderer;
                     inputHandler.AnnouncementUI = announcementUI;
 
@@ -683,6 +691,7 @@ namespace CavesOfOoo
                         pauseMenuUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     pauseMenuUI.PopupCamera = popupOverlayCamera;
+                    pauseMenuUI.UseLedgerView = true;
                     inputHandler.PauseMenuUI = pauseMenuUI;
 
                     // ST.7b — Skills screen (KeyCode.X → centered skill-tree popup).
@@ -712,6 +721,7 @@ namespace CavesOfOoo
                         abilityManagerUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     abilityManagerUI.PopupCamera = popupOverlayCamera;
+                    abilityManagerUI.UseLedgerView = true;
                     inputHandler.AbilityManagerUI = abilityManagerUI;
 
                     // New-game build picker. Same centered-popup wiring as the pause
@@ -725,6 +735,7 @@ namespace CavesOfOoo
                         startingBuildMenuUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     startingBuildMenuUI.PopupCamera = popupOverlayCamera;
+                    startingBuildMenuUI.UseLedgerView = true;
                     startingBuildMenuUI.Factory = _factory;
                     inputHandler.StartingBuildMenuUI = startingBuildMenuUI;
                 });
