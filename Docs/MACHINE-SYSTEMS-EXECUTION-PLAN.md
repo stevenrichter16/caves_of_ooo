@@ -1,3 +1,12 @@
+**Firm footing reopens a paid porter route — November 28, 2026, America/Chicago.**
+The exact Gleaners' porter halted at a supplied loose oil film in one
+branch. In the matched branch, one coarse grit let him take that step
+with the box on the same turn. The same oil remained, and both actors
+kept their health. Fresh Continue kept the footing and cargo. The porter
+then delivered that exact box and clay to the shelf. All 202 targeted
+cases and independent source and gameplay checks passed.
+[Porter footing playtest](Verification/MachineSystems/PorterGritFooting20261128/README.md)
+
 **Pack crafting gains a categorized Recipes subtab — November 28, 2026, America/Chicago.**
 Inventory actions supply the exact input, result, requirements and
 command to Recipes alongside Forge and Brew. The list contains crafted

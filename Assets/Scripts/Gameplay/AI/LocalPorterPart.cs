@@ -145,9 +145,32 @@ namespace CavesOfOoo.Core
         }
 
         internal static bool ClearStep(Entity worker, Zone zone, Cell step) => zone.CanPlaceFootprint(worker, step.X, step.Y)
-            && zone.TileState.Get(step.X, step.Y)?.IsEmpty != false
+            && HasUsableFooting(zone.TileState.Get(step.X, step.Y))
             && TerrainNavigationWeight.ForStep(zone, step.X, step.Y, worker) == 0
             && !step.Objects.Any(e => e.HasPart<LiquidPoolPart>() || e.HasPart<TriggerOnStepPart>() || e.HasTag("Creature"));
+
+        private static bool HasUsableFooting(ZoneTileState.TileState state)
+        {
+            if (state == null || state.IsEmpty) return true;
+            if (state.Heat != 0 || state.Cold != 0 || state.Charge != 0 || !string.IsNullOrEmpty(state.Cloud)
+                || state.Residues.Count != 1) return false;
+
+            // The normal movement resolver already suppresses slips over this grit.
+            // The freight route retains its separate checks for ground hazards and contact.
+            var grit = state.Residues[0];
+            if (grit?.Id != CombatUtilityActions.GritResidue || grit.Turns <= 0
+                || grit.Turns == ZoneTileState.Permanent || !string.IsNullOrEmpty(grit.ProjectionOwnerId)) return false;
+            foreach (var coating in state.Coatings)
+            {
+                if (coating == null || coating.Turns <= 0 || coating.Turns == ZoneTileState.Permanent
+                    || !string.IsNullOrEmpty(coating.ProjectionOwnerId)) return false;
+                var liquid = LiquidRegistry.Get(coating.Id);
+                if (liquid is not { Slippery: true, SlipChance: > 0, BlockAction: false }
+                    || liquid.PerTurnDamage?.Amount > 0 || liquid.StatModifiers?.Count > 0
+                    || liquid.ResistanceModifiers?.Count > 0) return false;
+            }
+            return true;
+        }
 
         private static int Distance(Cell a, Cell b) => Math.Max(Math.Abs(a.X - b.X), Math.Abs(a.Y - b.Y));
 

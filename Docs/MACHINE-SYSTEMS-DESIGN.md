@@ -1,3 +1,11 @@
+**Grit can reopen an ordinary freight step.**
+The shared footing layer can make a loose slippery film traversable for
+a porter. The live route still checks hazards and physical access and
+rechecks the step as the footing wears away. In a matched Gleaners' trial,
+scattering one coarse grit let the porter carrying paid clay cross a
+supplied slick and continue to the receiving shelf.
+[Porter footing trial](Verification/MachineSystems/PorterGritFooting20261128/README.md)
+
 **Campfires show the moisture change before drying gear.**
 One action beside a hot fire removes up to 25 points of moisture from
 one eligible carried item. The action names the item and shows both

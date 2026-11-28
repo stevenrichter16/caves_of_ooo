@@ -667,6 +667,10 @@ their existing paths.
     fixed when a later obstruction changes the live path. The marker also
     explains ordinary loose carries for 11–12.
     [Evidence](Verification/MachineSystems/PorterCrossing20261125/README.md)
+    One coarse grit gave temporary footing across a loose oil film in a
+    matched trial on a paid route. The porter resumed movement on the
+    same turn and delivered the original box after Continue.
+    [Evidence](Verification/MachineSystems/PorterGritFooting20261128/README.md)
     The emptied Cinderhold tray opened for an ordinary clean pickup. The
     oil still coated the player on contact at its new destination.
     [Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)
