@@ -1,3 +1,12 @@
+**Gantry’s reopened route supplies a useful import — November 28, 2026, America/Chicago.**
+Entering the sixth crate adds one paid Wellmeet pale-salt to Vellin's
+next due consignment. Eleven ordinary shelf entries matched the control.
+In a separate replay, the traveler collected the ten-dram registrar
+reward, bought one salt for 38 drams, and carried it to Cinderhold.
+The original dagger gained the conditional Undead bonus at the public
+forge. The live wait and both save boundaries kept their exact state.
+[Gantry consignment and public forge](Verification/MachineSystems/GantryCaravanStock20261128/README.md)
+
 **Current Mac update — November 28, 2026, America/Chicago.**
 Universal runtime `7a13bf458` bundles the farmer water visit, recipe
 highlights and porter footing. A normal Continue on Apple M5 opened

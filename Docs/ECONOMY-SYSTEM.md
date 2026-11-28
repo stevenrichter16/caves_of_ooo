@@ -7,6 +7,17 @@ the §5.3 verification sweep, then EC1.
 system. Start from existing design documents if there are any; otherwise brainstorm a system
 that fits the game.
 
+## The Gantry exchange after the manifest
+
+Recording the sixth crate opens Wellmeet supply for Vellin's exchange
+shelf. The import uses the shared consignment clock and standard trade.
+A normal visit may find one pale-salt once each game day. Purchases move
+that unit to the buyer and a second visit sees the remainder of the same
+lot. The route carries an optional source of an existing infusion material.
+The consignment uses the exchange's stock schedule. Physical porter work
+retains its own cargo, delivery and search rules.
+[Gantry trade and material use](Verification/MachineSystems/GantryCaravanStock20261128/README.md)
+
 ## Material banks and local credit
 
 Proposed direction, approved in conversation November 26, 2026. The player

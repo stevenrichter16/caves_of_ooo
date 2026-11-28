@@ -97,7 +97,7 @@ namespace CavesOfOoo.Core
                 // re-rolls their themed stock table (Factory-gated —
                 // contexts without the factory keep drams-only).
                 string stockTable = e.GetProperty(ShopStockTableProp);
-                if (Factory != null && !string.IsNullOrEmpty(stockTable) && !MerchantStockService.HasProfile(e))
+                if (Factory != null && !string.IsNullOrEmpty(stockTable) && !MerchantStockService.ManagesStaples(e))
                 {
                     var inv = e.GetPart<InventoryPart>();
                     if (inv != null && CountStockUnits(inv, stockTable) < ShelfLowWaterMark)

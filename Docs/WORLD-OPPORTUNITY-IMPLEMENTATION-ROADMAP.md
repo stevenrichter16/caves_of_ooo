@@ -726,6 +726,12 @@ their existing paths.
     player bought the exact rod and retained it on fresh Continue.
     [Evidence](Verification/MachineSystems/CinderholdMixedClay20261126/README.md)
 
+    Gantry's entered manifest admits one paid Wellmeet pale-salt on the
+    existing daily consignment schedule. The normal eleven shelf entries
+    matched the closed-route control during the observed window. The route
+    adds a source of a mineral that can already be used by a public forge.
+    [Evidence](Verification/MachineSystems/GantryCaravanStock20261128/README.md)
+
 ## Priority 5: add actual local carrying, then selected NPC shipments
 
 21. **Implement the first paid local delivery.** Start with one real packed

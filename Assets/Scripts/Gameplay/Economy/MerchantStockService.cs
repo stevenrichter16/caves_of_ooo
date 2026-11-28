@@ -56,6 +56,16 @@ namespace CavesOfOoo.Core
                 "Mine work restored: a sounding rod joins the next consignment.",
                 "Mine work supply included: an extra sounding rod in each new consignment.",
                 site: "Pump", condition: "Cinderhold.Sealed"));
+        // The exchange keeps its ordinary catalogue. Only the caravan import
+        // participates in the saved consignment schedule.
+        static readonly RegionalSituationDefinition GantryExchange = RegionalSituations.Find("gantry-grain");
+        static readonly Profile GantryCaravan = new Profile("GantryCaravanStock",
+            Array.Empty<string>(), Array.Empty<int>(), Array.Empty<string>(), "Gantry",
+            new ProjectSupply("PaleSalt", "",
+                "Wellmeet route reopened. Pale-salt joins the next consignment.",
+                "Wellmeet supply: one pale-salt in each new consignment.",
+                condition: "Gantry.ManifestEntered"));
+
         sealed class Activity
         {
             internal int Trades, Views;
@@ -76,13 +86,18 @@ namespace CavesOfOoo.Core
             var trader = merchant?.GetPart<TraderPart>();
             if (merchant == null || trader?.ParentEntity != merchant || merchant.Parts.Count(p => p is TraderPart) != 1
                 || merchant.GetProperty(TraderRestockSystem.ShopStockTableProp) != trader.StockTable) return null;
+            var zone = merchant.SpatialZone;
+            if (trader.StockTable == "MerchantStock" && zone?.ZoneID == GantryCompositionPlan.ZoneID
+                && ReferenceEquals(RegionalSituations.Recipient(zone, GantryExchange), merchant))
+                return GantryCaravan;
+
             var profile = trader.StockTable == Farmer.Id ? Farmer : trader.StockTable == Armorer.Id ? Armorer
                 : trader.StockTable == Scribe.Id ? Scribe : trader.StockTable == Provisioner.Id ? Provisioner
                 : trader.StockTable == Weaponsmith.Id ? (PlaceSiteCatalog.PlaceAt(merchant.SpatialZone?.ZoneID) == "Cinderhold" ? CinderholdSmith : Weaponsmith) : null;
             return profile != null && (profile.Place == null || PlaceSiteCatalog.PlaceAt(merchant.SpatialZone?.ZoneID) == profile.Place)
                 ? profile : null;
         }
-        internal static bool HasProfile(Entity merchant) => ProfileFor(merchant) != null;
+        internal static bool ManagesStaples(Entity merchant) => ProfileFor(merchant)?.Staples.Length > 0;
         static bool Valid(Entity merchant, Zone zone, Profile profile)
         {
             var pack = merchant?.GetPart<InventoryPart>();
@@ -159,7 +174,9 @@ namespace CavesOfOoo.Core
         }
         static bool ProjectBonus(Profile profile, Zone zone)
         {
-            var project = profile.Project; var manager = SettlementManager.Current;
+            var project = profile.Project;
+            var manager = profile == GantryCaravan
+                ? WorldLocationContext.For(zone)?.SettlementManager : SettlementManager.Current;
             if (project == null || zone == null || manager == null) return false;
             if (project.Condition != null && manager.HasExistingCondition(zone.ZoneID, project.Condition)) return true;
             return project.Site != null && manager.TryGetExistingSite(zone.ZoneID, project.Site, out var site)
@@ -169,9 +186,15 @@ namespace CavesOfOoo.Core
         { uint h = 2166136261; foreach (char c in value) { h = unchecked((h ^ c) * 16777619); } return h; }
         static string[] Selection(Profile profile, Entity merchant, int generation, bool bonus)
         {
-            int start = (int)((StableHash(merchant.ID + ":" + profile.Id) + (ulong)generation) % (ulong)profile.Choices.Length);
-            var result = new List<string> { profile.Choices[start], profile.Choices[(start + 1) % profile.Choices.Length] };
-            if (bonus) result.Add(profile.Project.Item); return result.ToArray();
+            var result = new List<string>(3);
+            if (profile.Choices.Length > 0)
+            {
+                int start = (int)((StableHash(merchant.ID + ":" + profile.Id) + (ulong)generation) % (ulong)profile.Choices.Length);
+                result.Add(profile.Choices[start]);
+                result.Add(profile.Choices[(start + 1) % profile.Choices.Length]);
+            }
+            if (bonus) result.Add(profile.Project.Item);
+            return result.ToArray();
         }
         static long UsableUnits(Entity merchant, string blueprint, string key)
         {
@@ -185,6 +208,11 @@ namespace CavesOfOoo.Core
         // Resident altered goods remain intact and are compared by their key.
         static bool ValidFreshPayload(Entity item)
         {
+            if (item.BlueprintName == "PaleSalt")
+                return item.GetPart<MineralPreparationPart>() != null
+                    && item.GetPart<PhysicsPart>() is { Takeable: true, Solid: false, Weight: 1 }
+                    && item.GetPart<CommercePart>()?.Value == 12
+                    && item.HasTag("Mineral") && item.HasTag("TradeSalt");
             if (item.BlueprintName == "FieldSatchel")
                 return InventoryItemGroups.IsEmptyMerchantSatchel(item)
                     && item.GetPart<PhysicsPart>()?.GetType() == typeof(PhysicsPart) && item.GetPart<PhysicsPart>().Weight == 1
@@ -276,7 +304,8 @@ namespace CavesOfOoo.Core
             if (activity.StockBusy || activity.Trades > 0 || activity.Views > 0 || HasOffer(activity)) return false;
             var state = merchant.GetPart<MerchantStockPart>();
             if (merchant.Parts.Count(p => p is MerchantStockPart) > 1 || !ValidState(state, merchant, profile)) return false;
-            bool staplesDue = state == null || (long)tick - state.LastStapleTick > TraderRestockSystem.RestockIntervalTurns;
+            bool staplesDue = state == null || profile.Staples.Length > 0
+                && (long)tick - state.LastStapleTick > TraderRestockSystem.RestockIntervalTurns;
             bool specialDue = state == null || (long)tick - state.LastSpecialTick >= WorldClock.DayLengthTicks;
             if (!staplesDue && !specialDue || specialDue && state?.Generation == int.MaxValue) return false;
             var pack = merchant.GetPart<InventoryPart>();
@@ -422,6 +451,9 @@ namespace CavesOfOoo.Core
         public static string Describe(Entity merchant)
         {
             var state = merchant?.GetPart<MerchantStockPart>(); if (state == null) return "";
+            if (state.ProfileId == GantryCaravan.Id)
+                return state.BonusApplied && ProfileFor(merchant) == GantryCaravan
+                    ? "* Wellmeet imports restock after a game day." : "";
             return "* Specials change after a game day. Staples return periodically.";
         }
         public static string ProjectBenefit(Entity merchant)

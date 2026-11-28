@@ -1,3 +1,11 @@
+**A reopened trade route can supply regional processing.**
+The entered Gantry manifest admits one paid Wellmeet pale-salt for each
+due consignment at the existing exchange. It gives the player a route
+from local work and trade to the mineral infusion already available at
+Cinderhold's forge. This expands the supply of one existing preparation
+input. The complete machine and freight acceptance gates still apply.
+[Gantry supply and infusion trial](Verification/MachineSystems/GantryCaravanStock20261128/README.md)
+
 **Grit can reopen an ordinary freight step.**
 The shared footing layer can make a loose slippery film traversable for
 a porter. The live route still checks hazards and physical access and

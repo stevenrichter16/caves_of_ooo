@@ -1,3 +1,13 @@
+**Gantry route import — November 28, 2026.** Vellin’s existing exchange
+shelf gains one paid pale-salt from Wellmeet on each due consignment
+after the sixth crate is entered on the manifest. The normal shelf keeps
+its existing goods and refill rules. A closed-route visit starts an empty
+consignment window. Opening the route during that window adds the salt
+at its next 1,200-tick boundary. An older already-open save with no
+consignment record can receive the first lot when it opens Trade. The
+short-count signature still affects its own existing price terms.
+[Gantry import playtest](Verification/MachineSystems/GantryCaravanStock20261128/README.md)
+
 **Weapon-merchant extension — November23 evening:** the shared standard/special
 policy now covers genuine WeaponsmithStock outside Cinderhold. Dependable
 weapons: dagger, short sword, spear; components: oak haft and leather binding;
@@ -9,8 +19,8 @@ stock at due rotation without withdrawal/recreation. Native220/219pass/0fail/
 Cinderhold-only paragraphs below record the earlier increment. See the
 [extension](MACHINE-WEAPON-MERCHANT-SUPPLY.md) and
 [receipt](Verification/MachineSystems/WeaponMerchants20261123/README.md).
-Current Mac7cpredates this and UI1fda; one coherent package follows. Trade-route
-imports and automatic NPC production remain proposals; all12 machine gates open.
+At the time of this extension, current Mac7c predated this and UI1fda.
+Automatic NPC production remains a proposal.
 
 # Merchant staples and changing special stock
 
@@ -21,7 +31,8 @@ A repaired local oven expands farmer consignments; the existing finite copy-room
 oil project adds a drying manuscript to later scribe lots. See the
 [first pilot](Verification/MachineSystems/MerchantConsignments20261123/README.md)
 and [regional extension](Verification/MachineSystems/QuillholdConsignments20261123/README.md).
-Route imports, other profiles and unique-item issuance remain proposals.
+Gantry now uses the same saved consignment schedule for its first route import.
+Other route imports, other profiles and unique-item issuance remain proposals.
 
 Merchants should have a dependable base selection of specific goods and a
 separate, periodically changing selection of interesting specials. Returning to
