@@ -27,6 +27,8 @@ namespace CavesOfOoo.Rendering
             _ledgerCommands.Clear(); _ledgerCommandIndex = 0;
             if (_panel == PANEL_LOADOUTS)
                 AddLoadoutCommands();
+            else if (_panel == PANEL_TOOLS)
+                AddToolsCommands();
             else if (_panel == PANEL_CRAFTING)
             {
                 bool recipes = _craftingMode == CraftingMode.Recipes;
@@ -65,11 +67,12 @@ namespace CavesOfOoo.Rendering
                 });
             }
             else AddLedgerCommand("Item actions", () => ActivatePackRow(_cursorIndex, browseContents: false));
-            if (_panel != PANEL_ABILITIES || GetAbilitiesPart()?.GetAbilityBySlot(_abilitiesCursorSlot) != null)
+            if (_panel != PANEL_TOOLS && (_panel != PANEL_ABILITIES || GetAbilitiesPart()?.GetAbilityBySlot(_abilitiesCursorSlot) != null))
                 AddLedgerCommand("Full details", () => _ledgerDetailsRequested = true);
             AddLedgerCommand("Character status", () => _ledgerStatusRequested = true);
             if (DensePack)
             {
+                AddLedgerCommand(NativeGamepadInput.IsConnected ? "Tools" : "Tools (U)", SwitchToTools);
                 AddLedgerCommand("Choose category", OpenCategoryChooser);
                 AddLedgerCommand("Sort items", OpenSortChooser);
                 AddLedgerCommand(_inventoryUngrouped ? "Group matching items" : "Show individual items", ToggleInventoryGrouping);

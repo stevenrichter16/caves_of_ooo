@@ -49,6 +49,11 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #31–#40, the Tools tab shows nearby and carried processing
+equipment with available work, setup and requirements. The actual
+standing tray's displayed catch can open the ordinary Gather action,
+which pays from the same finite source. [Tools tab and live route](Verification/MachineSystems/InventoryTools20261128/README.md)
+
 For #31–#40, an actual Fen harvest reached the normal Sill still and
 the existing detox recipe. A paid fruit and ordinary brewing made
 a 2d4 tonic. Its effect, exact custody and the refusal to spend the

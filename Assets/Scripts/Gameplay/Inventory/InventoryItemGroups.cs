@@ -46,6 +46,16 @@ namespace CavesOfOoo.Core
         };
         static readonly Dictionary<Type, FieldInfo[]> Fields = Known.ToDictionary(t => t,
             t => t.GetFields(BindingFlags.Public | BindingFlags.Instance).OrderBy(f => f.Name, StringComparer.Ordinal).ToArray());
+        // Packed tools share the same counted Pack and Tools rows. These Parts
+        // have scalar instance state. Distinct charge, condition and kit contents
+        // stay in their own rows, and the physical action owner is kept.
+        static readonly Dictionary<Type, FieldInfo[]> PackedToolFields = new[]
+        {
+            typeof(ScraperPart), typeof(ScreeningToolPart), typeof(DirectedAirPart),
+            typeof(DirectLiquidPumpPart), typeof(FieldWorkToolPart), typeof(SettlingTrayPart),
+            typeof(PackableFixturePart), typeof(InstallablePart)
+        }.ToDictionary(t => t, t => t.GetFields(BindingFlags.Public | BindingFlags.Instance)
+            .OrderBy(f => f.Name, StringComparer.Ordinal).ToArray());
         // Exact merchant-only payloads: no grouping/stacking permission. Reader
         // properties, parsed reagent caches and flicker methods are never invoked.
         static readonly Dictionary<Type, FieldInfo[]> MerchantFields = new[]
@@ -116,6 +126,11 @@ namespace CavesOfOoo.Core
                 || MaterialProcessService.IsProtected(item)) return null;
             bool satchel = merchantExtras && item.BlueprintName == "FieldSatchel";
             if (satchel && (!IsEmptyMerchantSatchel(item) || !CarriedStorage.IsCarried(actor, item))) return null;
+            bool packedTray = !merchantExtras && item.BlueprintName == "CampSettlingTray"
+                && item.GetPart<PackableFixturePart>() is { Kind: CampKinds.Tray, SetTick: -1 }
+                && !item.HasPart<InstallationMarkerPart>()
+                && (item.GetPart<InstallablePart>() == null
+                    || item.GetPart<InstallablePart>() is { Mode: InstallablePart.Portable, State: InstallablePart.Loose });
             var vessel = item.GetPart<LiquidVesselPart>();
             if (vessel != null && (vessel.Capacity <= 0 || vessel.Volume < 0 || vessel.Volume > vessel.Capacity
                 || (vessel.Volume == 0 ? vessel.LiquidId != "" : !LiquidRegistry.IsInitialized || LiquidRegistry.Get(vessel.LiquidId) == null))) return null;
@@ -158,7 +173,9 @@ namespace CavesOfOoo.Core
                 bool container = satchel && type == typeof(ContainerPart);
                 bool load = satchel && type == typeof(ContainerLoadPart);
                 FieldInfo[] extraFields = null;
-                bool extra = merchantExtras && MerchantFields.TryGetValue(type, out extraFields);
+                bool extra = merchantExtras ? MerchantFields.TryGetValue(type, out extraFields)
+                    : PackedToolFields.TryGetValue(type, out extraFields)
+                        && (packedTray || (type != typeof(PackableFixturePart) && type != typeof(InstallablePart) && type != typeof(SettlingTrayPart)));
                 if ((!Known.Contains(type) && !mask && !vial && !document && !rod && !container && !load && !extra) || !types.Add(type)) return null;
                 Add(key, type.FullName);
                 if (mask) { Add(key, "Power"); Add(key, ((GasMaskPart)part).Power); continue; }

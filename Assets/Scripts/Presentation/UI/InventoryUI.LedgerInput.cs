@@ -105,7 +105,10 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.StorageLabelField: ActivateStorageLabelField(); return;
                 case LedgerHitKind.StorageLabelDecrease: ChangeStorageLabelField(-1); return;
                 case LedgerHitKind.StorageLabelIncrease: ChangeStorageLabelField(1); return;
-                case LedgerHitKind.Tab: _panel = hit.Index; Render(); return;
+                case LedgerHitKind.Tab:
+                    if (hit.Index == PANEL_TOOLS) SwitchToTools();
+                    else { _panel = hit.Index; Render(); }
+                    return;
                 case LedgerHitKind.PackTextScale: ChangeDenseTextScale(hit.Index); return;
                 case LedgerHitKind.PackGrouping: if (!_inventorySearchActive) ToggleInventoryGrouping(); return;
                 case LedgerHitKind.PackCategory: OpenCategoryChooser(); return;
@@ -113,6 +116,11 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.PackBrowse: OpenBrowseCommands(); return;
                 case LedgerHitKind.LoadoutRow: Render(); return;
                 case LedgerHitKind.LoadoutAction: ExecuteLoadoutAction(hit.Index); return;
+                case LedgerHitKind.ToolRow: ActivateToolRow(hit.Index); return;
+                case LedgerHitKind.ToolActions: ActivateToolActions(); return;
+                case LedgerHitKind.ToolRecipes: OpenToolRecipes(); return;
+                case LedgerHitKind.ToolWork: ActivateToolWork(); return;
+                case LedgerHitKind.ToolDetailsPage: MoveToolDetailsPage(hit.Index); return;
                 case LedgerHitKind.Equipment:
                     if (_equipSlots != null && hit.Index >= 0 && hit.Index < _equipSlots.Count) OpenEquipPopup(_equipSlots[hit.Index]); return;
                 case LedgerHitKind.Item:
@@ -192,6 +200,7 @@ namespace CavesOfOoo.Rendering
             else if (_panel == PANEL_TINKERING) MoveTinkeringCursor(delta);
             else if (_panel == PANEL_CRAFTING) MoveCraftCursor(delta);
             else if (_panel == PANEL_LOADOUTS) MoveLoadoutSelection(delta);
+            else if (_panel == PANEL_TOOLS) MoveToolsSelection(delta);
             else _abilitiesCursorSlot = Mathf.Clamp(_abilitiesCursorSlot + delta, 0, ActivatedAbilitiesPart.SlotCount - 1);
         }
     }

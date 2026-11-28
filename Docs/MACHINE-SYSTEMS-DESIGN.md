@@ -1,3 +1,11 @@
+**Inventory Tools exposes the mechanics on current equipment.**
+The Tools tab shows location, current operations and authored guidance
+from the underlying Parts. Material-owned quotes record the exact tool
+that the real work uses. Stowed tools use ordinary withdrawal and
+nearby installations open ordinary Interact for the visible exact
+owner. The work menu still owns validation, payment and time.
+[Tools design and play](Verification/MachineSystems/InventoryTools20261128/README.md)
+
 **A finite regional reagent has a still and ordinary brewing route.**
 One harvested Fen grove-red becomes cleansed pulp beside the Sill
 still. The pulp then makes a mending tonic through ordinary Brew.

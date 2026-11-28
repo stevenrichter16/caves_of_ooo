@@ -4270,7 +4270,17 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (!InventoryUI.IsOpen)
+            if (InventoryUI.ConsumeToolWorldRequest() is { } toolRequest)
+            {
+                CloseInventory();
+                if (toolRequest.Actor == PlayerEntity && toolRequest.Zone == CurrentZone
+                    && InventoryToolsData.CanInspectNearbyTool(PlayerEntity, CurrentZone, toolRequest.Tool, toolRequest.Cell))
+                {
+                    _worldActionMenuReturnState = InputState.Normal;
+                    OpenWorldActionMenuFor(toolRequest.Tool, toolRequest.Cell, includeBackRow: false);
+                }
+            }
+            else if (!InventoryUI.IsOpen)
                 CloseInventory();
             else if (InventoryUI.ConsumeStatusRequest())
                 OpenPlayerStatusReader();

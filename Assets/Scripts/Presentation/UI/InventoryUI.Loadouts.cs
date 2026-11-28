@@ -67,7 +67,7 @@ namespace CavesOfOoo.Rendering
             { _panel = PANEL_CRAFTING; Render(); return; }
             if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L)
                 || InputHelper.GetKeyDown(KeyCode.Tab))
-            { _panel = PANEL_EQUIPMENT; Render(); return; }
+            { SwitchToTools(); return; }
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             { MoveLoadoutSelection(-1); Render(); return; }
             if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J))

@@ -145,7 +145,8 @@ namespace CavesOfOoo.Core
                         var kept = Outputs(sheltered.Plan.Factory, sheltered.Result);
                         AsRecipe(actions.AddActionWithHint("winnow_with_bellows", "winnow with bellows (keep chaff)", Command(sheltered),
                             "Use a sieve and bellows on one bundle. Makes " + kept + ". Keep both tools. One action.",
-                            '\0', 19, false, ActionTime.OneAction), sheltered.Plan.Factory, sheltered.Result);
+                            '\0', 19, false, ActionTime.OneAction), sheltered.Plan.Factory, sheltered.Result)
+                            ?.WithRecipeTools(sheltered.Plan.WorkTool, sheltered.Plan.Station);
                     }
                     var quoted=MaterialProcessService.TryQuote(plan, out bool reservedForCrafting);
                     if(quoted==null)
@@ -169,6 +170,7 @@ namespace CavesOfOoo.Core
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
                     var row=AsRecipe(actions?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
                         Command(quoted),'\0',19,false,ActionTime.OneAction), plan.Factory, d);
+                    row?.WithRecipeTools(plan.WorkTool);
                     if (row != null && plan.StationKind == AnvilWorkPart.Kind)
                     {
                         var hammer = plan.WorkTool.GetPart<RenderPart>()?.DisplayName ?? plan.WorkTool.BlueprintName;
@@ -206,7 +208,8 @@ namespace CavesOfOoo.Core
                             $"One action. {fine} lb of {Label(plan.Factory, d.OutputBlueprints[0])} into your pack. "
                             + $"{coarse} lb of {Label(plan.Factory, d.OutputBlueprints[1])} at your feet. Keep the sieve.",
                             '\0',18,false,ActionTime.OneAction).AtCell(ground.X, ground.Y)
-                            .AsRecipe(PackRecipeCategory.Materials, OutputNames(plan.Factory, d), outputs);
+                            .AsRecipe(PackRecipeCategory.Materials, OutputNames(plan.Factory, d), outputs)
+                            .WithRecipeTools(plan.WorkTool);
                     }
                 }
                 return true;

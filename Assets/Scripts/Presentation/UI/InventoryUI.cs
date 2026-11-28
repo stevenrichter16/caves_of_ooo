@@ -41,6 +41,7 @@ namespace CavesOfOoo.Rendering
         private const int PANEL_ABILITIES = 3;
         private const int PANEL_CRAFTING = 4;
         private const int PANEL_LOADOUTS = 5;
+        private const int PANEL_TOOLS = 6;
 
         // Abilities tab layout
         private const int ABILITIES_INFO_X = 6;              // where name/flavor/mechanics/signature start
@@ -315,6 +316,7 @@ namespace CavesOfOoo.Rendering
             _lastPointerGrid = MouseToGrid();
             PerformanceDiagnostics.BeginInventorySession();
             _panel = PANEL_EQUIPMENT;
+            ResetTools();
             _inventoryUngrouped = false;
             _cursorIndex = 0;
             _scrollOffset = 0;
@@ -453,11 +455,22 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return true; }
+            if (_panel != PANEL_TOOLS && InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return true; }
             if (DensePack && InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryCategory)) { SetInventoryCategory(""); return true; }
             if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyboardKeyDown(KeyCode.I))
             {
                 Close();
+                return true;
+            }
+
+            if (_panel == PANEL_TOOLS)
+            {
+                if (InputHelper.GetKeyDown(KeyCode.Tab))
+                {
+                    _panel = PANEL_EQUIPMENT;
+                    Render();
+                }
+                else HandleToolsInput();
                 return true;
             }
 
@@ -754,6 +767,7 @@ namespace CavesOfOoo.Rendering
         {
             if (InputHelper.GetKeyDown(KeyCode.Slash)) { BeginInventorySearch(); return; }
             if (InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return; }
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.U)) { SwitchToTools(); return; }
             if (InputHelper.GetKeyDown(KeyCode.T))
             {
                 _panel = PANEL_TINKERING;
@@ -824,6 +838,13 @@ namespace CavesOfOoo.Rendering
                     }
                 }
             }
+        }
+
+        private void SwitchToTools()
+        {
+            _panel = PANEL_TOOLS;
+            ClearActionStatus();
+            Render();
         }
 
         private void HandleTinkeringPanelInput()

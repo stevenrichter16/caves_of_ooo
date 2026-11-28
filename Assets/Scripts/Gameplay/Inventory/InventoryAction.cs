@@ -70,6 +70,18 @@ namespace CavesOfOoo.Core
         public IReadOnlyList<string> RecipeHighlights { get; private set; }
         public string RecipeInstructions { get; private set; }
 
+        // A material-owned recipe can use a particular tool without making that
+        // tool the owner of the command. The Tools view uses this read-only link.
+        internal Entity RecipeTool { get; private set; }
+        internal Entity RecipeAssistTool { get; private set; }
+
+        internal InventoryAction WithRecipeTools(Entity tool, Entity assistTool = null)
+        {
+            RecipeTool = tool;
+            RecipeAssistTool = assistTool;
+            return this;
+        }
+
         public InventoryAction AsRecipe(PackRecipeCategory category, string title, string result = null,
             string effects = null, string instructions = null, IReadOnlyList<string> highlights = null)
         {

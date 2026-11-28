@@ -15,8 +15,11 @@ namespace CavesOfOoo.Rendering
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
             Cancel, Details, Close, LoadoutRow, LoadoutAction, PackTextScale, PackGrouping, PackCategory, PackSort, PackBrowse,
-            StorageLabelField, StorageLabelDecrease, StorageLabelIncrease, ItemActions
+            StorageLabelField, StorageLabelDecrease, StorageLabelIncrease, ItemActions,
+            ToolRow, ToolActions, ToolRecipes, ToolWork, ToolDetailsPage
         }
+        static readonly string[] LedgerTabNames = { "Equipment", "Inventory", "Tinkering", "Abilities", "Crafting", "Loadouts", "Tools" };
+        static readonly string[] CompactLedgerTabNames = { "Gear", "Pack", "Mods", "Slots", "Craft", "Kits", "Tools" };
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);
         readonly List<Image> _ledgerImages = new List<Image>(96);
@@ -173,20 +176,12 @@ namespace CavesOfOoo.Rendering
                     DensePack ? SkillScreenText.Fit(summary, (int)((width - 254) / 8), 2) : summary, LMuted, DensePack ? 16 : 18);
             }
             LBox(new Rect(24, 65, width - 48, 1), LBorder);
-            string[] tabs = { "Equipment", "Inventory", "Tinkering", "Abilities", "Crafting", "Loadouts" };
-            for (int i = 0; i < tabs.Length; i++)
-            {
-                float tabWidth = (width - 48) / tabs.Length;
-                var rect = new Rect(24 + i * tabWidth, 76, tabWidth - 8, 40);
-                bool selected = _panel == i;
-                LFrame(rect, selected ? LGold : LBorder, selected ? LSelected : LPanel);
-                LLabel(new Rect(rect.x + 6, rect.y + 10, rect.width - 12, 20), tabs[i], selected ? LGold : LMuted, width < 1000 ? 16 : 20);
-                LHit(rect, LedgerHitKind.Tab, i);
-            }
+            RenderLedgerTabs(width);
             if (_panel == PANEL_TINKERING) RenderLedgerTinkering();
             else if (_panel == PANEL_ABILITIES) RenderLedgerAbilities();
             else if (_panel == PANEL_CRAFTING) RenderLedgerCrafting();
             else if (_panel == PANEL_LOADOUTS) RenderLedgerLoadouts();
+            else if (_panel == PANEL_TOOLS) RenderLedgerTools();
             else if (DensePack) RenderDensePack();
             else
             {
@@ -204,6 +199,26 @@ namespace CavesOfOoo.Rendering
                 LLabel(DensePack ? new Rect(24, _denseLayout.Height - 52, width - 48, 24) : new Rect(24, 712, 1232, 24),
                     SkillScreenText.Fit(_actionStatus, (int)((width - 48) / 10), 1), _actionStatusSuccess ? LGreen : LRed, 20);
             EndLedgerPools();
+        }
+
+        void RenderLedgerTabs(float width)
+        {
+            float tabWidth = (width - 48) / LedgerTabNames.Length;
+            float glyphHeight = width < 1000 ? 16 : 20;
+            float labelWidth = tabWidth - 20;
+            for (int i = 0; i < LedgerTabNames.Length; i++)
+            {
+                string label = LedgerTabNames[i];
+                if (label.Length * glyphHeight / 2 > labelWidth)
+                    label = CompactLedgerTabNames[i];
+                float labelHeight = Mathf.Min(glyphHeight, labelWidth * 2 / label.Length);
+                var rect = new Rect(24 + i * tabWidth, 76, tabWidth - 8, 40);
+                bool selected = _panel == i;
+                LFrame(rect, selected ? LGold : LBorder, selected ? LSelected : LPanel);
+                LLabel(new Rect(rect.x + 6, rect.y + (rect.height - labelHeight) / 2, labelWidth, labelHeight),
+                    label, selected ? LGold : LMuted, labelHeight);
+                LHit(rect, LedgerHitKind.Tab, i);
+            }
         }
 
         void RenderLedgerEquipment()
@@ -432,6 +447,9 @@ namespace CavesOfOoo.Rendering
             string hint;
             if (_loadoutNameEditing) hint = "Type a name, or keep the default   Enter / A: save   Esc / B: cancel";
             else if (_inventorySearchActive) hint = "Type to filter   Enter: accept   Esc: clear search";
+            else if (_panel == PANEL_TOOLS) hint = pad
+                ? "D-pad: tools and pages   A: actions   X: commands   Y: next panel   B: back"
+                : "Up/Down: tools   Left/Right: details pages   Enter: actions   Tab: next panel   Esc: close";
             else if (_panel == PANEL_CRAFTING && pad) hint = "D-pad: browse   A: craft   X: commands and subtabs   B: back   Y: next panel   LT+RT: details";
             else if (pad) hint = "D-pad: browse  A: select  X: commands  B: back  Y: mode  LB/RB: mode  LT+RT: details";
             else if (_panel == PANEL_CRAFTING) hint = _craftingMode == CraftingMode.Recipes

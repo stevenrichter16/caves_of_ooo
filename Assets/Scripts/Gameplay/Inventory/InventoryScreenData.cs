@@ -489,7 +489,7 @@ namespace CavesOfOoo.Core
 
         // Public, opt-in summaries only. Never enumerate arbitrary Part names,
         // private fields or full descriptions just to paint/filter a pack row.
-        static bool CanReadState(Entity actor, Entity item)
+        internal static bool CanReadState(Entity actor, Entity item)
         {
             var pack = actor?.GetPart<InventoryPart>(); var physics = item?.GetPart<PhysicsPart>(); var render = item?.GetPart<RenderPart>();
             if (pack?.ParentEntity != actor || actor == null || item == null || item.SpatialZone != null

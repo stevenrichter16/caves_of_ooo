@@ -1,3 +1,10 @@
+**Inventory Tools shows actual work and setup — November 28, 2026, America/Chicago.**
+Tools shows carried, equipped, stowed and nearby equipment with
+requirements and existing action and recipe routes. A supplied tray
+beside original steam vents used Tools → World actions → Gather for
+one vent scale at 3620. Browsing stayed at 3610 and 343 HP. All
+388 distinct focused cases passed. [Live Tools and checks](Verification/MachineSystems/InventoryTools20261128/README.md)
+
 **Fen grove-red names the optional still preparation — November 28, 2026, America/Chicago.**
 The original red growth reader teaches cleanse one fruit at an alchemy
 still, then brew the pulp alone for a mending tonic. The original
