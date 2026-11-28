@@ -671,6 +671,10 @@ their existing paths.
     matched trial on a paid route. The porter resumed movement on the
     same turn and delivered the original box after Continue.
     [Evidence](Verification/MachineSystems/PorterGritFooting20261128/README.md)
+    A farmer's idle water visit now follows the available local supply.
+    In matched Sill play, drawing the last unit from the cistern caused
+    the resident to turn back on the next turn.
+    [Evidence](Verification/MachineSystems/FarmerUsableWater20261128/README.md)
     The emptied Cinderhold tray opened for an ordinary clean pickup. The
     oil still coated the player on contact at its new destination.
     [Evidence](Verification/MachineSystems/CinderholdTrayPump20261126/README.md)

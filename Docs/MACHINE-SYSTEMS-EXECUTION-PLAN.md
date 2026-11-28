@@ -1,3 +1,11 @@
+**A farmer looks for an available water source — November 28, 2026, America/Chicago.**
+The shared well rules now guide the farmer's existing occasional walk.
+In matched Sill copies, Dovrin used a stocked cistern in place of an
+empty well and reached its edge with the water untouched. Continue
+restored the exact cistern as his destination. When the traveler drew
+the last unit, his next turn returned to the ordinary walk home.
+[Sill water visit and Continue](Verification/MachineSystems/FarmerUsableWater20261128/README.md)
+
 **Recipe rows show their stats and effects — November 28, 2026, America/Chicago.**
 The Recipes subtab shows short signed bonuses, healing, duration and
 conditional effects beside the output name. Availability has its own

@@ -1,0 +1,464 @@
+{
+  "fixture": {
+    "tick": 980,
+    "farmer": "10062",
+    "empty": "9981",
+    "full": "10242",
+    "previousStock": -1,
+    "emptyAt": [
+      40,
+      12
+    ],
+    "fullAt": [
+      43,
+      17
+    ],
+    "cisternStock": 1,
+    "resetIdleGoal": true,
+    "chance": 100
+  },
+  "sameFixture": true,
+  "earlierArrivalSource": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 980,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 56,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": null,
+        "route": null,
+        "sourceId": null,
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 1,
+        "available": true
+      }
+    ]
+  },
+  "earlierFirstWait": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 990,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 55,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": "MoveToGoal",
+        "route": "to=(41,13) age=0/50",
+        "sourceId": null,
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 1,
+        "available": true
+      }
+    ]
+  },
+  "newFirstWait": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 990,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 55,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": "VisitWaterSourceGoal",
+        "route": "source=covered cistern",
+        "sourceId": "10242",
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 1,
+        "available": true
+      }
+    ]
+  },
+  "newArrival": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 1100,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 44,
+        "y": 16,
+        "chance": 100,
+        "currentGoal": "VisitWaterSourceGoal",
+        "route": "source=covered cistern",
+        "sourceId": "10242",
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 1,
+        "available": true
+      }
+    ]
+  },
+  "saveDuringTravel": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 1010,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 53,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": "VisitWaterSourceGoal",
+        "route": "source=covered cistern",
+        "sourceId": "10242",
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 1,
+        "available": true
+      }
+    ]
+  },
+  "continueDuringTravel": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 1010,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 53,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": "VisitWaterSourceGoal",
+        "route": "source=covered cistern",
+        "sourceId": "10242",
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 1,
+        "available": true
+      }
+    ]
+  },
+  "exactGroundedCisternReference": {
+    "exactOwner": true,
+    "exactZone": true,
+    "ground": true,
+    "tick": 1010
+  },
+  "drawMenu": {
+    "mode": "WorldActionMenuOpen",
+    "selected": "draw water",
+    "rows": [
+      {
+        "Display": "draw water",
+        "key": "w",
+        "Command": "DrawWaterAtWell",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "key": "\u0000",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ]
+  },
+  "afterDraw": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 1010,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 53,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": "VisitWaterSourceGoal",
+        "route": "source=covered cistern",
+        "sourceId": "10242",
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 0,
+        "available": false
+      }
+    ]
+  },
+  "nextResidentTurn": {
+    "zone": "Overworld.10.10.0",
+    "x": 42,
+    "y": 17,
+    "tick": 1020,
+    "farmers": [
+      {
+        "ID": "10062",
+        "BlueprintName": "Farmer",
+        "name": "Dovrin Ternfold, farmer",
+        "x": 54,
+        "y": 13,
+        "chance": 100,
+        "currentGoal": "MoveToGoal",
+        "route": "to=(74,10) age=0/200",
+        "sourceId": null,
+        "health": 20
+      }
+    ],
+    "wells": [
+      {
+        "ID": "9981",
+        "BlueprintName": "Well",
+        "name": "fouled well (cracked ring)",
+        "x": 40,
+        "y": 12,
+        "Stock": 0,
+        "available": false
+      },
+      {
+        "ID": "10242",
+        "BlueprintName": "Cistern",
+        "name": "covered cistern",
+        "x": 43,
+        "y": 17,
+        "Stock": 0,
+        "available": false
+      }
+    ]
+  },
+  "emptyMenu": {
+    "mode": "WorldActionMenuOpen",
+    "selected": "examine",
+    "rows": [
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "key": "\u0000",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ]
+  },
+  "tests": {
+    "red": {
+      "total": 53,
+      "passed": 45,
+      "failed": 8,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "final": {
+      "total": 274,
+      "passed": 274,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0
+    }
+  },
+  "startPins": {
+    "archive": "/Users/steven/coo-verification/checkpoints/LocalSillFiltration20261127/Local980/c6079358f8fc4e4d83fd8416612932e3",
+    "files": {
+      "Quick.sav.gz": "814885089b8b0ea1c02ed0bd99be194d7ef28322c76df2533e07941a966c14c5",
+      "Quick.sav.gz.bak": "baa89e5612487c8c58215bfb2c8a22b4e6c61c314ed47e6c977eb4a2e0d72eb1",
+      "Quick.json.bak": "f327ee307be1b7d522dce55b6ca2c6f6563103ab145d2bbadb06503e2681ab34",
+      "Quick.json": "ec90d93b9c11566a754cca406f78c86c1489279c294161c76a6964f22ac081a5"
+    }
+  },
+  "inTransitPins": {
+    "Quick.json": "27d9dba3eca46fd812f6b514b608fc193efac25598ba4bba358c20f69a8b8cb6",
+    "Quick.sav.gz": "4b474b02ed37df2d32cc64298205a36291ca6223a941a4452c899aca71a08504",
+    "Quick.json.bak": "ec90d93b9c11566a754cca406f78c86c1489279c294161c76a6964f22ac081a5",
+    "Quick.sav.gz.bak": "814885089b8b0ea1c02ed0bd99be194d7ef28322c76df2533e07941a966c14c5"
+  },
+  "screenshots": {
+    "01-arrival.png": "0b0a64f0d69628afc4960aaf302c8b7c0dedd51ef3c49bdfba9b2cf0a10c1681",
+    "02-draw.png": "b14f62c9db80c98ce05aacc14e7ee4477db86cb8d9de2ea80e2b528bd83dc192",
+    "03-empty.png": "d13ce21df47bc3cfa394772fb69f35e9a0d6d2fa7d6b65e5d1c4ec383d345a83"
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "editor": {
+    "playing": false,
+    "changing": false,
+    "sceneDirty": false,
+    "saveRoot": null,
+    "seed": 0,
+    "buildChoice": false,
+    "lastScenario": null,
+    "pendingScenario": false,
+    "updateMode": "ProcessEventsInDynamicUpdate",
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices",
+    "ownedKeyboard": false
+  }
+}

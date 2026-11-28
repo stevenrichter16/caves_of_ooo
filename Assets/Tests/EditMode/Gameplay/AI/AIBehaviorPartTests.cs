@@ -175,34 +175,154 @@ namespace CavesOfOoo.Tests
         public void AIWellVisitor_WalksTowardWell()
         {
             var ctx = _harness.CreateContext();
-            ctx.World.PlaceObject("Well").At(20, 12);
+            var well = ctx.World.PlaceObject("Well").At(20, 12);
             var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+            int before = SpatialQuery.Distance(ctx.Zone, farmer, well);
 
             ctx.AdvanceTurns(1);
 
-            ctx.Verify().Entity(farmer).HasGoalOnStack<MoveToGoal>();
+            Assert.Less(SpatialQuery.Distance(ctx.Zone, farmer, well), before);
         }
 
         [Test]
         public void AIWellVisitor_TargetsAdjacentToWell()
         {
             var ctx = _harness.CreateContext();
-            ctx.World.PlaceObject("Well").At(20, 12);
+            var well = ctx.World.PlaceObject("Well").At(20, 12);
             var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
 
-            // Fire AIBored directly so the MoveToGoal stays on top of the stack
-            // (TakeTurn's child-chain would execute and start walking).
-            AIBoredEvent.Check(farmer);
+            AdvanceUntilAdjacent(ctx, farmer, well);
 
+            Assert.AreEqual(1, SpatialQuery.Distance(ctx.Zone, farmer, well));
+        }
+
+        [Test]
+        public void AIWellVisitor_SkipsDryWellAndVisitsCisternWithoutDrinking()
+        {
+            var ctx = _harness.CreateContext();
+            var dryWell = ctx.World.PlaceObject("Well").At(10, 5).GetPart<WellPart>();
+            dryWell.Stock = 0;
+            var cistern = ctx.World.PlaceObject("Cistern").At(5, 14);
+            var supply = cistern.GetPart<WellPart>();
+            int stock = supply.Stock;
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+            var parch = new ParchedEffect();
+            Assert.Greater(stock, 0);
+            Assert.IsTrue(farmer.ApplyEffect(parch, zone: ctx.Zone));
+
+            AdvanceUntilAdjacent(ctx, farmer, cistern);
+
+            Assert.AreEqual(1, SpatialQuery.Distance(ctx.Zone, farmer, cistern));
+            farmer.GetPart<AIWellVisitorPart>().Chance = 0;
+            ctx.AdvanceTurns(2);
+            Assert.AreEqual(stock, supply.Stock);
+            Assert.AreSame(parch, farmer.GetEffect<ParchedEffect>());
+        }
+
+        [Test]
+        public void AIWellVisitor_DryWellDoesNotConsumeBoredEvent()
+        {
+            var ctx = _harness.CreateContext();
+            var well = ctx.World.PlaceObject("Well").At(20, 12).GetPart<WellPart>();
+            well.Stock = 0;
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
+            Assert.AreEqual(0, farmer.GetPart<BrainPart>().GoalCount);
+        }
+
+        [Test]
+        public void AIWellVisitor_BrokenWellDoesNotConsumeBoredEvent()
+        {
+            var ctx = _harness.CreateContext();
+            var well = ctx.World.PlaceObject("Well").At(20, 12);
+            well.AddPart(new RepairablePart());
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
+            Assert.AreEqual(0, farmer.GetPart<BrainPart>().GoalCount);
+        }
+
+        [Test]
+        public void AIWellVisitor_NoReachableApproachDoesNotConsumeBoredEvent()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Well").At(20, 12);
+            for (int y = 0; y < Zone.Height; y++)
+                ctx.World.PlaceObject("StoneWall").At(10, y);
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
+            Assert.AreEqual(0, farmer.GetPart<BrainPart>().GoalCount);
+        }
+
+        [Test]
+        public void AIWellVisitor_RejectsOnlyPassageUntilPoisonGasClears()
+        {
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Well").At(20, 12);
+            for (int y = 0; y < Zone.Height; y++)
+            {
+                if (y != 5)
+                    ctx.World.PlaceObject("StoneWall").At(10, y);
+            }
+            var poison = new Entity { ID = "poison-vapor" };
+            poison.AddPart(new GasPoolPart { GasType = "Poison", Density = 100 });
+            Assert.IsTrue(ctx.Zone.AddEntity(poison, 10, 5));
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
+            Assert.AreEqual(0, farmer.GetPart<BrainPart>().GoalCount);
+
+            ctx.Zone.RemoveEntity(poison);
+            Assert.IsFalse(AIBoredEvent.Check(farmer));
+        }
+
+        [Test]
+        public void AIWellVisitor_EndsVisitWhenSelectedWellRunsDryDuringWalk()
+        {
+            var ctx = _harness.CreateContext();
+            var well = ctx.World.PlaceObject("Well").At(20, 12);
+            var supply = well.GetPart<WellPart>();
+            supply.Stock = 1;
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+            int before = SpatialQuery.Distance(ctx.Zone, farmer, well);
+
+            ctx.AdvanceTurns(1);
+
+            int inTransit = SpatialQuery.Distance(ctx.Zone, farmer, well);
+            Assert.That(inTransit, Is.GreaterThan(1).And.LessThan(before));
+            supply.Stock = 0;
+            var nearbySupply = ctx.World.PlaceObject("Cistern").At(20, 13).GetPart<WellPart>();
+            int stock = nearbySupply.Stock;
+            farmer.GetPart<AIWellVisitorPart>().Chance = 0;
+
+            ctx.AdvanceTurns(1);
+
+            Assert.GreaterOrEqual(SpatialQuery.Distance(ctx.Zone, farmer, well), inTransit);
+            Assert.AreEqual(0, supply.Stock);
+            Assert.AreEqual(stock, nearbySupply.Stock);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AIWellVisitor_PreservesRecruitedFarmersTravelOrder(bool stayHere)
+        {
+            var ctx = _harness.CreateContext();
+            ctx.World.PlaceObject("Well").At(20, 12);
+            var leader = ctx.Spawn("Villager").NotRegisteredForTurns().At(5, 10);
+            var farmer = BuildFarmerWithWellVisitor(ctx, 5, 5, chance: 100);
+            Assert.IsTrue(farmer.ApplyEffect(new RecruitedEffect(leader) { StayHere = stayHere }, leader, ctx.Zone));
             var brain = farmer.GetPart<BrainPart>();
-            ctx.Verify().Entity(farmer).HasGoalOnStack<MoveToGoal>();
+            var follow = brain.PeekGoal();
+            Assert.IsInstanceOf<FollowLeaderGoal>(follow);
+            int before = SpatialQuery.Distance(ctx.Zone, farmer, leader);
 
-            // MoveToGoal coordinates need direct inspection — no verifier for that.
-            var top = brain.PeekGoal() as MoveToGoal;
-            Assert.IsNotNull(top, "Top goal should be MoveToGoal");
-            int dist = AIHelpers.ChebyshevDistance(top.TargetX, top.TargetY, 20, 12);
-            Assert.AreEqual(1, dist,
-                $"MoveToGoal target ({top.TargetX},{top.TargetY}) should be 1 cell from well (20,12)");
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
+            ctx.AdvanceTurns(1);
+
+            Assert.AreSame(follow, brain.PeekGoal());
+            Assert.AreEqual(stayHere ? before : before - 1, SpatialQuery.Distance(ctx.Zone, farmer, leader));
         }
 
         [Test]
@@ -213,7 +333,8 @@ namespace CavesOfOoo.Tests
 
             ctx.AdvanceTurns(1);
 
-            ctx.Verify().Entity(farmer).HasNoGoalOnStack<MoveToGoal>();
+            ctx.Verify().Entity(farmer).IsAt(5, 5);
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
         }
 
         [Test]
@@ -225,7 +346,8 @@ namespace CavesOfOoo.Tests
 
             ctx.AdvanceTurns(20);
 
-            ctx.Verify().Entity(farmer).HasNoGoalOnStack<MoveToGoal>();
+            ctx.Verify().Entity(farmer).IsAt(5, 5);
+            Assert.IsTrue(AIBoredEvent.Check(farmer));
         }
 
         // ========================
@@ -1027,11 +1149,12 @@ namespace CavesOfOoo.Tests
         /// </summary>
         private static Entity BuildFarmerWithWellVisitor(ScenarioContext ctx, int x, int y, int chance)
         {
-            var entity = new Entity { BlueprintName = "TestFarmer" };
+            var entity = new Entity { ID = "test-farmer", BlueprintName = "TestFarmer" };
             entity.Tags["Creature"] = "";
             entity.Tags["Faction"] = "Villagers";
             entity.Tags["AllowIdleBehavior"] = "";
             entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 15, Max = 15 };
+            entity.AddPart(new PhysicsPart { Solid = true });
             entity.AddPart(new BrainPart
             {
                 CurrentZone = ctx.Zone,
@@ -1046,6 +1169,12 @@ namespace CavesOfOoo.Tests
             ctx.Zone.AddEntity(entity, x, y);
             ctx.Turns.AddEntity(entity);
             return entity;
+        }
+
+        private static void AdvanceUntilAdjacent(ScenarioContext ctx, Entity farmer, Entity source)
+        {
+            for (int turns = 0; turns < 20 && SpatialQuery.Distance(ctx.Zone, farmer, source) != 1; turns++)
+                ctx.AdvanceTurns(1);
         }
 
         /// <summary>

@@ -58,8 +58,9 @@ namespace CavesOfOoo.Core
         /// (<see cref="TerrainNavigationWeight.ForStep"/>). The cost respects
         /// supported actor resistances and permits a sole hazardous route.
         /// null (default) preserves searches without hazard weighting.</param>
+        /// <param name="avoidHazards">Reject steps with any actor-specific hazard weight, for optional actions.</param>
         public static FindPath Search(Zone zone, int startX, int startY, int goalX, int goalY,
-            int maxNodes = 2000, bool ignoreCreatures = false, Entity actor = null, Entity contactTarget = null)
+            int maxNodes = 2000, bool ignoreCreatures = false, Entity actor = null, Entity contactTarget = null, bool avoidHazards = false)
         {
             var result = new FindPath { Usable = false, Steps = new List<(int, int)>() };
 
@@ -171,12 +172,11 @@ namespace CavesOfOoo.Core
                             continue; // Can't squeeze diagonally between two walls
                     }
 
-                    // Finite terrain/gas avoidance cost for the complete body.
-                    // Actor-less callers remain unchanged; a sole hazardous
-                    // route can still reach the goal.
-                    int tentativeG = Pool[currentIdx].G + Cost[dir] + doorCost;
-                    if (actor != null && neighborCell != null)
-                        tentativeG += TerrainNavigationWeight.ForStep(zone, nx, ny, actor);
+                    // Ordinary movement may use a hazardous route at a cost.
+                    // Optional trips can restrict this same search to safer steps.
+                    int hazardWeight = actor == null ? 0 : TerrainNavigationWeight.ForStep(zone, nx, ny, actor);
+                    if (avoidHazards && hazardWeight > 0) continue;
+                    int tentativeG = Pool[currentIdx].G + Cost[dir] + doorCost + hazardWeight;
 
                     if (!Pool[neighborIdx].InOpen)
                     {
@@ -235,12 +235,12 @@ namespace CavesOfOoo.Core
 
         /// <summary>Finds any reachable, non-overlapping body contact. One A*
         /// search considers all edges, including when the nearest edge is enclosed.</summary>
-        public static FindPath ToContact(Zone zone,Entity actor,Entity target,int maxNodes=2000)
+        public static FindPath ToContact(Zone zone, Entity actor, Entity target, int maxNodes = 2000, bool avoidHazards = false)
         {
             var from=actor==null ? null : zone?.GetEntityCell(actor);
             var to=target==null ? null : zone?.GetEntityCell(target);
             if(from==null || to==null) return new FindPath {Usable=false,Steps=new List<(int,int)>()};
-            return Search(zone,from.X,from.Y,to.X,to.Y,maxNodes,false,actor,target);
+            return Search(zone, from.X, from.Y, to.X, to.Y, maxNodes, false, actor, target, avoidHazards);
         }
         private static int GoalHeuristic(Zone zone,Entity actor,Entity target,int x,int y,int goalX,int goalY)
         {
