@@ -1,3 +1,10 @@
+**Inventory Tools is grouped by what each tool does — November 28, 2026, America/Chicago.**
+Tools keeps matching copies in the same counted row and gives each tool a
+stable use heading. The same tray checkpoint shows 11 entries at once,
+up from eight. Continued browsing used no turns. The placed tray's
+ordinary Gather still produced one vent scale. 410 focused checks passed.
+[Tools sections and live checks](Verification/MachineSystems/InventoryToolSections20261128/README.md)
+
 **Current Mac app includes Inventory Tools — November 28, 2026, America/Chicago.**
 Runtime 1f4f786c5 verified the Tools tab, shared counted rows
 and ordinary tray Gather on Apple M5. The app contains six universal

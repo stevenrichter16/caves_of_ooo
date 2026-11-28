@@ -9,7 +9,11 @@ namespace CavesOfOoo.Rendering
 {
     public partial class InventoryUI
     {
-        private const int ToolRowsPerPage = 8;
+        private const int ToolListStart = 192;
+        private const int ToolListEnd = 674;
+        private const int ToolRowHeight = 35;
+        private const int ToolHeadingHeight = 22;
+        private const int ToolMaxRows = (ToolListEnd - ToolListStart - ToolHeadingHeight) / ToolRowHeight;
         private const int ToolDetailLinesPerPage = 15;
         private const int ToolDetailGlyphHeight = 18;
         private const int ToolDetailLineHeight = 22;
@@ -87,7 +91,8 @@ namespace CavesOfOoo.Rendering
             _toolEntries = groups.Select(group => new ToolSelection(carried[group.Selected], _toolActor, _toolZone, group.TotalUnits,
                     group.Members.Any(member => member != group.Selected && QuotedToolRecipe(carried[member]) != null)))
                 .Concat(entries.Where(entry => entry.Display == null).Select(entry => new ToolSelection(entry, _toolActor, _toolZone)))
-                .OrderBy(tool => tool.Entry.StorageOwner != null ? 1 : tool.Entry.Cell != null ? 2 : 0)
+                .OrderBy(tool => tool.Entry.Section)
+                .ThenBy(tool => tool.Entry.StorageOwner != null ? 1 : tool.Entry.Cell != null ? 2 : 0)
                 .ThenBy(tool => tool.Entry.Name, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(tool => tool.Entry.Item.ID, StringComparer.Ordinal)
                 .ToArray();
@@ -154,8 +159,8 @@ namespace CavesOfOoo.Rendering
             int count = _toolEntries.Length;
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K)) MoveToolsSelection(-1);
             else if (InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.J)) MoveToolsSelection(1);
-            else if (InputHelper.GetKeyDown(KeyCode.PageUp)) MoveToolsSelection(-ToolRowsPerPage);
-            else if (InputHelper.GetKeyDown(KeyCode.PageDown)) MoveToolsSelection(ToolRowsPerPage);
+            else if (InputHelper.GetKeyDown(KeyCode.PageUp)) MoveToolsSelection(_toolScroll - ToolPageEnd(_toolScroll));
+            else if (InputHelper.GetKeyDown(KeyCode.PageDown)) MoveToolsSelection(ToolPageEnd(_toolScroll) - _toolScroll);
             else if (InputHelper.GetKeyDown(KeyCode.Home)) SelectToolRow(0);
             else if (InputHelper.GetKeyDown(KeyCode.End)) SelectToolRow(count - 1);
             else return;
@@ -167,47 +172,93 @@ namespace CavesOfOoo.Rendering
             EnsureToolsData();
             LFrame(ToolListPane, LBorder, LPanel);
             LFrame(ToolDetailPane, LBorder, LPanel);
-            LLabel(new Rect(40, 152, 400, 24), "Processing tools", LGold, 24);
+            LLabel(new Rect(40, 152, 330, 24), "Tools by use", LGold, 24);
             LSecondaryButton(new Rect(384, 145, 114, 28), _inventoryUngrouped ? "G: All copies" : "G: Grouped", LedgerHitKind.PackGrouping, 0);
             LBox(new Rect(36, 181, 464, 1), LBorder);
             if (_toolEntries.Length == 0)
             {
-                PaintToolText(new Rect(40, 204, 450, 72), "You have no processing tools in your pack, in carried storage, or nearby.", LMuted, 20, 3);
+                PaintToolText(new Rect(40, 204, 450, 72), "You have no tools in your pack, in carried storage, or nearby.", LMuted, 20, 3);
                 return;
             }
 
-            _toolScroll = LSecondaryFirstIndex(_toolScroll, _toolCursorIndex, _toolEntries.Length, ToolRowsPerPage);
-            int end = Math.Min(_toolEntries.Length, _toolScroll + ToolRowsPerPage);
-            for (int i = _toolScroll; i < end; i++) RenderToolRow(i);
-            if (_toolEntries.Length > ToolRowsPerPage)
-                LSecondaryRange(new Rect(40, 677, 456, 18), _toolScroll, ToolRowsPerPage, _toolEntries.Length);
+            _toolScroll = Mathf.Clamp(_toolScroll, Mathf.Max(0, _toolCursorIndex - ToolMaxRows + 1), _toolCursorIndex);
+            while (ToolPageEnd(_toolScroll) <= _toolCursorIndex) _toolScroll++;
+            while (_toolScroll > 0 && ToolPageEnd(_toolScroll - 1) == _toolEntries.Length) _toolScroll--;
+
+            int end = ToolPageEnd(_toolScroll);
+            int y = ToolListStart;
+            for (int i = _toolScroll; i < end; i++)
+            {
+                if (ToolStartsSection(i, _toolScroll))
+                {
+                    RenderToolHeading(_toolEntries[i].Entry.Section, y);
+                    y += ToolHeadingHeight;
+                }
+                RenderToolRow(i, y);
+                y += ToolRowHeight;
+            }
+            if (_toolScroll > 0 || end < _toolEntries.Length)
+                LSecondaryRange(new Rect(40, 677, 456, 18), _toolScroll, end - _toolScroll, _toolEntries.Length);
 
             RenderSelectedTool(_toolEntries[_toolCursorIndex].Entry);
         }
 
-        private void RenderToolRow(int index)
+        private bool ToolStartsSection(int index, int first)
+            => index == first || _toolEntries[index].Entry.Section != _toolEntries[index - 1].Entry.Section;
+
+        private int ToolPageEnd(int first)
+        {
+            int i = first;
+            int y = ToolListStart;
+            for (; i < _toolEntries.Length; i++)
+            {
+                // Reserve space for the next heading along with its first row.
+                y += ToolRowHeight + (ToolStartsSection(i, first) ? ToolHeadingHeight : 0);
+                if (y > ToolListEnd) break;
+            }
+            return i;
+        }
+
+        private void RenderToolHeading(InventoryToolsData.ToolSection section, int y)
+        {
+            LLabel(new Rect(48, y + 1, 442, 18), InventoryToolsData.SectionHeading(section), LGold, 18);
+            LBox(new Rect(36, y + ToolHeadingHeight - 2, 464, 1), LBorder);
+        }
+
+        private void RenderToolRow(int index, int y)
         {
             var tool = _toolEntries[index];
             var entry = tool.Entry;
-            var row = new Rect(36, 192 + (index - _toolScroll) * 59, 464, 55);
+            var row = new Rect(36, y, 464, ToolRowHeight - 2);
             bool selected = index == _toolCursorIndex;
             LBox(row, selected ? LSelected : LBackground);
             if (selected) LBox(new Rect(row.x, row.y, 3, row.height), LGold);
 
             var icon = InventoryItemIcons.For(entry.Item);
-            float x = row.x + 12;
+            float x = row.x + 8;
             if (icon != null)
             {
-                LBox(new Rect(x, row.y + 13, 28, 28), Color.white, icon);
-                x += 38;
+                LBox(new Rect(x, row.y + 4, 24, 24), Color.white, icon);
+                x += 31;
             }
-            float nameWidth = row.xMax - x - 12;
+            float statusX = row.xMax - 124;
+            float nameWidth = statusX - x - 8;
             string name = tool.Units > 1 ? entry.Name + " x" + tool.Units : entry.Name;
-            if (entry.Display?.State is { Length: > 0 } state) name += " [" + state + "]";
-            PaintToolText(new Rect(x, row.y + 5, nameWidth, 24), name, selected ? LGold : LInk, 23, 1);
-            PaintToolText(new Rect(x, row.y + 33, nameWidth - 140, 18), entry.Location, LMuted, 16, 1);
+            var nameColor = selected ? LGold : LInk;
+            if (entry.Display?.State is { Length: > 0 } state)
+            {
+                PaintToolText(new Rect(x, row.y, nameWidth, 21), name, nameColor, 19, 1);
+                PaintToolText(new Rect(x, row.y + 18, nameWidth, 14), state, LMuted, 14, 1);
+            }
+            else
+                PaintToolText(new Rect(x, row.y + 5, nameWidth, 24), name, nameColor, 21, 1);
             ToolReadiness(entry, out string status, out Color statusColor);
-            PaintToolText(new Rect(row.xMax - 138, row.y + 33, 128, 18), status, statusColor, 16, 1);
+            PaintToolText(new Rect(statusX, row.y + 1, 116, 16), status, statusColor, 15, 1);
+            string location = entry.Cell != null
+                ? (HeldFixtureActions.IsPlayerHeld(entry.Item) ? "Placed nearby" : "Nearby station")
+                : entry.StorageOwner != null ? InventoryPart.GetUnitDisplayName(entry.StorageOwner)
+                : entry.Display.IsEquipped ? "Equipped" : "In pack";
+            PaintToolText(new Rect(statusX, row.y + 17, 116, 15), location, LMuted, 14, 1);
             LHit(row, LedgerHitKind.ToolRow, index);
         }
 

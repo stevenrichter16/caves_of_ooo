@@ -6,11 +6,114 @@ using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
+using UnityEngine.InputSystem;
 
 namespace CavesOfOoo.Tests
 {
     public sealed partial class InventoryLedgerInteractionTests
     {
+        [TestCase("Scraper", "Gathering & processing")]
+        [TestCase("HandSieve", "Gathering & processing")]
+        [TestCase("CampSettlingTray", "Gathering & processing")]
+        [TestCase("Hatchet", "Gathering & processing")]
+        [TestCase("CampBench", "Crafting & repair")]
+        [TestCase("CampTrough", "Crafting & repair")]
+        [TestCase("CampStill", "Brewing & treatment")]
+        [TestCase("LiquidFlask", "Water & liquids")]
+        [TestCase("HandPump", "Water & liquids")]
+        [TestCase("SteamCondenser", "Water & liquids")]
+        [TestCase("Torch", "Fire & light")]
+        [TestCase("FlintStriker", "Fire & light")]
+        [TestCase("CampHearth", "Camp & hauling")]
+        [TestCase("CargoSled", "Camp & hauling")]
+        [TestCase("SoundingRod", "Exploration & surveying")]
+        [TestCase("HandBellows", "Exploration & surveying")]
+        [TestCase("HushStrip", "Exploration & surveying")]
+        [TestCase("SpringTrap", "Traps & fishing")]
+        [TestCase("CampFishTrap", "Traps & fishing")]
+        public void ToolsUseSectionsNameTheWorkOfAuthoredTools(string blueprint, string heading)
+        {
+            using var r = new Rig();
+            CountedCarry(r, blueprint);
+            r.Open(); r.Tab(6);
+            Assert.That(r.Labels().Count(label => label.Content == heading), Is.EqualTo(1));
+            Assert.That(r.Hits().Count(hit => Kind(hit) == "ToolRow"), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ToolsUseSectionsTogetherKeepPackedAndPlacedTrayAndTheirExactOwners()
+        {
+            using var input = new NativeNavigationScope();
+            using var r = new Rig();
+            CountedCarry(r, "CampSettlingTray");
+            CountedCarry(r, "CampSettlingTray");
+            CountedCarry(r, "LiquidFlask");
+            var nearby = PlaceToolsFixture(r, "CampSettlingTray", 11, 10, true);
+
+            r.Open(); r.Tab(6);
+            var heading = r.Labels().Single(label => label.Content == "Gathering & processing");
+            var nextHeading = r.Labels().Single(label => label.Content == "Water & liquids");
+            Assert.That(r.HitAtScreen(r.ToScreen(r.BoundsOf(heading).center)), Is.EqualTo(-1));
+            var hits = r.Hits().Where(hit => Kind(hit) == "ToolRow").ToArray();
+            Assert.That(hits.Length, Is.EqualTo(3));
+            Assert.That(Bounds(hits[0]).y, Is.GreaterThan(r.BoundsOf(heading).y));
+            Assert.That(Bounds(hits[1]).yMax, Is.LessThanOrEqualTo(r.BoundsOf(nextHeading).y));
+            Assert.That(r.Labels().Any(label => label.Content.Contains("settling tray x2")), Is.True);
+
+            input.Keys(Key.DownArrow);
+            r.UI.HandleInput();
+            Assert.That(Get(r.UI, "_selectedTool"), Is.SameAs(nearby));
+            r.ActivatePainted(r.Hits().Single(hit => Kind(hit) == "PackGrouping"));
+            Assert.That(Get(r.UI, "_selectedTool"), Is.SameAs(nearby));
+            Assert.That(r.Hits().Count(hit => Kind(hit) == "ToolRow"), Is.EqualTo(4));
+            Assert.False(r.UI.ConsumePendingEverydayTurn());
+        }
+
+        [Test]
+        public void ToolsUseSectionsStayWithVisibleRowsWhenScrollingWithinALongSection()
+        {
+            using var registry = new PublicStateRegistryScope();
+            using var input = new NativeNavigationScope();
+            using var r = new Rig();
+            CountedCarry(r, "Scraper");
+            for (int fill = 0; fill < 12; fill++)
+                CountedCarry(r, volume: fill, liquid: fill == 0 ? "" : "water");
+            var last = CountedCarry(r, "SpringTrap");
+
+            r.Open(); r.Tab(6);
+            input.Keys(Key.End);
+            r.UI.HandleInput();
+            Assert.That(Get(r.UI, "_selectedTool"), Is.SameAs(last));
+            Assert.That(r.Labels().Any(label => label.Content == "Water & liquids"), Is.True);
+            Assert.That(r.Labels().Any(label => label.Content == "Traps & fishing"), Is.True);
+            r.FindHit("ToolRow", 13);
+            Assert.That(r.Hits().Where(hit => Kind(hit) == "ToolRow").All(hit => Bounds(hit).yMax < 677), Is.True);
+            input.Keys(Key.Home);
+            r.UI.HandleInput();
+            Assert.That(r.Labels().Any(label => label.Content == "Gathering & processing"), Is.True);
+            r.FindHit("ToolRow", 0);
+            Assert.False(r.UI.ConsumePendingEverydayTurn());
+        }
+
+        [Test]
+        public void ToolsUseSectionsFitAtLeastTenToolsFromSeveralSectionsWithoutOverlapping()
+        {
+            using var r = new Rig();
+            foreach (string blueprint in new[]
+            {
+                "Scraper", "HandSieve", "CampSettlingTray", "Hatchet",
+                "CampBench", "CampTrough", "CampStill", "LiquidFlask",
+                "HandPump", "SteamCondenser", "Torch", "FlintStriker", "CargoSled"
+            })
+                CountedCarry(r, blueprint);
+            r.Open(); r.Tab(6);
+            var rows = r.Hits().Where(hit => Kind(hit) == "ToolRow").Select(Bounds).OrderBy(rect => rect.y).ToArray();
+            Assert.That(rows.Length, Is.GreaterThanOrEqualTo(10));
+            Assert.That(rows[^1].yMax, Is.LessThan(677));
+            for (int i = 1; i < rows.Length; i++)
+                Assert.That(rows[i].y, Is.GreaterThanOrEqualTo(rows[i - 1].yMax));
+        }
+
         [Test]
         public void ToolsTabFindsToolsAcrossExistingCategoriesWithoutReclassifyingThePack()
         {

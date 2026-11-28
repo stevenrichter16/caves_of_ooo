@@ -9,6 +9,11 @@ namespace CavesOfOoo.Rendering
     /// physical tools, workpieces and world action owners as the ordinary menus.</summary>
     internal static class InventoryToolsData
     {
+        internal enum ToolSection
+        {
+            Gathering, Crafting, Brewing, Liquids, Fire, Camp, Exploration, Traps, Other
+        }
+
         internal sealed class Entry
         {
             public Entity Item { get; }
@@ -16,6 +21,7 @@ namespace CavesOfOoo.Rendering
             public Cell Cell { get; }
             public Entity StorageOwner { get; }
             public string Name { get; }
+            public ToolSection Section { get; }
             public string Location { get; }
             public IReadOnlyList<string> Guidance { get; }
             public IReadOnlyList<Operation> Operations { get; }
@@ -29,11 +35,66 @@ namespace CavesOfOoo.Rendering
                 Cell = cell;
                 StorageOwner = storageOwner;
                 Name = InventoryPart.GetUnitDisplayName(item);
+                Section = SectionFor(item);
                 Location = location;
                 Guidance = guidance;
                 Operations = operations;
                 HasRecipes = hasRecipes;
             }
+        }
+
+        internal static string SectionHeading(ToolSection section) => section switch
+        {
+            ToolSection.Gathering => "Gathering & processing",
+            ToolSection.Crafting => "Crafting & repair",
+            ToolSection.Brewing => "Brewing & treatment",
+            ToolSection.Liquids => "Water & liquids",
+            ToolSection.Fire => "Fire & light",
+            ToolSection.Camp => "Camp & hauling",
+            ToolSection.Exploration => "Exploration & surveying",
+            ToolSection.Traps => "Traps & fishing",
+            _ => "Other tools"
+        };
+
+        // A consistent home for each tool. Placement, contents, readiness and
+        // whichever recipes are currently possible do not change that home.
+        private static ToolSection SectionFor(Entity item)
+        {
+            bool Owns<T>() where T : Part => item.GetPart<T>()?.ParentEntity == item;
+            var fieldTool = item.GetPart<FieldWorkToolPart>();
+            string fieldKind = fieldTool?.ParentEntity == item ? fieldTool.Kind : null;
+
+            if (Owns<ScraperPart>() || Owns<ScreeningToolPart>() || Owns<SettlingTrayPart>() || Owns<CuttingToolPart>())
+                return ToolSection.Gathering;
+            if (Owns<LiquidVesselPart>() || Owns<WaterskinPart>() || Owns<DirectLiquidPumpPart>() || fieldKind == "water")
+                return ToolSection.Liquids;
+            if (Owns<TorchLightPart>() || Owns<FlintStrikerPart>() || fieldKind == "heat")
+                return ToolSection.Fire;
+            if (Owns<SpringTrapKitPart>() || Owns<FishTrapPart>())
+                return ToolSection.Traps;
+            if (Owns<SoundingRodPart>() || Owns<DirectedAirPart>() || Owns<LayableDevicePart>() || fieldKind == "shock")
+                return ToolSection.Exploration;
+            if (Owns<SteepTroughPart>()) return ToolSection.Crafting;
+
+            var stationSection = ToolSection.Other;
+            foreach (var part in item.Parts)
+            {
+                if (part?.ParentEntity != item || part is not IStationCapability { Kinds: { } kinds }) continue;
+                foreach (var kind in kinds)
+                {
+                    var section = kind switch
+                    {
+                        SeedFramePart.Kind => ToolSection.Gathering,
+                        "forge" or "cold-work" or AnvilWorkPart.Kind => ToolSection.Crafting,
+                        "still" => ToolSection.Brewing,
+                        _ => ToolSection.Other
+                    };
+                    if (section < stationSection) stationSection = section;
+                }
+            }
+            if (stationSection != ToolSection.Other) return stationSection;
+            if (Owns<PackableFixturePart>() || Owns<CargoSledPart>()) return ToolSection.Camp;
+            return ToolSection.Other;
         }
 
         internal sealed class Operation

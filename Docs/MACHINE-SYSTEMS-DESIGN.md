@@ -4,6 +4,12 @@ from the underlying Parts. Material-owned quotes record the exact tool
 that the real work uses. Stowed tools use ordinary withdrawal and
 nearby installations open ordinary Interact for the visible exact
 owner. The work menu still owns validation, payment and time.
+The list groups equipment by its primary practical use. Public Parts
+and station capabilities give each tool a stable section. The detail
+pane preserves its full set of uses. A portable and a placed version
+of the same tool share a section. Category headings take less space
+than tool rows, and a scrolled list starts with its current heading.
+Categories stay outside the inventory grouping and action rules.
 [Tools design and play](Verification/MachineSystems/InventoryTools20261128/README.md)
 
 **A finite regional reagent has a still and ordinary brewing route.**
