@@ -32,3 +32,14 @@ Independent review checked source, state transitions and the measured
 view. The actual Tally route here was played in the Editor.
 
 [Observed labels, preserved state and test totals](observations.json)
+
+## Current Mac app
+
+The Apple M5 package loaded the same saved Tally approach. Ordinary
+Interact, Chat, the weapons rack and Trade all opened in sequence.
+Closing Trade returned to the world. The saved loan state, normal
+saves and preferences, and thirteen retained builds matched their
+recorded files. The universal package passed startup and gameplay
+on Apple M5. Physical Intel and Steam Deck were outside this pass.
+
+[Standalone conversation](06-mac-rack.png) · [Package and play receipt](mac-package.json)

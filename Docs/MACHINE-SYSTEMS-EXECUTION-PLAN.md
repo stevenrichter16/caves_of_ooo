@@ -1,3 +1,11 @@
+**Current Mac package with the redesigned conversation popup — November 28, 2026, America/Chicago.**
+Runtime cbfd12321. Apple M5 ordinary Continue opened Darret’s new
+greeting, rack and Trade, then returned to the world. The app was
+built from 32,316 committed inputs, with zero errors, four warnings
+and six universal binaries. Thirteen earlier apps, both normal
+save roots and both preference files matched their recorded hashes.
+[Standalone screenshot and receipt](Verification/MachineSystems/DialogueLedgerPopup20261128/mac-package.json)
+
 **Conversation popup uses the inventory and trade style — November 28, 2026, America/Chicago.**
 The current dialogue renderer shows the existing speaker portrait, full
 faction name, measured speech and clearly separated replies. Ordinary
