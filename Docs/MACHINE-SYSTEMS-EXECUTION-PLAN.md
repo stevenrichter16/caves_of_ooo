@@ -1,3 +1,14 @@
+**Peat Works pump discharge supplies fire clay and torch oil — November 28, 2026, America/Chicago.**
+The pump points to recovery at the outlet, and the flask shows its
+actual draw and remainder. An ordinary traveler forged the pump at
+Sill, moved twelve mire into a new Peat Works outlet, filled the exact
+flask there and crossed the cleared step. Eight mire became fire clay.
+Four became oil, which added 25 fuel to the same torch. Fresh Continue
+kept the clay, equipment, final fuel and dry cells. All 349 targeted
+cases across the pump and popup changes passed. Current Mac packaging
+remains a separate milestone.
+[Complete Peat Works route and checks](Verification/MachineSystems/PeatPumpedMire20261128/README.md)
+
 **World actions name the object you selected — November 28, 2026, America/Chicago.**
 The Sill tile held a gremlin and the original settling pocket. Selecting
 the pocket now names the pocket. F1 describes it and returns to the

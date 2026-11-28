@@ -229,8 +229,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0,Count("FireClay"));Assert.AreEqual(0,Count("LeatherBindingComponent"));Assert.AreEqual(0,Count("IronSpikeComponent"));
         }
 
-        [TestCase(false)] [TestCase(true)]
-        public void PeatWorksGapCanBeClearedWithAnOrdinaryFlaskOrPump(bool pumping)
+        OverworldZoneManager EnterPeatWorks()
         {
             var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
             Assert.True(Zone.RemoveEntity(Actor));
@@ -239,7 +238,13 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.ActiveZone = Zone;
             foreach (var cell in Zone.Cells) { cell.IsVisible = true; cell.Explored = true; }
             Assert.True(Zone.AddEntity(Actor, 52, 2));
+            return manager;
+        }
 
+        [TestCase(false)] [TestCase(true)]
+        public void PeatWorksGapCanBeClearedWithAnOrdinaryFlaskOrPump(bool pumping)
+        {
+            var manager = EnterPeatWorks();
             var sources = Zone.GetReadOnlyEntities().Where(e => e.BlueprintName == "PouredLiquidPool").ToArray();
             Assert.That(sources, Has.Length.EqualTo(2));
             var source = sources.Single(e => Zone.GetEntityPosition(e) == (52, 3));
@@ -251,9 +256,17 @@ namespace CavesOfOoo.Tests
             Assert.False(Zone.TileState.Has(54, 10), "The regular door must stay dry.");
 
             var tool = pumping ? Tool() : Flask(0);
-            string command = pumping
-                ? Choice(tool, "PumpLiquid|" + source.ID + "|", row => row.Display.Contains("to 53,2"))
-                : Choice(tool, "FillLiquidVessel|" + Id(source) + "|");
+            string command;
+            if (pumping)
+            {
+                var row = CellMenu(52, 3).Single(a => a.Via == tool && a.Command.StartsWith("PumpLiquid|" + source.ID + "|53|2|"));
+                Assert.AreEqual(ActionTime.OneAction, row.Time);
+                StringAssert.StartsWith("One action.", row.Hint);
+                StringAssert.Contains("Outlet hazards remain.", row.Hint);
+                StringAssert.Contains("Fill a compatible flask at the outlet while it is liquid.", row.Hint);
+                command = row.Command;
+            }
+            else command = Choice(tool, "FillLiquidVessel|" + Id(source) + "|");
             Assert.True(Act(tool, command));
             Assert.False(Act(tool, command), "The committed source was removed.");
             Assert.False(Zone.GetReadOnlyEntities().Contains(source));
@@ -277,6 +290,60 @@ namespace CavesOfOoo.Tests
             Assert.That(loaded.GetCell(52, 3).Objects.Any(e => e.HasPart<LiquidPoolPart>()), Is.False);
             Assert.False(loaded.TileState.HasCoating(52, 3, "bog-mire"));
             Assert.AreEqual(pumping, loaded.TileState.HasCoating(53, 2, "bog-mire"));
+        }
+
+        [TestCase(0)]
+        [TestCase(5)]
+        public void PeatWorksFlaskRowDrawsTheQuotedAmountFromTheExactPumpOutlet(int flaskVolume)
+        {
+            EnterPeatWorks();
+            var source = Zone.GetCell(52, 3).Objects.Single(e => e.HasPart<LiquidPoolPart>());
+            var sibling = Zone.GetCell(51, 3).Objects.Single(e => e.HasPart<LiquidPoolPart>());
+            var siblingPool = sibling.GetPart<LiquidPoolPart>();
+            var pump = Tool();
+            var flask = Flask(flaskVolume, "bog-mire");
+            var waterFlask = Flask(1);
+            Assert.IsEmpty(CellMenu(53, 2).Where(a => a.Name == "FillLiquid"));
+
+            var stroke = CellMenu(52, 3).Single(a => a.Via == pump && a.Command.StartsWith("PumpLiquid|" + source.ID + "|53|2|"));
+            Assert.True(ChooseRow(stroke, 52, 3));
+            Assert.IsNull(Zone.GetEntityCell(source));
+            Assert.False(Zone.TileState.HasCoating(52, 3, "bog-mire"));
+            Assert.True(Zone.GetCell(52, 3).IsPassable());
+
+            var outlet = Zone.GetCell(53, 2).Objects.Single(e => e.HasPart<LiquidPoolPart>());
+            var outletPool = outlet.GetPart<LiquidPoolPart>();
+            Assert.AreNotEqual(source.ID, outlet.ID);
+            Assert.AreEqual("bog-mire", outletPool.LiquidId);
+            Assert.AreEqual(12, outletPool.Volume);
+            Assert.True(Zone.TileState.HasCoating(53, 2, "bog-mire"));
+
+            var fill = CellMenu(53, 2).Single(a => a.Name == "FillLiquid");
+            string command = "FillLiquidVessel|" + Id(outlet) + "|bog-mire";
+            Assert.AreSame(flask, fill.Via);
+            Assert.AreEqual(command, fill.Command);
+            Assert.AreEqual(ActionTime.OneAction, fill.Time);
+            Assert.AreEqual(ToolGroups.Fill, fill.Group);
+            CollectionAssert.AreEqual(new[] { (53, 2) }, fill.TargetCells);
+            Assert.True(fill.Display.StartsWith("fill with bog mire (53,2)"));
+            string hint = $"Draw {12 - flaskVolume} bog mire. {flaskVolume} left in the source.";
+            Assert.AreEqual(hint, fill.Hint);
+            Assert.AreEqual(hint, Actions(flask).Single(a => a.Command == command).Hint);
+            Assert.True(ChooseRow(fill, 53, 2));
+
+            Assert.AreEqual(12, Units(flask));
+            Assert.AreEqual("bog-mire", flask.GetPart<LiquidVesselPart>().LiquidId);
+            Assert.AreEqual(1, Units(waterFlask));
+            Assert.AreEqual("water", waterFlask.GetPart<LiquidVesselPart>().LiquidId);
+            Assert.AreEqual(flaskVolume, outletPool.Volume);
+            Assert.AreSame(flaskVolume == 0 ? null : Zone.GetCell(53, 2), Zone.GetEntityCell(outlet));
+            Assert.AreEqual(flaskVolume > 0, Zone.TileState.HasCoating(53, 2, "bog-mire"));
+            Assert.IsEmpty(CellMenu(53, 2).Where(a => a.Name == "FillLiquid"));
+            Assert.AreSame(sibling, Zone.GetCell(51, 3).Objects.Single(e => e.HasPart<LiquidPoolPart>()));
+            Assert.AreSame(siblingPool, sibling.GetPart<LiquidPoolPart>());
+            Assert.AreEqual("bog-mire", siblingPool.LiquidId);
+            Assert.AreEqual(12, siblingPool.Volume);
+            Assert.True(Zone.TileState.HasCoating(51, 3, "bog-mire"));
         }
 
         [TestCase("old")] [TestCase("missing")] [TestCase("altered")]

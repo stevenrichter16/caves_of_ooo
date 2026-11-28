@@ -11,6 +11,15 @@ to an ordinary lit torch. Two bakes made the original rig usable
 through the same lining-clay repair used by the Wayside purchase.
 [Local supply and fresh Continue](Verification/MachineSystems/PeatWorksPortableClay20261128/README.md)
 
+**Pump outlets point back to ordinary flask collection.**
+The pump’s action and tool guide explain how to recover moved liquid
+at the outlet. The ordinary Fill row in the world and pack menus shows
+how much will fit and how much will stay in the selected pool. The same
+live source checks still govern the draw. Partial fills leave usable
+stock behind. A full fill removes the exact transient pool under its
+existing rules. Hazard and terrain behavior still follow the outlet.
+[Peat Works outlet and still](Verification/MachineSystems/PeatPumpedMire20261128/README.md)
+
 **Inventory Tools exposes the mechanics on current equipment.**
 The Tools tab shows location, current operations and authored guidance
 from the underlying Parts. Material-owned quotes record the exact tool

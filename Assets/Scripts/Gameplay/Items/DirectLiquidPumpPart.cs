@@ -10,6 +10,7 @@ namespace CavesOfOoo.Core
     {
         public override string Name=>"DirectLiquidPump";
         public const int StrokeVolume=20;
+        const string RecoverAtOutlet = "One action. Fill a compatible flask at the outlet while it is liquid.";
         public int Order=>40;
         public bool OwnsInventoryReceipt(string command)=>ParentEntity?.GetPart<DirectLiquidPumpPart>()==this
             && command?.StartsWith("PumpLiquid|",StringComparison.Ordinal)==true;
@@ -24,6 +25,7 @@ namespace CavesOfOoo.Core
         public void DescribeUse(DescribeContext context,UseGuide guide)
         {
             guide.How.Add("Stand one cardinal step from both a finite pool or released oil tray and a clear outlet. Carry the sound pump and choose the source and outlet shown.");
+            guide.How.Add("To recover what you moved, stand beside the liquid at the outlet, press C toward it and choose Fill. A flask needs room and must be empty or hold the same liquid.");
             guide.Needs.Add("visible short hose ends, an admitted inlet and bare floor or one matching pool at the outlet");
             guide.Limits.Add("One action moves up to 20 units. Liquid remains hazardous at its outlet. Empty pools disappear, while an emptied tray stays in place for clean recovery.");
             guide.Limits.Add("The outlet follows its own temperature and terrain rules.");
@@ -91,8 +93,7 @@ namespace CavesOfOoo.Core
                     yield return new RouteWorkMenu.Entry{Actor=actor,Zone=zone,Cell=from,
                         Key="PumpLiquid|"+source.ID+"|"+to.X+"|"+to.Y,
                         Label="pump "+amount+" "+stock.Liquid+(tray?" from tray at ":" from ")+from.X+","+from.Y+" to "+to.X+","+to.Y,
-                        Hint=tray?"One action. The tray and any contents stay in place. Oil remains hazardous at the outlet."
-                            :"One action. Keep the pump. Dangerous liquid stays dangerous at the outlet.",
+                        Hint=RecoverAtOutlet + (tray ? " The tray stays. Oil remains hazardous." : " Outlet hazards remain."),
                         Claims=destination==null?new[]{source}:new[]{source,destination},Before=Before,After=After,Apply=tx=>
                         {
                             if(!Before())return false;

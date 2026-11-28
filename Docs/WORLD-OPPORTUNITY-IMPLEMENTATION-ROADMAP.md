@@ -65,6 +65,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+**Second pass across #11–14 and #36.** The pump menu points to
+ordinary flask recovery at the outlet. Fill previews the eligible
+amount and what stays in the pool. At Peat Works the moved mire
+cleared a shortcut and yielded one clay plus one oil after recovery
+and portable still work. Direct flask collection and the dry detour
+offer other ways through.
+[Peat Works physical loop](Verification/MachineSystems/PeatPumpedMire20261128/README.md)
+
 **Second pass on #36.** Tile summaries keep their overview, and an
 action menu for one selected object names that object. In the Sill
 playtest, the settling pocket’s gravel row and details kept the same
@@ -1521,7 +1529,7 @@ each finding and implement the most valuable improvements in connected slices.
 | Environment | A local use for the shared systems |
 | --- | --- |
 | **Spread riverbanks and farms** | Sill’s exposed gravel can give filtration sand and footing grit. A second use for the same grades would be a farm approach where the traveler can carry small loads by the dry path, scatter grit over a short slick, or arrange one heavier delivery once the same footing is safe. |
-| **Sodden peat and raised settlements** | At Peat Works a flask or pump can expose the short passage and a dry detour stays open. Follow the exact pumped mire into a flask for repair clay and torch oil. A raised loading point can make a nearby delivery worthwhile even while the lower approach is wet. |
+| **Sodden peat and raised settlements** | At Peat Works a flask or pump can clear a mire-covered shortcut and a dry detour stays open. The player recovered the exact pumped mire in a flask and made clay and torch oil. A raised loading point could make a nearby delivery worthwhile while the lower approach is wet. |
 | **Beating salt and exposed routes** | A dry brine rim gives one useful flake independently of a nearby pool. A walker can skim loose crust from a natural pool or take brine to a still for two water or one water and crust. An awning that already gives a wayfarer shade could also shelter a dry place to sort and pack. A shaded route and smaller hand-carried batches remain practical. |
 | **Grovelands and tended growth** | A visibly ripe grove gives a finite choice. Carry fruit to a public still, bring a portable preparation route where it is permitted, or buy the finished preparation. Local harvesting permissions and the existing mending-tonic consequence make resupply feel different from taking rock or scrap. |
 | **Stump pools, spray and exposed shelves** | A visible shoreline ring points to food. Clearing a slick with prismreed pith, steadying a selected step with grit, or bracing at a real handhold can make a closer work spot practical. A dry detour and ordinary purchased food can serve the same trip. |

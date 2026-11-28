@@ -54,8 +54,11 @@ namespace CavesOfOoo.Core
                     if (!canDrawPool || ValidSource(zone, actor, source, pool, part) != null) continue;
                     string name = LiquidRegistry.Get(pool.LiquidId).DisplayName ?? pool.LiquidId;
                     var at = zone.GetEntityPosition(source);
-                    actions.AddAction("FillLiquid", "fill with " + name + " (" + at.x + "," + at.y + ")",
-                        FillPrefix + Encode(source.ID) + "|" + Encode(pool.LiquidId), '\0', 19).AtEntity(zone, source).InGroup(ToolGroups.Fill);
+                    int amount = Math.Min(part.Capacity - part.Volume, pool.Volume);
+                    actions.AddActionWithHint("FillLiquid", "fill with " + name + " (" + at.x + "," + at.y + ")",
+                        FillPrefix + Encode(source.ID) + "|" + Encode(pool.LiquidId),
+                        $"Draw {amount} {name}. {pool.Volume - amount} left in the source.", '\0', 19)
+                        .AtEntity(zone, source).InGroup(ToolGroups.Fill);
                 }
             }
             if (part.Volume == 0) return;
