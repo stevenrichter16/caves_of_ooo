@@ -54,6 +54,8 @@ the existing detox recipe. A paid fruit and ordinary brewing made
 a 2d4 tonic. Its effect, exact custody and the refusal to spend the
 remaining raw material separate safe processing from a raw preview.
 [Actual Fen source, Sill still and mending tonic](Verification/MachineSystems/GrovelandsRedDetox20261128/README.md)
+The growth’s Examine now teaches this route before the player commits
+to harvest. [Actual clue](Verification/MachineSystems/GrovelandsStillClue20261128/README.md)
 
 For #36–#40, the usual Lampwell stairs and walking route reach a
 finite natural Glow-Quartz vein. The player can spend one piece

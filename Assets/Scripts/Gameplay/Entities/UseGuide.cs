@@ -72,13 +72,14 @@ namespace CavesOfOoo.Core
             if (owner == null || into == null) return false;
             var parts = owner.Parts; var users = new List<(int order, int index, IDescribeUse part)>();
             for (int i = 0; i < parts.Count; i++) if (parts[i] is IDescribeUse use) users.Add((SafeOrder(use), i, use));
-            if (users.Count == 0) return false;
+            if (users.Count == 0 && owner.BlueprintName != "GroveRedGrowth") return false;
             users.Sort((a, b) => a.order != b.order ? a.order.CompareTo(b.order) : a.index.CompareTo(b.index));
             viewer = viewer ?? CarrierOf(owner);
             zone = zone ?? owner.SpatialZone ?? viewer?.SpatialZone;
             cell = cell ?? (zone != null ? zone.GetEntityCell(owner) ?? zone.GetEntityCell(viewer) : null);
             var context = new DescribeContext { Owner = owner, Zone = zone, Cell = cell, Viewer = viewer, Full = false };
             var guide = new UseGuide();
+            AddGroveRedGuide(context, guide);
             for (int i = 0; i < users.Count; i++)
             {
                 try { users[i].part.DescribeUse(context, guide); }
@@ -91,13 +92,33 @@ namespace CavesOfOoo.Core
             if (guide.How.Count > 0) into.Add(HowLabel + string.Join(" ", guide.How));
             if (guide.Needs.Count > 0) into.Add(NeedsLabel + Sentence(string.Join("; ", guide.Needs)));
             if (guide.Limits.Count > 0) into.Add(LimitsLabel + string.Join(" ", guide.Limits));
-            if (viewer != null && zone != null)
+            if (users.Count > 0 && viewer != null && zone != null)
             {
                 // A machine standing in the world answers only to someone beside it: from further off its menu cannot be opened, so say that and nothing more.
                 var now = StandingFarFrom(owner, viewer, zone) ? NowReason + "you are not beside it." : RightNow(OwnRows(users, viewer, zone), guide.WhyNot);
                 if (now != null) into.Add(now);
             }
             return true;
+        }
+
+        static void AddGroveRedGuide(DescribeContext context, UseGuide guide)
+        {
+            var owner = context.Owner;
+            if (owner.BlueprintName != "GroveRedGrowth"
+                || !CellStatusReadout.IsDisclosedCell(context.Zone, context.Cell)
+                || !WorldResourceActions.Ground(owner, context.Zone)
+                || context.Zone.GetEntityCell(owner) != context.Cell
+                || owner.GetPart<RenderPart>() is not { Visible: true } render || render.ParentEntity != owner)
+                return;
+
+            var harvest = owner.GetPart<HarvestablePart>();
+            if (harvest == null || harvest.GetType() != typeof(HarvestablePart) || harvest.ParentEntity != owner
+                || harvest.Harvested || harvest.YieldBlueprint != "GroveRed"
+                || harvest.YieldMin < 1 || harvest.YieldMax < harvest.YieldMin
+                || harvest.YieldMax > HarvestablePart.MaximumYieldCount || harvest.YieldChance is < 1 or > 100)
+                return;
+
+            guide.How.Add("At an alchemy still, cleanse one harvested grove-red into pulp. Brew the pulp by itself for a mending tonic.");
         }
 
         /// <summary>The Examine document's section text for the same block, or null when the entity describes no use.</summary>

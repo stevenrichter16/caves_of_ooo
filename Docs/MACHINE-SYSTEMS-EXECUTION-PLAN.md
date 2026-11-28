@@ -1,3 +1,10 @@
+**Fen grove-red names the optional still preparation — November 28, 2026, America/Chicago.**
+The original red growth reader teaches cleanse one fruit at an alchemy
+still, then brew the pulp alone for a mending tonic. The original
+warning is preserved. Same earned save, same visible plant 51714,
+and matched tick 4050, 38 HP and custody after Examine. All 570
+focused tests passed. [Live readers and checks](Verification/MachineSystems/GrovelandsStillClue20261128/README.md)
+
 **Current Mac app has the polished skill hotbar and larger Inventory — November 28, 2026, America/Chicago.**
 Runtime ab8045104 passed ordinary Continue, categorized Inventory and En Garde
 activation on Apple M5. The Mac package used 32,318 committed inputs

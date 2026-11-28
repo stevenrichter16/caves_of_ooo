@@ -183,7 +183,7 @@ namespace CavesOfOoo.Core
         }
 
 
-        private static bool IsDisclosedCell(Zone zone, Cell cell)
+        internal static bool IsDisclosedCell(Zone zone, Cell cell)
         {
             if (zone == null || cell == null || !cell.Explored || !cell.IsVisible
                 || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell)

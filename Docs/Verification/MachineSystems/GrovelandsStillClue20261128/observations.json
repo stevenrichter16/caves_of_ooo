@@ -1,0 +1,70 @@
+{
+  "before": [
+    {
+      "Heading": "Description",
+      "Text": "Low growth heavy with red, at the grove edge, where the sign can see it. The sign says eat nothing red. Nothing stops you picking it."
+    }
+  ],
+  "after": [
+    {
+      "Heading": "How to use",
+      "Text": "At an alchemy still, cleanse one harvested grove-red into pulp. Brew the pulp by itself for a mending tonic."
+    },
+    {
+      "Heading": "Description",
+      "Text": "Low growth heavy with red, at the grove edge, where the sign can see it. The sign says eat nothing red. Nothing stops you picking it."
+    }
+  ],
+  "play": {
+    "zone": "Overworld.0.8.0",
+    "x": 40,
+    "y": 15,
+    "tick": 4050,
+    "hp": 38,
+    "focus": [
+      {
+        "ID": "51714",
+        "BlueprintName": "GroveRedGrowth",
+        "x": 41,
+        "y": 15,
+        "visible": true,
+        "spent": false
+      }
+    ],
+    "items": []
+  },
+  "screens": {
+    "before-fen-reader.png": "2d1d14c58518bee6ba9b5500b4f5a33587fbeac93e47c2fda44be742b435b7a0",
+    "after-fen-reader.png": "b2ea6a091a9170f79371b96748dff48be3e7569e955669259dd6e4cff9f329b6"
+  },
+  "tests": {
+    "redControls": 13,
+    "redMissingClue": 1,
+    "focusedPassed": 570
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "editorAfter": {
+    "playing": false,
+    "changing": false,
+    "sceneDirty": false,
+    "saveRoot": null,
+    "seed": 0,
+    "buildChoice": false,
+    "lastScenario": null,
+    "pendingScenario": false,
+    "updateMode": "ProcessEventsInDynamicUpdate",
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices",
+    "ownedKeyboard": false
+  },
+  "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/grovelands-fen-baseline65"
+}

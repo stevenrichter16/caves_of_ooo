@@ -5,6 +5,9 @@ The unprocessed reagent retains its toxicity and lacked healing
 in the matching single-reagent preview. This did not change the
 available ordinary healing services or supplies.
 [Actual Fen source, Sill still and mending tonic](Verification/MachineSystems/GrovelandsRedDetox20261128/README.md)
+The visible original growth now gives the preparation clue in Examine
+while retaining the authored warning.
+[Matched old and new readers](Verification/MachineSystems/GrovelandsStillClue20261128/README.md)
 
 **Glow-Quartz can be spent on temporary cave illumination.**
 A real Lampwell vein produced two pieces. Interact spent one to light

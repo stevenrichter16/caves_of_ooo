@@ -13,6 +13,9 @@ namespace CavesOfOoo.Tests
     /// Reflection lets the behavior suite fail assertions before the new document API exists.</summary>
     public sealed class ExamineDocumentTests
     {
+        private const string GroveRedWarning = "The sign says eat nothing red.";
+        private const string GroveRedClue = "At an alchemy still, cleanse one harvested grove-red into pulp. Brew the pulp by itself for a mending tonic.";
+
         EntityFactory factory;
         [SetUp] public void Setup()
         {
@@ -144,6 +147,135 @@ namespace CavesOfOoo.Tests
             Assert.That(Text(document).Length,Is.GreaterThan(item.GetDisplayName().Length));
             StringAssert.DoesNotContain("null",Text(document));
         }
+
+        [Test]
+        public void VisibleGroveRedGrowthAddsThePreparationClueToBothReadersWithoutChangingItsWarning()
+        {
+            var growth = factory.CreateEntity("GroveRedGrowth");
+            var examine = growth.GetPart<ExaminablePart>();
+            var harvest = growth.GetPart<HarvestablePart>();
+            var zone = Place(growth);
+            var anchor = zone.GetCell(10, 10);
+            string authored = examine.Text;
+            int tick = WorldClock.CurrentTick;
+
+            string full = ExamineDocumentBuilder.BuildWorld(growth, zone, anchor).ToPlainText();
+            string quick = examine.BuildWorldExamineLine(zone, anchor);
+
+            StringAssert.Contains(GroveRedClue, full);
+            StringAssert.Contains(GroveRedClue, quick);
+            StringAssert.Contains(GroveRedWarning, full);
+            StringAssert.Contains(GroveRedWarning, quick);
+            Assert.AreEqual(authored, examine.Text);
+            Assert.AreEqual(tick, WorldClock.CurrentTick);
+            Assert.AreSame(anchor, zone.GetEntityCell(growth));
+            Assert.IsFalse(harvest.Harvested);
+        }
+
+        [TestCase("spent")]
+        [TestCase("wrong-yield")]
+        [TestCase("wrong-blueprint")]
+        [TestCase("zero-min")]
+        [TestCase("reversed-range")]
+        [TestCase("max-overflow")]
+        [TestCase("zero-chance")]
+        [TestCase("chance-overflow")]
+        [TestCase("foreign-harvest-part")]
+        public void InvalidGroveRedSourceRetainsTheWarningWithoutOfferingPreparation(string fault)
+        {
+            var growth = factory.CreateEntity("GroveRedGrowth");
+            var harvest = growth.GetPart<HarvestablePart>();
+            var zone = Place(growth);
+            var anchor = zone.GetCell(10, 10);
+            switch (fault)
+            {
+                case "spent": harvest.Harvested = true; break;
+                case "wrong-yield": harvest.YieldBlueprint = "Mushroom"; break;
+                case "wrong-blueprint": growth.BlueprintName = "OtherGrowth"; break;
+                case "zero-min": harvest.YieldMin = 0; break;
+                case "reversed-range": harvest.YieldMax = harvest.YieldMin - 1; break;
+                case "max-overflow": harvest.YieldMax = HarvestablePart.MaximumYieldCount + 1; break;
+                case "zero-chance": harvest.YieldChance = 0; break;
+                case "chance-overflow": harvest.YieldChance = 101; break;
+                case "foreign-harvest-part": harvest.ParentEntity = new Entity(); break;
+            }
+
+            string full = ExamineDocumentBuilder.BuildWorld(growth, zone, anchor).ToPlainText();
+            string quick = growth.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, anchor);
+
+            foreach (string text in new[] { full, quick })
+            {
+                StringAssert.Contains(GroveRedWarning, text);
+                StringAssert.DoesNotContain("cleanse one harvested grove-red", text);
+            }
+        }
+
+        [TestCase(false, true)]
+        [TestCase(true, false)]
+        public void DarkOrUnexploredGroveRedDoesNotExposeTheClueInEitherReader(bool visible, bool explored)
+        {
+            var growth = factory.CreateEntity("GroveRedGrowth");
+            var zone = Place(growth);
+            var anchor = zone.GetCell(10, 10);
+            anchor.IsVisible = visible;
+            anchor.Explored = explored;
+
+            Assert.IsNull(ExamineDocumentBuilder.BuildWorld(growth, zone, anchor));
+            StringAssert.DoesNotContain("cleanse one harvested grove-red",
+                growth.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, anchor));
+        }
+
+        [Test]
+        public void InactiveGroveRedZoneDoesNotExposeTheClueInEitherReader()
+        {
+            var growth = factory.CreateEntity("GroveRedGrowth");
+            var zone = Place(growth);
+            var anchor = zone.GetCell(10, 10);
+            var manager = OverworldZoneManager.CreateDetached(factory, 65);
+            manager.SetActiveZone(zone);
+            Assert.AreSame(manager, WorldLocationContext.For(zone));
+            manager.SetActiveZone(new Zone("Overworld.1.1.0"));
+
+            var document = ExamineDocumentBuilder.BuildWorld(growth, zone, anchor);
+            if (document != null) StringAssert.DoesNotContain(GroveRedClue, document.ToPlainText());
+            StringAssert.DoesNotContain(GroveRedClue, growth.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, anchor));
+        }
+
+        [Test]
+        public void AVisibleSecondaryGroveRedFootprintIsNotTheAnchorForTheClue()
+        {
+            var growth = factory.CreateEntity("GroveRedGrowth");
+            growth.AddPart(new SpatialFootprintPart { CellsRaw = "0,0;1,0" });
+            var zone = Place(growth);
+            var secondary = zone.GetCell(11, 10);
+            secondary.IsVisible = secondary.Explored = true;
+            Assert.Contains(growth, secondary.Occupants.ToList());
+            Assert.AreNotSame(secondary, zone.GetEntityCell(growth));
+
+            var document = ExamineDocumentBuilder.BuildWorld(growth, zone, secondary);
+            Assert.NotNull(document, "The ordinary world reader still allows a visible footprint cell.");
+            StringAssert.DoesNotContain("cleanse one harvested grove-red", document.ToPlainText());
+            StringAssert.DoesNotContain("cleanse one harvested grove-red",
+                growth.GetPart<ExaminablePart>().BuildWorldExamineLine(zone, secondary));
+        }
+
+        [Test]
+        public void CarriedGroveRedSourceDoesNotOfferAnAnchoredForagingClue()
+        {
+            var growth = factory.CreateEntity("GroveRedGrowth");
+            var zone = Place(growth);
+            var anchor = zone.GetCell(10, 10);
+            Assert.True(zone.RemoveEntity(growth));
+            var actor = Carry(growth);
+            var examine = growth.GetPart<ExaminablePart>();
+
+            Assert.IsNull(ExamineDocumentBuilder.BuildWorld(growth, zone, anchor, actor));
+            StringAssert.DoesNotContain("cleanse one harvested grove-red", examine.BuildWorldExamineLine(zone, anchor, actor));
+            StringAssert.DoesNotContain("cleanse one harvested grove-red", examine.BuildExamineLine());
+            StringAssert.DoesNotContain("cleanse one harvested grove-red",
+                ExamineDocumentBuilder.BuildInventory(growth, actor).ToPlainText());
+        }
+
         [Test] public void StructuralConditionIsIndependentFromRepairAndNeverClaimsHealedCombatHp()
         {
             var item=Plain();item.GetPart<PhysicsPart>().Takeable=false;
