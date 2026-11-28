@@ -1,3 +1,11 @@
+**Second pass, repair-stock feedback — November 28, 2026.**
+For #2 and #36, the shared clay repair bill shows the current compatible
+count in the nearby action card and on an attempted shortfall. Peat Works
+actually showed one of two before the player chose Patch. The same
+count was reported on refusal with no lost material, fuel or turn.
+The lined well and batch pan share the rule and the mixed-grade tests.
+[Notice, attempt and retained stock](Verification/MachineSystems/CompatibleRepairStock20261128/README.md)
+
 **Peat Works local clay route — November 28, 2026.**
 For #2, #4, #8, #36 and #40, a recovered camp still and carried torch used
 the finite north-shed pools to fire two ordinary repair measures. The
@@ -1470,10 +1478,11 @@ shore and kept the exact finite draw through Continue. The raised look
 and physical route stay distinctions the player can test in the world.
 [Matched ledge and water access](Verification/MachineSystems/StumpSprayLedge20261127/README.md)
 
-## Improvement pass after all 45 are verified
+## Second pass across the 45 requirements
 
-Revisit all 45 requirements and the systems that implement them after the
-initial acceptance gates are met. Check the actual player experience using
+The November 28 direction resumes the second pass after the menu polish.
+Revisit the systems and their content in connected slices. Keep any
+remaining first-pass evidence gaps explicit. Check the actual player experience using
 contrasting routes, builds and regions. Record the concrete evidence behind
 each finding and implement the most valuable improvements in connected slices.
 

@@ -30,6 +30,35 @@ namespace CavesOfOoo.Tests
             Assert.False(fixture.GetPart<RepairablePart>().Repaired);
         }
 
+        [TestCase("ConnectedBatchPan")]
+        [TestCase("RepairLinedWell")]
+        [TestCase("AbandonedFieldWorkRig")]
+        public void GradedRepairShowsOnlyPayableStockAndRecountsAStaleQuote(string blueprint)
+        {
+            var fixture = Place(blueprint);
+            var position = Zone.GetEntityPosition(fixture);
+            InventoryAction Quote() => CellMenu(position.x, position.y).Single(a => a.Command == RepairablePart.RepairCommand);
+
+            Carry("DryClaySpoil");
+            var wrongGrade = Carry(Prepared);
+            wrongGrade.GetPart<RepairMaterialPart>().Grade = "raw";
+            Assert.That(Quote().Hint, Does.Contain("0 of 2 compatible measures in pack."));
+            var exact = Carry("FireClay");
+            Assert.That(Quote().Hint, Does.Contain("1 of 2 compatible measures in pack."));
+            var alternate = Carry(Prepared);
+            var full = Quote();
+            Assert.That(full.Hint, Does.Contain("2 of 2 compatible measures in pack."));
+            Assert.That(string.Join(" ", WorldActionMenuUI.WrapHint(full.Hint, 44, WorldActionMenuUI.MaxHintRows)),
+                Does.Contain("2 of 2 compatible measures in pack."));
+
+            Assert.True(Pack.RemoveObject(exact));
+            Assert.False(ChooseRow(full, position.x, position.y));
+            Assert.That(MessageLog.GetAllEntries().Last().Text, Does.Contain("1 of 2 compatible measures in pack."));
+            Assert.That(Pack.Objects, Does.Contain(alternate));
+            Assert.That(wrongGrade.GetPart<RepairMaterialPart>().Grade, Is.EqualTo("raw"));
+            Assert.False(fixture.GetPart<RepairablePart>().Repaired);
+        }
+
         [TestCase("RepairLinedWell")]
         [TestCase("ConnectedBatchPan")]
         public void TwoPreparedMeasuresRestoreTheSameStructuralFunction(string blueprint)

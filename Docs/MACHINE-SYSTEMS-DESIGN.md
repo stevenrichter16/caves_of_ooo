@@ -1,3 +1,10 @@
+**Graded repair quotes use their actual payment rules.**
+Local repair previews show how many compatible carried units cover
+the bill. The same selection rule governs payment. Live refusal
+reports any material shortfall again, so a partial bill consumes
+nothing and the player can act on what they see.
+[Matched Peat Works and native check](Verification/MachineSystems/CompatibleRepairStock20261128/README.md)
+
 **Peat Works has a local alternative to bringing repair clay.**
 The recovered portable still accepted the finite north-shed mire next
 to an ordinary lit torch. Two bakes made the original rig usable

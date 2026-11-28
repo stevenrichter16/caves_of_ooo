@@ -92,7 +92,10 @@ namespace CavesOfOoo.Core
                             string label = recipe.ActionText;
                             if (!string.IsNullOrEmpty(recipe.MaterialGrade))
                                 label += " (" + recipe.Quantity.ToString(CultureInfo.InvariantCulture) + " measures)";
-                            actions.AddActionWithHint("Repair", label, RepairCommand, "Uses " + bill + ".", 'r', 20);
+                            var viewer = e.GetParameter<Entity>("Actor");
+                            var site = e.GetParameter<Zone>("Zone") ?? viewer?.SpatialZone;
+                            string stock = LocalStockHint(viewer, site, recipe);
+                            actions.AddActionWithHint("Repair", label, RepairCommand, "Uses " + bill + "." + stock, 'r', 20);
                         }
                         else actions.AddAction("Repair", recipe.ActionText + " (" + bill + ")", RepairCommand, 'r', 20);
                     }
@@ -142,6 +145,19 @@ namespace CavesOfOoo.Core
             if(composition?.ParentEntity!=owner || !composition.Contains(recipe.Composition))return "wrong-composition";
             return null;
         }
+
+        private string LocalStockHint(Entity viewer, Zone zone, RepairRecipe recipe)
+        {
+            if (string.IsNullOrEmpty(recipe.MaterialGrade) || Context(viewer, zone, recipe) != null
+                || FieldWorkRigRules.IsRig(ParentEntity) && ParentEntity.HasPart<DraggedPart>()) return "";
+            int payable = SelectPayment(viewer, zone, viewer.GetPart<InventoryPart>(), recipe, compatible: true)
+                .Sum(payment => payment.Units);
+            return " " + StockCount(payable, recipe);
+        }
+
+        private static string StockCount(int payable, RepairRecipe recipe)
+            => $"{payable} of {recipe.Quantity} compatible measures in pack.";
+
         private static bool Carried(Entity item,Entity actor,InventoryPart inventory,string blueprint)
         {
             var physical=item?.GetPart<PhysicsPart>(); var stack=item?.GetPart<StackerPart>();
@@ -256,7 +272,10 @@ namespace CavesOfOoo.Core
             var inventory = actor.GetPart<InventoryPart>();
             bool compatible = UsesCompatibleMaterials(recipe);
             var bill = SelectPayment(actor, zone, inventory, recipe, compatible).ToArray();
-            if (bill.Sum(p => p.Units) != recipe.Quantity) return Reject(actor, "missing-materials");
+            int payable = bill.Sum(p => p.Units);
+            if (payable != recipe.Quantity)
+                return Reject(actor, "missing-materials", !string.IsNullOrEmpty(recipe.MaterialGrade)
+                    ? StockCount(payable, recipe) : null);
             foreach (var payment in bill)
                 if (!tx.TryClaim(payment.Item, actor, RepairCommand)
                     || compatible && !MaterialProcessService.ReserveInput(payment.Item, tx))
@@ -367,10 +386,15 @@ namespace CavesOfOoo.Core
             effects.RemoveEffect(broken);
         }
 
-        private bool Reject(Entity actor,string reason)
+        private bool Reject(Entity actor,string reason,string stock = null)
         {
-            if(actor?.HasTag("Player")==true)MessageLog.Add(reason=="already-repaired"?"That repair is already complete."
-                : reason=="rig-unavailable" && ParentEntity?.HasPart<DraggedPart>()==true ? "Let go before repairing or using this rig." : Describe());
+            if (actor?.HasTag("Player") == true)
+            {
+                string message = reason == "already-repaired" ? "That repair is already complete."
+                    : reason == "rig-unavailable" && ParentEntity?.HasPart<DraggedPart>() == true
+                        ? "Let go before repairing or using this rig." : Describe();
+                MessageLog.Add(stock == null ? message : message + "\n" + stock);
+            }
             Diag.Record("furniture","RepairRejected",actor,ParentEntity,new{recipeId=RecipeId,reason});return false;
         }
     }

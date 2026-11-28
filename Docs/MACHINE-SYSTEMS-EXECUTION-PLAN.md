@@ -1,3 +1,11 @@
+**Graded repair actions show the current bill coverage — November 28, 2026, America/Chicago.**
+The second pass on the 45 adds live compatible stock counts to the
+field rig, lined well and batch pan. The matched Peat Works replay
+showed one usable measure before selecting Patch. Refusal repeated the
+shortfall and preserved the turn, materials, heat and fixture. 320
+focused native cases and independent review passed.
+[Exact stock feedback](Verification/MachineSystems/CompatibleRepairStock20261128/README.md)
+
 **Current Mac app includes the shared menu redesign — November 28, 2026, America/Chicago.**
 Runtime 3ed7a8f01 passed actual tray gathering, details, abilities,
 settings and initial build selection on Apple M5. Six universal
