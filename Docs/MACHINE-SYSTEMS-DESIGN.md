@@ -1,3 +1,11 @@
+**A finite regional reagent has a still and ordinary brewing route.**
+One harvested Fen grove-red becomes cleansed pulp beside the Sill
+still. The pulp then makes a mending tonic through ordinary Brew.
+The unprocessed reagent retains its toxicity and lacked healing
+in the matching single-reagent preview. This did not change the
+available ordinary healing services or supplies.
+[Actual Fen source, Sill still and mending tonic](Verification/MachineSystems/GrovelandsRedDetox20261128/README.md)
+
 **Glow-Quartz can be spent on temporary cave illumination.**
 A real Lampwell vein produced two pieces. Interact spent one to light
 a passage for 30 turns. It brightened visible ground without changing

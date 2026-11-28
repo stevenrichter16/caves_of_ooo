@@ -1,3 +1,11 @@
+**Fen grove-red becomes mending tonic at Sill — November 28, 2026, America/Chicago.**
+Finite source 51714 supplied two fruit. One went through the original
+Sill still and normal Brew, with the raw preview missing healing.
+Fresh Continue kept the exact 2d4 tonic and one raw fruit. Drinking
+the tonic spent it and healed 38→40. Existing runtime in the Editor.
+The source’s reader still omits the optional still route.
+[Actual Fen source, Sill still and mending tonic](Verification/MachineSystems/GrovelandsRedDetox20261128/README.md)
+
 **Current Mac package with the redesigned conversation popup — November 28, 2026, America/Chicago.**
 Runtime cbfd12321. Apple M5 ordinary Continue opened Darret’s new
 greeting, rack and Trade, then returned to the world. The app was

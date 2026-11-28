@@ -49,6 +49,12 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #31–#40, an actual Fen harvest reached the normal Sill still and
+the existing detox recipe. A paid fruit and ordinary brewing made
+a 2d4 tonic. Its effect, exact custody and the refusal to spend the
+remaining raw material separate safe processing from a raw preview.
+[Actual Fen source, Sill still and mending tonic](Verification/MachineSystems/GrovelandsRedDetox20261128/README.md)
+
 For #36–#40, the usual Lampwell stairs and walking route reach a
 finite natural Glow-Quartz vein. The player can spend one piece
 in the passage for light that survives Continue and expires in
