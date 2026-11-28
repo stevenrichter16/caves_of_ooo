@@ -65,6 +65,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #5, #18–20 and #36–40, the existing oil delivery at Slip now
+also supports lighting a dry, fueled torch at a town lamp. Its
+reachable wick uses the same kindling receipt as other portable
+ignition. The exact torch lit in one action and survived Continue.
+The player picked it up, held it and took its light beyond the
+stationary lamps. Both fixed lights retained the original delivery
+condition. [Slip’s lasting torch service](Verification/MachineSystems/SlipRoadWick20261128/README.md)
+
 For #13, #14, #19 and #36–#40, a sound flexible-stock blade can
 skim a catch from a visible natural pool. The selected blade and pool
 share the finite deposit already used by the dedicated scraper and

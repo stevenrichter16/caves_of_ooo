@@ -45,6 +45,32 @@ namespace CavesOfOoo.Core
             : actor.GetPart<InventoryPart>()?.Objects.Where(m => m != target && Usable(actor, m, zone))
                 .OrderBy(m => m.ID, StringComparer.Ordinal).FirstOrDefault();
 
+        internal static bool CanLightFromWick(Entity actor, Entity target, Zone zone)
+            => TorchDisclosed(target, zone) && TargetState.TryCapture(actor, target, zone, out var state) && state.Torch != null;
+
+        static bool TorchDisclosed(Entity target, Zone zone)
+            => target != null && (target.SpatialZone == null
+                || target.GetPart<RenderPart>() is { Visible: true } && RouteWorkMenu.Visible(zone?.GetEntityCell(target)));
+
+        internal static bool LightFromWick(Entity actor, Entity target, Zone zone, Entity wick, string command,
+            InventoryTransaction tx, Func<bool> sourceCurrent)
+        {
+            if (!TorchDisclosed(target, zone) || !TargetState.TryCapture(actor, target, zone, out var state) || state.Torch == null
+                || !tx.TryClaim(actor, actor, command) || !tx.TryClaim(target, actor, command)
+                || !tx.TryClaim(wick, actor, command)) return false;
+            string targetId = target.ID;
+            StageFlame(state, tx);
+            tx.BeforeCommit(() => target.ID == targetId && sourceCurrent() && TorchDisclosed(target, zone)
+                && state.Current(state.LightingTemperature, true));
+            tx.AfterCommit(() =>
+            {
+                state.Torch.NotifyKindling(actor);
+                MessageLog.Add("You light the torch from the lamp.");
+                Diag.Record("event", "TorchLit", actor, target, new { source = wick.ID, fuel = state.Fuel.FuelMass });
+            });
+            return true;
+        }
+
         internal static void AddActions(Entity actor, Entity target, Zone zone, InventoryActionList actions)
         {
             if (actions == null || !TargetState.TryCapture(actor, target, zone, out var state)) return;
@@ -109,6 +135,21 @@ namespace CavesOfOoo.Core
             if (!payment.Apply(() => pack.TryConsumeOne(moss)) || !payment.ClaimChanges(tx, actor, command)
                 || !PaidCurrent() || !state.Current(state.BeforeTemperature, false)) return false;
             staged = true;
+            StageFlame(state, tx);
+            tx.BeforeCommit(() => PaidCurrent() && state.Current(state.LightingTemperature, state.Torch != null));
+            tx.AfterCommit(() =>
+            {
+                if (state.Torch != null) state.Torch.NotifyKindling(actor);
+                else { target.GetPart<HearthGlowPart>()?.SyncLight(); ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(target), "KindlingLit"); }
+                MessageLog.Add("You spend one fire-moss to light the " + (state.Torch != null ? "torch" : "coals") + ". Its own fuel keeps it burning.");
+                Diag.Record("event", "KindlingLit", actor, target, new { source = moss.ID, remaining = count - 1 });
+            });
+            return true;
+        }
+
+        static void StageFlame(TargetState state, InventoryTransaction tx)
+        {
+            var target = state.Target;
             float addedHeat = state.LightingTemperature - state.BeforeTemperature;
             tx.Do(null, () =>
             {
@@ -121,15 +162,6 @@ namespace CavesOfOoo.Core
             });
             state.Heat.Temperature = state.LightingTemperature;
             if (state.Torch != null) state.Light.Enabled = true;
-            tx.BeforeCommit(() => PaidCurrent() && state.Current(state.LightingTemperature, state.Torch != null));
-            tx.AfterCommit(() =>
-            {
-                if (state.Torch != null) state.Torch.NotifyKindling(actor);
-                else { target.GetPart<HearthGlowPart>()?.SyncLight(); ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(target), "KindlingLit"); }
-                MessageLog.Add("You spend one fire-moss to light the " + (state.Torch != null ? "torch" : "coals") + ". Its own fuel keeps it burning.");
-                Diag.Record("event", "KindlingLit", actor, target, new { source = moss.ID, remaining = count - 1 });
-            });
-            return true;
         }
         sealed class TargetState
         {

@@ -1,3 +1,12 @@
+**Slip’s tended road lamps can relight a traveler’s torch — November 28, 2026, America/Chicago.**
+The already paid east lamp lit the traveler’s exact loose torch after
+one action. The torch used its own fuel, and both lamps kept burning.
+Fresh Continue kept the same light. The player picked up the torch,
+equipped it, and carried its light beyond both lamps. All 313 focused
+tests passed, including ordinary ignition alternatives and late loss
+of lamp supply.
+[Lamp, torch, movement and Continue](Verification/MachineSystems/SlipRoadWick20261128/README.md)
+
 **A sound blade skims natural pool crust — November 28, 2026, America/Chicago.**
 At Brine Camp the equipped dagger took one acid crust and one brine
 crust from adjacent natural pools. Both gathers debited the existing

@@ -161,6 +161,15 @@ gives a traveler carrying a blade a way to collect protective
 ingredients before buying or installing specialist equipment.
 [Brine Camp gathers and field brewing](Verification/MachineSystems/AcidBrineField20261128/README.md)
 
+**A tended road lamp can light a passing traveler's torch.**
+An authored fixture with a reachable wick can share a flame while its
+actual lamp is lit. The traveler chooses the lamp and a held dry torch
+with fuel. The torch begins its normal fuel use after the action.
+The oil delivery continues to govern the town's lamp, which remains lit.
+The fixture provides a place to start the torch and does not supply
+replacement fuel. Flint, fire-moss and existing fires remain options.
+[Slip’s wick and portable light](Verification/MachineSystems/SlipRoadWick20261128/README.md)
+
 **An ordinary camp awning gives a wayfarer somewhere to rest.**
 At the Height of the day in the Beating, a nearby bareheaded travelling
 merchant can move into safe cover when idle. A normal trade remains

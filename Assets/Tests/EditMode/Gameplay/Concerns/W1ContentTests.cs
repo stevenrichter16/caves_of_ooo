@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Concerns;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Storylets;
@@ -894,6 +896,7 @@ namespace CavesOfOoo.Tests
         }
 
         const string SlipEastLamp = "SlipEastLamp";
+        const string LightTorchAtWick = "LightTorchAtWick";
 
         private Zone GenerateSlip(OverworldZoneManager manager)
         {
@@ -914,6 +917,187 @@ namespace CavesOfOoo.Tests
         private static bool DrySlipCell(Zone zone, Cell cell) => cell != null && !cell.IsInterior
             && zone.TileState.Get(cell.X, cell.Y)?.Coatings.Any(layer => layer.Turns > 0) != true
             && !cell.Occupants.Any(entity => entity.GetPart<LiquidPoolPart>() is { Volume: > 0 });
+
+        private (OverworldZoneManager manager, Zone zone, Entity lamp) ApproachSlipEastLamp()
+        {
+            var manager = new OverworldZoneManager(factory, 65);
+            manager.SetTurnProvider(() => turn);
+            var zone = GenerateSlip(manager);
+            var lamp = Who(zone, SlipEastLamp);
+            ApproachSlipFixture(zone, lamp);
+            Assert.AreSame(lamp, WorldInteractionSystem.ResolveTarget(zone.GetEntityCell(lamp), player));
+            return (manager, zone, lamp);
+        }
+
+        private void ApproachSlipFixture(Zone zone, Entity fixture)
+        {
+            var at = zone.GetEntityCell(fixture);
+            var beside = SlipCardinalNeighbors(zone, at).First(cell => cell != null && !cell.BlocksMovement(player)
+                && (fixture.BlueprintName != SlipEastLamp || DrySlipCell(zone, cell)));
+            if (current != zone) current?.RemoveEntity(player);
+            Assert.True(zone.AddEntity(player, beside.X, beside.Y));
+            current = zone;
+            at.IsVisible = at.Explored = beside.IsVisible = beside.Explored = true;
+        }
+
+        private Entity PrepareDarkTorch(Zone zone, bool loose = false)
+        {
+            var torch = factory.CreateEntity("Torch");
+            if (loose)
+            {
+                var at = zone.GetEntityCell(player);
+                Assert.True(zone.AddEntity(torch, at.X, at.Y));
+            }
+            else
+            {
+                Assert.True(player.GetPart<InventoryPart>().AddObject(torch));
+                Assert.True(InventorySystem.Equip(player, torch));
+            }
+            Assert.True(InventorySystem.PerformAction(player, torch, "ExtinguishTorch", zone));
+            Assert.False(torch.GetPart<LightSourcePart>().Enabled);
+            return torch;
+        }
+
+        private InventoryAction[] SlipWickRows(Zone zone, Entity fixture)
+            => WorldInteractionSystem.GatherCellActions(fixture, zone.GetEntityCell(fixture), player)
+                .Where(row => row.Name == LightTorchAtWick).ToArray();
+
+        private InventoryAction QuoteSlipWick(Zone zone, Entity lamp)
+        {
+            var rows = SlipWickRows(zone, lamp);
+            Assert.That(rows, Has.Length.EqualTo(1));
+            var row = rows[0];
+            Assert.False(row.IsDisabled);
+            Assert.AreEqual(ActionTime.OneAction, row.Time);
+            StringAssert.StartsWith(LightTorchAtWick + "|", row.Command);
+            return row;
+        }
+
+        private InventoryCommandResult UseSlipWick(Zone zone, Entity lamp, InventoryAction row)
+            => InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(row.Via ?? lamp, row.Command), player, zone);
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AStockedSlipLampLightsOneEquippedOrLooseTorchWithoutUsingItsFuel(bool loose)
+        {
+            var (manager, zone, lamp) = ApproachSlipEastLamp();
+            var torch = PrepareDarkTorch(zone, loose);
+            var fuel = torch.GetPart<FuelPart>();
+            float fuelBefore = fuel.FuelMass;
+            Assert.IsEmpty(SlipWickRows(zone, lamp));
+            manager.SettlementManager.SetCondition(SlipZone, SlipNames, true);
+            Assert.IsEmpty(SlipWickRows(zone, lamp));
+            manager.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            var row = QuoteSlipWick(zone, lamp);
+            Assert.False(torch.GetPart<LightSourcePart>().Enabled, "asking for the menu does not light the torch");
+
+            Assert.True(UseSlipWick(zone, lamp, row).Success);
+            Assert.True(torch.GetPart<TorchLightPart>().ControlledFlameActive);
+            Assert.AreEqual(fuelBefore, fuel.FuelMass);
+            Assert.True(manager.SettlementManager.HasExistingCondition(SlipZone, SlipLamps));
+            Assert.True(lamp.GetPart<LightSourcePart>().Enabled);
+            Assert.IsEmpty(SlipWickRows(zone, lamp), "the torch is already lit");
+            Assert.False(UseSlipWick(zone, lamp, row).Success);
+        }
+
+        [Test]
+        public void ASlipWickNeedsTheVisibleLampAndAReadyTorch()
+        {
+            var (manager, zone, lamp) = ApproachSlipEastLamp();
+            manager.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            var torch = PrepareDarkTorch(zone);
+            var ordinary = Who(zone, "WatchLantern");
+            ApproachSlipFixture(zone, ordinary);
+            Assert.True(ordinary.GetPart<LightSourcePart>().Enabled);
+            Assert.IsEmpty(SlipWickRows(zone, ordinary));
+            ApproachSlipFixture(zone, lamp);
+
+            Assert.True(InventorySystem.UnequipItem(player, torch));
+            Assert.IsEmpty(SlipWickRows(zone, lamp));
+            Assert.True(InventorySystem.Equip(player, torch));
+            var row = QuoteSlipWick(zone, lamp);
+            var lampCell = zone.GetEntityCell(lamp);
+            lampCell.IsVisible = false;
+            Assert.IsEmpty(SlipWickRows(zone, lamp));
+            Assert.False(UseSlipWick(zone, lamp, row).Success);
+            lampCell.IsVisible = true;
+
+            Assert.True(torch.ApplyEffect(new WetEffect(0.8f)));
+            Assert.IsEmpty(SlipWickRows(zone, lamp));
+            Assert.False(UseSlipWick(zone, lamp, row).Success);
+            Assert.False(torch.GetPart<LightSourcePart>().Enabled);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AStaleSlipWickCannotSubstituteACampfireOrStriker(bool moved)
+        {
+            var (manager, zone, lamp) = ApproachSlipEastLamp();
+            manager.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            var torch = PrepareDarkTorch(zone);
+            var row = QuoteSlipWick(zone, lamp);
+            var striker = factory.CreateEntity("FlintStriker");
+            Assert.True(player.GetPart<InventoryPart>().AddObject(striker));
+            var strikes = striker.GetPart<FlintStrikerPart>();
+            int strikesBefore = strikes.Strikes;
+            if (moved)
+            {
+                var at = zone.GetEntityCell(player);
+                Assert.True(zone.AddEntity(factory.CreateEntity("Campfire"), at.X, at.Y));
+                Assert.True(zone.MoveEntity(lamp, at.X, at.Y));
+            }
+            else
+            {
+                manager.SettlementManager.SetCondition(SlipZone, SlipLamps, false);
+                foreach (var source in zone.GetReadOnlyEntities().Where(entity => SpatialQuery.Distance(zone, player, entity) <= 1))
+                    if (source.GetPart<ThermalPart>() is { IsAflame: true } heat)
+                        heat.Temperature = heat.AmbientTemperature;
+            }
+
+            Assert.IsEmpty(SlipWickRows(zone, lamp));
+            Assert.False(UseSlipWick(zone, lamp, row).Success);
+            Assert.False(torch.GetPart<LightSourcePart>().Enabled);
+            Assert.AreEqual(strikesBefore, strikes.Strikes);
+            Assert.True(InventorySystem.PerformAction(player, torch, "LightTorch", zone));
+            Assert.AreEqual(moved ? strikesBefore : strikesBefore - 1, strikes.Strikes);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AFailedSlipWickActionRollsBackTheTorchAndLeavesTheLampAvailable(bool conditionLost)
+        {
+            var (manager, zone, lamp) = ApproachSlipEastLamp();
+            manager.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            var torch = PrepareDarkTorch(zone);
+            var thermal = torch.GetPart<ThermalPart>();
+            var fuel = torch.GetPart<FuelPart>();
+            float temperatureBefore = thermal.Temperature;
+            float fuelBefore = fuel.FuelMass;
+            var row = QuoteSlipWick(zone, lamp);
+            bool sawLit = false;
+            var probe = new FiftyWorldEventProbe
+            {
+                Callback = e =>
+                {
+                    if (e.ID != "AfterInventoryAction" || e.GetStringParameter("Command") != row.Command) return;
+                    sawLit = torch.GetPart<TorchLightPart>().ControlledFlameActive;
+                    if (conditionLost) manager.SettlementManager.SetCondition(SlipZone, SlipLamps, false);
+                    else throw new InvalidOperationException("Slip wick rollback probe");
+                }
+            };
+            player.AddPart(probe);
+
+            Assert.False(UseSlipWick(zone, lamp, row).Success);
+            Assert.True(sawLit, "the failure happened after the torch lit");
+            Assert.False(torch.GetPart<LightSourcePart>().Enabled);
+            Assert.AreEqual(temperatureBefore, thermal.Temperature);
+            Assert.AreEqual(fuelBefore, fuel.FuelMass);
+            Assert.AreEqual(!conditionLost, manager.SettlementManager.HasExistingCondition(SlipZone, SlipLamps));
+
+            Assert.True(player.RemovePart(probe));
+            if (conditionLost) manager.SettlementManager.SetCondition(SlipZone, SlipLamps, true);
+            Assert.True(UseSlipWick(zone, lamp, QuoteSlipWick(zone, lamp)).Success);
+        }
 
         [Test]
         public void SlipsEastLampsAreReachableFixedFixturesInTheGeneratedVillage()

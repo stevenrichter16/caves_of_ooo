@@ -1,0 +1,460 @@
+{
+  "baselineRevision": "527c93c4de174206eb1b07e56f7af5e7c910d0be",
+  "seed": 65,
+  "context": "Unity Editor actual GameBootstrap with an isolated copy of existing paid Slip road save",
+  "start": {
+    "zone": "Overworld.16.11.0",
+    "x": 46,
+    "y": 17,
+    "tick": 2890,
+    "hp": 34,
+    "money": 13,
+    "paid": true,
+    "torch": [],
+    "positionedTools": [
+      {
+        "ID": "12918",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 44,
+        "y": 10,
+        "v": true,
+        "stock": null
+      },
+      {
+        "ID": "12919",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 49,
+        "y": 10,
+        "v": true,
+        "stock": null
+      },
+      {
+        "ID": "12905",
+        "BlueprintName": "Torch",
+        "label": "torch (x2)",
+        "x": 56,
+        "y": 11,
+        "v": false,
+        "stock": null
+      }
+    ]
+  },
+  "old": {
+    "zone": "Overworld.16.11.0",
+    "x": 48,
+    "y": 11,
+    "tick": 3320,
+    "hp": 41,
+    "money": 13,
+    "paid": true,
+    "torch": [
+      {
+        "ID": "e027e27f23964e768805b8e4c777ef0e",
+        "lit": true,
+        "fuel": 28.4000549,
+        "worn": false
+      }
+    ],
+    "positionedTools": [
+      {
+        "ID": "12918",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 44,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      },
+      {
+        "ID": "12919",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 49,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      },
+      {
+        "ID": "12905",
+        "BlueprintName": "Torch",
+        "label": "torch",
+        "x": 48,
+        "y": 11,
+        "v": true,
+        "light": false,
+        "fuel": 28.4000549,
+        "stock": null
+      }
+    ]
+  },
+  "oldMenu": [
+    {
+      "label": "examine",
+      "command": "Examine",
+      "hint": ""
+    },
+    {
+      "label": "pour water northeast (12) [liquid flask]",
+      "command": "PourLiquidVessel|water|12|Overworld.16.11.0|49|10",
+      "hint": ""
+    },
+    {
+      "label": "scatter grit northeast (1 item) [silver sand]",
+      "command": "ScatterGrit|Overworld.16.11.0|48|11|49|10|1",
+      "hint": ""
+    },
+    {
+      "label": "pour one water northeast [liquid flask]",
+      "command": "PourOneLiquidVessel|water|12|Overworld.16.11.0|49|10",
+      "hint": ""
+    },
+    {
+      "label": "<< everything here",
+      "command": "PickCell",
+      "hint": ""
+    }
+  ],
+  "candidate": {
+    "zone": "Overworld.16.11.0",
+    "x": 48,
+    "y": 11,
+    "tick": 3320,
+    "hp": 41,
+    "money": 13,
+    "paid": true,
+    "torch": [
+      {
+        "ID": "e027e27f23964e768805b8e4c777ef0e",
+        "lit": true,
+        "fuel": 28.4000549,
+        "worn": false
+      }
+    ],
+    "positionedTools": [
+      {
+        "ID": "12918",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 44,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      },
+      {
+        "ID": "12905",
+        "BlueprintName": "Torch",
+        "label": "torch",
+        "x": 48,
+        "y": 11,
+        "v": true,
+        "light": false,
+        "fuel": 28.4000549,
+        "stock": null
+      },
+      {
+        "ID": "12919",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 49,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      }
+    ]
+  },
+  "candidateMenu": [
+    {
+      "label": "light torch at (48, 11) from the lamp (28.4 fuel)",
+      "command": "LightTorchAtWick|Overworld.16.11.0|48|11|49|10|12905|12919",
+      "hint": "One action. Your torch burns its own fuel. The lamp keeps burning."
+    },
+    {
+      "label": "examine",
+      "command": "Examine",
+      "hint": ""
+    },
+    {
+      "label": "pour water northeast (12) [liquid flask]",
+      "command": "PourLiquidVessel|water|12|Overworld.16.11.0|49|10",
+      "hint": ""
+    },
+    {
+      "label": "scatter grit northeast (1 item) [silver sand]",
+      "command": "ScatterGrit|Overworld.16.11.0|48|11|49|10|1",
+      "hint": ""
+    },
+    {
+      "label": "pour one water northeast [liquid flask]",
+      "command": "PourOneLiquidVessel|water|12|Overworld.16.11.0|49|10",
+      "hint": ""
+    },
+    {
+      "label": "<< everything here",
+      "command": "PickCell",
+      "hint": ""
+    }
+  ],
+  "paid": {
+    "zone": "Overworld.16.11.0",
+    "x": 48,
+    "y": 11,
+    "tick": 3330,
+    "hp": 41,
+    "money": 13,
+    "paid": true,
+    "torch": [
+      {
+        "ID": "e027e27f23964e768805b8e4c777ef0e",
+        "lit": true,
+        "fuel": 28.4000549,
+        "worn": false
+      }
+    ],
+    "positionedTools": [
+      {
+        "ID": "12918",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 44,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      },
+      {
+        "ID": "12905",
+        "BlueprintName": "Torch",
+        "label": "torch",
+        "x": 48,
+        "y": 11,
+        "v": true,
+        "light": true,
+        "fuel": 28.1000557,
+        "stock": null
+      },
+      {
+        "ID": "12919",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 49,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      }
+    ]
+  },
+  "fresh": {
+    "zone": "Overworld.16.11.0",
+    "x": 48,
+    "y": 11,
+    "tick": 3330,
+    "hp": 41,
+    "money": 13,
+    "paid": true,
+    "torch": [
+      {
+        "ID": "e027e27f23964e768805b8e4c777ef0e",
+        "lit": true,
+        "fuel": 28.4000549,
+        "worn": false
+      }
+    ],
+    "positionedTools": [
+      {
+        "ID": "12918",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 44,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      },
+      {
+        "ID": "12905",
+        "BlueprintName": "Torch",
+        "label": "torch",
+        "x": 48,
+        "y": 11,
+        "v": true,
+        "light": true,
+        "fuel": 28.1000557,
+        "stock": null
+      },
+      {
+        "ID": "12919",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 49,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      }
+    ]
+  },
+  "light": {
+    "before": {
+      "AmbientLevel": 0.4,
+      "x": 48,
+      "y": 11,
+      "who": 1.0,
+      "west": 0.8413094,
+      "south": 0.6,
+      "east": 1.0,
+      "far": 0.4
+    },
+    "after": {
+      "AmbientLevel": 0.4,
+      "x": 48,
+      "y": 11,
+      "who": 1.0,
+      "west": 1.0,
+      "south": 0.9428572,
+      "east": 1.0,
+      "far": 0.4
+    },
+    "fresh": {
+      "AmbientLevel": 0.4,
+      "x": 48,
+      "y": 11,
+      "who": 1.0,
+      "west": 1.0,
+      "south": 0.9428572,
+      "east": 1.0,
+      "far": 0.4
+    }
+  },
+  "native": {
+    "old": {
+      "total": 6,
+      "passed": 0,
+      "failed": 6,
+      "skipped": 0,
+      "failedCases": [
+        "AFailedSlipWickActionRollsBackTheTorchAndLeavesTheLampAvailable",
+        "ASlipWickNeedsTheVisibleLampAndAReadyTorch",
+        "AStaleSlipWickCannotSubstituteACampfireOrStriker(False)",
+        "AStaleSlipWickCannotSubstituteACampfireOrStriker(True)",
+        "AStockedSlipLampLightsOneEquippedOrLooseTorchWithoutUsingItsFuel(False)",
+        "AStockedSlipLampLightsOneEquippedOrLooseTorchWithoutUsingItsFuel(True)"
+      ]
+    },
+    "final": {
+      "total": 313,
+      "passed": 313,
+      "failed": 0,
+      "skipped": 0,
+      "failedCases": []
+    }
+  },
+  "saveArchives": {
+    "DarkAtPaidRoad": {
+      "Quick.json": "ca3bf644e4039591b17410e223f170e7bff0c0d31d9543193ee11579d456c156",
+      "Quick.sav.gz": "8644f27f9ef75008c98045f8a1c44c511ba63c0f67f4ff5eeb86b0614e7ce9c1",
+      "Quick.json.bak": "c8a725901e117d1e8f4fd0da856bb1b5b726376086aad2bc51743150e8303eb7",
+      "Quick.sav.gz.bak": "17eee6aeebeb33df52e7211c94694e45d3d477de89cecc962d5e46d7ded6ee52"
+    },
+    "LitAtRoad": {
+      "Quick.json": "d2832db92508e19b62781ea3f880437c739eaff00741914f76e573b5cbe89c8c",
+      "Quick.sav.gz": "669fee3711fb3b6e354ed01a834b387f66d239a87c1a37bd039ad0daa2d7b825",
+      "Quick.json.bak": "ca3bf644e4039591b17410e223f170e7bff0c0d31d9543193ee11579d456c156",
+      "Quick.sav.gz.bak": "8644f27f9ef75008c98045f8a1c44c511ba63c0f67f4ff5eeb86b0614e7ce9c1"
+    },
+    "CarriedRoadWick": {
+      "Quick.json": "7ef450e0c7205b7d537abf8023f09d9f5e0a14ad838550a43f406030b69ebbf4",
+      "Quick.sav.gz": "33429cf3d21d244175cf43bb081a8e624ac0f9e6eb095f2abea9c96d3c265362",
+      "Quick.json.bak": "d2832db92508e19b62781ea3f880437c739eaff00741914f76e573b5cbe89c8c",
+      "Quick.sav.gz.bak": "669fee3711fb3b6e354ed01a834b387f66d239a87c1a37bd039ad0daa2d7b825"
+    }
+  },
+  "protected": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "preferences": {
+    "restoredOwnedRunKeys": [],
+    "initialPreferenceFileBytesMatch": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    }
+  },
+  "carried": {
+    "zone": "Overworld.16.11.0",
+    "x": 48,
+    "y": 15,
+    "tick": 3380,
+    "hp": 41,
+    "money": 13,
+    "paid": true,
+    "torch": [
+      {
+        "ID": "e027e27f23964e768805b8e4c777ef0e",
+        "lit": true,
+        "fuel": 28.4000549,
+        "worn": false
+      },
+      {
+        "ID": "12905",
+        "lit": true,
+        "fuel": 26.9000587,
+        "worn": true
+      }
+    ],
+    "positionedTools": [
+      {
+        "ID": "12918",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 44,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      },
+      {
+        "ID": "12919",
+        "BlueprintName": "SlipEastLamp",
+        "label": "east road lamp",
+        "x": 49,
+        "y": 10,
+        "v": true,
+        "light": true,
+        "fuel": null,
+        "stock": null
+      }
+    ],
+    "light": {
+      "AmbientLevel": 0.4,
+      "x": 48,
+      "y": 15,
+      "who": 1.0,
+      "west": 1.0,
+      "south": 1.0,
+      "east": 1.0,
+      "far": 0.5124228
+    }
+  }
+}
