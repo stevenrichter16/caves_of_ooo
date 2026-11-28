@@ -49,6 +49,13 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #18–#19, the Peat Works locker’s placed reader shows the current
+haul weight by the same rule that checks the load. Taking the exact
+acidworker apron lowered it from 76 lb to 64 lb. An ordinary pull moved
+the original locker with its remaining stock. The apron added its worn
+acid resistance after recovery, and both outcomes survived Continue.
+[Optional withdrawal and hauling](Verification/MachineSystems/PeatWorksLockerHaul20261128/README.md)
+
 For #19 and #36–#40, the ordinary Ginmere stairs remain an option
 while locally bought cord can improve a return trip. The anchored
 route requires checking both floors and spends two physical cords.

@@ -106,9 +106,26 @@ namespace CavesOfOoo.Core
     }
     /// <summary>Opt-in physical cargo weight. Bounded, read-only traversal rejects
     /// cycles, duplicate identities, owner aliases and overflow with an unhaulable load.</summary>
-    public sealed class ContainerLoadPart : Part
+    public sealed class ContainerLoadPart : Part, IDescribeState
     {
         public override string Name => "ContainerLoad";
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 40;
+
+        public string DescribeState(DescribeContext context)
+        {
+            var owner = ParentEntity;
+            if (owner == null || context?.Owner != owner || owner.GetPart<ContainerLoadPart>() != this
+                || owner.GetPart<ContainerPart>()?.ParentEntity != owner
+                || owner.GetPart<HandlingPart>() is not { Carryable: false } handling || handling.ParentEntity != owner
+                || owner.GetPart<PhysicsPart>()?.Takeable != false || owner.HasTag("Creature")
+                || LocalPorterReservationPart.Blocks(owner) || !WorldResourceActions.Ground(owner, context.Zone))
+                return null;
+
+            int weight = DragRules.WeightOf(owner);
+            return weight == int.MaxValue ? null : $"Haul weight: {weight} lb.";
+        }
+
         [NonSerialized] Entity[] seen;
         internal int Weight(int shell)
         {

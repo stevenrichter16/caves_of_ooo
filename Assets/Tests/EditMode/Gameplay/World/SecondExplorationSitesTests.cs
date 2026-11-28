@@ -115,6 +115,127 @@ namespace CavesOfOoo.Tests
             Assert.True(chest.GetPart<ContainerPart>().RemoveItem(goods)); Assert.AreEqual(40, DragRules.WeightOf(chest));
             Assert.AreEqual(3, Units(goods));
         }
+        [Test]
+        public void WorksLockerExamineTracksWithdrawnCargoAndTheHauledOwner()
+        {
+            var locker = PlaceHaulableLocker();
+            var contents = locker.GetPart<ContainerPart>();
+            var cord = Factory.CreateEntity("KnotflaxCord");
+            cord.GetPart<StackerPart>().StackCount = 3;
+            var apron = Factory.CreateEntity("AcidworkerApron");
+            Assert.True(contents.AddItem(cord));
+            Assert.True(contents.AddItem(apron));
+            var originalCell = Zone.GetEntityCell(locker);
+            var examine = locker.GetPart<ExaminablePart>();
+            string savedFlavor = examine.Text;
+
+            int shell = locker.GetPart<HandlingPart>().Weight;
+            int remainingWeight = shell + 3 * HandlingService.GetWeight(cord);
+            int loadedWeight = remainingWeight + HandlingService.GetWeight(apron);
+            Assert.That(DragRules.WeightOf(locker), Is.EqualTo(loadedWeight));
+            AssertHaulReadout(locker, loadedWeight);
+
+            Assert.True(InventorySystem.TakeFromContainer(Actor, locker, apron));
+            Assert.That(Pack.Objects, Does.Contain(apron));
+            Assert.That(DragRules.WeightOf(locker), Is.EqualTo(remainingWeight));
+            AssertHaulReadout(locker, remainingWeight);
+
+            Assert.That(DragSystem.TryGrab(Actor, locker, Zone), Is.EqualTo(DragVerdict.Ok));
+            Assert.True(MovementSystem.TryMove(Actor, Zone, -1, 0));
+            DragSystem.Release(Actor);
+            Assert.That(Zone.GetEntityPosition(locker), Is.EqualTo((10, 10)));
+            Assert.That(ExamineDocumentBuilder.BuildWorld(locker, Zone, originalCell, Actor), Is.Null);
+            Assert.That(contents.Contents.Single(), Is.SameAs(cord));
+            Assert.That(cord.GetPart<PhysicsPart>().InInventory, Is.SameAs(locker));
+            AssertHaulReadout(locker, remainingWeight);
+
+            Assert.True(InventorySystem.TakeFromContainer(Actor, locker, cord));
+            Assert.That(contents.Contents, Is.Empty);
+            Assert.That(DragRules.WeightOf(locker), Is.EqualTo(shell));
+            AssertHaulReadout(locker, shell);
+            Assert.That(examine.Text, Is.EqualTo(savedFlavor));
+        }
+
+        [Test]
+        public void ExactPlacedLoadWithInvalidCargoDoesNotAdvertiseANumericWeight()
+        {
+            var locker = PlaceHaulableLocker();
+            var cord = Factory.CreateEntity("KnotflaxCord");
+            Assert.True(locker.GetPart<ContainerPart>().AddItem(cord));
+            AssertHaulReadout(locker, DragRules.WeightOf(locker));
+            cord.GetPart<PhysicsPart>().InInventory = Actor;
+            Assert.That(DragRules.WeightOf(locker), Is.EqualTo(int.MaxValue));
+
+            var (world, quick) = ReadLocker(locker);
+
+            const string numericWeight = @"Haul weight:\s*[\d,.]+\s*lb";
+            Assert.That(world, Does.Not.Match(numericWeight).IgnoreCase);
+            Assert.That(quick, Does.Not.Match(numericWeight).IgnoreCase);
+            Assert.That(world, Does.Not.Contain(int.MaxValue.ToString()));
+            Assert.That(quick, Does.Not.Contain(int.MaxValue.ToString()));
+            Assert.That(cord.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void DefaultSceneryAndCarryableCargoKeepTheirOrdinaryDescription(bool carryable)
+        {
+            var locker = Place("SoddenWorksLocker");
+            if (carryable)
+                locker.AddPart(new HandlingPart { Weight = 40, Carryable = true });
+            locker.AddPart(new ContainerLoadPart());
+
+            var (world, quick) = ReadLocker(locker);
+            string flavor = locker.GetPart<ExaminablePart>().Text;
+
+            Assert.That(world, Does.Contain(flavor).And.Not.Contain("Haul weight:"));
+            Assert.That(quick, Does.Contain(flavor).And.Not.Contain("Haul weight:"));
+        }
+
+        [Test]
+        public void DetachedLockerAndForeignLoadPartDoNotAdvertiseHaulWeight()
+        {
+            var locker = PlaceHaulableLocker();
+            var load = locker.GetPart<ContainerLoadPart>();
+            var foreign = Place("Chest", 13, 10);
+            foreign.AddPart(new HandlingPart { Weight = 55, Carryable = false });
+            foreign.AddPart(load);
+
+            var (world, quick) = ReadLocker(locker);
+            Assert.That(world, Does.Not.Contain("Haul weight:"));
+            Assert.That(quick, Does.Not.Contain("Haul weight:"));
+
+            Assert.True(foreign.RemovePart(load));
+            load.ParentEntity = locker;
+            Assert.True(Zone.RemoveEntity(locker));
+            Assert.That(locker.GetPart<ExaminablePart>().BuildExamineLine(), Does.Not.Contain("Haul weight:"));
+        }
+
+        private Entity PlaceHaulableLocker()
+        {
+            var locker = Place("SoddenWorksLocker");
+            locker.AddPart(new HandlingPart { Weight = 40, Carryable = false });
+            locker.AddPart(new ContainerLoadPart());
+            return locker;
+        }
+
+        private (string World, string Quick) ReadLocker(Entity locker)
+        {
+            var cell = Zone.GetEntityCell(locker);
+            cell.Explored = cell.IsVisible = true;
+            var document = ExamineDocumentBuilder.BuildWorld(locker, Zone, cell, Actor);
+            Assert.That(document, Is.Not.Null);
+            return (document.ToPlainText(), locker.GetPart<ExaminablePart>().BuildExamineLine());
+        }
+
+        private void AssertHaulReadout(Entity locker, int weight)
+        {
+            var (world, quick) = ReadLocker(locker);
+            string line = $"Haul weight: {weight} lb";
+            Assert.That(world, Does.Contain(line));
+            Assert.That(quick, Does.Contain(line));
+        }
+
         [TestCase(false)] [TestCase(true)]
         public void CollectorBarterTransfersItsExactCarriedFindOnlyWithFood(bool withoutFood)
         {

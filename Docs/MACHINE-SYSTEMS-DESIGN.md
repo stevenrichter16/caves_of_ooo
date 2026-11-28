@@ -1,3 +1,11 @@
+**A placed hauling container shows the weight of the load.**
+The Peat Works locker’s exact haul weight is readable before choosing
+between taking an individual supply and moving the loaded container.
+The same shared weight rule follows the contents and the locker’s
+physical movement. The exact apron from this locker can be worn
+immediately for its ordinary acid resistance.
+[Peat Works loaded locker](Verification/MachineSystems/PeatWorksLockerHaul20261128/README.md)
+
 **Ginmere’s rope makes the same ledges easier to revisit.**
 Ordinary stairs reach both landings first. Two measures of knotflax
 cord rig a shorter two-way connection in one turn. The anchor reports

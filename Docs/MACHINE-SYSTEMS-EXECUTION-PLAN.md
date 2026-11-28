@@ -1,3 +1,12 @@
+**Peat Works shows the locker’s current haul weight — November 28, 2026, America/Chicago.**
+Examine shows 76 lb for the exact surviving locker and 64 lb after
+taking its 12 lb acidworker apron. One ordinary haul step moves the same
+locker and its six remaining entries. Letting go restores movement
+speed. Equipping the apron gives +50 acid resistance. A fresh Continue
+keeps the moved locker, its cargo and the worn protection. Native checks
+passed 246 cases with one explicit generator skipped.
+[Locker weights, custody and movement](Verification/MachineSystems/PeatWorksLockerHaul20261128/README.md)
+
 **Ginmere’s rope anchors explain their cost and direction — November 28, 2026, America/Chicago.**
 The ordinary Ginmere stairs and a Morrowfast purchase yielded three cord
 from Orrit for 26 drams. Rigging spent two in one turn, leaving one cord,
