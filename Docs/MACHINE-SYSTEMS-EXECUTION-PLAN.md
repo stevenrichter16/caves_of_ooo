@@ -1,3 +1,12 @@
+**Current Mac app includes the Tine scraper and Peat Works release — November 28, 2026, America/Chicago.**
+The universal Mac build from runtime `c216af284` replayed the Tine
+scraper through a native fight, movement, one scale and fresh Continue
+on Apple M5. The scale and shared stock matched the private save.
+The package also includes the earlier Editor-verified Sill gravel,
+world action headings and Peat Works outlet. Six universal binaries
+and 19 prior builds matched their recorded checks.
+[Current Mac app and actual play](Verification/MachineSystems/ScraperReach20261128/mac-package.json)
+
 **Below Tine, scraper work follows a clear approach — November 28, 2026, America/Chicago.**
 A traveler bought a scraper in Tine for 32 drams and climbed two
 ordinary stairs down. A steam vent two steps away was hidden behind
