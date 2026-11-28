@@ -920,6 +920,15 @@ the retained chaff and the fuel it supplied. Broader seasonal density remains op
 [Evidence](Verification/MachineSystems/SeasonalSeedFrame20261125/README.md)
 [Fair-weather trial](Verification/MachineSystems/FairWeatherChaff20261125/README.md)
 
+For #34 and #40, a later ordinary branch connects that dry processing
+bonus to the Sill-bought portable hearth. One naturally gathered bundle
+gave one seed and fuel for one meal at Stump. The exact purchased board
+stayed in the pack. The separate timber branch cooked the same food
+with more fuel remaining. Both methods use the same ordinary flame and
+cooking checks. The late-season trial deliberately used the free Dry Hem
+guest bed to reach the weather window.
+[Ordinary chaff fuel trial](Verification/MachineSystems/SeasonalChaffFieldHearth20261127/README.md)
+
 31. **Start with one additional material opportunity.** Choose finite flexible
     stems, ripe heads or another lore-compatible stock whose output has a real
     consumer. The existing optional rain collection does not establish those

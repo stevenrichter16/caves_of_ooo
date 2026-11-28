@@ -5,6 +5,12 @@ The fire reader keeps its two lines for fuel and remaining flame.
 The field trial follows one hearth from a Sill shop into the wild.
 [Bought hearth field trial](Verification/MachineSystems/SillHearthField20261127/README.md)
 
+In the late knotflax season, fair weather and a dry public frame can save
+the chaff. One chaff gives the same hearth five fuel, enough for the found
+fire-moss to light it and for one cooking action. The traveler kept the
+original timber for another use and the plantable seed for later.
+[Ordinary chaff fuel trial](Verification/MachineSystems/SeasonalChaffFieldHearth20261127/README.md)
+
 **A burning object can serve as a cooking fire.**
 A nearby, visible combustible world object can cook from its own
 active flames while it has enough heat. The pack and world menus name

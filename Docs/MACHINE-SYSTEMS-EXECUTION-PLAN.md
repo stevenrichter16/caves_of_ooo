@@ -1,3 +1,13 @@
+**Dry knotflax chaff saves the carried board — November 27, 2026, America/Chicago.**
+The ordinary Sill-bought hearth branch used Dry Hem’s public guest bed
+to reach the existing late season. Fair weather in the west Morrowfast
+allotment let the public frame keep one dry chaff alongside one seed.
+At Stump the same hearth took the chaff for five fuel and lit with found
+fire-moss. One Cook action made one toast and left 4.5 fuel. The original
+board and seed stayed in the pack through Continue. This branch verifies
+an existing option using earned materials and equipment.
+[Seasonal fuel playtest](Verification/MachineSystems/SeasonalChaffFieldHearth20261127/README.md)
+
 **Current Mac app cooks and restores a field meal — November 27, 2026, America/Chicago.**
 The universal app at `mac-2e98519f4-20261127/CavesOfOoo.app` packages the
 current gameplay. On Apple M5, the standalone Continue loaded the bought,
