@@ -16,6 +16,7 @@ namespace CavesOfOoo.Rendering
 
         private readonly Tilemap _tilemap;
         private readonly Tilemap _backgroundTilemap;
+        private readonly GameplayHotbarLedgerView _ledgerView;
         private static readonly TileBase[] BlankRow = new TileBase[GameplayHotbarLayout.GridWidth];
         private static readonly TileBase[] BlankSlot = new TileBase[GameplayHotbarLayout.SlotWidth * 5];
         private readonly List<HotbarSlotSnapshot> _lastSlots =
@@ -29,10 +30,20 @@ namespace CavesOfOoo.Rendering
         private float _cellWidth;
 
         public GameplayHotbarRenderer(Tilemap tilemap, Tilemap backgroundTilemap)
+            : this(tilemap, backgroundTilemap, null)
+        {
+        }
+
+        internal GameplayHotbarRenderer(Tilemap tilemap, Tilemap backgroundTilemap, Transform ledgerOwner)
         {
             _tilemap = tilemap;
             _backgroundTilemap = backgroundTilemap;
+            if (ledgerOwner != null) _ledgerView = new GameplayHotbarLedgerView(ledgerOwner);
         }
+
+        internal void HideLedgerView() => _ledgerView?.Hide();
+
+        internal void DisposeLedgerView() => _ledgerView?.Dispose();
 
         public void Clear()
         {
@@ -43,6 +54,7 @@ namespace CavesOfOoo.Rendering
             _lastSlots.Clear();
             _lastTitle = _lastSummary = _lastHint = null;
             _lastAspect = -1;
+            HideLedgerView();
             if (_tilemap != null)
             {
                 _tilemap.ClearAllTiles();
@@ -60,6 +72,13 @@ namespace CavesOfOoo.Rendering
         {
             using (PerformanceMarkers.Ui.HotbarRender.Auto())
             {
+                if (_ledgerView != null)
+                {
+                    if (_needsInitialClear) Clear();
+                    if (_ledgerView.Render(snapshot, camera)) PerformanceDiagnostics.RecordHotbarRender();
+                    return;
+                }
+
                 if (_tilemap == null || _backgroundTilemap == null || camera == null || !camera.enabled)
                 {
                     if (_hasContent || _needsInitialClear)

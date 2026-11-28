@@ -1,3 +1,11 @@
+**Gameplay hotbar and larger categorized Inventory — November 28, 2026, America/Chicago.**
+The large Inventory tab uses 36-pixel item rows and folio sections.
+Category headings persist through name and weight sorts. Skill cards
+show binding, icon, readiness and cooldown in the existing hotbar strip.
+Tally Continue verified six categories, unchanged tick while browsing,
+and the 1 key using En Garde with a visible cooldown. All 640 focused
+Unity tests passed. [Play and screenshots](Verification/MachineSystems/HotbarReadablePack20261128/README.md)
+
 **Current Mac app centers the conversation card — November 28, 2026, America/Chicago.**
 Runtime 84dc52508 retains the new conversation style and centers it in the
 gameplay viewport. Apple M5 ordinary Continue reached Darret’s centered

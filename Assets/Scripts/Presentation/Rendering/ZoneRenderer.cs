@@ -527,7 +527,7 @@ namespace CavesOfOoo.Rendering
             _worldAffordanceRenderer = new WorldAffordanceRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _combatIntentRenderer = new CombatIntentRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
-            _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
+            _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap, Application.isPlaying ? transform : null);
 
             var popupOverlayGridObj = new GameObject("PopupOverlayGrid");
             _popupOverlayGridTransform = popupOverlayGridObj.transform;
@@ -577,6 +577,7 @@ namespace CavesOfOoo.Rendering
 
         private void OnDisable()
         {
+            _hotbarRenderer?.HideLedgerView();
             _envSpriteRenderer?.ClearFlatPaintReceipts();
             _flatProjection?.Dispose();
             _flatProjection = null;
@@ -593,6 +594,7 @@ namespace CavesOfOoo.Rendering
 
         private void OnDestroy()
         {
+            _hotbarRenderer?.DisposeLedgerView();
             _worldAffordanceRenderer?.Dispose(); _worldAffordanceRenderer = null; _affordanceInput = null;
             _combatIntentRenderer?.Dispose(); _combatIntentRenderer = null;
             _fellingScenePresenter?.Unbind();
@@ -2016,6 +2018,7 @@ namespace CavesOfOoo.Rendering
 
         public void SetHotbarCamera(Camera hotbarCamera)
         {
+            if (_hotbarCamera != hotbarCamera) _hotbarRenderer?.HideLedgerView();
             _hotbarCamera = hotbarCamera;
             UpdateHotbarGridLayout();
         }
@@ -2201,6 +2204,7 @@ namespace CavesOfOoo.Rendering
         public bool TryGetHotbarSlotAtScreenPosition(Vector2 screenPosition, out int slot)
         {
             slot = -1;
+            if (Paused || _hotbarCamera == null || !_hotbarCamera.isActiveAndEnabled) return false;
             return GameplayHotbarLayout.TryGetSlotAtScreenPosition(
                 _hotbarCamera,
                 _hotbarTilemap,

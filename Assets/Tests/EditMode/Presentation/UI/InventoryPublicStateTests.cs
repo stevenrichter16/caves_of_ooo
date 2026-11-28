@@ -210,18 +210,24 @@ namespace CavesOfOoo.Tests
                 Assert.Zero(vessel.Volume); Assert.False(r.UI.ConsumePendingEverydayTurn());
             }
         }
-        [Test] public void PublicStatePaintKeepsDensityAndDistinguishingBadgesInsideTheExistingNameCell()
+        [Test] public void PublicStatePaintKeepsDistinguishingBadgesInsideLargerNameCellsAcrossPages()
         {
             using (var registry = new PublicStateRegistryScope()) using (var r = new Rig())
             {
                 for (int i = 0; i < 42; i++) r.Carry("DriedMeat", "stock " + i);
                 var flask = PublicStateCarry(r, "LiquidFlask"); var garment = r.Carry("LeatherArmor", new string('q', 90)); garment.AddPart(new EnhancementSteeped { Kind = "heat" }); garment.AddPart(new EnhancementLacquered());
-                r.Open(); r.Tab(1); Assert.AreEqual(44, r.Hits().Count(h => Kind(h) == "Item"));
-                Assert.True(r.Labels().Any(t => t.Content.Contains("liquid flask") && t.Content.Contains("empty")));
+                r.Open(); r.Tab(1);
+                Assert.Less(r.Hits().Count(h => Kind(h) == "Item"), 44);
                 Call(r.UI, "SelectLedgerHit", r.FindHit("Item", r.InventoryRow(garment))); Call(r.UI, "Render");
                 string summary = PublicText(PublicDisplay(r, garment)); StringAssert.Contains(summary, (string)Get(r.UI, "_ledgerSelectionText"));
-                var row = Bounds(r.FindHit("Item", r.InventoryRow(garment))); var name = r.Labels().Single(t => t.Content.Contains('q') && Mathf.Abs(r.BoundsOf(t).y - row.y - 1) < .1f);
-                StringAssert.Contains("...", name.Content); StringAssert.Contains("[", name.Content); Assert.LessOrEqual(name.Content.Length, 32);
+                var row = Bounds(r.FindHit("Item", r.InventoryRow(garment)));
+                var name = r.Labels().Single(t => t.Content.Contains('q') && Mathf.Abs(r.BoundsOf(t).center.y - row.center.y) < .1f);
+                StringAssert.Contains("...", name.Content); StringAssert.Contains("[", name.Content);
+                var nameBounds = r.BoundsOf(name);
+                Assert.LessOrEqual(name.Content.Length * nameBounds.height / 2, nameBounds.width + .1f);
+                BrowseCategory(r, "Containers");
+                AssertSelectedItemIsPainted(r, flask);
+                Assert.True(r.Labels().Any(t => t.Content.Contains("liquid flask") && t.Content.Contains("empty")));
             }
         }
         [Test] public void PublicStateStrikerNumericChargeNameRemainsSearchable_Counter()

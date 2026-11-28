@@ -94,6 +94,7 @@ namespace CavesOfOoo.Rendering
             if (index < 0 || index >= _rows.Count) return;
             var row = _rows[index];
             if (row.IsHeader || row.Item == null) return;
+            if (DensePack && index == _cursorIndex) RememberBrowseSelection();
             if (row.StorageOwner != null)
                 OpenStoredItemActions(row);
             else if (browseContents && row.StorageContainer != null)

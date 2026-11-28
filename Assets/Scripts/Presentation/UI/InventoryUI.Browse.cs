@@ -33,6 +33,12 @@ namespace CavesOfOoo.Rendering
             if (sort != "Category" && sort != "Name" && sort != "Weight") return;
             _inventorySort = sort; RefreshBrowse(BrowseSelected);
         }
+        static string InventorySortLabel(string sort) => sort switch
+        {
+            "Name" => "Name A-Z in category",
+            "Weight" => "Heaviest in category",
+            _ => "Category order"
+        };
         void RefreshBrowse(Entity selected)
         {
             if (_state == null) Rebuild(); else RebuildInventoryRows(selected, DenseOrdinal);
@@ -68,7 +74,7 @@ namespace CavesOfOoo.Rendering
             foreach (string sort in new[] { "Category", "Name", "Weight" })
             {
                 string choice = sort;
-                string label = choice == "Category" ? "Category (original order)" : choice == "Name" ? "Name A-Z" : "Heaviest first (group total)";
+                string label = choice == "Category" ? "Category (original order)" : InventorySortLabel(choice);
                 AddLedgerCommand((_inventorySort == choice ? "[x] " : "[ ] ") + label, () => SetInventorySort(choice));
             }
             _ledgerCommandsOpen = true; Render();
@@ -102,7 +108,7 @@ namespace CavesOfOoo.Rendering
             else
             {
                 var sort = new Rect(grouping.x - 188, 140, 180, 27);
-                BrowseHeaderButton(sort, "F4: " + (_inventorySort == "Weight" ? "Heaviest" : _inventorySort == "Name" ? "Name A-Z" : "Category"), LedgerHitKind.PackSort);
+                BrowseHeaderButton(sort, "F4: " + (_inventorySort == "Weight" ? "Weight in section" : _inventorySort == "Name" ? "A-Z in section" : "Category"), LedgerHitKind.PackSort);
                 BrowseHeaderButton(new Rect(sort.x - 208, 140, 200, 27), "F3: " + (string.IsNullOrEmpty(_inventoryCategory) ? "All categories" : _inventoryCategory), LedgerHitKind.PackCategory);
             }
         }

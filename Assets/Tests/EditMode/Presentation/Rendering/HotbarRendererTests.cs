@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
@@ -5,6 +6,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace CavesOfOoo.Tests
 {
@@ -87,6 +89,155 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(layout.HotbarRect, hotbarCamera.rect);
             Assert.AreEqual(layout.MapRect, popupOverlayCamera.rect);
             Assert.AreEqual(CameraRenderType.Overlay, popupOverlayCamera.GetUniversalAdditionalCameraData().renderType);
+        }
+
+        [TestCase(.02f, .03f, .73f, .15f)]
+        [TestCase(.06f, .01f, .62f, .19f)]
+        public void LedgerCardsStayInsideTheHotbarAndTheirCentersHitExactSlots(float x, float y, float width, float height)
+        {
+            var viewport = new Rect(x, y, width, height);
+            var zoneRenderer = CreateLedgerHotbar(viewport, out var camera, out _);
+            Canvas canvas = LedgerCanvas(zoneRenderer);
+            Assert.That(canvas.renderMode, Is.EqualTo(RenderMode.ScreenSpaceCamera));
+            Assert.That(canvas.worldCamera, Is.SameAs(camera));
+            Rect strip = camera.pixelRect;
+            Rect[] cards = LedgerCards(canvas).Select(card => ScreenBounds(card, camera)).ToArray();
+            var header = canvas.GetComponentsInChildren<Image>().Single(image => image.name == "Hotbar Header");
+            Rect headerBounds = ScreenBounds(header.rectTransform, camera);
+            Assert.That(headerBounds.yMax, Is.EqualTo(strip.yMax).Within(1));
+
+            float laneWidth = strip.width / cards.Length;
+            for (int slot = 0; slot < cards.Length; slot++)
+            {
+                Rect card = cards[slot];
+                Assert.That(card.width, Is.GreaterThan(0));
+                Assert.That(card.height, Is.GreaterThan(0));
+                Assert.That(card.xMin, Is.GreaterThanOrEqualTo(strip.xMin + slot * laneWidth - 1));
+                Assert.That(card.xMax, Is.LessThanOrEqualTo(strip.xMin + (slot + 1) * laneWidth + 1));
+                Assert.That(card.yMin, Is.GreaterThanOrEqualTo(strip.yMin - 1));
+                Assert.That(card.yMax, Is.LessThanOrEqualTo(headerBounds.yMin + 1));
+                if (slot > 0)
+                    Assert.That(card.xMin, Is.GreaterThanOrEqualTo(cards[slot - 1].xMax - 1));
+                Assert.True(zoneRenderer.TryGetHotbarSlotAtScreenPosition(card.center, out int hit));
+                Assert.That(hit, Is.EqualTo(slot));
+            }
+
+            Assert.False(zoneRenderer.TryGetHotbarSlotAtScreenPosition(new Vector2(strip.xMax + 4, strip.center.y), out _));
+            Assert.False(zoneRenderer.TryGetHotbarSlotAtScreenPosition(new Vector2(strip.center.x, strip.yMax + 4), out _));
+            Assert.False(zoneRenderer.TryGetHotbarSlotAtScreenPosition(headerBounds.center, out _));
+        }
+
+        [Test]
+        public void LedgerHotbarRendersReadyCooldownPendingAndEmptyFromTheActualAbilities()
+        {
+            var zoneRenderer = CreateLedgerHotbar(new Rect(0, 0, .77f, .15f), out _, out var abilities);
+            var canvas = LedgerCanvas(zoneRenderer);
+            RectTransform[] cards = LedgerCards(canvas);
+            Assert.That(LedgerLabels(cards[0]), Does.Contain("1").And.Contain("Ready"));
+            Assert.That(LedgerLabels(cards[1]), Does.Contain("2").And.Contain("CD 7"));
+            Assert.That(LedgerLabels(cards[9]), Does.Contain("0").And.Contain("Empty"));
+            Assert.True(cards[0].Find("Current Slot").gameObject.activeSelf);
+            Assert.False(cards[1].Find("Current Slot").gameObject.activeSelf);
+            Assert.False(cards[9].Find("Skill Icon").gameObject.activeSelf);
+            var lungeIcon = cards[1].Find("Skill Icon").GetComponent<Image>();
+            Assert.That(lungeIcon.sprite, Is.SameAs(HudSkillIconAtlas.GetTile(SkillHudIcon.Lunge).sprite));
+            Assert.That(lungeIcon.color.a, Is.LessThan(1f));
+
+            var lunge = abilities.GetAbilityBySlot(1);
+            lunge.CooldownRemaining = 0;
+            zoneRenderer.SetHotbarState(1, lunge);
+            InvokeNonPublic(zoneRenderer, "RenderHotbar");
+            Canvas.ForceUpdateCanvases();
+
+            Assert.That(LedgerLabels(cards[1]), Does.Contain("Aiming").And.Not.Contain("CD 7"));
+            Assert.That(LedgerLabels(cards[0]), Does.Contain("Ready").And.Not.Contain("Aiming"));
+            Assert.False(cards[0].Find("Current Slot").gameObject.activeSelf);
+            Assert.True(cards[1].Find("Current Slot").gameObject.activeSelf);
+            Assert.That(lungeIcon.color.a, Is.EqualTo(1f));
+            Assert.That(LedgerLabels(canvas).Any(label => label.Contains("Lunge") && label.Contains("AIM")), Is.True);
+        }
+
+        [Test]
+        public void LedgerHotbarHidesAndRejectsHitsWhileItsViewportIsDisabledThenRestores()
+        {
+            var zoneRenderer = CreateLedgerHotbar(new Rect(0, 0, .77f, .15f), out var camera, out _);
+            var canvas = LedgerCanvas(zoneRenderer);
+            Vector2 point = ScreenBounds(LedgerCards(canvas)[0], camera).center;
+
+            camera.enabled = false;
+            InvokeNonPublic(zoneRenderer, "RenderHotbar");
+
+            Assert.False(canvas.isActiveAndEnabled);
+            Assert.False(zoneRenderer.TryGetHotbarSlotAtScreenPosition(point, out _));
+
+            camera.enabled = true;
+            InvokeNonPublic(zoneRenderer, "RenderHotbar");
+            Canvas.ForceUpdateCanvases();
+
+            Assert.True(LedgerCanvas(zoneRenderer).isActiveAndEnabled);
+            Assert.True(zoneRenderer.TryGetHotbarSlotAtScreenPosition(point, out int hit));
+            Assert.That(hit, Is.Zero);
+        }
+
+        private static ZoneRenderer CreateLedgerHotbar(Rect viewport, out Camera camera, out ActivatedAbilitiesPart abilities)
+        {
+            CreateZoneTilemap(out var zoneRenderer);
+            var player = CreatePlayerWithAbilities();
+            abilities = player.GetPart<ActivatedAbilitiesPart>();
+            var lungeId = abilities.AddAbility("Lunge", "CommandLunge", "Skill", AbilityTargetingMode.DirectionLine,
+                2, "LongBlades_Lunge");
+            abilities.GetAbility(lungeId).CooldownRemaining = 7;
+            var zone = new Zone("LedgerHotbarZone");
+            zone.AddEntity(player, 10, 10);
+            zoneRenderer.PlayerEntity = player;
+            zoneRenderer.SetZone(zone);
+            camera = CreateHotbarCamera();
+            GameplayHotbarLayout.ConfigureOverlayCamera(camera, viewport,
+                GameplayViewportLayout.GetDisplayAspect(camera) * viewport.width / viewport.height);
+            zoneRenderer.SetHotbarCamera(camera);
+            // EditMode keeps the tile fallback by default. Submit through the same
+            // renderer overload that ZoneRenderer selects during normal play.
+            var ledgerConstructor = typeof(GameplayHotbarRenderer).GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic,
+                null, new[] { typeof(Tilemap), typeof(Tilemap), typeof(Transform) }, null);
+            Assert.NotNull(ledgerConstructor, "The gameplay renderer must construct its Canvas view.");
+            var ledgerRenderer = ledgerConstructor.Invoke(new object[] {
+                zoneRenderer.HotbarTilemap, zoneRenderer.HotbarBgTilemap, zoneRenderer.transform
+            });
+            typeof(ZoneRenderer).GetField("_hotbarRenderer", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(zoneRenderer, ledgerRenderer);
+            zoneRenderer.SetHotbarState(0, null);
+            InvokeNonPublic(zoneRenderer, "RenderHotbar");
+            Canvas.ForceUpdateCanvases();
+            return zoneRenderer;
+        }
+
+        private static Canvas LedgerCanvas(ZoneRenderer renderer)
+        {
+            Canvas canvas = renderer.GetComponentInChildren<Canvas>();
+            Assert.NotNull(canvas, "The live hotbar must submit a visible Canvas.");
+            return canvas;
+        }
+
+        private static RectTransform[] LedgerCards(Canvas canvas)
+        {
+            var cards = canvas.GetComponentsInChildren<RectTransform>()
+                .Where(card => card.name.StartsWith("Hotbar Slot ", System.StringComparison.Ordinal)).ToArray();
+            Assert.That(cards.Length, Is.EqualTo(GameplayHotbarLayout.SlotCount));
+            return Enumerable.Range(0, GameplayHotbarLayout.SlotCount)
+                .Select(i => cards.Single(card => card.name == $"Hotbar Slot {HotbarStateBuilder.SlotToHotkey(i)}"))
+                .ToArray();
+        }
+
+        private static string[] LedgerLabels(Component parent) => parent.GetComponentsInChildren<Text>()
+            .Where(label => label.isActiveAndEnabled).Select(label => label.text).ToArray();
+
+        private static Rect ScreenBounds(RectTransform rect, Camera camera)
+        {
+            var corners = new Vector3[4];
+            rect.GetWorldCorners(corners);
+            Vector2 lower = RectTransformUtility.WorldToScreenPoint(camera, corners[0]);
+            Vector2 upper = RectTransformUtility.WorldToScreenPoint(camera, corners[2]);
+            return Rect.MinMaxRect(lower.x, lower.y, upper.x, upper.y);
         }
 
         private static Entity CreatePlayerWithAbilities()

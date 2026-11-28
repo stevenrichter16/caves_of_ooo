@@ -67,7 +67,8 @@ namespace CavesOfOoo.Rendering
         {
             slot = -1;
 
-            if (!ScreenToGrid(camera, tilemap, screenPosition, out int gridX, out _))
+            if (!ScreenToGrid(camera, tilemap, screenPosition, out int gridX, out int gridY)
+                || gridY == GridHeight - 1)
                 return false;
 
             slot = Mathf.Clamp(gridX / SlotWidth, 0, SlotCount - 1);

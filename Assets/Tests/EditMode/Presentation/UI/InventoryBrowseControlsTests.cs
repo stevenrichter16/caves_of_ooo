@@ -80,14 +80,14 @@ namespace CavesOfOoo.Tests
             }
         }
         [Test]
-        public void BrowseNameOrderIsGlobalPublicAndDeterministic()
+        public void BrowseNameOrderIsDeterministicWithinEachCategory()
         {
             using (var r = new Rig())
             {
-                var z=r.Carry("Dagger","zebra"); var a=r.Carry("LeatherArmor","apple"); var b=r.Carry("DriedMeat","Banana");
+                var z=r.Carry("Dagger","zebra"); var a=r.Carry("Dagger","apple"); var b=r.Carry("DriedMeat","Banana");
                 r.Open(); r.Tab(1); BrowseSelect(r,z); BrowseSort(r,"Name");
-                CollectionAssert.AreEqual(new[]{a,b,z},DenseOwners(r)); AssertSelectedItemIsPainted(r,z);
-                for(int i=0;i<3;i++) { Call(r.UI,"Rebuild"); Call(r.UI,"Render"); CollectionAssert.AreEqual(new[]{a,b,z},DenseOwners(r)); }
+                CollectionAssert.AreEqual(new[]{a,z,b},DenseOwners(r)); AssertSelectedItemIsPainted(r,z);
+                for(int i=0;i<3;i++) { Call(r.UI,"Rebuild"); Call(r.UI,"Render"); CollectionAssert.AreEqual(new[]{a,z,b},DenseOwners(r)); }
             }
         }
         [Test]
@@ -98,7 +98,8 @@ namespace CavesOfOoo.Tests
                 var a=CountedCarry(r,"DriedMeat"); var b=CountedCarry(r,"DriedMeat"); var c=r.Carry("Dagger");
                 a.GetPart<StackerPart>().StackCount=3; b.GetPart<StackerPart>().StackCount=2;
                 r.Open(); r.Tab(1); BrowseSort(r,"Weight");
-                Assert.AreEqual(a, DenseOwners(r)[0]); Assert.Greater(CountedUnits(CountedRows(r)[0]),1);
+                var food = CountedRows(r).Single(row => CountedDisplay(row).Item == a);
+                Assert.Greater(CountedUnits(food),1);
                 Assert.AreEqual(3,a.GetPart<StackerPart>().StackCount); Assert.AreEqual(2,b.GetPart<StackerPart>().StackCount);
                 CountedToggle(r); BrowseSort(r,"Weight"); Assert.AreEqual(3,DenseOwners(r).Length);
             }

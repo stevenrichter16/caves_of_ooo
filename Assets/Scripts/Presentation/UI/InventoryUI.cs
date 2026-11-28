@@ -1988,41 +1988,34 @@ namespace CavesOfOoo.Rendering
 
         private void BuildItemRows(Entity preferred = null)
         {
-            var allGroups = new List<InventoryItemGroup>();
             for (int i = 0; i < _state.Categories.Count; i++)
             {
                 var cat = _state.Categories[i];
                 if (!string.IsNullOrEmpty(_inventoryCategory) && cat.CategoryName != _inventoryCategory) continue;
                 var matching = cat.Items.Where(it => InventoryBrowseQuery.MatchesDisplay(it, _inventoryQuery)).ToList();
                 if (matching.Count == 0) continue;
-                allGroups.AddRange(InventoryItemGroups.Project(matching, preferred, !_inventoryUngrouped));
-            }
-            if (_inventorySort != "Category") allGroups.Sort(CompareBrowseGroups);
-            string lastCategory = null;
-            for (int j = 0; j < allGroups.Count; j++)
-            {
-                var group = allGroups[j];
-                var item = group.Selected;
-                if (_inventorySort == "Category" && item.Category != lastCategory)
+                var groups = InventoryItemGroups.Project(matching, preferred, !_inventoryUngrouped);
+                if (_inventorySort != "Category") groups.Sort(CompareBrowseGroups);
+                _rows.Add(new DisplayRow { IsHeader = true, Text = cat.CategoryName, Color = QudColorParser.BrightYellow });
+                foreach (var group in groups)
                 {
-                    lastCategory = item.Category;
-                    _rows.Add(new DisplayRow { IsHeader = true, Text = lastCategory, Color = QudColorParser.BrightYellow });
+                    var item = group.Selected;
+                    string equipped = item.IsEquipped ? " [E]" : "";
+                    string line = "  " + item.Name;
+                    int nameWidth = RIGHT_W - 16;
+                    if (line.Length < nameWidth) line += new string(' ', nameWidth - line.Length);
+                    else line = line.Substring(0, nameWidth);
+                    line += item.Weight.ToString().PadLeft(4) + "lb ";
+                    line += item.Value.ToString().PadLeft(4) + "$" + equipped;
+                    CarriedStorage.TryBrowse(PlayerEntity, item.Item, out var storage);
+                    _rows.Add(new DisplayRow
+                    {
+                        IsHeader = false, Text = line,
+                        Color = item.IsEquipped ? QudColorParser.BrightCyan : QudColorParser.Gray,
+                        Item = item, Group = group, StorageContainer = storage
+                    });
+                    if (storage != null) AddInlineStorageRows(item.Item, storage);
                 }
-                string equipped = item.IsEquipped ? " [E]" : "";
-                string line = "  " + item.Name;
-                int nameWidth = RIGHT_W - 16;
-                if (line.Length < nameWidth) line += new string(' ', nameWidth - line.Length);
-                else line = line.Substring(0, nameWidth);
-                line += item.Weight.ToString().PadLeft(4) + "lb ";
-                line += item.Value.ToString().PadLeft(4) + "$" + equipped;
-                CarriedStorage.TryBrowse(PlayerEntity, item.Item, out var storage);
-                _rows.Add(new DisplayRow
-                {
-                    IsHeader = false, Text = line,
-                    Color = item.IsEquipped ? QudColorParser.BrightCyan : QudColorParser.Gray,
-                    Item = item, Group = group, StorageContainer = storage
-                });
-                if (storage != null) AddInlineStorageRows(item.Item, storage);
             }
         }
 

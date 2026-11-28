@@ -31,12 +31,14 @@ namespace CavesOfOoo.Tests
         static Entity[] DenseOwners(Rig r) => r.Rows("_rows").Cast<object>().Select(x => Get(x, "Item"))
             .OfType<InventoryScreenData.ItemDisplay>().Select(x => x.Item).ToArray();
 
-        [TestCase(1280, 720, 36)] [TestCase(1280, 800, 44)]
-        [TestCase(1920, 1080, 64)] [TestCase(2560, 1440, 88)]
-        public void DenseGeometryMeetsReadableCapacityAndNameWidth(int width, int height, int minimum)
+        [TestCase(1280, 720)] [TestCase(1280, 800)]
+        [TestCase(1920, 1080)] [TestCase(2560, 1440)]
+        public void DenseGeometryReservesLargerRowsAndKeepsNameWidth(int width, int height)
         {
             var g = DenseGeometry(width, height);
-            Assert.AreEqual(2, Get(g, "Columns")); Assert.GreaterOrEqual((int)Get(g, "Capacity"), minimum);
+            Assert.AreEqual(2, Get(g, "Columns"));
+            Assert.GreaterOrEqual((int)Get(g, "Rows"), 2);
+            Assert.GreaterOrEqual(((Rect)Call(g, "RowBounds", 0)).height, 34);
             Assert.GreaterOrEqual((float)Get(g, "NameWidth"), 320);
             var list = (Rect)Get(g, "ListBounds");
             for (int i = 0; i < (int)Get(g, "Capacity"); i++)
@@ -83,11 +85,13 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(rows - 1, DenseMove(g, cap, 200, "Up"));
             Assert.AreEqual(cap + 2, DenseMove(g, rows + 3, cap + 3, "PageDown"));
         }
-        [TestCase(1280, 800, 1f, 22, 47, 44)]
-        [TestCase(1280, 800, 1f, 23, 47, 45)]
-        [TestCase(1280, 800, 1.5f, 10, 23, 20)]
-        public void DenseReviewPageKeepsRowWhenDestinationColumnDisappears(int width, int height, float scale, int selected, int count, int expected)
-        { Assert.AreEqual(expected, DenseMove(DenseGeometry(width, height, scale), selected, count, "PageDown")); }
+        [TestCase(0)] [TestCase(1)] [TestCase(2)]
+        public void DenseReviewPageKeepsRowWhenDestinationColumnDisappears(int row)
+        {
+            var layout = DenseGeometry(1280, 800);
+            int rows = (int)Get(layout, "Rows"), capacity = (int)Get(layout, "Capacity");
+            Assert.AreEqual(capacity + row, DenseMove(layout, rows + row, capacity + 3, "PageDown"));
+        }
 
         [TestCase(2560, 720, 2f)] [TestCase(1280, 360, 1f)]
         public void DenseReviewShortWideViewUsesDetailsFallbackWithoutNegativeTextBounds(int width, int height, float scale)
@@ -119,25 +123,52 @@ namespace CavesOfOoo.Tests
                     Assert.That(upper.y, Is.EqualTo(r.Camera.pixelRect.yMax).Within(.5f));
                     var row = Bounds(r.FindHit("Item", r.InventoryRow(item)));
                     float scale = (float)Get(Get(r.UI, "_denseLayout"), "Scale");
-                    Assert.That(Mathf.Abs(r.ToScreen(row.min).y - r.ToScreen(row.max).y), Is.EqualTo(24 * scale).Within(.1f));
+                    float rowHeight = ((Rect)Call(Get(r.UI, "_denseLayout"), "RowBounds", 0)).height;
+                    Assert.That(Mathf.Abs(r.ToScreen(row.min).y - r.ToScreen(row.max).y), Is.EqualTo(rowHeight * scale).Within(.1f));
                     Assert.That(Mathf.Abs(r.ToScreen(row.min).x - r.ToScreen(row.min + new Vector2(10, 0)).x), Is.EqualTo(10 * scale).Within(.1f));
                 }
             }
         }
-        [TestCase(1280, 800, 44)] [TestCase(1920, 1080, 64)]
-        public void DensePaintShowsActualOwnersWithoutSpendingRowsOnHeaders(int width, int height, int minimum)
+        [TestCase(1280, 800)] [TestCase(1920, 1080)]
+        public void DensePaintKeepsLargerItemHitsDistinctFromContinuedCategoryHeadings(int width, int height)
         {
             using (var r = new Rig(width, height))
             {
                 for (int i = 0; i < 100; i++) r.Carry(i % 2 == 0 ? "Dagger" : "HealingTonic", "owner " + i);
                 r.Open(); r.Tab(1);
                 var hits = r.Hits().Where(x => Kind(x) == "Item").ToArray();
-                Assert.GreaterOrEqual(hits.Length, minimum);
+                var layout = Get(r.UI, "_denseLayout");
+                Assert.AreEqual((int)Get(layout, "Capacity") - (int)Get(layout, "Columns"), hits.Length);
+                var headings = r.Labels().Where(x => x.Content == "Melee Weapons" || x.Content == "Melee Weapons (continued)"
+                    || x.Content == "Consumables" || x.Content == "Consumables (continued)").ToArray();
+                Assert.IsTrue(headings.Any(x => x.Content.EndsWith(" (continued)", StringComparison.Ordinal)));
+                foreach (var heading in headings)
+                    Assert.AreEqual(-1, r.HitAtScreen(r.ToScreen(r.BoundsOf(heading).center)));
                 Assert.AreEqual(hits.Length, hits.Select(Index).Distinct().Count());
                 foreach (var hit in hits)
                 {
                     Assert.NotNull(Get(r.Rows("_rows")[Index(hit)], "Item"));
                     Assert.AreEqual(Index(hit), Index(r.Hits()[r.HitAtScreen(r.ToScreen(Bounds(hit).center))]));
+                }
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+        [TestCase("Category")] [TestCase("Name")] [TestCase("Weight")]
+        public void DensePaintRetainsDifferentItemCategoriesInEverySort(string sort)
+        {
+            using (var r = new Rig())
+            {
+                var dagger = r.Carry("Dagger");
+                var seed = CountedCarry(r, "PrismreedSeed");
+                var flask = CountedCarry(r);
+                r.Open(); r.Tab(1); Call(r.UI, "SetInventorySort", sort);
+                foreach (var item in new[] { dagger, seed, flask })
+                {
+                    string category = ItemCategory.GetCategory(item);
+                    var title = r.Labels().Single(label => label.Content == category);
+                    var hit = r.FindHit("Item", r.InventoryRow(item));
+                    Assert.Less(r.BoundsOf(title).yMin, Bounds(hit).yMin, category);
+                    Assert.AreEqual(-1, r.HitAtScreen(r.ToScreen(r.BoundsOf(title).center)));
                 }
                 Assert.False(r.UI.ConsumePendingEverydayTurn());
             }
@@ -190,7 +221,7 @@ namespace CavesOfOoo.Tests
             {
                 for (int i = 0; i < 60; i++) r.Carry("Dagger", "same dagger");
                 r.Open(); r.Tab(1); CountedToggle(r); var owners = DenseOwners(r);
-                int rows = (int)Get(DenseGeometry(1280, 800), "Rows");
+                int rows = (int)Get(DenseGeometry(1280, 800), "Rows") - 1;
                 input.Keys(Key.RightArrow); r.UI.HandleInput();
                 Assert.AreEqual(1, Get(r.UI, "_panel")); Assert.AreSame(owners[rows], DenseSelected(r));
                 input.Keys(); r.UI.HandleInput(); input.Keys(Key.RightArrow); r.UI.HandleInput();
@@ -206,7 +237,8 @@ namespace CavesOfOoo.Tests
             {
                 for (int i = 0; i < 70; i++) r.Carry("Dagger", "owner " + i);
                 r.Open(); r.Tab(1); var owners = DenseOwners(r);
-                input.Keys(Key.PageDown); r.UI.HandleInput(); Assert.AreSame(owners[44], DenseSelected(r));
+                int firstPageItems = r.Hits().Count(x => Kind(x) == "Item");
+                input.Keys(Key.PageDown); r.UI.HandleInput(); Assert.AreSame(owners[firstPageItems], DenseSelected(r));
                 input.Keys(Key.End); r.UI.HandleInput(); Assert.AreSame(owners.Last(), DenseSelected(r));
                 input.Keys(Key.Home); r.UI.HandleInput(); Assert.AreSame(owners[0], DenseSelected(r));
                 Assert.False(r.UI.ConsumePendingEverydayTurn()); Assert.IsNull(r.UI.ConsumePendingThrowRequest());

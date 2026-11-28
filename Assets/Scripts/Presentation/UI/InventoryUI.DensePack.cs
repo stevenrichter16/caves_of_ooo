@@ -11,7 +11,9 @@ namespace CavesOfOoo.Rendering
     public partial class InventoryUI
     {
         readonly List<int> _denseRows = new List<int>();
+        readonly List<string> _denseCategories = new List<string>();
         InventoryPackLayout _denseLayout;
+        InventoryPackLayout.GroupedPages _densePages;
         float _denseCameraAspect;
         float _denseTextScale = 1;
         Vector2 _ledgerPaintOffset;
@@ -39,14 +41,28 @@ namespace CavesOfOoo.Rendering
         void BuildDenseRows()
         {
             _denseRows.Clear();
-            for (int i = 0; i < _rows.Count; i++) if (!_rows[i].IsHeader && _rows[i].Item != null) _denseRows.Add(i);
+            _denseCategories.Clear();
+            string category = null;
+            for (int i = 0; i < _rows.Count; i++)
+            {
+                var row = _rows[i];
+                if (row.IsHeader) category = row.Text;
+                else if (row.Item != null)
+                {
+                    _denseRows.Add(i);
+                    _denseCategories.Add(category ?? row.Item.Category);
+                }
+            }
+            _densePages = null;
         }
         int DenseOrdinal => Math.Max(0, _denseRows.IndexOf(_cursorIndex));
+        InventoryPackLayout.GroupedPages DensePages
+            => _densePages ??= new InventoryPackLayout.GroupedPages(_denseLayout, _denseCategories);
         void MoveDensePack(PackNavigation direction)
         {
             if (_denseRows.Count == 0 || _denseLayout == null) return;
             int before = _cursorIndex;
-            _cursorIndex = _denseRows[_denseLayout.Move(DenseOrdinal, _denseRows.Count, direction)];
+            _cursorIndex = _denseRows[DensePages.Move(DenseOrdinal, direction)];
             if (_cursorIndex != before) RememberBrowseSelection();
         }
         void ChangeDenseTextScale(int delta)
@@ -62,7 +78,10 @@ namespace CavesOfOoo.Rendering
                 float aspect = _ledgerCanvas.worldCamera != null ? _ledgerCanvas.worldCamera.aspect : 0;
                 bool changed = _denseLayout == null || _denseLayout.PixelWidth != width || _denseLayout.PixelHeight != height || _denseLayout.RequestedScale != _denseTextScale;
                 if (changed)
+                {
                     _denseLayout = InventoryPackLayout.Create(width, height, _denseTextScale);
+                    _densePages = null;
+                }
                 bool settle = changed || scaler.uiScaleMode != CanvasScaler.ScaleMode.ConstantPixelSize || _ledgerCanvas.scaleFactor != _denseLayout.Scale;
                 scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize; scaler.scaleFactor = _denseLayout.Scale;
                 _ledgerCanvas.scaleFactor = _denseLayout.Scale;
@@ -150,37 +169,75 @@ namespace CavesOfOoo.Rendering
                 LLabel(new Rect(x + g.ColumnWidth - 126, 171, 40, 18), "QTY", LMuted, 16);
                 LLabel(new Rect(x + g.ColumnWidth - 78, 171, 54, 18), "WT", LMuted, 16);
             }
-            int first = g.PageStart(DenseOrdinal), end = Math.Min(first + g.Capacity, _denseRows.Count);
-            if (_denseRows.Count == 0)
+            var page = DensePages.Visible(DenseOrdinal);
+            int first = 0, last = 0;
+            if (page.Count == 0)
                 LLabel(new Rect(list.x + 10, list.y + 8, list.width - 20, 72), !string.IsNullOrEmpty(_inventoryQuery) ? "No items match this search. Escape clears the filter." : !string.IsNullOrEmpty(_inventoryCategory) ? "No items in this category. Escape shows all categories." : "Your pack is empty.", LMuted, 20);
-            for (int ordinal = first; ordinal < end; ordinal++)
+            foreach (var entry in page)
             {
-                int index = _denseRows[ordinal];
-                var itemRow = _rows[index];
-                var item = itemRow.Item;
-                var row = g.RowBounds(ordinal);
-                bool selected = index == _cursorIndex;
-                if (selected) { LBox(row, LSelected); LBox(new Rect(row.x, row.y, 3, row.height), LGold); }
-                var name = DrawItemRowIcon(IndentStorageRow(new Rect(row.x + 10, row.y + 1, g.NameWidth, 22), itemRow), item.Item);
-                float labelWidth = DrawStorageLabel(name, item.Item);
-                float nameWidth = name.width - labelWidth;
-                LLabel(new Rect(name.x + labelWidth, name.y, nameWidth, name.height),
-                    DenseRowName(itemRow, Math.Max(3, (int)(nameWidth / 10))), selected ? LGold : LInk, 20);
-                var group = itemRow.Group;
-                LLabel(new Rect(row.x + row.width - 126, row.y + 3, 40, 20), DenseNumber(group?.TotalUnits ?? item.StackCount), LInk, 16);
-                LLabel(new Rect(row.x + row.width - 78, row.y + 3, 54, 20), DenseNumber(group?.TotalWeight ?? item.Weight), LInk, 16);
-                if (item.IsEquipped) LLabel(new Rect(row.xMax - 24, row.y + 3, 24, 20), "[E]", LGold, 16);
-                PaintStorageRowActions(row, index, itemRow);
+                var row = g.RowBounds(entry.Slot);
+                if (entry.IsHeader)
+                {
+                    RenderDenseCategory(row, entry);
+                    continue;
+                }
+                last = entry.ItemOrdinal + 1;
+                if (first == 0) first = last;
+                RenderDenseItem(row, _denseRows[entry.ItemOrdinal], g.NameWidth);
             }
             var packRows = _denseRows.Where(i => _rows[i].StorageOwner == null);
             long owners = packRows.Sum(i => (long)(_rows[i].Group?.Members.Count ?? 1));
             long units = packRows.Sum(i => _rows[i].Group?.TotalUnits ?? _rows[i].Item.StackCount);
             string status = (string.IsNullOrEmpty(_inventoryCategory) ? "All categories" : _inventoryCategory)
-                + " / " + (_inventorySort == "Weight" ? "Heaviest first" : _inventorySort == "Name" ? "Name A-Z" : "Category order")
-                + "   " + (_denseRows.Count == 0 ? "0" : (first + 1) + "-" + end) + " / " + _denseRows.Count
+                + " / " + InventorySortLabel(_inventorySort)
+                + "   " + (first == 0 ? "0" : first + "-" + last) + " / " + _denseRows.Count
                 + " rows; " + owners + " stacks / " + units + " items (includes equipped)   ~ rounded";
             LLabel(new Rect(24, g.Height - 73, g.Width - 48, 20), SkillScreenText.Fit(status, Math.Max(1,(int)((g.Width-48)/8)),1), LMuted, 16);
             RenderDenseSelection();
+        }
+
+        void RenderDenseCategory(Rect row, InventoryPackLayout.PackRow entry)
+        {
+            float textHeight = Mathf.Min(20, row.height);
+            LBox(new Rect(row.x + 8, row.yMax - 1, row.width - 16, 1), LBorder);
+            LLabel(new Rect(row.x + 10, row.y + (row.height - textHeight) / 2, row.width - 20, textHeight),
+                entry.Category + (entry.Continued ? " (continued)" : ""), LGold, textHeight);
+        }
+
+        void RenderDenseItem(Rect row, int index, float columnNameWidth)
+        {
+            var itemRow = _rows[index];
+            var item = itemRow.Item;
+            var group = itemRow.Group;
+            bool selected = index == _cursorIndex;
+            if (selected)
+            {
+                LBox(row, LSelected);
+                LBox(new Rect(row.x, row.y, 3, row.height), LGold);
+            }
+
+            var name = IndentStorageRow(new Rect(row.x + 10, row.y, columnNameWidth, row.height), itemRow);
+            name = DrawDenseItemIcon(name, item.Item);
+            float labelHeight = Mathf.Min(18, row.height);
+            float labelY = row.y + (row.height - labelHeight) / 2;
+            float labelWidth = DrawStorageLabel(new Rect(name.x, labelY, name.width, labelHeight), item.Item);
+            float nameWidth = name.width - labelWidth;
+            float textHeight = Mathf.Min(26, row.height);
+            LLabel(new Rect(name.x + labelWidth, row.y + (row.height - textHeight) / 2, nameWidth, textHeight),
+                DenseRowName(itemRow, Math.Max(3, (int)(2 * nameWidth / textHeight))), selected ? LGold : LInk, textHeight);
+            LLabel(new Rect(row.xMax - 126, labelY, 40, labelHeight), DenseNumber(group?.TotalUnits ?? item.StackCount), LInk, labelHeight);
+            LLabel(new Rect(row.xMax - 78, labelY, 48, labelHeight), DenseNumber(group?.TotalWeight ?? item.Weight), LInk, labelHeight);
+            if (item.IsEquipped) LLabel(new Rect(row.xMax - 26, labelY, 26, labelHeight), "[E]", LGold, 16);
+            PaintStorageRowActions(row, index, itemRow);
+        }
+
+        Rect DrawDenseItemIcon(Rect name, Entity item)
+        {
+            float size = Mathf.Min(28, name.height), gutter = size + 8;
+            var icon = InventoryItemIcons.For(item);
+            if (icon == null || name.width <= gutter) return name;
+            LBox(new Rect(name.x, name.y + (name.height - size) / 2, size, size), Color.white, icon);
+            return new Rect(name.x + gutter, name.y, name.width - gutter, name.height);
         }
         void RenderDenseSelection()
         {
@@ -199,7 +256,12 @@ namespace CavesOfOoo.Rendering
                 return;
             }
             var pane = g.DetailBounds; LFrame(pane, LBorder, LPanel);
-            if (stored && RenderStoredItemSelection(pane, child)) return;
+            var storedPane = new Rect(pane.x, pane.y, pane.width, pane.height - 46);
+            if (stored && RenderStoredItemSelection(storedPane, child))
+            {
+                RenderDenseDetailsButton(pane);
+                return;
+            }
             if (document?.Subject == null || string.IsNullOrWhiteSpace(decision))
             { LLabel(new Rect(pane.x + 12, pane.y + 16, pane.width - 24, 76), SkillScreenText.Fit("Select an item to inspect it.", (int)((pane.width - 24) / 10), 3), LMuted, 20); return; }
             var item = _rows[_cursorIndex].Item;
@@ -219,6 +281,10 @@ namespace CavesOfOoo.Rendering
             }
             if (overviewY < pane.yMax - 46)
                 RenderItemSectionOverview(new Rect(pane.x + 12, overviewY, pane.width - 24, pane.yMax - 46 - overviewY), document, decision);
+            RenderDenseDetailsButton(pane);
+        }
+        void RenderDenseDetailsButton(Rect pane)
+        {
             var details = new Rect(pane.x + 12, pane.yMax - 36, pane.width - 24, 26);
             LFrame(details, LBorder, LBackground); LLabel(new Rect(details.x + 8, details.y + 4, details.width - 16, 20), NativeGamepadInput.IsConnected ? "LT+RT Full details" : "F1 Full details", LGold, 16); LHit(details, LedgerHitKind.Details);
         }
