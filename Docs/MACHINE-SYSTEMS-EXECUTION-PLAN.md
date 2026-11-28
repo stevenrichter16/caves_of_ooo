@@ -1,3 +1,11 @@
+**Current Mac app includes Inventory Tools — November 28, 2026, America/Chicago.**
+Runtime 1f4f786c5 verified the Tools tab, shared counted rows
+and ordinary tray Gather on Apple M5. The app contains six universal
+binaries and used 32,326 committed inputs with zero errors.
+Sixteen prior retained apps, normal saves and both preference files
+matched their recorded hashes.
+[Mac screenshots and receipt](Verification/MachineSystems/InventoryTools20261128/mac-package.json)
+
 **Inventory Tools shows actual work and setup — November 28, 2026, America/Chicago.**
 Tools shows carried, equipped, stowed and nearby equipment with
 requirements and existing action and recipe routes. A supplied tray

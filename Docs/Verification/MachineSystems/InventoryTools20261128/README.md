@@ -33,3 +33,7 @@ current content. A tool with that capability can use the same item and
 workpiece recipe paths once its process is authored.
 
 [Scraper in Tools](01-scraper-tools.png) · [Ready tray in Tools](02-ready-tray-tools.png) · [Ordinary Gather action](03-native-gather.png) · [Exact receipts](observations.json)
+
+The universal Mac package reproduced the counted tools list and the
+standing tray’s ordinary Gather flow on Apple M5.
+[Mac scraper](mac-tools-scraper.png) · [Mac tray](mac-tools-ready-tray.png) · [Mac Gather menu](mac-tools-world-action.png) · [Mac package receipt](mac-package.json)
