@@ -1,3 +1,14 @@
+**Peat Works grounding shows where the charge goes — November 28, 2026, America/Chicago.**
+Ordinary pickup and brewing used loose Sill brine crust 12616.
+The exact screen 15122 came from the Peat Works locker. One clean
+water and the brewed tonic gave the wearer an actionable two-charge
+turn. From matched tick 2660, one ground action or one wait reached
+2670 at 38 HP. The selected stone retained one charge after grounding
+and zero after waiting. The revised action names its cost and onward
+conductivity. Fresh Continue kept the exact gear, puddle and charged
+stone. Native 203 passed with one explicit helper skipped.
+[Ordinary equipment, two decisions and saved ground](Verification/MachineSystems/GroundwireDischarge20261128/README.md)
+
 **Stump pith clears a slippery patch — November 28, 2026, America/Chicago.**
 Ordinary Stump movement reached ripe prismreed and gathered two
 pith and one seed. Sill’s provisioner supplied lamp oil. Examine

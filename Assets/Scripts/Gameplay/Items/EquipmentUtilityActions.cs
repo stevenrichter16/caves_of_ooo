@@ -54,6 +54,8 @@ namespace CavesOfOoo.Core
         }
         static bool Charged(Entity actor) => actor?.GetEffect<ElectrifiedEffect>() is ElectrifiedEffect charge
             && charge.Duration > 0 && WorldResourceActions.Finite(charge.Charge) && charge.Charge > 0;
+        static int GroundChargeAmount(ElectrifiedEffect charge)
+            => (int)Math.Min(ZoneTileState.MaxEnergy, Math.Ceiling(charge.Charge));
         static string Verb(Entity actor, Entity item, Zone zone)
         {
             if (!ActorReady(actor, zone) || item == null) return null;
@@ -102,6 +104,8 @@ namespace CavesOfOoo.Core
                 : verb == "BraceBoots" ? "plant feet (one shove, 3 turns)" : "crack quartz light (1 mineral, 30 turns)";
             var row = actions.AddAction(verb,label + (target != null ? " - " + target.GetDisplayName() : "") + " [" + x + "," + y + "]",command,'\0',18);
             if (verb == "FanGas") row.Hint = "Gas can change again as the turn advances.";
+            else if (verb == "GroundCharge")
+                row.Hint = $"Clears held charge in 1 turn. Sends up to {GroundChargeAmount(actor.GetEffect<ElectrifiedEffect>())} here. Wet or metal can carry it.";
             // Bracing the feet is about you, not a place; the rest act on the cell or the thing at [x,y]. A bare film of oil under a lit torch is already offered as "light it" (FireStarting), so the torch's own row stays for things.
             if (verb != "BraceBoots" && !(verb == "TouchTorch" && target == null)) { if (target != null) row.AtEntity(zone, target); else row.AtCell(x, y); }
         }
@@ -152,7 +156,7 @@ namespace CavesOfOoo.Core
                 });
                 else if (verb == "GroundCharge") tx.AfterCommit(() =>
                 {
-                    int amount = (int)Math.Min(2,Math.Ceiling(charge.Charge));
+                    int amount = GroundChargeAmount(charge);
                     actor.GetPart<StatusEffectsPart>().RemoveEffect(charge);
                     ZoneTileStateSystem.AddCharge(zone,x,y,amount,actor,"GroundwireScreen"); ZoneTileStateSystem.ResolveAfterAbility(zone,actor);
                 });
@@ -223,7 +227,7 @@ namespace CavesOfOoo.Core
             if(cell==null||!cell.IsVisible||!cell.IsPassable()||zone.GetOccupiedCells(actor).Contains(cell)
                 ||!zone.GetOccupiedCells(actor).Any(c=>Math.Abs((long)c.X-x)<=1&&Math.Abs((long)c.Y-y)<=1))return false;
             if(verb=="TouchTorch")return MaterialFieldActions.CanKindleTile(zone,x,y);
-            if(verb=="GroundCharge")return (zone.TileState.Get(x,y)?.Charge??0)<2;
+            if(verb=="GroundCharge")return zone.TileState.Charge(x,y)<ZoneTileState.MaxEnergy;
             return verb=="CrackQuartz"&&cell.Occupants.All(e=>e.HasTag("Terrain")&&!e.HasTag("Creature"));
         }
         static bool VisibleTarget(Entity actor,Entity target,Zone zone) => WorldResourceActions.Nearby(actor,target,zone)

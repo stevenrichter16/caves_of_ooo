@@ -1,3 +1,12 @@
+**The Groundwire Screen names its intended discharge.**
+While the screen is held and the traveler can act, the grounding
+row names its one-turn cost and the maximum charge sent to the
+selected tile. The hint also explains that wet or metal surfaces
+can carry charge onward. The same reusable equipment gives electric
+resistance while held. Ordinary Peat Works play verified the actual
+charged floor, with a matched wait for comparison.
+[Peat Works screen and held charge](Verification/MachineSystems/GroundwireDischarge20261128/README.md)
+
 **Prismreed pith can clear a temporary film from the ground.**
 Ground Examine names the available Wick action and one-pith cost
 when the film and carried pith are both usable. Stump’s ripe crop

@@ -146,6 +146,68 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, Zone.TileState.Get(11, 10).Charge); Assert.IsNull(Zone.TileState.Get(10, 10));
         }
 
+        [TestCase(1, 0, 1)]
+        [TestCase(2, 1, 2)]
+        public void GroundwirePreviewMatchesBothMenusAndTheCappedWrite(int heldCharge, int priorTileCharge, int expectedTileCharge)
+        {
+            var screen = Wear("GroundwireScreen");
+            var held = new ElectrifiedEffect(heldCharge);
+            Actor.ApplyEffect(held);
+            Actor.RemoveEffect<StunnedEffect>();
+            Zone.TileState.AddCharge(11, 10, priorTileCharge);
+            int before = Clock.TickCount;
+            int? firstWrite = null;
+            System.Action<int, int> observeWrite = (x, y) =>
+            {
+                if (x == 11 && y == 10 && firstWrite == null)
+                    firstWrite = Zone.TileState.Charge(x, y);
+            };
+
+            Zone.TileState.OnCellChanged += observeWrite;
+            try
+            {
+                var worldRow = CellMenu(11, 10).Single(row => row.Name == "GroundCharge");
+                var packRow = Actions(screen).Single(row => row.Command == worldRow.Command);
+                string hint = $"Clears held charge in 1 turn. Sends up to {heldCharge} here. "
+                    + "Wet or metal can carry it.";
+
+                Assert.AreSame(screen, worldRow.Via);
+                Assert.AreEqual(ActionTime.OneAction, worldRow.Time);
+                Assert.AreEqual(hint, worldRow.Hint);
+                Assert.AreEqual(hint, packRow.Hint);
+                Assert.AreEqual(hint, string.Join(" ", CavesOfOoo.Rendering.WorldActionMenuUI.WrapHint(hint, 44, 3)));
+                Assert.AreEqual(before, Clock.TickCount);
+                Assert.AreSame(held, Actor.GetEffect<ElectrifiedEffect>());
+                Assert.AreEqual(priorTileCharge, Zone.TileState.Charge(11, 10));
+                Assert.IsNull(firstWrite);
+
+                Assert.IsTrue(ChooseRow(worldRow, 11, 10));
+                Assert.AreEqual(expectedTileCharge, firstWrite);
+                Assert.IsNull(Actor.GetEffect<ElectrifiedEffect>());
+                Assert.AreSame(Actor, screen.GetPart<PhysicsPart>().Equipped);
+            }
+            finally
+            {
+                Zone.TileState.OnCellChanged -= observeWrite;
+            }
+        }
+
+        [Test]
+        public void UnchargedScreenOffersNoGroundingClueInEitherMenu()
+        {
+            var screen = Wear("GroundwireScreen");
+            Zone.TileState.WriteCoating(11, 10, "water", 4);
+            int before = Clock.TickCount;
+
+            Assert.IsFalse(CellMenu(11, 10).Any(row => row.Name == "GroundCharge"
+                || row.Hint?.Contains("Clears held charge") == true));
+            Assert.IsFalse(Actions(screen).Any(row => row.Name == "GroundCharge"
+                || row.Hint?.Contains("Clears held charge") == true));
+            Assert.AreEqual(before, Clock.TickCount);
+            Assert.IsNull(Actor.GetEffect<ElectrifiedEffect>());
+            Assert.AreEqual(0, Zone.TileState.Charge(11, 10));
+        }
+
         sealed class LowestSave : Random { public override int Next(int minValue,int maxValue)=>minValue; }
         [TestCase(false)] [TestCase(true)]
         public void WetChargeHasAnOrdinaryActionWindowAfterContactStunExpires(bool wet)

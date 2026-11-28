@@ -49,6 +49,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #36–#40, the held Groundwire Screen explains its one-turn
+transfer and how wet or metal surfaces can carry charge. The
+ordinary route combined earned Sill brine crust, a portable brew,
+stored Peat Works equipment and wetness. Grounding and waiting
+ended the same held charge within one turn. Only grounding changed
+the selected tile, and that state survived a fresh Continue.
+[Groundwire transfer and matched wait](Verification/MachineSystems/GroundwireDischarge20261128/README.md)
+
 For #36–#40, Examine now connects a visible temporary slick to a
 carried pith action when the current ground and pack permit it.
 A ripe Stump crop supplied the pith. An ordinary Sill purchase
