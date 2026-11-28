@@ -72,7 +72,7 @@ namespace CavesOfOoo.Tests
             Assert.False(Act(scraper, "ScrapeSource")); Assert.AreEqual(before, stock.Available); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard());
         }
 
-        [Test] public void InterruptedTrayPickupBlocksASharedScrapeAndPreservesAnIndependentScrape()
+        void EnterWildSurface()
         {
             var manager = OverworldZoneManager.CreateDetached(Factory, 64, true);
             string id = Enumerable.Range(0, WorldMap.Width * WorldMap.Height)
@@ -86,7 +86,11 @@ namespace CavesOfOoo.Tests
             Assert.True(Zone.AddEntity(Actor, 10, 10));
             manager.ReplaceLoadedState(new Dictionary<string, Zone> { { id, Zone } }, id, new Dictionary<string, List<ZoneConnection>>());
             SettlementRuntime.ActiveZone = Zone;
+        }
 
+        [Test] public void InterruptedTrayPickupBlocksASharedScrapeAndPreservesAnIndependentScrape()
+        {
+            EnterWildSurface();
             var shared = Source("SteamVent", 13, 10);
             var independent = Source("FrostVent", 15, 10);
             var sharedStock = SourceStockPart.For(Zone, shared, WorldClock.CurrentTick);
@@ -170,6 +174,151 @@ namespace CavesOfOoo.Tests
         /// <summary>Choosing the row, exactly as the world menu runs it: the row's own tool does the work, else the menu's target.</summary>
         bool Choose(InventoryAction row, Entity target) => InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(row.Via ?? target, row.Command), Actor, Zone).Success;
         string Noun(string reagent) => reagent == "VentScale" ? "vent scale" : reagent == "RimeFlake" ? "rime flake" : reagent == "BrineCrust" ? "brine crust" : "acid crust";
+        InventoryAction[] SkimRows(int x = 11, int y = 10)
+        {
+            var cell = Zone.GetCell(x, y);
+            cell.IsVisible = cell.Explored = true;
+            return CellMenu(x, y).Where(row => row.Name == "SkimSource").ToArray();
+        }
+
+        [TestCase("BrinePool", "BrineCrust", "Dagger", false)]
+        [TestCase("AcidPool", "AcidCrust", "ShortSword", true)]
+        [TestCase("MirePool", "AcidCrust", "Dagger", true)]
+        public void FieldSkimUsesTheSelectedPoolAndExactCuttingEdge(string blueprint, string reagent, string tool, bool equipped)
+        {
+            var nearer = Source("SteamVent", 10, 10);
+            var source = Source(blueprint, 11, 10);
+            var edge = Carry(tool);
+            if (equipped) Assert.True(InventorySystem.Equip(Actor, edge));
+            var pool = source.GetPart<LiquidPoolPart>();
+            int volume = pool.Volume;
+            Assert.That(volume, Is.Positive);
+
+            var row = SkimRows().Single();
+            Assert.False(row.IsDisabled);
+            Assert.That(row.Via, Is.SameAs(edge));
+            Assert.That(row.Time, Is.EqualTo(ActionTime.OneAction));
+            StringAssert.StartsWith("SkimSource|", row.Command);
+            StringAssert.Contains(Noun(reagent), row.Display);
+            Assert.False(Actions(edge).Any(action => action.Name == "SkimSource"));
+            Assert.IsNull(Stock(source), "Looking at the menu does not create stock.");
+
+            Assert.True(ChooseRow(row, 11, 10), string.Join(" | ", MessageLog.GetRecent(3)));
+            Assert.That(Got(reagent), Is.EqualTo(1));
+            Assert.True(Pack.Objects.Single(item => item.BlueprintName == reagent).HasTag("NoTrade"));
+            Assert.That(Got("VentScale"), Is.Zero);
+            Assert.That(Stock(source).Available, Is.EqualTo(Stock(source).Capacity - 1));
+            Assert.That(pool.Volume, Is.EqualTo(volume));
+            Assert.IsNull(Stock(nearer));
+            Assert.That(InventorySystem.IsEquipped(Actor, edge), Is.EqualTo(equipped));
+            Assert.That(Pack.Objects.Contains(edge), Is.EqualTo(!equipped));
+        }
+
+        [Test]
+        public void FieldSkimSharesThePoolStockWithTheScraperAndTray()
+        {
+            EnterWildSurface();
+            var source = Source("BrinePool", 13, 10);
+            var pool = source.GetPart<LiquidPoolPart>();
+            int volume = pool.Volume;
+            var stock = SourceStockPart.For(Zone, source, WorldClock.CurrentTick);
+            stock.Available = 3;
+            var tray = Carry("CampSettlingTray");
+            var setDown = Actions(tray).Single(row => row.Name == "SetDownFixture" && !row.IsDisabled && row.Display.StartsWith("set down east"));
+            Assert.True(Act(tray, setDown.Command));
+            Carry("Dagger");
+            var scraper = Carry("Scraper");
+
+            Assert.True(Zone.MoveEntity(Actor, 12, 10));
+            Assert.True(ChooseRow(SkimRows(13, 10).Single(), 13, 10));
+            Assert.That(stock.Available, Is.EqualTo(2));
+            Assert.True(Act(scraper, Rows(scraper).Single().Command));
+            Assert.That(stock.Available, Is.EqualTo(1));
+
+            Clock.AdvanceClock(SettlingTrayPart.CatchTicks + 1);
+            var gather = WorldInteractionSystem.GatherActions(tray, Actor).Single(row => row.Name == "GatherTray");
+            Assert.False(gather.IsDisabled);
+            Assert.True(Choose(gather, tray));
+            Assert.That(Got("BrineCrust"), Is.EqualTo(3));
+            Assert.That(Stock(source), Is.SameAs(stock));
+            Assert.That(stock.Available, Is.Zero);
+            Assert.That(pool.Volume, Is.EqualTo(volume));
+            Assert.True(SkimRows(13, 10).Single().IsDisabled);
+            Assert.True(Rows(scraper).Single().IsDisabled);
+        }
+
+        [Test]
+        public void FieldSkimRefusesThermalSourcesPouredPoolsDryPoolsAndPoolsTwoStepsAway()
+        {
+            var edge = Carry("Dagger");
+            var dry = Source("BrinePool", 10, 9);
+            dry.GetPart<LiquidPoolPart>().Volume = 0;
+            var excluded = new[] { Source("SteamVent", 11, 10), Source("FrostVent", 10, 11), Pool(8, "brine", 9, 10), dry, Source("AcidPool", 12, 10) };
+            foreach (var source in excluded)
+            {
+                var cell = Zone.GetEntityCell(source);
+                Assert.That(SkimRows(cell.X, cell.Y), Is.Empty, source.BlueprintName);
+                Assert.False(Act(edge, "SkimSource|" + Id(source)), source.BlueprintName);
+                Assert.IsNull(Stock(source));
+            }
+            Assert.That(SkimRows(9, 9), Is.Empty);
+            Source("MirePool", 9, 9);
+            Assert.False(SkimRows(9, 9).Single().IsDisabled);
+        }
+
+        [Test]
+        public void AFieldSkimQuoteCannotSwitchEdgesOrSkimFromAStaleCell()
+        {
+            var source = Source("BrinePool", 11, 10);
+            Carry("Hatchet");
+            Assert.That(SkimRows(), Is.Empty, "A wood-stock tool does not provide the flexible-stock edge.");
+            var edge = Carry("Dagger");
+            var row = SkimRows().Single();
+            var stack = edge.GetPart<StackerPart>();
+            stack.StackCount = 2;
+            Assert.That(SkimRows(), Is.Empty);
+            Assert.False(ChooseRow(row, 11, 10));
+            stack.StackCount = 1;
+
+            Assert.True(edge.ApplyEffect(new BrokenEffect()));
+            var other = Carry("ShortSword");
+            var usableRow = SkimRows().Single();
+            Assert.That(usableRow.Via, Is.SameAs(other));
+            Assert.False(ChooseRow(row, 11, 10), "The other edge does not take over the original choice.");
+
+            Assert.True(Zone.MoveEntity(source, 11, 9));
+            Assert.That(SkimRows(11, 9), Has.Length.EqualTo(1));
+            Assert.False(ChooseRow(usableRow, 11, 10), "The same pool moving within reach also invalidates the old choice.");
+            Assert.True(Zone.RemoveEntity(source));
+            var replacement = Source("BrinePool", 11, 10);
+            Assert.False(ChooseRow(usableRow, 11, 10), "A new pool does not take over the original choice.");
+            Assert.IsNull(Stock(source));
+            Assert.IsNull(Stock(replacement));
+            Assert.That(Got("BrineCrust"), Is.Zero);
+        }
+
+        [Test]
+        public void InterruptedFieldSkimRestoresTheStockAndExistingReagentStack()
+        {
+            var source = Source("BrinePool", 11, 10);
+            var stock = SourceStockPart.For(Zone, source, WorldClock.CurrentTick);
+            var before = (stock.Available, stock.LastTick, stock.Capacity);
+            var pool = source.GetPart<LiquidPoolPart>();
+            int volume = pool.Volume;
+            var edge = Carry("Dagger");
+            var crust = Carry("BrineCrust");
+            var row = SkimRows().Single();
+            FailAfter();
+
+            Assert.False(ChooseRow(row, 11, 10));
+            Assert.That(Stock(source), Is.SameAs(stock));
+            Assert.That((stock.Available, stock.LastTick, stock.Capacity), Is.EqualTo(before));
+            Assert.That(pool.Volume, Is.EqualTo(volume));
+            Assert.That(Got("BrineCrust"), Is.EqualTo(1));
+            Assert.True(Pack.Objects.Contains(crust));
+            Assert.True(Pack.Objects.Contains(edge));
+            Assert.False(Heard());
+        }
 
         [TestCase("SteamVent", "VentScale")] [TestCase("AshBed", "VentScale")] [TestCase("FrostVent", "RimeFlake")] [TestCase("IceSheet", "RimeFlake")]
         [TestCase("BrinePool", "BrineCrust")] [TestCase("AcidPool", "AcidCrust")] [TestCase("MirePool", "AcidCrust")]

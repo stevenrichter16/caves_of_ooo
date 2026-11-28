@@ -150,6 +150,17 @@ supply follow their ordinary rules. The installed stock belongs to the
 existing passable salt terrain. Older cached layouts are carried forward.
 [Field scrape and portable proofing](Verification/MachineSystems/BrineRimDryCrust20261128/README.md)
 
+**A sound blade can skim loose crust at a natural pool.**
+Pool crust and the minerals deposited at hot or cold terrain need
+different tools. For crust at a visible natural pool, a blade that
+already cuts flexible stock can work from beside the pool. The blade,
+the scraper and a settling tray draw on the same finite deposit. A
+skim spends one action, makes noise and leaves the pool's liquid in
+place. The dedicated scraper still handles hard scale and rime. This
+gives a traveler carrying a blade a way to collect protective
+ingredients before buying or installing specialist equipment.
+[Brine Camp gathers and field brewing](Verification/MachineSystems/AcidBrineField20261128/README.md)
+
 **An ordinary camp awning gives a wayfarer somewhere to rest.**
 At the Height of the day in the Beating, a nearby bareheaded travelling
 merchant can move into safe cover when idle. A normal trade remains

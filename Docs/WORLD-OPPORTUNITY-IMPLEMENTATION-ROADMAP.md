@@ -65,6 +65,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #13, #14, #19 and #36–#40, a sound flexible-stock blade can
+skim a catch from a visible natural pool. The selected blade and pool
+share the finite deposit already used by the dedicated scraper and
+settling tray. The equipped starter dagger gathered acid and brine
+crust at two ordinary Brine Camp pools. The player brewed both into
+one tonic that kept both effects through a fresh Continue.
+[Brine Camp tool alternative and brew](Verification/MachineSystems/AcidBrineField20261128/README.md)
+
 For #31–#40, the Tools tab shows nearby and carried processing
 equipment with available work, setup and requirements. The actual
 standing tray's displayed catch can open the ordinary Gather action,

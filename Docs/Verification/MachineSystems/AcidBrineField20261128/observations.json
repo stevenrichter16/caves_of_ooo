@@ -1,0 +1,247 @@
+{
+  "baselineRevision": "b49f96f89e0fdc3d37a79b3b0e695ed34fa88189",
+  "seed": 65,
+  "mode": "Unity main Editor GameBootstrap with private Quick archive",
+  "oldMenu": {
+    "mode": "WorldActionMenuOpen",
+    "selected": "break",
+    "rows": [
+      {
+        "Display": "break",
+        "key": "k",
+        "Command": "Break",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "examine",
+        "key": "x",
+        "Command": "Examine",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "lay cord snare south (1 cord) [knotflax cord]",
+        "key": "\u0000",
+        "Command": "LayCordSnare|Overworld.15.8.0|14|11|14|12|1",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "scatter grit south (1 item) [silver sand]",
+        "key": "\u0000",
+        "Command": "ScatterGrit|Overworld.15.8.0|14|11|14|12|1",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      },
+      {
+        "Display": "<< everything here",
+        "key": "\u0000",
+        "Command": "PickCell",
+        "IsDisabled": false,
+        "DisabledCode": "",
+        "DisabledReason": "",
+        "Hint": ""
+      }
+    ]
+  },
+  "tool": {
+    "ID": "2703",
+    "BlueprintName": "Dagger",
+    "cut": true,
+    "label": "dagger"
+  },
+  "mire": {
+    "before": {
+      "ZoneID": "Overworld.15.8.0",
+      "x": 14,
+      "y": 11,
+      "tick": 6590,
+      "hp": 42
+    },
+    "after": {
+      "ZoneID": "Overworld.15.8.0",
+      "x": 14,
+      "y": 11,
+      "tick": 6600,
+      "hp": 42
+    },
+    "row": {
+      "Display": "skim acid crust from the mire [dagger]",
+      "key": "\u0000",
+      "Command": "SkimSource|11339|Overworld.15.8.0|14|12",
+      "IsDisabled": false,
+      "DisabledCode": "",
+      "DisabledReason": "",
+      "Hint": "One action for one crust from the shared deposit. Leaves the liquid and makes noise."
+    },
+    "pool": {
+      "id": "11339",
+      "before": 60,
+      "after": 60
+    },
+    "deposit": {
+      "ID": "11214",
+      "BlueprintName": "MirePool",
+      "x": 18,
+      "y": 11,
+      "visible": true,
+      "volume": 60,
+      "liquid": "bog-mire",
+      "catchLeft": 3,
+      "capacity": 4
+    },
+    "product": {
+      "ID": "23319",
+      "BlueprintName": "AcidCrust",
+      "n": 1,
+      "p": "corrosive:1",
+      "brew": null,
+      "form": null,
+      "label": "acid crust"
+    }
+  },
+  "brine": {
+    "before": {
+      "ZoneID": "Overworld.15.8.0",
+      "x": 33,
+      "y": 19,
+      "tick": 6850,
+      "hp": 42
+    },
+    "after": {
+      "ZoneID": "Overworld.15.8.0",
+      "x": 33,
+      "y": 19,
+      "tick": 6860,
+      "hp": 42
+    },
+    "row": {
+      "Display": "skim brine crust from the brine pool [dagger]",
+      "key": "\u0000",
+      "Command": "SkimSource|12544|Overworld.15.8.0|32|20",
+      "IsDisabled": false,
+      "DisabledCode": "",
+      "DisabledReason": "",
+      "Hint": "One action for one crust from the shared deposit. Leaves the liquid and makes noise."
+    },
+    "pool": {
+      "id": "12544",
+      "before": 74,
+      "after": 74
+    },
+    "deposit": {
+      "ID": "12543",
+      "BlueprintName": "BrinePool",
+      "x": 31,
+      "y": 20,
+      "visible": true,
+      "volume": 90,
+      "liquid": "brine",
+      "catchLeft": 4,
+      "capacity": 5
+    },
+    "product": {
+      "ID": "23321",
+      "BlueprintName": "BrineCrust",
+      "n": 1,
+      "p": "conductive:1",
+      "brew": null,
+      "form": null,
+      "label": "brine crust"
+    }
+  },
+  "brew": {
+    "preview": "acidic & electrified tonic\nForm: Tonic\nCorroding acid - 5 damage a turn while the coating\nlasts.\nElectrified - charge 1 for 2 turns.\nUsed as a tonic; the produced item's details describe\ndelivery.",
+    "paid": {
+      "ID": "23322",
+      "BlueprintName": "BrewedTonic",
+      "n": 1,
+      "p": null,
+      "brew": "Acidic:1;Electrified:1",
+      "form": "Tonic",
+      "label": "acidic & electrified tonic"
+    },
+    "continuesAt": {
+      "ZoneID": "Overworld.15.8.0",
+      "x": 33,
+      "y": 19,
+      "tick": 6860,
+      "hp": 42
+    },
+    "continuedItem": {
+      "ID": "23322",
+      "BlueprintName": "BrewedTonic",
+      "n": 1,
+      "p": null,
+      "brew": "Acidic:1;Electrified:1",
+      "form": "Tonic",
+      "label": "acidic & electrified tonic"
+    }
+  },
+  "native": {
+    "old": {
+      "total": 43,
+      "passed": 36,
+      "failed": 7,
+      "skipped": 0,
+      "failedCases": [
+        "AFieldSkimQuoteCannotSwitchEdgesOrSkimFromAStaleCell",
+        "FieldSkimRefusesThermalSourcesPouredPoolsDryPoolsAndPoolsTwoStepsAway",
+        "FieldSkimSharesThePoolStockWithTheScraperAndTray",
+        "FieldSkimUsesTheSelectedPoolAndExactCuttingEdge(\"BrinePool\",\"BrineCrust\",\"Dagger\",False)",
+        "FieldSkimUsesTheSelectedPoolAndExactCuttingEdge(\"AcidPool\",\"AcidCrust\",\"ShortSword\",True)",
+        "FieldSkimUsesTheSelectedPoolAndExactCuttingEdge(\"MirePool\",\"AcidCrust\",\"Dagger\",True)",
+        "InterruptedFieldSkimRestoresTheStockAndExistingReagentStack"
+      ]
+    },
+    "new": {
+      "total": 291,
+      "passed": 291,
+      "failed": 0,
+      "skipped": 0,
+      "failedCases": []
+    }
+  },
+  "protection": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "preferences": {
+    "restoredOwnedRunKeys": [
+      "CavesOfOoo.Fx.Flash",
+      "CavesOfOoo.Fx.Mode",
+      "CavesOfOoo.Fx.Shake",
+      "CavesOfOoo.Fx.SoundVolume",
+      "CavesOfOoo.Fx.Speed",
+      "PT_Run",
+      "unity.player_session_count",
+      "unity.player_sessionid",
+      "unity_connect.session_id"
+    ],
+    "initialPreferenceFileBytesMatch": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    }
+  },
+  "privateSave": {
+    "Quick.json": "5a7837cf9db33aa81b5ed7da61d6148b3a7e869c59468c995b462a300dd0d25e",
+    "Quick.sav.gz": "2741db30b84ddad439484c7a6206c159b43da02aff7afd1c660f8cfbfb6867d7",
+    "Quick.json.bak": "21d8fe274d54a348d0f45fc990a9148bbe24900bfb875ecda2d8b423a60c546e",
+    "Quick.sav.gz.bak": "085c36b2cd809563283152a6deba6998527f1337d4e5881956fea75cb08603ac"
+  }
+}

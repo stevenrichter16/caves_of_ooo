@@ -6,12 +6,27 @@ using CavesOfOoo.Core.Anatomy;
 namespace CavesOfOoo.Core
 {
     /// <summary>Explicit physical capabilities for cutting particular kinds of stock.</summary>
-    public sealed class CuttingToolPart : Part, IDescribeUse
+    public sealed class CuttingToolPart : Part, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "CuttingTool";
         public bool FlexibleStock = true;
         public bool WoodStock;
         public int Order => 35;
+
+        public bool OwnsInventoryReceipt(string command) => ScraperPart.IsSkimCommand(command);
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == WorldInteractionSystem.WorldCellActionsEvent)
+                ScraperPart.AddSkimRows(ParentEntity, e);
+            if (e.ID == "InventoryAction" && OwnsInventoryReceipt(e.GetStringParameter("Command"))
+                && ScraperPart.Skim(ParentEntity, e))
+            {
+                e.Handled = true;
+                return false;
+            }
+            return true;
+        }
 
         /// <summary>Describe existing material-side work without gathering a
         /// material menu, replacing quote tokens or creating example entities.</summary>
@@ -40,6 +55,7 @@ namespace CavesOfOoo.Core
                 return;
             }
             guide.How.Add((WoodStock ? "" : keepTool) + "In your pack, choose the prepared material, then its cutting action.");
+            guide.How.Add("Beside a natural pool of brine, acid or mire, choose Skim in the pool's interact menu. A sound blade can lift loose crust.");
             guide.Needs.Add("compatible prepared stock and the exact extra inputs shown in the material's preview");
             guide.Limits.Add("Each preparation spends its materials and one action; the tool is kept. The material preview states the output and discarded trimming. Flexible workshop stock and purchased components remain useful alternatives.");
             var factory = ForgePart.Factory;
@@ -160,6 +176,9 @@ namespace CavesOfOoo.Core
         }
         internal static bool Usable(Entity actor, Entity tool, Zone zone, bool woodStock = false)
             => Available(actor, null, tool, zone, woodStock);
+        internal static MaterialCuttingWorkReceipt ForTool(Entity actor, Entity source, Entity tool, Zone zone)
+            => Available(actor, source, tool, zone, false)
+                ? new MaterialCuttingWorkReceipt(actor, source, tool, zone, false) : null;
         static bool OwnedOptional<T>(Entity item) where T:Part
         {var parts=item.Parts.OfType<T>().ToArray();return parts.Length<=1 && parts.All(p=>p.ParentEntity==item);}
         internal static MaterialCuttingWorkReceipt Resolve(Entity actor,Entity source,Zone zone,bool woodStock=false)

@@ -1,3 +1,11 @@
+**A sound blade skims natural pool crust — November 28, 2026, America/Chicago.**
+At Brine Camp the equipped dagger took one acid crust and one brine
+crust from adjacent natural pools. Both gathers debited the existing
+shared deposit in one turn and kept the pool volumes. Ordinary Brew
+spent both crusts and produced the exact two-effect tonic. Fresh
+Continue kept the tonic and both deposits. All 291 focused cases passed.
+[Exact gathers, brew and Continue](Verification/MachineSystems/AcidBrineField20261128/README.md)
+
 **Graded repair actions show the current bill coverage — November 28, 2026, America/Chicago.**
 The second pass on the 45 adds live compatible stock counts to the
 field rig, lined well and batch pan. The matched Peat Works replay
