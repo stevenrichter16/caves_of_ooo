@@ -19,7 +19,7 @@ namespace CavesOfOoo.Rendering
             color = null;
             if (owner?.BlueprintName is not (RainClaySeamSite.Source or RainClaySeamSite.BarkSource or SeasonalSeedSite.Stand
                     or BiomeCropPlacement.EarlyPitchpod or SillSettlingPocket.Deposit or DryBranchSite.Blueprint
-                    or "FrostLichenPatch" or "CampAwning" or "CampSettlingTray" or BrineRimStockPart.Ground) || owner.SpatialZone != zone
+                    or "FrostLichenPatch" or "CampAwning" or "CampSettlingTray" or BrineRimStockPart.Ground or CartHarnessPart.Cart) || owner.SpatialZone != zone
                 || zone?.GetEntityCell(owner) is not { Explored: true, IsVisible: true })
                 return false;
 
@@ -36,6 +36,7 @@ namespace CavesOfOoo.Rendering
                 _ when owner.BlueprintName == "CampAwning" && collector?.ParentEntity == owner => collector.PublicClothAppearance(zone),
                 _ when owner.BlueprintName == "CampSettlingTray" && owner.GetPart<SettlingTrayPart>() is { } tray => tray.Appearance(zone),
                 _ when owner.BlueprintName == BrineRimStockPart.Ground && owner.GetPart<BrineRimStockPart>() is { } rim => rim.Appearance(zone),
+                _ when owner.BlueprintName == CartHarnessPart.Cart && owner.GetPart<CartHarnessPart>() is { } harness => harness.Appearance(zone),
                 _ => default
             };
             if (symbol?.Length != 1 || !AsciiWorldRenderPolicy.IsPrintableGlyph(symbol[0])

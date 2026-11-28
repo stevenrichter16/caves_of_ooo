@@ -1,3 +1,13 @@
+**A fallen cart can supply one strip of cured leather.**
+Near Sill, a loose harness gives a sound flexible blade one finite cut.
+The part follows the original cart and consumes the remaining strip if
+the cart truly catches fire. A successful trim keeps the cart and its
+goods intact. The existing pack recipe accepts the offcut for a leather
+binding, alongside bought stock. The ordinary fire still offers cooking.
+The shared scene presents a marked cart, an available cut, or a lasting
+trimmed or charred state without a separate timer.
+[Cart salvage and the cooled fire](Verification/MachineSystems/CartHarness20261128/README.md)
+
 **A dry brine rim gives the scraper another field use.**
 At one freshly generated Beating Brine Lens, a wet streak gives way to a
 white flake in fair weather. A carried sound scraper takes the one flake

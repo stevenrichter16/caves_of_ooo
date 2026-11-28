@@ -1,3 +1,14 @@
+**The fallen cart offers a loose harness before fire — November 28, 2026, America/Chicago.**
+At the same freshly generated cart south of Sill, a normal cut with the
+original dagger gave one offcut in the rain. The traveler used it for one
+leather binding back in Sill. The storm and dangerous animal encounters
+followed ordinary turns. In the matched cold-cart replay, a torch made
+the cooking row available and the harness charred. Dousing spent one
+measure and the harness stayed charred. Both outcomes survived Continue.
+This field increment was played in the Editor. The current Mac package
+below includes the previous dry brine update.
+[Cart salvage and burning alternatives](Verification/MachineSystems/CartHarness20261128/README.md)
+
 **Current Mac update — November 28, 2026, America/Chicago.**
 Universal runtime `a6534b3a2` includes the dry Brine Lens reserve.
 The standalone traveler continued from the spent rim, returned to

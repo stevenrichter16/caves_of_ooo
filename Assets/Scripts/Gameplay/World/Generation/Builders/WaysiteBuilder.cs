@@ -103,6 +103,7 @@ namespace CavesOfOoo.Core
                 foreach (var (x, y) in record.Reserved) if (!zone.GetCell(x, y).IsPassable()) closed++;
                 var (after, partsAfter) = Reach(zone);
                 if (after < before - closed || partsAfter > partsBefore) { Undo(zone, record); reason = "cuts-route"; continue; }
+                if (kindId == "FallenCart") CartHarnessPart.Install(zone, factory, record.Created);
                 if (Diag.IsChannelEnabled("worldgen"))
                     Diag.Record("worldgen", "WaysitePlaced", payload: new { zone = zone.ZoneID, kind = kindId, ax, ay, owners = record.Created.Count });
                 return true;

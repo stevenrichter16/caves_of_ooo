@@ -1264,6 +1264,7 @@ namespace CavesOfOoo.Core
             return accepted;
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
+            && zoneID != CartHarnessPart.Site
             && !GleanersDistrict.Retain(zoneID)
             && !SoddenDistrict.Retain(zoneID)
             && !RetainMorrowfast(zoneID)

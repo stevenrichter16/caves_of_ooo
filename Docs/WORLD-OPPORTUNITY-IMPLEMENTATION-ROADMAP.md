@@ -49,6 +49,15 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #13, #18, #31–#33 and #36–#40, the fallen cart near Sill supplies
+one offcut before it burns. The original worn dagger made the cut.
+The real cart, strongbox, sacks and note stayed where they were.
+The traveler made the same leather binding as from bought material.
+In a matched branch, the original torch made the normal cooking row
+available and the fire charred the loose strap. One water stopped the
+flame and the charred state stayed saved. Both outcomes survived Continue.
+[Two ordinary cart outcomes](Verification/MachineSystems/CartHarness20261128/README.md)
+
 For #18, #19, #31–#36 and #40, one natural Beating Brine Lens has a
 visible weather-dependent rim reserve. A shower hides the one loose
 flake. Fair weather opens a paid scraper action on dry ground. The
