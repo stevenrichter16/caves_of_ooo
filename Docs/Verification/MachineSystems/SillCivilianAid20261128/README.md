@@ -58,3 +58,20 @@ the paid amount, the save hashes, and the focused regressions.
 No performance benchmark was run for this interaction.
 
 [Observed state and native results](observations.json)
+
+## Mac standalone
+
+The current universal Mac app includes this change and the cart harness
+salvage from the preceding slice. The dedicated build compiled 32,304
+pinned inputs with zero errors and four warnings. All six native
+binaries contain arm64 and x86_64. Gameplay ran on an Apple M5.
+
+From the earned calm checkpoint, the standalone menu showed Kesset at
+13/20. One use logged seven points healed. A Quick Save and a separate
+standalone launch brought him back at 20/20. The Look cursor then
+identified him at his new position. Independent review checked the
+visible health and the package architectures.
+
+[Natural treatment choice](mac-care-offer.png) · [Paid healing](mac-care-complete.png) ·
+[Scribe after a fresh standalone Continue](mac-care-continue.png) ·
+[Build and preservation record](mac-package.json)
