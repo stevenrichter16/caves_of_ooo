@@ -1,3 +1,10 @@
+**Campfires show the moisture change before drying gear.**
+One action beside a hot fire removes up to 25 points of moisture from
+one eligible carried item. The action names the item and shows both
+percentages using the shared drying rule. The same bought torch refused
+lighting at 72%, then lit after two drying actions brought it to 22%.
+[Cinderhold torch trial](Verification/MachineSystems/CinderholdTorchDrying20261127/README.md)
+
 **Empty coals name two ways to add fuel.**
 The relight action names salvaged timber and dry knotflax chaff when
 the fire is empty. Adding fuel and lighting it remain separate choices.

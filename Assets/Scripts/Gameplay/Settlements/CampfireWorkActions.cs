@@ -32,6 +32,7 @@ namespace CavesOfOoo.Core
         static Entity Timber(Entity actor) => actor.GetPart<InventoryPart>()?.Objects.FirstOrDefault(e => e.BlueprintName == "SalvagedTimber" && WorldResourceActions.Carried(actor, e, false));
         static bool Gear(Entity actor, Entity gear) => WorldResourceActions.Carried(actor, gear) && gear.GetEffect<WetEffect>() is WetEffect wet
             && WorldResourceActions.Finite(wet.Moisture) && wet.Moisture > 0 && !(gear.GetEffect<FrozenEffect>()?.Cold > 0);
+        static float DryingReduction(float moisture) => Math.Min(moisture, 0.25f);
         /// <summary>
         /// "What can I do here?": one plain line of what the rows of this fire would offer the viewer right now (feed it, light it, dry wet gear), or null when it would offer nothing.
         /// It is a read of the same conditions the rows use, never a promise; the rows themselves are the authority.
@@ -59,7 +60,12 @@ namespace CavesOfOoo.Core
             if (actions == null || !Source(actor, fire, zone)) return;
             if (Hot(fire) && actor.GetPart<InventoryPart>() is InventoryPart pack)
                 foreach (var gear in pack.Objects) if (Gear(actor, gear))
-                    actions.AddAction("DryGear", "dry " + gear.GetDisplayName() + " (one quarter)", DryPrefix + Uri.EscapeDataString(gear.ID), '\0', 17, time: ActionTime.OneAction);
+                {
+                    float before = gear.GetEffect<WetEffect>().Moisture;
+                    float after = before - DryingReduction(before);
+                    actions.AddAction("DryGear", $"dry {gear.GetDisplayName()} ({Math.Round(before * 100)}% to {Math.Round(after * 100)}%)",
+                        DryPrefix + Uri.EscapeDataString(gear.ID), '\0', 17, time: ActionTime.OneAction);
+                }
             if (!Fuel(fire, out var fuel)) return;
             int feedN = FeedCount(fuel, TimberCarried(actor));
             if (feedN >= 1)
@@ -144,7 +150,7 @@ namespace CavesOfOoo.Core
                     var wet = gear.GetEffect<WetEffect>(); var effects = gear.GetPart<StatusEffectsPart>(); float before = wet.Moisture;
                     string cause = wet.LastRemovalCause; int index = 0;
                     for (int i = 0; i < effects.EffectCount; i++) if (effects.GetAllEffects()[i] == wet) index = i;
-                    float removed = Math.Min(before, 0.25f);
+                    float removed = DryingReduction(before);
                     tx.Do(null, () =>
                     {
                         var current = gear.GetEffect<WetEffect>();

@@ -1,0 +1,818 @@
+{
+  "baseRuntime": "2e98519f42372a0e6a6b5074ab4cf5061aadf080",
+  "baseMain": "cd2bf308c97f25582fbbdfad56805ff252eb958b",
+  "seed": 65,
+  "stages": {
+    "dry-torch-start": {
+      "zone": "Overworld.6.6.0",
+      "x": 39,
+      "y": 11,
+      "tick": 7300,
+      "hp": 42,
+      "sp": 2,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "visible": null,
+          "held": "2699",
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 42.0000076,
+          "light": true,
+          "temperature": 441.5
+        },
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 481.19
+        }
+      ],
+      "messages": [
+        "sari-snake sees you again.",
+        "sari-snake sees you again.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake misses you!"
+      ]
+    },
+    "dry-torch-on-ground": {
+      "zone": "Overworld.6.6.0",
+      "x": 37,
+      "y": 11,
+      "tick": 7320,
+      "hp": 42,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 463.124878
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 37,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 42.0000076,
+          "light": true,
+          "temperature": 441.5
+        }
+      ],
+      "messages": [
+        "sari-snake sees you again.",
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake misses you!",
+        "Learned Hydromancy. Spent 1 SP.",
+        "Learned Conjure Water. Spent 1 SP."
+      ]
+    },
+    "dry-torch-out-on-ground": {
+      "zone": "Overworld.6.6.0",
+      "x": 37,
+      "y": 11,
+      "tick": 7320,
+      "hp": 42,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 463.124878
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 37,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        }
+      ],
+      "messages": [
+        "sari-snake loses sight of you and searches its last position.",
+        "sari-snake sees you again.",
+        "sari-snake misses you!",
+        "Learned Hydromancy. Spent 1 SP.",
+        "Learned Conjure Water. Spent 1 SP."
+      ]
+    },
+    "torch-wetted-by-cast": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7350,
+      "hp": 32,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 437.359619
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 37,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.74,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        }
+      ],
+      "messages": [
+        "Learned Hydromancy. Spent 1 SP.",
+        "Learned Conjure Water. Spent 1 SP.",
+        "sari-snake misses you!",
+        "Conjure Water - choose a direction.",
+        "sari-snake hits you in the right hand for 5 damage! (37 HP remaining)",
+        "You are bleeding!",
+        "sari-snake hits you in the body for 4 damage! (33 HP remaining)",
+        "You take 1 bleed damage."
+      ]
+    },
+    "torch-wet-acquired": {
+      "zone": "Overworld.6.6.0",
+      "x": 37,
+      "y": 11,
+      "tick": 7380,
+      "hp": 24,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "visible": null,
+          "held": "2699",
+          "equipped": null,
+          "wet": 0.72,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        },
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 413.1096
+        }
+      ],
+      "messages": [
+        "You take 1 bleed damage.",
+        "sari-snake hits you in the body for 2 damage! (30 HP remaining)",
+        "sari-snake misses you!",
+        "You (Rejoinder) hit sari-snake in the body for 6 damage! (8 HP remaining)",
+        "You take 1 bleed damage.",
+        "sari-snake misses you!",
+        "You take 1 bleed damage.",
+        "You stop bleeding.",
+        "sari-snake hits you in the right arm for 4 damage! (24 HP remaining)",
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!"
+      ]
+    },
+    "torch-wet-beside-public-fire": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7420,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 382.97995
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 35,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.72,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        }
+      ],
+      "messages": [
+        "sari-snake misses you!",
+        "You (Rejoinder) miss sari-snake!",
+        "You (Flurry) hit sari-snake in the body for 13 damage! (1 HP remaining)",
+        "You (Flurry) miss sari-snake!",
+        "sari-snake is killed by you!",
+        "You (Flurry) hit sari-snake in the body for 1 damage!",
+        "sari-snake is confused!",
+        "sari-snake hits you in the body for 4 damage! (20 HP remaining)",
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!"
+      ]
+    },
+    "torch-wet-light-refused": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7420,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 382.97995
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 35,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.72,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        }
+      ],
+      "messages": [
+        "You (Flurry) hit sari-snake in the body for 13 damage! (1 HP remaining)",
+        "You (Flurry) miss sari-snake!",
+        "sari-snake is killed by you!",
+        "You (Flurry) hit sari-snake in the body for 1 damage!",
+        "sari-snake is confused!",
+        "sari-snake hits you in the body for 4 damage! (20 HP remaining)",
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light."
+      ]
+    },
+    "torch-wet-packed-at-fire": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7430,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "visible": null,
+          "held": "2699",
+          "equipped": null,
+          "wet": 0.72,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        },
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 375.820343
+        }
+      ],
+      "messages": [
+        "You (Flurry) hit sari-snake in the body for 13 damage! (1 HP remaining)",
+        "You (Flurry) miss sari-snake!",
+        "sari-snake is killed by you!",
+        "You (Flurry) hit sari-snake in the body for 1 damage!",
+        "sari-snake is confused!",
+        "sari-snake hits you in the body for 4 damage! (20 HP remaining)",
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light."
+      ]
+    },
+    "torch-two-waits-control": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7450,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "visible": null,
+          "held": "2699",
+          "equipped": null,
+          "wet": 0.72,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        },
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 361.927856
+        }
+      ],
+      "messages": [
+        "You (Flurry) hit sari-snake in the body for 1 damage!",
+        "sari-snake is confused!",
+        "sari-snake hits you in the body for 4 damage! (20 HP remaining)",
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light."
+      ]
+    },
+    "torch-drying-result-1": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7440,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "visible": null,
+          "held": "2699",
+          "equipped": null,
+          "wet": 0.470000029,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        },
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 368.803925
+        }
+      ],
+      "messages": [
+        "You (Flurry) hit sari-snake in the body for 1 damage!",
+        "sari-snake is confused!",
+        "sari-snake hits you in the body for 4 damage! (20 HP remaining)",
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light.",
+        "You dry torch beside the heat."
+      ]
+    },
+    "torch-drying-result-2": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7450,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": null,
+          "y": null,
+          "visible": null,
+          "held": "2699",
+          "equipped": null,
+          "wet": 0.220000029,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": false,
+          "temperature": 25.0
+        },
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 361.927856
+        }
+      ],
+      "messages": [
+        "sari-snake is confused!",
+        "sari-snake hits you in the body for 4 damage! (20 HP remaining)",
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light.",
+        "You dry torch beside the heat.",
+        "You dry torch beside the heat."
+      ]
+    },
+    "torch-relit-after-drying": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7450,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 361.927856
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 35,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.220000029,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": true,
+          "temperature": 450.0
+        }
+      ],
+      "messages": [
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light.",
+        "You dry torch beside the heat.",
+        "You dry torch beside the heat.",
+        "You light the torch."
+      ]
+    },
+    "torch-relit-fresh-continue": {
+      "zone": "Overworld.6.6.0",
+      "x": 35,
+      "y": 11,
+      "tick": 7450,
+      "hp": 20,
+      "sp": 0,
+      "drams": 5,
+      "objects": [
+        {
+          "ID": "25611",
+          "BlueprintName": "Campfire",
+          "name": "campfire",
+          "x": 34,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.0,
+          "wetDuration": null,
+          "fuel": 200.0,
+          "light": true,
+          "temperature": 361.927856
+        },
+        {
+          "ID": "5af19e50c1904d1bae18f0978a67e61a",
+          "BlueprintName": "Torch",
+          "name": "torch",
+          "x": 35,
+          "y": 11,
+          "visible": true,
+          "held": null,
+          "equipped": null,
+          "wet": 0.220000029,
+          "wetDuration": -1,
+          "fuel": 42.0000076,
+          "light": true,
+          "temperature": 450.0
+        }
+      ],
+      "messages": [
+        "sari-snake is killed by you!",
+        "You (Shank) hit sari-snake in the body for 8 damage!",
+        "The torch is too wet to light.",
+        "You dry torch beside the heat.",
+        "You dry torch beside the heat.",
+        "You light the torch."
+      ]
+    }
+  },
+  "quotes": {
+    "1": {
+      "Display": "dry torch (72% to 47%)",
+      "key": "\u0000",
+      "Command": "DryGear|5af19e50c1904d1bae18f0978a67e61a",
+      "IsDisabled": false,
+      "DisabledCode": "",
+      "DisabledReason": "",
+      "Hint": ""
+    },
+    "2": {
+      "Display": "dry torch (47% to 22%)",
+      "key": "\u0000",
+      "Command": "DryGear|5af19e50c1904d1bae18f0978a67e61a",
+      "IsDisabled": false,
+      "DisabledCode": "",
+      "DisabledReason": "",
+      "Hint": ""
+    }
+  },
+  "nativeTests": {
+    "red": {
+      "totals": {
+        "total": 32,
+        "passed": 29,
+        "failed": 3,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "xmlSha256": "f75b40cc2bee8ea8634115022c149c1f1094e456b2e142a4615f52b042548cf8",
+      "failedCases": [
+        "DryGearQuotesItsMoistureChangeWithoutAnExtraHint(75,50)",
+        "DryGearQuotesItsMoistureChangeWithoutAnExtraHint(50,25)",
+        "DryGearQuotesItsMoistureChangeWithoutAnExtraHint(10,0)"
+      ]
+    },
+    "green": {
+      "totals": {
+        "total": 158,
+        "passed": 158,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "xmlSha256": "5fb26f211e7e63455dfd8be4a0b1c01055a016a914fc8e29a4375d813e2dba03",
+      "failedCases": []
+    }
+  },
+  "archives": {
+    "TorchPublicFireStart": {
+      "tick": 7300,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "ce21f7c193ce0fb2085031ab12df85f944553314ce76fe5fdd32254cfdafc2ae",
+        "Quick.json.bak": "a76fca647d787043abedd57a79c9464ed1b9d99176471fdec256ad41b122d8ab",
+        "Quick.sav.gz": "e811dc32ec8c2309a5c769d3d5e0febde97778cab75dc92d5de0b3147e0ceec3",
+        "Quick.sav.gz.bak": "c0ff4df40d807e2671f850a8ab4f5fe53dbadbd59a72c33166946def72961dfe"
+      }
+    },
+    "TorchTrialStarted": {
+      "tick": 7300,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "6218b686d808f01a8398c604aac5504321c9de2ad583f14a9d1b499bdd990ec0",
+        "Quick.sav.gz": "0848d8bd00502bfd090424062cd61782c62f2252a0f0dbf068cca58fc26dd419",
+        "Quick.json.bak": "ce21f7c193ce0fb2085031ab12df85f944553314ce76fe5fdd32254cfdafc2ae",
+        "Quick.sav.gz.bak": "e811dc32ec8c2309a5c769d3d5e0febde97778cab75dc92d5de0b3147e0ceec3"
+      }
+    },
+    "TorchLearnedWater": {
+      "tick": 7300,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "44a35b86da6d16a77fad697b690a70ad13039b75b3e151bd3fae4bc33ab041d4",
+        "Quick.sav.gz": "de3bddbf11e112a55f5dc39c214c5a1918eda83dc603be15a5240a5588ef36e1",
+        "Quick.json.bak": "ce21f7c193ce0fb2085031ab12df85f944553314ce76fe5fdd32254cfdafc2ae",
+        "Quick.sav.gz.bak": "e811dc32ec8c2309a5c769d3d5e0febde97778cab75dc92d5de0b3147e0ceec3"
+      }
+    },
+    "TorchWetGround": {
+      "tick": 7350,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "a17125a53c8bd11dc44121ca61a01f5be0efd9ad9f63f38ec77099e9dd76207c",
+        "Quick.sav.gz": "6de321088d52efe08435eb025ccee43758e90c34c9eab4ff362ed157140e73a1",
+        "Quick.json.bak": "44a35b86da6d16a77fad697b690a70ad13039b75b3e151bd3fae4bc33ab041d4",
+        "Quick.sav.gz.bak": "de3bddbf11e112a55f5dc39c214c5a1918eda83dc603be15a5240a5588ef36e1"
+      }
+    },
+    "TorchWetAcquired": {
+      "tick": 7380,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "1445829a2a6a469d94bef6027f08a0cf9875a072e8b66e210e50e8adf2c4e38a",
+        "Quick.sav.gz": "3d9df6a4e5eb78f294ae892571c4413271c81ef585826e7cccd651788fc096da",
+        "Quick.json.bak": "a17125a53c8bd11dc44121ca61a01f5be0efd9ad9f63f38ec77099e9dd76207c",
+        "Quick.sav.gz.bak": "6de321088d52efe08435eb025ccee43758e90c34c9eab4ff362ed157140e73a1"
+      }
+    },
+    "TorchWetBesideFire": {
+      "tick": 7430,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "8d97d4e540f3f8109e15fc0953ab9de7923f9903311a21728dfa2f98dd065bcb",
+        "Quick.sav.gz": "cc3f796e0de763f1e8bb2fa6f0cb061629b8c62a785bcb2e54813af36612c72d",
+        "Quick.json.bak": "1445829a2a6a469d94bef6027f08a0cf9875a072e8b66e210e50e8adf2c4e38a",
+        "Quick.sav.gz.bak": "3d9df6a4e5eb78f294ae892571c4413271c81ef585826e7cccd651788fc096da"
+      }
+    },
+    "TorchDryBeforeLight": {
+      "tick": 7450,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "9383d23d0c9d1dea6ca0b741ab767131eb957aa4d3faac24e9ccd51c706b6354",
+        "Quick.sav.gz": "b02fe15eb151f26c295177b4925f103e9af18aa30b721ffb9a6b626637b24c03",
+        "Quick.json.bak": "8d97d4e540f3f8109e15fc0953ab9de7923f9903311a21728dfa2f98dd065bcb",
+        "Quick.sav.gz.bak": "cc3f796e0de763f1e8bb2fa6f0cb061629b8c62a785bcb2e54813af36612c72d"
+      }
+    },
+    "TorchRelitAfterDrying": {
+      "tick": 7450,
+      "zone": "Overworld.6.6.0",
+      "files": {
+        "Quick.json": "d5eed91a766c0484df52cd4778ef5a4c4167f0a5a45fce9e8cbc6e371fbee498",
+        "Quick.sav.gz": "c43e59cd30b2dc7528a5902f95976d212391b01ab0992e1a83d484f08cf06f12",
+        "Quick.json.bak": "9383d23d0c9d1dea6ca0b741ab767131eb957aa4d3faac24e9ccd51c706b6354",
+        "Quick.sav.gz.bak": "b02fe15eb151f26c295177b4925f103e9af18aa30b721ffb9a6b626637b24c03"
+      }
+    }
+  },
+  "playModeClosed": {
+    "playing": false,
+    "changing": false,
+    "sceneDirty": false,
+    "saveRoot": null,
+    "seed": 0,
+    "buildChoice": false,
+    "lastScenario": null,
+    "pendingScenario": false,
+    "updateMode": "ProcessEventsInDynamicUpdate",
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices",
+    "ownedKeyboard": false
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "archiveRoot": "/Users/steven/coo-verification/runs/SillHearthField20261127/archives"
+}

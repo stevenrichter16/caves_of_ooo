@@ -1,3 +1,12 @@
+**A public fire previews drying a wet torch — November 27, 2026, America/Chicago.**
+An ordinary Cinderhold traveler spent two earned skill points on
+Hydromancy and Conjure Water, then wetted the bought torch on the ground. The torch
+refused to light at 72%. Two waits left it there. The same public
+campfire quoted and delivered 72% to 47% to 22% in two actions. Ordinary
+relighting and fresh Continue kept the same torch and its 42 fuel.
+All 158 focused cases and both independent reviews passed.
+[Drying playtest and screenshots](Verification/MachineSystems/CinderholdTorchDrying20261127/README.md)
+
 **Dry knotflax chaff saves the carried board — November 27, 2026, America/Chicago.**
 The ordinary Sill-bought hearth branch used Dry Hem’s public guest bed
 to reach the existing late season. Fair weather in the west Morrowfast

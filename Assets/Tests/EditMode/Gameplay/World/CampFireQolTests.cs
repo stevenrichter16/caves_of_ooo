@@ -173,10 +173,23 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("next time of day", Row(lit, "HearthRestBand").Hint);
         }
 
-        [Test] public void ARowWithNothingToAddHasNoHint_Counter()
+        [TestCase(75, 50)]
+        [TestCase(50, 25)]
+        [TestCase(10, 0)]
+        public void DryGearQuotesItsMoistureChangeWithoutAnExtraHint(int before, int after)
         {
-            var gear = Carry("Dagger"); Assert.True(gear.ApplyEffect(new WetEffect(1f))); var lit = Hearth(10, 450);
-            var dry = Actions(lit).SingleOrDefault(a => a.Name == "DryGear"); Assert.NotNull(dry); Assert.IsEmpty(dry.Hint, "a row the label already explains stays bare");
+            var gear = Carry("Dagger");
+            Assert.True(gear.ApplyEffect(new WetEffect(before / 100f)));
+            var lit = Hearth(10, 450);
+            var dry = Row(lit, "DryGear");
+            Assert.NotNull(dry);
+            Assert.AreEqual($"dry {gear.GetDisplayName()} ({before}% to {after}%)", dry.Display);
+            Assert.IsEmpty(dry.Hint, "a row the label already explains stays bare");
+            Assert.AreEqual("DryGear|" + System.Uri.EscapeDataString(gear.ID), dry.Command);
+            Assert.AreEqual(ActionTime.OneAction, dry.Time);
+
+            Assert.True(Act(lit, dry.Command));
+            Assert.AreEqual(after / 100f, gear.GetEffect<WetEffect>()?.Moisture ?? 0f, 0.0001f);
         }
 
         [Test] public void HintsWrapAtWordBoundariesWithinTheWidthAndEndWithATildeWhenCut()

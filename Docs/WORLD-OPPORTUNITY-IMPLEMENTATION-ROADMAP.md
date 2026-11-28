@@ -1033,6 +1033,11 @@ strength and creator. [Bellows evidence](Verification/MachineSystems/BellowsMars
     consistently. Actual Sill play used the same saved broken dagger
     before and after the correction and kept the same condition and turn.
     [Evidence](Verification/MachineSystems/BrokenPenaltyReadout20261126/README.md)
+    The hot-fire action shows moisture before and after drying one item.
+    An ordinary Cinderhold playtest wetted the bought torch with an earned
+    ability. Two waits left it too wet to light. Two drying actions brought
+    it within the ordinary lighting limit. Fresh Continue kept its flame.
+    [Evidence](Verification/MachineSystems/CinderholdTorchDrying20261127/README.md)
 
 37. **Let discovery suggest connections.** A found tool names a few supported
     uses; a stock description explains its useful fractions; a recipient explains
