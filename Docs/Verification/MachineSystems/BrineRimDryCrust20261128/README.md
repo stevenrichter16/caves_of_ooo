@@ -53,10 +53,8 @@ serialized custody. Independent design, source and gameplay reviews
 checked the exact site, the reserve and the displayed effects.
 
 The 880 ordinary Quick files and 87 unrelated tracked paths matched
-their pre-play hashes. Retained Mac builds stay available. This slice
-was played in the Editor. It is newer than the last packaged Mac
-milestone. Wider Brine Lens coverage, tool acquisition in this route,
-the Deck and performance comparisons remain unverified.
+their pre-play hashes. Wider Brine Lens coverage, tool acquisition in
+this route, the Deck and performance comparisons remain unverified.
 
 - [Wet marker on the rim](01-wet-map.png)
 - [Dry flake and missed dive](02-dry-flake.png)
@@ -64,3 +62,28 @@ the Deck and performance comparisons remain unverified.
 - [Shock-proofing preview in Recipes](04-shock-proofing-recipe.png)
 - [Coating the worn buckler](05-coat-buckler.png)
 - [Exact observations and save hashes](observations.json)
+
+## Mac package
+
+The universal build of `a6534b3a2` is at
+`/Users/steven/coo-verification/builds/mac-a6534b3a2-20261128/CavesOfOoo.app`.
+The dedicated workspace used 32,300 exact committed source inputs.
+The build took 21.39 seconds with zero errors and four warnings. The
+186 package files and six arm64 and x86_64 binaries passed separate
+checks. Gameplay ran on Apple M5. Physical Intel gameplay remains open.
+
+The standalone app continued the private save from just after the
+field scrape. Examine read the spent rim. The traveler took the atlas
+to Sill, pressed the crust through Recipes, and chose the worn buckler
+from the flask menu. F5 saved at tick 2600. A separate process continued
+at (39,11), 40 HP and +35 shock resistance with 100 worn turns left.
+An independent read of the saved state verified the exact buckler,
+both flasks, carried scraper, spent rim and same 90 measures of brine.
+
+Both processes closed. Eight prior packages, the private input save,
+both normal preference files and 862 files in the ordinary Saves
+folders matched their starting hashes.
+
+- [Shock-proofing in the Mac Recipes tab](06-mac-recipe-preview.png)
+- [Fresh Mac Continue with the coat active](07-mac-fresh-coated-save.png)
+- [Build, private play and preservation receipt](mac-observations.json)

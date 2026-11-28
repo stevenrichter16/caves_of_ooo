@@ -1,3 +1,11 @@
+**Current Mac update — November 28, 2026, America/Chicago.**
+Universal runtime `a6534b3a2` includes the dry Brine Lens reserve.
+The standalone traveler continued from the spent rim, returned to
+Sill, pressed the same crust and coated the original worn buckler.
+A fresh process returned at 2600 with +35 shock resistance and 100
+worn turns left. Eight previous packages were preserved.
+[Mac package and finished coat](Verification/MachineSystems/BrineRimDryCrust20261128/README.md#mac-package)
+
 **A dry brine rim supplies portable shock-proofing — November 28, 2026, America/Chicago.**
 The traveler reached the natural Beating rim in a shower at 2390.
 Moving out of a sky-sari shadow found the dry side when the rain ended.
@@ -6,11 +14,11 @@ In Sill the same crust went into the previously earned empty flask.
 The original worn buckler gave +35 shock resistance for 100 worn turns
 at 2600. Fresh Continue matched the coat, both flasks and the spent rim.
 The isolated route supplied one scraper. The 438 focused checks passed,
-with the explicit save-contract regeneration helper skipped. Editor evidence
-covers this one site. The Mac milestone below remains the current package.
+with the explicit save-contract regeneration helper skipped. The
+new reserve was harvested in the Editor at this one natural site.
 [Dry rim and proofing playtest](Verification/MachineSystems/BrineRimDryCrust20261128/README.md)
 
-**Current Mac update — November 28, 2026, America/Chicago.**
+**Previous Mac update — November 28, 2026, America/Chicago.**
 Universal runtime `af2414486` includes Gantry's Wellmeet import and the
 wayfarer's shade behavior. The Mac playtest used Continue, took up the
 awning and saved. A fresh process returned to the same spot with the
