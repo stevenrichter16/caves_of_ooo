@@ -1,3 +1,11 @@
+**Glow-Quartz can be spent on temporary cave illumination.**
+A real Lampwell vein produced two pieces. Interact spent one to light
+a passage for 30 turns. It brightened visible ground without changing
+field of view. The light stayed where it was placed through movement
+and Continue. It dimmed the passage on normal expiry. The second
+piece could instead fund the existing Posy Setting Bench work.
+[Earned Lampwell mineral, fixed-position light and expiry](Verification/MachineSystems/LampwellQuartzReach20261128/README.md)
+
 **Gripfrond wraps and Ironshod Boots name their brace actions.**
 Worn wraps use Brace against wall on a nearby solid wall or stone
 outcrop. Worn boots use Plant feet in the pack on firm footing.

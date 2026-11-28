@@ -1,3 +1,12 @@
+**A finite Lampwell vein lights a passage — November 28, 2026, America/Chicago.**
+Earned seed 65 reached vein 68557 and harvested two Glow-Quartz. One
+piece brightened 49 cells in an actual passage. The 166 visible cells
+stayed the same. An ordinary step and fresh Continue retained light
+72085 with 28 turns. Normal waits removed it at tick 9570, dimming
+the same cells. One material remained. Editor evidence for existing
+runtime, with independent source and frame review.
+[Earned Lampwell mineral, fixed-position light and expiry](Verification/MachineSystems/LampwellQuartzReach20261128/README.md)
+
 **Earned field braces explain their actions — November 28, 2026, America/Chicago.**
 Ripe Stump crop 31017 yielded wrap 31019. It braced at stone 30316,
 survived Continue and a blocked move, and released on an actual step.

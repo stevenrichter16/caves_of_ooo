@@ -49,6 +49,13 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #36–#40, the usual Lampwell stairs and walking route reach a
+finite natural Glow-Quartz vein. The player can spend one piece
+in the passage for light that survives Continue and expires in
+game turns. The spare could fund Posy setting work. The route
+and light used ordinary travel, harvest and Interact.
+[Earned Lampwell mineral, fixed-position light and expiry](Verification/MachineSystems/LampwellQuartzReach20261128/README.md)
+
 For #36–#40, a worn Gripfrond Wrap names the wall action that
 accepts a real solid outcrop. Ironshod Boots name their pack action
 and stable footing. The Stump wrap and Ditch boots use the same
