@@ -1,3 +1,10 @@
+**Current Mac app includes the shared menu redesign — November 28, 2026, America/Chicago.**
+Runtime 3ed7a8f01 passed actual tray gathering, details, abilities,
+settings and initial build selection on Apple M5. Six universal
+binaries and 18 retained apps matched their package records. The
+legacy spell-catalog count failure reproduced on the previous runtime.
+[Mac player and screenshots](Verification/MachineSystems/LegacyMenuPolish20261128/mac-package.json)
+
 **Remaining legacy menus use the shared styled card — November 28, 2026, America/Chicago.**
 World Actions, pickers, readers, log, journal, factions, abilities, pause
 settings, new build, spell effects and confirmations share the green

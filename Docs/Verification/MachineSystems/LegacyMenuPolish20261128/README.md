@@ -35,3 +35,17 @@ closing Spell effects without adjustment does not save preferences.
 [New world actions](01-world-actions.png) · [Field notes](02-object-reader.png) ·
 [Abilities](03-abilities.png) · [Graphics settings](04-graphics.png) ·
 [Pickup](05-pickup.png) · [Live receipts and native counts](observations.json)
+
+## Mac build
+
+On Apple M5, the packaged game reproduced World Actions, the selected
+action reader, the actual tray catch, the ability list and graphics
+settings. A second launch previewed the new starting build choices.
+The original test save and both current preference file pins were
+exact after both runs. The isolated Editor preference observation
+above has its own earlier baseline. The spell catalogue count
+assertion also failed with the same message on the previous runtime.
+
+[Packaged world actions](mac-01-world-actions.png) · [Packaged reader](mac-02-object-reader.png) ·
+[Ability list](mac-03-abilities.png) · [Graphics](mac-04-graphics.png) ·
+[Starting choices](mac-starting-build.png) · [Package and recording receipt](mac-package.json)
