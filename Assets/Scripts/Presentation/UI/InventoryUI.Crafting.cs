@@ -8,16 +8,15 @@ using UnityEngine;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// The Crafting panel — forge weapons and brew alchemy straight from
-    /// the pack, no station required
+    /// The Crafting panel — forge weapons, brew alchemy and use recipes
+    /// offered by carried materials and tools.
     /// (Docs/CRAFTING-FROM-THE-PACK.md §C3–C5).
     ///
     /// <para><b>Why a separate panel rather than more Tinkering modes.</b>
     /// Tinkering is recipe-driven: pick a known recipe from a list and
-    /// spend bits. Forging and brewing are selection-driven: assemble a
-    /// result out of whatever you happen to be carrying. Those are two
-    /// different interaction models, and merging them would give one
-    /// panel four modes and two grammars.</para>
+    /// spend bits. Forging and brewing assemble a result from chosen
+    /// ingredients. The Recipes subtab gathers the crafting actions
+    /// already offered in the pack.</para>
     ///
     /// <para><b>The RESULT box is the point.</b> Both crafts can be
     /// resolved without consuming anything — <c>PreviewForge</c> and
@@ -33,7 +32,7 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public partial class InventoryUI
     {
-        private enum CraftingMode { Forge, Brew }
+        private enum CraftingMode { Forge, Brew, Recipes }
 
         private CraftingMode _craftingMode = CraftingMode.Forge;
         private int _craftCursorIndex;
@@ -55,6 +54,7 @@ namespace CavesOfOoo.Rendering
             public bool IsMarked;
             public int Count;
             public Entity Item;
+            public InventoryAction RecipeAction;
         }
 
         private readonly List<CraftRow> _craftRows = new List<CraftRow>();
@@ -84,6 +84,15 @@ namespace CavesOfOoo.Rendering
             _craftRows.Clear();
             _pickedBlade = _pickedHaft = _pickedBinding = _pickedQuench = null;
             _pickedReagents.Clear();
+
+            if (_craftingMode == CraftingMode.Recipes)
+            {
+                _atStation = false;
+                _craftBatchMax = 0;
+                BuildPackRecipeRows();
+                ClampCraftCursor();
+                return;
+            }
 
             var inv = PlayerEntity?.GetPart<InventoryPart>();
             if (inv == null) { ClampCraftCursor(); return; }
@@ -257,10 +266,18 @@ namespace CavesOfOoo.Rendering
 
         private void HandleCraftingClick(Vector2Int grid)
         {
+            if (grid.y == 2 && grid.x >= 2 && grid.x < 32)
+            {
+                SwitchCraftingMode((CraftingMode)((grid.x - 2) / 10));
+                return;
+            }
+
             int row = GetCraftingRowAtGrid(grid);
             if (row < 0) return;
+            if (_craftingMode == CraftingMode.Recipes && row != _craftCursorIndex) ClearActionStatus();
             _craftCursorIndex = row;
-            ToggleCraftPickUnderCursor();
+            if (_craftingMode == CraftingMode.Recipes) Render();
+            else ToggleCraftPickUnderCursor();
         }
 
         private void MoveCraftCursor(int delta)
@@ -272,7 +289,12 @@ namespace CavesOfOoo.Rendering
             {
                 i += delta;
                 if (i < 0 || i >= _craftRows.Count) return;   // stop at the ends
-                if (_craftRows[i].IsSelectable) { _craftCursorIndex = i; break; }
+                if (_craftRows[i].IsSelectable)
+                {
+                    if (_craftingMode == CraftingMode.Recipes) ClearActionStatus();
+                    _craftCursorIndex = i;
+                    break;
+                }
             }
             ClampCraftCursor();
         }
@@ -296,6 +318,9 @@ namespace CavesOfOoo.Rendering
             if (InputHelper.GetKeyDown(KeyCode.B) && _craftingMode != CraftingMode.Brew)
             { SwitchCraftingMode(CraftingMode.Brew); return; }
 
+            if (InputHelper.GetKeyDown(KeyCode.P) && _craftingMode != CraftingMode.Recipes)
+            { SwitchCraftingMode(CraftingMode.Recipes); return; }
+
             if (InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.K))
             { MoveCraftCursor(-1); Render(); return; }
 
@@ -310,6 +335,13 @@ namespace CavesOfOoo.Rendering
 
             if (InputHelper.GetKeyDown(KeyCode.Return))
             {
+                if (_craftingMode == CraftingMode.Recipes)
+                {
+                    ClearActionStatus();
+                    ExecutePackRecipe(KeyCode.Return);
+                    return;
+                }
+
                 bool batch = InputHelper.GetKey(KeyCode.LeftShift)
                     || InputHelper.GetKey(KeyCode.RightShift);
                 ExecuteCraft(batch);
@@ -329,6 +361,7 @@ namespace CavesOfOoo.Rendering
 
         private void ToggleCraftPickUnderCursor()
         {
+            if (_craftingMode == CraftingMode.Recipes) return;
             if (_craftCursorIndex < 0 || _craftCursorIndex >= _craftRows.Count) return;
             CraftRow row = _craftRows[_craftCursorIndex];
             if (!row.IsSelectable || row.Item == null) return;
@@ -344,6 +377,7 @@ namespace CavesOfOoo.Rendering
 
         private void ClearCraftPicks()
         {
+            if (_craftingMode == CraftingMode.Recipes) return;
             ClearActionStatus();
             var inv = PlayerEntity?.GetPart<InventoryPart>();
             if (inv == null) return;
@@ -361,6 +395,12 @@ namespace CavesOfOoo.Rendering
         private void ExecuteCraft(bool batch)
         {
             ClearActionStatus();
+            if (_craftingMode == CraftingMode.Recipes)
+            {
+                ExecutePackRecipe(KeyCode.None);
+                return;
+            }
+
             if (_craftingMode == CraftingMode.Forge) ExecuteForge(batch);
             else ExecuteBrew(batch);
 
@@ -473,17 +513,22 @@ namespace CavesOfOoo.Rendering
         private void RenderCraftingModeHeader()
         {
             bool forge = _craftingMode == CraftingMode.Forge;
+            bool brew = _craftingMode == CraftingMode.Brew;
+            bool recipes = _craftingMode == CraftingMode.Recipes;
             DrawText(2, 2, forge ? "> Forge" : "  Forge",
                 forge ? QudColorParser.White : QudColorParser.Gray);
-            DrawText(12, 2, forge ? "  Brew" : "> Brew",
-                forge ? QudColorParser.Gray : QudColorParser.White);
+            DrawText(12, 2, brew ? "> Brew" : "  Brew",
+                brew ? QudColorParser.White : QudColorParser.Gray);
+            DrawText(22, 2, recipes ? "> Recipes" : "  Recipes",
+                recipes ? QudColorParser.White : QudColorParser.Gray);
         }
 
         private void RenderCraftingList()
         {
             if (_craftRows.Count == 0)
             {
-                DrawText(2, CRAFT_LIST_START_Y, "(nothing to craft with)",
+                DrawText(2, CRAFT_LIST_START_Y, _craftingMode == CraftingMode.Recipes
+                    ? "(no recipes from the items you carry)" : "(nothing to craft with)",
                     QudColorParser.DarkGray);
                 return;
             }
@@ -497,6 +542,12 @@ namespace CavesOfOoo.Rendering
                 int rowY = CRAFT_LIST_START_Y + line;
                 if (row.IsHeader) DrawSectionRule(1, rowY, row.Text, listWidth);
                 else if (!row.IsSelectable) DrawText(4, rowY, row.Text, QudColorParser.DarkGray);
+                else if (_craftingMode == CraftingMode.Recipes)
+                {
+                    bool selected = i == _craftCursorIndex;
+                    DrawText(1, rowY, (selected ? "> " : "  ") + Truncate(row.Text, listWidth - 2),
+                        selected ? QudColorParser.White : QudColorParser.Gray);
+                }
                 else DrawPickRow(1, rowY, listWidth, row.Text, i == _craftCursorIndex, row.IsMarked, row.Count);
             }
 
@@ -509,6 +560,21 @@ namespace CavesOfOoo.Rendering
         private void RenderCraftingAnvil()
         {
             int x = CRAFT_ANVIL_X;
+            if (_craftingMode == CraftingMode.Recipes)
+            {
+                DrawText(x, 2, "SELECTED RECIPE", QudColorParser.BrightYellow);
+                int row = 4;
+                string details = SelectedPackRecipeDetails() ?? "Carry crafting materials or tools to see their recipes.";
+                foreach (string line in details.Split('\n'))
+                {
+                    if (row >= CRAFT_LIST_END_Y) break;
+                    row = line.Length == 0 ? row + 1 : DrawWrapped(x, row, CRAFT_RESULT_W,
+                        CRAFT_LIST_END_Y - row, line, QudColorParser.Gray);
+                }
+                if (PackRecipeReady) DrawText(x, CRAFT_LIST_END_Y, "[Enter] " + PackRecipeCommitLabel, QudColorParser.BrightYellow);
+                return;
+            }
+
             DrawText(x, 2, _craftingMode == CraftingMode.Forge ? "ON THE ANVIL" : "IN THE MIX",
                 QudColorParser.BrightYellow);
 

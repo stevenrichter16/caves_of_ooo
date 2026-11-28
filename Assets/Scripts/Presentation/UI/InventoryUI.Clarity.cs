@@ -141,6 +141,7 @@ namespace CavesOfOoo.Rendering
             {
                 // Current selection is re-read through the existing pure previews.
                 BuildCraftingRows();
+                if (_craftingMode == CraftingMode.Recipes) return SelectedPackRecipeDetails();
                 string text = _craftingMode == CraftingMode.Forge ? InventoryDecisionDetails.Forge(_forgePreview) : InventoryDecisionDetails.Brew(_brewPreview);
                 IEnumerable<Entity> picks = _craftingMode == CraftingMode.Forge
                     ? new[] { _pickedBlade, _pickedHaft, _pickedBinding, _pickedQuench } : _pickedReagents;

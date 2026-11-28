@@ -150,7 +150,8 @@ namespace CavesOfOoo.Tests
             var resolved=((IList)Get("_ledgerHits"))[hitIndex];Assert.AreEqual("CraftRow",Field(resolved,"Kind").ToString());Assert.AreEqual(Row(selected),Field(resolved,"Index"));
             Assert.AreEqual(Row(selected),Get("_craftCursorIndex"));
             Assert.IsTrue(UI.GetComponentsInChildren<SkillScreenText>().Any(t=>t.Content.Contains(selected.GetDisplayName())&&LogicalBounds(t.rectTransform).Overlaps(rect)),"The visible row name must identify the same actual input as its hit.");
-            Color selectedColor=(Color)typeof(InventoryUI).GetField("LSelected",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
+            var palette = typeof(InventoryUI).Assembly.GetType("CavesOfOoo.Rendering.LedgerPalette", throwOnError: true);
+            Color selectedColor=(Color)palette.GetField("LSelected",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
             var backgrounds=UI.GetComponentsInChildren<UnityEngine.UI.Image>().Where(i=>i.isActiveAndEnabled&&i.color==selectedColor).ToArray();
             Assert.IsTrue(backgrounds.Any(i=>LogicalBounds(i.rectTransform).Contains(rect.center)),"The selected row must have its retained selection paint.");
             var other=((IList)Get("_ledgerHits")).Cast<object>().First(h=>Field(h,"Kind").ToString()=="CraftRow"&&(int)Field(h,"Index")!=Row(selected));

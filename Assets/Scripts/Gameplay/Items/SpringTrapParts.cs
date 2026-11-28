@@ -80,9 +80,11 @@ namespace CavesOfOoo.Core
                 foreach (var c in Cartridges)
                 {
                     var item = FindCarried(pack, actor, c.blueprint); if (item == null) continue; any = true;
-                    actions.AddActionWithHint("LoadSpringTrap", "load the spring trap with " + c.word, LoadPrefix + c.blueprint, "Spends one " + c.word + ". The trap is then " + c.kind + "-loaded and can be laid.", '\0', 18, false, ActionTime.OneAction);
+                    actions.AddActionWithHint("LoadSpringTrap", "load the spring trap with " + c.word, LoadPrefix + c.blueprint, "Spends one " + c.word + ". The trap is then " + c.kind + "-loaded and can be laid.", '\0', 18, false, ActionTime.OneAction)
+                        .AsRecipe(PackRecipeCategory.ToolsAndGear);
                 }
-                if (!any) actions.AddDisabled("LoadSpringTrap", "load the spring trap", "nothing-to-load", "It takes fire moss, frost lichen or spark root. You carry none.", 'l', 18);
+                if (!any) actions.AddDisabled("LoadSpringTrap", "load the spring trap", "nothing-to-load", "It takes fire moss, frost lichen or spark root. You carry none.", 'l', 18)
+                    .AsRecipe(PackRecipeCategory.ToolsAndGear);
                 return;
             }
             var origin = zone.GetEntityCell(actor); if (origin == null) return;

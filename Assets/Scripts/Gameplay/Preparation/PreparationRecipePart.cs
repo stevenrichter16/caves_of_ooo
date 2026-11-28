@@ -15,7 +15,7 @@ namespace CavesOfOoo.Core
             {
                 if (PreparationActions.Carried(actor, ParentEntity))
                     foreach (var recipe in PreparationRecipeService.Recipes)
-                        if (Allows(recipe)) e.GetParameter<InventoryActionList>("Actions")?.AddAction(recipe.Id, recipe.Text, "PrepareRecipe|" + recipe.Id, '\0', 18);
+                        if (Allows(recipe)) AddRecipeAction(e.GetParameter<InventoryActionList>("Actions"), recipe, actor, zone);
                 return true;
             }
             string command = e.GetStringParameter("Command");
@@ -26,22 +26,37 @@ namespace CavesOfOoo.Core
         }
         internal bool Allows(PreparationRecipeService.Recipe recipe) => recipe != null && ParentEntity?.GetPart<PreparationRecipePart>() == this
             && ParentEntity.BlueprintName == recipe.Input && Array.IndexOf((RecipeIds ?? "").Split(','), recipe.Id) >= 0;
+
+        private void AddRecipeAction(InventoryActionList actions, PreparationRecipeService.Recipe recipe, Entity actor, Zone zone)
+        {
+            if (actions == null) return;
+            InventoryAction row;
+            if ((ParentEntity.GetPart<StackerPart>()?.StackCount ?? 1) < recipe.Units)
+                row = actions.AddDisabled(recipe.Id, recipe.Text, "short-on-material",
+                    "This recipe needs " + recipe.Units + " units in the selected stack.", '\0', 18);
+            else if (recipe.Still && !AlchemyStillPart.IsNearStill(actor, zone))
+                row = actions.AddDisabled(recipe.Id, recipe.Text, "still-required", "Stand beside a working alchemy still.", '\0', 18);
+            else
+                row = actions.AddAction(recipe.Id, recipe.Text, "PrepareRecipe|" + recipe.Id, '\0', 18);
+            row.AsRecipe(recipe.Category, MaterialProcessActions.Label(SeedPart.Factory, recipe.Output));
+        }
     }
     internal static class PreparationRecipeService
     {
         internal sealed class Recipe
         {
             internal readonly string Id, Input, Output, Text; internal readonly int Units; internal readonly bool Still;
-            internal Recipe(string id, string input, string output, int units, bool still, string text)
-            { Id = id; Input = input; Output = output; Units = units; Still = still; Text = text; }
+            internal readonly PackRecipeCategory Category;
+            internal Recipe(string id, string input, string output, int units, bool still, string text, PackRecipeCategory category)
+            { Id = id; Input = input; Output = output; Units = units; Still = still; Text = text; Category = category; }
         }
         internal static readonly Recipe[] Recipes = {
-            new Recipe("shape_haft", "SalvagedTimber", "FieldHaftComponent", 1, false, "shape haft: 1 timber, STR cap 1"),
-            new Recipe("braid_binding", "KnotflaxCord", "PlainCordBindingComponent", 1, false, "braid binding: 1 cord, no bonus"),
-            new Recipe("shape_head", "Tepuibone", "TepuiboneHeadComponent", 1, false, "cudgel head: 1 tepuibone, 1d3/-1PV"),
-            new Recipe("bandage", "KnotflaxCord", "KnotflaxBandage", 1, false, "bandage: 1 cord, stops bleeding only"),
-            new Recipe("concentrate_mendleaf", "MendleafSprig", "ConcentratedMendleaf", 2, true, "still: 2 mendleaf -> 1 vital:2"),
-            new Recipe("detox_grove_red", "GroveRed", "CleansedGrovePulp", 1, true, "still: detox grove-red -> vital:2"),
+            new Recipe("shape_haft", "SalvagedTimber", "FieldHaftComponent", 1, false, "shape haft: 1 timber, STR cap 1", PackRecipeCategory.WeaponParts),
+            new Recipe("braid_binding", "KnotflaxCord", "PlainCordBindingComponent", 1, false, "braid binding: 1 cord, no bonus", PackRecipeCategory.WeaponParts),
+            new Recipe("shape_head", "Tepuibone", "TepuiboneHeadComponent", 1, false, "cudgel head: 1 tepuibone, 1d3/-1PV", PackRecipeCategory.WeaponParts),
+            new Recipe("bandage", "KnotflaxCord", "KnotflaxBandage", 1, false, "bandage: 1 cord, stops bleeding only", PackRecipeCategory.MedicalSupplies),
+            new Recipe("concentrate_mendleaf", "MendleafSprig", "ConcentratedMendleaf", 2, true, "still: 2 mendleaf -> 1 vital:2", PackRecipeCategory.AlchemySupplies),
+            new Recipe("detox_grove_red", "GroveRed", "CleansedGrovePulp", 1, true, "still: detox grove-red -> vital:2", PackRecipeCategory.AlchemySupplies),
         };
         internal static bool TryPrepare(Entity actor, PreparationRecipePart part, string id, Zone zone, InventoryTransaction tx)
         {

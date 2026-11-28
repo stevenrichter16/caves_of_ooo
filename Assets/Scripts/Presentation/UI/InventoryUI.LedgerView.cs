@@ -432,8 +432,11 @@ namespace CavesOfOoo.Rendering
             string hint;
             if (_loadoutNameEditing) hint = "Type a name, or keep the default   Enter / A: save   Esc / B: cancel";
             else if (_inventorySearchActive) hint = "Type to filter   Enter: accept   Esc: clear search";
+            else if (_panel == PANEL_CRAFTING && pad) hint = "D-pad: browse   A: craft   X: commands and subtabs   B: back   Y: next panel   LT+RT: details";
             else if (pad) hint = "D-pad: browse  A: select  X: commands  B: back  Y: mode  LB/RB: mode  LT+RT: details";
-            else if (_panel == PANEL_CRAFTING) hint = "Space: pick   Enter: craft   F/B: mode   C: clear   Tab: next   F1: details   Esc: close";
+            else if (_panel == PANEL_CRAFTING) hint = _craftingMode == CraftingMode.Recipes
+                ? "Arrows: browse   Enter: make   F/B/P: subtab   Tab: next panel   F1: details   Esc: close"
+                : "Space: pick   Enter: craft   F/B/P: subtab   C: clear   Tab: next panel   F1: details   Esc: close";
             else if (_panel == PANEL_LOADOUTS) hint = "Arrows: browse   Enter: actions   S: save   1/2: use A/B   Tab: next   F1: details   Esc: close";
             else if (_panel == PANEL_TINKERING) hint = "Enter: select   B/M: build/mod   Tab: next   F1: details   Esc: close";
             else if (_panel == PANEL_ABILITIES) hint = "Arrows: slot   Enter: assign   X: clear   Tab: next   Esc: close";

@@ -285,6 +285,14 @@ namespace CavesOfOoo.Rendering
             /// <summary>One line saying what the row does, shown on the detail line while the row is highlighted. Empty for most rows.</summary>
             public string Hint;
             public bool IsDisabled => !string.IsNullOrWhiteSpace(DisabledReason);
+
+            public static ItemAction FromInventoryAction(InventoryAction action) => new ItemAction
+            {
+                Label = action.IsDisabled ? action.Display + " (unavailable)" : action.Display,
+                Command = action.Command, TimeDeclared = action.Time != ActionTime.Unspecified,
+                Time = action.Time, DisabledCode = action.DisabledCode,
+                DisabledReason = action.DisabledReason, Hint = action.Hint
+            };
         }
 
         public void Open()
@@ -1246,13 +1254,7 @@ namespace CavesOfOoo.Rendering
                     if (a.Command == "OpenContainer" && storageView) continue;
                     if ((materialGuidance || tonicGuidance || equipmentGuidance)
                         && a.Command == "Examine") continue;
-                    actions.Add(new ItemAction
-                    {
-                        // Both pack renderers draw only the label, so a disabled row says so in its text as well as being dimmed.
-                        Label = a.IsDisabled ? a.Display + " (unavailable)" : a.Display, Command = a.Command,
-                        TimeDeclared = a.Time != ActionTime.Unspecified, Time = a.Time,
-                        DisabledCode = a.DisabledCode, DisabledReason = a.DisabledReason, Hint = a.Hint
-                    });
+                    actions.Add(ItemAction.FromInventoryAction(a));
                 }
             }
             if (storageView)
@@ -1429,16 +1431,7 @@ namespace CavesOfOoo.Rendering
             ClearActionStatus();
             var action = _itemActionPopup.Actions[index];
             var item = _itemActionPopup.Item;
-            // A disabled row only says why: no transaction, no turn, and the popup stays open on the same row.
-            if (action.IsDisabled)
-            {
-                SetActionFailure(action.DisabledReason);
-                MessageLog.Add(action.DisabledReason);
-                Diag.Record("event", "ActionDisabled", actor: PlayerEntity, target: item,
-                    payload: new { code = action.DisabledCode, command = action.Command, name = action.Label });
-                Render();
-                return;
-            }
+            if (ShowDisabledItemAction(action, item)) return;
             var consumption = SelfConsumptionTurnProof.Capture(PlayerEntity, item, action.Command);
             bool completed;
             switch (action.Command)
@@ -1581,6 +1574,23 @@ namespace CavesOfOoo.Rendering
                     return;
                 default: completed = TryPerformActionViaCommand(item, action.Command); break;
             }
+            FinishItemAction(action, item, consumption, completed, activationKey);
+        }
+
+        private bool ShowDisabledItemAction(ItemAction action, Entity item)
+        {
+            if (!action.IsDisabled) return false;
+            SetActionFailure(action.DisabledReason);
+            MessageLog.Add(action.DisabledReason);
+            Diag.Record("event", "ActionDisabled", actor: PlayerEntity, target: item,
+                payload: new { code = action.DisabledCode, command = action.Command, name = action.Label });
+            Render();
+            return true;
+        }
+
+        private void FinishItemAction(ItemAction action, Entity item, SelfConsumptionTurnProof consumption,
+            bool completed, KeyCode activationKey)
+        {
             // Declared time (spec S3): the row's own word replaces the legacy chain below, which stays for undeclared rows.
             // The chain is evaluated only for a committed command, exactly as before.
             if (completed && (action.TimeDeclared ? action.Time == ActionTime.OneAction : LegacyPackActionSpendsTurn(action, item, consumption, completed)))

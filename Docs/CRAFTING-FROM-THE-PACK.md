@@ -1,5 +1,24 @@
 # Crafting from the pack — forge and brew without a station
 
+## Recipes subtab
+
+Open **Pack & Equipment → Crafting → Recipes** to find the recipes offered
+by the things you carry. The list groups work by weapon parts, medical
+supplies, tools and gear, food, alchemy supplies, field supplies, materials,
+reclamation and equipment work. Categories appear as the pack offers work.
+Choose a row to see the source item, the result and any requirement. On
+keyboard, **P** opens Recipes from Crafting and **Enter** makes the selected
+recipe. The controller's **X** command menu offers Recipes, with **A** to
+choose and make. Mouse users can select the tab and choose **Make**.
+
+The original item action contributes each row, including its station or
+tool requirements, losses, quantities and failure reason. The tab uses the
+same command on the same carried entity and shares the inventory menu's
+turn receipt. Cooking says **Cook stack** and previews the whole yield.
+If a selected input becomes unavailable while the tab is open, the refused
+row stays selected. Forge and Brew keep their ingredient picks and use
+their own previews. Tinkering holds learned builds and modifications.
+
 **2026-10-03 equipment discoveries:** the live picker now calls the striking slot **Heads / blades** and previews weapon family, signed penetration/hit modifiers and strength cap. Steel heads support learned LongBlades skills; geographically sourced mallet, hook-axe and counterweight blade heads offer distinct costs. The internal `Blade` slot and pack/station rules remain compatible. See [Equipment discoveries](EQUIPMENT-DISCOVERIES-DESIGN.md) for exact contracts, sources, saved-steel repair and verification. The historical panel sketches below describe the earlier layout.
 
 > **Request (2026-08-10):** *"allow the player to forge weapons and create

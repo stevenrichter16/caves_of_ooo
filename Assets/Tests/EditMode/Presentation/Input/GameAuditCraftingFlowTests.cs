@@ -123,4 +123,117 @@ namespace CavesOfOoo.Tests
             Call("HandleCraftingClick", new Vector2Int(13,y)); Assert.IsFalse(CraftingMarkPart.IsMarked(Oak));
         }
     }
+
+    public class InventoryPackRecipesTests : CraftingFlowFixture
+    {
+        const string Haft = "PrepareRecipe|shape_haft";
+        const string Binding = "PrepareRecipe|braid_binding";
+        const string Bandage = "PrepareRecipe|bandage";
+
+        [Test]
+        public void PackRecipesGroupTheSameActionsOfferedOnTimberAndCord()
+        {
+            var timber = Carry("SalvagedTimber");
+            var cord = Carry("KnotflaxCord");
+            OpenRecipes();
+
+            var haft = FindRecipe(timber, Haft);
+            var binding = FindRecipe(cord, Binding);
+            var bandage = FindRecipe(cord, Bandage);
+            Assert.AreEqual(haft.Category, binding.Category);
+            Assert.AreNotEqual(binding.Category, bandage.Category);
+            Assert.False(UI.ConsumePendingEverydayTurn());
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void MakingAHaftSpendsOneSelectedUnitOrRefusesAStaleSource(bool sourceRemoved)
+        {
+            // Shaping a haft is an ordinary hand recipe. Move the fixture's
+            // forge out of the scene so it cannot accidentally satisfy it.
+            Zone.RemoveEntity(Station);
+            var timber = Carry("SalvagedTimber");
+            var alternate = Carry("KnotflaxCord");
+            OpenRecipes();
+            var recipe = FindRecipe(timber, Haft);
+            Set("_craftCursorIndex", recipe.Index);
+
+            Entity replacement = null;
+            if (sourceRemoved)
+            {
+                Assert.True(Inventory.RemoveObject(timber));
+                replacement = Carry("SalvagedTimber", 3);
+            }
+
+            var oldSeedFactory = SeedPart.Factory;
+            try
+            {
+                SeedPart.Factory = Factory;
+                Call("ExecuteCraft", false);
+                if (sourceRemoved) Call("ExecuteCraft", false);
+            }
+            finally { SeedPart.Factory = oldSeedFactory; }
+
+            int hafts = Inventory.Objects.Where(item => item.BlueprintName == "FieldHaftComponent")
+                .Sum(item => item.GetPart<StackerPart>()?.StackCount ?? 1);
+            Assert.AreEqual(sourceRemoved ? 0 : 1, hafts);
+            Assert.AreEqual(sourceRemoved ? 2 : 1, timber.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(2, alternate.GetPart<StackerPart>().StackCount);
+            if (sourceRemoved) Assert.AreEqual(3, replacement.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(sourceRemoved, UI.IsOpen);
+            Assert.AreEqual(!sourceRemoved, UI.ConsumePendingEverydayTurn());
+            Assert.False(UI.ConsumePendingEverydayTurn(), "The action receipt is single-use.");
+        }
+
+        [Test]
+        public void AStillRecipeExplainsTheMissingStationWithoutSpendingAnything()
+        {
+            var mendleaf = Carry("MendleafSprig");
+            OpenRecipes();
+            var rows = (IList)Get("_craftRows");
+            for (int index = 0; index < rows.Count; index++)
+            {
+                var row = rows[index];
+                if (!ReferenceEquals(mendleaf, Field(row, "Item"))
+                    || Field(row, "RecipeAction") is not InventoryAction action || action.Name != "concentrate_mendleaf") continue;
+                Assert.AreEqual("still-required", action.DisabledCode);
+                Set("_craftCursorIndex", index);
+                Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Contain("alchemy still"));
+                Call("ExecuteCraft", false);
+                Assert.AreEqual(2, mendleaf.GetPart<StackerPart>().StackCount);
+                Assert.True(UI.IsOpen);
+                Assert.False(UI.ConsumePendingEverydayTurn());
+                return;
+            }
+            Assert.Fail("The unavailable recipe must still explain the station requirement.");
+        }
+
+        void OpenRecipes()
+        {
+            var mode = typeof(InventoryUI).GetNestedType("CraftingMode", BindingFlags.NonPublic);
+            Assert.NotNull(mode);
+            Call("SwitchCraftingMode", Enum.Parse(mode, "Recipes"));
+        }
+
+        (int Index, string Category) FindRecipe(Entity source, string command)
+        {
+            var original = InventorySystem.GetActions(Player, source).Single(action => action.Command == command);
+            var rows = (IList)Get("_craftRows");
+            string category = null;
+            for (int index = 0; index < rows.Count; index++)
+            {
+                var row = rows[index];
+                if ((bool)Field(row, "IsHeader")) category = (string)Field(row, "Text");
+                if (!ReferenceEquals(source, Field(row, "Item"))
+                    || !(Field(row, "RecipeAction") is InventoryAction action) || action.Command != command) continue;
+                Assert.That(category, Is.Not.Null.And.Not.Empty);
+                Assert.True((bool)Field(row, "IsSelectable"));
+                Assert.AreEqual(original.Display, action.Display);
+                Assert.AreEqual(original.Time, action.Time);
+                return (index, category);
+            }
+            Assert.Fail($"Missing pack recipe for {source.BlueprintName}: {command}");
+            return (-1, null);
+        }
+    }
 }

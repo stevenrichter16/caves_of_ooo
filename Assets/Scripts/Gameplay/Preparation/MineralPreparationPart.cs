@@ -32,7 +32,7 @@ namespace CavesOfOoo.Core
         public void AddUseRows(Entity actor, Zone zone, InventoryActionList rows)
         {
             if (ForgePart.IsNearForge(actor, zone))
-                AddInfusionRows(actor, ParentEntity, Modification(ParentEntity?.BlueprintName), rows);
+                AddInfusionRows(actor, ParentEntity, Modification(ParentEntity?.BlueprintName), true, rows);
         }
 
         public override bool HandleEvent(GameEvent e)
@@ -41,7 +41,8 @@ namespace CavesOfOoo.Core
             var modification = Modification(mineral.BlueprintName); string enhancement = "Enhancement" + mineral.BlueprintName;
             if (e.ID == "GetInventoryActions")
             {
-                AddInfusionRows(actor, mineral, modification, e.GetParameter<InventoryActionList>("Actions"));
+                AddInfusionRows(actor, mineral, modification, ForgePart.IsNearForge(actor, zone),
+                    e.GetParameter<InventoryActionList>("Actions"));
                 return true;
             }
             string command = e.GetStringParameter("Command");
@@ -79,17 +80,23 @@ namespace CavesOfOoo.Core
             e.Handled = true; return false;
         }
 
-        static void AddInfusionRows(Entity actor, Entity mineral, MineralInfusionTinkerModification modification,
+        static void AddInfusionRows(Entity actor, Entity mineral, MineralInfusionTinkerModification modification, bool atForge,
             InventoryActionList rows)
         {
             if (rows == null || modification == null || !PreparationActions.Carried(actor, mineral)) return;
 
             string enhancement = "Enhancement" + mineral.BlueprintName;
             foreach (var target in actor.GetPart<InventoryPart>().Objects)
-                if (Compatible(actor, target, modification, enhancement))
-                    rows.AddAction("InfuseMineral" + target.ID,
-                        "infuse " + InventoryPart.GetUnitDisplayName(target) + " at forge (1 " + InventoryPart.GetUnitDisplayName(mineral) + "; one enhancement slot)",
-                        "InfuseMineral|" + PreparationActions.Escaped(target), '\0', 17);
+            {
+                if (!Compatible(actor, target, modification, enhancement)) continue;
+                string name = "InfuseMineral" + target.ID;
+                string label = "infuse " + InventoryPart.GetUnitDisplayName(target) + " at forge (1 "
+                    + InventoryPart.GetUnitDisplayName(mineral) + "; one enhancement slot)";
+                var row = atForge
+                    ? rows.AddAction(name, label, "InfuseMineral|" + PreparationActions.Escaped(target), '\0', 17)
+                    : rows.AddDisabled(name, label, "forge-required", "Stand beside a working forge.", '\0', 17);
+                row.AsRecipe(PackRecipeCategory.EquipmentWork);
+            }
         }
 
         static bool Compatible(Entity actor, Entity item, MineralInfusionTinkerModification modification, string enhancement) =>

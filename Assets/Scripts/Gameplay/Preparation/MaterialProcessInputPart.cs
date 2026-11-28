@@ -57,11 +57,27 @@ namespace CavesOfOoo.Core
     {
         sealed class Menu { internal readonly Dictionary<string,MaterialProcessService.Quote> Quotes=new Dictionary<string,MaterialProcessService.Quote>(); }
         static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu> Menus=new System.Runtime.CompilerServices.ConditionalWeakTable<Entity,Menu>();
-        static string Label(CavesOfOoo.Data.EntityFactory factory,string bp)
-            => factory.Blueprints[bp].Parts.TryGetValue("Render",out var p) && p.TryGetValue("DisplayName",out var label)?label:bp;
+        internal static string Label(CavesOfOoo.Data.EntityFactory factory,string bp)
+            => !string.IsNullOrEmpty(bp) && factory?.Blueprints.TryGetValue(bp, out var blueprint) == true
+                && blueprint.Parts.TryGetValue("Render",out var p) && p.TryGetValue("DisplayName",out var label) ? label : bp;
         internal static string Outputs(CavesOfOoo.Data.EntityFactory factory, MaterialProcessDefinition definition)
             => string.Join(" + ", definition.OutputBlueprints.Select((bp, i) =>
                 definition.OutputCounts[i].ToString(CultureInfo.InvariantCulture) + " " + Label(factory, bp)));
+
+        private static InventoryAction AsRecipe(InventoryAction action, CavesOfOoo.Data.EntityFactory factory, MaterialProcessDefinition definition)
+        {
+            if (action == null || definition == null) return action;
+            var category = definition.Mode == "Reclaim" || definition.Mode == "Dismantle"
+                ? PackRecipeCategory.Reclamation
+                : definition.WorkKind switch
+                {
+                    SeedFramePart.WorkKind => PackRecipeCategory.FieldSupplies,
+                    "ForgeCold" => PackRecipeCategory.ToolsAndGear,
+                    "HandCutting" => PackRecipeCategory.WeaponParts,
+                    _ => AnvilPointWorkReceipt.Supports(definition) ? PackRecipeCategory.WeaponParts : PackRecipeCategory.Materials
+                };
+            return action.AsRecipe(category, Outputs(factory, definition));
+        }
 
         // This describes material potential. The action checks the actual tool,
         // destination and capacity without the reader gathering any action rows.
@@ -104,36 +120,39 @@ namespace CavesOfOoo.Core
                 }
                 foreach(var id in ids.Distinct())
                 {
+                    var definition = sizeStock == null ? MaterialProcessRegistry.Get(id) : sizeStock.Definition(ForgePart.Factory);
                     var plan=sizeStock==null?MaterialProcessPlan.TryCreate(actor,owner,id,zone,ForgePart.Factory)
                         :MaterialProcessPlan.TryCreateScreening(actor,owner,zone,ForgePart.Factory,sizeStock);
-                    if (actions != null && sizeStock == null && SeedFramePart.IsKnotflaxWork(MaterialProcessRegistry.Get(id))
+                    if (actions != null && sizeStock == null && SeedFramePart.IsKnotflaxWork(definition)
                         && MaterialProcessService.TryQuote(MaterialProcessPlan.TryCreateShelteredWinnow(actor, owner, id, zone, ForgePart.Factory)) is {} sheltered)
                     {
                         var kept = Outputs(sheltered.Plan.Factory, sheltered.Result);
-                        actions.AddActionWithHint("winnow_with_bellows", "winnow with bellows (keep chaff)", Command(sheltered),
+                        AsRecipe(actions.AddActionWithHint("winnow_with_bellows", "winnow with bellows (keep chaff)", Command(sheltered),
                             "Use a sieve and bellows on one bundle. Makes " + kept + ". Keep both tools. One action.",
-                            '\0', 19, false, ActionTime.OneAction);
+                            '\0', 19, false, ActionTime.OneAction), sheltered.Plan.Factory, sheltered.Result);
                     }
                     var quoted=MaterialProcessService.TryQuote(plan, out bool reservedForCrafting);
                     if(quoted==null)
                     {
+                        InventoryAction unavailable = null;
                         // Not runnable now: explain a near-miss with one disabled row (no quote, no token, never dispatched).
                         if (sizeStock == null && reservedForCrafting)
-                            e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id, plan.Definition.ActionText,
+                            unavailable = actions?.AddDisabled(id, plan.Definition.ActionText,
                                 "crafting-reserved", "This item is set aside for crafting. Choose Take back (crafting) to make it available for material work.",
                                 '\0', MaterialProcessMisses.RowPriority);
                         else if(sizeStock==null&&plan==null&&MaterialProcessMisses.Explain(actor,owner,id,zone,ForgePart.Factory) is MaterialProcessMisses.Miss miss)
-                            e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,MaterialProcessRegistry.Get(id).ActionText,miss.Code,miss.Reason,'\0',MaterialProcessMisses.RowPriority);
-                        else if(sizeStock!=null && sizeStock.Definition(ForgePart.Factory)!=null && PreparationActions.CurrentActor(actor,zone)
+                            unavailable = actions?.AddDisabled(id,definition.ActionText,miss.Code,miss.Reason,'\0',MaterialProcessMisses.RowPriority);
+                        else if(sizeStock!=null && definition!=null && PreparationActions.CurrentActor(actor,zone)
                             && PreparationActions.Carried(actor,owner) && MaterialProcessTemplate.Capture(ForgePart.Factory,owner.BlueprintName)?.Snapshot(owner,true)!=null)
-                            e.GetParameter<InventoryActionList>("Actions")?.AddDisabled(id,"screen size grades","screening-unavailable","Carry a sound sieve and leave room for both grades.",'\0',19);
+                            unavailable = actions?.AddDisabled(id,"screen size grades","screening-unavailable","Carry a sound sieve and leave room for both grades.",'\0',19);
+                        AsRecipe(unavailable, ForgePart.Factory, definition);
                         continue;
                     }
                     var d=quoted.Result;
                     string outputs = Outputs(plan.Factory, d);
                     string inputs=d.AdditionalInputBlueprints.Count==0?d.InputCount.ToString():d.InputCount+" "+Label(plan.Factory,d.SourceBlueprint)+" + "+string.Join(" + ",d.AdditionalInputBlueprints.Select((bp,i)=>d.AdditionalInputCounts[i]+" "+Label(plan.Factory,bp)));
-                    var row=e.GetParameter<InventoryActionList>("Actions")?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
-                        Command(quoted),'\0',19,false,ActionTime.OneAction);
+                    var row=AsRecipe(actions?.AddAction(id,d.ActionText+": "+inputs+" -> "+outputs+(d.LossText.Length>0?"; "+d.LossText:"")+" (1 action, pack)",
+                        Command(quoted),'\0',19,false,ActionTime.OneAction), plan.Factory, d);
                     if (row != null && plan.StationKind == AnvilWorkPart.Kind)
                     {
                         var hammer = plan.WorkTool.GetPart<RenderPart>()?.DisplayName ?? plan.WorkTool.BlueprintName;
@@ -166,11 +185,12 @@ namespace CavesOfOoo.Core
                             row.Display = $"screen and pack both ({fine + coarse} lb, 1 action)";
                             row.Hint = "Makes " + outputs + ". Both grades go into your pack. Keep the sieve.";
                         }
-                        e.GetParameter<InventoryActionList>("Actions")?.AddActionWithHint(leave.ActionId,
+                        actions?.AddActionWithHint(leave.ActionId,
                             $"{label} (carry {fine} lb, leave {coarse} lb, 1 action)", Command(leave),
                             $"One action. {fine} lb of {Label(plan.Factory, d.OutputBlueprints[0])} into your pack. "
                             + $"{coarse} lb of {Label(plan.Factory, d.OutputBlueprints[1])} at your feet. Keep the sieve.",
-                            '\0',18,false,ActionTime.OneAction).AtCell(ground.X, ground.Y);
+                            '\0',18,false,ActionTime.OneAction).AtCell(ground.X, ground.Y)
+                            .AsRecipe(PackRecipeCategory.Materials, outputs);
                     }
                 }
                 return true;

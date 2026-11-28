@@ -37,8 +37,9 @@ namespace CavesOfOoo.Tests
         void Neutral()
         { InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update(); InputHelper.GetKey(KeyCode.None); }
 
-        [Test]
-        public void WestOpensCraftingCommandsAndDpadAChooseTheActuallyOfferedBrewMode()
+        [TestCase("Brew")]
+        [TestCase("Recipes")]
+        public void WestOpensCraftingCommandsAndDpadAChooseTheOfferedSubtab(string mode)
         {
             using (var r = new Rig())
             {
@@ -51,20 +52,20 @@ namespace CavesOfOoo.Tests
                 Assert.True(r.UI.IsOpen, "X must open the Commands view instead of closing the crafting screen.");
                 Assert.True((bool)Get(r.UI, "_ledgerCommandsOpen"));
                 var commands = (IList)Get(r.UI, "_ledgerCommands"); Assert.Greater(commands.Count, 0);
-                int brew = -1;
+                int subtab = -1;
                 for (int i = 0; i < commands.Count; i++)
-                    if (string.Equals((string)Get(commands[i], "Label"), "Brew", StringComparison.OrdinalIgnoreCase)) brew = i;
-                Assert.GreaterOrEqual(brew, 0, "The real context menu must offer Brew; do not invoke its callback directly.");
+                    if (string.Equals((string)Get(commands[i], "Label"), mode, StringComparison.OrdinalIgnoreCase)) subtab = i;
+                Assert.GreaterOrEqual(subtab, 0, "The subtab must be offered through the command menu.");
                 Assert.AreEqual("Forge", Get(r.UI, "_craftingMode").ToString());
                 Assert.AreEqual(0, Get(r.UI, "_ledgerCommandIndex"));
                 // A held X cannot reopen/toggle/commit the newly opened modal.
                 State(new GamepadState().WithButton(GamepadButton.West)); r.UI.HandleInput();
                 Assert.True((bool)Get(r.UI, "_ledgerCommandsOpen")); Assert.AreEqual(0, Get(r.UI, "_ledgerCommandIndex"));
-                for (int i = 0; i < brew; i++)
+                for (int i = 0; i < subtab; i++)
                 { Neutral(); State(new GamepadState().WithButton(GamepadButton.DpadDown)); r.UI.HandleInput(); }
-                Assert.AreEqual(brew, Get(r.UI, "_ledgerCommandIndex"));
+                Assert.AreEqual(subtab, Get(r.UI, "_ledgerCommandIndex"));
                 Neutral(); State(new GamepadState().WithButton(GamepadButton.South)); r.UI.HandleInput();
-                Assert.AreEqual("Brew", Get(r.UI, "_craftingMode").ToString());
+                Assert.AreEqual(mode, Get(r.UI, "_craftingMode").ToString());
                 Assert.False((bool)Get(r.UI, "_ledgerCommandsOpen")); Assert.True(r.UI.IsOpen);
                 Assert.Zero(r.Probe.Executed.Count); Assert.True(r.Pack.Contains(r.Item));
                 Assert.False(r.UI.ConsumePendingEverydayTurn()); Assert.AreEqual(tick, TurnManager.Active?.TickCount ?? 0);

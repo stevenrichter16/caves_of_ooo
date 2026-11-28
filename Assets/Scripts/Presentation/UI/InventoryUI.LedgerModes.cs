@@ -102,10 +102,14 @@ namespace CavesOfOoo.Rendering
             LFrame(new Rect(24, 132, 688, 572), LBorder, LPanel);
             LFrame(new Rect(728, 132, 528, 572), LBorder, LPanel);
             bool forge = _craftingMode == CraftingMode.Forge;
-            LSecondaryButton(new Rect(42, 148, 164, 34), "FORGE", LedgerHitKind.CraftMode, 0, forge);
-            LSecondaryButton(new Rect(216, 148, 164, 34), "BREW", LedgerHitKind.CraftMode, 1, !forge);
-            LLabel(new Rect(42, 204, 570, 20), forge ? "CARRIED COMPONENTS" : "CARRIED REAGENTS", LGold);
-            LLabel(new Rect(638, 204, 54, 20), "QTY", LMuted, 18);
+            bool brew = _craftingMode == CraftingMode.Brew;
+            bool recipes = _craftingMode == CraftingMode.Recipes;
+            LSecondaryButton(new Rect(42, 148, 164, 34), "FORGE", LedgerHitKind.CraftMode, (int)CraftingMode.Forge, forge);
+            LSecondaryButton(new Rect(216, 148, 164, 34), "BREW", LedgerHitKind.CraftMode, (int)CraftingMode.Brew, brew);
+            LSecondaryButton(new Rect(390, 148, 164, 34), "RECIPES", LedgerHitKind.CraftMode, (int)CraftingMode.Recipes, recipes);
+            LLabel(new Rect(42, 204, 520, 20), recipes ? "FROM YOUR PACK" : forge ? "CARRIED COMPONENTS" : "CARRIED REAGENTS", LGold);
+            LLabel(recipes ? new Rect(578, 204, 114, 20) : new Rect(638, 204, 54, 20),
+                recipes ? "STATUS" : "QTY", LMuted, 18);
 
             _craftScrollOffset = LSecondaryFirstIndex(_craftScrollOffset, _craftCursorIndex,
                 _craftRows.Count, LedgerCraftVisibleRows);
@@ -122,19 +126,44 @@ namespace CavesOfOoo.Rendering
                     LSecondaryText(new Rect(44, bounds.y + 6, 644, 20), row.Text, LGold, 18);
                     continue;
                 }
-                string mark = row.IsSelectable ? (row.IsMarked ? "[+] " : "[ ] ") : "    ";
-                var name = DrawItemRowIcon(new Rect(44, bounds.y + 6, 576, 20), row.Item);
-                LSecondaryText(name, mark + row.Text,
-                    selected ? LInk : row.IsMarked ? LGreen : LMuted, 18);
+                if (recipes)
+                {
+                    bool readyNow = row.RecipeAction != null && !row.RecipeAction.IsDisabled;
+                    LSecondaryText(new Rect(44, bounds.y + 6, 526, 20), row.Text,
+                        selected || readyNow ? LInk : LMuted, 18);
+                    if (row.IsSelectable)
+                        LSecondaryText(new Rect(578, bounds.y + 6, 114, 20),
+                            readyNow ? "Ready" : "Unavailable", readyNow ? LGreen : LMuted, 18);
+                }
+                else
+                {
+                    string mark = row.IsSelectable ? (row.IsMarked ? "[+] " : "[ ] ") : "    ";
+                    var name = DrawItemRowIcon(new Rect(44, bounds.y + 6, 576, 20), row.Item);
+                    LSecondaryText(name, mark + row.Text,
+                        selected ? LInk : row.IsMarked ? LGreen : LMuted, 18);
+                    if (row.IsSelectable)
+                        LSecondaryText(new Rect(638, bounds.y + 6, 54, 20), row.Count.ToString(), LMuted, 18);
+                }
                 if (!row.IsSelectable) continue;
-                LSecondaryText(new Rect(638, bounds.y + 6, 54, 20), row.Count.ToString(), LMuted, 18);
                 LHit(bounds, LedgerHitKind.CraftRow, index);
             }
             if (_craftRows.Count == 0)
-                LSecondaryText(new Rect(44, 242, 644, 100), "Nothing carried can be used in this mode.", LMuted);
-            LSecondaryButton(new Rect(42, 658, 200, 32), "CLEAR PICKS", LedgerHitKind.ClearPicks, 0);
-            LSecondaryRange(new Rect(264, 664, 428, 20), _craftScrollOffset,
+                LSecondaryText(new Rect(44, 242, 644, 100), recipes
+                    ? "Carry crafting materials or tools to see their recipes." : "Nothing carried can be used in this mode.", LMuted);
+            if (!recipes) LSecondaryButton(new Rect(42, 658, 200, 32), "CLEAR PICKS", LedgerHitKind.ClearPicks, 0);
+            LSecondaryRange(recipes ? new Rect(44, 664, 644, 20) : new Rect(264, 664, 428, 20), _craftScrollOffset,
                 LedgerCraftVisibleRows, _craftRows.Count);
+
+            if (recipes)
+            {
+                LLabel(new Rect(748, 152, 488, 22), "SELECTED RECIPE", LGold);
+                string details = SelectedPackRecipeDetails();
+                if (string.IsNullOrEmpty(details)) return;
+                LSecondaryText(new Rect(748, 194, 488, 426), details, LInk, 18);
+                LSecondaryButton(new Rect(748, 658, 488, 32), PackRecipeCommitLabel.ToUpperInvariant(),
+                    LedgerHitKind.CraftCommit, 0, false, PackRecipeReady);
+                return;
+            }
 
             LLabel(new Rect(748, 152, 488, 22), "RESULT", LGold);
             // These prose helpers read the cached previews only. In particular,

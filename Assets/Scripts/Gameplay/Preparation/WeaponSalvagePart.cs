@@ -26,7 +26,7 @@ namespace CavesOfOoo.Core
                 if (fieldQuote != null)
                     actions.AddActionWithHint("FieldHeadRecovery", "cut for head (lose haft, binding, mods)", fieldQuote.Command,
                         "One action. Lose the weapon, haft, binding and improvements. Keep your cutter. A working forge can also recover the haft.",
-                        '\0', 16, false, ActionTime.OneAction);
+                        '\0', 16, false, ActionTime.OneAction).AsRecipe(PackRecipeCategory.Reclamation);
                 return true;
             }
             if (e.ID != "InventoryAction") return true;
@@ -62,10 +62,12 @@ namespace CavesOfOoo.Core
             if (ForgeWorkReceipt.Near(actor, station, zone))
             {
                 if (StationAccess.Allowed(actor, station, zone, ForgeWorkReceipt.Kind, SalvageCommand, out string code, out string reason))
-                    actions.AddAction(SalvageCommand, label, SalvageCommand, '\0', 17);
+                    actions.AddAction(SalvageCommand, label, SalvageCommand, '\0', 17)
+                        .AsRecipe(PackRecipeCategory.Reclamation);
                 else
                     actions.AddDisabled(SalvageCommand, label, code ?? "forge-access",
-                        string.IsNullOrWhiteSpace(reason) ? "This forge is unavailable for recovery." : reason, '\0', 5);
+                        string.IsNullOrWhiteSpace(reason) ? "This forge is unavailable for recovery." : reason, '\0', 5)
+                        .AsRecipe(PackRecipeCategory.Reclamation);
                 return;
             }
 
@@ -76,7 +78,8 @@ namespace CavesOfOoo.Core
                 && candidate.Station.GetPart<RenderPart>() is { Visible: true } render && render.ParentEntity == candidate.Station);
             actions.AddDisabled(SalvageCommand, label, visibleFault ? "forge-needs-repair" : "forge-required",
                 visibleFault ? "The nearby forge or work rig needs repair. Repair it or use another working forge."
-                    : "Stand beside a working forge or work rig to recover the head and haft.", '\0', 5);
+                    : "Stand beside a working forge or work rig to recover the head and haft.", '\0', 5)
+                .AsRecipe(PackRecipeCategory.Reclamation);
         }
 
         bool Salvage(Entity actor, Zone zone, InventoryTransaction tx)

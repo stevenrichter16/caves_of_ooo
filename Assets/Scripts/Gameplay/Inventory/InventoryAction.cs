@@ -16,6 +16,12 @@ namespace CavesOfOoo.Core
         OneAction = 1
     }
 
+    public enum PackRecipeCategory : byte
+    {
+        None, WeaponParts, MedicalSupplies, ToolsAndGear, Food,
+        AlchemySupplies, FieldSupplies, Materials, Reclamation, EquipmentWork
+    }
+
     /// <summary>
     /// Describes a single action that can be performed on an inventory item.
     /// Mirrors Qud's InventoryAction: parts on the item declare actions via
@@ -55,6 +61,19 @@ namespace CavesOfOoo.Core
         /// label already says everything. Presentation only: it is never read by any rule, so it cannot change what a row does.
         /// </summary>
         public string Hint = "";
+
+        /// <summary>Optional presentation for the Recipes tab. Both menus dispatch this same action.</summary>
+        public PackRecipeCategory RecipeCategory { get; private set; }
+        public string RecipeResult { get; private set; }
+        public string RecipeTitle { get; private set; }
+
+        public InventoryAction AsRecipe(PackRecipeCategory category, string result = null, string title = null)
+        {
+            RecipeCategory = category;
+            RecipeResult = result;
+            RecipeTitle = title;
+            return this;
+        }
 
         /// <summary>Declared turn cost; <see cref="ActionTime.Unspecified"/> means the legacy chains decide.</summary>
         public ActionTime Time = ActionTime.Unspecified;

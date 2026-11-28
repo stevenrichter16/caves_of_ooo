@@ -29,7 +29,9 @@ namespace CavesOfOoo.Rendering
             {
                 var hit = _ledgerHits[hitIndex];
                 if (click) { ActivateLedgerHit(hit); return true; }
-                if (moved && SelectLedgerHit(hit)) Render();
+                // Keep the chosen recipe fixed while the pointer travels to Make.
+                bool recipeRow = hit.Kind == LedgerHitKind.CraftRow && _craftingMode == CraftingMode.Recipes;
+                if (moved && !recipeRow && SelectLedgerHit(hit)) Render();
             }
             else if (click) { if (LedgerHasPopup && !inside) CancelLedgerPopup(); return true; }
             float wheel = mouse != null ? mouse.scroll.ReadValue().y : Input.mouseScrollDelta.y;
@@ -71,7 +73,10 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.TinkerRow:
                     if (_tinkerCursorIndex == hit.Index) return false; _tinkerCursorIndex = hit.Index; return true;
                 case LedgerHitKind.CraftRow:
-                    if (_craftCursorIndex == hit.Index) return false; _craftCursorIndex = hit.Index; return true;
+                    if (_craftCursorIndex == hit.Index) return false;
+                    if (_craftingMode == CraftingMode.Recipes) ClearActionStatus();
+                    _craftCursorIndex = hit.Index;
+                    return true;
                 case LedgerHitKind.AbilitySlot:
                     if (_abilitiesCursorSlot == hit.Index) return false; _abilitiesCursorSlot = hit.Index; return true;
                 case LedgerHitKind.PopupRow:
@@ -116,7 +121,9 @@ namespace CavesOfOoo.Rendering
                     ActivatePackRow(hit.Index, browseContents: false); return;
                 case LedgerHitKind.TinkerRow: Render(); return;
                 case LedgerHitKind.AbilitySlot: OpenGrimoirePicker(hit.Index); return;
-                case LedgerHitKind.CraftRow: ToggleCraftPickUnderCursor(); return;
+                case LedgerHitKind.CraftRow:
+                    if (_craftingMode == CraftingMode.Recipes) Render(); else ToggleCraftPickUnderCursor();
+                    return;
                 case LedgerHitKind.TinkerMode:
                     _tinkeringMode = (TinkeringMode)hit.Index; _tinkerCursorIndex = _tinkerScrollOffset = 0; Rebuild(); Render(); return;
                 case LedgerHitKind.CraftMode: SwitchCraftingMode((CraftingMode)hit.Index); return;

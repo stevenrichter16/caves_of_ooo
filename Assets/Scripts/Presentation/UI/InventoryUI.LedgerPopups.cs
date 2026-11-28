@@ -29,12 +29,18 @@ namespace CavesOfOoo.Rendering
                 AddLoadoutCommands();
             else if (_panel == PANEL_CRAFTING)
             {
-                AddLedgerCommand("Pick / unpick ingredient", ToggleCraftPickUnderCursor);
-                AddLedgerCommand("Craft one", () => ExecuteCraft(false));
-                if (_atStation && _craftBatchMax > 1) AddLedgerCommand("Craft batch", () => ExecuteCraft(true));
+                bool recipes = _craftingMode == CraftingMode.Recipes;
+                if (recipes) AddLedgerCommand("Make selected recipe", () => ExecuteCraft(false));
+                else
+                {
+                    AddLedgerCommand("Pick / unpick ingredient", ToggleCraftPickUnderCursor);
+                    AddLedgerCommand("Craft one", () => ExecuteCraft(false));
+                    if (_atStation && _craftBatchMax > 1) AddLedgerCommand("Craft batch", () => ExecuteCraft(true));
+                }
                 AddLedgerCommand("Forge", () => SwitchCraftingMode(CraftingMode.Forge));
                 AddLedgerCommand("Brew", () => SwitchCraftingMode(CraftingMode.Brew));
-                AddLedgerCommand("Clear picks", ClearCraftPicks);
+                AddLedgerCommand("Recipes", () => SwitchCraftingMode(CraftingMode.Recipes));
+                if (!recipes) AddLedgerCommand("Clear picks", ClearCraftPicks);
             }
             else if (_panel == PANEL_TINKERING)
             {

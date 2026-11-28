@@ -64,8 +64,10 @@ namespace CavesOfOoo.Core
                 string label = "press into a flask (" + liquid.DisplayName + ", " + CoatsText(units) + ")";
                 if (candidates.Count == 0)
                 {
-                    if (shortOfRoom > 0) actions.AddDisabled("PressProofing", label, "no-room", "A flask needs room for " + units + " (" + CoatsText(units) + "); the best you carry has room for " + roomLeft + ".", '\0', 15);
-                    else actions.AddDisabled("PressProofing", label, "no-flask", "You need a flask that is empty or already holds " + liquid.DisplayName + ".", '\0', 15);
+                    if (shortOfRoom > 0) actions.AddDisabled("PressProofing", label, "no-room", "A flask needs room for " + units + " (" + CoatsText(units) + "); the best you carry has room for " + roomLeft + ".", '\0', 15)
+                        .AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName);
+                    else actions.AddDisabled("PressProofing", label, "no-flask", "You need a flask that is empty or already holds " + liquid.DisplayName + ".", '\0', 15)
+                        .AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName);
                     continue;
                 }
                 candidates.Sort((a, b) => b.vessel.Volume.CompareTo(a.vessel.Volume));
@@ -76,7 +78,7 @@ namespace CavesOfOoo.Core
                     actions.AddActionWithHint("PressProofing", "press into " + flask.GetDisplayName() + " (" + liquid.DisplayName + ", " + CoatsText(units) + "; " + vessel.Volume + "→" + (vessel.Volume + units) + "/" + vessel.Capacity + ")",
                         Prefix + element.Id + "|" + Uri.EscapeDataString(flask.ID),
                         "Spends one " + reagent.GetDisplayName() + ". Each coat later proofs one garment against " + element.Label + ": +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and it blunts " + element.Status + ". No fire or workbench needed." + seenNote,
-                        '\0', 15, time: ActionTime.OneAction);
+                        '\0', 15, time: ActionTime.OneAction).AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName);
                 }
             }
         }
