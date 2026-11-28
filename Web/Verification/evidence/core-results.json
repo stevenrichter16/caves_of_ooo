@@ -1,0 +1,142 @@
+{
+  "total": 27,
+  "passed": 27,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "canonical start uses real content, build and scheduler",
+      "status": "passed",
+      "durationMs": 1235
+    },
+    {
+      "name": "look is free and does not change the player's state",
+      "status": "passed",
+      "durationMs": 139
+    },
+    {
+      "name": "a stale input revision cannot spend a turn or move",
+      "status": "passed",
+      "durationMs": 24
+    },
+    {
+      "name": "oversized movement cannot bypass the one-step contract",
+      "status": "passed",
+      "durationMs": 47
+    },
+    {
+      "name": "a valid step moves through the real turn pipeline",
+      "status": "passed",
+      "durationMs": 122
+    },
+    {
+      "name": "an indestructible adjacent wall blocks without spending a turn",
+      "status": "passed",
+      "durationMs": 51
+    },
+    {
+      "name": "wait advances the actual game scheduler",
+      "status": "passed",
+      "durationMs": 53
+    },
+    {
+      "name": "item commands reject remote and nonexistent ownership",
+      "status": "passed",
+      "durationMs": 107
+    },
+    {
+      "name": "a valid owned item command still executes",
+      "status": "passed",
+      "durationMs": 63
+    },
+    {
+      "name": "save and load restore exact position, tick, HP and inventory",
+      "status": "passed",
+      "durationMs": 322
+    },
+    {
+      "name": "malformed saves leave the active session intact",
+      "status": "passed",
+      "durationMs": 413
+    },
+    {
+      "name": "damage changes current HP without shrinking maximum HP",
+      "status": "passed",
+      "durationMs": 401
+    },
+    {
+      "name": "a valid checkpoint recovers an interrupted, faulted turn",
+      "status": "passed",
+      "durationMs": 509
+    },
+    {
+      "name": "the real opening stairs enter the cellar and return",
+      "status": "passed",
+      "durationMs": 992
+    },
+    {
+      "name": "starting build duelist applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 319
+    },
+    {
+      "name": "starting build breaker applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 324
+    },
+    {
+      "name": "starting build stormcaller applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 308
+    },
+    {
+      "name": "starting build bombardier applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 240
+    },
+    {
+      "name": "starting build warden applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 254
+    },
+    {
+      "name": "starting build hurler applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 297
+    },
+    {
+      "name": "starting build classic applies its actual gear and skills",
+      "status": "passed",
+      "durationMs": 231
+    },
+    {
+      "name": "a grouped pickup transfers selected items with one paid turn",
+      "status": "passed",
+      "durationMs": 310
+    },
+    {
+      "name": "ordinary throws preview freely, validate, then pay once",
+      "status": "passed",
+      "durationMs": 300
+    },
+    {
+      "name": "a changed throw target cannot consume an item or turn",
+      "status": "passed",
+      "durationMs": 226
+    },
+    {
+      "name": "Measured Throw preserves its distinct preparation and launch turns",
+      "status": "passed",
+      "durationMs": 821
+    },
+    {
+      "name": "cellar supplies repair the actual opening well and persist",
+      "status": "passed",
+      "durationMs": 2743
+    },
+    {
+      "name": "crafting previews and brews use native ownership and free menu timing",
+      "status": "passed",
+      "durationMs": 583
+    }
+  ]
+}
