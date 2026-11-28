@@ -1,3 +1,15 @@
+**Current Mac app cooks and restores a field meal — November 27, 2026, America/Chicago.**
+The universal app at `mac-2e98519f4-20261127/CavesOfOoo.app` packages the
+current gameplay. On Apple M5, the standalone Continue loaded the bought,
+lit camp hearth. One world Cook action turned the gathered sheaf into one
+toast and left 9.5 fuel in the same hearth. F5 wrote only the private slot.
+A second process continued and displayed the exact toast. The original
+normal save and preference files and all three retained apps matched their
+starting bytes after verification. The build reused one staging project
+and finished with zero errors and four warnings. Physical Intel and full
+regression remain open.
+[Mac playtest and screenshots](Verification/MachineSystems/MacFieldHearth20261127/README.md)
+
 **Two regional jobs buy a camp hearth — November 27, 2026, America/Chicago.**
 An ordinary Sill quote showed one 14 lb hearth for 102 drams. A separate
 17-dram branch could not pay. The traveler gathered fire clay and choir

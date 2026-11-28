@@ -44,9 +44,9 @@ new wording across campfire actions, finite cooking, fuel, kindling
 and inventory details. Independent reviews checked the design, source,
 trade receipts and gameplay. All 60 archive hashes matched. The 880
 pinned normal save files and 87 unrelated tracked changes matched their
-original bytes. The live
-run used the Editor with private save copies. The standalone Mac build
-remains at `2c4931acc`.
+original bytes. This first trial used the Editor with private save copies.
+The later universal package reproduced cooking and Continue on Apple M5.
+[Standalone Mac playtest](../MacFieldHearth20261127/README.md)
 
 [Unaffordable offer](02-unaffordable-exact-hearth.png) ·
 [Earned purchase quote](03-earned-hearth-purchase.png) ·
