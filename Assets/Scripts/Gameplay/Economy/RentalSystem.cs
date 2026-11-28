@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -95,6 +96,32 @@ namespace CavesOfOoo.Core
                 TradeSystem.GetTradePerformance(renter), lessor);
             if (buyPrice <= 0) return 0;
             return (int)Math.Ceiling(buyPrice * RENTAL_FRACTION);
+        }
+
+        internal static int GetRefund(int inkPaid) => (int)Math.Floor(inkPaid * REFUND_FRACTION);
+
+        internal static Entity FindRackLoan(Entity lessor, string blueprint)
+            => string.IsNullOrEmpty(blueprint) ? null
+                : lessor?.GetPart<InventoryPart>()?.Objects.Find(item => item?.BlueprintName == blueprint);
+
+        // Snapshot in ordinary return order. Equipped items can be indexed by
+        // more than one slot, but the counter accepts each physical loan once.
+        internal static List<Entity> FindLoansToReturn(Entity renter, Entity lessor)
+        {
+            var result = new List<Entity>();
+            var inventory = renter?.GetPart<InventoryPart>();
+            if (inventory == null || lessor == null) return result;
+
+            var seen = new HashSet<Entity>();
+            foreach (var item in inventory.Objects) AddLoan(item);
+            foreach (var item in inventory.EquippedItems.Values) AddLoan(item);
+            return result;
+
+            void AddLoan(Entity item)
+            {
+                if (item?.GetPart<RentalPart>() is RentalPart loan && loan.LessorBlueprintName == lessor.BlueprintName
+                    && seen.Add(item)) result.Add(item);
+            }
         }
 
         // ── Rent / return ─────────────────────────────────────────────
@@ -213,7 +240,7 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            int refund = (int)Math.Floor(rental.InkPaid * REFUND_FRACTION);
+            int refund = GetRefund(rental.InkPaid);
 
             // Cold-eye-2 Finding 1: the typical user case is "I rented
             // a weapon, equipped it, fought, came back to return it."

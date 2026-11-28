@@ -892,18 +892,8 @@ namespace CavesOfOoo.Core
                 if (string.IsNullOrEmpty(arg)) return;
                 if (speaker == null || listener == null) return;
 
-                var speakerInv = speaker.GetPart<InventoryPart>();
-                if (speakerInv == null) return;
-
-                Entity stock = null;
-                for (int i = 0; i < speakerInv.Objects.Count; i++)
-                {
-                    if (speakerInv.Objects[i].BlueprintName == arg)
-                    {
-                        stock = speakerInv.Objects[i];
-                        break;
-                    }
-                }
+                if (speaker.GetPart<InventoryPart>() == null) return;
+                var stock = RentalSystem.FindRackLoan(speaker, arg);
                 if (stock == null)
                 {
                     MessageLog.Add($"{speaker.GetDisplayName()} has none of those left.");
@@ -929,18 +919,8 @@ namespace CavesOfOoo.Core
             {
                 if (speaker == null || listener == null) return;
 
-                var inv = listener.GetPart<InventoryPart>();
-                if (inv == null) return;
-
-                var candidates = new List<Entity>();
-                for (int i = 0; i < inv.Objects.Count; i++)
-                    candidates.Add(inv.Objects[i]);
-                foreach (var equipped in inv.EquippedItems.Values)
-                {
-                    if (equipped == null) continue;
-                    if (!candidates.Contains(equipped))
-                        candidates.Add(equipped);
-                }
+                if (listener.GetPart<InventoryPart>() == null) return;
+                var candidates = RentalSystem.FindLoansToReturn(listener, speaker);
 
                 int returnedCount = 0;
                 for (int i = 0; i < candidates.Count; i++)

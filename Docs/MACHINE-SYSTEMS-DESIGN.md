@@ -1,3 +1,12 @@
+**Tally shows the cost of borrowing a weapon before it changes hands.**
+The quartermaster’s rack shows the borrower’s Ink, current price,
+refundable portion and whether each physical loaner is available.
+Borrowing uses the existing price and moves the same weapon to the
+borrower. Returning it uses the recorded payment to calculate the
+refund. A refreshed quote protects the borrower if the weapon, price,
+return conditions or access change before confirmation.
+[Tally rental and return](Verification/MachineSystems/TallyRentalQuote20261128/README.md)
+
 **A traveler can treat Sill’s injured scribe when the danger passes.**
 Examine shows a wound on the ordinary resident. The same healing tonic
 used for self-care can help him once the pursuer is gone. Aid uses one

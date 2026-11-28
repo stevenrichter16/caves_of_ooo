@@ -49,6 +49,13 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #19 and #36–#40, Tally’s existing quartermaster offers a priced
+alternative to carrying or buying every weapon. The same physical
+dagger leaves and returns to the rack. The borrower sees the exact Ink
+price, refund and current availability before deciding. The amount
+remaining can make a different weapon affordable or out of reach.
+[Tally rack and wallet comparison](Verification/MachineSystems/TallyRentalQuote20261128/README.md)
+
 For #19 and #36–#40, carry a normal tonic into a small, ordinary
 encounter in Sill. The scribe’s wound, active pursuit, and calm window
 give different choices. A successful treatment uses one dose and heals

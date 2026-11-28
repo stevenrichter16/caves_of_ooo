@@ -17,7 +17,10 @@ namespace CavesOfOoo.Core
         public static bool IsActive => CurrentConversation != null;
 
         /// <summary>Per-speaker presentation; shared authored nodes remain immutable.</summary>
-        public static string CurrentText => ConcordCarriage.AppendText(ConcordAccount.AppendText(RegionalGuidance.AppendText(SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
+        public static string CurrentText => TallyRentalDialogue.PresentText(Speaker, Listener,
+            CurrentConversation?.ID, CurrentNode?.ID, CurrentTextWithContext);
+
+        private static string CurrentTextWithContext => ConcordCarriage.AppendText(ConcordAccount.AppendText(RegionalGuidance.AppendText(SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             WorldTravellers.DescribeConversation(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
@@ -90,6 +93,7 @@ namespace CavesOfOoo.Core
             CurrentNode = startNode;
             Speaker = speaker;
             Listener = listener;
+            TallyRentalDialogue.Begin(speaker, listener, convID);
 
             // Set NPC brain to conversation mode
             var brain = speaker.GetPart<BrainPart>();
@@ -113,7 +117,8 @@ namespace CavesOfOoo.Core
             var choice = _visibleChoices[choiceIndex];
 
             // Execute actions
-            if (!ConversationActions.TryExecuteAll(choice.Actions, Speaker, Listener))
+            if (!TallyRentalDialogue.CanSelect(choice, Speaker, Listener, CurrentConversation.ID)
+                || !ConversationActions.TryExecuteAll(choice.Actions, Speaker, Listener))
             {
                 RefreshVisibleChoices();
                 return true; // The conversation remains active on its current node.
@@ -157,6 +162,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void EndConversation()
         {
+            TallyRentalDialogue.End();
             if (Speaker != null)
             {
                 var brain = Speaker.GetPart<BrainPart>();
@@ -214,6 +220,7 @@ namespace CavesOfOoo.Core
         public static void RefreshVisibleChoices()
         {
             _visibleChoices.Clear();
+            TallyRentalDialogue.Clear();
             SpreadDiscoveryReports.ClearOffers();
             if (CurrentNode == null) return;
 
@@ -221,8 +228,11 @@ namespace CavesOfOoo.Core
             {
                 var choice = CurrentNode.Choices[i];
                 if (ConversationPredicates.CheckAll(choice.Predicates, Speaker, Listener))
-                    _visibleChoices.Add(FirstHourGuidance.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID,
-                        LocalPeople.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID, choice)));
+                {
+                    var presented = FirstHourGuidance.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID,
+                        LocalPeople.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID, choice));
+                    _visibleChoices.Add(TallyRentalDialogue.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID, presented));
+                }
             }
 
             RegionalGuidance.AppendChoices(_visibleChoices);

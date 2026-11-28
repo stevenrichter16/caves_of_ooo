@@ -1,0 +1,631 @@
+{
+  "nativeTests": {
+    "originalBehavior": {
+      "total": 26,
+      "passed": 16,
+      "failed": 10,
+      "skipped": 0,
+      "failedCases": [
+        "TallyReturn_QuotesThePerItemRecordedRefundForCarriedAndEquippedLoans",
+        "TallyReturn_WhenRackFitsOneLoan_QuotesAndRefundsTheFirstLoanOnly",
+        "TallyWares_AfterWalkingAway_RefusesAgainAfterRefreshing",
+        "TallyWares_ShowsWalletPriceAndRefundWithoutRenting(True)",
+        "TallyWares_ShowsWalletPriceAndRefundWithoutRenting(False)",
+        "TallyWares_StaleStockOrPriceRefreshesBeforeRenting(False)",
+        "TallyWares_StaleStockOrPriceRefreshesBeforeRenting(True)",
+        "TallyWares_UnavailableLoanShowsWhyAndKeepsWaresOpen(\"stock\",\"(?i)\\\\bout of stock\\\\b\")",
+        "TallyWares_UnavailableLoanShowsWhyAndKeepsWaresOpen(\"ink\",\"(?i)\\\\b(?:4\\\\s+(?:Ink\\\\s+)?short|short\\\\D*4|need\\\\s+4\\\\s+more)\\\\b\")",
+        "TallyWares_UnavailableLoanShowsWhyAndKeepsWaresOpen(\"capacity\",\"(?i)\\\\b(?:too heavy|can['’]t carry|capacity|no room)\\\\b\")"
+      ]
+    },
+    "quoteCandidate": {
+      "total": 227,
+      "passed": 226,
+      "failed": 0,
+      "skipped": 1,
+      "failedCases": []
+    }
+  },
+  "nativePlay": {
+    "baseline-wallet": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 50,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        },
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "baseline-rented": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 28,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        }
+      ],
+      "loans": [
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "paid": 22,
+          "lessor": "Quartermaster",
+          "held": "2707",
+          "worn": null
+        }
+      ]
+    },
+    "baseline-returned": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 39,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        },
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "baseline-rack-rows": {
+      "open": true,
+      "state": "DialogueOpen",
+      "choices": [
+        "The loaner dagger.",
+        "The loaner spear.",
+        "The loaner longsword.",
+        "Never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "tent wall is destroyed.",
+          "Tick": 5050,
+          "Serial": 148
+        },
+        {
+          "Text": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Tick": 5050,
+          "Serial": 149
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 150
+        }
+      ]
+    },
+    "baseline-return-row": {
+      "open": true,
+      "state": "DialogueOpen",
+      "choices": [
+        "Here you are.",
+        "On second thought, never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "You rent loaner dagger for 22 ink.",
+          "Tick": 5480,
+          "Serial": 151
+        },
+        {
+          "Text": "Game saved.",
+          "Tick": 5480,
+          "Serial": 152
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 153
+        }
+      ]
+    },
+    "quote-before": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 50,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        },
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "initial-rack-quote": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "You have 50 Ink.\n\nA dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for those who'd rather not run. Pick your weight.",
+      "node": "Wares",
+      "choices": [
+        "Loaner dagger | 22 Ink, 11 back",
+        "Loaner spear | 40 Ink, 20 back",
+        "Loaner longsword | 86 Ink, 43 back | short 36",
+        "Never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "tent wall is destroyed.",
+          "Tick": 5050,
+          "Serial": 148
+        },
+        {
+          "Text": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+          "Tick": 5050,
+          "Serial": 149
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 150
+        }
+      ]
+    },
+    "after-short-refusal": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 50,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        },
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "short-refusal-rows": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "You have 50 Ink.\n\nA dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for those who'd rather not run. Pick your weight.",
+      "node": "Wares",
+      "choices": [
+        "Loaner dagger | 22 Ink, 11 back",
+        "Loaner spear | 40 Ink, 20 back",
+        "Loaner longsword | 86 Ink, 43 back | short 36",
+        "Never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 150
+        },
+        {
+          "Text": "You need 86 Ink to rent that. You have 50.",
+          "Tick": 5480,
+          "Serial": 151
+        },
+        {
+          "Text": "You need 86 Ink to rent that. You have 50.",
+          "Tick": 5480,
+          "Serial": 152
+        }
+      ]
+    },
+    "quote-rented": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 28,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        }
+      ],
+      "loans": [
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "paid": 22,
+          "lessor": "Quartermaster",
+          "held": "2707",
+          "worn": null
+        }
+      ]
+    },
+    "rented-stock-row": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "You have 28 Ink.\n\nA dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for those who'd rather not run. Pick your weight.",
+      "node": "Wares",
+      "choices": [
+        "Loaner dagger | out of stock",
+        "Loaner spear | 40 Ink, 20 back | short 12",
+        "Loaner longsword | 86 Ink, 43 back | short 58",
+        "Never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "You need 86 Ink to rent that. You have 50.",
+          "Tick": 5480,
+          "Serial": 151
+        },
+        {
+          "Text": "You need 86 Ink to rent that. You have 50.",
+          "Tick": 5480,
+          "Serial": 152
+        },
+        {
+          "Text": "You rent loaner dagger for 22 ink.",
+          "Tick": 5480,
+          "Serial": 153
+        }
+      ]
+    },
+    "fresh-loan": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 28,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        }
+      ],
+      "loans": [
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "paid": 22,
+          "lessor": "Quartermaster",
+          "held": "2707",
+          "worn": null
+        }
+      ]
+    },
+    "return-quote-row": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "You have 28 Ink.\n\nSet them on the counter. I'll check the edge.",
+      "node": "Return",
+      "choices": [
+        "Return 1 loan | +11 Ink",
+        "On second thought, never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "You need 86 Ink to rent that. You have 50.",
+          "Tick": 5480,
+          "Serial": 152
+        },
+        {
+          "Text": "You rent loaner dagger for 22 ink.",
+          "Tick": 5480,
+          "Serial": 153
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 154
+        }
+      ]
+    },
+    "quote-returned": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 39,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        },
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "fresh-return": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 39,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        },
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "fresh-restocked-row": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "You have 39 Ink.\n\nA dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for those who'd rather not run. Pick your weight.",
+      "node": "Wares",
+      "choices": [
+        "Loaner dagger | 22 Ink, 11 back",
+        "Loaner spear | 40 Ink, 20 back | short 1",
+        "Loaner longsword | 86 Ink, 43 back | short 47",
+        "Never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 154
+        },
+        {
+          "Text": "You return loaner dagger and recover 11 ink.",
+          "Tick": 5480,
+          "Serial": 155
+        },
+        {
+          "Text": "Interact — choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 156
+        }
+      ]
+    },
+    "fresh-read-no-turn": {
+      "zone": "Overworld.10.14.0",
+      "x": 57,
+      "y": 18,
+      "ownerX": 56,
+      "ownerY": 19,
+      "desk": true,
+      "ink": 39,
+      "hp": 40,
+      "tick": 5480,
+      "stock": [
+        {
+          "id": "22543",
+          "bp": "LoanerSpear",
+          "cost": 40,
+          "held": "22533"
+        },
+        {
+          "id": "22544",
+          "bp": "LoanerLongsword",
+          "cost": 86,
+          "held": "22533"
+        },
+        {
+          "id": "22542",
+          "bp": "LoanerDagger",
+          "cost": 22,
+          "held": "22533"
+        }
+      ],
+      "loans": []
+    },
+    "quote-final-editor": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    }
+  },
+  "privateCheckpoints": {
+    "TallyRentalAdjacent": {
+      "Quick.json": "efc25cf3c105223ce9bc6896416cea0296ea55ad306753382d30fd6e0c2ea795",
+      "Quick.sav.gz": "9348b1c3bb3ef99e0e4d9768964424656fac5e2281c3d055dabfe3b8666be168",
+      "Quick.json.bak": "1cd46e65bd76fb179abf8a917e2b7e88c5e93b896c96bcd6c89167e10c038834",
+      "Quick.sav.gz.bak": "888cbe264793503b525d88d712723fb42f7cee67165f80517809e04e341acb09"
+    },
+    "TallyOriginalRented": {
+      "Quick.json": "433fa63c0f2f2d7a44aa53b9142a4a90b5fd4e9fcbfedccbf2f187d5f18c5d9b",
+      "Quick.sav.gz": "e7e1f335b7659df38453c44b8d2afee00b08030d26cd7ae5fc8378cdecde2920",
+      "Quick.json.bak": "efc25cf3c105223ce9bc6896416cea0296ea55ad306753382d30fd6e0c2ea795",
+      "Quick.sav.gz.bak": "9348b1c3bb3ef99e0e4d9768964424656fac5e2281c3d055dabfe3b8666be168"
+    },
+    "TallyQuotedRented": {
+      "Quick.json": "10bc1a6e009984f6b3131a6ff211337595bc0d30a3a651f0b52eb906c3e55be9",
+      "Quick.sav.gz": "144c4ac2562d8f33fcdea62f04ff3638146c51675098d845c2826ff1d42f4228",
+      "Quick.json.bak": "efc25cf3c105223ce9bc6896416cea0296ea55ad306753382d30fd6e0c2ea795",
+      "Quick.sav.gz.bak": "9348b1c3bb3ef99e0e4d9768964424656fac5e2281c3d055dabfe3b8666be168"
+    },
+    "TallyQuotedReturned": {
+      "Quick.json": "f78f23aa359d6f31fe7eb7cb4f38b218eb82304be40e11471471ed4fbb6d01a5",
+      "Quick.sav.gz": "0182fd336798e2bc977bb3cd9d0fb4f0e4d0393da2796cce5655fcf623d67462",
+      "Quick.json.bak": "10bc1a6e009984f6b3131a6ff211337595bc0d30a3a651f0b52eb906c3e55be9",
+      "Quick.sav.gz.bak": "144c4ac2562d8f33fcdea62f04ff3638146c51675098d845c2826ff1d42f4228"
+    }
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "preferenceRestoration": {
+    "restoredOwnedRunKeys": [
+      "PT_Run",
+      "unity.player_session_count",
+      "unity.player_sessionid",
+      "unity_connect.session_id"
+    ],
+    "initialPreferenceFileBytesMatch": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    }
+  }
+}

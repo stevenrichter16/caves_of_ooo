@@ -1,3 +1,12 @@
+**Tally shows the terms of a weapon loan — November 28, 2026, America/Chicago.**
+Darret’s ordinary rack showed 50 Ink and prices of 22, 40 and 86.
+An attempted longsword rental left 50 Ink and all stock in place. The
+exact dagger moved to the borrower for 22, then its recorded payment
+quoted an 11-Ink return after Continue. A second Continue kept the
+dagger on the rack, 39 Ink and the spear one Ink short. Native tests
+passed 226 cases with one explicit save-contract helper skipped.
+[Tally’s live rack, return and saves](Verification/MachineSystems/TallyRentalQuote20261128/README.md)
+
 **The wounded Sill scribe can use a carried healing tonic — November 28, 2026, America/Chicago.**
 Ordinary movement and a dagger Flurry stopped the sari-snake pursuing
 Kesset. Examine showed the wound and the world menu offered one dose.
