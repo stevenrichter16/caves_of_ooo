@@ -169,7 +169,7 @@ namespace CavesOfOoo.Rendering
             var effects = actor.GetPart<StatusEffectsPart>()?.GetAllEffects();
             return "Current effects\n\n" + (effects == null || effects.Count == 0 ? "No current effects." : string.Join("\n\n", effects.Where(e => e != null).Select(EffectDescriber.Describe)));
         }
-        public static string Surface(Zone zone, Cell cell)
+        public static string Surface(Zone zone, Cell cell, Entity viewer = null)
         {
             if (zone == null || cell == null || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell || !cell.IsVisible || !cell.Explored) return null;
             var state = zone.TileState.Get(cell.X, cell.Y); if (state == null) return null;
@@ -190,6 +190,8 @@ namespace CavesOfOoo.Rendering
                     if (mod.Delta != 0) facts.Add(mod.Stat + " " + Signed(mod.Delta) + " while coated");
                 if (!string.IsNullOrEmpty(def.ImmuneElement)) facts.Add("blocks " + def.ImmuneElement + " damage while coated");
                 if (facts.Count > 0) lines.Add((def.DisplayName ?? def.Id) + ": " + string.Join("; ", facts) + ".");
+                if (ground != null && MaterialFieldActions.CanWickGround(viewer, zone, cell, layer.Id))
+                    lines.Add("Wick this thin " + TileStateCatalog.DisplayName(layer.Id) + " film with one prismreed pith from the ground actions.");
             }
             return lines.Count == 0 ? null : string.Join("\n\n", lines);
         }

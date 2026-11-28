@@ -49,6 +49,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #36–#40, Examine now connects a visible temporary slick to a
+carried pith action when the current ground and pack permit it.
+A ripe Stump crop supplied the pith. An ordinary Sill purchase
+supplied the oil used to lay the test film. One action cleared
+the slippery ground and retained the neighboring physical water.
+The next step and fresh Continue verified the cleared footing.
+[Earned prismreed and a finite slick](Verification/MachineSystems/StumpPithGround20261128/README.md)
+
 For #36 and #39, the ordinary Tatterjay interaction quotes one food
 unit even when it comes from a stack. The nearby no-food branch
 showed the requirement and left the exact dropped food and carried

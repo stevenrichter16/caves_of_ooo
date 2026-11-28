@@ -1,0 +1,1852 @@
+{
+  "scope": "Flat Editor on Apple M5. Native GameBootstrap Continue, ordinary gameplay controls and isolated earned saves. The oil film was player-laid.",
+  "observations": {
+    "source-pin": {
+      "checkpoint": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/stump-fauna-before70",
+      "meta": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.4.5.0",
+        "ActiveZoneDisplayLabel": "Overworld.4.5.0",
+        "Turn": 7580,
+        "SaveTimestampUtc": "2026-10-27T13:35:14.4046980Z",
+        "HPSummary": "38/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.sav.gz": "9f9921e73e9bb4f9ff8e3a9c2473b78cb96b769344ba129fb69391d7589cf593",
+        "Quick.json": "df732a8719f0f92d40999b62aaf93a1f54cd578d40ab4be0344bc9920f0a8ca7"
+      }
+    },
+    "before-harvest": {
+      "zone": "Overworld.4.5.0",
+      "x": 9,
+      "y": 3,
+      "tick": 7890,
+      "hp": 38,
+      "drams": 50,
+      "items": [],
+      "crop": [
+        {
+          "id": "65121",
+          "x": 10,
+          "y": 2,
+          "stage": 2
+        },
+        {
+          "id": "65122",
+          "x": 10,
+          "y": 4,
+          "stage": 1
+        }
+      ],
+      "nearby": [
+        {
+          "x": 8,
+          "y": 2,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 9,
+          "y": 2,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 8,
+          "y": 4,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 9,
+          "y": 4,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 10,
+          "y": 4,
+          "coatings": null,
+          "objects": []
+        }
+      ]
+    },
+    "ripe-prismreed-actions": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "harvest",
+      "rows": [
+        {
+          "Display": "harvest",
+          "key": "h",
+          "Command": "HarvestCultivatedCrop",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "gather into pack",
+          "key": "\u0000",
+          "Command": "GatherCrop",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "harvest: 3x seeds, no produce",
+          "key": "\u0000",
+          "Command": "HarvestCropSeeds",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "after-harvest": {
+      "zone": "Overworld.4.5.0",
+      "x": 9,
+      "y": 3,
+      "tick": 7900,
+      "hp": 38,
+      "drams": 50,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 2
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        }
+      ],
+      "crop": [
+        {
+          "id": "65122",
+          "x": 10,
+          "y": 4,
+          "stage": 1
+        }
+      ],
+      "nearby": [
+        {
+          "x": 8,
+          "y": 2,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 9,
+          "y": 2,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 10,
+          "y": 2,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 10,
+          "y": 3,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 8,
+          "y": 4,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 9,
+          "y": 4,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 10,
+          "y": 4,
+          "coatings": null,
+          "objects": []
+        }
+      ]
+    },
+    "atlas-from-stump": {
+      "zone": "WorldMap",
+      "x": 34,
+      "y": 8,
+      "tick": 8290,
+      "hp": 34,
+      "effects": [
+        {
+          "type": "WetEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "675f97ba25574172b873ab26564204d6",
+          "bp": "WorldMapCell",
+          "name": "the Stump"
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Autosaved.",
+        "You see a sari-snake.\n\nA heavy pit viper the colour of wet stone, coiled where the litter is deepest. It does not rattle and it does not flee. Where these are thick on a slope, something underneath is awake.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Sari... sari... The sound is clear in the air.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Interact \u2014 choose a direction, or . for underfoot.",
+        "You gather prismreed: 3 packed, 0 left here.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "sari-snake hits you in the body but fails to penetrate!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "sari-snake hits you in the body for 4 damage! (34 HP remaining)",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Sari... sari... The sound is clear in the air.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Autosaved."
+      ]
+    },
+    "arrived-sill": {
+      "zone": "Overworld.10.10.0",
+      "x": 39,
+      "y": 13,
+      "tick": 8520,
+      "hp": 34,
+      "effects": [
+        {
+          "type": "WetEffect",
+          "Duration": -1
+        }
+      ],
+      "contents": [
+        {
+          "id": "5706",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2695",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "Sari... sari... The sound is clear in the air.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Interact \u2014 choose a direction, or . for underfoot.",
+        "You gather prismreed: 3 packed, 0 left here.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "sari-snake hits you in the body but fails to penetrate!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "sari-snake hits you in the body for 4 damage! (34 HP remaining)",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Sari... sari... The sound is clear in the air.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Autosaved.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "The air here says sari, sari, and does not finish the word.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Autosaved."
+      ]
+    },
+    "at-provisioner": {
+      "id": "7450",
+      "x": 40,
+      "y": 18,
+      "merchantX": 39,
+      "merchantY": 17,
+      "name": "Kesset Reedfall, provisioner",
+      "stock": [
+        {
+          "ID": "7460",
+          "n": 3
+        }
+      ]
+    },
+    "oil-purchase-quote": {
+      "open": true,
+      "confirm": true,
+      "panel": 0,
+      "cursor": 6,
+      "rows": [
+        {
+          "i": 0,
+          "id": "7451",
+          "bp": "LiquidFlask",
+          "units": 1,
+          "price": 22
+        },
+        {
+          "i": 1,
+          "id": "7452",
+          "bp": "Waterskin",
+          "units": 1,
+          "price": 22
+        },
+        {
+          "i": 2,
+          "id": "7453",
+          "bp": "DriedMeat",
+          "units": 2,
+          "price": 38
+        },
+        {
+          "i": 3,
+          "id": "7455",
+          "bp": "Starapple",
+          "units": 1,
+          "price": 14
+        },
+        {
+          "i": 4,
+          "id": "7456",
+          "bp": "Mushroom",
+          "units": 1,
+          "price": 9
+        },
+        {
+          "i": 5,
+          "id": "7457",
+          "bp": "Torch",
+          "units": 3,
+          "price": 25
+        },
+        {
+          "i": 6,
+          "id": "7460",
+          "bp": "LampOil",
+          "units": 3,
+          "price": 49
+        },
+        {
+          "i": 7,
+          "id": "7461",
+          "bp": "CandyCarrotSeed",
+          "units": 2,
+          "price": 17
+        },
+        {
+          "i": 8,
+          "id": "69525",
+          "bp": "Waterskin",
+          "units": 1,
+          "price": 22
+        },
+        {
+          "i": 9,
+          "id": "69531",
+          "bp": "FieldSatchel",
+          "units": 1,
+          "price": 22
+        },
+        {
+          "i": 10,
+          "id": "69532",
+          "bp": "PoisonGasGrenade",
+          "units": 1,
+          "price": 49
+        },
+        {
+          "i": 11,
+          "id": "69533",
+          "bp": "Mushroom",
+          "units": 1,
+          "price": 9
+        }
+      ],
+      "status": null
+    },
+    "oil-ordinary-payment": {
+      "zone": "Overworld.10.10.0",
+      "x": 40,
+      "y": 18,
+      "tick": 8940,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 2
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 3
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 39,
+          "y": 17,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "7450",
+              "bp": "Provisioner",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 40,
+          "y": 17,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 41,
+          "y": 17,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 39,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 40,
+          "y": 18,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 41,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 39,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 40,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 41,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        }
+      ]
+    },
+    "film-established": {
+      "zone": "Overworld.10.10.0",
+      "x": 31,
+      "y": 19,
+      "tick": 9150,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 2
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 2
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 32,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": [
+            {
+              "Id": "oil",
+              "Turns": 7
+            }
+          ],
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7151",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "old-slick-reader": {
+      "open": true,
+      "title": "grass",
+      "blueprint": "Grass",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "On the ground: oil (7 turns, slippery)",
+        "",
+        "SURFACE DETAILS",
+        "",
+        "On the ground: oil (7 turns, slippery)",
+        "",
+        "oil: 40% slip chance on a step; a clear neighboring",
+        "landing is still required; makes fire more",
+        "dangerous while coated.",
+        "",
+        "Narrow blades crowd the ground, bending over older",
+        "growth at their roots.",
+        "",
+        "Type: Terrain"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "On the ground: oil (7 turns, slippery)"
+        },
+        {
+          "Heading": "Surface details",
+          "Text": "On the ground: oil (7 turns, slippery)\n\noil: 40% slip chance on a step; a clear neighboring landing is still required; makes fire more dangerous while coated."
+        },
+        {
+          "Heading": "Description",
+          "Text": "Narrow blades crowd the ground, bending over older growth at their roots."
+        }
+      ]
+    },
+    "new-before-wick": {
+      "zone": "Overworld.10.10.0",
+      "x": 31,
+      "y": 19,
+      "tick": 9150,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 2
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 2
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 32,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": [
+            {
+              "Id": "oil",
+              "Turns": 7
+            }
+          ],
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7151",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "new-slick-reader": {
+      "open": true,
+      "title": "grass",
+      "blueprint": "Grass",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "On the ground: oil (7 turns, slippery)",
+        "",
+        "SURFACE DETAILS",
+        "",
+        "On the ground: oil (7 turns, slippery)",
+        "",
+        "oil: 40% slip chance on a step; a clear neighboring",
+        "landing is still required; makes fire more",
+        "dangerous while coated.",
+        "",
+        "Wick this thin oil film with one prismreed pith",
+        "from the ground actions.",
+        "",
+        "Narrow blades crowd the ground, bending over older",
+        "growth at their roots.",
+        "",
+        "Type: Terrain"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "On the ground: oil (7 turns, slippery)"
+        },
+        {
+          "Heading": "Surface details",
+          "Text": "On the ground: oil (7 turns, slippery)\n\noil: 40% slip chance on a step; a clear neighboring landing is still required; makes fire more dangerous while coated.\n\nWick this thin oil film with one prismreed pith from the ground actions."
+        },
+        {
+          "Heading": "Description",
+          "Text": "Narrow blades crowd the ground, bending over older growth at their roots."
+        }
+      ]
+    },
+    "new-wick-action": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "examine",
+      "rows": [
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "spread oil west (1 item) [lamp oil]",
+          "key": "\u0000",
+          "Command": "MaterialField|Film|Overworld.10.10.0|31|19|30|19||2|oil",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "wick oil west (1 pith) [prismreed pith]",
+          "key": "\u0000",
+          "Command": "MaterialField|Wick|Overworld.10.10.0|31|19|30|19||2|oil",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "after-ordinary-wick": {
+      "zone": "Overworld.10.10.0",
+      "x": 31,
+      "y": 19,
+      "tick": 9160,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 1
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 2
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 32,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7151",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "new-dry-reader": {
+      "open": true,
+      "title": "grass",
+      "blueprint": "Grass",
+      "lines": [
+        "Narrow blades crowd the ground, bending over older",
+        "growth at their roots.",
+        "",
+        "Type: Terrain"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "Narrow blades crowd the ground, bending over older growth at their roots."
+        }
+      ]
+    },
+    "after-footing": {
+      "zone": "Overworld.10.10.0",
+      "x": 30,
+      "y": 19,
+      "tick": 9170,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 1
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 2
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 29,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7136",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "fresh-crossed": {
+      "zone": "Overworld.10.10.0",
+      "x": 30,
+      "y": 19,
+      "tick": 9170,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 1
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 2
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 29,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7136",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "baseline-stop": true,
+    "final-stop": true,
+    "guard-after": {
+      "quick": {
+        "count": 880,
+        "changed": []
+      },
+      "tracked": {
+        "count": 87,
+        "changed": []
+      }
+    },
+    "preference-restoration": {
+      "restoredOwnedRunKeys": [
+        "PT_Run",
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.session_id"
+      ],
+      "initialPreferenceFileBytesMatch": {
+        "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+        "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+      }
+    },
+    "final-environment": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    }
+  },
+  "stockedPoolCounter": {
+    "live-stocked-pool-before": {
+      "zone": "Overworld.10.10.0",
+      "x": 30,
+      "y": 19,
+      "tick": 9170,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 1
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 2
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 29,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7136",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "live-stocked-pool-with-oil": {
+      "zone": "Overworld.10.10.0",
+      "x": 30,
+      "y": 19,
+      "tick": 9180,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 1
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 1
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 29,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7136",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            },
+            {
+              "Id": "oil",
+              "Turns": 7
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    },
+    "stocked-pool-oil-reader": {
+      "open": true,
+      "title": "puddle of water",
+      "blueprint": "WaterPuddle",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "On the ground: water, oil (7 turns, slippery)",
+        "",
+        "SURFACE DETAILS",
+        "",
+        "On the ground: water, oil (7 turns, slippery)",
+        "",
+        "water: conducts and amplifies electrical damage",
+        "while coated; dampens fire damage by 40% while",
+        "coated.",
+        "",
+        "oil: 40% slip chance on a step; a clear neighboring",
+        "landing is still required; makes fire more",
+        "dangerous while coated.",
+        "",
+        "A shallow spread of water follows the low places in",
+        "the ground.",
+        "",
+        "Type: Terrain"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "On the ground: water, oil (7 turns, slippery)"
+        },
+        {
+          "Heading": "Surface details",
+          "Text": "On the ground: water, oil (7 turns, slippery)\n\nwater: conducts and amplifies electrical damage while coated; dampens fire damage by 40% while coated.\n\noil: 40% slip chance on a step; a clear neighboring landing is still required; makes fire more dangerous while coated."
+        },
+        {
+          "Heading": "Description",
+          "Text": "A shallow spread of water follows the low places in the ground."
+        }
+      ]
+    },
+    "stocked-pool-actions-oiled": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "examine",
+      "rows": [
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "spread oil south (1 item) [lamp oil]",
+          "key": "\u0000",
+          "Command": "MaterialField|Film|Overworld.10.10.0|30|19|30|20||1|oil",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "live-stocked-pool-after-inspection": {
+      "zone": "Overworld.10.10.0",
+      "x": 30,
+      "y": 19,
+      "tick": 9180,
+      "hp": 34,
+      "drams": 1,
+      "items": [
+        {
+          "id": "69510",
+          "bp": "PrismreedPith",
+          "n": 1
+        },
+        {
+          "id": "69512",
+          "bp": "PrismreedSeed",
+          "n": 1
+        },
+        {
+          "id": "7460",
+          "bp": "LampOil",
+          "n": 1
+        }
+      ],
+      "crop": [],
+      "nearby": [
+        {
+          "x": 29,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 31,
+          "y": 18,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 30,
+          "y": 19,
+          "coatings": null,
+          "objects": [
+            {
+              "id": "2695",
+              "bp": "Player",
+              "volume": null
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 19,
+          "coatings": null,
+          "objects": []
+        },
+        {
+          "x": 29,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7136",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            },
+            {
+              "Id": "oil",
+              "Turns": 7
+            }
+          ],
+          "objects": [
+            {
+              "id": "7141",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        },
+        {
+          "x": 31,
+          "y": 20,
+          "coatings": [
+            {
+              "Id": "water",
+              "Turns": 2147483647
+            }
+          ],
+          "objects": [
+            {
+              "id": "7146",
+              "bp": "WaterPuddle",
+              "volume": 120
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "privateArchives": {
+    "Harvested": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/10ebb2cab34b46adbbac15291925afc6/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/StumpPithGround20261128/archives/Harvested/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "d265c3f30c51b6140b35fba87755c99d912cdf34f56e5120ad3401b1dce53980",
+        "Quick.sav.gz": "b2fa2a57db03a709ed9a71445b986d9119e082c12c85be3ff83820eacccc24a5",
+        "Quick.json.bak": "df732a8719f0f92d40999b62aaf93a1f54cd578d40ab4be0344bc9920f0a8ca7",
+        "Quick.sav.gz.bak": "9f9921e73e9bb4f9ff8e3a9c2473b78cb96b769344ba129fb69391d7589cf593"
+      }
+    },
+    "LiveIngredients": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/10ebb2cab34b46adbbac15291925afc6/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/StumpPithGround20261128/archives/LiveIngredients/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "94e3dbefa82e43ee55ee870cf23e161b734dd1f9150fa081da89292c8cfae3c7",
+        "Quick.sav.gz": "7b709371d06f2c24ff48fabfc086548329d5894cdc50865f3330051687382098",
+        "Quick.json.bak": "f6031c7db179961eeff0ef5b4955fdf26b0eb81bef064765342cb3021a6ee40e",
+        "Quick.sav.gz.bak": "a679a7861d71cf06045932dbd98c4349e67506a40e6a2c75d935ecef24360f71"
+      }
+    },
+    "BeforeWick": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/10ebb2cab34b46adbbac15291925afc6/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/StumpPithGround20261128/archives/BeforeWick/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "0d75a81722dc6362535dc33b25efef7cb64e853e02ceda60e843fd0c27ebaba3",
+        "Quick.sav.gz": "12901453a3c8cbc7ed0110fc4b4e35bc481285bd3d05bbfbe1e41537d9158669",
+        "Quick.json.bak": "94e3dbefa82e43ee55ee870cf23e161b734dd1f9150fa081da89292c8cfae3c7",
+        "Quick.sav.gz.bak": "7b709371d06f2c24ff48fabfc086548329d5894cdc50865f3330051687382098"
+      }
+    },
+    "Crossed": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a8918b33e1a24464b3fef23d00db0efd/50e670c30b6d48feb82756df64bd1cbc",
+      "archive": "/Users/steven/coo-verification/runs/StumpPithGround20261128/archives/Crossed/50e670c30b6d48feb82756df64bd1cbc",
+      "game": "50e670c30b6d48feb82756df64bd1cbc",
+      "files": {
+        "Quick.json": "e934bf214f2942c10239664b443c6e6811c1140250a9196223105fe3a6d932d5",
+        "Quick.sav.gz": "6af9ef942dc6105a9f23b82cd03ad1bcdb927d22e3432a9bb7e315b78cb7bdc7",
+        "Quick.json.bak": "0d75a81722dc6362535dc33b25efef7cb64e853e02ceda60e843fd0c27ebaba3",
+        "Quick.sav.gz.bak": "12901453a3c8cbc7ed0110fc4b4e35bc481285bd3d05bbfbe1e41537d9158669"
+      }
+    }
+  },
+  "tests": {
+    "red": {
+      "passed": 5,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0,
+      "sha256": "1be57da269933576776ba817b67d274eb47c06f544e594306f6178eb9979285b",
+      "exceptions": {
+        "VisibleReachableOilFilmNamesCarriedPithWithoutUsingIt": "  Expected: String containing \"wick\"\n  But was:  \"on the ground: oil (4 turns, slippery)\n\noil: 40% slip chance on a step; a clear neighboring landing is still required; makes fire more dangerous while coated.\"\n"
+      }
+    },
+    "stale-red": {
+      "passed": 6,
+      "failed": 2,
+      "skipped": 0,
+      "inconclusive": 0,
+      "sha256": "8c1a5e9ce4e72f893c3f2d6c019c99a57ef414f68be05f08e13df005f5d44a21",
+      "exceptions": {
+        "StaleAttachedGroundDoesNotOfferWicking(False)": "  Expected: not String containing \"wick\"\n  But was:  \"oil: 40% slip chance on a step; a clear neighboring landing is still required; makes fire more dangerous while coated.\n\nwick this thin oil film with one prismreed pith from the ground actions.\"\n",
+        "StaleAttachedGroundDoesNotOfferWicking(True)": "  Expected: not String containing \"wick\"\n  But was:  \"oil: 40% slip chance on a step; a clear neighboring landing is still required; makes fire more dangerous while coated.\n\nwick this thin oil film with one prismreed pith from the ground actions.\"\n"
+      }
+    },
+    "final-green": {
+      "passed": 218,
+      "failed": 0,
+      "skipped": 1,
+      "inconclusive": 0,
+      "sha256": "dfe3ccdb56ad0361d4525e4b6287f9c8b4d4311327a4fcc0886a24b16f5b953b",
+      "exceptions": {
+        "GenerateSavedPartContract": "set COO_REGENERATE_SAVED_PART_CONTRACT=1 to regenerate"
+      }
+    }
+  }
+}

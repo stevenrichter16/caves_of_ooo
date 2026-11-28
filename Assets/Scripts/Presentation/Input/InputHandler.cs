@@ -4905,7 +4905,7 @@ namespace CavesOfOoo.Rendering
                 if (document == null) { MessageLog.Add("That selection is no longer available to examine."); return; }
             }
 
-            string surface = InventoryDecisionDetails.Surface(CurrentZone, cell);
+            string surface = InventoryDecisionDetails.Surface(CurrentZone, cell, PlayerEntity);
             if (!pile && CellStatusReadout.TryFireLines(target, out _, out _)) surface = null;
             if (!string.IsNullOrEmpty(surface)) text += "\n\nSurface details\n" + surface;
 

@@ -1,3 +1,12 @@
+**Prismreed pith can clear a temporary film from the ground.**
+Ground Examine names the available Wick action and one-pith cost
+when the film and carried pith are both usable. Stump’s ripe crop
+supplied the material for a test on a player-laid oil slick in Sill.
+One pith cleared the slick, leaving two adjacent pools at their
+original volume. The same material still has its body-cleaning and
+preparation uses.
+[Stump harvest and ground wicking](Verification/MachineSystems/StumpPithGround20261128/README.md)
+
 **A visible Tatterjay quotes the one portion it would trade for.**
 A willing bird’s carried find gives an optional exchange. The offer
 names one portion of the selected food, or explains what is missing.

@@ -22,6 +22,15 @@ namespace CavesOfOoo.Core
         };
         public static bool IsCommand(string command) => command?.StartsWith(Prefix,StringComparison.Ordinal)==true;
 
+        internal static bool CanWickGround(Entity actor, Zone zone, Cell cell, string liquid)
+        {
+            if (actor == null || zone == null || cell == null || zone.GetCell(cell.X, cell.Y) != cell
+                || !CanGround(zone, zone.GetEntityCell(actor), "Wick", liquid, cell.X, cell.Y)) return false;
+            var pack = actor.GetPart<InventoryPart>();
+            return pack != null && pack.Objects.Any(item => item?.BlueprintName == "PrismreedPith"
+                && ValidateSource(actor, item, zone, out _, out _) == null);
+        }
+
         public static void AddActions(Entity actor,Entity item,Zone zone,InventoryActionList actions)
         {
             if(actions==null || ValidateSource(actor,item,zone,out string verb,out string liquid)!=null)return;
