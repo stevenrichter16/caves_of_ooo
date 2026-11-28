@@ -1,3 +1,13 @@
+**Below Tine, scraper work follows a clear approach — November 28, 2026, America/Chicago.**
+A traveler bought a scraper in Tine for 32 drams and climbed two
+ordinary stairs down. A steam vent two steps away was hidden behind
+rock and stayed off the pack menu. After walking around the rock, the
+traveler scraped the visible vent from two cells away and harvested it
+again using the adjacent world menu. The two catches used one shared
+deposit. Fresh Continue kept the same two scales and the deposit’s two
+remaining catches. The focused suite passed 229 cases.
+[Live route, stock and Continue](Verification/MachineSystems/ScraperReach20261128/README.md)
+
 **Peat Works pump discharge supplies fire clay and torch oil — November 28, 2026, America/Chicago.**
 The pump points to recovery at the outlet, and the flask shows its
 actual draw and remainder. An ordinary traveler forged the pump at

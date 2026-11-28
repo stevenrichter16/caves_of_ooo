@@ -65,6 +65,13 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+**Second pass across #13–14 and #36–40.** Below Tine, a steam vent
+behind solid rock was within the scraper’s former pack range. The
+current rule makes sight, reach and the exact source part of the
+quote. The traveler can walk around the rock and collect from the
+clear approach through the pack or the adjacent world menu.
+[Tine scraper route](Verification/MachineSystems/ScraperReach20261128/README.md)
+
 **Second pass across #11–14 and #36.** The pump menu points to
 ordinary flask recovery at the outlet. Fill previews the eligible
 amount and what stays in the pool. At Peat Works the moved mire

@@ -16,7 +16,15 @@ namespace CavesOfOoo.Tests
         [SetUp] public void SetupScraper() { ProofingRegistry.ResetForTests(); Diag.ResetAll(); MessageLog.Clear(); Pack.MaxWeight = 1000; Actor.IntProperties.Remove(Noise.Property); }
         [TearDown] public void TearScraper() { ProofingRegistry.ResetForTests(); }
 
-        Entity Source(string blueprint = "SteamVent", int x = 12, int y = 10) => Place(blueprint, x, y);
+        Entity Source(string blueprint = "SteamVent", int x = 12, int y = 10)
+        {
+            var source = Place(blueprint, x, y);
+            Reveal(Zone.GetEntityCell(source));
+            source.GetPart<RenderPart>().Visible = true;
+            return source;
+        }
+
+        static void Reveal(Cell cell) => cell.IsVisible = cell.Explored = true;
         InventoryAction[] Rows(Entity scraper) => Actions(scraper).Where(a => a.Name == "ScrapeSource").ToArray();
         int Got(string blueprint) => Pack.Objects.Where(o => o.BlueprintName == blueprint).Sum(o => o.GetPart<StackerPart>()?.StackCount ?? 1);
         SourceStockPart Stock(Entity source) => source.GetPart<SourceStockPart>();
@@ -28,7 +36,7 @@ namespace CavesOfOoo.Tests
         {
             var source = Source(blueprint); var scraper = Carry("Scraper"); var rows = Rows(scraper); Assert.AreEqual(1, rows.Length, string.Join(" / ", Actions(scraper).Select(a => a.Display)));
             StringAssert.Contains("scrape", rows[0].Display); StringAssert.Contains(reagent == "VentScale" ? "vent scale" : reagent == "RimeFlake" ? "rime flake" : reagent == "BrineCrust" ? "brine crust" : "acid crust", rows[0].Display);
-            StringAssert.Contains("rings", rows[0].Hint + " rings");
+            StringAssert.Contains("rings", rows[0].Hint);
             Assert.True(Act(scraper, rows[0].Command), string.Join("|", MessageLog.GetRecent(3)));
             Assert.AreEqual(1, Got(reagent)); var made = Pack.Objects.First(o => o.BlueprintName == reagent); Assert.True(made.HasTag("NoTrade")); Assert.False(TradeSystem.CanBeTraded(made, Actor, Actor, "Sell"));
             Assert.AreEqual(Stock(source).Capacity - 1, Stock(source).Available, "one drawn from the source's stock"); Assert.True(Heard(), "the scrape rang through the stone");
@@ -40,9 +48,130 @@ namespace CavesOfOoo.Tests
             var scraper = Carry("Scraper"); Assert.IsEmpty(Rows(scraper)); Source("SteamVent", 13, 10); Assert.IsEmpty(Rows(scraper), "three cells away is out of reach"); Source("SteamVent", 12, 10); Assert.AreEqual(1, Rows(scraper).Length);
         }
 
+        [TestCase("fog")]
+        [TestCase("unexplored")]
+        [TestCase("hidden-render")]
+        public void PackScrapeSkipsAnUndisclosedNearerSource(string concealment)
+        {
+            var hidden = Source("SteamVent", 11, 10);
+            var visible = Source("FrostVent", 10, 12);
+            var hiddenCell = Zone.GetEntityCell(hidden);
+            if (concealment == "fog") hiddenCell.IsVisible = false;
+            else if (concealment == "unexplored") hiddenCell.Explored = false;
+            else hidden.GetPart<RenderPart>().Visible = false;
+            var scraper = Carry("Scraper");
+
+            var quote = Rows(scraper).Single();
+            StringAssert.Contains(visible.GetDisplayName(), quote.Display);
+            StringAssert.Contains(Id(visible), quote.Command);
+            StringAssert.Contains(Zone.ZoneID, quote.Command);
+            Assert.AreEqual(ActionTime.OneAction, quote.Time);
+            Assert.IsNull(Stock(visible), "Looking at the quote creates no stock.");
+            Assert.True(Act(scraper, quote.Command));
+            Assert.True(Act(scraper, "ScrapeSource"), "The legacy command uses the same visibility rule.");
+
+            Assert.AreEqual(2, Got("RimeFlake"));
+            Assert.AreEqual(Stock(visible).Capacity - 2, Stock(visible).Available);
+            Assert.AreEqual(0, Got("VentScale"));
+            Assert.IsNull(Stock(hidden));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void PackScrapeRefusesWhenTheOnlySourceIsFoggedOrBehindAWall(bool walled)
+        {
+            var source = Source();
+            if (walled) Place("StoneWall", 11, 10);
+            else Zone.GetEntityCell(source).IsVisible = false;
+            var scraper = Carry("Scraper");
+
+            Assert.IsEmpty(Rows(scraper));
+            Assert.False(Act(scraper, "ScrapeSource"));
+            Assert.IsNull(Stock(source));
+            Assert.AreEqual(0, Got("VentScale"));
+            Assert.False(Heard());
+        }
+
+        [TestCase("moved")]
+        [TestCase("hidden")]
+        [TestCase("removed")]
+        [TestCase("blocked")]
+        public void PackQuoteRefusesAChangedSourceWithoutUsingAnother(string change)
+        {
+            var source = Source();
+            var stock = SourceStockPart.For(Zone, source, WorldClock.CurrentTick);
+            var before = (stock.Available, stock.LastTick, stock.Capacity);
+            var scraper = Carry("Scraper");
+            var quote = Rows(scraper).Single();
+            var other = Source("FrostVent", 10, 11);
+
+            switch (change)
+            {
+                case "moved":
+                    Assert.True(Zone.MoveEntity(source, 11, 9));
+                    Reveal(Zone.GetEntityCell(source));
+                    break;
+                case "hidden":
+                    Zone.GetEntityCell(source).IsVisible = false;
+                    break;
+                case "removed":
+                    Assert.True(Zone.RemoveEntity(source));
+                    break;
+                case "blocked":
+                    Place("StoneWall", 11, 10);
+                    break;
+            }
+
+            Assert.False(Act(scraper, quote.Command));
+            Assert.AreEqual(before, (stock.Available, stock.LastTick, stock.Capacity));
+            Assert.IsNull(Stock(other));
+            Assert.AreEqual(0, Got("VentScale"));
+            Assert.AreEqual(0, Got("RimeFlake"));
+            Assert.False(Heard());
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void LosingSightDuringScrapeRollsBackWithoutRinging(bool worldMenu)
+        {
+            var source = Source("SteamVent", 11, 10);
+            var cell = Zone.GetEntityCell(source);
+            var stock = SourceStockPart.For(Zone, source, WorldClock.CurrentTick);
+            var before = (stock.Available, stock.LastTick, stock.Capacity);
+            var scraper = Carry("Scraper");
+            var existingGrain = Carry("VentScale");
+            var quote = worldMenu ? ScrapeRows(Menu(source, cell.X, cell.Y)).Single() : Rows(scraper).Single();
+            int health = Actor.GetStatValue("Hitpoints");
+            bool sawProvisionalDebit = false;
+            Actor.AddPart(new FiftyWorldEventProbe
+            {
+                Callback = e =>
+                {
+                    if (e.ID != "AfterInventoryAction") return;
+                    sawProvisionalDebit = stock.Available == before.Available - 1 && Got("VentScale") == 2;
+                    cell.IsVisible = false;
+                    Actor.GetStat("Hitpoints").BaseValue--;
+                }
+            });
+
+            Assert.False(worldMenu ? Choose(quote, source) : Act(scraper, quote.Command));
+            Assert.True(sawProvisionalDebit, "Visibility changed after the provisional scrape.");
+            Assert.False(cell.IsVisible);
+            Assert.AreEqual(health - 1, Actor.GetStatValue("Hitpoints"), "Rollback preserves the independent injury.");
+            Assert.AreSame(stock, Stock(source));
+            Assert.AreEqual(before, (stock.Available, stock.LastTick, stock.Capacity));
+            Assert.True(Pack.Objects.Contains(existingGrain));
+            Assert.AreEqual(1, Got("VentScale"));
+            Assert.False(Heard());
+            Assert.IsEmpty(DiagQuery.Apply(new DiagQuery.Filter { Category = "furniture", Kind = "SourceScraped", Limit = 5 }).Records);
+        }
+
         [Test] public void APoolYouPouredIsNotASourceForTheScraperEither_Counter()
         {
-            var scraper = Carry("Scraper"); Pool(8, "brine", 12, 10); Assert.IsEmpty(Rows(scraper));
+            var scraper = Carry("Scraper");
+            var poured = Pool(8, "brine", 12, 10);
+            Reveal(Zone.GetEntityCell(poured));
+            Assert.IsEmpty(Rows(scraper));
         }
 
         [Test] public void ItMustBeCarriedAndAGroundScraperOffersNothing_Counter()
@@ -176,8 +305,7 @@ namespace CavesOfOoo.Tests
         string Noun(string reagent) => reagent == "VentScale" ? "vent scale" : reagent == "RimeFlake" ? "rime flake" : reagent == "BrineCrust" ? "brine crust" : "acid crust";
         InventoryAction[] SkimRows(int x = 11, int y = 10)
         {
-            var cell = Zone.GetCell(x, y);
-            cell.IsVisible = cell.Explored = true;
+            Reveal(Zone.GetCell(x, y));
             return CellMenu(x, y).Where(row => row.Name == "SkimSource").ToArray();
         }
 
@@ -341,13 +469,47 @@ namespace CavesOfOoo.Tests
             var onGround = Factory.CreateEntity("Scraper"); Assert.True(Zone.AddEntity(onGround, 9, 10)); Assert.IsEmpty(ScrapeRows(Menu(vent, 11, 10)), "a scraper lying on the ground does nothing");
             Carry("Scraper"); Assert.AreEqual(1, ScrapeRows(Menu(vent, 11, 10)).Length, "carried, beside the vent: the row");
             var far = Source("SteamVent", 12, 10); Assert.IsEmpty(ScrapeRows(Menu(far, 12, 10)), "a vent two cells off is not beside you; the look cursor can point there but the row does not follow");
-            var chest = Place("Chest", 10, 11); Assert.IsEmpty(ScrapeRows(Menu(chest, 10, 11)), "an ordinary object offers nothing to scrape");
+            var chest = Place("Chest", 10, 11); Reveal(Zone.GetEntityCell(chest)); Assert.IsEmpty(ScrapeRows(Menu(chest, 10, 11)), "an ordinary object offers nothing to scrape");
+            Reveal(Zone.GetCell(9, 9));
             Assert.IsEmpty(ScrapeRows(Menu(null, 9, 9)), "an empty cell");
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void TheSourcesOwnMenuAndOldSelectionRequireVisibility(bool hideRender)
+        {
+            var source = Source("SteamVent", 11, 10);
+            var other = Source("FrostVent", 10, 11);
+            var cell = Zone.GetEntityCell(source);
+            var scraper = Carry("Scraper");
+            var oldQuote = ScrapeRows(Menu(source, cell.X, cell.Y)).Single();
+            if (hideRender) source.GetPart<RenderPart>().Visible = false;
+            else cell.IsVisible = false;
+
+            Assert.IsEmpty(ScrapeRows(Menu(source, cell.X, cell.Y)));
+            Assert.False(Choose(oldQuote, source));
+            Assert.IsNull(Stock(source));
+            Assert.IsNull(Stock(other));
+            Assert.AreEqual(0, Got("VentScale"));
+            Assert.AreEqual(0, Got("RimeFlake"));
+            Assert.False(Heard());
+
+            source.GetPart<RenderPart>().Visible = cell.IsVisible = true;
+            var visibleQuote = ScrapeRows(Menu(source, cell.X, cell.Y)).Single();
+            Assert.AreSame(scraper, visibleQuote.Via);
+            Assert.True(Choose(visibleQuote, source));
+            Assert.AreEqual(Stock(source).Capacity - 1, Stock(source).Available);
+            Assert.AreEqual(1, Got("VentScale"));
+            Assert.IsNull(Stock(other));
+            Assert.True(Heard());
         }
 
         [Test] public void ThePoolYouPouredOffersNothing_Counter()
         {
-            Carry("Scraper"); var poured = Pool(8, "brine", 11, 10); Assert.IsEmpty(ScrapeRows(Menu(poured, 11, 10)), "a flask-made pool is not a source");
+            Carry("Scraper");
+            var poured = Pool(8, "brine", 11, 10);
+            Reveal(Zone.GetEntityCell(poured));
+            Assert.IsEmpty(ScrapeRows(Menu(poured, 11, 10)), "a flask-made pool is not a source");
         }
 
         [Test] public void TheRowIsForTheCellYouOpened_NotForWhicheverSourceIsNearest_Counter()
@@ -387,6 +549,34 @@ namespace CavesOfOoo.Tests
             var row = ScrapeRows(Menu(source, 11, 10)).Single(); Actor.IntProperties.Remove(Noise.Property);
             Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 18, 10)); Assert.False(Choose(row, source), "you have walked away since the menu was drawn"); Assert.AreEqual(before, stock.Available); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard());
             Zone.RemoveEntity(Actor); Assert.True(Zone.AddEntity(Actor, 10, 10)); Zone.RemoveEntity(source); Assert.False(Choose(row, source), "the source is gone"); Assert.AreEqual(0, Got("VentScale")); Assert.False(Heard());
+        }
+
+        [Test]
+        public void AnExactWorldQuoteRefusesWhenTheSourceMovesWithinReach()
+        {
+            var source = Source("SteamVent", 11, 10);
+            var scraper = Carry("Scraper");
+            var oldQuote = ScrapeRows(Menu(source, 11, 10)).Single();
+            Assert.True(Zone.MoveEntity(source, 11, 9));
+            Reveal(Zone.GetEntityCell(source));
+            var replacement = Source("FrostVent", 11, 10);
+
+            Assert.False(Choose(oldQuote, source));
+            Assert.IsNull(Stock(source));
+            Assert.IsNull(Stock(replacement));
+            Assert.AreEqual(0, Got("VentScale"));
+            Assert.AreEqual(0, Got("RimeFlake"));
+            Assert.False(Heard());
+
+            var newQuote = ScrapeRows(Menu(source, 11, 9)).Single();
+            Assert.True(Choose(newQuote, source));
+            Assert.AreEqual(1, Got("VentScale"));
+            Assert.AreEqual(Stock(source).Capacity - 1, Stock(source).Available);
+            Assert.IsNull(Stock(replacement));
+
+            Assert.True(Act(scraper, "ScrapeSource|" + Id(replacement)), "A legacy ID command still uses its visible adjacent source.");
+            Assert.AreEqual(1, Got("RimeFlake"));
+            Assert.AreEqual(Stock(replacement).Capacity - 1, Stock(replacement).Available);
         }
 
         [Test] public void ACommandNamingSomethingThatIsNotASourceOrIsMalformedIsRefused_Counter()

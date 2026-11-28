@@ -81,6 +81,9 @@ namespace CavesOfOoo.Core
 
         /// <summary>The nearest source within <see cref="Reach"/> cells of <paramref name="at"/> (ties by ID), with the element it is a source of; null when there is none.</summary>
         public static Entity Find(Zone zone, Cell at, out ProofingElement element)
+            => Find(zone, at, out element, null);
+
+        internal static Entity Find(Zone zone, Cell at, out ProofingElement element, Predicate<Entity> canUse)
         {
             element = null; if (zone == null || at == null) return null;
             Entity best = null; int bestDistance = int.MaxValue; ProofingElement bestElement = null;
@@ -92,6 +95,7 @@ namespace CavesOfOoo.Core
                     for (int i = 0; i < cell.Objects.Count; i++)
                     {
                         var e = cell.Objects[i]; var kind = ElementOf(e); if (kind == null) continue;
+                        if (canUse != null && !canUse(e)) continue;
                         if (distance < bestDistance || (distance == bestDistance && string.CompareOrdinal(e.ID, best.ID) < 0)) { best = e; bestDistance = distance; bestElement = kind; }
                     }
                 }

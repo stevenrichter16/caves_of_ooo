@@ -46,6 +46,7 @@ namespace CavesOfOoo.Tests
             var scraper = Carry("Scraper");
             StringAssert.Contains("no steam vent, ash bed, frost vent, ice sheet or pool of brine, acid or mire", Line(Guide(scraper, true), "Right now"), "nothing near: it says what is missing");
             Place("SteamVent", 12, 10);
+            Zone.GetCell(12, 10).IsVisible = Zone.GetCell(12, 10).Explored = true;
             StringAssert.StartsWith("Right now you can: scrape vent scale from the steam vent", Line(Guide(scraper, true), "Right now"));
             var capacity = SourceStockPart.CapacityFor(Zone, Zone.GetCell(12, 10).Objects.First(o => o.BlueprintName == "SteamVent"));
             for (int i = 0; i < capacity; i++) Assert.True(Act(scraper, Actions(scraper).First(a => a.Name == "ScrapeSource").Command));
@@ -325,7 +326,9 @@ namespace CavesOfOoo.Tests
 
             Head("Scraper"); var scraper = Carry("Scraper");
             Show("In your pack, no source near", "Scraper", Guide(scraper, true));
-            var vent = Place("SteamVent", 11, 10); Show("In your pack, beside a steam vent", "Scraper", Guide(scraper, true), false);
+            var vent = Place("SteamVent", 11, 10);
+            Zone.GetCell(11, 10).IsVisible = Zone.GetCell(11, 10).Explored = true;
+            Show("In your pack, beside a steam vent", "Scraper", Guide(scraper, true), false);
             int cap = SourceStockPart.CapacityFor(Zone, vent); for (int i = 0; i < cap; i++) Act(scraper, Actions(scraper).First(a => a.Name == "ScrapeSource").Command);
             Show("The vent is spent", "Scraper", Guide(scraper, true), false);
             Head("Flint striker"); var striker = Carry("FlintStriker");

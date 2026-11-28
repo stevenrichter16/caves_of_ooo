@@ -13,16 +13,21 @@ namespace CavesOfOoo.Core
     /// the scraper is immediate and loud: every scrape rings through the stone (<see cref="Noise.Mark"/>), which is how eyeless sound-hunters find you. Because the frost vents and ice sheets are underground, it is also how
     /// a player carries cold out of the deep, where a camp kit cannot be set. Nothing is spent but the time and the noise; the catch is unsellable like every free reagent.
     /// <para>It is used where the source is: press C beside the vent, pool or ice and the source's own menu offers "scrape ..." (<see cref="AddCellRows"/>), run by the scraper in the pack, so the pack is never opened. The row names
-    /// the exact source it was drawn for, so a scrape comes from the one the player chose, not from whichever happens to be nearest. The pack menu keeps its own row for the nearest source within two cells.</para>
+    /// the exact source it was drawn for. The pack menu likewise quotes the nearest visible, reachable source within two cells.</para>
     /// </summary>
-    public sealed class ScraperPart : Part, IDescribeUse
+    public sealed class ScraperPart : Part, IDescribeUse, IInventoryActionReceiptOwner
     {
         public override string Name => "Scraper";
         public const string Command = "ScrapeSource";
 
         /// <summary>The world-menu form of the command: this prefix followed by the exact source's escaped ID.</summary>
         public const string CellPrefix = Command + "|";
+        const string PackPrefix = "ScrapePack|";
         const string SkimPrefix = "SkimSource|";
+
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<ScraperPart>() == this
+            && (command == Command || command?.StartsWith(CellPrefix, StringComparison.Ordinal) == true
+                || command?.StartsWith(PackPrefix, StringComparison.Ordinal) == true);
 
         internal static bool IsSkimCommand(string command) => command?.StartsWith(SkimPrefix, StringComparison.Ordinal) == true;
 
@@ -57,7 +62,7 @@ namespace CavesOfOoo.Core
             if (selected.Length != 5 || zone?.ZoneID != selected[2] || !int.TryParse(selected[3], out int x)
                 || !int.TryParse(selected[4], out int y) || zone.GetCell(x, y) is not { } cell)
                 return false;
-            return Scrape(tool, actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction"), selected[1], cell);
+            return Scrape(tool, actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction"), selected[1], 1, cell, skim: true);
         }
 
         static ProofingElement PoolElement(Entity source)
@@ -80,38 +85,74 @@ namespace CavesOfOoo.Core
         /// <summary>How to use it, what it needs and what it costs, from the live constants (the owner, 2026-11-21); the "right now" line is built from <see cref="AddRow"/>'s own row.</summary>
         public void DescribeUse(DescribeContext context, UseGuide guide)
         {
-            guide.How.Add("Stand beside a source, open its interact (C) menu and choose scrape; the pack's scrape row also works on the nearest source within " + ProofingSources.Reach + " cells.");
-            guide.Needs.Add("a source within one step of you: a steam vent or ash bed (heat), a frost vent or ice sheet (cold), or a pool of brine, acid or mire");
+            guide.How.Add("Stand beside a visible source, open its interact (C) menu and choose scrape. The pack quotes the nearest visible source within " + ProofingSources.Reach + " cells with a clear path.");
+            guide.Needs.Add("a source within one step for Interact: a steam vent or ash bed (heat), a frost vent or ice sheet (cold), or a pool of brine, acid or mire");
             guide.Needs.Add("the scraper in your pack");
             guide.Limits.Add("One grain a scrape, from the source's own supply (" + SourceStockPart.MinCapacity + " to " + SourceStockPart.MaxCapacity + " grains, one more each day), the same supply a settling tray there draws on.");
             guide.Limits.Add("Every scrape rings through the stone: eyeless hunters hear it. What you scrape cannot be sold.");
             var actor = context.Viewer; if (actor == null) return;
             guide.WhyNot = !UseGuides.CarriedBy(actor, ParentEntity) ? UseGuides.PickUpFirst : actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true ? "you cannot act just now"
-                : "no steam vent, ash bed, frost vent, ice sheet or pool of brine, acid or mire is within " + ProofingSources.Reach + " cells of you";
+                : "no steam vent, ash bed, frost vent, ice sheet or pool of brine, acid or mire is within " + ProofingSources.Reach + " cells that you can see and reach";
         }
 
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions") { AddRow(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone") ?? e.GetParameter<Entity>("Actor")?.SpatialZone, e.GetParameter<InventoryActionList>("Actions")); return true; }
             if (e.ID == WorldInteractionSystem.WorldCellActionsEvent) { AddCellRows(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone"), e.GetParameter<Cell>("Cell"), e.GetParameter<InventoryActionList>("Actions")); return true; }
-            if (e.ID == "InventoryAction" && Parse(e.GetStringParameter("Command"), out string sourceId))
+            if (e.ID == "InventoryAction")
             {
                 var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone;
-                if (Scrape(ParentEntity, actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction"), sourceId)) { e.Handled = true; return false; }
+                if (Parse(e.GetStringParameter("Command"), zone, out string sourceId, out int reach, out Cell selectedCell)
+                    && Scrape(ParentEntity, actor, zone, e.GetParameter<InventoryTransaction>("InventoryTransaction"), sourceId, reach, selectedCell))
+                { e.Handled = true; return false; }
             }
             return true;
         }
 
-        /// <summary>Whether a command is this part's: the plain pack form (<paramref name="sourceId"/> null: the nearest source) or the world-menu form naming one source's escaped ID (an empty ID is still this part's, and is refused).</summary>
-        static bool Parse(string command, out string sourceId)
+        static string Quote(string prefix, Zone zone, Entity source)
         {
-            sourceId = null; if (command == Command) return true;
-            if (command == null || !command.StartsWith(CellPrefix, StringComparison.Ordinal)) return false;
-            sourceId = command.Substring(CellPrefix.Length); return true;
+            var cell = zone.GetEntityCell(source);
+            return prefix + Uri.EscapeDataString(source.ID) + "|" + Uri.EscapeDataString(zone.ZoneID) + "|" + cell.X + "|" + cell.Y;
+        }
+
+        static bool Parse(string command, Zone zone, out string sourceId, out int reach, out Cell selectedCell)
+        {
+            sourceId = null; reach = ProofingSources.Reach; selectedCell = null;
+            if (command == Command) return true; // Legacy caller without a stored selection.
+            if (command == null) return false;
+            bool interact = command.StartsWith(CellPrefix, StringComparison.Ordinal);
+            if (!interact && !command.StartsWith(PackPrefix, StringComparison.Ordinal)) return false;
+            var fields = command.Split('|');
+            if (interact)
+            {
+                reach = 1;
+                if (fields.Length == 2)
+                {
+                    sourceId = fields[1];
+                    return true; // Older exact-ID interaction.
+                }
+            }
+            if (fields.Length != 5 || zone == null || WorldResourceActions.Decode(fields[2]) != zone.ZoneID
+                || !int.TryParse(fields[3], out int x) || !int.TryParse(fields[4], out int y)) return false;
+            sourceId = fields[1];
+            selectedCell = zone.GetCell(x, y);
+            return selectedCell != null;
         }
 
         static bool CanAct(Entity actor, Zone zone) => WorldResourceActions.ActorCurrent(actor, zone)
             && actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() != true;
+
+        static bool CanReachSource(Zone zone, Cell origin, Entity source, int reach)
+        {
+            if (origin == null || !WorldResourceActions.Ground(source, zone)
+                || source.GetPart<RenderPart>() is not { Visible: true } render || render.ParentEntity != source) return false;
+            var at = zone.GetEntityCell(source);
+            return RouteWorkMenu.Visible(at) && Math.Max(Math.Abs(at.X - origin.X), Math.Abs(at.Y - origin.Y)) <= reach
+                && AIHelpers.HasLineOfSight(zone, origin.X, origin.Y, at.X, at.Y);
+        }
+
+        static Entity FindPackSource(Zone zone, Cell origin, out ProofingElement kind)
+            => ProofingSources.Find(zone, origin, out kind, e => CanReachSource(zone, origin, e, ProofingSources.Reach));
 
         bool Usable(Entity actor, Zone zone) => CanAct(actor, zone) && WorldResourceActions.Carried(actor, ParentEntity, single: true);
 
@@ -128,9 +169,9 @@ namespace CavesOfOoo.Core
         void AddRow(Entity actor, Zone zone, InventoryActionList actions)
         {
             if (actions == null || !Usable(actor, zone)) return;
-            var near = ProofingSources.Find(zone, zone.GetEntityCell(actor), out var kind); if (near == null) return;
+            var near = FindPackSource(zone, zone.GetEntityCell(actor), out var kind); if (near == null) return;
             string label = Label(zone, near, kind, out int left);
-            if (left > 0) actions.AddActionWithHint("ScrapeSource", label, Command, Hint, 's', 20, false, ActionTime.OneAction);
+            if (left > 0) actions.AddActionWithHint("ScrapeSource", label, Quote(PackPrefix, zone, near), Hint, 's', 20, false, ActionTime.OneAction);
             else actions.AddDisabled("ScrapeSource", label, "spent", SpentReason(near), 's', 20);
         }
 
@@ -142,26 +183,28 @@ namespace CavesOfOoo.Core
         void AddCellRows(Entity actor, Zone zone, Cell cell, InventoryActionList actions)
         {
             if (actions == null || cell == null || !Usable(actor, zone)) return;
+            var origin = zone.GetEntityCell(actor);
             foreach (var e in cell.Objects.ToArray())
             {
-                var kind = ProofingSources.ElementOf(e); if (kind == null || !WorldResourceActions.Nearby(actor, e, zone)) continue;
+                var kind = ProofingSources.ElementOf(e); if (kind == null || !CanReachSource(zone, origin, e, 1)) continue;
                 string label = Label(zone, e, kind, out int left);
-                if (left > 0) actions.AddActionWithHint("ScrapeSource", label, CellPrefix + Uri.EscapeDataString(e.ID), Hint, '\0', 20, false, ActionTime.OneAction);
+                if (left > 0) actions.AddActionWithHint("ScrapeSource", label, Quote(CellPrefix, zone, e), Hint, '\0', 20, false, ActionTime.OneAction);
                 else actions.AddDisabled("ScrapeSource", label, "spent", SpentReason(e), '\0', 20);
             }
         }
 
-        /// <summary>Scrapes one grain. <paramref name="sourceId"/> null takes it from the nearest source within two cells (the pack row); otherwise from exactly the source with that escaped ID, which must still be a source and still be beside the actor.</summary>
-        static bool Scrape(Entity tool, Entity actor, Zone zone, InventoryTransaction tx, string sourceId, Cell selectedPoolCell = null)
+        /// <summary>Draw one grain from the quoted source, or use the nearest reachable source for the legacy unquoted command.</summary>
+        static bool Scrape(Entity tool, Entity actor, Zone zone, InventoryTransaction tx, string sourceId, int reach,
+            Cell selectedCell = null, bool skim = false)
         {
-            bool skim = selectedPoolCell != null;
             var pack = actor?.GetPart<InventoryPart>();
             if (!CanAct(actor, zone) || pack == null || !skim && !WorldResourceActions.Carried(actor, tool))
                 return Block(tool, actor, "invalid-context", "You cannot scrape anything now.");
+            var origin = zone.GetEntityCell(actor);
             int now = WorldClock.CurrentTick; Entity near; ProofingElement kind;
             if (sourceId == null)
             {
-                near = ProofingSources.Find(zone, zone.GetEntityCell(actor), out kind);
+                near = FindPackSource(zone, origin, out kind);
             }
             else
             {
@@ -170,20 +213,19 @@ namespace CavesOfOoo.Core
             }
             if (near == null || kind == null) return Block(tool, actor, "no-source",
                 sourceId == null ? "There is nothing here to scrape." : "There is nothing there to scrape.");
-            if (sourceId != null && !(skim ? zone.GetEntityCell(near) == selectedPoolCell && BesidePool(actor, zone, near)
-                : WorldResourceActions.Nearby(actor, near, zone)))
-                return Block(tool, actor, "out-of-reach", "The " + near.GetDisplayName() + " is out of reach.");
+            bool ReachCurrent() => (selectedCell == null || zone.GetEntityCell(near) == selectedCell)
+                && (skim ? BesidePool(actor, zone, near) : CanReachSource(zone, origin, near, reach));
+            if (!ReachCurrent()) return Block(tool, actor, "out-of-reach", "That source is no longer within reach.");
 
             var blade = skim ? MaterialCuttingWorkReceipt.ForTool(actor, near, tool, zone) : null;
             if (skim && blade == null) return Block(tool, actor, "invalid-tool", "You need a sound blade to skim the pool.");
             var holder = ProofingSources.StockHolder(zone, near, kind);
-            var origin = zone.GetEntityCell(actor);
             var sourceCell = zone.GetEntityCell(near);
             var priorStock = holder.GetPart<SourceStockPart>();
             bool ContextCurrent() => CanAct(actor, zone) && actor.GetPart<InventoryPart>() == pack
-                && zone.GetEntityCell(actor) == origin && zone.GetEntityCell(near) == sourceCell
-                && (skim ? blade.Current() && BesidePool(actor, zone, near) && PoolElement(near) == kind
-                    : WorldResourceActions.Carried(actor, tool) && ProofingSources.ElementOf(near) == kind)
+                && zone.GetEntityCell(actor) == origin && zone.GetEntityCell(near) == sourceCell && ReachCurrent()
+                && (sourceId == null || WorldResourceActions.ExactGround(zone, sourceId) == near)
+                && (skim ? blade.Current() && PoolElement(near) == kind : WorldResourceActions.Carried(actor, tool) && ProofingSources.ElementOf(near) == kind)
                 && ProofingSources.StockHolder(zone, near, kind) == holder;
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
@@ -196,15 +238,8 @@ namespace CavesOfOoo.Core
                 if (reagent == null) return Block(tool, actor, "no-reagent", "The place gives you nothing you can take.");
                 bool OriginalCrust(Entity item) => item?.BlueprintName == kind.Collects && item.HasTag("NoTrade")
                     && item.GetPart<ReagentPart>() is { } reagentPart && reagentPart.ParentEntity == item;
-                if (!skim)
-                {
-                    var receipt = InventoryTransferSnapshot.Capture(pack, reagent);
-                    tx.Do(null, receipt.Restore);
-                    if (!receipt.Apply(() => pack.AddObject(reagent)) || !receipt.ClaimChanges(tx, actor, Command))
-                        return Block(tool, actor, "no-room", "You cannot carry any more.");
-                }
-                else if (!OriginalCrust(reagent))
-                    return Block(tool, actor, "no-reagent", "The pool gives you nothing you can take.");
+                if (!OriginalCrust(reagent))
+                    return Block(tool, actor, "no-reagent", "The source gives you nothing you can take.");
                 if (!ContextCurrent() || holder.GetPart<SourceStockPart>() != priorStock)
                     return Block(tool, actor, "changed-source", "The source changed before you could scrape it.");
                 if (priorStock?.AvailableAt(now) <= 0) return Block(tool, actor, "spent", "The " + near.GetDisplayName() + " is spent for now.");
@@ -216,21 +251,18 @@ namespace CavesOfOoo.Core
                 tx.Do(null, () =>
                 {
                     if (holder.GetPart<SourceStockPart>() != stock || output is { RetractedUnit: false }) return;
-                    if (!skim || stock.Available == paid && stock.LastTick == paidTick)
+                    if (stock.Available == paid && stock.LastTick == paidTick)
                     {
                         if (priorStock == null) holder.RemovePart(stock);
                         else { stock.Available = available; stock.LastTick = last; }
                     }
                     else stock.Available = WaterQuantityUndo.Restore(stock.Available, -1, stock.Capacity);
                 });
-                if (skim)
-                {
-                    if (!InventoryUnitOutputReceipt.TryPlace(pack, actor, reagent, tx, Command, out output))
-                        return Block(tool, actor, "no-room", "You cannot carry any more.");
-                    tx.BeforeCommit(() => WorldClock.CurrentTick == now && ContextCurrent()
-                        && holder.GetPart<SourceStockPart>() == stock && stock.Available == paid && stock.LastTick == paidTick
-                        && output.Current() && OriginalCrust(output.Recipient));
-                }
+                if (!InventoryUnitOutputReceipt.TryPlace(pack, actor, reagent, tx, Command, out output))
+                    return Block(tool, actor, "no-room", "You cannot carry any more.");
+                tx.BeforeCommit(() => WorldClock.CurrentTick == now && ContextCurrent()
+                    && holder.GetPart<SourceStockPart>() == stock && stock.Available == paid && stock.LastTick == paidTick
+                    && output.Current() && OriginalCrust(output.Recipient));
                 string label = SettlingTrayPart.ReagentName(kind), source = near.GetDisplayName(); string element = kind.Id;
                 tx.AfterCommit(() =>
                 {

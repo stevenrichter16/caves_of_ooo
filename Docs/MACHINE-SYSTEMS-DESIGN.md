@@ -20,6 +20,14 @@ stock behind. A full fill removes the exact transient pool under its
 existing rules. Hazard and terrain behavior still follow the outlet.
 [Peat Works outlet and still](Verification/MachineSystems/PeatPumpedMire20261128/README.md)
 
+**The scraper quotes a deposit the traveler can see and reach.**
+The pack can reach two cells. Interact can reach an adjacent source.
+Both name the exact deposit they will use and check its position and
+clear line again on confirmation. A late interruption refunds the
+catch and its shared stock while preserving unrelated consequences.
+The same deposit remains useful to the ordinary tray.
+[Below Tine playtest](Verification/MachineSystems/ScraperReach20261128/README.md)
+
 **Inventory Tools exposes the mechanics on current equipment.**
 The Tools tab shows location, current operations and authored guidance
 from the underlying Parts. Material-owned quotes record the exact tool
