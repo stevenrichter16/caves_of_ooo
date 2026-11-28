@@ -1,0 +1,1182 @@
+{
+  "native": {
+    "baseline": {
+      "total": 35,
+      "passed": 28,
+      "failed": 7,
+      "skipped": 0,
+      "failedCases": [
+        "DeathBetweenAidAndCommitRefusesTreatmentAndKeepsMedicine",
+        "HarmfulStatusAddedToMedicineBeforeCommitRefusesTreatmentAndKeepsMedicine",
+        "NearbyPursuerBlocksTreatmentOfPassivePatient",
+        "PursuitStartingAfterAidActionLeavesMedicineAndHealthIntact(1)",
+        "PursuitStartingAfterAidActionLeavesMedicineAndHealthIntact(2)",
+        "SillAidBelongsToTheOrdinaryResidentAcrossWorldRebuild(False)",
+        "SillAidBelongsToTheOrdinaryResidentAcrossWorldRebuild(True)"
+      ]
+    },
+    "paymentAndPursuitOrder": {
+      "total": 4,
+      "passed": 2,
+      "failed": 2,
+      "skipped": 0,
+      "failedCases": [
+        "NewerPursuitOfAnotherCreatureAllowsTreatmentDespiteOlderPatientHunt",
+        "RefusedTreatmentPreservesMedicineGroundedByActionCallback(2)"
+      ]
+    },
+    "candidate": {
+      "total": 506,
+      "passed": 505,
+      "failed": 0,
+      "skipped": 1,
+      "failedCases": []
+    }
+  },
+  "observed": {
+    "ready": {
+      "x": 38,
+      "y": 11,
+      "hp": 40,
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "target": null
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 20,
+          "target": "urqu:-1:s1"
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 10,
+          "target": "9842"
+        },
+        {
+          "id": "urqu:-1:s0",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 36,
+          "y": 8,
+          "visible": true,
+          "hp": 14,
+          "target": "10070"
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 36,
+          "y": 9,
+          "visible": true,
+          "hp": 13,
+          "target": null
+        }
+      ]
+    },
+    "approach-nw": {
+      "x": 37,
+      "y": 10,
+      "hp": 40,
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "target": null
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 20,
+          "target": "urqu:-1:s1"
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 7,
+          "target": "9842"
+        },
+        {
+          "id": "urqu:-1:s0",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 36,
+          "y": 8,
+          "visible": true,
+          "hp": 14,
+          "target": "10070"
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 37,
+          "y": 9,
+          "visible": true,
+          "hp": 13,
+          "target": null
+        }
+      ]
+    },
+    "intercept": {
+      "x": 36,
+      "y": 9,
+      "hp": 40,
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "target": null
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 20,
+          "target": "urqu:-1:s1"
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 6,
+          "target": "9842"
+        },
+        {
+          "id": "urqu:-1:s0",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 37,
+          "y": 9,
+          "visible": true,
+          "hp": 14,
+          "target": "10070"
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 38,
+          "y": 9,
+          "visible": true,
+          "hp": 13,
+          "target": null
+        }
+      ]
+    },
+    "after-flurry": {
+      "x": 36,
+      "y": 9,
+      "hp": 40,
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "target": null
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "target": "urqu:-1:s1"
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 5,
+          "target": "9842"
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 38,
+          "y": 8,
+          "visible": true,
+          "hp": 13,
+          "target": null
+        }
+      ]
+    },
+    "safe-approach": {
+      "x": 37,
+      "y": 9,
+      "hp": 40,
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "target": null
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "target": "urqu:-1:s1"
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 2,
+          "target": null
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 37,
+          "y": 8,
+          "visible": true,
+          "hp": 13,
+          "target": null
+        }
+      ]
+    },
+    "safe-before-actions": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "chat",
+      "rows": [
+        {
+          "Display": "chat",
+          "key": "c",
+          "Command": "Chat",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour brine north (12) [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourLiquidVessel|brine|12|Overworld.10.10.0|37|8",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "scatter grit north (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.10.10.0|37|9|37|8|1",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour one brine north [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourOneLiquidVessel|brine|12|Overworld.10.10.0|37|8",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "urgent": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 10,
+      "hp": 40,
+      "tick": 2230,
+      "tonics": [
+        {
+          "id": "2706",
+          "units": 2
+        }
+      ],
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "maxHp": 20,
+          "target": "urqu:-1:s1",
+          "aid": false,
+          "goals": [
+            {
+              "target": "urqu:-1:s1",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 10,
+          "maxHp": 14,
+          "target": "9842",
+          "aid": false,
+          "goals": [
+            {
+              "target": "9842",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s0",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 36,
+          "y": 8,
+          "visible": true,
+          "hp": 14,
+          "maxHp": 14,
+          "target": "10070",
+          "aid": false,
+          "goals": [
+            {
+              "target": "10070",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 37,
+          "y": 9,
+          "visible": true,
+          "hp": 12,
+          "maxHp": 20,
+          "target": null,
+          "aid": true,
+          "goals": []
+        }
+      ]
+    },
+    "urgent-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "chat",
+      "rows": [
+        {
+          "Display": "chat",
+          "key": "c",
+          "Command": "Chat",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour brine north (12) [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourLiquidVessel|brine|12|Overworld.10.10.0|37|9",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "scatter grit north (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.10.10.0|37|10|37|9|1",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour one brine north [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourOneLiquidVessel|brine|12|Overworld.10.10.0|37|9",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "urgent-wound-reader": {
+      "open": true,
+      "title": "Kesset Lowbank, scribe",
+      "blueprint": "Scribe",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "Looks wounded.",
+        "",
+        "You see Kesset Lowbank, scribe.",
+        "",
+        "Type: Creature",
+        "Material: Flesh"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "Looks wounded."
+        },
+        {
+          "Heading": "Description",
+          "Text": "You see Kesset Lowbank, scribe."
+        }
+      ]
+    },
+    "urgent-unchanged": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 10,
+      "hp": 40,
+      "tick": 2230,
+      "tonics": [
+        {
+          "id": "2706",
+          "units": 2
+        }
+      ],
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "maxHp": 20,
+          "target": "urqu:-1:s1",
+          "aid": false,
+          "goals": [
+            {
+              "target": "urqu:-1:s1",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 10,
+          "maxHp": 14,
+          "target": "9842",
+          "aid": false,
+          "goals": [
+            {
+              "target": "9842",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s0",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 36,
+          "y": 8,
+          "visible": true,
+          "hp": 14,
+          "maxHp": 14,
+          "target": "10070",
+          "aid": false,
+          "goals": [
+            {
+              "target": "10070",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 37,
+          "y": 9,
+          "visible": true,
+          "hp": 12,
+          "maxHp": 20,
+          "target": null,
+          "aid": true,
+          "goals": []
+        }
+      ]
+    },
+    "calm-ready": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 9,
+      "hp": 40,
+      "tick": 2260,
+      "tonics": [
+        {
+          "id": "2706",
+          "units": 2
+        }
+      ],
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "maxHp": 20,
+          "target": "urqu:-1:s1",
+          "aid": false,
+          "goals": [
+            {
+              "target": "urqu:-1:s1",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 34,
+          "y": 6,
+          "visible": false,
+          "hp": 2,
+          "maxHp": 14,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 37,
+          "y": 8,
+          "visible": true,
+          "hp": 13,
+          "maxHp": 20,
+          "target": null,
+          "aid": true,
+          "goals": []
+        }
+      ]
+    },
+    "calm-wound-reader": {
+      "open": true,
+      "title": "Kesset Lowbank, scribe",
+      "blueprint": "Scribe",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "Witnessed - 18 turns left.",
+        "Looks wounded.",
+        "",
+        "You see Kesset Lowbank, scribe.",
+        "",
+        "Type: Creature",
+        "Material: Flesh"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "Witnessed - 18 turns left.\nLooks wounded."
+        },
+        {
+          "Heading": "Description",
+          "Text": "You see Kesset Lowbank, scribe."
+        }
+      ]
+    },
+    "calm-offer": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "treat with healing tonic (1)",
+      "rows": [
+        {
+          "Display": "treat with healing tonic (1)",
+          "key": "\u0000",
+          "Command": "TreatPatient|2706",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "chat",
+          "key": "c",
+          "Command": "Chat",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour brine north (12) [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourLiquidVessel|brine|12|Overworld.10.10.0|37|8",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "scatter grit north (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.10.10.0|37|9|37|8|1",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour one brine north [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourOneLiquidVessel|brine|12|Overworld.10.10.0|37|8",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "paid": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 9,
+      "hp": 40,
+      "tick": 2270,
+      "tonics": [
+        {
+          "id": "2706",
+          "units": 1
+        }
+      ],
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "maxHp": 20,
+          "target": "urqu:-1:s1",
+          "aid": false,
+          "goals": [
+            {
+              "target": "urqu:-1:s1",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 35,
+          "y": 6,
+          "visible": false,
+          "hp": 2,
+          "maxHp": 14,
+          "target": "9842",
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 38,
+          "y": 9,
+          "visible": true,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": true,
+          "goals": []
+        }
+      ]
+    },
+    "paid-log": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 9,
+      "tick": 2270,
+      "hp": 40,
+      "effects": null,
+      "contents": [
+        {
+          "id": "8136",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "12617",
+          "bp": "CreatureCorpse",
+          "name": "sari-snake corpse"
+        },
+        {
+          "id": "12616",
+          "bp": "FrostLichen",
+          "name": "frost lichen"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sari-snake hits Yevven Ternfold, weaponsmith in the left hand for 2 damage! (18 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Kesset Reedfall, tinker is covered in wet.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Yevven Ternfold, weaponsmith [left hand: fist] hits sari-snake in the body for 3 damage! (2 HP remaining)",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see Kesset Lowbank, scribe.\nLooks wounded.\nAfflicted:\n  - Witnessed - 18 turns left.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You treat Kesset Lowbank, scribe with healing tonic.",
+        "Kesset Lowbank, scribe heals 7 HP.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The wet coating wears off Kesset Reedfall, tinker.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Yevven Ternfold, weaponsmith [left hand: fist] misses sari-snake!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "fresh-continue": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 9,
+      "hp": 40,
+      "tick": 2270,
+      "tonics": [
+        {
+          "id": "2706",
+          "units": 1
+        }
+      ],
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "maxHp": 20,
+          "target": "urqu:-1:s1",
+          "aid": false,
+          "goals": [
+            {
+              "target": "urqu:-1:s1",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 35,
+          "y": 6,
+          "visible": false,
+          "hp": 2,
+          "maxHp": 14,
+          "target": "9842",
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 38,
+          "y": 9,
+          "visible": true,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": true,
+          "goals": []
+        }
+      ]
+    },
+    "fresh-full-health-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "chat",
+      "rows": [
+        {
+          "Display": "chat",
+          "key": "c",
+          "Command": "Chat",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour brine east (12) [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourLiquidVessel|brine|12|Overworld.10.10.0|38|9",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "scatter grit east (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.10.10.0|37|9|38|9|1",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour one brine east [liquid flask]",
+          "key": "\u0000",
+          "Command": "PourOneLiquidVessel|brine|12|Overworld.10.10.0|38|9",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "fresh-unchanged": {
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 9,
+      "hp": 40,
+      "tick": 2270,
+      "tonics": [
+        {
+          "id": "2706",
+          "units": 1
+        }
+      ],
+      "targets": [
+        {
+          "id": "10202",
+          "bp": "Scribe",
+          "name": "scribe",
+          "x": 26,
+          "y": 4,
+          "visible": false,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "9842",
+          "bp": "Weaponsmith",
+          "name": "Yevven Ternfold, weaponsmith",
+          "x": 33,
+          "y": 6,
+          "visible": false,
+          "hp": 18,
+          "maxHp": 20,
+          "target": "urqu:-1:s1",
+          "aid": false,
+          "goals": [
+            {
+              "target": "urqu:-1:s1",
+              "active": true
+            }
+          ]
+        },
+        {
+          "id": "urqu:-1:s1",
+          "bp": "SariSnake",
+          "name": "sari-snake",
+          "x": 35,
+          "y": 6,
+          "visible": false,
+          "hp": 2,
+          "maxHp": 14,
+          "target": "9842",
+          "aid": false,
+          "goals": []
+        },
+        {
+          "id": "10070",
+          "bp": "Scribe",
+          "name": "Kesset Lowbank, scribe",
+          "x": 38,
+          "y": 9,
+          "visible": true,
+          "hp": 20,
+          "maxHp": 20,
+          "target": null,
+          "aid": true,
+          "goals": []
+        }
+      ]
+    },
+    "final-editor": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    }
+  },
+  "privateSaveHashes": {
+    "SillCalmEarnedBaseline": {
+      "Quick.json": "efb88834170be4a7b82d1cfc6197632d76386f86b26e2232898f1d16af1b34d0",
+      "Quick.sav.gz": "ec8dea65e7b5a8eb6652ad87e38bc3aa3ce7574a0000b18668f8f8eb14173361",
+      "Quick.json.bak": "000c323ef1287b9dd07c51f7832b2caf4d9312c62f0873c66f4a7186285e569b",
+      "Quick.sav.gz.bak": "c433439d4d45838f90e31be78d6881dad26b33bb2b09615c7039cb7ddd30fbdf"
+    },
+    "SillTreatedFinal": {
+      "Quick.json": "2c26b325b0d81939059cdc663ddf79db4fd371854b9883fb1eb14b41d0b7d7d7",
+      "Quick.sav.gz": "34834a48c1f99cbb2f0f11aa99f74ab12048064a866ba073cbac68fb09055ef0",
+      "Quick.json.bak": "efb88834170be4a7b82d1cfc6197632d76386f86b26e2232898f1d16af1b34d0",
+      "Quick.sav.gz.bak": "ec8dea65e7b5a8eb6652ad87e38bc3aa3ce7574a0000b18668f8f8eb14173361"
+    }
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "preferences": {
+    "restoredOwnedRunKeys": [
+      "PT_Run",
+      "unity.player_session_count",
+      "unity.player_sessionid",
+      "unity_connect.session_id"
+    ],
+    "initialPreferenceFileBytesMatch": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    }
+  }
+}

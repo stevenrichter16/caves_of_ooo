@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -212,12 +213,16 @@ namespace CavesOfOoo.Core
         /// Records payment or its rejection; payload success remains the caller's responsibility.</summary>
         public bool TryConsumeOne(Entity item)=>ConsumeOne(item,false);
 
+        // The caller owns the quantity undo until the enclosing command commits.
+        internal bool TryStageConsumeOne(Entity item, InventoryTransaction transaction)
+            => transaction != null && ConsumeOne(item, false, transaction);
+
         // Only the transaction that reserved this process ingredient may pay
         // its declared units. Ordinary callback consumption keeps the veto.
         internal bool TryConsumeMaterialProcessUnit(Entity item,CavesOfOoo.Core.Inventory.InventoryTransaction transaction)
             => MaterialProcessService.OwnsConsumption(item,transaction) && ConsumeOne(item,true);
 
-        private bool ConsumeOne(Entity item,bool ownsProcess)
+        private bool ConsumeOne(Entity item,bool ownsProcess,InventoryTransaction transaction = null)
         {
             string reason = ConsumptionRefusalReason(item,ownsProcess);
             if (reason != null)
@@ -234,10 +239,18 @@ namespace CavesOfOoo.Core
                 RefreshHandlingCarryPenalty();
             }
             else RemoveObject(item);
-            CavesOfOoo.Diagnostics.Diag.Record("event", "ItemUnitConsumed", actor: ParentEntity, target: item,
-                payload: new { blueprint = item.BlueprintName, quantityBefore = before, quantityAfter = before - 1 });
+            if (transaction == null) RecordUnitConsumed(ParentEntity, item, before);
+            else
+            {
+                var owner = ParentEntity;
+                transaction.AfterCommit(() => RecordUnitConsumed(owner, item, before));
+            }
             return true;
         }
+
+        static void RecordUnitConsumed(Entity owner, Entity item, int before)
+            => CavesOfOoo.Diagnostics.Diag.Record("event", "ItemUnitConsumed", actor: owner, target: item,
+                payload: new { blueprint = item.BlueprintName, quantityBefore = before, quantityAfter = before - 1 });
 
         /// <summary>
         /// Equip an item to a body part (body-part-aware mode).

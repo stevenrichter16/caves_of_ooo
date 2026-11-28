@@ -167,43 +167,138 @@ namespace CavesOfOoo.Core
             return MovementSystem.TryMove(owner, zone, dx, dy);
         }
     }
-    public sealed class CivilianAidPart : SecondExplorationServicePart
+    public sealed class CivilianAidPart : SecondExplorationServicePart, IDescribeState, IInventoryActionReceiptOwner
     {
+        const string Treat = "TreatPatient";
+        const int ThreatRange = 3;
         public override string Name => "CivilianAid";
-        protected override string[] Verbs => new[] { "TreatPatient" };
+        protected override string[] Verbs => new[] { Treat };
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 45;
+
+        internal static void BindSillResident(Zone zone, OverworldZoneManager manager)
+        {
+            if (zone == null || !SillCourtComposition.MatchesSite(manager, zone.ZoneID)) return;
+            var residents = zone.GetReadOnlyEntitiesWithPart<ConversationPart>().Where(owner =>
+                owner.BlueprintName == "Scribe" && WorldResourceActions.Ground(owner, zone)
+                && owner.HasTag("Creature") && owner.HasPart<BrainPart>()
+                && FactionManager.GetFaction(owner) == "Villagers" && owner.GetProperty("SettlementId") == zone.ZoneID
+                && owner.GetProperty("LocalCulture") == "Villagers" && owner.GetProperty("LocalRole") == "scribe"
+                && !string.IsNullOrWhiteSpace(owner.GetProperty("LocalPersonalName"))
+                && owner.GetPart<ConversationPart>()?.ConversationID == "Scribe_1").Take(2).ToArray();
+            if (residents.Length == 1 && SecondExplorationActions.Live(residents[0]) && !residents[0].HasPart<CivilianAidPart>())
+                residents[0].AddPart(new CivilianAidPart());
+        }
+
+        public bool OwnsInventoryReceipt(string command) => ParentEntity?.GetPart<CivilianAidPart>() == this
+            && command?.StartsWith(Treat + "|", StringComparison.Ordinal) == true;
+
+        public string DescribeState(DescribeContext context) => SecondExplorationActions.Live(ParentEntity)
+            && ParentEntity.GetStat("Hitpoints") is Stat hp && hp.Value < hp.Max ? "Looks wounded." : null;
+
+        protected override bool Current(Entity actor, Zone zone) => base.Current(actor, zone) && !UnderAttack(zone);
+
+        bool UnderAttack(Zone zone)
+        {
+            var patient = ParentEntity;
+            foreach (var hunter in zone.GetReadOnlyEntitiesWithPart<BrainPart>())
+            {
+                var brain = hunter.GetPart<BrainPart>();
+                if (brain == null || brain.GoalCount == 0 || SpatialQuery.Distance(zone, hunter, patient) > ThreatRange
+                    || !SecondExplorationActions.Live(hunter) || !WorldResourceActions.Ground(hunter, zone)) continue;
+                for (int i = brain.GoalCount - 1; i >= 0; i--)
+                {
+                    var goal = brain.PeekGoalAt(i);
+                    if (goal is KillGoal hunt && !hunt.Finished())
+                    {
+                        if (hunt.Target == patient) return true;
+                        break;
+                    }
+                    if (goal?.CanFight() == false) break;
+                }
+            }
+            return false;
+        }
+
         bool Needed(Entity item)
         {
-            if (item == null || SecondExplorationActions.Special(item) || item.HasPart<RentalPart>()) return false;
-            if (item.BlueprintName == "HealingTonic") return item.GetPart<TonicPart>()?.Healing == "4d6+4" && string.IsNullOrEmpty(item.GetPart<TonicPart>().StatBoost)
-                && ParentEntity.GetStat("Hitpoints") is Stat hp && hp.Value < hp.Max && !item.HasPart<CureTonicPart>() && !item.HasPart<StatusTonicPart>();
-            if (item.BlueprintName == "Antidote") return item.GetPart<TonicPart>() != null && item.GetPart<CureTonicPart>()?.CureEffect == nameof(PoisonedEffect)
-                && (ParentEntity.HasEffect<PoisonedEffect>() || ParentEntity.HasEffect<PoisonedByGasEffect>()) && string.IsNullOrEmpty(item.GetPart<TonicPart>()?.StatBoost);
+            if (item == null || SecondExplorationActions.Special(item) || item.HasPart<RentalPart>()
+                || item.Parts.Any(part => part.ParentEntity != item)) return false;
+            var tonic = item.GetPart<TonicPart>();
+            bool simpleTonic = tonic != null && string.IsNullOrEmpty(tonic.StatBoost)
+                && !item.HasPart<StatusTonicPart>() && !item.HasPart<BrewItemPart>();
+            if (item.BlueprintName == "HealingTonic") return simpleTonic && tonic.Healing == "4d6+4"
+                && ParentEntity.GetStat("Hitpoints") is Stat hp && hp.Value < hp.Max && hp.BaseValue < hp.Max && !item.HasPart<CureTonicPart>();
+            if (item.BlueprintName == "Antidote") return simpleTonic && item.GetPart<CureTonicPart>()?.CureEffect == nameof(PoisonedEffect)
+                && (ParentEntity.GetEffect<PoisonedEffect>() is { Duration: not 0 } || ParentEntity.GetEffect<PoisonedByGasEffect>() is { Duration: not 0 });
             return item.BlueprintName == "SoddenFieldDressing" && item.HasPart<SoddenDressingPart>()
-                && (ParentEntity.HasEffect<PoisonedEffect>() || ParentEntity.HasEffect<BleedingEffect>());
+                && ParentEntity.GetPart<StatusEffectsPart>()?.GetAllEffects().Any(SoddenDressingPart.TreatsActiveEffect) == true;
         }
         protected override void Choices(Entity actor, Zone zone, InventoryActionList a)
-        { foreach (var item in actor.GetPart<InventoryPart>().Objects.Where(e => SecondExplorationActions.Carried(actor, e) && Needed(e))) Offer(a, "treat with " + item.GetDisplayName(), SecondExplorationActions.Choice("TreatPatient", item)); }
+        {
+            var pack = actor.GetPart<InventoryPart>();
+            if (pack == null) return;
+            foreach (var item in pack.Objects.Where(e => SecondExplorationActions.Carried(actor, e) && Needed(e) && pack.CanConsumeOne(e)))
+                Offer(a, "treat with " + InventoryPart.GetUnitDisplayName(item) + " (1)", SecondExplorationActions.Choice(Treat, item));
+        }
         protected override bool Apply(Entity actor, Zone zone, string command, InventoryTransaction tx)
         {
-            var medicine = SecondExplorationActions.Selected(actor, command); if (!Needed(medicine)) return false;
-            var acceptedParts = medicine.Parts.ToArray(); string blueprint = medicine.BlueprintName;
-            var tonic = medicine.GetPart<TonicPart>(); var cure = medicine.GetPart<CureTonicPart>();
-            string healing = tonic?.Healing, boost = tonic?.StatBoost, effect = tonic?.Effect, cureEffect = cure?.CureEffect;
-            int duration = tonic?.Duration ?? 0; bool drink = tonic?.Drink ?? false;
-            if (!SecondExplorationActions.Consume(tx, actor, medicine, 1, command) || !Current(actor, zone)) return false;
+            var medicine = SecondExplorationActions.Selected(actor, command);
+            if (!SecondExplorationActions.Carried(actor, medicine) || !Needed(medicine) || !tx.TryClaim(medicine, actor, command)) return false;
             var patient = ParentEntity;
+            var pack = actor.GetPart<InventoryPart>();
+            var physics = medicine.GetPart<PhysicsPart>();
+            var stack = medicine.GetPart<StackerPart>();
+            var origin = zone.GetEntityCell(actor);
+            var target = zone.GetEntityCell(patient);
+            int units = SecondExplorationActions.Units(medicine);
+            string patientId = patient.ID, medicineId = medicine.ID, blueprint = medicine.BlueprintName;
+            var acceptedParts = medicine.Parts.ToArray();
+            var tonic = medicine.GetPart<TonicPart>(); var cure = medicine.GetPart<CureTonicPart>();
+            var payload = (tonic?.Healing, tonic?.StatBoost, tonic?.Effect, tonic?.Duration, tonic?.Drink, cure?.CureEffect);
+
+            bool SameMedicine() => medicine.ID == medicineId && medicine.GetPart<PhysicsPart>() == physics
+                && medicine.GetPart<StackerPart>() == stack;
+            var receipt = InventoryTransferSnapshot.Capture(pack, medicine);
+            tx.Do(null, () =>
+            {
+                bool moved = medicine.SpatialZone != null || physics.Equipped != null
+                    || (physics.InInventory != null && physics.InInventory != actor);
+                if (SameMedicine() && !moved && !pack.Objects.Any(e => e != medicine && e?.ID == medicineId))
+                {
+                    receipt.Restore();
+                    return;
+                }
+                // Independent relocation keeps its custody. Undo only our
+                // staged unit delta when the exact remainder is still intact.
+                if (SameMedicine() && moved && units > 1 && stack.StackCount == units - 1)
+                {
+                    stack.StackCount = units;
+                    (physics.InInventory ?? physics.Equipped)?.GetPart<InventoryPart>()?.RefreshHandlingCarryPenalty();
+                }
+                receipt.RestoreExcept(new HashSet<Entity> { medicine });
+            });
+            if (!receipt.Apply(() => pack.TryStageConsumeOne(medicine, tx)) || !receipt.ClaimChanges(tx, actor, command)) return false;
+            receipt.WatchChangedOwners(tx);
+
+            bool Paid() => ReferenceEquals(ParentEntity, patient) && patient.ID == patientId && Current(actor, zone)
+                && zone.GetEntityCell(actor) == origin && zone.GetEntityCell(patient) == target
+                && actor.GetPart<InventoryPart>() == pack && pack.ParentEntity == actor
+                && SameMedicine() && medicine.BlueprintName == blueprint
+                && medicine.Parts.SequenceEqual(acceptedParts) && Needed(medicine)
+                && (tonic?.Healing, tonic?.StatBoost, tonic?.Effect, tonic?.Duration, tonic?.Drink, cure?.CureEffect) == payload
+                && (units > 1 ? SecondExplorationActions.Carried(actor, medicine) && stack.StackCount == units - 1
+                    : medicine.SpatialZone == null && physics.InInventory == null && physics.Equipped == null
+                        && !pack.Objects.Any(e => e == medicine || e?.ID == medicineId) && !pack.EquippedItems.ContainsValue(medicine)
+                        && pack.FindEquippedBodyPart(medicine) == null);
+            if (!Paid()) return false;
+            tx.BeforeCommit(Paid);
             tx.AfterCommit(() =>
             {
-                if (!SecondExplorationActions.Live(patient) || !SecondExplorationActions.Willing(actor, patient, zone))
-                { SecondExplorationActions.Reject(actor, patient, command, "patient-unavailable-at-commit"); return; }
-                if (medicine.BlueprintName != blueprint || !medicine.Parts.SequenceEqual(acceptedParts)
-                    || medicine.GetPart<TonicPart>() != tonic || medicine.GetPart<CureTonicPart>() != cure
-                    || tonic?.Healing != healing || tonic?.StatBoost != boost || tonic?.Effect != effect
-                    || (tonic?.Duration ?? 0) != duration || (tonic?.Drink ?? false) != drink || cure?.CureEffect != cureEffect || !Needed(medicine))
-                { SecondExplorationActions.Reject(actor, patient, command, "treatment-changed-at-commit"); return; }
+                if (actor.HasTag("Player")) MessageLog.Add($"You treat {patient.GetDisplayName()} with {InventoryPart.GetUnitDisplayName(medicine)}.");
                 if (blueprint == "SoddenFieldDressing")
                 { patient.RemoveEffect(typeof(PoisonedEffect)); patient.RemoveEffect(typeof(BleedingEffect)); }
-                else tonic.ApplyTo(patient, actor, zone, consumeItem: false);
+                else tonic.ApplyTo(patient, actor, zone, consumeItem: false, showUseMessage: false);
             }); return true;
         }
     }

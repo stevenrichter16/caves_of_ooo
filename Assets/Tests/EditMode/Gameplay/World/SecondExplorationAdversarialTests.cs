@@ -71,10 +71,235 @@ namespace CavesOfOoo.Tests
         { var patient=Provider("CivilianAidPart"); patient.GetStat("Hitpoints").BaseValue=1; patient.GetPart<BrainPart>().Target=Actor; var tonic=Carry("HealingTonic"); Assert.False(Act(patient,"TreatPatient|"+Id(tonic))); Assert.True(Pack.Objects.Contains(tonic)); Assert.AreEqual(1,patient.GetStatValue("Hitpoints")); }
         [Test] public void RefusedOuterAidDoesNotHealOrConsume()
         { var patient=Provider("CivilianAidPart"); patient.GetStat("Hitpoints").BaseValue=1; var tonic=Carry("HealingTonic"); FailAfter(); Assert.False(Act(patient,"TreatPatient|"+Id(tonic))); Assert.AreEqual(1,patient.GetStatValue("Hitpoints")); Assert.True(Pack.Objects.Contains(tonic)); }
-        [Test] public void AcceptedHealingCannotAcquireHarmfulStatusBeforeCommit()
-        { var patient=Provider("CivilianAidPart"); patient.GetStat("Hitpoints").BaseValue=1; var tonic=Carry("HealingTonic"); Actor.AddPart(new SecondExplorationAfterPart{Callback=()=>tonic.AddPart(new StatusTonicPart{EffectName="Poisoned",EffectDuration=4,EffectDamageDice="1d2"})}); Assert.True(Act(patient,"TreatPatient|"+Id(tonic))); Assert.False(patient.HasEffect<PoisonedEffect>()); Assert.AreEqual(1,patient.GetStatValue("Hitpoints"),"Changed treatment skips its benefit after committed payment."); Assert.False(Pack.Objects.Contains(tonic)); }
-        [Test] public void DeathBetweenAidAndCommitPaysFiniteStockWithoutResurrection()
-        { var patient=Provider("CivilianAidPart"); patient.GetStat("Hitpoints").BaseValue=1; var tonic=Carry("HealingTonic"); Actor.AddPart(new SecondExplorationAfterPart{Callback=()=>patient.GetStat("Hitpoints").BaseValue=0}); Assert.True(Act(patient,"TreatPatient|"+Id(tonic))); Assert.AreEqual(0,patient.GetStatValue("Hitpoints")); Assert.False(Pack.Objects.Contains(tonic)); }
+
+        [Test]
+        public void NearbyPursuerBlocksTreatmentOfPassivePatient()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            string command = Selected(patient, "TreatPatient|", tonic);
+            StartPursuit(Place("MarlbackScrabbler", 12, 10), patient);
+
+            var offers = Actions(patient).Where(a => a.Command.StartsWith("TreatPatient|", StringComparison.Ordinal)).ToArray();
+            bool treated = Act(patient, command);
+
+            Assert.IsEmpty(offers);
+            Assert.False(treated);
+            Assert.AreEqual(1, patient.GetStatValue("Hitpoints"));
+            Assert.True(Pack.Objects.Contains(tonic));
+            Assert.AreSame(Actor, tonic.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [Test]
+        public void NearbyPursuitOfAnotherCreatureAllowsTreatment()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            var bystander = Place("PeatCutter", 12, 11);
+            StartPursuit(Place("MarlbackScrabbler", 12, 10), bystander);
+
+            Assert.True(Act(patient, Selected(patient, "TreatPatient|", tonic)));
+            Assert.Greater(patient.GetStatValue("Hitpoints"), 1);
+            Assert.False(Pack.Objects.Contains(tonic));
+        }
+
+        [Test]
+        public void NewerPursuitOfAnotherCreatureAllowsTreatmentDespiteOlderPatientHunt()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            var bystander = Place("PeatCutter", 12, 11);
+            var pursuer = Place("MarlbackScrabbler", 12, 10);
+            var olderHunt = StartPursuit(pursuer, patient);
+            var newerHunt = StartPursuit(pursuer, bystander);
+            Assert.False(olderHunt.Finished());
+            Assert.AreSame(newerHunt, pursuer.GetPart<BrainPart>().PeekGoal());
+
+            Assert.True(Act(patient, Selected(patient, "TreatPatient|", tonic)));
+            Assert.Greater(patient.GetStatValue("Hitpoints"), 1);
+            Assert.False(Pack.Objects.Contains(tonic));
+        }
+
+        [Test]
+        public void AbandonedPursuitOfPatientAllowsTreatment()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            var hunt = StartPursuit(Place("MarlbackScrabbler", 12, 10), patient);
+            hunt.Abandoned = true;
+
+            Assert.True(Act(patient, Selected(patient, "TreatPatient|", tonic)));
+            Assert.Greater(patient.GetStatValue("Hitpoints"), 1);
+            Assert.False(Pack.Objects.Contains(tonic));
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void PursuitStartingAfterAidActionLeavesMedicineAndHealthIntact(int medicineUnits)
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            tonic.GetPart<StackerPart>().StackCount = medicineUnits;
+            var pursuer = Place("MarlbackScrabbler", 12, 10);
+            string command = Selected(patient, "TreatPatient|", tonic);
+            Actor.AddPart(new SecondExplorationAfterPart { Callback = () => StartPursuit(pursuer, patient) });
+
+            bool treated = Act(patient, command);
+
+            Assert.AreSame(patient, pursuer.GetPart<BrainPart>().Target, "The action callback started the pursuit.");
+            Assert.False(treated);
+            Assert.AreEqual(1, patient.GetStatValue("Hitpoints"));
+            Assert.True(Pack.Objects.Contains(tonic));
+            Assert.AreEqual(medicineUnits, Units(tonic));
+            Assert.AreSame(Actor, tonic.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [Test]
+        public void RefusedTreatmentPreservesUnrelatedDonorDamageFromActionCallback()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            var pursuer = Place("MarlbackScrabbler", 12, 10);
+            int donorHealth = Actor.GetStatValue("Hitpoints");
+            string command = Selected(patient, "TreatPatient|", tonic);
+            Actor.AddPart(new SecondExplorationAfterPart
+            {
+                Callback = () =>
+                {
+                    CombatSystem.ApplyDamage(Actor, 2, null, Zone);
+                    StartPursuit(pursuer, patient);
+                }
+            });
+
+            Assert.False(Act(patient, command));
+            Assert.AreEqual(donorHealth - 2, Actor.GetStatValue("Hitpoints"));
+            Assert.AreEqual(1, patient.GetStatValue("Hitpoints"));
+            Assert.True(Pack.Objects.Contains(tonic));
+            Assert.AreSame(Actor, tonic.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void RefusedTreatmentPreservesMedicineGroundedByActionCallback(int medicineUnits)
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            tonic.GetPart<StackerPart>().StackCount = medicineUnits;
+            var physics = tonic.GetPart<PhysicsPart>();
+            var ground = Zone.GetCell(13, 10);
+            int? carriedUnits = null;
+            bool wasDetached = false, grounded = false;
+            Actor.AddPart(new SecondExplorationAfterPart
+            {
+                Callback = () =>
+                {
+                    carriedUnits = Pack.Objects.Contains(tonic) ? Units(tonic) : 0;
+                    if (medicineUnits > 1 && !Pack.RemoveObject(tonic)) return;
+                    wasDetached = Zone.GetEntityCell(tonic) == null && physics.InInventory == null
+                        && !Pack.Objects.Contains(tonic);
+                    grounded = Zone.AddEntity(tonic, ground.X, ground.Y);
+                }
+            });
+
+            bool treated = Act(patient, "TreatPatient|" + Id(tonic));
+
+            Assert.AreEqual(medicineUnits - 1, carriedUnits);
+            Assert.True(wasDetached);
+            Assert.True(grounded);
+            Assert.False(treated);
+            Assert.AreEqual(1, patient.GetStatValue("Hitpoints"));
+            Assert.AreSame(ground, Zone.GetEntityCell(tonic));
+            Assert.AreEqual(1, ground.Objects.Count(item => item == tonic));
+            Assert.AreEqual(medicineUnits, Units(tonic));
+            Assert.False(Pack.Objects.Any(item => item.ID == tonic.ID));
+            Assert.Null(physics.InInventory);
+            Assert.Null(physics.Equipped);
+        }
+
+        [Test]
+        public void TreatmentClaimRefusesNestedUseOfSameMedicineStack()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            Actor.GetStat("Hitpoints").BaseValue = 3;
+            int donorHealth = Actor.GetStatValue("Hitpoints");
+            var tonic = Carry("HealingTonic");
+            tonic.GetPart<StackerPart>().StackCount = 2;
+            int? unitsAtNestedUse = null;
+            bool? nestedUse = null;
+            Actor.AddPart(new SecondExplorationAfterPart
+            {
+                Callback = () =>
+                {
+                    if (unitsAtNestedUse.HasValue) return;
+                    unitsAtNestedUse = Units(tonic);
+                    nestedUse = Act(tonic, "ApplyTonic");
+                }
+            });
+
+            bool treated = Act(patient, Selected(patient, "TreatPatient|", tonic));
+
+            Assert.AreEqual(1, unitsAtNestedUse);
+            Assert.AreEqual(false, nestedUse);
+            Assert.True(treated);
+            Assert.AreEqual(donorHealth, Actor.GetStatValue("Hitpoints"));
+            Assert.Greater(patient.GetStatValue("Hitpoints"), 1);
+            Assert.True(Pack.Objects.Contains(tonic));
+            Assert.AreEqual(1, Units(tonic));
+            Assert.AreSame(Actor, tonic.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [Test]
+        public void HarmfulStatusAddedToMedicineBeforeCommitRefusesTreatmentAndKeepsMedicine()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            Actor.AddPart(new SecondExplorationAfterPart
+            {
+                Callback = () => tonic.AddPart(new StatusTonicPart { EffectName = "Poisoned", EffectDuration = 4, EffectDamageDice = "1d2" })
+            });
+
+            Assert.False(Act(patient, "TreatPatient|" + Id(tonic)));
+            Assert.False(patient.HasEffect<PoisonedEffect>());
+            Assert.AreEqual(1, patient.GetStatValue("Hitpoints"));
+            Assert.True(Pack.Objects.Contains(tonic));
+            Assert.AreSame(Actor, tonic.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [Test]
+        public void DeathBetweenAidAndCommitRefusesTreatmentAndKeepsMedicine()
+        {
+            var patient = Provider("CivilianAidPart");
+            patient.GetStat("Hitpoints").BaseValue = 1;
+            var tonic = Carry("HealingTonic");
+            Actor.AddPart(new SecondExplorationAfterPart { Callback = () => patient.GetStat("Hitpoints").BaseValue = 0 });
+
+            Assert.False(Act(patient, "TreatPatient|" + Id(tonic)));
+            Assert.AreEqual(0, patient.GetStatValue("Hitpoints"));
+            Assert.True(Pack.Objects.Contains(tonic));
+            Assert.AreSame(Actor, tonic.GetPart<PhysicsPart>().InInventory);
+        }
+
+        private KillGoal StartPursuit(Entity pursuer, Entity target)
+        {
+            var brain = pursuer.GetPart<BrainPart>();
+            brain.CurrentZone = Zone;
+            brain.PersonalEnemies.Add(target);
+            brain.Target = target;
+            brain.CurrentState = AIState.Chase;
+            var hunt = new KillGoal(target);
+            brain.PushGoal(hunt);
+            return hunt;
+        }
+
         [Test] public void GiftOuterFailureRestoresExactDonorItemAndEmptyNpcHand()
         { var patient=Provider("CivilianEquipmentGiftPart"); var item=Carry("Dagger"); FailAfter(); Assert.False(Act(patient,"DonateEquipment|"+Id(item))); Assert.True(Pack.Objects.Contains(item)); Assert.Null(patient.GetPart<InventoryPart>().FindEquippedBodyPart(item)); Assert.AreSame(Actor,item.GetPart<PhysicsPart>().InInventory); }
         [Test] public void CourtesyOuterFailureRestoresTheActualOriginalCell()

@@ -68,8 +68,10 @@ namespace CavesOfOoo.Core
         {
             var rng = e.GetParameter<Random>("Random") ?? new Random();
             Zone zone = e.GetParameter<Zone>("Zone");
+            var transaction = e.GetParameter<InventoryTransaction>("InventoryTransaction");
+            if (transaction != null && !transaction.TryClaim(ParentEntity, actor, ApplyCommand)) return true;
 
-            if (!ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true, transaction: e.GetParameter<InventoryTransaction>("InventoryTransaction")))
+            if (!ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true, transaction: transaction))
                 return true; // Unhandled refusal; false would count as successful dispatch.
             e.Handled = true;
             return false;

@@ -1,3 +1,14 @@
+**The wounded Sill scribe can use a carried healing tonic — November 28, 2026, America/Chicago.**
+Ordinary movement and a dagger Flurry stopped the sari-snake pursuing
+Kesset. Examine showed the wound and the world menu offered one dose.
+One turn restored him from 13 to 20 HP, took the original pack stack
+from two to one, and left the player's health at 40. Continue retained
+the healed resident and one remaining dose. The pursuit replay withheld
+treatment while the snake still targeted him. Native tests passed 505
+cases with one explicit generator skipped, including independent injury
+and medicine custody during a refused action.
+[Sill civilian treatment](Verification/MachineSystems/SillCivilianAid20261128/README.md)
+
 **The fallen cart offers a loose harness before fire — November 28, 2026, America/Chicago.**
 At the same freshly generated cart south of Sill, a normal cut with the
 original dagger gave one offcut in the rain. The traveler used it for one

@@ -49,6 +49,13 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #19 and #36–#40, carry a normal tonic into a small, ordinary
+encounter in Sill. The scribe’s wound, active pursuit, and calm window
+give different choices. A successful treatment uses one dose and heals
+the actual resident. Saved health and the remaining dose give the
+handover a lasting consequence. This is one bounded civilian case.
+[Sill rescue and treatment](Verification/MachineSystems/SillCivilianAid20261128/README.md)
+
 For #13, #18, #31–#33 and #36–#40, the fallen cart near Sill supplies
 one offcut before it burns. The original worn dagger made the cut.
 The real cart, strongbox, sacks and note stayed where they were.

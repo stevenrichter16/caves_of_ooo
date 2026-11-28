@@ -1295,6 +1295,7 @@ namespace CavesOfOoo.Core
         protected override void OnZoneGenerated(Zone zone, string zoneID)
         {
             LocalPeople.Apply(zone, this);
+            CivilianAidPart.BindSillResident(zone, this);
             SoddenDistrict.DescribeTownRoute(zone,this);
             if (!WorldMap.IsOverworldZoneID(zoneID))
                 return;

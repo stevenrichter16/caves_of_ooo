@@ -101,6 +101,23 @@ namespace CavesOfOoo.Tests
             Assert.IsNotEmpty(Owners(zone,"Elder")); Assert.IsNotEmpty(Owners(zone,"WellKeeper")); Assert.IsNotEmpty(Owners(zone,"Farmer"));
         }
 
+        [TestCase(false)] [TestCase(true)]
+        public void SillAidBelongsToTheOrdinaryResidentAcrossWorldRebuild(bool restore)
+        {
+            var manager = Manager(65);
+            var zone = manager.GetZone(Sill);
+            var resident = Owners(zone, "Scribe").Single(e => e.GetProperty("SettlementId") == Sill);
+            if (restore)
+            {
+                var aid = resident.GetPart<CivilianAidPart>();
+                if (aid != null) resident.RemovePart(aid);
+                SaveGraphSerializer.RebuildLoadedWorld(new GameSessionState { ZoneManager = manager });
+                SaveGraphSerializer.RebuildLoadedWorld(new GameSessionState { ZoneManager = manager });
+            }
+            Assert.That(zone.GetReadOnlyEntitiesWithPart<CivilianAidPart>(), Is.EqualTo(new[] { resident }));
+            Assert.AreEqual(1, resident.Parts.OfType<CivilianAidPart>().Count());
+        }
+
         [TestCase(2)] [TestCase(41)] [TestCase(64)] [TestCase(65)] [TestCase(777)]
         public void SettlingPocketPlacesOneFiniteStockBesideTheReachableWellCourt(int seed)
         {
@@ -153,6 +170,7 @@ namespace CavesOfOoo.Tests
             Assert.False(Owners(zone,"Weaponsmith").Any(e=>At(zone,e,32,5))
                 && Owners(zone,"Provisioner").Any(e=>At(zone,e,46,5)),"These preferred places belong only to the exact ordinary Sill contract.");
             Assert.IsEmpty(Owners(zone, SettlingDeposit));
+            Assert.IsFalse(Owners(zone, "Scribe").Any(e => e.HasPart<CivilianAidPart>()));
         }
 
         sealed class Obstruction : IZoneBuilder

@@ -1134,6 +1134,8 @@ namespace CavesOfOoo.Core
             {
                 foreach (var kvp in zones) kvp.Value.RebuildEntityCellsFromCells();
                 LocalPeople.Restore(state.ZoneManager, state.World);
+                if (zones.TryGetValue(WorldMap.StartingZoneID, out var sillZone))
+                    CivilianAidPart.BindSillResident(sillZone, state.ZoneManager);
                 if(zones.TryGetValue(MultiCellPilotRuntime.ZoneID,out var pilotZone))
                     MultiCellPilotRuntime.UpgradeCachedZone(pilotZone,state.ZoneManager.Factory);
                 // The active loaded zone may render without another GetZone call.

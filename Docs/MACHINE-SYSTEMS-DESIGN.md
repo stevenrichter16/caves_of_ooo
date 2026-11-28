@@ -1,3 +1,13 @@
+**A traveler can treat Sill’s injured scribe when the danger passes.**
+Examine shows a wound on the ordinary resident. The same healing tonic
+used for self-care can help him once the pursuer is gone. Aid uses one
+carried dose in one turn, with the normal healing effect and a message
+that names the recipient. A nearby active hunter targeting that resident
+blocks the handover. A hunt targeting someone else leaves the choice
+available. The existing resident and tonic stack carry their consequences
+through Continue.
+[Sill treatment and refusal](Verification/MachineSystems/SillCivilianAid20261128/README.md)
+
 **A fallen cart can supply one strip of cured leather.**
 Near Sill, a loose harness gives a sound flexible blade one finite cut.
 The part follows the original cart and consumes the remaining strip if
