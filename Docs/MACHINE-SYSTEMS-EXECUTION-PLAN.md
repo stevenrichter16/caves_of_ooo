@@ -8,6 +8,8 @@ from one Cinderhold cord. The same cord offered a different weapon part.
 A refused serrated kit kept its selection and spent no time or material.
 Both crafts cost one turn. All 555 focused cases and an independent
 review of the source and gameplay footage passed.
+The universal Mac package from runtime `2af18031c` was verified on
+Apple silicon. A fresh Continue kept the haft made using Recipes.
 [Pack recipes and screenshots](Verification/MachineSystems/PackRecipes20261128/README.md)
 
 **A public fire previews drying a wet torch — November 27, 2026, America/Chicago.**

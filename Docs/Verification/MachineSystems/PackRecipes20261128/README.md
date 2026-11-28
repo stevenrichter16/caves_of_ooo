@@ -37,3 +37,14 @@ observed recipes, rejection and outputs against the in-game receipts.
 The Editor footage covers two preparations and a blocked material
 process. Station-assisted work and cooking retain their existing native
 test coverage.
+
+## Mac package
+
+The universal app at `/Users/steven/coo-verification/builds/mac-2af18031c-20261128/CavesOfOoo.app`
+packages runtime `2af18031c`. The build completed with zero errors and four
+warnings. On Apple silicon the standalone Recipes tab made the haft and
+F5 saved the result at tick 4200 in an isolated slot. A fresh process used
+Continue and displayed the haft in the pack. Both processes stopped after
+verification. The five retained apps matched their prior hashes, and the
+normal preferences, 880 Quick files and 87 unrelated paths matched their
+initial bytes. Physical Intel execution remains untested.
