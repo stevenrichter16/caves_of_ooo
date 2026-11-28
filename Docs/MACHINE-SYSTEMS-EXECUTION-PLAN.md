@@ -1,3 +1,9 @@
+**Conversation is centered in the gameplay map — November 28, 2026, America/Chicago.**
+Darret’s continued rack card measured within one pixel of the actual
+remaining map center, horizontally and vertically, with the sidebar and
+hotbar beyond the card. The viewport reflow and pointer checks passed in
+241 focused tests. [Actual card and coordinates](Verification/MachineSystems/DialogueViewportCenter20261128/README.md)
+
 **Fen grove-red becomes mending tonic at Sill — November 28, 2026, America/Chicago.**
 Finite source 51714 supplied two fruit. One went through the original
 Sill still and normal Brew, with the raw preview missing healing.

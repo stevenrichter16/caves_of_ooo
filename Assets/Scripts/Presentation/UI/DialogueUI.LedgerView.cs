@@ -28,9 +28,12 @@ namespace CavesOfOoo.Rendering
         private const int LedgerChoiceGap = 4;
         private const int LedgerChoiceTextInset = 51;
         private const int LedgerChoiceTagWidth = 100;
+        private const float LedgerViewportMargin = 12f;
 
         private static readonly Color LedgerBackdrop = new Color(.01f, .025f, .024f, .62f);
         private static readonly Color LedgerShadow = new Color(0f, 0f, 0f, .35f);
+        private static readonly Vector2 LedgerShadowOffset = new Vector2(7, 9);
+        internal Camera GameplayCamera;
         private readonly List<Image> _ledgerShapes = new List<Image>();
         private readonly List<Text> _ledgerLabels = new List<Text>();
         private readonly List<Text> _ledgerSpeechLabels = new List<Text>();
@@ -244,6 +247,31 @@ namespace CavesOfOoo.Rendering
             RenderLedgerView();
         }
 
+        private void LateUpdate()
+        {
+            if (_isOpen && UseLedgerView && _ledgerContent != null) PositionLedgerCard();
+        }
+
+        private void PositionLedgerCard()
+        {
+            // The gameplay camera already accounts for the sidebar, hotbar and letterbox.
+            // Its viewport is normalized in the same space as the fullscreen canvas anchors.
+            Camera camera = GameplayCamera != null ? GameplayCamera : PopupCamera;
+            Rect viewport = camera != null ? camera.rect : new Rect(0, 0, 1, 1);
+            if (viewport.width <= 0f || viewport.height <= 0f) viewport = new Rect(0, 0, 1, 1);
+            Vector2 center = viewport.center;
+            if (_ledgerContent.anchorMin != center || _ledgerContent.anchorMax != center)
+                _ledgerContent.anchorMin = _ledgerContent.anchorMax = center;
+
+            Vector2 available = Vector2.Scale(((RectTransform)_ledgerRoot.transform).rect.size, viewport.size);
+            Vector2 needed = _ledgerContent.rect.size + 2f * LedgerShadowOffset;
+            float widthFit = Mathf.Max(1f, available.x - 2f * LedgerViewportMargin) / needed.x;
+            float heightFit = Mathf.Max(1f, available.y - 2f * LedgerViewportMargin) / needed.y;
+            float fit = Mathf.Clamp01(Mathf.Min(widthFit, heightFit));
+            var scale = new Vector3(fit, fit, 1f);
+            if (_ledgerContent.localScale != scale) _ledgerContent.localScale = scale;
+        }
+
         private void RenderLedgerView()
         {
             EnsureLedgerView();
@@ -279,7 +307,7 @@ namespace CavesOfOoo.Rendering
             int height = footerY + LedgerFooterHeight;
             _ledgerContent.sizeDelta = new Vector2(LedgerWidth, height);
 
-            LedgerBox(new Rect(7, 9, LedgerWidth, height), LedgerShadow);
+            LedgerBox(new Rect(LedgerShadowOffset, _ledgerContent.sizeDelta), LedgerShadow);
             LedgerFrame(new Rect(0, 0, LedgerWidth, height), LBorder, LBackground);
             DrawLedgerHeader();
 
@@ -294,6 +322,7 @@ namespace CavesOfOoo.Rendering
 
             for (int i = _ledgerShapeCount; i < _ledgerShapes.Count; i++) _ledgerShapes[i].gameObject.SetActive(false);
             for (int i = _ledgerLabelCount; i < _ledgerLabels.Count; i++) _ledgerLabels[i].gameObject.SetActive(false);
+            PositionLedgerCard();
         }
 
         private void DrawLedgerHeader()

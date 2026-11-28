@@ -18,7 +18,7 @@ namespace CavesOfOoo.Tests
         private const string LongReply = "The ordinary crossing will still be open for the rest of the day. "
             + "I can also wait here for the returned porter with the dispatch and tell the next travelers.";
 
-        private DialogueUI OpenLedger(int lines = 1, int choices = 2, bool allowEscape = true)
+        private DialogueUI OpenLedger(int lines = 1, int choices = 2, bool allowEscape = true, Camera popupCamera = null)
         {
             var conversation = new ConversationData { ID = "LedgerDialogueFixture" };
             conversation.Nodes.Add(new NodeData
@@ -46,6 +46,7 @@ namespace CavesOfOoo.Tests
             var ui = Component<DialogueUI>();
             ui.PlayerEntity = Player;
             ui.CurrentZone = Zone;
+            ui.PopupCamera = popupCamera;
             typeof(DialogueUI).GetField("UseLedgerView", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                 ?.SetValue(ui, true);
             ui.Open();
@@ -61,6 +62,50 @@ namespace CavesOfOoo.Tests
         {
             Canvas.ForceUpdateCanvases();
             return RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center));
+        }
+
+        private static RectTransform Card(DialogueUI ui) => ui.GetComponentsInChildren<RectTransform>(false)
+            .Single(rect => rect.name == "DialogueCard");
+
+        [Test]
+        public void CardFollowsTheGameplayViewportCenterOnBothAxes()
+        {
+            var camera = OutsideCamera();
+            camera.rect = new Rect(.07f, .18f, .68f, .73f);
+            var ui = OpenLedger(popupCamera: camera);
+            Canvas.ForceUpdateCanvases();
+            var card = Card(ui);
+            Assert.That(card.anchorMin, Is.EqualTo(camera.rect.center));
+            Assert.That(card.anchorMax, Is.EqualTo(camera.rect.center));
+
+            camera.rect = new Rect(.12f, .26f, .60f, .61f);
+            Call(ui, "LateUpdate");
+            Assert.That(card.anchorMin, Is.EqualTo(camera.rect.center));
+            Assert.That(card.anchorMax, Is.EqualTo(camera.rect.center));
+            Assert.That(VisibleText(ui), Does.Contain(Reply));
+        }
+
+        [Test]
+        public void CardAndReplyHitboxFitInsideANarrowGameplayViewport()
+        {
+            var camera = OutsideCamera();
+            camera.rect = new Rect(.18f, .28f, .40f, .52f);
+            var ui = OpenLedger(lines: 30, choices: 12, popupCamera: camera);
+            Canvas.ForceUpdateCanvases();
+            Call(ui, "LateUpdate");
+            var card = Card(ui);
+            var canvas = card.GetComponentInParent<Canvas>();
+            Rect display = canvas.pixelRect;
+            Vector3[] corners = new Vector3[4];
+            card.GetWorldCorners(corners);
+            Vector2 lower = RectTransformUtility.WorldToScreenPoint(null, corners[0]);
+            Vector2 upper = RectTransformUtility.WorldToScreenPoint(null, corners[2]);
+            Assert.That(lower.x, Is.GreaterThan(display.xMin + camera.rect.xMin * display.width));
+            Assert.That(lower.y, Is.GreaterThan(display.yMin + camera.rect.yMin * display.height));
+            Assert.That(upper.x, Is.LessThan(display.xMin + camera.rect.xMax * display.width));
+            Assert.That(upper.y, Is.LessThan(display.yMin + camera.rect.yMax * display.height));
+            var reply = Labels(ui).Single(label => label.text == Reply);
+            Assert.That(Call(ui, "GetLedgerChoiceRowAtScreen", ScreenCenter(reply.rectTransform)), Is.EqualTo(0));
         }
 
         [Test]
