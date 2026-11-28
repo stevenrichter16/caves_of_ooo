@@ -1,3 +1,11 @@
+**Conversation popup uses the inventory and trade style — November 28, 2026, America/Chicago.**
+The current dialogue renderer shows the existing speaker portrait, full
+faction name, measured speech and clearly separated replies. Ordinary
+Tally greeting, rack, highlighting, trade and return to the world
+kept 5480, 40 HP, 50 Ink and exact stock. Mouse, keyboard, controller
+and long-report checks passed in 239 focused tests.
+[Before, after, and exact Tally dialogue](Verification/MachineSystems/DialogueLedgerPopup20261128/README.md)
+
 **A finite Lampwell vein lights a passage — November 28, 2026, America/Chicago.**
 Earned seed 65 reached vein 68557 and harvested two Glow-Quartz. One
 piece brightened 49 cells in an actual passage. The 166 visible cells

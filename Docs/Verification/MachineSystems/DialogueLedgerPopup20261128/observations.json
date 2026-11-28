@@ -1,0 +1,896 @@
+{
+  "originalRevision": "9d8123aff691254b0a9d81f11315561109d23a44",
+  "sevenPresentationCasesAgainstOriginal": {
+    "total": 7,
+    "passed": 0,
+    "failed": 7,
+    "skipped": 0,
+    "sha256": "4386f12936e99a01a37f32160cecae66beb78990f18f740c40b16abc3a6ed385"
+  },
+  "focusedEditorTests": {
+    "total": 239,
+    "passed": 239,
+    "failed": 0,
+    "skipped": 0,
+    "sha256": "0ed1534846db454c242deb0dfbc545d3e5b30acec363c19b01cddf96066c8ea2"
+  },
+  "earnedTally": {
+    "zone": "Overworld.10.14.0",
+    "x": 57,
+    "y": 18,
+    "ownerX": 56,
+    "ownerY": 19,
+    "desk": true,
+    "ink": 50,
+    "hp": 40,
+    "tick": 5480,
+    "stock": [
+      {
+        "id": "22542",
+        "bp": "LoanerDagger",
+        "cost": 22,
+        "held": "22533"
+      },
+      {
+        "id": "22543",
+        "bp": "LoanerSpear",
+        "cost": 40,
+        "held": "22533"
+      },
+      {
+        "id": "22544",
+        "bp": "LoanerLongsword",
+        "cost": 86,
+        "held": "22533"
+      }
+    ],
+    "loans": []
+  },
+  "conversations": {
+    "original-greeting": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "Live and drink. The fight ahead favors the well-armed -- and I trade in steel, not coin. Bring me ink and you walk out with a blade for the day.",
+      "node": "Start",
+      "choices": [
+        "Show me what's on the rack.",
+        "I'm here to return a weapon.",
+        "How does this work?",
+        "Live and drink, quartermaster.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "tent wall is destroyed.",
+          "Tick": 5050,
+          "Serial": 148
+        },
+        {
+          "Text": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+          "Tick": 5050,
+          "Serial": 149
+        },
+        {
+          "Text": "Interact \u2014 choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 150
+        }
+      ]
+    },
+    "original-rack": {
+      "open": true,
+      "state": "DialogueOpen",
+      "text": "You have 50 Ink.\n\nA dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for those who'd rather not run. Pick your weight.",
+      "node": "Wares",
+      "choices": [
+        "Loaner dagger | 22 Ink, 11 back",
+        "Loaner spear | 40 Ink, 20 back",
+        "Loaner longsword | 86 Ink, 43 back | short 36",
+        "Never mind.",
+        "[Let's trade.]",
+        "[Attack]"
+      ],
+      "last": [
+        {
+          "Text": "tent wall is destroyed.",
+          "Tick": 5050,
+          "Serial": 148
+        },
+        {
+          "Text": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+          "Tick": 5050,
+          "Serial": 149
+        },
+        {
+          "Text": "Interact \u2014 choose a direction, or . for underfoot.",
+          "Tick": 5480,
+          "Serial": 150
+        }
+      ]
+    },
+    "modern-greeting": {
+      "open": true,
+      "revealing": false,
+      "ledger": true,
+      "mode": "ScreenSpaceOverlay",
+      "portrait": "settlement-keepers",
+      "card": {
+        "width": 976.0,
+        "height": 490.0
+      },
+      "screen": {
+        "width": 2317,
+        "height": 1267
+      },
+      "labels": [
+        {
+          "text": "Darret Colwick, quartermaster",
+          "font": "LegacyRuntime",
+          "fontSize": 37,
+          "preferredWidth": 525.831238,
+          "width": 832.0,
+          "preferredHeight": 40.92072,
+          "height": 49.0
+        },
+        {
+          "text": "the Saccharine Concord   \u00b7",
+          "font": "LegacyRuntime",
+          "fontSize": 17,
+          "preferredWidth": 193.009384,
+          "width": 211.0,
+          "preferredHeight": 18.4143238,
+          "height": 23.0
+        },
+        {
+          "text": "Neutral",
+          "font": "LegacyRuntime",
+          "fontSize": 17,
+          "preferredWidth": 51.83291,
+          "width": 90.0,
+          "preferredHeight": 18.4143238,
+          "height": 23.0
+        },
+        {
+          "text": "Live and drink. The fight ahead favors the well-armed -- and I trade in steel, not coin.",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 828.644531,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "Bring me ink and you walk out with a blade for the day.",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 538.1074,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "Responses",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 84.56948,
+          "width": 275.0,
+          "preferredHeight": 17.7323112,
+          "height": 25.0
+        },
+        {
+          "text": "a",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Show me what's on the rack.",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 238.7042,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "b",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "I'm here to return a weapon.",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 232.566086,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "c",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.184143,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "How does this work?",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 173.231033,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "d",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Live and drink, quartermaster.",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 247.570343,
+          "width": 769.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "Leave",
+          "font": "LegacyRuntime",
+          "fontSize": 15,
+          "preferredWidth": 41.60273,
+          "width": 85.0,
+          "preferredHeight": 15.6862755,
+          "height": 34.0
+        },
+        {
+          "text": "e",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Trade",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 48.4228477,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "f",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 4.09207153,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Attack",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 52.51492,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "\u2191 / \u2193 or D-pad   Navigate",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 169.820984,
+          "width": 285.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        },
+        {
+          "text": "Enter / A   Select response",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 186.18927,
+          "width": 320.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        },
+        {
+          "text": "Esc / B   Close",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 102.301796,
+          "width": 230.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        }
+      ],
+      "phase": "DialogueOpen",
+      "node": "Start",
+      "tick": 5480
+    },
+    "modern-rack": {
+      "open": true,
+      "revealing": false,
+      "ledger": true,
+      "mode": "ScreenSpaceOverlay",
+      "portrait": "settlement-keepers",
+      "card": {
+        "width": 976.0,
+        "height": 544.0
+      },
+      "screen": {
+        "width": 2317,
+        "height": 1267
+      },
+      "labels": [
+        {
+          "text": "Darret Colwick, quartermaster",
+          "font": "LegacyRuntime",
+          "fontSize": 37,
+          "preferredWidth": 525.831238,
+          "width": 832.0,
+          "preferredHeight": 40.92072,
+          "height": 49.0
+        },
+        {
+          "text": "the Saccharine Concord   \u00b7",
+          "font": "LegacyRuntime",
+          "fontSize": 17,
+          "preferredWidth": 193.009384,
+          "width": 211.0,
+          "preferredHeight": 18.4143238,
+          "height": 23.0
+        },
+        {
+          "text": "Neutral",
+          "font": "LegacyRuntime",
+          "fontSize": 17,
+          "preferredWidth": 51.83291,
+          "width": 90.0,
+          "preferredHeight": 18.4143238,
+          "height": 23.0
+        },
+        {
+          "text": "You have 50 Ink.",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 165.04689,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "A dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 845.0128,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "those who'd rather not run. Pick your weight.",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 438.5337,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "Responses",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 84.56948,
+          "width": 275.0,
+          "preferredHeight": 17.7323112,
+          "height": 25.0
+        },
+        {
+          "text": "a",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Loaner dagger | 22 Ink, 11 back",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 263.256622,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "b",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Loaner spear | 40 Ink, 20 back",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 252.344421,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "c",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.184143,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Loaner longsword | 86 Ink, 43 back | short 36",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 373.742554,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "d",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Never mind.",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 100.25576,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "e",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Trade",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 48.4228477,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "f",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 4.09207153,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Attack",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 52.51492,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "\u2191 / \u2193 or D-pad   Navigate",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 169.820984,
+          "width": 285.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        },
+        {
+          "text": "Enter / A   Select response",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 186.18927,
+          "width": 320.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        },
+        {
+          "text": "Esc / B   Close",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 102.301796,
+          "width": 230.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        }
+      ],
+      "phase": "DialogueOpen",
+      "node": "Wares",
+      "tick": 5480
+    },
+    "modern-moved-highlight": {
+      "open": true,
+      "revealing": false,
+      "ledger": true,
+      "mode": "ScreenSpaceOverlay",
+      "portrait": "settlement-keepers",
+      "card": {
+        "width": 976.0,
+        "height": 544.0
+      },
+      "screen": {
+        "width": 2317,
+        "height": 1267
+      },
+      "labels": [
+        {
+          "text": "Darret Colwick, quartermaster",
+          "font": "LegacyRuntime",
+          "fontSize": 37,
+          "preferredWidth": 525.831238,
+          "width": 832.0,
+          "preferredHeight": 40.92072,
+          "height": 49.0
+        },
+        {
+          "text": "the Saccharine Concord   \u00b7",
+          "font": "LegacyRuntime",
+          "fontSize": 17,
+          "preferredWidth": 193.009384,
+          "width": 211.0,
+          "preferredHeight": 18.4143238,
+          "height": 23.0
+        },
+        {
+          "text": "Neutral",
+          "font": "LegacyRuntime",
+          "fontSize": 17,
+          "preferredWidth": 51.83291,
+          "width": 90.0,
+          "preferredHeight": 18.4143238,
+          "height": 23.0
+        },
+        {
+          "text": "You have 50 Ink.",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 165.04689,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "A dagger, light and quick. A spear, for keeping things at arm's length. A longsword, for",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 845.0128,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "those who'd rather not run. Pick your weight.",
+          "font": "LegacyRuntime",
+          "fontSize": 23,
+          "preferredWidth": 438.5337,
+          "width": 920.0,
+          "preferredHeight": 25.2344418,
+          "height": 27.0
+        },
+        {
+          "text": "Responses",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 84.56948,
+          "width": 275.0,
+          "preferredHeight": 17.7323112,
+          "height": 25.0
+        },
+        {
+          "text": "a",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Loaner dagger | 22 Ink, 11 back",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 263.256622,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "b",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Loaner spear | 40 Ink, 20 back",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 252.344421,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "c",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.184143,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Loaner longsword | 86 Ink, 43 back | short 36",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 373.742554,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "d",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Never mind.",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 100.25576,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "e",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 8.866156,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Trade",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 48.4228477,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "f",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 4.09207153,
+          "width": 23.0,
+          "preferredHeight": 17.7323112,
+          "height": 22.0
+        },
+        {
+          "text": "Attack",
+          "font": "LegacyRuntime",
+          "fontSize": 19,
+          "preferredWidth": 52.51492,
+          "width": 855.0,
+          "preferredHeight": 20.46036,
+          "height": 21.0
+        },
+        {
+          "text": "\u2191 / \u2193 or D-pad   Navigate",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 169.820984,
+          "width": 285.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        },
+        {
+          "text": "Enter / A   Select response",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 186.18927,
+          "width": 320.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        },
+        {
+          "text": "Esc / B   Close",
+          "font": "LegacyRuntime",
+          "fontSize": 16,
+          "preferredWidth": 102.301796,
+          "width": 230.0,
+          "preferredHeight": 17.7323112,
+          "height": 46.0
+        }
+      ],
+      "phase": "DialogueOpen",
+      "node": "Wares",
+      "tick": 5480
+    },
+    "trade-after-dialogue": {
+      "labels": [
+        "Trade",
+        "Darret Colwick, quartermaster",
+        "Compose deal   [D]",
+        "Trade performance 35%",
+        "Buy from merchant",
+        "150 drams",
+        "Item",
+        "Qty",
+        "Drams",
+        "chain mail",
+        "\u00d71",
+        "172",
+        "healing tonic",
+        "\u00d72",
+        "86",
+        "strength tonic",
+        "\u00d71",
+        "63",
+        "willow haft",
+        "\u00d71",
+        "23",
+        "loaner dagger",
+        "\u00d71",
+        "86",
+        "loaner spear",
+        "\u00d71",
+        "158",
+        "loaner longsword",
+        "\u00d71",
+        "343",
+        "Sell from your pack",
+        "30 drams",
+        "Item",
+        "Qty",
+        "Drams",
+        "watering grimoire",
+        "\u00d71",
+        "10",
+        "gladroot seed",
+        "\u00d74",
+        "4",
+        "emberwheat seed",
+        "\u00d72",
+        "3",
+        "healing tonic",
+        "\u00d72",
+        "10",
+        "dried meat",
+        "\u00d72",
+        "4",
+        "knotflax seed",
+        "\u00d71",
+        "1",
+        "raw meat",
+        "\u00d71",
+        "1",
+        "chain mail",
+        "1 item   \u00b7   25 lb total   \u00b7   172 drams   \u00b7   [F1] Item details",
+        "[Enter] Buy stack     [Tab] Switch side     [D] Compose deal     [Esc] Close"
+      ],
+      "tick": 5480,
+      "chatOpen": false,
+      "chatCanvasActive": false
+    },
+    "closed-after-trade": {
+      "open": false,
+      "revealing": false,
+      "ledger": false,
+      "mode": null,
+      "portrait": null,
+      "card": null,
+      "screen": {
+        "width": 2317,
+        "height": 1267
+      },
+      "labels": [],
+      "phase": "Normal",
+      "node": null,
+      "tick": 5480
+    }
+  },
+  "preservation": {
+    "quick": {
+      "count": 880,
+      "changed": []
+    },
+    "tracked": {
+      "count": 87,
+      "changed": []
+    }
+  },
+  "preferences": {
+    "restoredOwnedRunKeys": [
+      "PT_Run",
+      "unity.player_session_count",
+      "unity.player_sessionid",
+      "unity_connect.session_id"
+    ],
+    "initialPreferenceFileBytesMatch": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    }
+  },
+  "editorAfterPlayback": {
+    "playing": false,
+    "changing": false,
+    "sceneDirty": false,
+    "saveRoot": null,
+    "seed": 0,
+    "buildChoice": false,
+    "lastScenario": null,
+    "pendingScenario": false,
+    "updateMode": "ProcessEventsInDynamicUpdate",
+    "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+    "background": "ResetAndDisableNonBackgroundDevices",
+    "ownedKeyboard": false
+  },
+  "video": {
+    "path": "/Users/steven/coo-verification/runs/DialogueLedgerPopup20261128/conversation-popup-playtest.mp4",
+    "sha256": "c64f0cfc20e02f2b83efbba9d270c93f654768801d17abe6073496d9621e6bc0",
+    "capture": {
+      "directory": "/Users/steven/coo-verification/runs/DialogueLedgerPopup20261128/frames-conversation-popup-playtest",
+      "frames": 264,
+      "fps": 12,
+      "width": 2317,
+      "height": 1267
+    }
+  }
+}

@@ -1,5 +1,8 @@
 # Dialogue footer backing
 
+The ordinary game now opens the proportional conversation card.
+[Current design and verification](Verification/MachineSystems/DialogueLedgerPopup20261128/README.md)
+
 Status, 2026-10-26: implemented and accepted in ordinary Unity Play.
 Corrected RED 8/11 failures → fill-only counter 2/11 failures → final native
 GREEN 100/100 focused and neighboring cases. Four real screenshots and

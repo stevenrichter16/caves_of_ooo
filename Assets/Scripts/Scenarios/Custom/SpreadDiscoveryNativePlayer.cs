@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 namespace CavesOfOoo.Scenarios.Custom
 {
@@ -68,17 +69,99 @@ namespace CavesOfOoo.Scenarios.Custom
         IEnumerator IdleTiming(string phase){yield return Settled();yield return null;yield return null;BeginTiming(phase);try{double end=Time.realtimeSinceStartupAsDouble+3;while(Time.realtimeSinceStartupAsDouble<end)yield return null;}finally{EndTiming();}}
         IEnumerator MeasureReport()
         {
-            var ui=_input.DialogueUI;var map=ui.Tilemap;var cam=ui.PopupCamera;Require(map!=null&&cam!=null&&!((bool)Field(ui,"_revealing")),"actual revealed report tilemap/camera");
-            var atlasNames=new HashSet<string>(StringComparer.Ordinal);var rect=cam.pixelRect;int glyphs=0,outside=0;float left=float.MaxValue,right=float.MaxValue,top=float.MaxValue,bottom=float.MaxValue;
-            foreach(var cell in map.cellBounds.allPositionsWithin)
+            var ui = _input.DialogueUI;
+            Require(ui != null && ui.IsOpen && State == "DialogueOpen", "actual open dialogue report");
+            var card = (RectTransform)Field(ui, "_ledgerContent");
+            var canvas = card?.GetComponentInParent<Canvas>();
+            Require(canvas != null && canvas.isActiveAndEnabled && canvas.renderMode == RenderMode.ScreenSpaceOverlay,
+                "actual active dialogue canvas");
+
+            var node = ConversationManager.CurrentNode;
+            string speech = ConversationManager.CurrentText;
+            var choices = ConversationManager.VisibleChoices.Select(choice => choice.Text).ToArray();
+            var expectedRows = Enumerable.Range(0, choices.Length).Select(i => "DialogueChoiceRow " + i).ToArray();
+            var wrapped = new List<string>();
+            var pages = new List<object>();
+            var corners = new Vector3[4];
+            var rect = canvas.pixelRect;
+            int glyphs = 0, outside = 0;
+            float left = float.MaxValue, right = float.MaxValue, top = float.MaxValue, bottom = float.MaxValue;
+
+            Rect MeasureBounds(RectTransform element)
             {
-                var sprite=map.GetSprite(cell);if(sprite==null)continue;atlasNames.Add(sprite.name);if(!sprite.name.StartsWith("UI_",StringComparison.Ordinal))continue;int code=Convert.ToInt32(sprite.name.Substring(3),16);if(code<=32||code>=127)continue;Require(ReferenceEquals(sprite,CP437TilesetGenerator.GetUiTile((char)code).sprite),"actual dialogue pure-font atlas sprite");glyphs++;
-                var b=sprite.bounds;var center=map.GetCellCenterLocal(cell);var matrix=map.orientationMatrix*map.GetTransformMatrix(cell);bool escaped=false;
-                for(int i=0;i<4;i++){var p=new Vector3((i&1)==0?b.min.x:b.max.x,(i&2)==0?b.min.y:b.max.y,0);var q=cam.WorldToScreenPoint(map.transform.TransformPoint(center+matrix.MultiplyPoint3x4(p)));left=Mathf.Min(left,q.x-rect.xMin);right=Mathf.Min(right,rect.xMax-q.x);bottom=Mathf.Min(bottom,q.y-rect.yMin);top=Mathf.Min(top,rect.yMax-q.y);if(q.x<rect.xMin-.01f||q.x>rect.xMax+.01f||q.y<rect.yMin-.01f||q.y>rect.yMax+.01f)escaped=true;}if(escaped)outside++;
+                element.GetWorldCorners(corners);
+                var min = new Vector2(float.MaxValue, float.MaxValue);
+                var max = new Vector2(float.MinValue, float.MinValue);
+                foreach (var corner in corners)
+                {
+                    var point = RectTransformUtility.WorldToScreenPoint(null, corner);
+                    min = Vector2.Min(min, point);
+                    max = Vector2.Max(max, point);
+                }
+                left = Mathf.Min(left, min.x - rect.xMin);
+                right = Mathf.Min(right, rect.xMax - max.x);
+                bottom = Mathf.Min(bottom, min.y - rect.yMin);
+                top = Mathf.Min(top, rect.yMax - max.y);
+                if (min.x < rect.xMin - .01f || max.x > rect.xMax + .01f
+                    || min.y < rect.yMin - .01f || max.y > rect.yMax + .01f)
+                    outside++;
+                return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
             }
-            var wrapped=(List<string>)Field(ui,"_wrappedTextLines");_observations.Add(new{phase="three_report_live_ui",screenWidth=Screen.width,screenHeight=Screen.height,cameraRect=rect.ToString(),glyphs,outside,left,right,top,bottom,textLines=wrapped.Count,popupRows=(int)Field(ui,"_popupH"),atlasNames=atlasNames.OrderBy(x=>x).ToArray(),choiceCount=ConversationManager.VisibleChoices.Count,choices=ConversationManager.VisibleChoices.Select(c=>c.Text).ToArray(),wrapped});WriteReport();
+
+            IEnumerator WaitForSpeech()
+            {
+                // Natural reveal avoids an Enter press selecting a reply if the last character arrives first.
+                float deadline = Time.realtimeSinceStartup + 45f;
+                while ((bool)Field(ui, "_revealing"))
+                {
+                    Require(Time.realtimeSinceStartup < deadline, "dialogue speech finishes revealing");
+                    yield return null;
+                }
+                yield return new WaitForEndOfFrame();
+                Require(ui.IsOpen && ReferenceEquals(ConversationManager.CurrentNode, node),
+                    "reading does not select a response");
+            }
+
+            var pageCountProperty = typeof(DialogueUI).GetProperty("TextPageCount", Private);
+            Require(pageCountProperty != null, "dialogue speech page count is available");
+            int pageCount = (int)pageCountProperty.GetValue(ui);
+            for (int page = 0; page < pageCount; page++)
+            {
+                if (page > 0) yield return Tap(Key.PageDown);
+                yield return WaitForSpeech();
+                Require((int)Field(ui, "_textPage") == page, "normal paging reaches the expected speech page");
+
+                var labels = card.GetComponentsInChildren<Text>(false);
+                var speechLabels = (List<Text>)Field(ui, "_ledgerSpeechLabels");
+                Require(speechLabels.Count > 0 && speechLabels.All(labels.Contains), "actual speech labels are visible");
+                var visibleSpeech = speechLabels.Select(label => label.text).ToArray();
+                wrapped.AddRange(visibleSpeech);
+                var rows = card.GetComponentsInChildren<Image>(false)
+                    .Where(row => row.name.StartsWith("DialogueChoiceRow ", StringComparison.Ordinal)).ToArray();
+                Require(rows.Length == expectedRows.Length && expectedRows.All(name => rows.Any(row => row.name == name)),
+                    "all ordinary report responses are drawn");
+
+                var cardBounds = MeasureBounds(card);
+                foreach (var label in labels)
+                {
+                    glyphs += label.text.Count(character => !char.IsWhiteSpace(character));
+                    MeasureBounds(label.rectTransform);
+                }
+                foreach (var row in rows) MeasureBounds(row.rectTransform);
+                pages.Add(new { page = page + 1, cardBounds = cardBounds.ToString(), labels = labels.Length, speech = visibleSpeech });
+            }
+
+            Require(glyphs > 100 && outside == 0 && NormalizeText(string.Join(" ", wrapped)) == NormalizeText(speech),
+                "actual complete three-report speech and responses within the dialogue canvas");
+            for (int page = 1; page < pageCount; page++) yield return Tap(Key.PageUp);
+            if (pageCount > 1) yield return WaitForSpeech();
+            Require((int)Field(ui, "_textPage") == 0, "first speech page restored for the report capture");
+
+            _observations.Add(new { phase = "three_report_live_ui", screenWidth = Screen.width, screenHeight = Screen.height,
+                canvasRect = rect.ToString(), glyphs, outside, left, right, top, bottom, textLines = wrapped.Count,
+                choiceCount = choices.Length, choices, wrapped, pages });
+            WriteReport();
             yield return Capture("02-real-informant-report");
-            Require(glyphs>100&&outside==0&&ConversationManager.VisibleChoices.Count<=10&&NormalizeText(string.Join(" ",wrapped))==NormalizeText(ConversationManager.CurrentText),"actual complete three-report text and all choice rows within current camera");
         }
         IEnumerator RunAudit()
         {

@@ -636,6 +636,7 @@ namespace CavesOfOoo
                     var dialogueUI = GetComponent<DialogueUI>();
                     if (dialogueUI == null)
                         dialogueUI = gameObject.AddComponent<DialogueUI>();
+                    dialogueUI.UseLedgerView = true;
                     if (ZoneRenderer != null)
                     {
                         dialogueUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;

@@ -3,14 +3,13 @@ using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Renders a conversation popup overlaid on the game world.
-    /// Follows the same world-space popup pattern as PickupUI.
-    /// Shows NPC speech text (word-wrapped) and numbered player choices.
+    /// Manages the current conversation's speech, reveal, paging and reply selection.
     /// </summary>
     public partial class DialogueUI : MonoBehaviour
     {
@@ -19,6 +18,7 @@ namespace CavesOfOoo.Rendering
         public Camera PopupCamera;
         public Entity PlayerEntity;
         public Zone CurrentZone;
+        internal bool UseLedgerView;
 
         private const int POPUP_MAX_VISIBLE_CHOICES = 10;
         private const int POPUP_MIN_W = 32;
@@ -37,14 +37,17 @@ namespace CavesOfOoo.Rendering
         private int _cursorIndex;
         private int _choiceScrollOffset;
         private int _textPage;
-        private int VisibleChoiceCount => Mathf.Min(ConversationManager.VisibleChoices.Count, POPUP_MAX_VISIBLE_CHOICES);
+        internal int VisibleChoiceCount => UseLedgerView ? _ledgerVisibleChoices
+            : Mathf.Min(ConversationManager.VisibleChoices.Count, POPUP_MAX_VISIBLE_CHOICES);
         // Keep an outer row on both sides of a full-height page for the font's ascenders and footer.
-        private int TextPageCapacity => Mathf.Max(1, CenteredPopupLayout.GridHeight - VisibleChoiceCount - 6);
+        private int TextPageCapacity => UseLedgerView ? LedgerTextCapacity
+            : Mathf.Max(1, CenteredPopupLayout.GridHeight - VisibleChoiceCount - 6);
         private int TextPageCount => Mathf.Max(1, (_wrappedTextLines.Count + TextPageCapacity - 1) / TextPageCapacity);
         private int TextStart => _textPage * TextPageCapacity;
         private int VisibleTextLineCount => Mathf.Min(TextPageCapacity, Mathf.Max(0, _wrappedTextLines.Count - TextStart));
         private List<string> _wrappedTextLines = new List<string>();
         private bool _conversationEnded;
+        private Vector2 _lastLedgerPointer;
 
         // Typewriter reveal state.
         private const float REVEAL_INTERVAL = 0.015f;
@@ -95,6 +98,7 @@ namespace CavesOfOoo.Rendering
             _cursorIndex = 0;
             _conversationEnded = false;
             ClosingActivationKey = KeyCode.None;
+            if (UseLedgerView) _lastLedgerPointer = ReadLedgerPointer(out _, out _);
             CapturePortrait();
             RebuildText();
             Render();
@@ -103,6 +107,7 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            HideLedgerView();
             ClearPortrait();
             // Clear foreground glyphs (borders, text, choices, action bar)
             // using the rectangle cached at the last Render — not the
@@ -121,7 +126,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void Update()
         {
-            if (!_isOpen || !_revealing) return;
+            if (!_isOpen) return;
+            if (UseLedgerView) RefreshLedgerPortrait();
+            if (!_revealing) return;
             _revealTimer += Time.deltaTime;
             bool rendered = false;
             while (_revealTimer >= REVEAL_INTERVAL && _revealCount < _totalRevealChars)
@@ -144,9 +151,21 @@ namespace CavesOfOoo.Rendering
             if (!_isOpen) return;
             ClosingActivationKey = KeyCode.None;
 
-            // Mouse hover
+            bool click;
+            Vector2 pointer;
+            float wheel = 0f;
+            if (UseLedgerView) pointer = ReadLedgerPointer(out click, out wheel);
+            else
             {
-                int hoverRow = GetChoiceRowAtMouse();
+                pointer = Input.mousePosition;
+                click = Input.GetMouseButtonDown(0);
+            }
+
+            // A stationary pointer must not pull focus away from keyboard or controller navigation.
+            if (!UseLedgerView || pointer != _lastLedgerPointer)
+            {
+                _lastLedgerPointer = pointer;
+                int hoverRow = GetChoiceRowAtPointer(pointer);
                 if (hoverRow >= 0 && hoverRow != _cursorIndex)
                 {
                     _cursorIndex = hoverRow;
@@ -174,6 +193,10 @@ namespace CavesOfOoo.Rendering
             { MoveTextPage(-1); return; }
             if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.PageDown))
             { MoveTextPage(1); return; }
+            if (UseLedgerView && click && TryLedgerTextPageAtScreen(pointer, out int pageDelta))
+            { MoveTextPage(pageDelta); return; }
+            if (UseLedgerView && Mathf.Abs(wheel) > .01f && IsLedgerChoiceAreaAtScreen(pointer))
+            { ScrollLedgerChoices(wheel > 0 ? -1 : 1); return; }
 
             // While text is still streaming, ANY confirm input (Enter/Space/click/hotkey)
             // fast-forwards the reveal instead of selecting a choice. The next press
@@ -182,14 +205,14 @@ namespace CavesOfOoo.Rendering
             {
                 bool skip = InputHelper.GetKeyDown(KeyCode.Return)
                          || InputHelper.GetKeyDown(KeyCode.Space)
-                         || Input.GetMouseButtonDown(0);
+                         || click;
                 if (!skip)
                 {
                     for (int i = 0; i < choices.Count; i++)
                     {
                         var key = MenuShortcutMap.Key(MenuShortcutMap.Positional(i));
                         if (key == KeyCode.None) break;
-                if (InputHelper.GetKeyDown(key)) { skip = true; break; }
+                        if (InputHelper.GetKeyDown(key)) { skip = true; break; }
                     }
                 }
                 if (skip)
@@ -203,9 +226,9 @@ namespace CavesOfOoo.Rendering
             }
 
             // Mouse click
-            if (Input.GetMouseButtonDown(0))
+            if (click)
             {
-                int clickedRow = GetChoiceRowAtMouse();
+                int clickedRow = GetChoiceRowAtPointer(pointer);
                 if (clickedRow >= 0 && clickedRow < choices.Count)
                 {
                     SelectChoice(clickedRow);
@@ -273,6 +296,12 @@ namespace CavesOfOoo.Rendering
             _wrappedTextLines.Clear();
             _textPage = 0;
             _choiceScrollOffset = 0;
+            if (UseLedgerView)
+            {
+                WrapLedgerSpeech(ConversationManager.CurrentText);
+                ResetReveal();
+                return;
+            }
             if (ConversationManager.CurrentNode == null)
             {
                 _popupW = POPUP_MIN_W;
@@ -348,6 +377,17 @@ namespace CavesOfOoo.Rendering
             Render();
         }
 
+        private void ScrollLedgerChoices(int delta)
+        {
+            int visible = VisibleChoiceCount;
+            int lastOffset = ConversationManager.VisibleChoices.Count - visible;
+            int offset = Mathf.Clamp(_choiceScrollOffset + delta, 0, lastOffset);
+            if (visible == 0 || offset == _choiceScrollOffset) return;
+            _choiceScrollOffset = offset;
+            _cursorIndex = Mathf.Clamp(_cursorIndex, offset, offset + visible - 1);
+            Render();
+        }
+
         private void ResetReveal()
         {
             _totalRevealChars = 0;
@@ -405,7 +445,7 @@ namespace CavesOfOoo.Rendering
 
         // ===== Rendering =====
 
-        private void ComputePopupPosition()
+        private void UpdateSelectionWindow()
         {
             var choices = ConversationManager.VisibleChoices;
             int choiceCount = VisibleChoiceCount;
@@ -415,6 +455,11 @@ namespace CavesOfOoo.Rendering
             if (_cursorIndex >= _choiceScrollOffset + choiceCount)
                 _choiceScrollOffset = Mathf.Max(0, _cursorIndex - choiceCount + 1);
             _textPage = Mathf.Clamp(_textPage, 0, TextPageCount - 1);
+        }
+
+        private void ComputePopupPosition()
+        {
+            int choiceCount = VisibleChoiceCount;
             int textLines = VisibleTextLineCount;
 
             // Layout: top border (with embedded title) + text lines + blank + choices + bottom border + action bar
@@ -432,8 +477,15 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Ui.DialogueRender.Auto())
             {
                 PerformanceDiagnostics.RecordDialogueRender();
-                if (Tilemap == null || !ConversationManager.IsActive)
+                if (!ConversationManager.IsActive)
                     return;
+                UpdateSelectionWindow();
+                if (UseLedgerView)
+                {
+                    RenderLedgerView();
+                    return;
+                }
+                if (Tilemap == null) return;
 
                 // Erase the PREVIOUS draw first (both FG and BG) using the
                 // cached rectangles — popup width/height can change per
@@ -754,9 +806,24 @@ namespace CavesOfOoo.Rendering
 
         // ===== Mouse =====
 
-        private int GetChoiceRowAtMouse()
+        private static Vector2 ReadLedgerPointer(out bool click, out float wheel)
         {
-            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition, out int gridX, out int gridY))
+            var mouse = Mouse.current;
+            if (mouse != null && mouse.enabled)
+            {
+                click = mouse.leftButton.wasPressedThisFrame;
+                wheel = mouse.scroll.ReadValue().y;
+                return mouse.position.ReadValue();
+            }
+            click = Input.GetMouseButtonDown(0);
+            wheel = Input.mouseScrollDelta.y;
+            return Input.mousePosition;
+        }
+
+        private int GetChoiceRowAtPointer(Vector2 pointer)
+        {
+            if (UseLedgerView) return GetLedgerChoiceRowAtScreen(pointer);
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, pointer, out int gridX, out int gridY))
                 return -1;
 
             return GetChoiceRowAtCell(gridX - _worldOriginX, _worldTopY - gridY);

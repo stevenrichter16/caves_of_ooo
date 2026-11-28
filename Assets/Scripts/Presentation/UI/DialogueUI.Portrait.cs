@@ -84,7 +84,7 @@ namespace CavesOfOoo.Rendering
 
         private void OnGUI()
         {
-            if (!_isOpen || !NativePortraitLayout || Event.current.type != EventType.Repaint) return;
+            if (!_isOpen || UseLedgerView || !NativePortraitLayout || Event.current.type != EventType.Repaint) return;
             ValidatePortrait();
             if (_portrait.Texture == null || PopupCamera == null || !PopupCamera.enabled) return;
             var rect = MeasurePortraitScreenRect();
