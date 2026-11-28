@@ -1,3 +1,11 @@
+**Ginmere’s rope makes the same ledges easier to revisit.**
+Ordinary stairs reach both landings first. Two measures of knotflax
+cord rig a shorter two-way connection in one turn. The anchor reports
+what it still needs, then gives the direction appropriate to its floor.
+Travel uses the existing stairs controls and both installed ends persist
+in the saved world.
+[Ginmere rope and Morrowfast cord](Verification/MachineSystems/GinmereRopeReadout20261128/README.md)
+
 **Olderdeep’s descent jar shows whether its light is mounted or portable.**
 Examine follows the original jar from the ledge to the pack and into
 a hand. The same light source follows the wearer under the existing

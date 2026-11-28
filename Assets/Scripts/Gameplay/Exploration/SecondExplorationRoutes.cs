@@ -5,37 +5,125 @@ using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
-    public sealed class RopeShortcutPart : SecondExplorationServicePart
+    public sealed class RopeShortcutPart : SecondExplorationServicePart, IDescribeState
     {
         public override string Name => "RopeShortcut";
         public string ZoneID, OtherZoneID;
         public int X, Y, OtherX, OtherY;
         public bool Down, Installed;
-        protected override string[] Verbs => new[] { "RigRopeShortcut" };
+        const string RigCommand = "RigRopeShortcut";
+        const string RigLabel = "rig rope (two knotflax cord)";
+        const string CordNeeded = "You need two usable knotflax cord.";
+        internal const string LegacyGuidance = "\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.";
+        protected override string[] Verbs => new[] { RigCommand };
         protected override bool Civilian => false;
+        public ReaderScope Scope => ReaderScope.Both;
+        public int Order => 40;
+
+        public string DescribeState(DescribeContext context)
+        {
+            var zone = context?.Zone;
+            if (zone == null || context.Owner != ParentEntity || ParentEntity?.GetPart<RopeShortcutPart>() != this
+                || !WorldResourceActions.Ground(ParentEntity, zone) || zone.GetEntityPosition(ParentEntity) != (X, Y))
+                return null;
+
+            if (Installed)
+            {
+                if (!Endpoint(zone, out var manager, out _, out _, out var other)
+                    || !other.Installed || !HasLink(manager, this) || !HasLink(manager, other))
+                    return "Both landings need to be connected before you can use this rope.";
+                return Down
+                    ? "The rope is rigged. Use the ordinary stair controls to descend when the other landing is clear."
+                    : "The rope is rigged. Use the ordinary stair controls to climb when the other landing is clear.";
+            }
+
+            string guidance = RigBlock(zone);
+            if (guidance != null) return guidance + " Rigging needs two knotflax cord.";
+            return context.Viewer == null || HasRiggingCord(context.Viewer)
+                ? "Both landings are clear. Rig the rope from here with two knotflax cord."
+                : "Both landings are clear. " + CordNeeded;
+        }
+
+        static bool HasLink(OverworldZoneManager manager, RopeShortcutPart end)
+        {
+            string direction = end.Down ? "StairsDown" : "StairsUp";
+            if (!end.ParentEntity.HasTag(direction)
+                || (end.Down ? !end.ParentEntity.HasPart<StairsDownPart>() : !end.ParentEntity.HasPart<StairsUpPart>()))
+                return false;
+
+            var links = manager.GetConnections(end.ZoneID).Where(c => AtAnchor(c, end)).ToArray();
+            return links.Length == 1 && links[0].Type == direction && links[0].TargetZoneID == end.OtherZoneID
+                && links[0].TargetX == end.OtherX && links[0].TargetY == end.OtherY;
+        }
+
+        static bool AtAnchor(ZoneConnection connection, RopeShortcutPart end)
+            => connection.SourceZoneID == end.ZoneID && connection.SourceX == end.X && connection.SourceY == end.Y;
+
+        static bool HasStairs(Entity owner) => owner.HasPart<StairsDownPart>() || owner.HasPart<StairsUpPart>();
+
+        bool ClearLandings(Zone zone, Zone otherZone, Entity other)
+            => !zone.GetCell(X, Y).BlocksMovement(ParentEntity) && !otherZone.GetCell(OtherX, OtherY).BlocksMovement(other);
+
+        bool CanRig(Zone zone, out OverworldZoneManager manager, out Zone otherZone, out Entity other, out RopeShortcutPart counterpart)
+        {
+            return Endpoint(zone, out manager, out otherZone, out other, out counterpart)
+                && !Installed && !counterpart.Installed && !HasStairs(ParentEntity) && !HasStairs(other)
+                && ClearLandings(zone, otherZone, other)
+                && !HasConnectionAt(manager, this) && !HasConnectionAt(manager, counterpart);
+        }
+
+        static bool HasConnectionAt(OverworldZoneManager manager, RopeShortcutPart end)
+            => manager.GetConnections(end.ZoneID).Any(c => AtAnchor(c, end));
+
+        string RigBlock(Zone zone)
+        {
+            if (CanRig(zone, out var manager, out _, out _, out _)) return null;
+            return !string.IsNullOrEmpty(OtherZoneID) && manager?.CachedZones.ContainsKey(OtherZoneID) == false
+                ? "Use the ordinary stairs to reach and check the other landing first."
+                : "Both landings need to be clear and unrigged.";
+        }
+
+        static bool HasRiggingCord(Entity actor)
+        {
+            var inventory = actor?.GetPart<InventoryPart>();
+            if (inventory == null) return false;
+            int needed = 2;
+            foreach (var item in inventory.Objects)
+            {
+                if (item?.BlueprintName != "KnotflaxCord" || !SecondExplorationActions.Carried(actor, item)) continue;
+                if (!inventory.CanConsumeOne(item)) return false;
+                needed -= Math.Min(needed, SecondExplorationActions.Units(item));
+                if (needed == 0) return true;
+            }
+            return false;
+        }
+
+        protected override void Choices(Entity actor, Zone zone, InventoryActionList actions)
+        {
+            if (Installed || actions == null) return;
+            string block = RigBlock(zone);
+            if (block != null) actions.AddDisabled(RigCommand, RigLabel, "rope-landing-unavailable", block, priority: 24).Hint = block;
+            else if (!HasRiggingCord(actor)) actions.AddDisabled(RigCommand, RigLabel, "rope-cord-missing", CordNeeded, priority: 24).Hint = CordNeeded;
+            else actions.AddActionWithHint(RigCommand, RigLabel, RigCommand, "Tie both landings in one action. Two cords are spent.", priority: 24);
+        }
+
         bool Endpoint(Zone zone, out OverworldZoneManager manager, out Zone otherZone, out Entity other, out RopeShortcutPart counterpart)
         {
             manager = WorldLocationContext.For(zone); otherZone = null; other = null; counterpart = null;
             if (manager == null || ZoneID != zone.ZoneID || !manager.CachedZones.TryGetValue(ZoneID, out var current) || current != zone
                 || string.IsNullOrEmpty(OtherZoneID) || OtherZoneID == ZoneID || !manager.CachedZones.TryGetValue(OtherZoneID, out otherZone)
-                || zone.GetEntityPosition(ParentEntity) != (X, Y) || !zone.InBounds(X,Y) || !otherZone.InBounds(OtherX,OtherY)) return false;
+                || WorldLocationContext.For(otherZone) != manager || zone.GetEntityPosition(ParentEntity) != (X, Y) || !zone.InBounds(X,Y) || !otherZone.InBounds(OtherX,OtherY)) return false;
             var found = otherZone.GetCell(OtherX, OtherY).Objects.Where(e => e.GetPart<RopeShortcutPart>() is RopeShortcutPart r
                 && r.ZoneID == OtherZoneID && r.OtherZoneID == ZoneID && r.X == OtherX && r.Y == OtherY && r.OtherX == X && r.OtherY == Y && r.Down != Down).ToArray();
             if (found.Length != 1) return false; other = found[0]; counterpart = other.GetPart<RopeShortcutPart>();
-            return SecondExplorationActions.Live(other) && WorldResourceActions.Ground(other, otherZone)
-                && !zone.GetCell(X,Y).BlocksMovement(ParentEntity) && !otherZone.GetCell(OtherX,OtherY).BlocksMovement(other);
+            return SecondExplorationActions.Live(other) && WorldResourceActions.Ground(other, otherZone);
         }
-        protected override void Choices(Entity actor, Zone zone, InventoryActionList a)
-        { if (!Installed && Endpoint(zone, out _, out _, out _, out var other) && !other.Installed) Offer(a, "rig rope (2 cord; both ends visited)", "RigRopeShortcut"); }
         protected override bool Apply(Entity actor, Zone zone, string command, InventoryTransaction tx)
         {
-            if (command != "RigRopeShortcut" || Installed || !Endpoint(zone, out var manager, out var otherZone, out var other, out var counterpart)
-                || counterpart.Installed || ParentEntity.HasPart<StairsDownPart>() || ParentEntity.HasPart<StairsUpPart>() || other.HasPart<StairsDownPart>() || other.HasPart<StairsUpPart>()
+            if (command != RigCommand || !CanRig(zone, out var manager, out var otherZone, out var other, out var counterpart)
                 || !tx.TryClaim(other, actor, command)) return false;
-            if (manager.GetConnections(ZoneID).Any(c => c.SourceZoneID == ZoneID && c.SourceX == X && c.SourceY == Y)
-                || manager.GetConnections(OtherZoneID).Any(c => c.SourceZoneID == OtherZoneID && c.SourceX == OtherX && c.SourceY == OtherY)) return false;
             if (!SecondExplorationActions.Spend(tx, actor, "KnotflaxCord", 2, command) || !Current(actor, zone)
-                || !Endpoint(zone, out var managerAfter, out var zoneAfter, out var ownerAfter, out var partAfter)
+                || !CanRig(zone, out var managerAfter, out var zoneAfter, out var ownerAfter, out var partAfter)
                 || managerAfter != manager || zoneAfter != otherZone || ownerAfter != other || partAfter != counterpart) return false;
             var forward = new ZoneConnection { SourceZoneID = ZoneID, SourceX = X, SourceY = Y, TargetZoneID = OtherZoneID, TargetX = OtherX, TargetY = OtherY, Type = Down ? "StairsDown" : "StairsUp" };
             var reverse = new ZoneConnection { SourceZoneID = OtherZoneID, SourceX = OtherX, SourceY = OtherY, TargetZoneID = ZoneID, TargetX = X, TargetY = Y, Type = Down ? "StairsUp" : "StairsDown" };

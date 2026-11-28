@@ -76,6 +76,9 @@ namespace CavesOfOoo.Core
             if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<RecoverableLampPart>() is RecoverableLampPart lamp
                 && lamp.ParentEntity == owner)
                 return lamp.ResolveDescription(Text);
+            if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<RopeShortcutPart>()?.ParentEntity == owner
+                && Text?.EndsWith(RopeShortcutPart.LegacyGuidance, System.StringComparison.Ordinal) == true)
+                return Text.Substring(0, Text.Length - RopeShortcutPart.LegacyGuidance.Length);
             if (owner?.BlueprintName == "SoddenDressingBench" && owner.GetPart<ExaminablePart>() == this
                 && owner.GetPart<SoddenPreparationPart>()?.ParentEntity == owner)
                 return Text?.Replace(SoddenPreparationPart.LegacyBraceSentence, "");

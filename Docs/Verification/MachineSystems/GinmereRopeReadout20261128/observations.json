@@ -1,0 +1,1750 @@
+{
+  "baseline": "8c73a1a26a047435e0b5de307fef98565554fddd",
+  "seed": 704860946,
+  "sourceSave": {
+    "checkpoint": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch88c7/GinmereCheckpoint",
+    "sha": {
+      "Quick.sav.gz": "88cdb7fa86d58e9da2517f392b4481bbe2f488c98d9df9dcc2e7bcfe345d2a73",
+      "Quick.json": "355ce5bed728bb3347cd30746fc5d82fa62fdf0a92ad445743db9cf4db6f8193"
+    }
+  },
+  "menus": {
+    "upper-unvisited-reader-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "examine",
+      "rows": [
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "lower-no-cord-reader-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "rig rope (2 cord; both ends visited)",
+      "rows": [
+        {
+          "Display": "rig rope (2 cord; both ends visited)",
+          "key": "\u0000",
+          "Command": "RigRopeShortcut",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "unvisited-popup": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "rig rope (two knotflax cord)",
+      "rows": [
+        {
+          "Display": "rig rope (two knotflax cord)",
+          "key": "\u0000",
+          "Command": "Disabled:rope-landing-unavailable",
+          "IsDisabled": true,
+          "DisabledCode": "rope-landing-unavailable",
+          "DisabledReason": "Use the ordinary stairs to reach and check the other landing first.",
+          "Hint": "Use the ordinary stairs to reach and check the other landing first."
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "short-popup": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "rig rope (two knotflax cord)",
+      "rows": [
+        {
+          "Display": "rig rope (two knotflax cord)",
+          "key": "\u0000",
+          "Command": "Disabled:rope-cord-missing",
+          "IsDisabled": true,
+          "DisabledCode": "rope-cord-missing",
+          "DisabledReason": "You need two usable knotflax cord.",
+          "Hint": "You need two usable knotflax cord."
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "new-rig-menu": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "rig rope (two knotflax cord)",
+      "rows": [
+        {
+          "Display": "rig rope (two knotflax cord)",
+          "key": "\u0000",
+          "Command": "RigRopeShortcut",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": "Tie both landings in one action. Two cords are spent."
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    }
+  },
+  "readers": {
+    "lower-no-cord-reader": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "Two knotflax cord will rig a reciprocal rope to the",
+        "corresponding lower terrace. First visit both",
+        "existing levels and confirm their landings; then",
+        "use the ordinary stair controls at the installed",
+        "line.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ]
+    },
+    "old-upper-installed": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "Two knotflax cord will rig a reciprocal rope to the",
+        "corresponding lower terrace. First visit both",
+        "existing levels and confirm their landings; then",
+        "use the ordinary stair controls at the installed",
+        "line.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ]
+    },
+    "old-lower-installed": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "Two knotflax cord will rig a reciprocal rope to the",
+        "corresponding lower terrace. First visit both",
+        "existing levels and confirm their landings; then",
+        "use the ordinary stair controls at the installed",
+        "line.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ]
+    },
+    "unvisited-examined": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "Use the ordinary stairs to reach and check the",
+        "other landing first. Rigging needs two knotflax",
+        "cord.",
+        "",
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "Use the ordinary stairs to reach and check the other landing first. Rigging needs two knotflax cord."
+        },
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them."
+        }
+      ]
+    },
+    "short-examined": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "Both landings are clear. You need two usable",
+        "knotflax cord.",
+        "",
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "Both landings are clear. You need two usable knotflax cord."
+        },
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them."
+        }
+      ]
+    },
+    "new-ready-reader": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "Both landings are clear. Rig the rope from here",
+        "with two knotflax cord.",
+        "",
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "Both landings are clear. Rig the rope from here with two knotflax cord."
+        },
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them."
+        }
+      ]
+    },
+    "new-upper-installed": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "The rope is rigged. Use the ordinary stair controls",
+        "to descend when the other landing is clear.",
+        "",
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "The rope is rigged. Use the ordinary stair controls to descend when the other landing is clear."
+        },
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them."
+        }
+      ]
+    },
+    "new-lower-installed": {
+      "open": true,
+      "title": "rope anchor",
+      "blueprint": "RopeAnchor",
+      "lines": [
+        "CURRENT STATE",
+        "",
+        "The rope is rigged. Use the ordinary stair controls",
+        "to climb when the other landing is clear.",
+        "",
+        "An iron pin driven into the rock, and a hand's",
+        "length of rope still knotted to it. The cut end is",
+        "old and clean: somebody took the rest with them, or",
+        "somebody took it from them.",
+        "",
+        "Type: Object"
+      ],
+      "sections": [
+        {
+          "Heading": "Current state",
+          "Text": "The rope is rigged. Use the ordinary stair controls to climb when the other landing is clear."
+        },
+        {
+          "Heading": "Description",
+          "Text": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them."
+        }
+      ]
+    }
+  },
+  "purchasedStock": {
+    "id": "morrowfast-owner:southwest-craftsperson",
+    "x": 31,
+    "y": 21,
+    "merchantX": 32,
+    "merchantY": 21,
+    "name": "Orrit Coilstitch",
+    "stock": [
+      {
+        "ID": "22711",
+        "n": 3
+      }
+    ]
+  },
+  "storeQuote": {
+    "open": true,
+    "confirm": true,
+    "panel": 0,
+    "cursor": 9,
+    "rows": [
+      {
+        "i": 0,
+        "id": "22690",
+        "bp": "QuarryToothTrinket",
+        "units": 1,
+        "price": 58
+      },
+      {
+        "i": 1,
+        "id": "22691",
+        "bp": "TonguelessBellTrinket",
+        "units": 1,
+        "price": 58
+      },
+      {
+        "i": 2,
+        "id": "22692",
+        "bp": "Torch",
+        "units": 4,
+        "price": 35
+      },
+      {
+        "i": 3,
+        "id": "22696",
+        "bp": "Dagger",
+        "units": 2,
+        "price": 58
+      },
+      {
+        "i": 4,
+        "id": "22698",
+        "bp": "Spear",
+        "units": 1,
+        "price": 52
+      },
+      {
+        "i": 5,
+        "id": "22699",
+        "bp": "LeatherArmor",
+        "units": 1,
+        "price": 86
+      },
+      {
+        "i": 6,
+        "id": "22700",
+        "bp": "Tepuibone",
+        "units": 3,
+        "price": 258
+      },
+      {
+        "i": 7,
+        "id": "22703",
+        "bp": "FireClay",
+        "units": 4,
+        "price": 12
+      },
+      {
+        "i": 8,
+        "id": "22707",
+        "bp": "SalvagedTimber",
+        "units": 4,
+        "price": 35
+      },
+      {
+        "i": 9,
+        "id": "22711",
+        "bp": "KnotflaxCord",
+        "units": 3,
+        "price": 26
+      },
+      {
+        "i": 10,
+        "id": "22714",
+        "bp": "CoarseGrit",
+        "units": 2,
+        "price": 12
+      },
+      {
+        "i": 11,
+        "id": "22716",
+        "bp": "CampFishTrap",
+        "units": 1,
+        "price": 35
+      },
+      {
+        "i": 12,
+        "id": "22717",
+        "bp": "HandSieve",
+        "units": 1,
+        "price": 35
+      }
+    ],
+    "status": null
+  },
+  "state": {
+    "upper-retained-start": {
+      "zone": "Overworld.2.7.1",
+      "x": 52,
+      "y": 12,
+      "tick": 1770,
+      "hp": 40,
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1"
+      ],
+      "cord": [],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": false,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "You see a rubble.\n\nBroken stone lies in a loose scatter, with sharp fresh faces among the weathered pieces.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "There is nothing here to pick up.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "lower-first-visit": {
+      "zone": "Overworld.2.7.2",
+      "x": 40,
+      "y": 12,
+      "tick": 2220,
+      "hp": 40,
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2"
+      ],
+      "cord": [],
+      "stairs": [
+        {
+          "ID": "20556",
+          "BlueprintName": "StairsDown",
+          "x": 39,
+          "y": 11
+        },
+        {
+          "ID": "20555",
+          "BlueprintName": "StairsUp",
+          "x": 40,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "20676",
+          "Installed": false,
+          "Down": false,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.1",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "Game saved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "bloomed warden turns toward the open ground.",
+        "bloomed hound turns toward the open ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "cord-ordinary-payment": {
+      "zone": "Overworld.3.6.0",
+      "x": 31,
+      "y": 21,
+      "tick": 2860,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 3
+        }
+      ],
+      "stairs": [],
+      "anchors": [],
+      "log": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You buy knotflax cord (x3) for 26 drams."
+      ]
+    },
+    "old-upper-adjacent": {
+      "zone": "Overworld.2.7.1",
+      "x": 24,
+      "y": 17,
+      "tick": 3310,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 3
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": false,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "old-rigged": {
+      "zone": "Overworld.2.7.1",
+      "x": 24,
+      "y": 17,
+      "tick": 3320,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "16824",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": true,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "Interact — choose a direction, or . for underfoot.",
+        "The rope now joins both landings. Use the ordinary stair travel controls at either anchor.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "old-rope-descended": {
+      "zone": "Overworld.2.7.2",
+      "x": 23,
+      "y": 18,
+      "tick": 3340,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "20556",
+          "BlueprintName": "StairsDown",
+          "x": 39,
+          "y": 11
+        },
+        {
+          "ID": "20555",
+          "BlueprintName": "StairsUp",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "20676",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "20676",
+          "Installed": true,
+          "Down": false,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.1",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Game saved.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "Interact — choose a direction, or . for underfoot.",
+        "The rope now joins both landings. Use the ordinary stair travel controls at either anchor.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "old-rope-climbed": {
+      "zone": "Overworld.2.7.1",
+      "x": 23,
+      "y": 18,
+      "tick": 3370,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "16824",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": true,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "sima-steward is covered in mire-soaked.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "unvisited-before-reading": {
+      "zone": "Overworld.2.7.1",
+      "x": 24,
+      "y": 17,
+      "tick": 2050,
+      "hp": 40,
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1"
+      ],
+      "cord": [],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": false,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "You see a rubble.\n\nBroken stone lies in a loose scatter, with sharp fresh faces among the weathered pieces.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "There is nothing here to pick up.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+      ]
+    },
+    "unvisited-after-refusal": {
+      "zone": "Overworld.2.7.1",
+      "x": 24,
+      "y": 17,
+      "tick": 2050,
+      "hp": 40,
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1"
+      ],
+      "cord": [],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": false,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nUse the ordinary stairs to reach and check the other landing first. Rigging needs two knotflax cord.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "Interact — choose a direction, or . for underfoot.",
+        "Use the ordinary stairs to reach and check the other landing first."
+      ]
+    },
+    "short-before-reading": {
+      "zone": "Overworld.2.7.2",
+      "x": 24,
+      "y": 17,
+      "tick": 2380,
+      "hp": 40,
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2"
+      ],
+      "cord": [],
+      "stairs": [
+        {
+          "ID": "20556",
+          "BlueprintName": "StairsDown",
+          "x": 39,
+          "y": 11
+        },
+        {
+          "ID": "20555",
+          "BlueprintName": "StairsUp",
+          "x": 40,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "20676",
+          "Installed": false,
+          "Down": false,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.1",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "gin frog is covered in mire-soaked.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "The mire-soaked coating wears off gin frog.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "gin frog is covered in mire-soaked.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+      ]
+    },
+    "short-after-refusal": {
+      "zone": "Overworld.2.7.2",
+      "x": 24,
+      "y": 17,
+      "tick": 2380,
+      "hp": 40,
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2"
+      ],
+      "cord": [],
+      "stairs": [
+        {
+          "ID": "20556",
+          "BlueprintName": "StairsDown",
+          "x": 39,
+          "y": 11
+        },
+        {
+          "ID": "20555",
+          "BlueprintName": "StairsUp",
+          "x": 40,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "20676",
+          "Installed": false,
+          "Down": false,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.1",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "gin frog is covered in mire-soaked.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nBoth landings are clear. Rig the rope from here with two knotflax cord.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You need two usable knotflax cord."
+      ]
+    },
+    "new-upper-adjacent": {
+      "zone": "Overworld.2.7.1",
+      "x": 24,
+      "y": 17,
+      "tick": 3310,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 3
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": false,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "new-rigged": {
+      "zone": "Overworld.2.7.1",
+      "x": 24,
+      "y": 17,
+      "tick": 3320,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "16824",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": true,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Autosaved.",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Sari... sari... The sound is clear in the air.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nBoth landings are clear. Rig the rope from here with two knotflax cord.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "Interact — choose a direction, or . for underfoot.",
+        "The rope now joins both landings. Use the ordinary stair travel controls at either anchor.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    "new-rope-descended": {
+      "zone": "Overworld.2.7.2",
+      "x": 23,
+      "y": 18,
+      "tick": 3340,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "20556",
+          "BlueprintName": "StairsDown",
+          "x": 39,
+          "y": 11
+        },
+        {
+          "ID": "20676",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "20555",
+          "BlueprintName": "StairsUp",
+          "x": 40,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "20676",
+          "Installed": true,
+          "Down": false,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.1",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nBoth landings are clear. Rig the rope from here with two knotflax cord.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "Interact — choose a direction, or . for underfoot.",
+        "The rope now joins both landings. Use the ordinary stair travel controls at either anchor.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to descend when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "new-rope-climbed": {
+      "zone": "Overworld.2.7.1",
+      "x": 23,
+      "y": 18,
+      "tick": 3370,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "16824",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": true,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to descend when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to climb when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "fresh-round-trip": {
+      "zone": "Overworld.2.7.1",
+      "x": 23,
+      "y": 18,
+      "tick": 3370,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "16824",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": true,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Interact — choose a direction, or . for underfoot.",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to descend when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to climb when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "fresh-descended": {
+      "zone": "Overworld.2.7.2",
+      "x": 23,
+      "y": 18,
+      "tick": 3380,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "20556",
+          "BlueprintName": "StairsDown",
+          "x": 39,
+          "y": 11
+        },
+        {
+          "ID": "20676",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "20555",
+          "BlueprintName": "StairsUp",
+          "x": 40,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "20676",
+          "Installed": true,
+          "Down": false,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.1",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to descend when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to climb when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    },
+    "fresh-climbed": {
+      "zone": "Overworld.2.7.1",
+      "x": 23,
+      "y": 18,
+      "tick": 3390,
+      "hp": 40,
+      "drams": 24,
+      "cached": [
+        "Overworld.11.10.0",
+        "WorldMap",
+        "Overworld.3.5.0",
+        "Overworld.2.4.0",
+        "Overworld.2.4.1",
+        "Overworld.2.7.0",
+        "Overworld.2.7.1",
+        "Overworld.2.7.2",
+        "Overworld.3.6.0"
+      ],
+      "cord": [
+        {
+          "ID": "22711",
+          "count": 1
+        }
+      ],
+      "stairs": [
+        {
+          "ID": "16824",
+          "BlueprintName": "RopeAnchor",
+          "x": 23,
+          "y": 18
+        },
+        {
+          "ID": "17690",
+          "BlueprintName": "StairsDown",
+          "x": 40,
+          "y": 12
+        },
+        {
+          "ID": "17689",
+          "BlueprintName": "StairsUp",
+          "x": 52,
+          "y": 12
+        }
+      ],
+      "anchors": [
+        {
+          "ID": "16824",
+          "Installed": true,
+          "Down": true,
+          "X": 23,
+          "Y": 18,
+          "OtherZoneID": "Overworld.2.7.2",
+          "visible": true,
+          "flavor": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.\nTwo knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line."
+        }
+      ],
+      "log": [
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Interact — choose a direction, or . for underfoot.",
+        "You see a rope anchor.\nThe rope is rigged. Use the ordinary stair controls to climb when the other landing is clear.\n\nAn iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Autosaved."
+      ]
+    }
+  },
+  "freshStairComparison": "Exact owner, blueprint and coordinates matched by ID. The native index can enumerate the inserted rope in a different order after load.",
+  "saveFiles": [
+    {
+      "label": "UpperUnvisited",
+      "archive": "/Users/steven/coo-verification/runs/GinmereRopeReadout20261128/archives/UpperUnvisited/9ba2c3d179134acc9f898addede41f94",
+      "files": {
+        "Quick.json": "3f01767b0d2936bf2d1bca91f1717fdd43daa064c77021659886d5cd01a940e4",
+        "Quick.sav.gz": "a2e40e83c3f5c1c0aaf679a21109b7027b2ae035f9617789f2789362b5dbfdaa",
+        "Quick.json.bak": "355ce5bed728bb3347cd30746fc5d82fa62fdf0a92ad445743db9cf4db6f8193",
+        "Quick.sav.gz.bak": "88cdb7fa86d58e9da2517f392b4481bbe2f488c98d9df9dcc2e7bcfe345d2a73"
+      }
+    },
+    {
+      "label": "LowerBothEndsNoCord",
+      "archive": "/Users/steven/coo-verification/runs/GinmereRopeReadout20261128/archives/LowerBothEndsNoCord/9ba2c3d179134acc9f898addede41f94",
+      "files": {
+        "Quick.json": "cbcb3f7e5bec0220697c48557e7c05941479b009541a7a47d00eb66151c5ba40",
+        "Quick.sav.gz": "239f9db663733811babd495675715296663d7e5d3479fd47cd6e8bee433a4ee4",
+        "Quick.json.bak": "cd4d902af22011932269f79c1ef2c0a27de664a508fc6e2b4cacbe1561351c4f",
+        "Quick.sav.gz.bak": "24b70f1147f1bd01d08093fb2e785a02fa1353307718ac16aa4ce95c003a279b"
+      }
+    },
+    {
+      "label": "PurchasedCord",
+      "archive": "/Users/steven/coo-verification/runs/GinmereRopeReadout20261128/archives/PurchasedCord/9ba2c3d179134acc9f898addede41f94",
+      "files": {
+        "Quick.json": "d3a5211761e7aa053831ad337948db5b0a3cfcc7fed14f0fc81a5ef9353f37e1",
+        "Quick.sav.gz": "c79b63439074e2c8874af69cc5d698b98a589594d3925cb4757f0cec2c18fef3",
+        "Quick.json.bak": "1d888443773d1bdeec6154185b5a8d9cdcce615baef27e907f2c129ac75752b5",
+        "Quick.sav.gz.bak": "8630bf75e8b1e1f00f2ae68269737c4605d6b753e2d58d72570edad71ce9d2ac"
+      }
+    },
+    {
+      "label": "ReadyWithCord",
+      "archive": "/Users/steven/coo-verification/runs/GinmereRopeReadout20261128/archives/ReadyWithCord/9ba2c3d179134acc9f898addede41f94",
+      "files": {
+        "Quick.json": "19ddc294c7dfc7e0ec96c2814e5af93fc9d740579eb9c0b758f5e2a9b2ee4152",
+        "Quick.sav.gz": "5a4308548e5ce12d48f68c55441ed0f80e113abc2fd171b895d1708f583dd6d7",
+        "Quick.json.bak": "3a4d02860d2d6885bb4e0549c36462e0525be9fc364abeda87532c46d7c5d01f",
+        "Quick.sav.gz.bak": "18d4ee2053e024bff207cc203615fefa3f4d081b0479302ef9d5abcc56763bdb"
+      }
+    },
+    {
+      "label": "OldRopeRoundTrip",
+      "archive": "/Users/steven/coo-verification/runs/GinmereRopeReadout20261128/archives/OldRopeRoundTrip/9ba2c3d179134acc9f898addede41f94",
+      "files": {
+        "Quick.json": "3627c4deaa828602fef80c48721e0ffd3ccce3f5e073d2f4392026a0e0377cc4",
+        "Quick.sav.gz": "cf95f9fc2abe1c2dc912790187089a066ed031d34f4ecfeedda148f0d0248a43",
+        "Quick.json.bak": "b55d06aa1f8de4cfb6199c1527613f343dd18a8d3977f4810964fb9322f91f24",
+        "Quick.sav.gz.bak": "90e31e2eb24e931a8706a4c5afdae01e5bfe80f891a54295abe946c6503e7727"
+      }
+    },
+    {
+      "label": "NewRopeRoundTrip",
+      "archive": "/Users/steven/coo-verification/runs/GinmereRopeReadout20261128/archives/NewRopeRoundTrip/9ba2c3d179134acc9f898addede41f94",
+      "files": {
+        "Quick.json": "219d2830cd8133a0a2b8dd6d04654cbe5d76154462504fd6ee2849d05ccabf22",
+        "Quick.sav.gz": "e011091e9d77cee91ed8b4184642f942f3139c4464d63701c5ba1be312f00d63",
+        "Quick.json.bak": "18079ee7a3593bd73ac80d8912737056545977103b2d30da6730fd09f05e3697",
+        "Quick.sav.gz.bak": "fd5d7b4f96f72adf75372902e76a2667ca648ea729397079e7819b8de5579eac"
+      }
+    }
+  ],
+  "tests": {
+    "red.xml": {
+      "total": 6,
+      "passed": 0,
+      "failed": 6,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "green.xml": {
+      "total": 182,
+      "passed": 179,
+      "failed": 2,
+      "skipped": 1,
+      "inconclusive": 0
+    },
+    "final-green.xml": {
+      "total": 182,
+      "passed": 181,
+      "failed": 0,
+      "skipped": 1,
+      "inconclusive": 0
+    }
+  },
+  "preservation": {
+    "files": {
+      "quick": {
+        "count": 880,
+        "changed": []
+      },
+      "tracked": {
+        "count": 87,
+        "changed": []
+      }
+    },
+    "preferences": {
+      "restoredOwnedRunKeys": [
+        "PT_Run",
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.session_id"
+      ],
+      "initialPreferenceFileBytesMatch": {
+        "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+        "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+      }
+    },
+    "editor": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    }
+  },
+  "scope": "Unity Editor on Apple M5. Standard GameBootstrap Continue and ordinary movement, trade and world action inputs. No material supplied or position, weather, time or actor state edited."
+}

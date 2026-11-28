@@ -101,7 +101,7 @@ namespace CavesOfOoo.Core
             Entity anchor = p.Before.FirstOrDefault(e => e.BlueprintName == "RopeAnchor" && p.Zone.GetEntityPosition(e) == (x,y));
             if (anchor == null) { anchor = p.Make("RopeAnchor", "rope-landing"); p.At(anchor, x, y, bareInterior: true); }
             p.AddPart(anchor, new RopeShortcutPart { ZoneID = p.Zone.ZoneID, X = x, Y = y, OtherZoneID = down ? "Overworld.2.7.2" : "Overworld.2.7.1", OtherX = x, OtherY = y, Down = down });
-            p.Explain(anchor, "Two knotflax cord will rig a reciprocal rope to the corresponding lower terrace. First visit both existing levels and confirm their landings; then use the ordinary stair controls at the installed line.");
+            if (!anchor.HasPart<ExaminablePart>()) p.AddPart(anchor, new ExaminablePart());
         }
         static void Works(PacketPlan p)
         {

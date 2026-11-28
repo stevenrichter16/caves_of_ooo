@@ -1,3 +1,13 @@
+**Ginmere’s rope anchors explain their cost and direction — November 28, 2026, America/Chicago.**
+The ordinary Ginmere stairs and a Morrowfast purchase yielded three cord
+from Orrit for 26 drams. Rigging spent two in one turn, leaving one cord,
+24 drams and 40 HP. Both rope landings are at (23,18). The ordinary
+stairs and the exact installed pair persisted. Examine gives the correct
+direction at both ends, and the unavailable rows explain the missing
+landing or cord without spending a turn. Native checks passed 181
+cases with one explicit generator skipped.
+[Ordinary purchase, rope routes and readers](Verification/MachineSystems/GinmereRopeReadout20261128/README.md)
+
 **Frost vents explain ice underfoot and worn proofing — November 28, 2026, America/Chicago.**
 Ordinary seed 65 stairs, crate and pack craft yielded two cold-proofing
 measures from one lichen. One coat on the original cloak gave +35 cold
