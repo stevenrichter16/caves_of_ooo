@@ -15,3 +15,7 @@ All 241 focused cases passed after the change, including a narrow viewport,
 viewport movement while open and the transformed reply hitbox.
 
 [Centered rack](centered-rack.png) · [Measured viewport and card](observations.json)
+
+The current universal Mac package displayed the centered card in an ordinary
+Tally Continue on Apple M5. [Mac screenshot](centered-mac-rack.png) ·
+[Package and preservation receipt](mac-package.json)

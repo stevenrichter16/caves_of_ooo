@@ -1,3 +1,11 @@
+**Current Mac app centers the conversation card — November 28, 2026, America/Chicago.**
+Runtime 84dc52508 retains the new conversation style and centers it in the
+gameplay viewport. Apple M5 ordinary Continue reached Darret’s centered
+rack. The build used 32,316 committed inputs, with zero errors and six
+universal binaries. Fourteen prior apps, normal saves and preferences
+matched their recorded files.
+[Mac screenshot and receipt](Verification/MachineSystems/DialogueViewportCenter20261128/mac-package.json)
+
 **Conversation is centered in the gameplay map — November 28, 2026, America/Chicago.**
 Darret’s continued rack card measured within one pixel of the actual
 remaining map center, horizontally and vertically, with the sidebar and
