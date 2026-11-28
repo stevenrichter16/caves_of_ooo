@@ -79,9 +79,20 @@ namespace CavesOfOoo.Core
                     "HandCutting" => PackRecipeCategory.WeaponParts,
                     _ => AnvilPointWorkReceipt.Supports(definition) ? PackRecipeCategory.WeaponParts : PackRecipeCategory.Materials
                 };
-            string effects = string.Join("\n", definition.OutputBlueprints.Select(bp => PackRecipeEffects.FromBlueprint(factory, bp))
-                .Where(text => !string.IsNullOrEmpty(text)));
-            return action.AsRecipe(category, OutputNames(factory, definition), Outputs(factory, definition), effects);
+            var products = definition.OutputBlueprints;
+            if (products.Count == 1)
+            {
+                var preview = PackRecipeEffects.FromBlueprint(factory, products[0]);
+                return action.AsRecipe(category, OutputNames(factory, definition), Outputs(factory, definition),
+                    preview.Details, highlights: preview.Highlights);
+            }
+            var previews = products.Select(bp => (Name: Label(factory, bp), Preview: PackRecipeEffects.FromBlueprint(factory, bp))).ToArray();
+            var details = previews.Where(product => !string.IsNullOrEmpty(product.Preview.Details))
+                .Select(product => product.Name + "\n" + product.Preview.Details);
+            var highlights = previews.Where(product => product.Preview.Highlights != null)
+                .SelectMany(product => product.Preview.Highlights.Select(highlight => product.Name + ": " + highlight)).ToArray();
+            return action.AsRecipe(category, OutputNames(factory, definition), Outputs(factory, definition),
+                string.Join("\n\n", details), highlights: highlights);
         }
 
         // This describes material potential. The action checks the actual tool,

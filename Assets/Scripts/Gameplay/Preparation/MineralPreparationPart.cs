@@ -86,6 +86,14 @@ namespace CavesOfOoo.Core
             if (rows == null || modification == null || !PreparationActions.Carried(actor, mineral)) return;
 
             string enhancement = "Enhancement" + mineral.BlueprintName;
+            var preview = modification.EnhancementPreview();
+            string effect = preview?.GetEffectDescription();
+            string[] highlights = preview switch
+            {
+                EnhancementTagBonusBase damage => new[] { "+" + damage.BonusDamage + " damage vs " + damage.TargetMaterialTag },
+                EnhancementGlowQuartz light => new[] { "+" + light.RadiusBonus + " light radius (equipped)" },
+                _ => null
+            };
             foreach (var target in actor.GetPart<InventoryPart>().Objects)
             {
                 if (!Compatible(actor, target, modification, enhancement)) continue;
@@ -96,7 +104,7 @@ namespace CavesOfOoo.Core
                     ? rows.AddAction(name, label, "InfuseMineral|" + PreparationActions.Escaped(target), '\0', 17)
                     : rows.AddDisabled(name, label, "forge-required", "Stand beside a working forge.", '\0', 17);
                 row.AsRecipe(PackRecipeCategory.EquipmentWork, InventoryPart.GetUnitDisplayName(target), "",
-                    effects: modification.DescribeEnhancement());
+                    effects: effect, highlights: highlights);
             }
         }
 

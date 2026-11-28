@@ -106,8 +106,11 @@ namespace CavesOfOoo.Core
                 {
                     var quote=Create(actor,weapon,replacement,zone);if(quote==null)continue;
                     string token=Guid.NewGuid().ToString("N");menu.Quotes[token]=quote;
+                    var preview = PackRecipeEffects.FromBlueprint(quote.Factory, replacement.BlueprintName);
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("field-binding","replace binding with "+InventoryPart.GetUnitDisplayName(replacement)+"; old binding destroyed (1 action, cutter kept)",Prefix+token,'\0',19,false,ActionTime.OneAction)
-                        .AsRecipe(PackRecipeCategory.EquipmentWork, InventoryPart.GetUnitDisplayName(weapon), "");
+                        .AsRecipe(PackRecipeCategory.EquipmentWork, InventoryPart.GetUnitDisplayName(weapon), "",
+                            effects: string.IsNullOrEmpty(preview.Details) ? null : "Replacement binding\n" + preview.Details,
+                            highlights: preview.Highlights?.Select(highlight => highlight + " (binding)").ToArray());
                 }
                 return true;
             }

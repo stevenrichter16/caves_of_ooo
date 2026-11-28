@@ -546,8 +546,11 @@ namespace CavesOfOoo.Rendering
                 {
                     bool selected = i == _craftCursorIndex;
                     const int statusWidth = 11;
-                    DrawText(1, rowY, (selected ? "> " : "  ") + Truncate(row.Text, listWidth - statusWidth - 3),
+                    var (name, highlights) = PackRecipeListLabels(row, listWidth - statusWidth - 3);
+                    DrawText(1, rowY, (selected ? "> " : "  ") + name,
                         selected ? QudColorParser.White : QudColorParser.Gray);
+                    if (highlights.Length > 0)
+                        DrawText(3 + name.Length + PackRecipeLabelGap, rowY, highlights, QudColorParser.BrightYellow);
                     bool available = row.RecipeAction is { IsDisabled: false };
                     DrawText(1 + listWidth - statusWidth, rowY, available ? "Available" : "Unavailable",
                         available ? QudColorParser.BrightGreen : QudColorParser.Gray);

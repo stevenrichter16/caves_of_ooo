@@ -66,6 +66,32 @@ namespace CavesOfOoo.Rendering
         private CraftRow SelectedPackRecipe => _craftCursorIndex >= 0 && _craftCursorIndex < _craftRows.Count
             ? _craftRows[_craftCursorIndex] : default;
 
+        private const int PackRecipeLabelGap = 2;
+
+        private static (string Name, string Highlights) PackRecipeListLabels(CraftRow row, int width,
+            int nameGlyph = 1, int highlightGlyph = 1)
+        {
+            int columns = width / nameGlyph;
+            var highlights = row.RecipeAction?.RecipeHighlights;
+            if (highlights == null || highlights.Count == 0)
+                return (Truncate(row.Text, columns), "");
+
+            // Keep individual effects intact. A very long name still leaves room for a short effect,
+            // while the details pane always holds the full name and mechanics.
+            int reserved = Math.Min(columns / 2,
+                (highlights[0].Length * highlightGlyph + nameGlyph - 1) / nameGlyph + PackRecipeLabelGap);
+            string name = Truncate(row.Text, columns - reserved);
+            int remaining = (width - (name.Length + PackRecipeLabelGap) * nameGlyph) / highlightGlyph;
+            string summary = "";
+            foreach (string highlight in highlights)
+            {
+                string separator = summary.Length == 0 ? "" : " / ";
+                if (summary.Length + separator.Length + highlight.Length > remaining) continue;
+                summary += separator + highlight;
+            }
+            return summary.Length == 0 ? (Truncate(row.Text, columns), "") : (name, summary);
+        }
+
         private bool PackRecipeReady => SelectedPackRecipe.RecipeAction is { IsDisabled: false };
 
         private string PackRecipeCommitLabel => SelectedPackRecipe.RecipeAction?.RecipeCategory == PackRecipeCategory.Food

@@ -6,9 +6,11 @@ Open **Pack & Equipment → Crafting → Recipes** to find the recipes offered
 by the things you carry. The list groups work by weapon parts, medical
 supplies, tools and gear, food, alchemy supplies, field supplies, materials,
 reclamation and equipment work. Categories appear as the pack offers work.
-The list shows each crafted item's name and whether it is available.
-The selected item name, known effects, inputs and requirements appear
-in the right pane. On
+The list shows each crafted item's name, short stat and effect labels where
+applicable, and whether the recipe is available. These labels describe the
+output, so an unavailable meal can still show its healing and temporary bonus.
+The selected item's full effects, inputs and requirements appear in the right
+pane. On
 keyboard, **P** opens Recipes from Crafting and **Enter** makes the selected
 recipe. The controller's **X** command menu offers Recipes, with **A** to
 choose and make. Mouse users can select the tab and choose **Make**.
@@ -18,8 +20,11 @@ tool requirements, losses, quantities and failure reason. The tab uses the
 same command on the same carried entity and shares the inventory menu's
 turn receipt. Cooking says **Cook stack** and previews the whole yield.
 Food bonuses use the same prepared-meal rule as eating. Weapon
-components describe their contribution to the finished weapon. These
-previews read the product definition without creating items.
+components describe their contribution to the finished weapon. Conditions
+such as damaging hits, applying a proofing coat or triggering a trap travel
+with their effects. When several products have effects, the preview names
+the product that provides each one. Blueprint previews read the product
+definition without creating items.
 If a selected input becomes unavailable while the tab is open, the refused
 row stays selected. Forge and Brew keep their ingredient picks and use
 their own previews. Tinkering holds learned builds and modifications.

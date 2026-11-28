@@ -62,12 +62,15 @@ namespace CavesOfOoo.Core
                     candidates.Add((item, vessel));
                 }
                 string label = "press into a flask (" + liquid.DisplayName + ", " + CoatsText(units) + ")";
+                string[] highlights = { "+" + ProofingRules.CoatAmount + " " + element.Label.ToLowerInvariant() + " resist (coat)" };
+                string effect = "Each coat grants +" + ProofingRules.CoatAmount + " " + element.Label
+                    + " resistance for " + ProofingRules.CoatTurns + " worn turns and blunts " + element.Status + ".";
                 if (candidates.Count == 0)
                 {
                     if (shortOfRoom > 0) actions.AddDisabled("PressProofing", label, "no-room", "A flask needs room for " + units + " (" + CoatsText(units) + "); the best you carry has room for " + roomLeft + ".", '\0', 15)
-                        .AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName);
+                        .AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName, effects: effect, highlights: highlights);
                     else actions.AddDisabled("PressProofing", label, "no-flask", "You need a flask that is empty or already holds " + liquid.DisplayName + ".", '\0', 15)
-                        .AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName);
+                        .AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName, effects: effect, highlights: highlights);
                     continue;
                 }
                 candidates.Sort((a, b) => b.vessel.Volume.CompareTo(a.vessel.Volume));
@@ -78,7 +81,8 @@ namespace CavesOfOoo.Core
                     actions.AddActionWithHint("PressProofing", "press into " + flask.GetDisplayName() + " (" + liquid.DisplayName + ", " + CoatsText(units) + "; " + vessel.Volume + "→" + (vessel.Volume + units) + "/" + vessel.Capacity + ")",
                         Prefix + element.Id + "|" + Uri.EscapeDataString(flask.ID),
                         "Spends one " + reagent.GetDisplayName() + ". Each coat later proofs one garment against " + element.Label + ": +" + ProofingRules.CoatAmount + " " + element.Label + " resistance for " + ProofingRules.CoatTurns + " worn turns, and it blunts " + element.Status + ". No fire or workbench needed." + seenNote,
-                        '\0', 15, time: ActionTime.OneAction).AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName);
+                        '\0', 15, time: ActionTime.OneAction).AsRecipe(PackRecipeCategory.AlchemySupplies, liquid.DisplayName,
+                            highlights: highlights);
                 }
             }
         }

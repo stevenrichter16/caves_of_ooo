@@ -1,3 +1,13 @@
+**Recipe rows show their stats and effects — November 28, 2026, America/Chicago.**
+The Recipes subtab shows short signed bonuses, healing, duration and
+conditional effects beside the output name. Availability has its own
+column, and the right pane gives the full effect and requirements.
+Two earned seed 65 Continue copies showed the rough haft, toasted
+emberwheat, serrated edge and bandage in the live ledger. The missing
+fire kept the same selection, inventory and turn after confirmation.
+All 679 focused cases passed. The standalone preview update is pending.
+[In-game recipe previews](Verification/MachineSystems/PackRecipeHighlights20261128/README.md)
+
 **Firm footing reopens a paid porter route — November 28, 2026, America/Chicago.**
 The exact Gleaners' porter halted at a supplied loose oil film in one
 branch. In the matched branch, one coarse grit let him take that step

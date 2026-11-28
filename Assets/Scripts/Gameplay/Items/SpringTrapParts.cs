@@ -81,7 +81,9 @@ namespace CavesOfOoo.Core
                 {
                     var item = FindCarried(pack, actor, c.blueprint); if (item == null) continue; any = true;
                     actions.AddActionWithHint("LoadSpringTrap", "load the spring trap with " + c.word, LoadPrefix + c.blueprint, "Spends one " + c.word + ". The trap is then " + c.kind + "-loaded and can be laid.", '\0', 18, false, ActionTime.OneAction)
-                        .AsRecipe(PackRecipeCategory.ToolsAndGear, "spring trap (" + c.word + ")", "");
+                        .AsRecipe(PackRecipeCategory.ToolsAndGear, "spring trap (" + c.word + ")", "",
+                            effects: "Adds " + c.kind + " to its tile when someone steps on the laid trap. The ground or liquid there determines the reaction.",
+                            highlights: new[] { "Adds " + c.kind + " on trigger" });
                 }
                 if (!any) actions.AddDisabled("LoadSpringTrap", "load the spring trap", "nothing-to-load", "It takes fire moss, frost lichen or spark root. You carry none.", 'l', 18)
                     .AsRecipe(PackRecipeCategory.ToolsAndGear, "spring trap", "");

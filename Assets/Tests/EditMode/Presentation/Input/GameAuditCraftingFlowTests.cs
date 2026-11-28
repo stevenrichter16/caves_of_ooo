@@ -151,10 +151,13 @@ namespace CavesOfOoo.Tests
             Assert.That(haft.Text, Is.EqualTo("rough field haft").IgnoreCase);
             Assert.That(binding.Text, Is.EqualTo("plain knotflax binding").IgnoreCase);
             Assert.That(bandage.Text, Is.EqualTo("knotflax bandage").IgnoreCase);
+            CollectionAssert.AreEqual(new[] { "Strength cap 1" }, haft.Action.RecipeHighlights);
+            Assert.IsNull(binding.Action.RecipeHighlights);
+            CollectionAssert.AreEqual(new[] { "Stops bleeding" }, bandage.Action.RecipeHighlights);
             Set("_craftCursorIndex", haft.Index);
             Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Match(@"(?i)(?:str|strength) cap\s*:?\s*1"));
             Set("_craftCursorIndex", bandage.Index);
-            Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Contain("stops bleeding").IgnoreCase);
+            Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Contain("Stops bleeding when applied. Restores no health."));
             Assert.False(UI.ConsumePendingEverydayTurn());
         }
 
@@ -222,7 +225,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void AChoirIronInfusionNamesTheItemAndPreviewsItsResistance()
+        public void AChoirIronInfusionNamesTheItemAndPreviewsItsBonusDamage()
         {
             var mineral = Carry("ChoirIron");
             var dagger = Item("Dagger");
@@ -231,11 +234,38 @@ namespace CavesOfOoo.Tests
 
             var recipe = FindRecipe(mineral, "InfuseMineral|" + Uri.EscapeDataString(dagger.ID));
             Assert.That(recipe.Text, Is.EqualTo("dagger").IgnoreCase);
+            CollectionAssert.AreEqual(new[] { "+6 damage vs Fungal" }, recipe.Action.RecipeHighlights);
             Set("_craftCursorIndex", recipe.Index);
             var details = (string)Call("SelectedPackRecipeDetails");
             Assert.That(details, Does.Contain("+6").And.Contain("Fungal"));
             Assert.Null(dagger.GetPart("EnhancementChoirIron"));
             Assert.False(UI.ConsumePendingEverydayTurn());
+        }
+
+        [Test]
+        public void CookingWithoutAFireStillPreviewsTheFoodsEffects()
+        {
+            var starapple = Carry("Starapple");
+            var oldMaterialFactory = MaterialReactionResolver.Factory;
+            try
+            {
+                MaterialReactionResolver.Factory = Factory;
+                OpenRecipes();
+
+                var recipe = FindRecipe(starapple, InventoryAction.DisabledCommandPrefix + "no_fire");
+                Assert.True(recipe.Action.IsDisabled);
+                Assert.That(recipe.Text, Is.EqualTo("roasted starapple").IgnoreCase);
+                CollectionAssert.AreEqual(new[] { "Heals 3d4 HP", "+1 DV (100 turns)" }, recipe.Action.RecipeHighlights);
+                Set("_craftCursorIndex", recipe.Index);
+                Assert.That((string)Call("SelectedPackRecipeDetails"), Does.Contain("Heals 3d4 HP when eaten.")
+                    .And.Contain("+1 DV for 100 of your turns.").And.Contain("No usable fire within reach."));
+
+                Call("ExecuteCraft", false);
+                Assert.AreEqual(2, starapple.GetPart<StackerPart>().StackCount);
+                Assert.True(UI.IsOpen);
+                Assert.False(UI.ConsumePendingEverydayTurn());
+            }
+            finally { MaterialReactionResolver.Factory = oldMaterialFactory; }
         }
 
         void OpenRecipes()
@@ -245,7 +275,7 @@ namespace CavesOfOoo.Tests
             Call("SwitchCraftingMode", Enum.Parse(mode, "Recipes"));
         }
 
-        (int Index, string Category, string Text) FindRecipe(Entity source, string command)
+        (int Index, string Category, string Text, InventoryAction Action) FindRecipe(Entity source, string command)
         {
             var original = InventorySystem.GetActions(Player, source).Single(action => action.Command == command);
             var rows = (IList)Get("_craftRows");
@@ -260,10 +290,10 @@ namespace CavesOfOoo.Tests
                 Assert.True((bool)Field(row, "IsSelectable"));
                 Assert.AreEqual(original.Display, action.Display);
                 Assert.AreEqual(original.Time, action.Time);
-                return (index, category, (string)Field(row, "Text"));
+                return (index, category, (string)Field(row, "Text"), action);
             }
             Assert.Fail($"Missing pack recipe for {source.BlueprintName}: {command}");
-            return (-1, null, null);
+            return (-1, null, null, null);
         }
     }
 }

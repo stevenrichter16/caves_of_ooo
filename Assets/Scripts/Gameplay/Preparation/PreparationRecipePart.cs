@@ -40,8 +40,9 @@ namespace CavesOfOoo.Core
                 row = actions.AddAction(recipe.Id, recipe.Text, "PrepareRecipe|" + recipe.Id, '\0', 18);
             string instructions = "Uses " + recipe.Units + " " + InventoryPart.GetUnitDisplayName(ParentEntity) + "."
                 + (recipe.Still && !row.IsDisabled ? " Work beside an alchemy still." : "");
+            var preview = PackRecipeEffects.FromBlueprint(SeedPart.Factory, recipe.Output);
             row.AsRecipe(recipe.Category, MaterialProcessActions.Label(SeedPart.Factory, recipe.Output),
-                effects: PackRecipeEffects.FromBlueprint(SeedPart.Factory, recipe.Output), instructions: instructions);
+                effects: preview.Details, instructions: instructions, highlights: preview.Highlights);
         }
     }
     internal static class PreparationRecipeService

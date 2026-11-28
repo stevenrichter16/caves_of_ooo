@@ -129,8 +129,16 @@ namespace CavesOfOoo.Rendering
                 if (recipes)
                 {
                     bool readyNow = row.RecipeAction != null && !row.RecipeAction.IsDisabled;
-                    LSecondaryText(new Rect(44, bounds.y + 6, 526, 20), row.Text,
-                        selected || readyNow ? LInk : LMuted, 18);
+                    const int nameGlyph = 9, highlightGlyph = 8, textWidth = 526;
+                    var (name, highlights) = PackRecipeListLabels(row, textWidth, nameGlyph, highlightGlyph);
+                    LLabel(new Rect(44, bounds.y + 6, textWidth, 20), name,
+                        selected || readyNow ? LInk : LMuted, nameGlyph * 2);
+                    if (highlights.Length > 0)
+                    {
+                        float offset = (name.Length + PackRecipeLabelGap) * nameGlyph;
+                        LLabel(new Rect(44 + offset, bounds.y + 7, textWidth - offset, 20), highlights,
+                            selected || readyNow ? LGold : LMuted, highlightGlyph * 2);
+                    }
                     if (row.IsSelectable)
                         LSecondaryText(new Rect(578, bounds.y + 6, 114, 20),
                             readyNow ? "Available" : "Unavailable", readyNow ? LGreen : LMuted, 18);
