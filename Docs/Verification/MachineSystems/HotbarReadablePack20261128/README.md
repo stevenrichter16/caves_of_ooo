@@ -7,8 +7,7 @@ pixels at normal scale. The icon boxes grew to 28 pixels. Name and
 weight sorting work within each category. The list still selects and
 opens the same item, including counted groups and nested storage.
 
-The game hotbar uses ten cards and a shared shape for drawing and
-pointer targeting. Each skill shows its binding, icon and current
+The game hotbar uses ten cards aligned with the existing slot targets. Each skill shows its binding, icon and current
 state. The summary and help line has no activation hit. Full-screen
 inventory hides the strip.
 
@@ -20,3 +19,7 @@ reviews covered item custody, pointer details and the hotbar help
 strip. All 640 focused Edit Mode tests passed.
 
 [Inventory](02-inventory-categories.png) · [Hotbar ready](01-hotbar-ready.png) · [En Garde cooldown](03-hotbar-in-use.png) · [Play and test observations](observations.json)
+
+The universal Mac package reproduced ordinary Continue, the categorized
+Inventory and En Garde's visible cooldown on Apple M5.
+[Mac inventory](mac-inventory-categories.png) · [Mac cooldown](mac-hotbar-use.png) · [Mac package receipt](mac-package.json)

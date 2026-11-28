@@ -1,3 +1,10 @@
+**Current Mac app has the polished skill hotbar and larger Inventory — November 28, 2026, America/Chicago.**
+Runtime ab8045104 passed ordinary Continue, categorized Inventory and En Garde
+activation on Apple M5. The Mac package used 32,318 committed inputs
+with zero build errors and six universal binaries. Fifteen prior apps,
+the normal saves and both preference files matched their recorded hashes.
+[Mac screenshots and receipt](Verification/MachineSystems/HotbarReadablePack20261128/mac-package.json)
+
 **Gameplay hotbar and larger categorized Inventory — November 28, 2026, America/Chicago.**
 The large Inventory tab uses 36-pixel item rows and folio sections.
 Category headings persist through name and weight sorts. Skill cards
