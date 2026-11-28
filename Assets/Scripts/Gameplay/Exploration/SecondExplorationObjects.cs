@@ -155,23 +155,68 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "CollectorBarter";
         protected override string[] Verbs => new[] { "BarterCollector" };
-        bool Deal(Entity actor, Entity food)
+        Entity CarriedFind(Zone zone)
         {
-            var role = ParentEntity.GetPart<SpreadCollectorPart>(); var item = role?.CurrentCarriedItem;
-            return role?.Phase == SpreadCollectorPhase.Carrying && item != null && role.Configured && role.ZoneID == ParentEntity.SpatialZone?.ZoneID
-                && !SecondExplorationActions.Special(item) && SecondExplorationActions.Carried(actor, food) && food.HasPart<FoodPart>()
-                && !SecondExplorationActions.Special(food) && !food.HasPart<RentalPart>();
+            var role = ParentEntity.GetPart<SpreadCollectorPart>();
+            if (zone == null || role is not { Configured: true, Phase: SpreadCollectorPhase.Carrying }
+                || role.ParentEntity != ParentEntity || role.ZoneID != zone.ZoneID)
+                return null;
+
+            var item = role.CurrentCarriedItem;
+            return SecondExplorationActions.Special(item) ? null : item;
         }
-        protected override void Choices(Entity actor, Zone zone, InventoryActionList a)
-        { foreach (var food in actor.GetPart<InventoryPart>().Objects.Where(e => Deal(actor, e))) Offer(a, "exchange " + food.GetDisplayName() + " for " + ParentEntity.GetPart<SpreadCollectorPart>().CurrentCarriedItem.GetDisplayName(), SecondExplorationActions.Choice("BarterCollector", food)); }
+
+        static bool CanPay(Entity actor, Entity food)
+            => SecondExplorationActions.Carried(actor, food) && food.HasPart<FoodPart>()
+                && !SecondExplorationActions.Special(food) && !food.HasPart<RentalPart>()
+                && actor.GetPart<InventoryPart>()?.CanConsumeOne(food) == true;
+
+        protected override void Choices(Entity actor, Zone zone, InventoryActionList actions)
+        {
+            var item = CarriedFind(zone);
+            if (item == null || actions == null || zone.GetEntityCell(ParentEntity)?.IsVisible != true
+                || ParentEntity.GetPart<RenderPart>() is not { Visible: true } render || render.ParentEntity != ParentEntity)
+                return;
+
+            bool offered = false;
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory != null)
+                foreach (var food in inventory.Objects)
+                {
+                    if (!CanPay(actor, food)) continue;
+                    actions.AddActionWithHint("BarterCollector",
+                        $"exchange one {InventoryPart.GetUnitDisplayName(food)} for {item.GetDisplayName()}",
+                        SecondExplorationActions.Choice("BarterCollector", food), "The exchange takes one action.", priority: 24);
+                    offered = true;
+                }
+
+            if (!offered)
+            {
+                const string reason = "Carry one food item you can spare.";
+                actions.AddDisabled("BarterCollector", $"offer food for {item.GetDisplayName()}",
+                    "collector-needs-food", reason, priority: 24).Hint = reason;
+            }
+        }
+
         protected override bool Apply(Entity actor, Zone zone, string command, InventoryTransaction tx)
         {
-            var food = SecondExplorationActions.Selected(actor, command); if (!Deal(actor, food)) return false;
-            var role = ParentEntity.GetPart<SpreadCollectorPart>(); var item = role.CurrentCarriedItem;
-            if (!SecondExplorationActions.Consume(tx, actor, food, 1, command) || !Current(actor, zone)
-                || role.CurrentCarriedItem != item || role.Phase != SpreadCollectorPhase.Carrying
-                || !SecondExplorationActions.Transfer(tx, actor, ParentEntity, actor, item, command)) return false;
-            tx.Do(() => role.Phase = SpreadCollectorPhase.Stopped, () => role.Phase = SpreadCollectorPhase.Carrying); return true;
+            var food = SecondExplorationActions.Selected(actor, command);
+            var item = CarriedFind(zone);
+            if (item == null || !CanPay(actor, food)) return false;
+
+            var collector = ParentEntity;
+            var role = collector.GetPart<SpreadCollectorPart>();
+            if (!SecondExplorationActions.Consume(tx, actor, food, 1, command)
+                || ParentEntity != collector || !Current(actor, zone)
+                || collector.GetPart<SpreadCollectorPart>() != role || CarriedFind(zone) != item
+                || !SecondExplorationActions.Transfer(tx, actor, collector, actor, item, command)) return false;
+            tx.Do(() => role.Phase = SpreadCollectorPhase.Stopped, () =>
+            {
+                if (collector.GetPart<SpreadCollectorPart>() == role && role.ParentEntity == collector
+                    && role.Phase == SpreadCollectorPhase.Stopped)
+                    role.Phase = SpreadCollectorPhase.Carrying;
+            });
+            return true;
         }
     }
     public sealed class LoanShelfPart : SecondExplorationServicePart

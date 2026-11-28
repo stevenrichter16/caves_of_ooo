@@ -251,6 +251,157 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(withoutFood ? SpreadCollectorPhase.Carrying : SpreadCollectorPhase.Stopped, role.Phase);
             Assert.False(home.GetPart<ContainerPart>().Contents.Contains(salvage));
         }
+        [Test]
+        public void CollectorMenuShowsMissingFoodThenQuotesAndSpendsOneUnit()
+        {
+            var (bird, role, find) = PlaceCarryingCollector();
+            var groundFood = Place("CandyCarrot", 10, 11);
+            var disabled = CollectorBarterRows(bird).Single();
+
+            Assert.That(disabled.IsDisabled, Is.True);
+            Assert.That(disabled.Command, Does.StartWith(InventoryAction.DisabledCommandPrefix));
+            var contact = Zone.GetEntityCell(bird);
+            contact.IsVisible = false;
+            Assert.That(CollectorBarterRows(bird), Is.Empty);
+            contact.IsVisible = true;
+            Assert.False(Act(bird, "BarterCollector|" + Id(groundFood)));
+            Assert.That(Zone.GetEntityPosition(groundFood), Is.EqualTo((10, 11)));
+            Assert.That(Units(groundFood), Is.EqualTo(1));
+            Assert.That(role.CurrentCarriedItem, Is.SameAs(find));
+
+            var food = Carry("CandyCarrot");
+            food.GetPart<StackerPart>().StackCount = 2;
+            contact.IsVisible = false;
+            Assert.That(CollectorBarterRows(bird), Is.Empty);
+            contact.IsVisible = true;
+            var row = CollectorBarterRows(bird).Single();
+            Assert.That(row.IsDisabled, Is.False);
+            Assert.That(row.Command, Is.EqualTo("BarterCollector|" + Id(food)));
+            string quote = row.Display + " " + row.Hint;
+            Assert.That(quote, Does.Contain(food.GetPart<RenderPart>().DisplayName).IgnoreCase);
+            Assert.That(quote, Does.Contain(find.GetDisplayName()).IgnoreCase);
+            Assert.That(quote, Does.Match(@"(?i)\b(1|one)\b"));
+
+            Assert.True(ChooseRow(row, 11, 10));
+            Assert.That(Units(food), Is.EqualTo(1));
+            Assert.That(food.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(Pack.Objects, Does.Contain(find));
+            Assert.That(find.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.That(role.Phase, Is.EqualTo(SpreadCollectorPhase.Stopped));
+            Assert.That(role.CurrentCarriedItem, Is.Null);
+            Assert.That(role.Home.GetPart<ContainerPart>().Contents, Is.Empty);
+            Assert.That(CollectorBarterRows(bird), Is.Empty);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CollectorMenuAndStaleOfferCloseWhenTheExactFindLeavesTheBird(bool nativeDeposit)
+        {
+            var (bird, role, find) = PlaceCarryingCollector();
+            var food = Carry("CandyCarrot");
+            food.GetPart<StackerPart>().StackCount = 2;
+            var offer = CollectorBarterRows(bird).Single();
+            Assert.That(offer.IsDisabled, Is.False);
+
+            var birdPack = bird.GetPart<InventoryPart>();
+            Entity substitute = null;
+            if (nativeDeposit)
+            {
+                AIBoredEvent.Check(bird);
+                Assert.That(role.Phase, Is.EqualTo(SpreadCollectorPhase.Deposited));
+            }
+            else
+            {
+                Assert.True(birdPack.RemoveObject(find));
+                Assert.True(Zone.AddEntity(find, 13, 10));
+                substitute = Factory.CreateEntity(find.BlueprintName);
+                Assert.True(birdPack.AddObject(substitute));
+                Assert.That(role.Phase, Is.EqualTo(SpreadCollectorPhase.Carrying));
+            }
+
+            Assert.That(role.CurrentCarriedItem, Is.Null);
+            Assert.That(CollectorBarterRows(bird), Is.Empty);
+            Assert.False(ChooseRow(offer, 11, 10));
+            Assert.That(Units(food), Is.EqualTo(2));
+            Assert.That(food.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            Assert.False(Pack.Objects.Contains(find));
+            if (nativeDeposit)
+            {
+                Assert.That(role.Home.GetPart<ContainerPart>().Contents.Single(), Is.SameAs(find));
+                Assert.That(find.GetPart<PhysicsPart>().InInventory, Is.SameAs(role.Home));
+            }
+            else
+            {
+                Assert.That(Zone.GetEntityPosition(find), Is.EqualTo((13, 10)));
+                Assert.That(birdPack.Objects.Single(), Is.SameAs(substitute));
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CollectorBarterKeepsTheFoodStackAndFindWhenTheActionRollsBack(bool detachBarter)
+        {
+            var (bird, role, find) = PlaceCarryingCollector();
+            var food = Carry("CandyCarrot");
+            food.GetPart<StackerPart>().StackCount = 2;
+            var offer = CollectorBarterRows(bird).Single();
+            Assert.That(offer.IsDisabled, Is.False);
+            if (detachBarter)
+            {
+                var barter = bird.GetPart<CollectorBarterPart>();
+                Actor.AddPart(new SecondExplorationAfterPart
+                {
+                    Callback = () =>
+                    {
+                        bird.RemovePart(barter);
+                        throw new InvalidOperationException("collector changed during the action");
+                    }
+                });
+            }
+            else
+                FailAfter();
+
+            Assert.False(ChooseRow(offer, 11, 10));
+            Assert.That(role.Phase, Is.EqualTo(SpreadCollectorPhase.Carrying));
+            Assert.That(role.CurrentCarriedItem, Is.SameAs(find));
+            Assert.That(find.GetPart<PhysicsPart>().InInventory, Is.SameAs(bird));
+            Assert.False(Pack.Objects.Contains(find));
+            Assert.That(Pack.Objects, Does.Contain(food));
+            Assert.That(Units(food), Is.EqualTo(2));
+            Assert.That(food.GetPart<PhysicsPart>().InInventory, Is.SameAs(Actor));
+            if (detachBarter)
+            {
+                Assert.False(bird.HasPart<CollectorBarterPart>());
+                Assert.That(CollectorBarterRows(bird), Is.Empty);
+            }
+            else
+                Assert.That(CollectorBarterRows(bird).Single().Command, Is.EqualTo(offer.Command));
+        }
+
+        private (Entity Bird, SpreadCollectorPart Role, Entity Find) PlaceCarryingCollector()
+        {
+            var bird = Provider("CollectorBarterPart", "Tatterjay");
+            bird.GetPart<BrainPart>().CurrentZone = Zone;
+            var contact = Zone.GetEntityCell(bird);
+            contact.IsVisible = contact.Explored = true;
+            var role = bird.GetPart<SpreadCollectorPart>();
+            var home = Place("Chest", 11, 11);
+            var find = Place("Hatchet", 12, 10);
+            Assert.True(role.Configure(Zone, home, find));
+
+            AIBoredEvent.Check(bird);
+            Assert.That(role.Phase, Is.EqualTo(SpreadCollectorPhase.Carrying));
+            Assert.That(role.CurrentCarriedItem, Is.SameAs(find));
+            return (bird, role, find);
+        }
+
+        private InventoryAction[] CollectorBarterRows(Entity bird)
+        {
+            var (x, y) = Zone.GetEntityPosition(bird);
+            return CellMenu(x, y).Where(row => row.Name.StartsWith("BarterCollector", StringComparison.Ordinal)
+                || row.Command.StartsWith("BarterCollector|", StringComparison.Ordinal)).ToArray();
+        }
+
         [TestCase(false)] [TestCase(true)]
         public void FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk(bool broke)
         {

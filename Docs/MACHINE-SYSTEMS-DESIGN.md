@@ -1,3 +1,11 @@
+**A visible Tatterjay quotes the one portion it would trade for.**
+A willing bird’s carried find gives an optional exchange. The offer
+names one portion of the selected food, or explains what is missing.
+The original find and the spare portion both survived Continue in
+the ordinary playtest. Once the bird no longer carries the find, the
+offer closes.
+[Tatterjay pickup, price and exchange](Verification/MachineSystems/CollectorBarterCost20261128/README.md)
+
 **A placed hauling container shows the weight of the load.**
 The Peat Works locker’s exact haul weight is readable before choosing
 between taking an individual supply and moving the loaded container.

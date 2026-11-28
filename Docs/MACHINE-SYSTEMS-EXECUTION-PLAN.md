@@ -1,3 +1,12 @@
+**A Tatterjay’s exchange quotes one portion — November 28, 2026, America/Chicago.**
+Earned seed 64 ordinary travel reached the original Tatterjay at a
+newly generated site. Its pickup made exact cudgel 9897 available.
+At tick 880 the visible offer named one portion. Paying transferred
+the exact cudgel at 890, with one of the original two dried meat left.
+The no-food branch explained the requirement without spending a turn
+or moving either item. Fresh Continue kept the outcome.
+[Native transport, quote and saved custody](Verification/MachineSystems/CollectorBarterCost20261128/README.md)
+
 **Current Mac package — November 28, 2026, America/Chicago.**
 Runtime 872128afc includes the frost vent, Ginmere rope and Peat Works
 locker changes. Apple M5 ordinary Continue and Examine displayed the

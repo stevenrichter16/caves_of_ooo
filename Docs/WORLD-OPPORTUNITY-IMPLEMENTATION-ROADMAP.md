@@ -49,6 +49,13 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #36 and #39, the ordinary Tatterjay interaction quotes one food
+unit even when it comes from a stack. The nearby no-food branch
+showed the requirement and left the exact dropped food and carried
+find alone. The paid branch linked a naturally carried cudgel to
+ordinary inventory and preserved it through Continue.
+[Visible collector and finite barter](Verification/MachineSystems/CollectorBarterCost20261128/README.md)
+
 For #18–#19, the Peat Works locker’s placed reader shows the current
 haul weight by the same rule that checks the load. Taking the exact
 acidworker apron lowered it from 76 lb to 64 lb. An ordinary pull moved
