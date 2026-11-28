@@ -1,3 +1,11 @@
+**Peat Works local clay route — November 28, 2026.**
+For #2, #4, #8, #36 and #40, a recovered camp still and carried torch used
+the finite north-shed pools to fire two ordinary repair measures. The
+exact field rig restored the same workshop service as the earlier
+prepared-clay purchase. One measure was refused at no cost. Fresh
+Continue kept the repair and the physical remainder.
+[Local method and evidence](Verification/MachineSystems/PeatWorksPortableClay20261128/README.md)
+
 # Replayable work through compatible physical outcomes
 
 November24,2026 (America/Chicago). **Implementation roadmap, not acceptance or

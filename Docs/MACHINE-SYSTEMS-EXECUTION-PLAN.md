@@ -1,3 +1,10 @@
+**The portable still makes the clay for the Peat Works rig — November 28, 2026, America/Chicago.**
+The original shed kit and a lit torch turned sixteen mire from the two
+finite north-shed pools into two clay. One did not repair the rig. Two
+restored the exact workshop and kept both flasks and the finite reserve
+through fresh Continue at 3240. All 175 focused checks passed.
+[Ordinary clay, workshop and Continue](Verification/MachineSystems/PeatWorksPortableClay20261128/README.md)
+
 **Current Mac app includes the categorized Tools tab — November 28, 2026, America/Chicago.**
 Runtime c44ef523d verified the compact categorized Tools rows,
 full flask states and the ordinary tray Gather path on Apple M5.

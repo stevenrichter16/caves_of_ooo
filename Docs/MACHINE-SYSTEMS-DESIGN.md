@@ -1,3 +1,9 @@
+**Peat Works has a local alternative to bringing repair clay.**
+The recovered portable still accepted the finite north-shed mire next
+to an ordinary lit torch. Two bakes made the original rig usable
+through the same lining-clay repair used by the Wayside purchase.
+[Local supply and fresh Continue](Verification/MachineSystems/PeatWorksPortableClay20261128/README.md)
+
 **Inventory Tools exposes the mechanics on current equipment.**
 The Tools tab shows location, current operations and authored guidance
 from the underlying Parts. Material-owned quotes record the exact tool
