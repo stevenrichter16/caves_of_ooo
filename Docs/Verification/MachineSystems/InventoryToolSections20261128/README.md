@@ -26,3 +26,8 @@ Twenty-one section cases failed against the previous UI as expected.
 The final focused run passed all 410 cases, including grouped counts,
 native keyboard navigation, exact actions and a mixed-section density
 fixture. [Play and test counts](observations.json)
+
+The universal Mac package was played on Apple M5. The fresh captures
+show eleven entries, full flask-state labels, the later sections and the
+same tray ready to gather.
+[First sections](mac-tool-sections-overview.png) · [Later sections](mac-tool-sections-later.png) · [Placed tray](mac-tool-sections-ready-tray.png) · [Mac package receipt](mac-package.json)

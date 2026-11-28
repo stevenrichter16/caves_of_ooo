@@ -1,3 +1,11 @@
+**Current Mac app includes the categorized Tools tab — November 28, 2026, America/Chicago.**
+Runtime c44ef523d verified the compact categorized Tools rows,
+full flask states and the ordinary tray Gather path on Apple M5.
+The universal app used 32,326 committed inputs with
+zero errors. Seventeen prior apps and the recorded normal game state
+matched their pinned files.
+[Mac screenshots and receipt](Verification/MachineSystems/InventoryToolSections20261128/mac-package.json)
+
 **Inventory Tools is grouped by what each tool does — November 28, 2026, America/Chicago.**
 Tools keeps matching copies in the same counted row and gives each tool a
 stable use heading. The same tray checkpoint shows 11 entries at once,
