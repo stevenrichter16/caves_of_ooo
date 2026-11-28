@@ -447,9 +447,14 @@ ore joined Orrit’s stock and survived Continue.
 
 The same player spent both rewarded clay and the exact bought spike on
 the existing forge recipe for a reusable hearth nozzle. Continue kept
-the exact nozzle. This extends the reward-to-tool part of #40. Ordinary
-acquisition of an own hearth, ignition and natural field heat remain open.
+the exact nozzle. This extends the reward-to-tool part of #40.
 [Earned nozzle checkpoint](Verification/MachineSystems/EarnedHearthNozzle20261126/README.md)
+
+In a separate ordinary run for #19 and #40, two paid Cinderhold jobs
+funded Sill's 102-dram portable hearth. Bought timber and found fire-moss
+made it hot enough to toast one public Gleaners’ grain. Free or already
+lit field sources remain alternatives to buying and carrying a hearth.
+[Bought hearth field trial](Verification/MachineSystems/SillHearthField20261127/README.md)
 
 For #36 and #40, an otherwise usable forge recipe now explains when the
 selected component is set aside for crafting. In Cinderhold, the normal

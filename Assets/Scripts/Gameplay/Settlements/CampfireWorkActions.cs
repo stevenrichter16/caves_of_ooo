@@ -76,7 +76,7 @@ namespace CavesOfOoo.Core
             else if (!burning)
                 // A fire that is out says what stops it from being lit instead of offering nothing.
                 actions.AddDisabled("RelightCookingFire", "relight coals from flame", fuel.FuelMass <= 0 ? "no_fuel" : "no_flame",
-                    fuel.FuelMass <= 0 ? "The coals have no fuel. Feed them first." : "You have no flame to light it from: a burning fire beside you, a lit torch in hand, or a flint striker." + (FlintStrikerPart.WornHint(actor) ?? ""), '\0', 18);
+                    fuel.FuelMass <= 0 ? "Add fuel first. Use salvaged timber or dry knotflax chaff." : "You have no flame to light it from: a burning fire beside you, a lit torch in hand, or a flint striker." + (FlintStrikerPart.WornHint(actor) ?? ""), '\0', 18);
             if (feedN >= 1 && flame != null && !burning)
                 actions.AddActionWithHint("StokeCookingFire", "stoke: feed " + feedN + " timber and light it" + strike, StokeCommand,
                     "Adds all the timber the fire will take, then lights it from a flame you carry." + (strike.Length > 0 ? " Spends 1 strike." : ""), 't', 18, time: ActionTime.OneAction);

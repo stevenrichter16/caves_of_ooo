@@ -252,9 +252,15 @@ namespace CavesOfOoo.Tests
 
         // ── lighting a fire says what stops it ──
 
-        [Test] public void AnOutFireWithNoFuelShowsADisabledRelightRowThatSaysFeedIt()
+        [Test] public void AnOutFireWithNoFuelExplainsWhatCanFeedItBeforeRelighting()
         {
-            var h = Hearth(0, 25); Striker(); var row = Actions(h).Single(a => a.Name == "RelightCookingFire"); Assert.True(row.IsDisabled); StringAssert.Contains("fuel", row.DisabledReason.ToLowerInvariant());
+            var hearth = Hearth(0, 25);
+            Striker();
+            var row = Actions(hearth).Single(action => action.Name == "RelightCookingFire");
+            Assert.True(row.IsDisabled);
+            Assert.AreEqual("no_fuel", row.DisabledCode);
+            Assert.That(row.DisabledReason.ToLowerInvariant(),
+                Does.Contain("fuel").And.Contain("salvaged timber").And.Contain("dry knotflax chaff"));
         }
 
         [Test] public void AnOutFireWithFuelButNoFlameShowsADisabledRelightRowThatSaysWhatToBring()

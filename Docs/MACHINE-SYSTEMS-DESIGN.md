@@ -1,3 +1,10 @@
+**Empty coals name two ways to add fuel.**
+The relight action names salvaged timber and dry knotflax chaff when
+the fire is empty. Adding fuel and lighting it remain separate choices.
+The fire reader keeps its two lines for fuel and remaining flame.
+The field trial follows one hearth from a Sill shop into the wild.
+[Bought hearth field trial](Verification/MachineSystems/SillHearthField20261127/README.md)
+
 **A burning object can serve as a cooking fire.**
 A nearby, visible combustible world object can cook from its own
 active flames while it has enough heat. The pack and world menus name

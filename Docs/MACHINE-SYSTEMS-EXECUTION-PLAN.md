@@ -1,3 +1,14 @@
+**Two regional jobs buy a camp hearth — November 27, 2026, America/Chicago.**
+An ordinary Sill quote showed one 14 lb hearth for 102 drams. A separate
+17-dram branch could not pay. The traveler gathered fire clay and choir
+iron, then used two Cinderhold jobs to raise 31 drams to 105. Two rations
+and one dram bought timber. Wild fire-moss supplied the flame. The same
+shop hearth toasted one public Gleaners’ grain in the wild. Picking it
+up extinguished it and kept 9.5 fuel. Fresh Continue kept the exact kit,
+meal, purse and damage from a snake during pickup. A cold relight now
+names two compatible fuels. All 215 focused cases passed.
+[Bought hearth field trial](Verification/MachineSystems/SillHearthField20261127/README.md)
+
 **A burning overturned cart can cook a meal — November 27, 2026, America/Chicago.**
 Visible hot burning scenery offers the same named cooking choice in the
 pack and the nearby world menu. The transaction checks the selected
