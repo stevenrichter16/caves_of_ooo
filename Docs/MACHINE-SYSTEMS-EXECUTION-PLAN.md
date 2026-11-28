@@ -1,3 +1,13 @@
+**Current Mac package — November 28, 2026, America/Chicago.**
+Runtime e03f1ece8 includes the Brine Camp air warning, Groundwire
+transfer, Stump slick cleanup and Tatterjay exchange. An ordinary
+Continue on Apple M5 showed the gas and mire on separate lines at
+the saved Brine Camp approach with 40 HP. The build used 32,310
+committed inputs, zero errors and four warnings. Six binaries carry
+both architectures. Twelve earlier apps, both normal save roots and
+both preferences matched their recorded hashes.
+[Current Mac build and actual Interact](Verification/MachineSystems/FilterHoodGasContact20261128/mac-package.json)
+
 **Brine Camp shows poisonous air separately from mire — November 28, 2026, America/Chicago.**
 The recovered Sill torch lit exact mire 11384. The player at tick
 3000 inspected the first visible density-60 plume. Interact gives

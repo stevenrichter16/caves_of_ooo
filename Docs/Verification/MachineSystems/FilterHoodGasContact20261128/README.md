@@ -51,3 +51,15 @@ saved effects. Independent source and recorded gameplay review.
 
 The contact comparison is native Flat Editor play on Apple M5.
 No broader creature survey or performance benchmark was run.
+
+## Current Mac package
+
+Runtime e03f1ece8 includes the recent Tatterjay, prismreed,
+Groundwire and poisonous-air updates. An ordinary Apple M5 Continue
+and Interact showed both warning lines from the exact approach save.
+The private check took no turn and kept its four save files. The
+package contains six universal binaries and the twelve earlier
+apps matched their recorded bytes. Packaged gameplay here covers
+the warning at the approach. The matched contact remains Editor
+evidence. Hardware play was on Apple M5.
+[Mac warning screenshot](mac-plume-warning.png) · [Build and preservation receipt](mac-package.json)
