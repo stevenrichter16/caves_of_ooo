@@ -1,3 +1,12 @@
+**Gripfrond wraps and Ironshod Boots name their brace actions.**
+Worn wraps use Brace against wall on a nearby solid wall or stone
+outcrop. Worn boots use Plant feet in the pack on firm footing.
+Both use the shared one-displacement stance. In Stump, the exact
+wall stance survived Continue and ended when the player moved.
+At the DitchMate, the boot stance consumed itself holding the
+traveler’s place through an actual Slam. The attack still stunned.
+[Ordinary handhold and same-start shove comparison](Verification/MachineSystems/GripfrondFieldBrace20261128/README.md)
+
 **Visible poisonous gas has an air warning.**
 The Interact menu separates the gas and filter advice from the
 ground’s other conditions. The common readout follows the same

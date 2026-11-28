@@ -49,6 +49,14 @@ Receiving and shipment demand still need that suitability boundary.
 
 ## Work queue and evidence
 
+For #36–#40, a worn Gripfrond Wrap names the wall action that
+accepts a real solid outcrop. Ironshod Boots name their pack action
+and stable footing. The Stump wrap and Ditch boots use the same
+physical stance under their respective conditions. An ordinary
+Slam compared displacement with and without the boot stance from
+the same saved start. The action still allows stun.
+[Field bracing with different equipment](Verification/MachineSystems/GripfrondFieldBrace20261128/README.md)
+
 For #36–#40, the poisonous plume cues a practical carried option
 while the underlying mire remains readable. A normal route joined
 an earned Peat Works hood, Sill’s recovered torch and a Brine Camp

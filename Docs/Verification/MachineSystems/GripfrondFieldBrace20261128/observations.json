@@ -1,0 +1,2546 @@
+{
+  "scope": "Ordinary GameBootstrap in Flat Editor on Apple M5. Existing procedural actors selected actions without forcing.",
+  "observations": {
+    "source-pin": {
+      "checkpoint": "/Users/steven/coo-verification/runs/StumpSprayLedge20261127/archives/FilledAtDryShore/c6079358f8fc4e4d83fd8416612932e3",
+      "meta": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "c6079358f8fc4e4d83fd8416612932e3",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 3,
+        "ActiveZoneID": "Overworld.4.4.0",
+        "ActiveZoneDisplayLabel": "Overworld.4.4.0",
+        "Turn": 7410,
+        "SaveTimestampUtc": "2026-11-27T21:34:48.5433290Z",
+        "HPSummary": "42/42",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.sav.gz": "dcb5903d9572bf2d11f0e9e7458e87fc6008cc08685c941f58c65cde26157d14",
+        "Quick.sav.gz.bak": "ff6657848a5175c70b967434fafb817e89e43661cdfcd0bf77ced25cc395bd66",
+        "Quick.json.bak": "6e7d00edac7728d3a8ee180f74a9aa4f6503130eb2a9092a9c361390afcc8e6e",
+        "Quick.json": "044a5d7d11ff90bebf31f1b8f26b08c4e132715e2a46e4b371555206924a04ce"
+      }
+    },
+    "ripe-plant-before": {
+      "zone": "Overworld.4.4.0",
+      "x": 66,
+      "y": 17,
+      "tick": 7670,
+      "hp": 42,
+      "ripe": 2,
+      "young": 1,
+      "wraps": [],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": null
+    },
+    "gripfrond-gathered": {
+      "zone": "Overworld.4.4.0",
+      "x": 66,
+      "y": 17,
+      "tick": 7680,
+      "hp": 42,
+      "ripe": null,
+      "young": 1,
+      "wraps": [
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        }
+      ],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": null
+    },
+    "gripfrond-worn": {
+      "zone": "Overworld.4.4.0",
+      "x": 66,
+      "y": 17,
+      "tick": 7680,
+      "hp": 42,
+      "ripe": null,
+      "young": 1,
+      "wraps": [
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": true,
+          "count": 1
+        }
+      ],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": null
+    },
+    "live-wall-brace": {
+      "zone": "Overworld.4.4.0",
+      "x": 66,
+      "y": 17,
+      "tick": 7690,
+      "hp": 42,
+      "ripe": null,
+      "young": 1,
+      "wraps": [
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": true,
+          "count": 1
+        }
+      ],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": {
+        "Duration": 3,
+        "Armed": true,
+        "OriginX": 66,
+        "OriginY": 17,
+        "handhold": "30316",
+        "equipment": "31019",
+        "current": true
+      }
+    },
+    "fresh-real-brace": {
+      "zone": "Overworld.4.4.0",
+      "x": 66,
+      "y": 17,
+      "tick": 7690,
+      "hp": 42,
+      "ripe": null,
+      "young": 1,
+      "wraps": [
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": true,
+          "count": 1
+        }
+      ],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": {
+        "Duration": 3,
+        "Armed": true,
+        "OriginX": 66,
+        "OriginY": 17,
+        "handhold": "30316",
+        "equipment": "31019",
+        "current": true
+      }
+    },
+    "blocked-west-brace": {
+      "zone": "Overworld.4.4.0",
+      "x": 66,
+      "y": 17,
+      "tick": 7700,
+      "hp": 42,
+      "ripe": null,
+      "young": 1,
+      "wraps": [
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": true,
+          "count": 1
+        }
+      ],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": {
+        "Duration": 2,
+        "Armed": true,
+        "OriginX": 66,
+        "OriginY": 17,
+        "handhold": "30316",
+        "equipment": "31019",
+        "current": true
+      }
+    },
+    "successful-move-released-brace": {
+      "zone": "Overworld.4.4.0",
+      "x": 67,
+      "y": 17,
+      "tick": 7710,
+      "hp": 42,
+      "ripe": null,
+      "young": 1,
+      "wraps": [
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": true,
+          "count": 1
+        }
+      ],
+      "wall": {
+        "id": "30316",
+        "bp": "TepuiWall",
+        "x": 66,
+        "y": 18
+      },
+      "brace": null
+    },
+    "ditch-hedge-wrap-actions": {
+      "mode": "WorldActionMenuOpen",
+      "selected": "break",
+      "rows": [
+        {
+          "Display": "break",
+          "key": "k",
+          "Command": "Break",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "examine",
+          "key": "x",
+          "Command": "Examine",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "pour out a liquid here (4) >>",
+          "key": "\u0000",
+          "Command": "ToolGroup|pour out a liquid here",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": "Choose from: liquid flask."
+        },
+        {
+          "Display": "scatter grit west (1 item) [silver sand]",
+          "key": "\u0000",
+          "Command": "ScatterGrit|Overworld.5.10.0|23|6|22|6|1",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        },
+        {
+          "Display": "<< everything here",
+          "key": "\u0000",
+          "Command": "PickCell",
+          "IsDisabled": false,
+          "DisabledCode": "",
+          "DisabledReason": "",
+          "Hint": ""
+        }
+      ]
+    },
+    "at-hedge-with-wrap": {
+      "zone": "Overworld.5.10.0",
+      "x": 23,
+      "y": 6,
+      "tick": 8150,
+      "hp": 42,
+      "ripe": null,
+      "young": null,
+      "wraps": [
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed",
+          "worn": false,
+          "count": 1
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap",
+          "worn": true,
+          "count": 1
+        }
+      ],
+      "wall": null,
+      "brace": null
+    },
+    "boots-in-original-crate": {
+      "open": true,
+      "cursor": 0,
+      "container": "30985",
+      "items": [
+        {
+          "ID": "30986",
+          "BlueprintName": "GoldCoin",
+          "name": "gold coin (x13)"
+        },
+        {
+          "ID": "30999",
+          "BlueprintName": "SerratedEdgeComponent",
+          "name": "serrated edge kit"
+        },
+        {
+          "ID": "31000",
+          "BlueprintName": "IronshodBoots",
+          "name": "ironshod boots"
+        }
+      ]
+    },
+    "stump-boots-worn": {
+      "zone": "Overworld.4.4.0",
+      "x": 44,
+      "y": 9,
+      "tick": 8340,
+      "hp": 42,
+      "speed": 95,
+      "focus": null,
+      "braced": null,
+      "stun": null,
+      "crate": {
+        "x": 45,
+        "y": 8,
+        "id": "30985",
+        "inventory": [
+          {
+            "id": "30986",
+            "bp": "GoldCoin"
+          },
+          {
+            "id": "30999",
+            "bp": "SerratedEdgeComponent"
+          }
+        ]
+      },
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-delayed-before": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8779,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": null,
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "bare-delayed-before": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8779,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": null,
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-delayed-trace-1": [
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8724,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8734,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8744,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8754,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8764,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8814,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "event",
+        "Kind": "EquipmentBraceAbsorbed",
+        "Turn": 8784,
+        "ActorId": "2699",
+        "TargetId": "31000",
+        "PayloadJson": null
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8794,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      }
+    ],
+    "bare-delayed-trace-2": [
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8724,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8734,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8744,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8754,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8764,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8814,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "event",
+        "Kind": "EquipmentBraceAbsorbed",
+        "Turn": 8784,
+        "ActorId": "2699",
+        "TargetId": "31000",
+        "PayloadJson": null
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8794,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8794,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8794,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      }
+    ],
+    "braced-delayed-pretrace": [
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8724,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8734,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8744,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8754,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8764,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8814,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      }
+    ],
+    "bare-delayed-pretrace": [
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8724,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8734,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8744,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8754,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8764,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8814,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "event",
+        "Kind": "EquipmentBraceAbsorbed",
+        "Turn": 8784,
+        "ActorId": "2699",
+        "TargetId": "31000",
+        "PayloadJson": null
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8794,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      }
+    ],
+    "braced-delayed-outcome": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8800,
+      "hp": 25,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 48
+      },
+      "braced": null,
+      "stun": 2,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "bare-delayed-outcome": {
+      "zone": "Overworld.5.10.0",
+      "x": 16,
+      "y": 11,
+      "tick": 8811,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 13,
+        "y": 11,
+        "visible": true,
+        "cd": 48
+      },
+      "braced": null,
+      "stun": 2,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-delayed-slam-log": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8800,
+      "hp": 25,
+      "effects": [
+        {
+          "type": "StunnedEffect",
+          "Duration": 2
+        }
+      ],
+      "contents": [
+        {
+          "id": "31981",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "notched ditch-cutter loses sight of you and keeps retreating.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "ditch-cutter mate [left hand: cudgel] misses you!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Game saved.",
+        "You brace for one physical shove or pull. Moving releases the stance.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You holds firm against the shove; the brace releases.",
+        "You are stunned!",
+        "ditch-cutter mate slams you (immobile)!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You are stunned and cannot act!",
+        "You are no longer stunned.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "ditch-cutter mate [left hand: cudgel] hits you in the left arm for 17 damage! (25 HP remaining)",
+        "You are stunned!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+      ]
+    },
+    "bare-delayed-slam-log": {
+      "zone": "Overworld.5.10.0",
+      "x": 16,
+      "y": 11,
+      "tick": 8811,
+      "hp": 42,
+      "effects": [
+        {
+          "type": "StunnedEffect",
+          "Duration": 2
+        }
+      ],
+      "contents": [
+        {
+          "id": "31984",
+          "bp": "Grass",
+          "name": "grass"
+        },
+        {
+          "id": "2699",
+          "bp": "Player",
+          "name": "you"
+        }
+      ],
+      "mode": "Normal",
+      "log": [
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "notched ditch-cutter takes 2 bleed damage.",
+        "notched ditch-cutter stops bleeding.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "notched ditch-cutter loses sight of you and keeps retreating.",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "ditch-cutter mate [left hand: cudgel] misses you!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "ditch-cutter mate [left hand: cudgel] misses you!",
+        "You (Rejoinder) hit ditch-cutter mate in the head for 3 damage! (12 HP remaining)",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You are stunned!",
+        "ditch-cutter mate slams you back 3 cells!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "You are stunned and cannot act!",
+        "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+      ]
+    },
+    "braced-turn-1": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8779,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": {
+        "Duration": 3,
+        "Armed": true,
+        "equipment": "31000",
+        "handhold": null,
+        "valid": true
+      },
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-turn-2": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8790,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": {
+        "Duration": 2,
+        "Armed": true,
+        "equipment": "31000",
+        "handhold": null,
+        "valid": true
+      },
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-turn-3": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8800,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": {
+        "Duration": 1,
+        "Armed": true,
+        "equipment": "31000",
+        "handhold": null,
+        "valid": true
+      },
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-turn-4": {
+      "zone": "Overworld.5.10.0",
+      "x": 16,
+      "y": 11,
+      "tick": 8822,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 13,
+        "y": 11,
+        "visible": true,
+        "cd": 48
+      },
+      "braced": null,
+      "stun": 2,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "braced-trace-4": [
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8724,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8734,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8744,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8754,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8764,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"range\",\"cooldown\":0,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8774,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8784,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "skill",
+        "Kind": "CommandRouted",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "33194",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticUsed",
+        "Turn": 8804,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"\",\"cooldown\":50,\"skillClass\":\"\"}"
+      },
+      {
+        "Category": "ai",
+        "Kind": "TacticRejected",
+        "Turn": 8814,
+        "ActorId": "33194",
+        "TargetId": "2699",
+        "PayloadJson": "{\"command\":\"CommandSlam\",\"reason\":\"cooldown\",\"cooldown\":49,\"skillClass\":\"\"}"
+      }
+    ],
+    "old-wrap-reader": {
+      "open": true,
+      "title": "gripfrond wrap",
+      "blueprint": "GripfrondWrap",
+      "lines": [
+        "Wear the wrap over your hands for one point of",
+        "armor on covered hands. Tough folded fronds bend",
+        "around the fingers without splitting along their",
+        "edges.",
+        "",
+        "USE & MECHANICS",
+        "",
+        "Armor value (AV): +1.",
+        "Dodge value (DV): +0.",
+        "AV protects a struck body location, not the whole",
+        "body.",
+        "Equip slots: Handwear.",
+        "Tactical use: Wear the wraps and brace beside a",
+        "solid handhold against one physical shove or pull.",
+        "The stance lasts three of your turns; moving ends",
+        "it. Damage, spells and teleportation are not",
+        "blocked. Choose its inventory action while in",
+        "reach; success costs one action.",
+        "",
+        "Type: Item"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "Wear the wrap over your hands for one point of armor on covered hands. Tough folded fronds bend around the fingers without splitting along their edges."
+        },
+        {
+          "Heading": "Use & mechanics",
+          "Text": "Armor value (AV): +1.\nDodge value (DV): +0.\nAV protects a struck body location, not the whole body.\nEquip slots: Handwear.\nTactical use: Wear the wraps and brace beside a solid handhold against one physical shove or pull. The stance lasts three of your turns; moving ends it. Damage, spells and teleportation are not blocked. Choose its inventory action while in reach; success costs one action."
+        }
+      ]
+    },
+    "old-boots-reader": {
+      "open": true,
+      "title": "ironshod boots",
+      "blueprint": "IronshodBoots",
+      "lines": [
+        "Iron strengthens the soles of these boots. Scuffs",
+        "mark the places that meet the ground first.",
+        "",
+        "USE & MECHANICS",
+        "",
+        "Armor value (AV): +2.",
+        "Dodge value (DV): +0.",
+        "Speed: -5 while equipped.",
+        "AV protects a struck body location, not the whole",
+        "body.",
+        "Equip slots: Feet.",
+        "Tactical use: Wear these boots and plant your feet",
+        "on stable ground against one physical shove or",
+        "pull. The stance lasts three of your turns; moving",
+        "ends it. Slippery footing is unsuitable, and their",
+        "speed penalty remains. Choose its inventory action",
+        "while in reach; success costs one action.",
+        "",
+        "Type: Armor",
+        "Weight: 4 lb each"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "Iron strengthens the soles of these boots. Scuffs mark the places that meet the ground first."
+        },
+        {
+          "Heading": "Use & mechanics",
+          "Text": "Armor value (AV): +2.\nDodge value (DV): +0.\nSpeed: -5 while equipped.\nAV protects a struck body location, not the whole body.\nEquip slots: Feet.\nTactical use: Wear these boots and plant your feet on stable ground against one physical shove or pull. The stance lasts three of your turns; moving ends it. Slippery footing is unsuitable, and their speed penalty remains. Choose its inventory action while in reach; success costs one action."
+        }
+      ]
+    },
+    "new-wrap-reader": {
+      "open": true,
+      "title": "gripfrond wrap",
+      "blueprint": "GripfrondWrap",
+      "lines": [
+        "Wear the wrap over your hands for one point of",
+        "armor on covered hands. Tough folded fronds bend",
+        "around the fingers without splitting along their",
+        "edges.",
+        "",
+        "USE & MECHANICS",
+        "",
+        "Armor value (AV): +1.",
+        "Dodge value (DV): +0.",
+        "AV protects a struck body location, not the whole",
+        "body.",
+        "Equip slots: Handwear.",
+        "Tactical use: While wearing the wraps, choose Brace",
+        "against wall beside a solid wall or stone outcrop.",
+        "One action guards against one physical shove or",
+        "pull for three of your turns. Moving ends the",
+        "stance. Damage, stun, spells and teleportation can",
+        "still affect you.",
+        "",
+        "Type: Item"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "Wear the wrap over your hands for one point of armor on covered hands. Tough folded fronds bend around the fingers without splitting along their edges."
+        },
+        {
+          "Heading": "Use & mechanics",
+          "Text": "Armor value (AV): +1.\nDodge value (DV): +0.\nAV protects a struck body location, not the whole body.\nEquip slots: Handwear.\nTactical use: While wearing the wraps, choose Brace against wall beside a solid wall or stone outcrop. One action guards against one physical shove or pull for three of your turns. Moving ends the stance. Damage, stun, spells and teleportation can still affect you."
+        }
+      ]
+    },
+    "new-boots-reader": {
+      "open": true,
+      "title": "ironshod boots",
+      "blueprint": "IronshodBoots",
+      "lines": [
+        "Iron strengthens the soles of these boots. Scuffs",
+        "mark the places that meet the ground first.",
+        "",
+        "USE & MECHANICS",
+        "",
+        "Armor value (AV): +2.",
+        "Dodge value (DV): +0.",
+        "Speed: -5 while equipped.",
+        "AV protects a struck body location, not the whole",
+        "body.",
+        "Equip slots: Feet.",
+        "Tactical use: While wearing the boots on firm",
+        "footing, choose Plant feet in the pack. One action",
+        "guards against one physical shove or pull for three",
+        "of your turns. Moving ends the stance. Standing",
+        "liquid and slippery ground prevent bracing. The",
+        "speed penalty stays in effect. A hit can still stun",
+        "you.",
+        "",
+        "Type: Armor"
+      ],
+      "sections": [
+        {
+          "Heading": "Description",
+          "Text": "Iron strengthens the soles of these boots. Scuffs mark the places that meet the ground first."
+        },
+        {
+          "Heading": "Use & mechanics",
+          "Text": "Armor value (AV): +2.\nDodge value (DV): +0.\nSpeed: -5 while equipped.\nAV protects a struck body location, not the whole body.\nEquip slots: Feet.\nTactical use: While wearing the boots on firm footing, choose Plant feet in the pack. One action guards against one physical shove or pull for three of your turns. Moving ends the stance. Standing liquid and slippery ground prevent bracing. The speed penalty stays in effect. A hit can still stun you."
+        }
+      ]
+    },
+    "new-wrap-without-turn": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8779,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": null,
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "new-boots-without-turn": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8779,
+      "hp": 42,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 0
+      },
+      "braced": null,
+      "stun": null,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "fresh-after-absorption": {
+      "zone": "Overworld.5.10.0",
+      "x": 13,
+      "y": 11,
+      "tick": 8800,
+      "hp": 25,
+      "speed": 95,
+      "focus": {
+        "id": "33194",
+        "x": 12,
+        "y": 11,
+        "visible": true,
+        "cd": 48
+      },
+      "braced": null,
+      "stun": 2,
+      "crate": null,
+      "worn": [
+        {
+          "id": "2703",
+          "bp": "Dagger"
+        },
+        {
+          "id": "2704",
+          "bp": "Buckler"
+        },
+        {
+          "id": "2705",
+          "bp": "Cloak"
+        },
+        {
+          "id": "31019",
+          "bp": "GripfrondWrap"
+        },
+        {
+          "id": "31000",
+          "bp": "IronshodBoots"
+        }
+      ],
+      "carried": [
+        {
+          "id": "2700",
+          "bp": "WateringGrimoire"
+        },
+        {
+          "id": "2701",
+          "bp": "CandyCarrotSeed"
+        },
+        {
+          "id": "2702",
+          "bp": "EmberwheatSeed"
+        },
+        {
+          "id": "2707",
+          "bp": "DriedMeat"
+        },
+        {
+          "id": "9873",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "10241",
+          "bp": "SilverSand"
+        },
+        {
+          "id": "10242",
+          "bp": "LiquidFlask"
+        },
+        {
+          "id": "5af19e50c1904d1bae18f0978a67e61a",
+          "bp": "Torch"
+        },
+        {
+          "id": "15129",
+          "bp": "PeatMalletHeadComponent"
+        },
+        {
+          "id": "15127",
+          "bp": "KnotflaxCord"
+        },
+        {
+          "id": "15138",
+          "bp": "CampStill"
+        },
+        {
+          "id": "23316",
+          "bp": "SumpsievePad"
+        },
+        {
+          "id": "23318",
+          "bp": "SumpsieveSeed"
+        },
+        {
+          "id": "28404",
+          "bp": "ChoirIron"
+        },
+        {
+          "id": "31020",
+          "bp": "GripfrondSeed"
+        }
+      ]
+    },
+    "final-environment": {
+      "playing": false,
+      "changing": false,
+      "sceneDirty": false,
+      "saveRoot": null,
+      "seed": 0,
+      "buildChoice": false,
+      "lastScenario": null,
+      "pendingScenario": false,
+      "updateMode": "ProcessEventsInDynamicUpdate",
+      "editorInput": "PointersAndKeyboardsRespectGameViewFocus",
+      "background": "ResetAndDisableNonBackgroundDevices",
+      "ownedKeyboard": false
+    },
+    "guard-after": {
+      "quick": {
+        "count": 880,
+        "changed": []
+      },
+      "tracked": {
+        "count": 87,
+        "changed": []
+      }
+    },
+    "preference-restoration": {
+      "restoredOwnedRunKeys": [
+        "PT_Run",
+        "unity.player_session_count",
+        "unity.player_sessionid",
+        "unity_connect.session_id"
+      ],
+      "initialPreferenceFileBytesMatch": {
+        "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+        "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+      }
+    }
+  },
+  "privateArchives": {
+    "WrapWorn": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/f1d12cf5c4384e189501395bdd7f46a8/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/WrapWorn/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "ee2606d082402f4f4363b3f383356d6ea3d851c35efa85632634c37d0055e410",
+        "Quick.sav.gz": "8d8e9a48ca42c5d2ef76d3469110f9fe6f9d25e73b839d201ed45c17c7c19f77",
+        "Quick.json.bak": "044a5d7d11ff90bebf31f1b8f26b08c4e132715e2a46e4b371555206924a04ce",
+        "Quick.sav.gz.bak": "dcb5903d9572bf2d11f0e9e7458e87fc6008cc08685c941f58c65cde26157d14"
+      }
+    },
+    "BracedAtStone": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/f1d12cf5c4384e189501395bdd7f46a8/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/BracedAtStone/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "7b887698347d1fe1c13ce92e7dd1e3f494ce600c83170495acc4c7c38a7ad4d1",
+        "Quick.sav.gz": "975f35bca10f320ec4b1e548eb617512e860034f268037318245273bf4c0b51a",
+        "Quick.json.bak": "ee2606d082402f4f4363b3f383356d6ea3d851c35efa85632634c37d0055e410",
+        "Quick.sav.gz.bak": "8d8e9a48ca42c5d2ef76d3469110f9fe6f9d25e73b839d201ed45c17c7c19f77"
+      }
+    },
+    "AtHedge": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a45eb1cdcef64504b6c5cfae13ead996/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/AtHedge/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "5306a6edd6be1d85089351e5f6018b7b8ef36c977ec3748d3ee47dbd4d4f0e60",
+        "Quick.sav.gz": "bf9e94b5b1877d63bb28b2b285710369073b2381eaaf9af5a0d2f7ead5d9404d",
+        "Quick.json.bak": "8b167e788ad22069802d6f27f0be630b0a7cc3c495653052a335ca130ec8e7c2",
+        "Quick.sav.gz.bak": "bd7b07dee0a68e82eaa8bd9aab789d445e1dd05a499ade3f902a5b4860a53f02"
+      }
+    },
+    "BootsWorn": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a45eb1cdcef64504b6c5cfae13ead996/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/BootsWorn/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "3788d30da7f64167bc2a0edcbd5452daaf9cce139486762a8f8fc27253593fef",
+        "Quick.sav.gz": "b6b9db5da21cdc92eab983dad8ccee6c2071283a9eb9426d1a39e9f238255d05",
+        "Quick.json.bak": "074130a2564d2a69e9e5b2c5d82e0955cb3eaef98608898681a1d414ade21106",
+        "Quick.sav.gz.bak": "e57a705d21102e913396cd2d8d374274cfca6a2c08a54e3eaa4375dd2f2ecf84"
+      }
+    },
+    "SlamReadyDelayed": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/7f8437b742ad4b9cb7e909c915fb3e56/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/SlamReadyDelayed/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "d316b1f6e711582cb15b9f23d3bf683c6582d84aa907f773b3f56789ec7f1cc4",
+        "Quick.sav.gz": "5fe4b8df13acdbdaa47f5ddfb040647276570b0c086c1d46bdf93e801ce74e34",
+        "Quick.json.bak": "d47b6b1b21fd1d4f5aa326f7d1652681881999c3738381b88a8f5aa6ff564179",
+        "Quick.sav.gz.bak": "371da500b34238eaf6f9fdd49df886f880135a626998cee73b9f5b190f8ddc69"
+      }
+    },
+    "ActualSlamBracedDelayed": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/7f8437b742ad4b9cb7e909c915fb3e56/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/ActualSlamBracedDelayed/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "c93db91aa7310a9b03f8c7c5a8661237c01577eea476851ad64a39fcb0fbbb44",
+        "Quick.sav.gz": "45cca956f0c0b18de8f115b9481bbd6f0e4fabcf9b83a3494527709a3a6c9bb1",
+        "Quick.json.bak": "d316b1f6e711582cb15b9f23d3bf683c6582d84aa907f773b3f56789ec7f1cc4",
+        "Quick.sav.gz.bak": "5fe4b8df13acdbdaa47f5ddfb040647276570b0c086c1d46bdf93e801ce74e34"
+      }
+    },
+    "ActualSlamBareDelayed": {
+      "source": "/private/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/2fa5d8f37d4647388edf7e904f6f03ba/c6079358f8fc4e4d83fd8416612932e3",
+      "archive": "/Users/steven/coo-verification/runs/GripfrondFieldBrace20261128/archives/ActualSlamBareDelayed/c6079358f8fc4e4d83fd8416612932e3",
+      "game": "c6079358f8fc4e4d83fd8416612932e3",
+      "files": {
+        "Quick.json": "1ccb82d6d680012c933f6b7f80efd5040d388e6d4fb5546081a14fa68cb25bb5",
+        "Quick.sav.gz": "9a68f24e2f6ebfc9535645266b8445c226e23093e14df956dd96d2bbcd06cb3d",
+        "Quick.json.bak": "d316b1f6e711582cb15b9f23d3bf683c6582d84aa907f773b3f56789ec7f1cc4",
+        "Quick.sav.gz.bak": "5fe4b8df13acdbdaa47f5ddfb040647276570b0c086c1d46bdf93e801ce74e34"
+      }
+    }
+  },
+  "tests": {
+    "red": {
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "inconclusive": 0,
+      "sha256": "2669455a211eff745e7688336937e13ea3e9793d48008298c35ca576bb38eeee",
+      "exceptions": {
+        "BootsInspectionNamesThePackActionAndFirmFooting": "  Expected: String containing \"plant feet\"\n  But was:  \"tactical use: wear these boots and plant your feet on stable ground against one physical shove or pull. the stance lasts three of your turns; moving ends it. slippery footing is unsuitable, and their speed penalty remains. choose its inventory action while in reach; success costs one action.\"\n",
+        "WrapInspectionNamesTheWorldBraceRowAndSolidOutcrop": "  Expected: String containing \"brace against wall\"\n  But was:  \"tactical use: wear the wraps and brace beside a solid handhold against one physical shove or pull. the stance lasts three of your turns; moving ends it. damage, spells and teleportation are not blocked. choose its inventory action while in reach; success costs one action.\"\n"
+      }
+    },
+    "green": {
+      "passed": 230,
+      "failed": 0,
+      "skipped": 1,
+      "inconclusive": 0,
+      "sha256": "f0744337b9b1527b76e7977cbbbe7b55cb7bcfa8181b7830f62663643a7b36bd",
+      "exceptions": {
+        "GenerateSavedPartContract": "set COO_REGENERATE_SAVED_PART_CONTRACT=1 to regenerate"
+      }
+    }
+  }
+}

@@ -62,9 +62,9 @@ namespace CavesOfOoo.Core
                 case "GroundwireScreen":
                     return Hint("Hold the screen to discharge your current electrical effect into nearby ground. The charge can endanger creatures on conductive terrain. You cannot act while stunned, and new shocks remain dangerous.");
                 case "GripfrondWrap":
-                    return Hint("Wear the wraps and brace beside a solid handhold against one physical shove or pull. The stance lasts three of your turns; moving ends it. Damage, spells and teleportation are not blocked.");
+                    return Hint("While wearing the wraps, choose Brace against wall beside a solid wall or stone outcrop. One action guards against one physical shove or pull for three of your turns. Moving ends the stance. Damage, stun, spells and teleportation can still affect you.");
                 case "IronshodBoots":
-                    return Hint("Wear these boots and plant your feet on stable ground against one physical shove or pull. The stance lasts three of your turns; moving ends it. Slippery footing is unsuitable, and their speed penalty remains.");
+                    return Hint("While wearing the boots on firm footing, choose Plant feet in the pack. One action guards against one physical shove or pull for three of your turns. Moving ends the stance. Standing liquid and slippery ground prevent bracing. The speed penalty stays in effect. A hit can still stun you.");
                 case "GlowQuartz":
                     return Hint("Spend one quartz to leave a cracked ground light for thirty world turns, freeing a hand. It cannot be picked back up and does not lure enemies. This competes with equipment infusion.");
                 default: return null;

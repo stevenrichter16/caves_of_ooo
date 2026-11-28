@@ -1,3 +1,14 @@
+**Earned field braces explain their actions — November 28, 2026, America/Chicago.**
+Ripe Stump crop 31017 yielded wrap 31019. It braced at stone 30316,
+survived Continue and a blocked move, and released on an actual step.
+Ditch hedges offered no handhold. Stump crate 30985 supplied boots
+31000. Starting from the same earned 8779 save, exact DitchMate
+33194 moved the unbraced traveler three cells. Plant feet absorbed
+an actual Slam and kept (13,11). The hit still stunned and the stance
+was consumed. Continue retained the result. Both new item readers
+name their actions and limits. Native 230 passed, one explicit skip.
+[Exact wrap, boots, target and matched start](Verification/MachineSystems/GripfrondFieldBrace20261128/README.md)
+
 **Current Mac package — November 28, 2026, America/Chicago.**
 Runtime e03f1ece8 includes the Brine Camp air warning, Groundwire
 transfer, Stump slick cleanup and Tatterjay exchange. An ordinary
