@@ -45,3 +45,28 @@ type in Unity. Broader enrollment and runtime profiling remain open.
 - [Trade under the awning](03-trade-under-awning.png)
 - [The merchant’s original position after Take Up](04-back-at-the-original-post.png)
 - [Native observations and exact archive receipts](observations.json)
+
+## Mac package
+
+The universal runtime at
+`/Users/steven/coo-verification/builds/mac-af2414486-20261128/CavesOfOoo.app`
+includes the Gantry consignment and the wayfarer routine. The existing
+build workspace pinned 32,296 source inputs. The build completed in
+23.55 seconds with zero errors and four warnings. The package has six
+arm64 and x86_64 binaries. Gameplay was checked on Apple M5.
+
+Native Continue opened the saved branch under the awning at 2960. The
+player chose Take Up in the world menu and saved at 2970. An independent
+read of the private save matched the Editor branch's actor positions,
+health, stock, purses and exact packed kit. A fresh standalone process
+continued the packed branch with the player at (42,15) and 38 HP, and
+the merchant back at (44,16). The first attempt captured only the boot
+prompt. The retained image is from the subsequent completed Continue.
+
+Both processes used a private save folder. The packed result and
+archived input were verified. Seven retained apps, both normal
+preferences and 862 files in the two ordinary Saves folders matched
+their initial bytes. Physical Intel play remains unverified.
+
+[Fresh Mac Continue after Take Up](05-mac-continued-packed-awning.png) ·
+[Build and preservation receipt](mac-observations.json)

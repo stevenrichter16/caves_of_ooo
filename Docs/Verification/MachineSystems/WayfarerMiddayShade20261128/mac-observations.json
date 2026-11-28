@@ -1,0 +1,150 @@
+{
+  "app": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/CavesOfOoo.app",
+  "inputs": 32296,
+  "build": {
+    "project": "/Users/steven/coo-verification/mac-82f5cc2df-20261127/Assets",
+    "commit": "af24144867a6d9bd7c2e91b0c9fe78ebdd42e824",
+    "result": "Succeeded",
+    "output": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/CavesOfOoo.app",
+    "errors": 0,
+    "warnings": 4,
+    "bytes": 365366349,
+    "seconds": 23.550518,
+    "messages": [
+      {
+        "type": "Log",
+        "content": "1 URP assets included in build\n- UniversalRP - Assets/Settings/UniversalRP.asset\n\t - Renderer2D - Assets/Settings/Renderer2D.asset - UnityEngine.Rendering.Universal.Renderer2DData\n\t - Village3DRenderer - Assets/Art3D/Village/Rendering/Village3DRenderer.asset - UnityEngine.Rendering.Universal.UniversalRendererData\n"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Effects/Concrete/CoatedInPlasmaEffect.cs(44,23): warning CS0108: 'CoatedInPlasmaEffect.Owner' hides inherited member 'Effect.Owner'. Use the new keyword if hiding was intended."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs(552,25): warning CS0162: Unreachable code detected"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs(49,22): warning CS0414: The field 'ShortBlades_Backstab._isFlanked' is assigned but its value is never used"
+      },
+      {
+        "type": "Log",
+        "content": "Including Unity Splash Screen logo because 'Show Unity Logo' is enabled."
+      },
+      {
+        "type": "Warning",
+        "content": "Access token is empty. Native symbols will not be uploaded for this build. Please make sure you are signed in to the Unity Cloud."
+      }
+    ]
+  },
+  "universalBinaries": {
+    "Contents/Frameworks/UnityPlayer.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libMonoPosixHelper.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libmono-native.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/Frameworks/libmonobdwgc-2.0.dylib": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/MacOS/caves-of-ooo": [
+      "x86_64",
+      "arm64"
+    ],
+    "Contents/PlugIns/lib_burst_generated.bundle": [
+      "x86_64",
+      "arm64"
+    ]
+  },
+  "stagingImportChanges": 84,
+  "retainedAppFiles": {
+    "/Users/steven/coo-verification/builds/mac-7a13bf458-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2af18031c-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-fd6579219-20261128/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2e98519f4-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-2c4931acc-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/coo-verification/builds/mac-9dae6a99c-20261127/CavesOfOoo.app": 186,
+    "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-17-machines-c600701d0-current/CavesOfOoo.app": 186
+  },
+  "preservation": {
+    "normalSaveFiles": 862,
+    "normalSaveRoots": [
+      "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves",
+      "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP/Saves"
+    ],
+    "normalPrefsIdentical": {
+      "com.DefaultCompany.2D-URP": true,
+      "unity.DefaultCompany.caves-of-ooo": true
+    },
+    "pinnedNormalPreferenceFilesMatchBytes": {
+      "/Users/steven/Library/Preferences/com.DefaultCompany.2D-URP.plist": true,
+      "/Users/steven/Library/Preferences/unity.DefaultCompany.caves-of-ooo.plist": true
+    },
+    "playerStopped": true,
+    "privateFixtureUnchanged": true,
+    "privateSlotAfter": {
+      "Quick.json": "d7ee81038ef1d1bd2780e6d2653ec3c188a1a505018020d46ce63cdf3dfdfe66",
+      "Quick.json.bak": "4c24b182ebba4fa507f3c6127792b4d351f443a16476b23a173bfae0f2e69282",
+      "Quick.sav.gz": "122afab5adf2bfa20c3d7155675219c5bcd67e33a32ea31de9dcf9ab180609cd",
+      "Quick.sav.gz.bak": "0f0df8dd0f90ac57d0fd0062d921091222fbf5e354b86dd81624de7ef99a61dc"
+    },
+    "publishedAppAndRetainedAppsExact": true
+  },
+  "initialStandalone": {
+    "pid": 13522,
+    "executable": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+    "log": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/player-shade.log",
+    "label": "shade",
+    "startPrivateSave": {
+      "Quick.json": "4c24b182ebba4fa507f3c6127792b4d351f443a16476b23a173bfae0f2e69282",
+      "Quick.json.bak": "3b0dbb18bee76f294108634dcb991b166f53fe4e33d8b75fa14dfbbe75f813ac",
+      "Quick.sav.gz": "0f0df8dd0f90ac57d0fd0062d921091222fbf5e354b86dd81624de7ef99a61dc",
+      "Quick.sav.gz.bak": "df0c984055b9a4217ae9055c413b4ed1e62a69f9281dfd23e155e6d175debbad"
+    },
+    "normalRootsDenied": [
+      "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves",
+      "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP/Saves"
+    ],
+    "privateHome": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/private-home"
+  },
+  "freshStandalone": {
+    "pid": 14125,
+    "executable": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+    "log": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/player-packed-verify.log",
+    "label": "packed-verify",
+    "startPrivateSave": {
+      "Quick.json": "d7ee81038ef1d1bd2780e6d2653ec3c188a1a505018020d46ce63cdf3dfdfe66",
+      "Quick.json.bak": "4c24b182ebba4fa507f3c6127792b4d351f443a16476b23a173bfae0f2e69282",
+      "Quick.sav.gz": "122afab5adf2bfa20c3d7155675219c5bcd67e33a32ea31de9dcf9ab180609cd",
+      "Quick.sav.gz.bak": "0f0df8dd0f90ac57d0fd0062d921091222fbf5e354b86dd81624de7ef99a61dc"
+    },
+    "normalRootsDenied": [
+      "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves",
+      "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP/Saves"
+    ],
+    "privateHome": "/Users/steven/coo-verification/builds/mac-af2414486-20261128/private-home"
+  },
+  "privatePackedSave": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.19.14.0",
+    "ActiveZoneDisplayLabel": "Overworld.19.14.0",
+    "Turn": 2970,
+    "SaveTimestampUtc": "2026-11-28T08:54:28.5945360Z",
+    "HPSummary": "38/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "freshScreenshotSha256": "55958b2514b121fd1dc40b0ce2c67c38b10c1eb96e184a0ec831148f2c6497d3"
+}

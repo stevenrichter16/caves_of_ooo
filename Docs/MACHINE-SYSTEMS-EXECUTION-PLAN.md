@@ -1,3 +1,12 @@
+**Current Mac update — November 28, 2026, America/Chicago.**
+Universal runtime `af2414486` includes Gantry's Wellmeet import and the
+wayfarer's shade behavior. The Mac playtest used Continue, took up the
+awning and saved. A fresh process returned to the same spot with the
+awning packed and merchant back at his usual place. Seven retained
+apps, the private source fixture and both normal preferences matched
+their original bytes.
+[Mac package and fresh Continue](Verification/MachineSystems/WayfarerMiddayShade20261128/README.md#mac-package)
+
 **A wayfarer rests under the player’s awning — November 28, 2026, America/Chicago.**
 The ordinary Beating merchant moved one step into the shade on the turn
 the traveler set the awning down. Examine showed why he was there and
